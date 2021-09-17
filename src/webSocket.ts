@@ -1,14 +1,37 @@
 
 import protoRoot from '@/proto/proto'
-import protobuf, { Root } from "protobufjs";
-import { useStore } from "vuex";  //為了把資料存到vuex的wsStore中
-
-// const store = useStore();
+import protobuf from "protobufjs";
+import { useStore } from "vuex"; //為了把資料存到vuex的wsStore中
 const url = "ws://139.162.102.189:8199/ws";
+const protoHeader = protoRoot.lookupType('foundation.Header') //Header的lookup
 //建立webSocket實例
 let Socket:WebSocket | null
 let setIntervalWesocketPush:number
-
+//protoBuf方法區
+  const encodeProto=(message,bytes,lookupType):any=>{  //包裝
+    protobuf.load(protoRoot,protoRoot,(err,root)=>{
+      if(err)throw err;
+      let Product =root?.lookupType(lookupType);
+      bytes =Product?.encode(message).finish();
+      // console.log(bytes)
+      return bytes  
+    })
+  }
+  const decodeProto =(msgData,lookupType)=>{ //解析
+    // let Udata = new Uint8Array(msg); //回來的是字串先轉換成Unit
+      protobuf.load(protoRoot,protoRoot,(err,root)=>{
+        if(err) throw err;
+        let message = root.lookupType(lookupType);
+        msgData= message.decode(msgData);
+        return msgData; //返回msg
+      })
+  }
+  const getMsgTypeValue =(msgtyp)=>{
+    //建立protobuf的Header(解析訊息type)
+    const ret = protoHeader.values[msgtyp]
+    return ret 
+  }
+  
 //連接上後會發送心跳
 const onopenWs = ()=>{
     //正式啟動時記得sendPing
@@ -52,50 +75,47 @@ const onerrorWs = ()=>{
  * 发送数据
  * @param {any} message 需要发送的数据
  */
- export const sendWSPush = (message:any) => {
+ export const sendWSPush = async(message:any) => {
     if (Socket !== null && Socket.readyState === 3) {
       Socket.close()
       createSocket()
-      console.log("readyState:"+Socket.readyState,"傳送成功:"+JSON.stringify(message));
     } else if (Socket?.readyState === 1) { //已經連接，且可以通訊
       let bytes:any;
-      protobuf.load(protoRoot,protoRoot,function(err,root){
+      //做假資料時，每個假資料都會有Header
+      // bytes=await encodeProto(message,bytes,"auth.LoginCall")
+      protobuf.load(protoRoot,protoRoot,async(err,root)=>{
         if(err)throw err;
-        let Product = root?.lookupType("PBUser");
-        bytes = Product?.encode(message).finish();
+        let Product = root?.lookupType("auth.LoginCall");
+        bytes =Product?.encode(message).finish();
+        // console.log(bytes)
+        // return bytes
       })
       Socket.send(bytes)
-      // Socket.send(JSON.stringi(message))
-      // console.log("readyState:"+Socket.readyState,"傳送成功:"+message);
+      console.log("傳送成功",bytes)
     } else if (Socket?.readyState === 0) { //正在連接中
       connecting(message)
-      console.log("readyState:"+Socket.readyState,"傳送成功:"+JSON.stringify(message));
+      console.log("readyState:"+Socket.readyState,"準備傳送:"+JSON.stringify(message));
     }
   }
 
   export const onmessageWs=(msg:any)=>{
+    const store = useStore()
     if(msg){ 
-      console.log("收到數據")
+      console.log("收到數據", msg.data)
       let reader = new FileReader();
-      reader.readAsText(msg.data,'utf-8')
-      reader.onload =()=>{
-        // store.commit('wsStore/setWsRes',reader.result)  //把資料灌到Vuex中
-        console.log(reader.result)
-        return reader.result
-      }
+      protobuf.load(protoRoot)
+      .then((root)=>{
+        let header = protoHeader;
+        let Udata = new Uint8Array(msg.data);
+        msg= header.decode(Udata);
+        console.log(msg)
+        //   store.commit("wsStore/setWsRes",reader.result)  //把資料灌到Vuex中
+      }).catch(err=>{
+        if(err) throw err
+      })
+
       
-      //解析protobuf
-      // let Udata = new Uint8Array(msg);
-      // protobuf.load(protoRoot,protoRoot,function(err,root){
-      //   if(err) throw err;
-      //   let message = root.lookupType("PBUser");
-      //   msg= message.decode(Udata);
-      // })
-      // console.log(msg.data)
-    // JSON.stringify(msg.data)
-    // console.log("接收訊息",msg)
     }
-    
 }
   /**发送心跳
  * @param {number} time 心跳间隔毫秒 默认5000
@@ -108,15 +128,12 @@ export const sendPing = (time = 5500, ping = 'ping') => {
       Socket?.send(ping)
     }, time)
   }
-export const resPing = () => {
-    Socket?.send("pingt")
-  }
-
   //建立ws
 export const createSocket =()=>{  //使用createSocket的方法，會自動開啟監聽連線、訊息等等方法
     Socket && Socket.close()
     if(!Socket){
         Socket = new WebSocket(url);
+        Socket.binaryType='arraybuffer' //切記將binaryType設成二進制
         Socket.onopen = onopenWs  //會打開心跳
         Socket.onmessage = onmessageWs
         Socket.onerror = onerrorWs
