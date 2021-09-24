@@ -23,10 +23,11 @@ export default defineComponent({
         header:protoHeader.create({ //header要先建立起來
           uri:"LoginCall",
         }),
-        account:"請傳",
-        password:"等你來上班~"
+        account:"吃飯了吧~",
+        password:"別再用了~"
     })
     const sendLogin=()=>{
+      console.log(fake)
       sendWSPush(fake)
     }
     const changeColor=()=>{

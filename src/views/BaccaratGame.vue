@@ -1,5 +1,6 @@
 <template>
   <div class="gem-main">
+    <h1>{{tableNum}}</h1>
     <LiveCamara
     />
   <button @click="printVuex">取得Vuex資料</button>
@@ -19,6 +20,7 @@ import BettingArea from '@/components/BettingArea.vue'
 import TableInfo from '@/components/TableInfo.vue'
 import { computed, reactive, ref } from '@vue/reactivity';
 import { useStore } from "vuex";  //為了把資料存到vuex的wsStore中
+import { useRouter } from 'vue-router'
 export default defineComponent({
   components:{
     HelloWorld,
@@ -27,6 +29,11 @@ export default defineComponent({
     TableInfo
   },
   setup(){
+    const router = useRouter()
+    router.afterEach((to,from,next)=>{ 
+      router.go(0)
+    })
+    const tableNum = ref<any>(router.currentRoute.value.params.tableId)
     const store = useStore() //先創建一個store
     const wsRes = computed(()=>{
      return store.state.wsStore.wsRes
@@ -38,6 +45,7 @@ export default defineComponent({
     return{
       wsRes,
       printVuex,
+      tableNum,
     }
   },
   methods:{

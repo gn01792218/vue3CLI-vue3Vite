@@ -1,8 +1,8 @@
 <template>
     <div class="gem-left">
         <a href="#" class="logo"><div class="row"><img src="../images/logo.png" class="rwd-img"></div></a>
-        <a href="#" class="btn w-100">A桌</a>
-        <a href="#" class="btn w-100">B桌</a>
+        <a class="btn w-100" @click="toGametable('A')" >A桌</a>
+        <a class="btn w-100" @click="toGametable('B')" >B桌</a>
         <a href="#" class="btn w-100">回大廳</a>
         <div class="align-items-end">
             <div class="col font-yellows"><i class="fa fa-envelope-o" aria-hidden="true"></i> Feed Back</div>
@@ -13,9 +13,23 @@
 </template>
 
 <script>
-export default {
+import {defineComponent} from 'vue'
+import { useRouter } from 'vue-router'
+export default defineComponent({
+    setup(){
+        const router = useRouter()
+        const toGametable = (tableNum)=>{
+            router.push({
+                path:`/BaccaratGame/${tableNum}`
+            })
+        }
+        return{
+            toGametable,
+        }
+    }
+}) 
 
-}
+
 </script>
 
 <style lang="scss" scope>

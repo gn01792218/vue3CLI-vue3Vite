@@ -18,8 +18,6 @@ export default defineComponent({
         return {
             total,second
         }
-        
-
     }
 
 })

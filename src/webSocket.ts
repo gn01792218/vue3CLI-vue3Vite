@@ -87,8 +87,7 @@ const onerrorWs = ()=>{
         if(err)throw err;
         let Product = root?.lookupType("auth.LoginCall");
         bytes =Product?.encode(message).finish();
-        // console.log(bytes)
-        // return bytes
+        console.log(message)
       })
       Socket.send(bytes)
       console.log("傳送成功",bytes)

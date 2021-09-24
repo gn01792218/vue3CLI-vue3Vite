@@ -7,7 +7,5 @@ import "../src/assets/css/bootstrap.min.css"
 import "../src/assets/css/jquery.atAccordionOrTabs.css"
 import './assets/css/game.css';  //最後引入主要CSS
 
-// import "bootstrap"
-
 
 createApp(App).use(store).use(router).mount('#app')

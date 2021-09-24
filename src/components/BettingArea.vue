@@ -102,7 +102,6 @@ export default defineComponent({
             }
         }
         const cointAnimate = (e)=>{
-            console.log("啟動動畫")
             gsap
             .to(e,{
                 keyframes:[
@@ -182,11 +181,8 @@ export default defineComponent({
     .shotCoinUl{  
         display: flex;
         position: absolute;
-        top:0%;
         .shotCoinPice{
             position: absolute;
-            left:0%;
-            z-index:1;
             transform: scale(0.7);
         }
         .coin5{

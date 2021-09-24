@@ -8,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     component: BaccaratGame
   },
   {
+    path:'/BaccaratGame/:tableId',   //點擊btn的時候會帶參數，選擇是哪一桌
+    name:'/BaccaratGame',
+    component:()=>import('../views/BaccaratGame.vue')
+  },
+  {
     path: '/practice',
     name: 'Practice',
     // route level code-splitting
