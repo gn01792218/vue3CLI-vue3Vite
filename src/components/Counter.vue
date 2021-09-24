@@ -29,9 +29,6 @@ export default defineComponent({
             count,setCount
         }
     },
-
-    mounted(){
-    },
     watch:{  //目前是監聽外面的傳入的play變化
         play:function (){
             if(this.tim){console.log("目前有計時器唷!"); return} //假如目前有計時器的話，要return掉

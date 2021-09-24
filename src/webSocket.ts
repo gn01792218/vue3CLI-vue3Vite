@@ -1,7 +1,7 @@
 
 import protoRoot from '@/proto/proto'
 import protobuf from "protobufjs";
-import { useStore } from "vuex"; //為了把資料存到vuex的wsStore中
+import store from './store' //在元件之外要使用store，不能用useStore
 const url = "ws://139.162.102.189:8199/ws";
 const protoHeader = protoRoot.lookupType('foundation.Header') //Header的lookup
 //建立webSocket實例
@@ -99,22 +99,18 @@ const onerrorWs = ()=>{
   }
 
   export const onmessageWs=(msg:any)=>{
-    const store = useStore()
     if(msg){ 
-      console.log("收到數據", msg.data)
-      let reader = new FileReader();
+      // console.log("收到數據", msg.data)
       protobuf.load(protoRoot)
       .then((root)=>{
         let header = protoHeader;
         let Udata = new Uint8Array(msg.data);
         msg= header.decode(Udata);
         console.log(msg)
-        //   store.commit("wsStore/setWsRes",reader.result)  //把資料灌到Vuex中
+        store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
       }).catch(err=>{
         if(err) throw err
       })
-
-      
     }
 }
   /**发送心跳

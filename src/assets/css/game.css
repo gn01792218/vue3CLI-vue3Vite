@@ -1,0 +1,469 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	padding: 0px;
+	background-color: #000;
+	background-image: url('../../images/body-bg.png');
+	background-repeat: repeat;
+	color: #FFF;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+}
+ul{
+	list-style: none;
+}
+.rwd-img{width: 100%;}
+
+.font-red{
+	color: #bd0505;
+}
+
+.font-green{
+	color: #009200;
+}
+.font-yellow{
+	color: #ffd236;
+}
+.font-yellows{
+	color: #fff6d7;
+	line-height: 2em;
+}
+.font-24{
+	font-size: 36px;
+	float: left;
+	width: 100%;
+}
+
+.font-totel{
+	color: #fff;
+	float: left;
+	width: 100%;
+	background-color: rgba(2,29,35,0.5);
+	line-height: 2em;
+	text-align: center;
+}
+.rows{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+/*-------------------------------------------
+     基本版面設定區
+-------------------------------------------*/
+
+#wap{
+	float: left;
+	width: 100%;
+}
+
+.container-wap{
+	
+	width: 96%;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1280px;
+
+}
+.container-waps{
+	float: left;
+	width: 100%;
+	background-color: #000000;
+	border: 1px solid #362903;
+}	
+
+.video-box{
+	border: 2px solid #644d31;float: left;
+	width: 100%;
+}
+.bp-box{
+	border: 2px solid #fff;
+	float: left;
+	width: 100%;
+	background-color: #FFF;
+}
+
+.coin-area{
+	float: left;
+	width: 100%;
+	background-color: #1e1e1e;
+	border: 1px solid #333;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.coin-area .s{
+	float: left;
+	width: 20%;
+	text-align: center;
+	padding-right: 1%;
+	padding-left: 1%;
+}
+.stand-box{
+	border: 2px solid #262626;
+	float: left;
+	width: 100%;
+	background-image: url('../../images/Stand-bg.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+.stand-box .em{
+	float: left;
+	width: 100%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CCC;
+}
+.stand-box .ems{
+	float: left;
+	width: 100%;
+	border-right-width: 2px;
+	border-right-style: solid;
+	border-right-color: #FFF;
+}
+
+.tabs-area{
+	float: left;
+	width: 100%;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+1,000000+100&0.65+3,0+9 */
+background: -moz-linear-gradient(top,  rgba(56,56,56,0.65) 1%, rgba(55,55,55,0.65) 3%, rgba(52,52,52,0) 9%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6383838', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+/*-------------------------------------------
+     按鈕設定區
+-------------------------------------------*/
+.btn{
+	max-width:120px;
+	display: inline-block;
+	line-height: 1.75em;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	font-size: 148%;
+	font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+	text-decoration: none;
+	color: #fff6d5;
+	padding-top: 5px;
+	padding-right: 25px;
+	padding-bottom: 5px;
+	padding-left: 25px;
+	margin-top: 5px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	border: 0px solid #d0c0a4;
+	background-color: #ae8b27;
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ae8b27+0,775124+99 */
+	background: rgb(174,139,39); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(174,139,39,1) 0%, rgba(119,81,36,1) 99%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(174,139,39,1) 0%,rgba(119,81,36,1) 99%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(174,139,39,1) 0%,rgba(119,81,36,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ae8b27', endColorstr='#775124',GradientType=0 ); /* IE6-9 */
+	border-radius: 10px;
+	box-shadow: 0px 0px 0px #9e9e9e;
+	transition: 1s;
+}
+
+.btn.active.focus,.btn.active:focus,.btn.focus,.btn:active.focus,.btn:active:focus,.btn:focus{
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+	text-decoration: none;
+	color: #372710;
+	transition: 1s;
+}.btn.focus,.btn:focus,.btn:hover{
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-right: 25px;
+	padding-bottom: 5px;
+	padding-left: 25px;
+	margin-top: 5px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	color: #372710;
+	text-decoration: none;
+	background-color: #ae8b27;
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#775124+0,ae8b27+100 */
+background: rgb(119,81,36); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(119,81,36,1) 0%, rgba(174,139,39,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(119,81,36,1) 0%,rgba(174,139,39,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(119,81,36,1) 0%,rgba(174,139,39,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', endColorstr='#ae8b27',GradientType=0 ); /* IE6-9 */
+	transition: 1s;
+}.btn.active,.btn:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn.disabled,.btn[disabled],fieldset[disabled] .btn{cursor:not-allowed;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none;opacity:.65}a.btn.disabled,fieldset[disabled] a.btn{pointer-events:none}
+
+.btn-p{
+	display: inline-block;
+	line-height: 1.75em;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 15px;
+	font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #0066CC;
+	transition: 1s;
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	line-height: 1.428571429;
+	border-radius: 20px;
+	margin: 1px;
+	padding-top: 8px;
+	padding-right: 0;
+	padding-bottom: 8px;
+	padding-left: 0;
+}
+
+.btn-p.active.focus,.btn-p.active:focus,.btn-p.focus,.btn-p:active.focus,.btn-p:active:focus,.btn-p:focus{
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+	text-decoration: none;
+	color: #fff;
+	transition: 1s;
+}.btn-p.focus,.btn-p:focus,.btn-p:hover{
+	color: #fff;
+	text-decoration: none;
+	transition: 1s;
+}.btn-p.active,.btn-p:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn-p.disabled,.btn-p[disabled],fieldset[disabled] .btn-p{cursor:not-allowed;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none;opacity:.65}a.btn-p.disabled,fieldset[disabled] a.btn-p{pointer-events:none}
+
+.btn-b{
+	display: inline-block;
+	line-height: 1.75em;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 15px;
+	font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #FF0000;
+	transition: 1s;
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	line-height: 1.428571429;
+	border-radius: 20px;
+	margin: 1px;
+	padding-top: 8px;
+	padding-right: 0;
+	padding-bottom: 8px;
+	padding-left: 0;
+}
+
+.btn-b.active.focus,.btn-b.active:focus,.btn-b.focus,.btn-b:active.focus,.btn-b:active:focus,.btn-b:focus{
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+	text-decoration: none;
+	color: #fff;
+	transition: 1s;
+}.btn-b.focus,.btn-b:focus,.btn-b:hover{
+	color: #fff;
+	text-decoration: none;
+	transition: 1s;
+}.btn-b.active,.btn-b:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn-b.disabled,.btn-b[disabled],fieldset[disabled] .btn-b{cursor:not-allowed;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none;opacity:.65}a.btn-b.disabled,fieldset[disabled] a.btn-b{pointer-events:none}
+
+.btn-c{
+	display: inline-block;
+	line-height: 1.75em;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 15px;
+	font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #166d0a;
+	transition: 1s;
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	line-height: 1.428571429;
+	border-radius: 20px;
+	margin: 1px;
+	padding-top: 8px;
+	padding-right: 0;
+	padding-bottom: 8px;
+	padding-left: 0;
+}
+
+.btn-c.active.focus,.btn-c.active:focus,.btn-c.focus,.btn-c:active.focus,.btn-c:active:focus,.btn-c:focus{
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+	text-decoration: none;
+	color: #fff;
+	transition: 1s;
+}.btn-c.focus,.btn-c:focus,.btn-c:hover{
+	color: #fff;
+	text-decoration: none;
+	transition: 1s;
+}.btn-c.active,.btn-c:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn-c.disabled,.btn-c[disabled],fieldset[disabled] .btn-c{cursor:not-allowed;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none;opacity:.65}a.btn-c.disabled,fieldset[disabled] a.btn-c{pointer-events:none}
+
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.gem-left{
+	float: left;
+	width: 11%;
+	background-color: #1e1101;
+	border: 1px solid #654d31;
+	background-image: url('../../images/left-bg.jpg');
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: relative;
+}
+.gem-main{float: left;width: 66%;}
+.gem-right{	float: left;width: 23%;}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+}
+.grid-item {
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(153,153,153,0.8);
+	padding: 0px;
+	text-align: center;
+}
+
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.flex {
+  display: flex;
+  height: 180px;
+  padding: 0px;
+  flex-wrap: wrap;
+}
+
+.item {
+	flex: 25%;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 2rem;
+	border: 1px solid #FFF;
+	text-align: center;
+}
+
+.yellow{
+	color: #FC0;
+}
+.green{
+	color: #093;
+}
+
+.flex-1 {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 25%;
+	border: 1px solid #FFF;
+	font-size: 280%;
+	line-height: 1em;
+	color: #ffd236;
+}
+.flex-2 {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 25%;
+	border: 1px solid #FFF;
+	font-size: 280%;
+	line-height: 1em;
+	color: #bd0505;
+}
+
+
+/*-------------------------------------------
+     頁底設定區
+-------------------------------------------*/
+.footer{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#331d02+0,000000+100 */
+	background: rgb(51,29,2); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(51,29,2,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #9a8326;
+	float: left;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #d2c0a8;
+}
+/*-------------------------------------------
+     自適應設定區
+-------------------------------------------*/
+@media screen and (max-width: 1280px) {
+.align-items-end{
+	-ms-flex-align: end!important;
+	align-items: flex-end!important;
+	position: static;
+	bottom: 0px;
+	width: 100%;
+}
+	
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.gem-left{
+	float: left;
+	width: 100%;
+	background-color: #1e1101;
+	border: 1px solid #654d31;
+	background-image: url('../../images/left-bg.jpg');
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: relative;
+}
+.gem-main{float: left;width: 100%;}
+.gem-right{	float: left;width: 100%;}	
+}

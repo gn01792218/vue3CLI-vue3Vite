@@ -1,17 +1,15 @@
 <template>
   <div class="about">
-    
     <h1>This is an about page</h1>
     <!-- 計時器 -->
     <Counter
      :play="startCount"
-      :countNum="countTime"
+     :countNum="countTime"
     />
     <button @click="play">開始倒數</button>
     <!-- 有zoomin動畫的video -->
     <div class="videoContain" ref="av">
       <LiveCamara 
-      
       class="video"
       url='HIHI'
       :width="videoWidth"
@@ -22,16 +20,18 @@
     <button @click="scaleVideo">視訊縮放</button>
       <p ref="p" @click="move">hello</p>
     </div>
+    <gameHistory/>
 </template>
 
 <script lang="ts">
   import {defineComponent, ref} from 'vue'
   import LiveCamara from '@/components/LiveCamara.vue'
   import Counter from '@/components/Counter.vue'
+  import gameHistory from '@/components/gameHistory.vue'
   import gsap from 'gsap'
   export default defineComponent({
     components:{
-      LiveCamara,Counter
+      LiveCamara,Counter,gameHistory
     },
     setup(){
       const startCount = ref(0); //計時控制器

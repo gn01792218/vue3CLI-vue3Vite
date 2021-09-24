@@ -1,10 +1,8 @@
 <template>
   <div class="hello">
     <h1>用戶座標</h1>
-    <div>x:{{x}}；y:{{y}}
-    </div>
     <button type="button" @click="sendLogin">發送proto</button>
-    <button :class="['btn',BorderStyle]" type="button" @click="changeColor">點我換顏色</button>
+    <!-- <button :class="['btn',BorderStyle]" type="button" @click="changeColor">點我換顏色</button> -->
   </div>
 </template>
 
@@ -12,42 +10,32 @@
 import {defineComponent, onBeforeMount, onMounted, reactive, ref} from 'vue'
 import {createSocket,sendWSPush,onmessageWs} from '../webSocket'
 import protoRoot from '@/proto/proto'
-import useMousePosition from '../hooks/useMousePosition'
+
 export default defineComponent({
-   props: {
-    msg: String
-  },
   setup(){
-    const {x,y} = useMousePosition()
+    onMounted(()=>{
+      createSocket()
+    })
     const BorderStyle=ref<string | null>(null)
-    const protoHeader = protoRoot.lookupType('foundation.Header')
-    const protoLogin =protoRoot.lookupType('auth.LoginCall')
-    const a=protoLogin.create({
-        header:protoHeader.create({
+    const protoHeader = protoRoot.lookupType('foundation.Header') //先查看Header的結構
+    const protoLogin =protoRoot.lookupType('auth.LoginCall') //再查看LoginCall的結構
+    const fake=protoLogin.create({ //創建一筆資料
+        header:protoHeader.create({ //header要先建立起來
           uri:"LoginCall",
         }),
-        account:"請給我石頭",
-        password:"#@$#@%$#@$%$!!!!!!"
+        account:"請傳",
+        password:"等你來上班~"
     })
-    // const fack =reactive({
-    //     header:'LoginCall',
-    //     account:"Vue3+TS+WE+PROTO崩潰到一個極致",
-    //     password:"#@$#@%$#@$%$!!!!!!"
-    //   })
     const sendLogin=()=>{
-      sendWSPush(a)
+      sendWSPush(fake)
     }
     const changeColor=()=>{
       BorderStyle.value="red"
     }
     return{
-      sendLogin,x,y,changeColor,BorderStyle,a
+      sendLogin,changeColor,BorderStyle,fake
     }
   },
-  mounted(){
-    createSocket()
-  }
-
 })
 
 </script>
