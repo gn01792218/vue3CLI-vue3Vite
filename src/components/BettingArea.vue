@@ -15,19 +15,19 @@
         <img class="s" :src=coin.url alt="" v-for="coin,index in coin" :key="index" @click="chooseCoint(index,$event)">
           <!-- 表情符號子彈 -->
         <ul class="shotCoinUl">
-            <transition-group v-if="coinAmmo.coin5.length>0" @enter="cointAnimate">
-                <img class="shotCoinPice coin5"  :src="coin.src" :alt="coin.point" v-for="coin,index in coinAmmo.coin5" :key="index+1">
+            <transition-group v-if="coinAmmo.coin5.length>=0" @enter="cointAnimate">
+                <img class="shotCoinPice coin5" :src="coin.src" :alt="coin.point" v-for="coin,index in coinAmmo.coin5" :key="index+1">
             </transition-group>
-            <transition-group v-if="coinAmmo.coin10.length>0" @enter="cointAnimate">
+            <transition-group v-if="coinAmmo.coin10.length>=0" @enter="cointAnimate">
                 <img class="shotCoinPice coin10"  :src="coin.src" :alt="coin.point" v-for="coin,index in coinAmmo.coin10" :key="index+1">
             </transition-group>
-            <transition-group v-if="coinAmmo.coin50.length>0" @enter="cointAnimate">
+            <transition-group v-if="coinAmmo.coin50.length>=0" @enter="cointAnimate">
                 <img class="shotCoinPice coin50"  :src="coin.src" :alt="coin.point" v-for="coin,index in coinAmmo.coin50" :key="index+1">
             </transition-group>
-            <transition-group v-if="coinAmmo.coin100.length>0" @enter="cointAnimate">
+            <transition-group v-if="coinAmmo.coin100.length>=0" @enter="cointAnimate">
                 <img class="shotCoinPice coin100"  :src="coin.src" :alt="coin.point" v-for="coin,index in coinAmmo.coin100" :key="index+1">
             </transition-group>
-            <transition-group v-if="coinAmmo.coin500.length>0" @enter="cointAnimate">
+            <transition-group v-if="coinAmmo.coin500.length>=0" @enter="cointAnimate">
                 <img class="shotCoinPice coin500"  :src="coin.src" :alt="coin.point" v-for="coin,index in coinAmmo.coin500" :key="index+1">
             </transition-group>
         </ul>
@@ -107,7 +107,7 @@ export default defineComponent({
             .to(e,{
                 keyframes:[
                     {
-                        scale:1.5,
+                    scale:1.5,
                     },
                     {duration:0.8,
                     ease:Power4.easeIn,
@@ -115,7 +115,6 @@ export default defineComponent({
                     x:target.x-currentCoint.x,
                     y:target.y-currentCoint.y,
                     zIndex:"1",
-                    
                     },
                     {
                         display:"none"
@@ -144,7 +143,7 @@ export default defineComponent({
         }
         const shot = (e)=>{  //點下注區的時候啟動shot
             loadCoin()  //把當前點選到的裝子彈
-            cointAnimate(e)
+            // cointAnimate(e)
             target.x = e.x;
             target.y = e.y;
             //假如要在該區域產生籌碼，在這裡產生
@@ -187,7 +186,7 @@ export default defineComponent({
         .shotCoinPice{
             position: absolute;
             left:0%;
-            z-index:-1;
+            z-index:1;
             transform: scale(0.7);
         }
         .coin5{
