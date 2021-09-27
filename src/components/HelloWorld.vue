@@ -23,7 +23,7 @@ export default defineComponent({
         header:protoHeader.create({ //header要先建立起來
           uri:"LoginCall",
         }),
-        account:"吃飯了吧~",
+        account:"下班了",
         password:"別再用了~"
     })
     const sendLogin=()=>{

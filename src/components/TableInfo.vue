@@ -43,6 +43,7 @@
 import {defineComponent, ref} from 'vue'
 export default defineComponent({
     setup(){
+        //切換TableInfo頁籤
         const showCards = ref(true)
         const showCard = ()=>{
             showCards.value = true
@@ -51,7 +52,10 @@ export default defineComponent({
             showCards.value = false
         }
         return{
-            showCards,showCard,showTableInfo
+            //data
+            showCards,
+            //methods
+            showCard,showTableInfo
         }
     }
 

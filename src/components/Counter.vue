@@ -15,6 +15,7 @@ export default defineComponent({
         }
     },
     setup(props){
+        //計時器
         const count = ref<number>(props.countNum as number)
         const setCount =(countNum:number)=>{
         let tim = setInterval(()=>{
@@ -26,7 +27,10 @@ export default defineComponent({
             },1000)
         }
         return{
-            count,setCount
+            //data
+            count,
+            //methods
+            setCount
         }
     },
     watch:{  //目前是監聽外面的傳入的play變化

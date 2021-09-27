@@ -14,11 +14,13 @@
 import {defineComponent, onMounted, ref} from 'vue'
 export default defineComponent({
     setup(){
+        //初始化
         onMounted(()=>{
             dateRun();
         })
+        //日期顯示
         const date = ref("")
-        const dateRun = ()=>{
+        const dateRun = ()=>{  //日期更新
             setInterval(()=>{
                 let temp = new Date();
                 date.value=""
@@ -27,7 +29,10 @@ export default defineComponent({
             },1100)
         }
         return {
-            date,dateRun
+            //data
+            date,
+            //methods
+            dateRun
         }
     }
 })

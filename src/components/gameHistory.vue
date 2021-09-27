@@ -13,10 +13,15 @@
 import {defineComponent, onMounted, reactive} from 'vue'
 export default defineComponent({
     setup(){
+        //表格
         const total=new Array(25)
         const second=new Array(190)
         return {
-            total,second
+            //data
+            total,second,
+
+            //methods
+
         }
     }
 

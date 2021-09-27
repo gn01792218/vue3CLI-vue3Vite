@@ -29,11 +29,14 @@ export default defineComponent({
     TableInfo
   },
   setup(){
+    //路由處理
     const router = useRouter()
-    router.afterEach((to,from,next)=>{ 
+    const tableNum = ref<any>(router.currentRoute.value.params.tableId) //取得桌號
+    router.afterEach((to,from,next)=>{ //換桌時強制刷新
       router.go(0)
     })
-    const tableNum = ref<any>(router.currentRoute.value.params.tableId)
+    
+    //Vuex資料處理
     const store = useStore() //先創建一個store
     const wsRes = computed(()=>{
      return store.state.wsStore.wsRes
@@ -42,10 +45,13 @@ export default defineComponent({
        console.log("Home中的computed",store.state.wsStore.wsRes)
        console.log(wsRes.value)
     }
+    
     return{
-      wsRes,
+      //data
+      wsRes,tableNum,
+      //methods
       printVuex,
-      tableNum,
+      
     }
   },
   methods:{

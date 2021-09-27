@@ -40,6 +40,7 @@ import {defineComponent, reactive, ref} from 'vue'
 import {gsap,Power4} from 'gsap'
 export default defineComponent({
     setup(){
+        //籌碼動畫
         const coin = reactive([  //籌碼基本資料
                     {
                     url:require("../images/coin5.png"),
@@ -165,7 +166,10 @@ export default defineComponent({
             // }
         }
         return{
-            coin,coinAmmo,currentCoint,target,chooseCoint,cointAnimate,loadCoin,shot
+            //data
+            coin,coinAmmo,currentCoint,target,
+            //methods
+            chooseCoint,cointAnimate,loadCoin,shot
         }
     }
 })

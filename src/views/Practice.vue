@@ -34,14 +34,18 @@
       LiveCamara,Counter,gameHistory
     },
     setup(){
+      //倒數計時操控
       const startCount = ref(0); //計時控制器
       const countTime= ref<Number>(5) //倒數秒數
+      const play=()=>{  //到時候要監聽server的指令來執行這個方法
+      startCount.value++
+      }
+      //直播螢幕操控
       const videoWidth = ref<Number>(300) //螢幕寬高
       const videoHeight= ref<Number>(300)
+      //字體移動動畫
       const p = ref<HTMLParagraphElement>(null)
-      const av = ref<HTMLElement>(null)
       const move =()=>{
-      console.log("啟動P動畫")
       gsap.to(p.value,{
         keyframes:[
           {duration:3,x:200},
@@ -49,8 +53,9 @@
         ]
       })
       }
+      //螢幕動畫
+      const av = ref<HTMLElement>(null)
       const zoonIn = ()=>{
-      console.log("啟動P動畫")
       gsap.to(av.value,{
         keyframes:[
           {duration:1,x:150},
@@ -67,11 +72,11 @@
         ]
       })
       }
-      const play=()=>{  //到時候要監聽server的指令來執行這個方法
-      startCount.value++
-      }
+     
     return{
+      //data
      p,av,startCount,countTime,videoWidth,videoHeight,
+     //methods
      move,zoonIn,scaleVideo,play
     }
     },

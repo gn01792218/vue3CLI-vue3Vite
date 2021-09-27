@@ -17,13 +17,18 @@ import {defineComponent} from 'vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
     setup(){
+        //路由處理
         const router = useRouter()
-        const toGametable = (tableNum)=>{
+        //換桌
+        const toGametable = (tableNum)=>{ 
             router.push({
                 path:`/BaccaratGame/${tableNum}`
             })
         }
         return{
+            //data
+            
+            //methods
             toGametable,
         }
     }
