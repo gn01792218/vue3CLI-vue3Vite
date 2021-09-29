@@ -1,23 +1,27 @@
 <template>
     <div class="stand-box">
         <div class="flex">
-            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="shot($event)" >{{i.host}}<br>{{i.odds}}
+            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="bet($event)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
-                    <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
+                    <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
+                    </transition-group>
                 </ul>
             </div>
         </div>  
         <div class="flex">
-            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="shot($event)" >{{i.host}}<br>{{i.odds}}
+            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
-                    <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
+                    <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
+                    </transition-group>
                 </ul>
             </div>
         </div>
-        <div class="em font-totel">Total Bet 0.00</div>
+        <div class="em font-totel">Total Bet {{totalBet}}</div>
     </div>
     <div class="coin-area">
-        <!-- <button @click="resetGame">重置遊戲</button> -->
+        <button @click="resetGame">重置遊戲</button>
         <!-- 籌碼列表 -->
         <div v-for="(coin,index) in coin" :key="index" class="coin" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
         <!-- 籌碼子彈 -->
@@ -33,10 +37,12 @@
 </template>
 
 <script>
-import {computed, defineComponent, reactive} from 'vue'
+import {computed, defineComponent, reactive, ref} from 'vue'
 import {gsap,Power4} from 'gsap'
 export default defineComponent({
     setup(){
+        //下注額度
+        let totalBet = ref(0)
         //籌碼動畫、注區動畫
         const coin = reactive([  //籌碼基本資料
                     {
@@ -155,6 +161,21 @@ export default defineComponent({
                 ]
             })
         }
+        const generateCoin = (e)=>{
+            console.log("啟動動畫")
+            gsap
+            .to(e,{
+                keyframes:[
+                    {
+                        duration:1,
+                        x:-10,
+                        opacity:1,
+                        display:"block"
+                    }
+                ]
+                    
+            })
+        }
         const loadCoin = ()=>{
             switch(currentCoint.point){  //子彈裝到子彈陣列
                 case 5:
@@ -181,8 +202,11 @@ export default defineComponent({
                     positionCoinElement.style.bottom=`${cp.initBottom}px`
                     }  
         }
-        const shot = (e)=>{  //點下注區的時候啟動shot
-            loadCoin()  //裝子彈，就會啟動籌碼飛的動畫
+        const bet = (e)=>{  //下注!
+            //下注額度改變
+            totalBet.value+=currentCoint.point
+            //裝子彈，就會啟動籌碼飛的動畫
+            loadCoin()  
             let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
             target.x = rect.left;
             target.y = rect.bottom;
@@ -209,20 +233,22 @@ export default defineComponent({
             setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置
         }
         const resetGame = ()=>{
+            //重置totalBet
+            totalBet.value = 0
             //清空注區籌碼
             coinPosition.forEach(i=>{
                 i.coinArray=[]
             })
             //清空籌碼飛彈槍管
             coin.forEach(i=>{
-                i.ammo=[]
+                i.ammo = []
             })
         }
         return{
             //data
-            coin,currentCoint,coinPosition,
+            totalBet,coin,currentCoint,coinPosition,
             //methods
-            chooseCoint,cointAnimate,shot,resetGame
+            chooseCoint,cointAnimate,generateCoin,bet,resetGame
         }
     }
 })

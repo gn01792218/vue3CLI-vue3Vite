@@ -1,4 +1,5 @@
 <template>
+
   <video class="video-box"
     id="videoElement"
     ref="videoElement"
@@ -37,10 +38,10 @@ export default defineComponent({
         if (flvjs.isSupported()) {
         let videoElement = document.getElementById("videoElement");
         flvPlayer.value = flvjs.createPlayer({
-        type: "flv",
-        isLive: true,
-        hasAudio: false, //直播流中没有包含音频流就要設置false
-        url
+          type: "flv",
+          isLive: true,
+          hasAudio: false, //直播流中没有包含音频流就要設置false
+          url
         });
         flvPlayer.value.attachMediaElement(videoElement);
         flvPlayer.value.load();
@@ -64,6 +65,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scope>
+
 //以下是用來控制撥放器按鈕顯示的CSS，可以依據需求關閉
 video::-webkit-media-controls-fullscreen-button {
     display: none;

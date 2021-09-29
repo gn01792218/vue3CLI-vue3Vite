@@ -14,13 +14,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted} from 'vue'
+import {defineComponent} from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue';
 import LiveCamara from '@/components/LiveCamara.vue';
 import BettingArea from '@/components/BettingArea.vue';
 import TableInfo from '@/components/TableInfo.vue';
 import GameHistory from '@/components/GameHistory.vue';
-// import ameHistory from '@/components/ameHistory.vue'
+import ameHistory from '@/components/ameHistory.vue'
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router'
 export default defineComponent({
@@ -30,7 +30,7 @@ export default defineComponent({
     BettingArea,
     TableInfo,
     GameHistory,
-    // ameHistory
+    ameHistory
   },
   setup(){
     //路由處理
@@ -39,7 +39,6 @@ export default defineComponent({
     router.afterEach((to,from,next)=>{ //換桌時強制刷新
       router.go(0)
     })
-    
     return{
       //data
       tableNum,

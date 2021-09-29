@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import wsStore from './wsStore'
+import tableInfo from './tableInfo'
 
 export default createStore({
   state: {
@@ -9,6 +10,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    wsStore
+    wsStore,tableInfo
   }
 })
