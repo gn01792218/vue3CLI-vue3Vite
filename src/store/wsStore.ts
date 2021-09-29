@@ -1,10 +1,5 @@
 export const state = {
     wsRes: {},
-    LoginCall:{
-      // 'header': , //這裡會是一個protobuf
-      'account':"AAAA",
-      'password':"BBBB"
-    },
   };
   export const actions = {};
   

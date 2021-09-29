@@ -1,21 +1,27 @@
 <template>
   <div class="hello">
-    <h1>用戶座標</h1>
+    <h1>Vuex回應資料{{loginRes}}</h1>
     <button type="button" @click="sendLogin">發送proto</button>
     <!-- <button :class="['btn',BorderStyle]" type="button" @click="changeColor">點我換顏色</button> -->
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, onBeforeMount, onMounted, reactive, ref} from 'vue'
+import {computed, defineComponent, onBeforeMount, onMounted, reactive, ref} from 'vue'
 import {createSocket,sendWSPush,onmessageWs} from '../webSocket'
 import protoRoot from '@/proto/proto'
+import {useStore} from 'vuex'
 
 export default defineComponent({
   setup(){
     //初始化
     onMounted(()=>{
       createSocket()
+    })
+    //取得vuex資料
+    const store = useStore();
+    const loginRes = computed(()=>{
+        return store.state.wsStore.wsRes
     })
     //proto資料
     const protoHeader = protoRoot.lookupType('foundation.Header') //先查看Header的結構
@@ -24,8 +30,8 @@ export default defineComponent({
         header:protoHeader.create({ //header要先建立起來
           uri:"LoginCall",
         }),
-        account:"下班了",
-        password:"別再用了~"
+        account:"你何時會來~",
+        password:"今天可以討論一下串接一些基本資料，如直播網址、tableInfo等等的嗎~"
     })
     const sendLogin=()=>{
       sendWSPush(fake,"auth.LoginCall")
@@ -38,7 +44,7 @@ export default defineComponent({
     }
     return{
       //data
-      BorderStyle,fake,
+      BorderStyle,fake,loginRes,
       //methods
       sendLogin,changeColor,
     }
