@@ -27,7 +27,7 @@
   import {defineComponent, ref} from 'vue'
   import LiveCamara from '@/components/LiveCamara.vue'
   import Counter from '@/components/Counter.vue'
-  import gameHistory from '@/components/gameHistory.vue'
+  import gameHistory from '@/components/ameHistory.vue'
   import gsap from 'gsap'
   export default defineComponent({
     components:{
@@ -44,7 +44,7 @@
       const videoWidth = ref<Number>(300) //螢幕寬高
       const videoHeight= ref<Number>(300)
       //字體移動動畫
-      const p = ref<HTMLParagraphElement>(null)
+      const p = ref<HTMLParagraphElement | null>(null)
       const move =()=>{
       gsap.to(p.value,{
         keyframes:[
@@ -54,7 +54,7 @@
       })
       }
       //螢幕動畫
-      const av = ref<HTMLElement>(null)
+      const av = ref<HTMLElement | null>(null)
       const zoonIn = ()=>{
       gsap.to(av.value,{
         keyframes:[

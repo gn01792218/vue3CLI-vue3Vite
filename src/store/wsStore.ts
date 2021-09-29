@@ -9,7 +9,7 @@ export const state = {
   export const actions = {};
   
   export const mutations = {
-    setWsRes(state, payload) { //接收wbSocket的訊息
+    setWsRes(state:any, payload:any) { //接收wbSocket的訊息
       state.wsRes=payload;
       console.log("wsStore資料更新",state.wsRes)
     },

@@ -13,10 +13,11 @@ import protoRoot from '@/proto/proto'
 
 export default defineComponent({
   setup(){
+    //初始化
     onMounted(()=>{
       createSocket()
     })
-    const BorderStyle=ref<string | null>(null)
+    //proto資料
     const protoHeader = protoRoot.lookupType('foundation.Header') //先查看Header的結構
     const protoLogin =protoRoot.lookupType('auth.LoginCall') //再查看LoginCall的結構
     const fake=protoLogin.create({ //創建一筆資料
@@ -27,14 +28,19 @@ export default defineComponent({
         password:"別再用了~"
     })
     const sendLogin=()=>{
-      console.log(fake)
-      sendWSPush(fake)
+      sendWSPush(fake,"auth.LoginCall")
     }
+
+    //變換顏色
+    const BorderStyle=ref<string | null>(null)
     const changeColor=()=>{
       BorderStyle.value="red"
     }
     return{
-      sendLogin,changeColor,BorderStyle,fake
+      //data
+      BorderStyle,fake,
+      //methods
+      sendLogin,changeColor,
     }
   },
 })

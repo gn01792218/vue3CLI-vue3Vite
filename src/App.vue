@@ -1,9 +1,8 @@
 <template>
   <div id="wap" class="app">
-    <div class="container-wap">
-      <div class="container-waps row">
+    <div class="container-fluid">
+      <div class="container-waps row min-vh-100">
         <Header/>
-        <!-- <BaccaratGame/> -->
         <router-view/>
          <Footer/>
       </div>

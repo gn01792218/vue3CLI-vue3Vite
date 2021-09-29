@@ -2,36 +2,12 @@
 import protoRoot from '@/proto/proto'
 import protobuf from "protobufjs";
 import store from './store' //在元件之外要使用store，不能用useStore
-const url = "ws://139.162.102.189:8199/ws";
+const url = "ws://139.162.102.189:8199/ws";  //後端網址
 const protoHeader = protoRoot.lookupType('foundation.Header') //Header的lookup
 //建立webSocket實例
 let Socket:WebSocket | null
 let setIntervalWesocketPush:number
-//protoBuf方法區
-  const encodeProto=(message,bytes,lookupType):any=>{  //包裝
-    protobuf.load(protoRoot,protoRoot,(err,root)=>{
-      if(err)throw err;
-      let Product =root?.lookupType(lookupType);
-      bytes =Product?.encode(message).finish();
-      // console.log(bytes)
-      return bytes  
-    })
-  }
-  const decodeProto =(msgData,lookupType)=>{ //解析
-    // let Udata = new Uint8Array(msg); //回來的是字串先轉換成Unit
-      protobuf.load(protoRoot,protoRoot,(err,root)=>{
-        if(err) throw err;
-        let message = root.lookupType(lookupType);
-        msgData= message.decode(msgData);
-        return msgData; //返回msg
-      })
-  }
-  const getMsgTypeValue =(msgtyp)=>{
-    //建立protobuf的Header(解析訊息type)
-    const ret = protoHeader.values[msgtyp]
-    return ret 
-  }
-  
+//websocket方法區
 //連接上後會發送心跳
 const onopenWs = ()=>{
     //正式啟動時記得sendPing
@@ -48,8 +24,8 @@ const onerrorWs = ()=>{
         console.log("重連成功")
     }
 }
-  /** */
-  const oncloseWs = () => {
+//監聽關閉
+const oncloseWs = () => {
     clearInterval(setIntervalWesocketPush)
     console.log('websocket已断开....正在尝试重连')
     if (Socket?.readyState !== 2) {  //readyState 2 = 連接正在關閉
@@ -71,26 +47,28 @@ const onerrorWs = ()=>{
       }
     }, 1000)
   }
+
+//暴露的方法區
+
 /**
  * 发送数据
  * @param {any} message 需要发送的数据
  */
- export const sendWSPush = async(message:any) => {
+ export const sendWSPush = (message:any,lookupType:string) => { //第二個參數，依據不同的lookupType包裝proto
     if (Socket !== null && Socket.readyState === 3) {
       Socket.close()
       createSocket()
     } else if (Socket?.readyState === 1) { //已經連接，且可以通訊
       let bytes:any;
       //做假資料時，每個假資料都會有Header
-      // bytes=await encodeProto(message,bytes,"auth.LoginCall")
-      protobuf.load(protoRoot,protoRoot,async(err,root)=>{
+      protobuf.load(protoRoot,protoRoot,(err,root)=>{
         if(err)throw err;
-        let Product = root?.lookupType("auth.LoginCall");
+        let Product = root?.lookupType(lookupType);
         bytes =Product?.encode(message).finish();
         console.log(message)
       })
       Socket.send(bytes)
-      console.log("傳送成功",bytes)
+      // console.log("傳送成功",bytes)
     } else if (Socket?.readyState === 0) { //正在連接中
       connecting(message)
       console.log("readyState:"+Socket.readyState,"準備傳送:"+JSON.stringify(message));
@@ -102,10 +80,11 @@ const onerrorWs = ()=>{
       // console.log("收到數據", msg.data)
       protobuf.load(protoRoot)
       .then((root)=>{
-        let header = protoHeader;
-        let Udata = new Uint8Array(msg.data);
-        msg= header.decode(Udata);
+        msg= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
         console.log(msg)
+        //這裡要讓外面可以選擇要把資料灌到哪個store去
+        //1.switch msg
+        //2.灌資料去Vuex
         store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
       }).catch(err=>{
         if(err) throw err

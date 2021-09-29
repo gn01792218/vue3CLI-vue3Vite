@@ -9,7 +9,7 @@
             <li v-show="!showCards">
                 <section>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 text-md-left">
                             <li class="font-red">Banker 52%</li>    
                             <li class="font-yellow">Player 46%</li> 
                             <li class="font-green">Tie 2%</li> 
@@ -18,7 +18,7 @@
                             <li class="font-red">Banker Natural</li> 
                             <li class="font-yellow">Player Natural</li>
                         </div>
-                        <div class="col-6" align="right">
+                        <div class="col-6 text-md-right">
                             <li>376,798/1300</li> 
                             <li>332,648/508</li> 
                             <li>11,999/280</li> 

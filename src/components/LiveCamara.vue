@@ -10,93 +10,57 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import {defineComponent, onMounted, reactive} from 'vue'
+import {defineComponent, onMounted, reactive, ref} from 'vue'
 import flvjs from 'flv.js';
-// export default defineComponent({
-//   props: {
-//         url:String,
-//         width:{
-//           type:Number,
-//           default:840
-//         },
-//         height:{
-//           type:Number,
-//           default:530
-//         }
-//     },
-//     setup(){
-//       onMounted(()=>{
-//         createFlv();
-//       })
-//       const flvPlayer =reactive<any | null>({});
-//       const createFlv = ()=>{
-//         // http://flv.bdplay.nodemedia.cn/live/bbb.flv
-//       // http://35.201.183.73/live?app=demo&stream=table1
-//         let url="http://flv.bdplay.nodemedia.cn/live/bbb.flv";
-//         if (flvjs.isSupported()) {
-//         let videoElement = document.getElementById("videoElement");
-//         flvPlayer = flvjs.createPlayer({
-//         type: "flv",
-//         isLive: true,
-//         hasAudio: false, //直播流中没有包含音频流就要設置false
-//         url
-//         });
-//         flvPlayer.attachMediaElement(videoElement);
-//         flvPlayer.load();
-//         flvPlayer.play();
-//       }
-//       }
-//       const play = ()=>{
-//         flvPlayer.play();
-//       }
-//       return{
-//         createFlv,play
-//       }
-//     }
-// })
- @Options({
-    
-    //需要再做flvPlayer的data
-    mounted(){
-      this.createFlv()
+export default defineComponent({
+  props: {
+        url:String,
+        width:{
+          type:Number,
+          default:840
+        },
+        height:{
+          type:Number,
+          default:530
+        }
     },
-    methods:{
-    createFlv() {
-        // http://flv.bdplay.nodemedia.cn/live/bbb.flv
-       // http://35.201.183.73/live?app=demo&stream=table1
+    setup(){
+      //初始化
+      onMounted(()=>{
+        createFlv();
+      })
+      //影片播放設置
+      const flvPlayer =ref<any | null>({});
+      const createFlv = ()=>{
+        // let url="http://flv.bdplay.nodemedia.cn/live/bbb.flv";
         let url="http://35.201.183.73/live?app=demo&stream=table1";
         if (flvjs.isSupported()) {
         let videoElement = document.getElementById("videoElement");
-        this.flvPlayer = flvjs.createPlayer({
+        flvPlayer.value = flvjs.createPlayer({
         type: "flv",
         isLive: true,
         hasAudio: false, //直播流中没有包含音频流就要設置false
         url
         });
-        this.flvPlayer.attachMediaElement(videoElement);
-        this.flvPlayer.load();
-        this.flvPlayer.play();
-        
+        flvPlayer.value.attachMediaElement(videoElement);
+        flvPlayer.value.load();
+        flvPlayer.value.play();
+      }
+      }
+      const play = ()=>{   //防止玩家再次點擊直播畫面
+        flvPlayer.value.pause();
+        flvPlayer.value.load();
+        flvPlayer.value.play();
+      }
+      return{
+        //data
+        flvPlayer,
+        //methods
+        createFlv,play,
+      }
     }
-    },
-    play(){ //防止玩家點擊螢幕站平撥放直播畫面
-    console.log("先停止")
-      this.flvPlayer.pause();
-      // this.flvPlayer.unload();
-      this.flvPlayer.load();
-      this.flvPlayer.play();
-      console.log("再撥放")
-    }
-    }
-  })
-export default class LiveCamara extends Vue {
-  setup(){
+})
 
-    return{
-
-    }
-  }
-}
 </script>
 
 <style lang="scss" scope>

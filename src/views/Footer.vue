@@ -1,11 +1,18 @@
 <template>
     <footer class="footer">
         <div class="rows">
-            <span><i class="fa fa-volume-up fa-lg" aria-hidden="true"></i></span>
-            <span><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></span>
-            <span>0.00</span>
-            <span><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i> P100226 </span>
-            <span><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>{{date}}(UTC+8) </span>
+            <div class="col-sm text-md-left">
+                <span class="b"><i class="bi bi-bar-chart-fill"></i></span>
+                <span class="b"><i class="bi bi-camera-video-fill"></i></span>
+                <span class="b"><i class="bi bi-eye-fill"></i></span>
+                <span class="b">0.00</span>
+                <span class="b"><i class="bi bi-music-note-beamed"></i></span>
+            </div>
+            <div class="col-sm text-md-right">
+                <span class="b"><i class="bi bi-person-circle"></i> P100226</span>
+                <span class="b"><i class="bi bi-alarm"></i>{{date}}(UTC+8)</span>
+                <span class="b"><i class="bi bi-arrows-fullscreen"></i></span>
+            </div>
         </div>
     </footer>
 </template>
@@ -39,5 +46,7 @@ export default defineComponent({
 </script>
 
 <style>
-
+.rows{
+    display: flex;
+}
 </style>

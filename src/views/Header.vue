@@ -1,9 +1,11 @@
 <template>
     <div class="gem-left">
-        <a href="#" class="logo"><div class="row"><img src="../images/logo.png" class="rwd-img"></div></a>
-        <a class="btn w-100" @click="toGametable('A')" >A桌</a>
-        <a class="btn w-100" @click="toGametable('B')" >B桌</a>
-        <a href="#" class="btn w-100">回大廳</a>
+        <div class="logo"><a href="#"><img src="../images/logo.png" class="rwd-img"></a></div>
+        <div class="left-btn">
+            <a class="btn w-85" @click="toGametable('A')" >A桌</a>
+            <a class="btn w-85" @click="toGametable('B')" >B桌</a>
+            <a href="#" class="btn w-85">回大廳</a>
+        </div>
         <div class="align-items-end">
             <div class="col font-yellows"><i class="fa fa-envelope-o" aria-hidden="true"></i> Feed Back</div>
             <div class="col font-yellows"><i class="fa fa-users" aria-hidden="true"></i> 15.378</div>
@@ -38,5 +40,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scope>
-
+    .gem-left{
+        height:auto !important;
+    }
 </style>
