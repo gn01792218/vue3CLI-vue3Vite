@@ -32,15 +32,22 @@
 
 <script>
 import {defineComponent, onMounted, reactive} from 'vue'
+import {useStore} from 'vuex'
 export default defineComponent({
     setup(){
+        //Vuex資料
+        const store = useStore
+        //初始化
+        onMounted(()=>{
+          historyUpdate()
+        })
         //表格
         const main=new Array(48)
-        const second=new Array(228)
+        const second=new Array(234)
         const third = new Array(68)
         const fourth = new Array(68)
-        const fifth = new Array(16)
-        //顯示data
+        const fifth = new Array(20)
+        //data
         const winer = reactive({
           banker:"莊",
           player:"閒",
@@ -69,12 +76,16 @@ export default defineComponent({
 
             },
         ])
+        //路圖更新
+        const historyUpdate = ()=>{
+          //根據serve傳來的資料更新路圖
+        }
         return {
             //data
-            main,second,third,fourth,fifth,winer,hisItem
+            main,second,third,fourth,fifth,winer,hisItem,
 
             //methods
-
+            historyUpdate
         }
     }
 
@@ -83,14 +94,15 @@ export default defineComponent({
 <style lang="scss" scope>
 .bp-box{
   display: flex;
-  // overflow: hidden;
-  // max-height:218px;
+  overflow: hidden;
+  max-height:220px;
+  border: 1px solid #654d31 !important;
 }
 .main{
   display: flex;
   flex-wrap: wrap;
-  width:25.4%;
   min-width:25.5%;
+  margin-left: 0.7px;
 }
 .main-gride{
     width:40px;
@@ -105,6 +117,7 @@ export default defineComponent({
   flex-wrap: wrap;
   min-width:42.5%;
   height:10%;
+  margin-left: -2.3px;
 }
 .sec-gride,.third-gride,.fourth-gride,.fifth-gride{
     width:25px;
@@ -121,16 +134,19 @@ export default defineComponent({
   display: flex;
 }
 .third,.fourth,.fifth{
-  width:44%;
+  width:45%;
   display: flex;
   flex-wrap: wrap;
+}
+.third{
+      margin-left: 0.7px;
 }
 .fourth{
   margin-left: -0.5px;
 }
 .fifth{
-  width:11%;
-  margin-left: -1.5px;
+  width:13.5%;
+  margin-left: -3.5px;
 }
 
 //客製化修改

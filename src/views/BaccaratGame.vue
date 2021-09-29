@@ -5,7 +5,7 @@
     />
     <GameHistory/>
     <!-- <ameHistory/> -->
-  <HelloWorld/>
+  <!-- <HelloWorld/> -->
   </div>
   <div class="gem-right">
       <BettingArea/>

@@ -1,5 +1,4 @@
 <template>
-
   <video class="video-box"
     id="videoElement"
     ref="videoElement"

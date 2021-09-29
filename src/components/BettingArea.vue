@@ -33,7 +33,6 @@
             </div>
         </ul>
     </div>
-
 </template>
 
 <script>
@@ -148,7 +147,7 @@ export default defineComponent({
                     {
                     scale:1.1,
                     },
-                    {duration:0.8,
+                    {duration:0.5,
                     ease:Power4.easeIn,
                     scale:0.5,
                     x:target.x-currentCoint.x,
@@ -167,7 +166,7 @@ export default defineComponent({
             .to(e,{
                 keyframes:[
                     {
-                        duration:1,
+                        duration:0.5,
                         x:-10,
                         opacity:1,
                         display:"block"

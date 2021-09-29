@@ -25,4 +25,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.container-waps{
+  max-height:100vh !important;
+}
 </style>
