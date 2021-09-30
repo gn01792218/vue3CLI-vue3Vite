@@ -9,7 +9,7 @@
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, onMounted, reactive, ref} from 'vue'
 import {createSocket,sendWSPush,onmessageWs} from '../webSocket'
-import protoRoot from '@/proto/proto'
+import protoRoot from '@/assets/js/proto'
 import {useStore} from 'vuex'
 
 export default defineComponent({
