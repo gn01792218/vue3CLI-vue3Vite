@@ -1,7 +1,7 @@
 <template>
     <div class="stand-box">
         <div class="flex">
-            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="bet($event)" >{{i.host}}<br>{{i.odds}}
+            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
                         <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
@@ -10,7 +10,7 @@
             </div>
         </div>  
         <div class="flex">
-            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event)" >{{i.host}}<br>{{i.odds}}
+            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
                         <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
@@ -201,7 +201,7 @@ export default defineComponent({
                     positionCoinElement.style.bottom=`${cp.initBottom}px`
                     }  
         }
-        const bet = (e)=>{  //下注!
+        const bet = (e,index)=>{  //下注!
             //下注額度改變
             totalBet.value+=currentCoint.point
             //裝子彈，就會啟動籌碼飛的動畫
@@ -209,26 +209,8 @@ export default defineComponent({
             let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
             target.x = rect.left;
             target.y = rect.bottom;
-            let cp =null; //用來存點選到的注區
+            let cp =coinPosition[index]; //用來存點選到的注區
             let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
-          //cp設置城點選到的注區
-            switch(e.target.id){  
-                case "one":
-                    cp = coinPosition[0]
-                    break;
-                case "two":
-                    cp = coinPosition[1]
-                    break;
-                case "three":
-                    cp = coinPosition[2]
-                    break;
-                case "four":
-                    cp = coinPosition[3]
-                    break;
-                case "five":
-                    cp = coinPosition[4]
-                    break;
-            }
             setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置
         }
         const resetGame = ()=>{
