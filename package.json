@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "proto": "pbjs -t json-module -w commonjs -o src/proto/proto.js src/proto/*.proto",
-    "protots": "pbjs -t static-module src/proto/*.proto | pbts -o src/proto/proto.d.ts -"
+    "proto": "pbjs -t json-module -w commonjs -o src/proto/proto.js src/proto/*/*.proto",
+    "protots": "pbjs -t static-module src/proto/*/*.proto | pbts -o src/proto/proto.d.ts -"
   },
   "dependencies": {
     "@popperjs/core": "^2.10.1",

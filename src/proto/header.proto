@@ -1,8 +1,0 @@
-syntax = "proto3";
-package foundation;
-option go_package = "baccarat-game-server/protobufs/foundation";
-
-
-message Header {
-  string uri = 1; //行為的類型
-}
