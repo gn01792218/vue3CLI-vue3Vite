@@ -1,5 +1,5 @@
 
-import protoRoot from '@/proto/proto'
+import protoRoot from '@/assets/js/proto'
 import protobuf from "protobufjs";
 import store from './store' //在元件之外要使用store，不能用useStore
 const url = "ws://139.162.102.189:8199/ws";  //後端網址

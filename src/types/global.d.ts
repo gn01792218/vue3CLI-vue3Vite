@@ -1,1 +1,1 @@
-declare module '@/proto/proto'
+declare module '@/assets/js/proto'
