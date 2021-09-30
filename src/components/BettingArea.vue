@@ -67,6 +67,7 @@ export default defineComponent({
                 ])
         const currentCoint = reactive({ //選擇的籌碼
             coinElement:HTMLElement | null, //選擇的籌碼div元素
+            num:Number | null,  //儲存點到的是第幾個
             point:Number | null,
             x:Number | null, //起飛的x
             y:Number | null, //起飛的y
@@ -122,23 +123,8 @@ export default defineComponent({
             currentCoint.coinElement=e.target; //得到該元素
             currentCoint.x=e.x;  //設置籌碼起始座標點
             currentCoint.y=e.y;
-            switch(index){  //設置點數
-                case 0:
-                    currentCoint.point = coin[0].point;
-                    break;
-                case 1:
-                    currentCoint.point = coin[1].point;
-                    break;
-                case 2:
-                    currentCoint.point = coin[2].point;
-                    break;
-                case 3:
-                    currentCoint.point = coin[3].point;
-                    break;
-                case 4:
-                    currentCoint.point = coin[4].point;
-                    break;
-            }
+            currentCoint.num=index;
+            currentCoint.point = coin[index].point
         }
         const cointAnimate = (e)=>{  //籌碼飛的動畫
             gsap
@@ -176,23 +162,7 @@ export default defineComponent({
             })
         }
         const loadCoin = ()=>{
-            switch(currentCoint.point){  //子彈裝到子彈陣列
-                case 5:
-                    coin[0].ammo.push(currentCoint.coinElement.className)
-                    break;
-                case 10:
-                    coin[1].ammo.push(currentCoint.coinElement.className)
-                    break;
-                case 50:
-                    coin[2].ammo.push(currentCoint.coinElement.className)
-                    break;
-                case 100:
-                    coin[3].ammo.push(currentCoint.coinElement.className)
-                    break;
-                case 500:
-                    coin[4].ammo.push(currentCoint.coinElement.className)
-                    break;
-            }
+            coin[currentCoint.num].ammo.push(currentCoint.coinElement.className)
         }
         const setCoinPosition=(cp,positionCoinElement)=>{
             cp.coinArray.push(currentCoint.coinElement.className)
@@ -219,6 +189,7 @@ export default defineComponent({
             //清空注區籌碼
             coinPosition.forEach(i=>{
                 i.coinArray=[]
+                i.initBottom=0
             })
             //清空籌碼飛彈槍管
             coin.forEach(i=>{
