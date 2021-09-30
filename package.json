@@ -9,12 +9,8 @@
     "protots": "pbjs -t static-module src/proto/*/*.proto | pbts -o src/assets/js/proto.d.ts -"
   },
   "dependencies": {
-    "@popperjs/core": "^2.10.1",
-    "bootstrap": "^5.1.1",
     "flv.js": "^1.6.2",
     "gsap": "^3.7.1",
-    "jquery": "^3.6.0",
-    "popper.js": "^1.16.1",
     "protobufjs": "^6.11.2",
     "save": "^2.4.0",
     "vue": "^3.2.14",

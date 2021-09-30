@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onBeforeMount, onMounted, reactive, ref} from 'vue'
+import {computed, defineComponent, onBeforeMount, onMounted, reactive, ref, watch} from 'vue'
 import {createSocket,sendWSPush,onmessageWs} from '../webSocket'
 import protoRoot from '@/assets/js/proto'
 import {useStore} from 'vuex'
@@ -36,17 +36,17 @@ export default defineComponent({
     const sendLogin=()=>{
       sendWSPush(fake,"auth.LoginCall")
     }
-
     //變換顏色
     const BorderStyle=ref<string | null>(null)
     const changeColor=()=>{
       BorderStyle.value="red"
     }
+
     return{
       //data
       BorderStyle,fake,loginRes,
       //methods
-      sendLogin,changeColor,
+      sendLogin,changeColor
     }
   },
 })

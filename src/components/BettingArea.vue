@@ -172,16 +172,18 @@ export default defineComponent({
                     }  
         }
         const bet = (e,index)=>{  //下注!
+            if(currentCoint.coinElement){
             //下注額度改變
-            totalBet.value+=currentCoint.point
+                totalBet.value+=currentCoint.point
             //裝子彈，就會啟動籌碼飛的動畫
-            loadCoin()  
-            let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
-            target.x = rect.left;
-            target.y = rect.bottom;
-            let cp =coinPosition[index]; //用來存點選到的注區
-            let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
-            setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置
+                loadCoin()  
+                let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
+                target.x = rect.left;
+                target.y = rect.bottom;
+                let cp =coinPosition[index]; //用來存點選到的注區
+                let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
+                setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置
+            }
         }
         const resetGame = ()=>{
             //重置totalBet

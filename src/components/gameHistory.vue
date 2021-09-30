@@ -43,10 +43,10 @@ export default defineComponent({
         })
         //表格
         const main=new Array(48)
-        const second=new Array(234)
-        const third = new Array(68)
-        const fourth = new Array(68)
-        const fifth = new Array(20)
+        const second=new Array(228)
+        const third = new Array(51)
+        const fourth = new Array(51)
+        const fifth = new Array(12)
         //data
         const winer = reactive({
           banker:"莊",
@@ -117,7 +117,7 @@ export default defineComponent({
   flex-wrap: wrap;
   min-width:42.5%;
   height:10%;
-  margin-left: -2.3px;
+  margin-left: 1.7px;
 }
 .sec-gride,.third-gride,.fourth-gride,.fifth-gride{
     width:25px;
@@ -134,19 +134,20 @@ export default defineComponent({
   display: flex;
 }
 .third,.fourth,.fifth{
-  width:45%;
+  width:51%;
   display: flex;
   flex-wrap: wrap;
+  height:60%;
 }
 .third{
-      margin-left: 0.7px;
+      margin-left: -0.3px;
 }
 .fourth{
-  margin-left: -0.5px;
+  margin-left: -11.5px;
 }
 .fifth{
   width:13.5%;
-  margin-left: -3.5px;
+  margin-left: -7.5px;
 }
 
 //客製化修改

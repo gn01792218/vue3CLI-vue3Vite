@@ -87,12 +87,9 @@ const oncloseWs = () => {
           case '\n\vLoginRecall':
             msg=protoRoot.lookupType('auth.LoginRecall').decode(new Uint8Array(msg.data))
             console.log(msg)
+            store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
             break;
         }
-        //這裡要讓外面可以選擇要把資料灌到哪個store去
-        //1.switch msg
-        //2.灌資料去Vuex
-        store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
       }).catch(err=>{
         if(err) throw err
       })
