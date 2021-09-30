@@ -80,8 +80,15 @@ const oncloseWs = () => {
       // console.log("收到數據", msg.data)
       protobuf.load(protoRoot)
       .then((root)=>{
-        msg= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
-        console.log(msg)
+        let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
+        console.log(header)
+        console.log(header.uri) //lookup什麼得到的就是什麼
+        switch(header.uri){
+          case '\n\vLoginRecall':
+            msg=protoRoot.lookupType('auth.LoginRecall').decode(new Uint8Array(msg.data))
+            console.log(msg)
+            break;
+        }
         //這裡要讓外面可以選擇要把資料灌到哪個store去
         //1.switch msg
         //2.灌資料去Vuex

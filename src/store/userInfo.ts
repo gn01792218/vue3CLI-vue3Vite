@@ -2,7 +2,9 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    userInfo:{}
+    userInfo:{
+      
+    }
   },
   mutations: {
     setUserInfo(state:any, payload:any) { //接收wbSocket的訊息

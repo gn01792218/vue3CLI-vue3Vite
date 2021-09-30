@@ -93,5 +93,4 @@ video::-webkit-media-controls-volume-slider {
 video::-webkit-media-controls-enclosure{
     display: none;
 }
-
 </style>

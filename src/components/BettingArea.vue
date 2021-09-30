@@ -221,7 +221,7 @@ export default defineComponent({
         position: absolute;
         .shotCoinPice{
             position: absolute;
-            transform: scale(0.7);
+            top:-25px;
         }
         .ammo5{
             left:0px;
