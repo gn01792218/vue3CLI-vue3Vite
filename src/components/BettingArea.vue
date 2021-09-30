@@ -1,7 +1,7 @@
 <template>
     <div class="stand-box">
         <div class="flex">
-            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+            <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
                         <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
@@ -10,7 +10,7 @@
             </div>
         </div>  
         <div class="flex">
-            <div  :id="i.id" :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
+            <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
                         <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
@@ -78,45 +78,40 @@ export default defineComponent({
         })
         const coinPosition = reactive([//注區
             {
-                id:"one",
                 initBottom:0,  //初始化的bottom值
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
                 host:"莊家",
-                configClass:"item flex-1"
+                configClass:"one item flex-1"
                 
             },
             {
-                id:"two",
                 initBottom:0,
                 coinArray:[],
                 odds:"1:1",
                 host:"閒家",
-                configClass:"item flex-2"
+                configClass:"two item flex-2"
             },
             {
-                id:"three",
                 initBottom:0,
                 coinArray:[],
                 odds:"1:11",
                 host:"莊對",
-                configClass:"item yellow"
+                configClass:"three item yellow"
             },
             {
-                id:"four",
                 initBottom:0,
                 coinArray:[],
                 odds:"1:8",
                 host:"和局",
-                configClass:"item green"
+                configClass:"four item green"
             },
             {
-                id:"five",
                 initBottom:0,
                 coinArray:[],
                 odds:"1:11",
                 host:"閒對",
-                configClass:"item yellow"
+                configClass:"five item yellow"
             },
         ]) 
         const chooseCoint = (index,e)=>{ //點選籌碼的設置
@@ -241,7 +236,7 @@ export default defineComponent({
            left:260px;
         }
     }
-    #one,#two,#three,#four,#five{
+    .one,.two,.three,.four,.five{
         position: relative;
     }
     .coinPosition{
