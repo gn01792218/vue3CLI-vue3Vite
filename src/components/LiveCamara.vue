@@ -26,14 +26,14 @@ export default defineComponent({
     },
     setup(){
       //初始化
-      onMounted(()=>{
+      onMounted(() => {
         createFlv();
       })
       //影片播放設置
-      const flvPlayer =ref<any | null>({});
-      const createFlv = ()=>{
-        // let url="http://flv.bdplay.nodemedia.cn/live/bbb.flv";
-        let url="http://35.201.183.73/live?app=demo&stream=table1";
+      const flvPlayer = ref<any | null>({});
+      const createFlv = () => {
+        // let url = "http://flv.bdplay.nodemedia.cn/live/bbb.flv";
+        let url = "http://35.201.183.73/live?app=demo&stream=table1";
         if (flvjs.isSupported()) {
         let videoElement = document.getElementById("videoElement");
         flvPlayer.value = flvjs.createPlayer({
@@ -47,7 +47,7 @@ export default defineComponent({
         flvPlayer.value.play();
       }
       }
-      const play = ()=>{   //防止玩家再次點擊直播畫面
+      const play = () => {   //防止玩家再次點擊直播畫面
         flvPlayer.value.pause();
         flvPlayer.value.load();
         flvPlayer.value.play();

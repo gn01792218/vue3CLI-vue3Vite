@@ -33,8 +33,8 @@ export default defineComponent({
     //路由處理
     const router = useRouter()
     const tableNum = ref<any>(router.currentRoute.value.params.tableId) //取得桌號
-    router.afterEach((to,from,next)=>{ //換桌時強制刷新
-      router.go(0)
+    router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
+      // router.go(0)
     })
     return{
       //data

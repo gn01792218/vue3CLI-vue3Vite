@@ -53,7 +53,7 @@
       }
       //螢幕動畫
       const av = ref<HTMLElement | null>(null)
-      const zoonIn = ()=>{
+      const zoonIn = () => {
       gsap.to(av.value,{
         keyframes:[
           {duration:1,x:150},
@@ -61,7 +61,7 @@
         ]
       })
       }
-      const scaleVideo= ()=>{
+      const scaleVideo = () => {
       console.log("啟動視訊縮放")
       gsap.to('.video',{
         keyframes:[

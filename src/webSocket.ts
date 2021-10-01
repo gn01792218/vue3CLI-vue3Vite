@@ -3,7 +3,7 @@ import protoRoot from '@/assets/js/proto'
 import protobuf from "protobufjs";
 import store from './store' //在元件之外要使用store，不能用useStore
 const url = "ws://139.162.102.189:8199/ws";  //後端網址
-const protoHeader = protoRoot.lookupType('foundation.Header') //Header的lookup
+const protoHeader = protoRoot.lookupType('foundation.Header') //這個之後會搬到別的地方
 //建立webSocket實例
 let Socket:WebSocket | null
 let setIntervalWesocketPush:number
@@ -63,7 +63,7 @@ const oncloseWs = () => {
         if(err)throw err;
         let Product = root?.lookupType(lookupType);
         bytes =Product?.encode(message).finish();
-        console.log(message)
+        console.log("發送資料",message)
       })
       Socket.send(bytes)
       // console.log("傳送成功",bytes)
@@ -91,7 +91,8 @@ const oncloseWs = () => {
           case '\n\vLoginRecall':
             msg=protoRoot.lookupType('auth.LoginRecall').decode(new Uint8Array(msg.data))
             console.log(msg)
-            store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
+            // store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
+            store.commit("auth/setLoginRecall",msg)  //把資料灌到Vuex中
             break;
           case '':
             break;

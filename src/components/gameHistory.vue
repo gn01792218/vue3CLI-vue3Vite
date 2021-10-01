@@ -38,12 +38,12 @@ export default defineComponent({
         //Vuex資料
         const store = useStore
         //初始化
-        onMounted(()=>{
+        onMounted(() => {
           historyUpdate()
         })
         //表格
-        const main=new Array(48)
-        const second=new Array(228)
+        const main = new Array(48)
+        const second = new Array(228)
         const third = new Array(51)
         const fourth = new Array(51)
         const fifth = new Array(12)
@@ -63,7 +63,7 @@ export default defineComponent({
           },
         ])
         //路圖更新
-        const historyUpdate = ()=>{
+        const historyUpdate = () => {
           //根據serve傳來的資料更新路圖
         }
         return {

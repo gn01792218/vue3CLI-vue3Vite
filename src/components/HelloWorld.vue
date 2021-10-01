@@ -1,52 +1,47 @@
 <template>
   <div class="hello">
     <h1>Vuex回應資料{{loginRes}}</h1>
-    <button type="button" @click="sendLogin">發送proto</button>
+    <button type="button" @click="login">發送proto</button>
     <!-- <button :class="['btn',BorderStyle]" type="button" @click="changeColor">點我換顏色</button> -->
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, onBeforeMount, onMounted, reactive, ref, watch} from 'vue'
-import {createSocket,sendWSPush,onmessageWs} from '../webSocket'
-import protoRoot from '@/assets/js/proto'
+import {createSocket} from '../webSocket'
 import {useStore} from 'vuex'
+import {sendLogin} from '../socketApi'
 
 export default defineComponent({
   setup(){
     //初始化
-    onMounted(()=>{
+    onMounted(() => {
       createSocket()
     })
     //取得vuex資料
     const store = useStore();
-    const loginRes = computed(()=>{
-        return store.state.wsStore.wsRes
+    const loginRes = computed(() => {
+        return store.state.auth.LoginRecall
     })
-    //proto資料
-    const protoHeader = protoRoot.lookupType('foundation.Header') //先查看Header的結構
-    const protoLogin =protoRoot.lookupType('auth.LoginCall') //再查看LoginCall的結構
-    const fake=protoLogin.create({ //創建一筆資料
-        header:protoHeader.create({ //header要先建立起來
-          uri:"LoginCall",
-        }),
-        account:"你何時會來~",
-        password:"今天可以討論一下串接一些基本資料，如直播網址、tableInfo等等的嗎~"
+    const logData = reactive({
+       uri: "LoginCall",
+       account: "我封裝了send方法惹~",
+       password: "希望傳的過去~"
     })
-    const sendLogin=()=>{
-      sendWSPush(fake,"auth.LoginCall")
+    const login = () => {
+      sendLogin(logData)
     }
     //變換顏色
-    const BorderStyle=ref<string | null>(null)
-    const changeColor=()=>{
+    const BorderStyle = ref<string | null>(null)
+    const changeColor = () => {
       BorderStyle.value="red"
     }
 
     return{
       //data
-      BorderStyle,fake,loginRes,
+      BorderStyle,logData,loginRes,
       //methods
-      sendLogin,changeColor
+      login,changeColor
     }
   },
 })

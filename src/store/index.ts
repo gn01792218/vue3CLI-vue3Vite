@@ -1,7 +1,6 @@
 import { createStore } from 'vuex'
 import wsStore from './wsStore'
-import tableInfo from './tableInfo'
-import userInfo from './userInfo'
+import table from './table'
 import auth from './auth'
 
 export default createStore({
@@ -12,6 +11,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    wsStore,tableInfo,userInfo,auth
+    wsStore,table,auth
   }
 })

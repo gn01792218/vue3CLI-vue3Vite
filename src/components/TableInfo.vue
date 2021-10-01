@@ -45,10 +45,10 @@ export default defineComponent({
     setup(){
         //切換TableInfo頁籤
         const showCards = ref(true)
-        const showCard = ()=>{
+        const showCard = () => {
             showCards.value = true
         }
-        const showTableInfo = ()=>{
+        const showTableInfo = () => {
             showCards.value = false
         }
         return{

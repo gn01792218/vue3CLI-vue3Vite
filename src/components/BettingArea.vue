@@ -1,10 +1,10 @@
 <template>
     <div class="stand-box">
         <div class="flex">
-            <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(0,2)" :key="index" @click="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+            <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
-                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
+                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                     </transition-group>
                 </ul>
             </div>
@@ -13,7 +13,7 @@
             <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
-                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="coin"></li>
+                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                     </transition-group>
                 </ul>
             </div>
@@ -73,8 +73,8 @@ export default defineComponent({
             y:Number | null, //起飛的y
         });  
         const target = reactive({ //目標位置
-            x:Number | null,
-            y:Number | null,
+            x : Number | null,
+            y : Number | null,
         })
         const coinPosition = reactive([//注區
             {
@@ -114,14 +114,14 @@ export default defineComponent({
                 configClass:"five item yellow"
             },
         ]) 
-        const chooseCoint = (index,e)=>{ //點選籌碼的設置
-            currentCoint.coinElement=e.target; //得到該元素
-            currentCoint.x=e.x;  //設置籌碼起始座標點
-            currentCoint.y=e.y;
-            currentCoint.num=index;
+        const chooseCoint = (index,e) => { //點選籌碼的設置
+            currentCoint.coinElement = e.target; //得到該元素
+            currentCoint.x = e.x;  //設置籌碼起始座標點
+            currentCoint.y = e.y;
+            currentCoint.num = index;
             currentCoint.point = coin[index].point
         }
-        const cointAnimate = (e)=>{  //籌碼飛的動畫
+        const cointAnimate = (e) => {  //籌碼飛的動畫
             gsap
             .to(e,{
                 keyframes:[
@@ -141,7 +141,7 @@ export default defineComponent({
                 ]
             })
         }
-        const generateCoin = (e)=>{
+        const generateCoin = (e) => {
             gsap
             .to(e,{
                 keyframes:[
@@ -155,40 +155,41 @@ export default defineComponent({
                     
             })
         }
-        const loadCoin = ()=>{
+        const loadCoin = () => {
             coin[currentCoint.num].ammo.push(currentCoint.coinElement.className)
         }
-        const setCoinPosition=(cp,positionCoinElement)=>{
+        const setCoinPosition = (cp,positionCoinElement) => {
             cp.coinArray.push(currentCoint.coinElement.className)
-            cp.initBottom+=5;
             if(positionCoinElement.nodeName !== '#text'){
-                    positionCoinElement.style.bottom=`${cp.initBottom}px`
-                    }  
+                cp.initBottom += 5;
+                positionCoinElement.style.bottom = `${cp.initBottom}px`
+            }  
         }
-        const bet = (e,index)=>{  //下注!
+        const bet = (e,index) => {  //下注!
             if(currentCoint.coinElement){
             //下注額度改變
-                totalBet.value+=currentCoint.point
+                totalBet.value += currentCoint.point
             //裝子彈，就會啟動籌碼飛的動畫
                 loadCoin()  
                 let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
                 target.x = rect.left;
                 target.y = rect.bottom;
-                let cp =coinPosition[index]; //用來存點選到的注區
+                let cp = coinPosition[index]; //用來存點選到的注區
                 let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
+                console.log(positionCoinElement)
                 setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置
             }
         }
-        const resetGame = ()=>{
+        const resetGame = () => {
             //重置totalBet
             totalBet.value = 0
             //清空注區籌碼
-            coinPosition.forEach(i=>{
-                i.coinArray=[]
-                i.initBottom=0
+            coinPosition.forEach(i => {
+                i.coinArray = []
+                i.initBottom = 0
             })
             //清空籌碼飛彈槍管
-            coin.forEach(i=>{
+            coin.forEach(i => {
                 i.ammo = []
             })
         }
