@@ -70,6 +70,113 @@ var $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $pr
         }
       }
     }
+  },
+  lobby: {
+    options: {
+      go_package: "baccarat-game-server/protobufs/lobby"
+    },
+    nested: {
+      LobbyInfo: {
+        fields: {
+          header: {
+            type: "foundation.Header",
+            id: 1
+          },
+          tables: {
+            rule: "repeated",
+            type: "TableInfo",
+            id: 2
+          }
+        }
+      },
+      TableInfo: {
+        fields: {
+          uuid: {
+            type: "string",
+            id: 1
+          },
+          name: {
+            type: "string",
+            id: 2
+          }
+        }
+      }
+    }
+  },
+  table: {
+    options: {
+      go_package: "baccarat-game-server/protobufs/table"
+    },
+    nested: {
+      Table: {
+        fields: {
+          betStatus: {
+            type: "BetStatus",
+            id: 1
+          },
+          streamingUrl: {
+            type: "string",
+            id: 2
+          }
+        }
+      },
+      TableJoinCall: {
+        fields: {
+          header: {
+            type: "foundation.Header",
+            id: 1
+          },
+          uuid: {
+            type: "string",
+            id: 2
+          }
+        }
+      },
+      TableJoinRecall: {
+        fields: {
+          header: {
+            type: "foundation.Header",
+            id: 1
+          },
+          table: {
+            type: "Table",
+            id: 2
+          }
+        }
+      },
+      BetStatus: {
+        fields: {
+          Banker: {
+            type: "int32",
+            id: 1
+          },
+          Player: {
+            type: "int32",
+            id: 2
+          },
+          Tie: {
+            type: "int32",
+            id: 3
+          },
+          BankerPair: {
+            type: "int32",
+            id: 4
+          },
+          PlayerPair: {
+            type: "int32",
+            id: 5
+          },
+          BankerNatural: {
+            type: "int32",
+            id: 6
+          },
+          PlayerNatural: {
+            type: "int32",
+            id: 7
+          }
+        }
+      }
+    }
   }
 });
 

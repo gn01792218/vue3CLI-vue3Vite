@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-
 import "../src/assets/css/bootstrap.min.css"
 import './assets/css/game.css';  //最後引入主要CSS
 

@@ -47,9 +47,7 @@ const oncloseWs = () => {
       }
     }, 1000)
   }
-
 //暴露的方法區
-
 /**
  * 发送数据
  * @param {any} message 需要发送的数据
@@ -83,11 +81,19 @@ const oncloseWs = () => {
         let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
         console.log(header)
         console.log(header.uri) //lookup什麼得到的就是什麼
+        //之後要用這個
+        // msg = protoRoot.lookupType(header.uri).decode(new Uint8Array(msg.data))
+        // const splitUrl = header.uri.split('.');  //切割Header字串，找到對應的VuexStor和對應set資料方法
+        // store.commit(`${splitUrl[0]}/set${splitUrl[1]}`,msg)  //把資料灌到Vuex中
+        
+        //server傳來的資料型態改好之前先使用這個
         switch(header.uri){
           case '\n\vLoginRecall':
             msg=protoRoot.lookupType('auth.LoginRecall').decode(new Uint8Array(msg.data))
             console.log(msg)
             store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
+            break;
+          case '':
             break;
         }
       }).catch(err=>{
@@ -113,7 +119,7 @@ export const createSocket =()=>{  //使用createSocket的方法，會自動開�
         Socket = new WebSocket(url);
         Socket.binaryType='arraybuffer' //切記將binaryType設成二進制
         Socket.onopen = onopenWs  //會打開心跳
-        Socket.onmessage = onmessageWs
+        Socket.onmessage = onmessageWs    
         Socket.onerror = onerrorWs
         Socket.onclose = oncloseWs
         console.log("建立websocket連線");

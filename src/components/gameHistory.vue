@@ -48,33 +48,19 @@ export default defineComponent({
         const fourth = new Array(51)
         const fifth = new Array(12)
         //data
-        const winer = reactive({
-          banker:"莊",
-          player:"閒",
-          tie:"合"
-        })
-        const hisItem = reactive([//到時候history進來的時候就給該格div相對應的class即可
-            {  //main
-            bankerClass:"btn-b",
-            playerClass:"btn-p",
-            tieClass:"btn-c",
-            },
-            { //second
-            bankerClass:"btn-bs",
-            playerClass:"btn-ps",
-            tieClass:"btn-cs",
-            },
-            { //third
-            bankerClass:"btn-bss",
-            playerClass:"btn-pss",
-            tieClass:"btn-css",
-            },
-            { //fourth
-
-            },
-            { //fifth
-
-            },
+        const winer = reactive([  //存放贏家的樣式和文字
+          {
+            name:"莊",
+            btnClass:["btn-b","btn-bs","btn-bss","btn-bsss","btn-bssss"],
+          },
+          {
+            name:"閒",
+             btnClass:["btn-p","btn-ps","btn-pss","btn-psss","btn-pssss"],
+          },
+          {
+            name:"合",
+             btnClass:["btn-c","btn-cs","btn-css","btn-csss","btn-cssss"],
+          },
         ])
         //路圖更新
         const historyUpdate = ()=>{
@@ -82,7 +68,7 @@ export default defineComponent({
         }
         return {
             //data
-            main,second,third,fourth,fifth,winer,hisItem,
+            main,second,third,fourth,fifth,winer,
 
             //methods
             historyUpdate

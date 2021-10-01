@@ -142,7 +142,6 @@ export default defineComponent({
             })
         }
         const generateCoin = (e)=>{
-            console.log("啟動動畫")
             gsap
             .to(e,{
                 keyframes:[
