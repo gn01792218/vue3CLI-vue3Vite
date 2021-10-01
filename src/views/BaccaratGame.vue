@@ -4,7 +4,6 @@
     <LiveCamara
     />
     <GameHistory/>
-    <!-- <ameHistory/> -->
   <HelloWorld/>
   </div>
   <div class="gem-right">
@@ -20,7 +19,6 @@ import LiveCamara from '@/components/LiveCamara.vue';
 import BettingArea from '@/components/BettingArea.vue';
 import TableInfo from '@/components/TableInfo.vue';
 import GameHistory from '@/components/GameHistory.vue';
-import ameHistory from '@/components/ameHistory.vue'
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router'
 export default defineComponent({
@@ -30,7 +28,6 @@ export default defineComponent({
     BettingArea,
     TableInfo,
     GameHistory,
-    ameHistory
   },
   setup(){
     //路由處理

@@ -20,18 +20,16 @@
     <button @click="scaleVideo">視訊縮放</button>
       <p ref="p" @click="move">hello</p>
     </div>
-    <gameHistory/>
 </template>
 
 <script lang="ts">
   import {defineComponent, ref} from 'vue'
   import LiveCamara from '@/components/LiveCamara.vue'
   import Counter from '@/components/Counter.vue'
-  import gameHistory from '@/components/ameHistory.vue'
   import gsap from 'gsap'
   export default defineComponent({
     components:{
-      LiveCamara,Counter,gameHistory
+      LiveCamara,Counter
     },
     setup(){
       //倒數計時操控

@@ -23,7 +23,7 @@
     <div class="coin-area">
         <button @click="resetGame">重置遊戲</button>
         <!-- 籌碼列表 -->
-        <div v-for="(coin,index) in coin" :key="index" class="coin" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
+        <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
         <!-- 籌碼子彈 -->
         <ul class="shotCoinUl">
             <div v-for="coin,index in coin" :key="index">
