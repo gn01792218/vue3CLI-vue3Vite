@@ -13,14 +13,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, onMounted,ref} from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue';
 import LiveCamara from '@/components/LiveCamara.vue';
 import BettingArea from '@/components/BettingArea.vue';
 import TableInfo from '@/components/TableInfo.vue';
 import GameHistory from '@/components/GameHistory.vue';
-import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router'
+import {sendTableJoinCall} from '../socketApi'
 export default defineComponent({
   components:{
     HelloWorld,
@@ -30,11 +30,20 @@ export default defineComponent({
     GameHistory,
   },
   setup(){
+    //初始化
+    onMounted(()=>{
+      //根據路由顯示的桌號請求不同的數據
+      console.log("發送換桌請求")
+      sendTableJoinCall({
+        uri:"TableJoinCall",
+        uuid:tableNum
+      })
+    })
     //路由處理
     const router = useRouter()
     const tableNum = ref<any>(router.currentRoute.value.params.tableId) //取得桌號
     router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
-      // router.go(0)
+      router.go(0)
     })
     return{
       //data

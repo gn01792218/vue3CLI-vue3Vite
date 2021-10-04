@@ -2,11 +2,10 @@
   <!--- tab --->
     <div class="tabs-area">
         <div class="tabs-bottom">
-            <div @click="showTableInfo" :class="{onclick:!showCards}">Table Info</div>
-            <div @click="showCard" :class="{onclick:showCards}">Cards</div>
+            <div v-for="(tab,index) in tabArray" :key="index" @click="switchTab(tab)" :class="{onclick:onClickTab===tab}" >{{tab}}</div>
         </div>
         <ul class="demo">
-            <li v-show="!showCards">
+            <li v-show="onClickTab===tabArray[0]">
                 <section>
                     <div class="row">
                         <div class="col-6 text-md-left">
@@ -30,9 +29,19 @@
                     </div>
                 </section>
             </li>
-            <li v-show="showCards">
-                <section>
-                    <p><img src="../images/card-img.png" class="rwd-img"></p>
+            <li v-show="onClickTab===tabArray[1]">
+                <button @click="showCards">取得當前卡牌</button>
+                <section class="card-container">
+                    <div class="row">
+                        <div :class="['card-item col-6',{'card-item-w':index === 2}]" v-show="cards.banker.length" v-for="(card,index) in cards.banker" :key="index">
+                            <img :src="require(`../images/poker/${card}.png`)" >
+                        </div>
+                    </div>
+                    <div class="row">
+                       <div :class="['card-item col-6',{'card-item-w':index === 2}]" v-show="cards.banker.length" v-for="(card,index) in cards.player" :key="index">
+                            <img :src="require(`../images/poker/${card}.png`)" >
+                       </div>
+                    </div>
                 </section>
             </li>  
         </ul>
@@ -40,22 +49,36 @@
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue'
+import {defineComponent, reactive, ref} from 'vue'
 export default defineComponent({
     setup(){
         //切換TableInfo頁籤
-        const showCards = ref(true)
-        const showCard = () => {
-            showCards.value = true
+        const tabArray = reactive(["Table Info","Cards"]) //將來有需要可以再增加
+        const onClickTab = ref("Cards") //預設是Cards
+        const switchTab = (tab) => {
+            onClickTab.value = tab
         }
-        const showTableInfo = () => {
-            showCards.value = false
+        //撲克牌業務代碼
+        const cards = reactive({
+            banker:[],
+            player:[],
+        })
+        const showCards = () => {
+            //1.假如可以開牌，從Vuex中取得卡牌資訊
+            const bc = ['h11','s7','c9']
+            const pc = ['c10','s9','d13']
+            //2.顯示卡牌
+            for(let i = 0 ; i <3 ;i++){
+                cards.banker[i] = bc[i]
+                cards.player[i] = pc[i]
+            }
         }
+        
         return{
             //data
-            showCards,
+            tabArray,onClickTab,cards,
             //methods
-            showCard,showTableInfo
+            switchTab,showCards
         }
     }
 })
@@ -71,5 +94,11 @@ export default defineComponent({
     }
     .onclick{
         background-color: black;
+    }
+    .card-container{
+        display: flex;
+    }
+    .card-item-w{
+        transform: rotate(90deg) translateY(-40%);
     }
 </style>

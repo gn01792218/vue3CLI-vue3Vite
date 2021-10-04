@@ -17,18 +17,12 @@
 <script>
 import {defineComponent, reactive} from 'vue'
 import { useRouter } from 'vue-router'
-import {sendTableJoinCall} from '../socketApi'
 export default defineComponent({
     setup(){
         //路由處理
         const router = useRouter()
         //換桌
-        const toGametable = (tableNum) => { 
-            let tb = reactive({
-                uri:"TableJoinCall",
-                uuid:tableNum
-            })
-            sendTableJoinCall(tb)
+        const toGametable = (tableNum) => {
             router.push({
                 path:`/BaccaratGame/${tableNum}`
             })
