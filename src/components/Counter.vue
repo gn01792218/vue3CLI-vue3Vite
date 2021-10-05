@@ -5,6 +5,8 @@
 <script lang="ts">
 import {defineComponent, reactive, ref, watchEffect} from 'vue'
 export default defineComponent({
+    //倒數計時需要server傳現在下注狀態，以及當前秒數過來
+    //然後倒數計時器只要使用當前秒數開始倒數即可
     props:{
         play:{  //外面傳進來的值，只會給true
             type:Number,
@@ -33,13 +35,6 @@ export default defineComponent({
             setCount
         }
     },
-    watch:{  //目前是監聽外面的傳入的play變化
-        // play:function (){
-        //     if(this.tim ){console.log("目前有計時器唷!"); return} //假如目前有計時器的話，要return掉
-        //     this.setCount(this.countNum);
-        // }
-    }
-
 })
 </script>
 

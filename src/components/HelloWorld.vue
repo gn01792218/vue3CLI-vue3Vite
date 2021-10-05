@@ -25,8 +25,8 @@ export default defineComponent({
     })
     const logData = reactive({
        uri: "LoginCall",
-       account: "我想要說的，前人們都說過了",
-       password: "我想要做的，有錢人都做過了~"
+       account: "user",
+       password: "password"
     })
     const login = () => {
       sendLogin(logData)

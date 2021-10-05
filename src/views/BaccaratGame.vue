@@ -4,7 +4,7 @@
     <LiveCamara
     />
     <GameHistory/>
-  <HelloWorld/>
+    <HelloWorld/>
   </div>
   <div class="gem-right">
       <BettingArea/>
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted,ref} from 'vue'
+import {defineComponent, onMounted,onUpdated,ref} from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue';
 import LiveCamara from '@/components/LiveCamara.vue';
 import BettingArea from '@/components/BettingArea.vue';

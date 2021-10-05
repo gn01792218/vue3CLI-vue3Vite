@@ -1,25 +1,30 @@
-import { createStore } from 'vuex'
+export const state = {
+  Table:{},
+  TableJoinRecall:{},
+  BetStatus:{},
+};
+export const actions = {};
 
-export default createStore({
-  state: {
-    Table:{},
-    TableJoinRecall:{},
-    BetStatus:{},
+export const mutations = {
+  setTable(state:any, payload:any) { //接收wbSocket的訊息
+    state.Table=payload;
+    console.log("tableInfo資料更新",state.Table)
   },
-  mutations: {
-    setTable(state:any, payload:any) { //接收wbSocket的訊息
-        state.Table=payload;
-        console.log("tableInfo資料更新",state.Table)
-      },
-    setTableJoinRecall(state:any, payload:any) { //接收wbSocket的訊息
-      state.TableJoinRecall=payload;
-      console.log("tableInfo資料更新",state.TableJoinRecall)
-    },
-    setBetStatus(state:any, payload:any) { //接收wbSocket的訊息
-      state.BetStatus=payload;
-      console.log("tableInfo資料更新",state.BetStatus)
-    },
+  setTableJoinRecall(state:any, payload:any) { //接收wbSocket的訊息
+    state.TableJoinRecall=payload;
+    console.log("tableInfo資料更新",state.TableJoinRecall)
   },
-  actions: {
+  setBetStatus(state:any, payload:any) { //接收wbSocket的訊息
+    state.BetStatus=payload;
+    console.log("tableInfo資料更新",state.BetStatus)
   },
-})
+};
+export const getters = {};
+
+export default {
+  state,
+  actions,
+  mutations,
+  getters,
+  namespaced: true,
+};

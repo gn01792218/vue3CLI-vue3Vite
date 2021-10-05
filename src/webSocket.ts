@@ -1,9 +1,8 @@
-
 import protoRoot from '@/assets/js/proto'
 import protobuf from "protobufjs";
+import {protoHeader} from "./socketApi"
 import store from './store' //在元件之外要使用store，不能用useStore
 const url = "ws://139.162.102.189:8199/ws";  //後端網址
-const protoHeader = protoRoot.lookupType('foundation.Header') //這個之後會搬到別的地方
 //建立webSocket實例
 let Socket:WebSocket | null
 let setIntervalWesocketPush:number
@@ -38,12 +37,21 @@ const oncloseWs = () => {
  * 发送数据但连接未建立时进行处理等待重发
  * @param {any} message 需要发送的数据
  */
- const connecting = (message:any) => {
+ const connecting = (message:any,lookupType:string) => {
     setTimeout(() => {
       if (Socket?.readyState === 0) { //readyState 0 表示正在連接中，那就繼續connecting
-        connecting(message)
+        connecting(message,lookupType)
       } else {
-        Socket?.send(JSON.stringify(message))
+        let bytes:any;
+        //做假資料時，每個假資料都會有Header
+        protobuf.load(protoRoot,protoRoot,(err,root)=>{
+          if(err)throw err;
+          let Product = root?.lookupType(lookupType);
+          bytes =Product?.encode(message).finish();
+          console.log("發送資料",message)
+        })
+        Socket?.send(bytes)
+        
       }
     }, 1000)
   }
@@ -68,8 +76,8 @@ const oncloseWs = () => {
       Socket.send(bytes)
       // console.log("傳送成功",bytes)
     } else if (Socket?.readyState === 0) { //正在連接中
-      connecting(message)
-      console.log("readyState:"+Socket.readyState,"準備傳送:"+JSON.stringify(message));
+      connecting(message,lookupType)
+      console.log("readyState:"+Socket.readyState,"準備傳送:"+message);
     }
   }
 
@@ -81,22 +89,13 @@ const oncloseWs = () => {
         let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
         console.log(header)
         console.log(header.uri) //lookup什麼得到的就是什麼
-        //之後要用這個
-        // msg = protoRoot.lookupType(header.uri).decode(new Uint8Array(msg.data))
-        // const splitUrl = header.uri.split('.');  //切割Header字串，找到對應的VuexStor和對應set資料方法
-        // store.commit(`${splitUrl[0]}/set${splitUrl[1]}`,msg)  //把資料灌到Vuex中
-        
-        //server傳來的資料型態改好之前先使用這個
-        switch(header.uri){
-          case '\n\vLoginRecall':
-            msg=protoRoot.lookupType('auth.LoginRecall').decode(new Uint8Array(msg.data))
-            console.log(msg)
-            // store.commit("wsStore/setWsRes",msg)  //把資料灌到Vuex中
-            store.commit("auth/setLoginRecall",msg)  //把資料灌到Vuex中
-            break;
-          case '':
-            break;
-        }
+        //註冊一個自訂義的onmessageWs事件，帶header給第二層去處理要裝到哪個Vuex裡面
+        window.dispatchEvent(new CustomEvent('onmessageWs',{
+          detail:{
+            header,  //把header丟出去
+            msg
+          }
+        }))
       }).catch(err=>{
         if(err) throw err
       })
