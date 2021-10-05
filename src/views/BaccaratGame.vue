@@ -33,11 +33,13 @@ export default defineComponent({
     //初始化
     onMounted(()=>{
       //根據路由顯示的桌號請求不同的數據
-      console.log("發送換桌請求")
-      sendTableJoinCall({
-        uri:"TableJoinCall",
-        uuid:tableNum
-      })
+      if(tableNum.value){
+        console.log("發送換桌請求")
+        sendTableJoinCall({
+          uri:"TableJoinCall",
+          uuid:tableNum
+        })
+      }
     })
     //路由處理
     const router = useRouter()
