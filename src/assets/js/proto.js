@@ -10,22 +10,6 @@ var $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $pr
       go_package: "baccarat-game-server/protobufs/auth"
     },
     nested: {
-      Information: {
-        fields: {
-          header: {
-            type: "foundation.Header",
-            id: 1
-          },
-          name: {
-            type: "string",
-            id: 2
-          },
-          wallet: {
-            type: "double",
-            id: 3
-          }
-        }
-      },
       LoginCall: {
         fields: {
           header: {
@@ -53,6 +37,30 @@ var $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $pr
             id: 2
           }
         }
+      },
+      UserInfo: {
+        fields: {
+          header: {
+            type: "foundation.Header",
+            id: 1
+          },
+          user: {
+            type: "User",
+            id: 2
+          }
+        }
+      },
+      User: {
+        fields: {
+          name: {
+            type: "string",
+            id: 1
+          },
+          wallet: {
+            type: "double",
+            id: 2
+          }
+        }
       }
     }
   },
@@ -64,7 +72,7 @@ var $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $pr
       Header: {
         fields: {
           uri: {
-            type: "string",
+            type: "route.URI",
             id: 1
           }
         }
@@ -99,6 +107,23 @@ var $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $pr
             type: "string",
             id: 2
           }
+        }
+      }
+    }
+  },
+  route: {
+    options: {
+      go_package: "baccarat-game-server/protobufs/route"
+    },
+    nested: {
+      URI: {
+        values: {
+          LoginCall: 0,
+          LoginRecall: 1,
+          LobbyInfo: 2,
+          UserInfo: 3,
+          TableJoinCall: 4,
+          TableJoinRecall: 5
         }
       }
     }

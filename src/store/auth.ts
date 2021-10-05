@@ -1,7 +1,7 @@
 
 export const state = {
   LoginRecall: {},
-  Information:{}
+  UserInfo:{},
 };
 export const actions = {};
 
@@ -10,9 +10,9 @@ export const mutations = {
     state.LoginRecall=payload;
     console.log("auth資料更新",state.LoginRecall)
   },
-  setInformation(state:any, payload:any) { //接收wbSocket的訊息
-    state.Information=payload;
-    console.log("auth資料更新",state.Information)
+  setUserInfo(state:any, payload:any) { //接收wbSocket的訊息
+    state.UserInfo=payload;
+    console.log("auth資料更新",state.UserInfo)
   },
 };
 export const getters = {};

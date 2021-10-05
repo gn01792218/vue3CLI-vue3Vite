@@ -1,6 +1,6 @@
 import protoRoot from '@/assets/js/proto'
 import protobuf from "protobufjs";
-import {protoHeader} from "./socketApi"
+import {protoHeader,routes} from "./socketApi"
 import store from './store' //在元件之外要使用store，不能用useStore
 const url = "ws://139.162.102.189:8199/ws";  //後端網址
 //建立webSocket實例
@@ -83,16 +83,15 @@ const oncloseWs = () => {
 
   export const onmessageWs=(msg:any)=>{
     if(msg){ 
-      // console.log("收到數據", msg.data)
       protobuf.load(protoRoot)
       .then((root)=>{
         let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
-        console.log(header)
-        console.log(header.uri) //lookup什麼得到的就是什麼
+        console.log('返回數據',header)
+        console.log('返回數據的uri',header.uri) //lookup什麼得到的就是什麼
         //註冊一個自訂義的onmessageWs事件，帶header給第二層去處理要裝到哪個Vuex裡面
         window.dispatchEvent(new CustomEvent('onmessageWs',{
           detail:{
-            header,  //把header丟出去
+            header, 
             msg
           }
         }))

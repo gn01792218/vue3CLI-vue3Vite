@@ -37,7 +37,8 @@ export default defineComponent({
         console.log("發送換桌請求")
         sendTableJoinCall({
           uri:"TableJoinCall",
-          uuid:tableNum
+          // uuid:tableNum
+          uuid:router.currentRoute.value.params.tableId
         })
       }
     })

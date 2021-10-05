@@ -33,12 +33,12 @@
                 <button @click="showCards">取得當前卡牌</button>
                 <section class="card-container">
                     <div class="row">
-                        <div :class="['card-item col-6',{'card-item-w':index === 2}]" v-show="cards.banker.length" v-for="(card,index) in cards.banker" :key="index">
+                        <div :class="['col-6',{'card-item-w col-7':index === 0}]" v-show="cards.banker.length" v-for="(card,index) in cards.banker" :key="index">
                             <img :src="require(`../images/poker/${card}.png`)" >
                         </div>
                     </div>
                     <div class="row">
-                       <div :class="['card-item col-6',{'card-item-w':index === 2}]" v-show="cards.banker.length" v-for="(card,index) in cards.player" :key="index">
+                       <div :class="['col-6',{'card-item-w col-7':index === 0}]" v-show="cards.banker.length" v-for="(card,index) in cards.player" :key="index">
                             <img :src="require(`../images/poker/${card}.png`)" >
                        </div>
                     </div>
@@ -99,6 +99,6 @@ export default defineComponent({
         display: flex;
     }
     .card-item-w{
-        transform: rotate(90deg) translateY(-40%);
+        transform: rotate(90deg) translateY(-30%);
     }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>Vuex回應資料{{loginRes}}</h1>
+    <h1>使用者資訊{{userInfo}}</h1>
     <button type="button" @click="login">發送proto</button>
     <!-- <button :class="['btn',BorderStyle]" type="button" @click="changeColor">點我換顏色</button> -->
   </div>
@@ -23,6 +24,9 @@ export default defineComponent({
     const loginRes = computed(() => {
         return store.state.auth.LoginRecall
     })
+    const userInfo = computed(()=>{
+      return store.state.auth.UserInfo
+    })
     const logData = reactive({
        uri: "LoginCall",
        account: "user",
@@ -39,7 +43,7 @@ export default defineComponent({
 
     return{
       //data
-      BorderStyle,logData,loginRes,
+      BorderStyle,logData,loginRes,userInfo,
       //methods
       login,changeColor
     }

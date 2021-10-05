@@ -2,108 +2,6 @@ import * as $protobuf from "protobufjs";
 /** Namespace auth. */
 export namespace auth {
 
-    /** Properties of an Information. */
-    interface IInformation {
-
-        /** Information header */
-        header?: (foundation.IHeader|null);
-
-        /** Information name */
-        name?: (string|null);
-
-        /** Information wallet */
-        wallet?: (number|null);
-    }
-
-    /** Represents an Information. */
-    class Information implements IInformation {
-
-        /**
-         * Constructs a new Information.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: auth.IInformation);
-
-        /** Information header. */
-        public header?: (foundation.IHeader|null);
-
-        /** Information name. */
-        public name: string;
-
-        /** Information wallet. */
-        public wallet: number;
-
-        /**
-         * Creates a new Information instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Information instance
-         */
-        public static create(properties?: auth.IInformation): auth.Information;
-
-        /**
-         * Encodes the specified Information message. Does not implicitly {@link auth.Information.verify|verify} messages.
-         * @param message Information message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: auth.IInformation, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Information message, length delimited. Does not implicitly {@link auth.Information.verify|verify} messages.
-         * @param message Information message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: auth.IInformation, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an Information message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Information
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): auth.Information;
-
-        /**
-         * Decodes an Information message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Information
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): auth.Information;
-
-        /**
-         * Verifies an Information message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates an Information message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Information
-         */
-        public static fromObject(object: { [k: string]: any }): auth.Information;
-
-        /**
-         * Creates a plain object from an Information message. Also converts values to other types if specified.
-         * @param message Information
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: auth.Information, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Information to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
     /** Properties of a LoginCall. */
     interface ILoginCall {
 
@@ -301,6 +199,198 @@ export namespace auth {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of a UserInfo. */
+    interface IUserInfo {
+
+        /** UserInfo header */
+        header?: (foundation.IHeader|null);
+
+        /** UserInfo user */
+        user?: (auth.IUser|null);
+    }
+
+    /** Represents a UserInfo. */
+    class UserInfo implements IUserInfo {
+
+        /**
+         * Constructs a new UserInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: auth.IUserInfo);
+
+        /** UserInfo header. */
+        public header?: (foundation.IHeader|null);
+
+        /** UserInfo user. */
+        public user?: (auth.IUser|null);
+
+        /**
+         * Creates a new UserInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns UserInfo instance
+         */
+        public static create(properties?: auth.IUserInfo): auth.UserInfo;
+
+        /**
+         * Encodes the specified UserInfo message. Does not implicitly {@link auth.UserInfo.verify|verify} messages.
+         * @param message UserInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: auth.IUserInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified UserInfo message, length delimited. Does not implicitly {@link auth.UserInfo.verify|verify} messages.
+         * @param message UserInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: auth.IUserInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a UserInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns UserInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): auth.UserInfo;
+
+        /**
+         * Decodes a UserInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns UserInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): auth.UserInfo;
+
+        /**
+         * Verifies a UserInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a UserInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns UserInfo
+         */
+        public static fromObject(object: { [k: string]: any }): auth.UserInfo;
+
+        /**
+         * Creates a plain object from a UserInfo message. Also converts values to other types if specified.
+         * @param message UserInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: auth.UserInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this UserInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a User. */
+    interface IUser {
+
+        /** User name */
+        name?: (string|null);
+
+        /** User wallet */
+        wallet?: (number|null);
+    }
+
+    /** Represents a User. */
+    class User implements IUser {
+
+        /**
+         * Constructs a new User.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: auth.IUser);
+
+        /** User name. */
+        public name: string;
+
+        /** User wallet. */
+        public wallet: number;
+
+        /**
+         * Creates a new User instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns User instance
+         */
+        public static create(properties?: auth.IUser): auth.User;
+
+        /**
+         * Encodes the specified User message. Does not implicitly {@link auth.User.verify|verify} messages.
+         * @param message User message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: auth.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified User message, length delimited. Does not implicitly {@link auth.User.verify|verify} messages.
+         * @param message User message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: auth.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a User message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns User
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): auth.User;
+
+        /**
+         * Decodes a User message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns User
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): auth.User;
+
+        /**
+         * Verifies a User message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a User message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns User
+         */
+        public static fromObject(object: { [k: string]: any }): auth.User;
+
+        /**
+         * Creates a plain object from a User message. Also converts values to other types if specified.
+         * @param message User
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: auth.User, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this User to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace foundation. */
@@ -310,7 +400,7 @@ export namespace foundation {
     interface IHeader {
 
         /** Header uri */
-        uri?: (string|null);
+        uri?: (route.URI|null);
     }
 
     /** Represents a Header. */
@@ -323,7 +413,7 @@ export namespace foundation {
         constructor(properties?: foundation.IHeader);
 
         /** Header uri. */
-        public uri: string;
+        public uri: route.URI;
 
         /**
          * Creates a new Header instance using the specified properties.
@@ -590,6 +680,20 @@ export namespace lobby {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace route. */
+export namespace route {
+
+    /** URI enum. */
+    enum URI {
+        LoginCall = 0,
+        LoginRecall = 1,
+        LobbyInfo = 2,
+        UserInfo = 3,
+        TableJoinCall = 4,
+        TableJoinRecall = 5
     }
 }
 
