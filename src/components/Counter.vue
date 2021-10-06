@@ -21,10 +21,10 @@ export default defineComponent({
     setup(props){
         //計時器
         const count = ref<number>(props.countNum as number)
-        const round = computed(()=>{ //監聽外面傳進來的
+        const round = computed(()=>{ 
             return props.round
         })
-        const loadingCount = () => {
+        const loadingCount = () => { //計時器loading特效
             //外框動畫
             gsap
             .to('#loading',{
@@ -43,7 +43,7 @@ export default defineComponent({
                 .fromTo('#countNumber',{x:20},{x:20})
             }
         }
-        const setCount =() => {
+        const setCount =() => {  //倒數計時
         let timer = setInterval(()=>{
                 if(count.value<=0){ //倒數完時
                     clearInterval(timer)
@@ -54,6 +54,7 @@ export default defineComponent({
                 }
             },1000)
         }
+        //監聽回和數進行倒數計時
         watch(round,()=>{
             setCount()
         })
