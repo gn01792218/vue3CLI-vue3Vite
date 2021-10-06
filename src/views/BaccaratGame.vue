@@ -57,7 +57,7 @@ export default defineComponent({
     })
     //倒數計時
     const roundCount = ref(0) //第幾回合
-    const countSec = ref(15) //要倒數幾秒
+    const countSec = ref(13) //要倒數幾秒
     const playCount = ()=>{  //需要由serve傳送倒數指令才能啟動
       roundCount.value++;
       console.log("第"+roundCount.value+"回合倒數開始")
