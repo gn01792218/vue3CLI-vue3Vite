@@ -3,8 +3,13 @@
     <!-- <h1>{{tableNum}}</h1> -->
     <LiveCamara
     />
+    <Counter class="counter"
+      :round ="roundCount"
+      :countNum ="countSec"
+    />
     <GameHistory/>
-    <HelloWorld/>
+      <HelloWorld/>
+      <button class="countButton" @click="playCount">開始倒數</button>
   </div>
   <div class="gem-right">
       <BettingArea/>
@@ -14,11 +19,12 @@
 
 <script lang="ts">
 import {defineComponent, onMounted,onUpdated,ref} from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue';
-import LiveCamara from '@/components/LiveCamara.vue';
-import BettingArea from '@/components/BettingArea.vue';
+import HelloWorld from '@/components/HelloWorld.vue'
+import LiveCamara from '@/components/LiveCamara.vue'
+import BettingArea from '@/components/BettingArea.vue'
 import TableInfo from '@/components/TableInfo.vue';
-import GameHistory from '@/components/GameHistory.vue';
+import GameHistory from '@/components/GameHistory.vue'
+import Counter from '@/components/Counter.vue'
 import { useRouter } from 'vue-router'
 import {sendTableJoinCall} from '../socketApi'
 export default defineComponent({
@@ -28,6 +34,7 @@ export default defineComponent({
     BettingArea,
     TableInfo,
     GameHistory,
+    Counter,
   },
   setup(){
     //初始化
@@ -48,11 +55,18 @@ export default defineComponent({
     router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
       router.go(0)
     })
+    //倒數計時
+    const roundCount = ref(0) //第幾回合
+    const countSec = ref(15) //要倒數幾秒
+    const playCount = ()=>{  //需要由serve傳送倒數指令才能啟動
+      roundCount.value++;
+      console.log("第"+roundCount.value+"回合倒數開始")
+    }
     return{
       //data
-      tableNum,
+      tableNum,roundCount,countSec,
       //methods
-      
+      playCount,
     }
   },
 })
@@ -60,5 +74,14 @@ export default defineComponent({
 <style scoped>
   .gem-righ{
     clear: left;
+    position: relative;
+  }
+  .counter{
+    position: absolute;
+  }
+  .countButton{
+    position: absolute;
+    top:10%;
+    left:11%;
   }
 </style>

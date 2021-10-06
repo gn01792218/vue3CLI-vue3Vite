@@ -3,7 +3,7 @@
     <h1>This is an about page</h1>
     <!-- 計時器 -->
     <Counter
-     :play="startCount"
+     :round="startCount"
      :countNum="countTime"
     />
     <button @click="play">開始倒數</button>
@@ -33,10 +33,10 @@
     },
     setup(){
       //倒數計時操控
-      const startCount = ref(0); //計時控制器
+      const roundCount = ref(0); //計時控制器
       const countTime= ref<Number>(5) //倒數秒數
       const play=()=>{  //到時候要監聽server的指令來執行這個方法
-      startCount.value++
+      roundCount.value++
       }
       //直播螢幕操控
       const videoWidth = ref<Number>(300) //螢幕寬高
@@ -73,7 +73,7 @@
      
     return{
       //data
-     p,av,startCount,countTime,videoWidth,videoHeight,
+     p,av,roundCount,countTime,videoWidth,videoHeight,
      //methods
      move,zoonIn,scaleVideo,play
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <h1>Vuex回應資料{{loginRes}}</h1>
-    <h1>使用者資訊{{userInfo}}</h1>
+    <h6>Vuex回應資料{{loginRes}}</h6>
+    <h6>使用者資訊{{userInfo}}</h6>
     <button type="button" @click="login">發送proto</button>
     <!-- <button :class="['btn',BorderStyle]" type="button" @click="changeColor">點我換顏色</button> -->
   </div>
