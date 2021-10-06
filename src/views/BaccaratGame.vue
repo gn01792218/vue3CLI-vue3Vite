@@ -27,6 +27,7 @@ import GameHistory from '@/components/GameHistory.vue'
 import Counter from '@/components/Counter.vue'
 import { useRouter } from 'vue-router'
 import {useStore} from 'vuex'
+import {createSocket} from '../webSocket'
 import {sendLogin,sendTableJoinCall} from '../socketApi'
 export default defineComponent({
   components:{
@@ -38,6 +39,7 @@ export default defineComponent({
     Counter,
   },
   setup(){
+    createSocket()
     //vuex資料
     const store = useStore()
     const loginState = computed(()=>{
