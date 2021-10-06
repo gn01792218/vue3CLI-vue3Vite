@@ -10,10 +10,8 @@ export const routes = protoRoot.lookupEnum('route.URI')
 //發送登入訊息
 export const sendLogin =(data:any)=>{
     const protoLogin = protoRoot.lookupType('auth.LoginCall') 
-    let uri = data.uri
     let proto = protoLogin.create({
         header:protoHeader.create({
-            // uri:data.uri
             uri:routes.values.uri
         }),
         account:data.account,

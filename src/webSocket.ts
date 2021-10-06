@@ -87,7 +87,6 @@ const oncloseWs = () => {
       .then((root)=>{
         let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
         console.log('返回數據',header)
-        console.log('返回數據的uri',header.uri) //lookup什麼得到的就是什麼
         //註冊一個自訂義的onmessageWs事件，帶header給第二層去處理要裝到哪個Vuex裡面
         window.dispatchEvent(new CustomEvent('onmessageWs',{
           detail:{

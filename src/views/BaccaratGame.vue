@@ -8,8 +8,8 @@
       :countNum ="countSec"
     />
     <GameHistory/>
-      <HelloWorld/>
-      <button class="countButton" @click="playCount">開始倒數</button>
+    <!-- <HelloWorld/> -->
+    <button class="countButton" @click="playCount">開始倒數</button>
   </div>
   <div class="gem-right">
       <BettingArea/>
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted,onUpdated,ref} from 'vue'
+import {computed, defineComponent,ref, watch} from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue'
 import LiveCamara from '@/components/LiveCamara.vue'
 import BettingArea from '@/components/BettingArea.vue'
@@ -26,7 +26,8 @@ import TableInfo from '@/components/TableInfo.vue';
 import GameHistory from '@/components/GameHistory.vue'
 import Counter from '@/components/Counter.vue'
 import { useRouter } from 'vue-router'
-import {sendTableJoinCall} from '../socketApi'
+import {useStore} from 'vuex'
+import {sendLogin,sendTableJoinCall} from '../socketApi'
 export default defineComponent({
   components:{
     HelloWorld,
@@ -37,34 +38,51 @@ export default defineComponent({
     Counter,
   },
   setup(){
-    //初始化
-    onMounted(()=>{
-      //根據路由顯示的桌號請求不同的數據
+    //vuex資料
+    const store = useStore()
+    const loginState = computed(()=>{
+      return store.state.auth.LoginRecall.status
+    })
+    //路由處理，取得當前桌號
+    const router = useRouter()
+    const tableNum = computed(()=>{
+      return router.currentRoute.value.params.tableId
+    })
+    //監聽
+    //1.發送登入請求
+    watch(tableNum,()=>{
       if(tableNum.value){
-        console.log("發送換桌請求")
-        sendTableJoinCall({
-          uri:"TableJoinCall",
-          // uuid:tableNum
-          uuid:router.currentRoute.value.params.tableId
-        })
+        //先發送LoginCall請求
+          sendLogin({
+          uri: "LoginCall",
+          account: "user",
+          password: "password"
+          })
       }
     })
-    //路由處理
-    const router = useRouter()
-    const tableNum = ref<any>(router.currentRoute.value.params.tableId) //取得桌號
-    router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
-      router.go(0)
+    //2.發送換桌請求
+    watch(loginState,()=>{
+      if(loginState.value===1){
+          console.log("發送換桌請求")
+          sendTableJoinCall({
+          uri:"TableJoinCall",
+          uuid:router.currentRoute.value.params.tableId
+        })
+        }
     })
+    // router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
+    //   router.go(0)
+    // })
     //倒數計時
-    const roundCount = ref(0) //第幾回合
-    const countSec = ref(13) //要倒數幾秒
+    const roundCount = ref(0) //第幾回合-->到時候要computed
+    const countSec = ref(15) //要倒數幾秒-->到時候要computed
     const playCount = ()=>{  //需要由serve傳送倒數指令才能啟動
       roundCount.value++;
       console.log("第"+roundCount.value+"回合倒數開始")
     }
     return{
       //data
-      tableNum,roundCount,countSec,
+      loginState,tableNum,roundCount,countSec,
       //methods
       playCount,
     }

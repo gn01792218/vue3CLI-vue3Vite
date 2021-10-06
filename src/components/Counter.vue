@@ -44,11 +44,11 @@ export default defineComponent({
             if(count.value<10){
                 gsap
                 .fromTo('#countNumber',{x:30,opacity:"0",display:"block"},
-                {x:20,opacity:"1",ease:Power4.easeInOut})
+                {x:20,opacity:"1",ease:Power4.easeIn})
             }else {
                 gsap
                 .fromTo('#countNumber',{x:20,opacity:"0",display:"block"},
-                {x:0,opacity:"1",ease:Power4.easeInOut})
+                {x:0,opacity:"1",ease:Power4.easeIn})
             }
         }
         const setCount =() => {  //倒數計時
