@@ -12,7 +12,7 @@ export const sendLogin =(data:any)=>{
     const protoLogin = protoRoot.lookupType('auth.LoginCall') 
     let proto = protoLogin.create({
         header:protoHeader.create({
-            uri:routes.values.uri
+            uri:routes.values.LoginCall
         }),
         account:data.account,
         password:data.password
@@ -24,7 +24,7 @@ export const sendTableJoinCall =(data:any)=>{
     const protoTableJoinCall =protoRoot.lookupType('table.TableJoinCall') 
     let proto = protoTableJoinCall.create({
         header:protoHeader.create({
-            uri:data.uri
+            uri:routes.values.TableJoinCall
         }),
         uuid:data.uuid
     })
@@ -38,23 +38,27 @@ export const getReCall = (e:any) =>{
     switch(e.detail.header.uri){
         case routes.values.LoginRecall:
             let reCall = protoRoot.lookupType('auth.LoginRecall').decode(new Uint8Array(e.detail.msg.data))
-            console.log('取得reCall資料',reCall)
+            console.log('server傳遞',reCall)
             store.commit("auth/setLoginRecall",reCall)  //把資料灌到Vuex中
+            break;
+        case routes.values.LobbyInfo:
+            let lobyInfo = protoRoot.lookupType('lobby.LobbyInfo').decode(new Uint8Array(e.detail.msg.data))
+            console.log('server傳遞',lobyInfo)
+            store.commit("lobby/setLobbyInfo",lobyInfo)  //把資料灌到Vuex中
             break;
         case routes.values.UserInfo:
             let userInfo = protoRoot.lookupType('auth.UserInfo').decode(new Uint8Array(e.detail.msg.data))
-            console.log('取得User資料',userInfo)
+            console.log('server傳遞',userInfo)
             store.commit("auth/setUserInfo",userInfo)  //把資料灌到Vuex中
             break;
-        case routes.values.TableJoinReCall:
+        case routes.values.TableJoinRecall:
             //先解析出是哪一桌
-            let table = protoRoot.lookupType('table.TableJoinReCal').decode(new Uint8Array(e.detail.msg.data))
-            console.log(table)
+            let table = protoRoot.lookupType('table.TableJoinRecall').decode(new Uint8Array(e.detail.msg.data))
             store.commit("table/setTableJoinRecall",table) //取得桌號
             //再得到該桌的資訊
             let streamingUrl = protoRoot.lookupType('table.Table').decode(new Uint8Array(e.detail.msg.data))
             let tableInfor = protoRoot.lookupType('table.BetStatus').decode(new Uint8Array(e.detail.msg.data))
-            console.log(streamingUrl,tableInfor)
+            console.log("server傳遞",table,streamingUrl,tableInfor)
             store.commit("table/setBetStatus",streamingUrl)
             store.commit("table/setBetStatus",tableInfor)
             break;

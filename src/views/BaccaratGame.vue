@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,ref, watch} from 'vue'
+import {computed, defineComponent,reactive,ref, watch} from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue'
 import LiveCamara from '@/components/LiveCamara.vue'
 import BettingArea from '@/components/BettingArea.vue'
@@ -39,18 +39,23 @@ export default defineComponent({
     Counter,
   },
   setup(){
+    //創建websocket連線
     createSocket()
     //vuex資料
     const store = useStore()
     const loginState = computed(()=>{
       return store.state.auth.LoginRecall.status
     })
+    const tables = reactive(computed(()=>{
+      return store.state.lobby.LobbyInfo
+    }))
     //路由處理，取得當前桌號
     const router = useRouter()
     const tableNum = computed(()=>{
       return router.currentRoute.value.params.tableId
     })
     //監聽
+    
     //1.發送登入請求
     watch(tableNum,()=>{
       if(tableNum.value){
@@ -63,14 +68,18 @@ export default defineComponent({
       }
     })
     //2.發送換桌請求
-    watch(loginState,()=>{
-      if(loginState.value===1){
-          console.log("發送換桌請求")
+    watch(tables,()=>{
+      if(tableNum.value === "A"){
           sendTableJoinCall({
           uri:"TableJoinCall",
-          uuid:router.currentRoute.value.params.tableId
+          uuid:tables.value.tables[0].uuid
         })
-        }
+      }else if(tableNum.value === "B"){
+          sendTableJoinCall({
+          uri:"TableJoinCall",
+          uuid:tables.value.tables[1].uuid
+        })
+      }
     })
     // router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
     //   router.go(0)

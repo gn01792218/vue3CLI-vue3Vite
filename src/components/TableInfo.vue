@@ -34,12 +34,14 @@
                 <section class="card-container">
                     <div class="row">
                         <div :class="['col-6',{'card-item-w col-7':index === 0}]" v-show="cards.banker.length" v-for="(card,index) in cards.banker" :key="index">
-                            <img :src="require(`../images/poker/${card}.png`)" >
+                            <div :class="[`bankPoker${index}`,'poker']"></div>
+                            <!-- <img :src="require(`../images/poker/${card}.png`)" :alt="card" width=373 height=556> -->
                         </div>
                     </div>
                     <div class="row">
                        <div :class="['col-6',{'card-item-w col-7':index === 0}]" v-show="cards.banker.length" v-for="(card,index) in cards.player" :key="index">
-                            <img :src="require(`../images/poker/${card}.png`)" >
+                           <div :class="[`playerPoker${index}`,'poker']"></div>
+                            <!-- <img :src="require(`../images/poker/${card}.png`)"> -->
                        </div>
                     </div>
                 </section>
@@ -65,15 +67,26 @@ export default defineComponent({
         })
         const showCards = () => {
             //1.假如可以開牌，從Vuex中取得卡牌資訊
-            const bc = ['h11','s7','c9']
-            const pc = ['c10','s9','d13']
+            cards.banker = ['0-11','2-7','3-9']
+            cards.player = ['3-10','2-9','1-13']
+            const uw = 373
+            const uh = 556
             //2.顯示卡牌
             for(let i = 0 ; i <3 ;i++){
-                cards.banker[i] = bc[i]
-                cards.player[i] = pc[i]
+                // cards.banker[i] = bc[i]
+                // cards.player[i] = pc[i]
+                const bcArr = cards.banker[i].split("-")
+                // console.log(bcArr)
+                const  pcArr = cards.player[i].split("-")
+                // console.log(pcArr)
+                let bankPoker = document.querySelector(`.bankPoker${i}`)
+                // console.log(bankPoker)
+                let playerPoker = document.querySelector(`.playerPoker${i}`)
+                // console.log(playerPoker)
+                bankPoker.style.backgroundPosition = `-${(bcArr[1]-1)*uw}px -${bcArr[0]*uh}px` 
+                playerPoker.style.backgroundPosition = `-${(pcArr[1]-1)*uw}px -${pcArr[0]*uh}px` 
             }
         }
-        
         return{
             //data
             tabArray,onClickTab,cards,
@@ -100,5 +113,15 @@ export default defineComponent({
     }
     .card-item-w{
         transform: rotate(90deg) translateY(-30%);
+    }
+    .poker{
+        width:373px;
+        height:556px;
+        background-image:url('../images/poker.png');
+        // background-size: 1300% 400%;
+        // width:1300%;
+        // height:400%;
+        // transform: scale(0.2);
+        zoom:0.3;  //這個方式的話 必須要每種此吋下去塞選
     }
 </style>

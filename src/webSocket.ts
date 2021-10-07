@@ -71,7 +71,7 @@ const oncloseWs = () => {
         if(err)throw err;
         let Product = root?.lookupType(lookupType);
         bytes =Product?.encode(message).finish();
-        console.log("發送資料",message)
+        console.log("client發送",message)
       })
       Socket.send(bytes)
       // console.log("傳送成功",bytes)
@@ -86,7 +86,7 @@ const oncloseWs = () => {
       protobuf.load(protoRoot)
       .then((root)=>{
         let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
-        console.log('返回數據',header)
+        // console.log('返回數據',header)
         //註冊一個自訂義的onmessageWs事件，帶header給第二層去處理要裝到哪個Vuex裡面
         window.dispatchEvent(new CustomEvent('onmessageWs',{
           detail:{

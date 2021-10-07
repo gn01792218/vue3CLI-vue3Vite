@@ -126,7 +126,7 @@ export default defineComponent({
             .to(e,{
                 keyframes:[
                     {
-                    scale:1.1,
+                    // scale:1.1,
                     },
                     {duration:0.5,
                     ease:Power4.easeIn,
@@ -221,19 +221,19 @@ export default defineComponent({
             top:-25px;
         }
         .ammo5{
-            left:0px;
+            left:10px;
         }
         .ammo10{
-            left:65px;
+            left:85px;
         }
         .ammo50{
-            left:130px;
+            left:165px;
         }
         .ammo100{
-            left:197px;
+            left:247px;
         }
         .ammo500{
-           left:260px;
+           left:330px;
         }
     }
     .one,.two,.three,.four,.five{

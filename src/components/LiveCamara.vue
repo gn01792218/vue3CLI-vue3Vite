@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
 import {defineComponent, onMounted, reactive, ref} from 'vue'
 import flvjs from 'flv.js';
 export default defineComponent({
@@ -92,5 +91,8 @@ video::-webkit-media-controls-volume-slider {
 }
 video::-webkit-media-controls-enclosure{
     display: none;
+}
+.ssBtnDefault{
+  display: none;
 }
 </style>
