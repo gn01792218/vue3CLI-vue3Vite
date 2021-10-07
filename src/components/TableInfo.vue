@@ -32,14 +32,14 @@
             <li v-show="onClickTab===tabArray[1]">
                 <button @click="showCards">取得當前卡牌</button>
                 <section class="card-container">
-                    <div class="row">
-                        <div :class="['col-6',{'card-item-w col-7':index === 0}]" v-show="cards.banker.length" v-for="(card,index) in cards.banker" :key="index">
+                    <div class="row" v-if="cards.banker.length">
+                        <div :class="['col-6',{'card-item-w col-7':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
                             <div :class="[`bankPoker${index}`,'poker']"></div>
                             <!-- <img :src="require(`../images/poker/${card}.png`)" :alt="card" width=373 height=556> -->
                         </div>
                     </div>
-                    <div class="row">
-                       <div :class="['col-6',{'card-item-w col-7':index === 0}]" v-show="cards.banker.length" v-for="(card,index) in cards.player" :key="index">
+                    <div class="row" v-if="cards.player.length">
+                       <div :class="['col-6',{'card-item-w col-7':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
                            <div :class="[`playerPoker${index}`,'poker']"></div>
                             <!-- <img :src="require(`../images/poker/${card}.png`)"> -->
                        </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import {defineComponent, reactive, ref} from 'vue'
+import {defineComponent, reactive, ref,nextTick} from 'vue'
 export default defineComponent({
     setup(){
         //切換TableInfo頁籤
@@ -65,10 +65,13 @@ export default defineComponent({
             banker:[],
             player:[],
         })
-        const showCards = () => {
+        const pushCards = ()=>{
             //1.假如可以開牌，從Vuex中取得卡牌資訊
             cards.banker = ['0-11','2-7','3-9']
             cards.player = ['3-10','2-9','1-13']
+        }
+        const showCards = () => {
+            pushCards()
             const uw = 373
             const uh = 556
             //2.顯示卡牌
@@ -76,15 +79,14 @@ export default defineComponent({
                 // cards.banker[i] = bc[i]
                 // cards.player[i] = pc[i]
                 const bcArr = cards.banker[i].split("-")
-                // console.log(bcArr)
                 const  pcArr = cards.player[i].split("-")
-                // console.log(pcArr)
+                nextTick(()=>{
                 let bankPoker = document.querySelector(`.bankPoker${i}`)
-                // console.log(bankPoker)
                 let playerPoker = document.querySelector(`.playerPoker${i}`)
-                // console.log(playerPoker)
                 bankPoker.style.backgroundPosition = `-${(bcArr[1]-1)*uw}px -${bcArr[0]*uh}px` 
                 playerPoker.style.backgroundPosition = `-${(pcArr[1]-1)*uw}px -${pcArr[0]*uh}px` 
+                })
+                
             }
         }
         return{

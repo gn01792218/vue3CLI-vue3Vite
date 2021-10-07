@@ -39,8 +39,18 @@ export default defineComponent({
     Counter,
   },
   setup(){
-    //創建websocket連線
+    //路由處理，取得當前桌號
+    const router = useRouter()
+    const tableNum = computed(()=>{
+      return router.currentRoute.value.params.tableId
+    })
+    //創建websocket連線，並發送登入請求
     createSocket()
+    sendLogin({
+          uri: "LoginCall",
+          account: "user",
+          password: "password"
+          })
     //vuex資料
     const store = useStore()
     const loginState = computed(()=>{
@@ -49,14 +59,8 @@ export default defineComponent({
     const tables = reactive(computed(()=>{
       return store.state.lobby.LobbyInfo
     }))
-    //路由處理，取得當前桌號
-    const router = useRouter()
-    const tableNum = computed(()=>{
-      return router.currentRoute.value.params.tableId
-    })
     //監聽
-    
-    //1.發送登入請求
+    //1.監聽換桌時發送登入請求
     watch(tableNum,()=>{
       if(tableNum.value){
         //先發送LoginCall請求
@@ -81,9 +85,9 @@ export default defineComponent({
         })
       }
     })
-    // router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
-    //   router.go(0)
-    // })
+    router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
+      // router.go(0)
+    })
     //倒數計時
     const roundCount = ref(0) //第幾回合-->到時候要computed
     const countSec = ref(15) //要倒數幾秒-->到時候要computed

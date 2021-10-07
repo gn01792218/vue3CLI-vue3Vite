@@ -1,7 +1,6 @@
 import protoRoot from '@/assets/js/proto'
 import protobuf from "protobufjs";
-import {protoHeader,routes} from "./socketApi"
-import store from './store' //在元件之外要使用store，不能用useStore
+import {protoHeader} from "./socketApi"
 const url = "ws://139.162.102.189:8199/ws";  //後端網址
 //建立webSocket實例
 let Socket:WebSocket | null

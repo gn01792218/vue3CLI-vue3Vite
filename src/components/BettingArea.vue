@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {computed, defineComponent, reactive, ref} from 'vue'
+import {defineComponent, nextTick, reactive, ref} from 'vue'
 import {gsap,Power4} from 'gsap'
 export default defineComponent({
     setup(){
@@ -160,7 +160,7 @@ export default defineComponent({
         }
         const setCoinPosition = (cp,positionCoinElement) => {
             cp.coinArray.push(currentCoint.coinElement.className)
-            if(positionCoinElement.nodeName !== '#text'){
+                if(positionCoinElement.nodeName !== '#text'){
                 cp.initBottom += 5;
                 positionCoinElement.style.bottom = `${cp.initBottom}px`
             }  
@@ -176,8 +176,7 @@ export default defineComponent({
                 target.y = rect.bottom;
                 let cp = coinPosition[index]; //用來存點選到的注區
                 let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
-                console.log(positionCoinElement)
-                setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置
+                setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置 
             }
         }
         const resetGame = () => {
