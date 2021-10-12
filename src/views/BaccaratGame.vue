@@ -50,8 +50,10 @@ export default defineComponent({
     const tableNum = computed(()=>{
       return router.currentRoute.value.params.tableId
     })
+    
     //vuex資料
     const store = useStore()
+    
     const loginState = computed(()=>{  //取得登入狀態
       return store.state.auth.LoginRecall.status
     })
@@ -77,11 +79,13 @@ export default defineComponent({
           uri:"TableJoinCall",
           uuid:tables.value.tables[0].uuid
         })
+        console.log("上桌請求",tables.value.tables[0].uuid)
       }else if(tableNum.value === "B"){
           sendTableJoinCall({
           uri:"TableJoinCall",
           uuid:tables.value.tables[1].uuid
         })
+        console.log("上桌請求",tables.value.tables[1].uuid)
       }
     })
     router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!

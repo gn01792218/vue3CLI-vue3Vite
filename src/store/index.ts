@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import lobby from './lobby'
 import auth from './auth'
 import table from './table'
+import bet from './bet'
 
 
 export default createStore({
@@ -12,6 +13,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    lobby,auth,table,
+    lobby,auth,table,bet,
   }
 })

@@ -36,13 +36,23 @@
 </template>
 
 <script>
-import {defineComponent, nextTick, reactive, ref} from 'vue'
+import {computed, defineComponent, reactive, ref} from 'vue'
 import {gsap,Power4} from 'gsap'
+import {sendBetCall} from '../socketApi'
+import {useStore} from 'vuex'
 export default defineComponent({
     setup(){
+        //vuex
+        const store = useStore();
+        const betRecall = reactive(computed(()=>{
+            return store.state.bet.BetRecall
+        }))
+        let betResult = ref(-1) //下注成功否的狀態
+        
         //下注額度
         let totalBet = ref(0)
-        //籌碼動畫、注區動畫
+        //籌碼動畫、下注邏輯
+        
         const coin = reactive([  //籌碼基本資料
                     {
                     point:5,
@@ -82,36 +92,40 @@ export default defineComponent({
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
                 host:"莊家",
-                configClass:"one item flex-1"
-                
+                configClass:"one item flex-1",
+                betStatus:0 //目前這一回合的下注狀況
             },
             {
                 initBottom:0,
                 coinArray:[],
                 odds:"1:1",
                 host:"閒家",
-                configClass:"two item flex-2"
+                configClass:"two item flex-2",
+                betStatus:0 //目前這一回合的下注狀況
             },
             {
                 initBottom:0,
                 coinArray:[],
                 odds:"1:11",
                 host:"莊對",
-                configClass:"three item yellow"
+                configClass:"three item yellow",
+                betStatus:0 //目前這一回合的下注狀況
             },
             {
                 initBottom:0,
                 coinArray:[],
                 odds:"1:8",
                 host:"和局",
-                configClass:"four item green"
+                configClass:"four item green",
+                betStatus:0 //目前這一回合的下注狀況
             },
             {
                 initBottom:0,
                 coinArray:[],
                 odds:"1:11",
                 host:"閒對",
-                configClass:"five item yellow"
+                configClass:"five item yellow",
+                betStatus:0 //目前這一回合的下注狀況
             },
         ]) 
         const chooseCoint = (index,e) => { //點選籌碼的設置
@@ -166,7 +180,14 @@ export default defineComponent({
             }  
         }
         const bet = (e,index) => {  //下注!
+
             if(currentCoint.coinElement){
+            //發送下注請求
+            sendBetCall({
+                gameUuid:'@13E2F345FF6p7890',
+                betIndex:currentCoint.num+1,
+                betArea:index+1,
+            })
             //下注額度改變
                 totalBet.value += currentCoint.point
             //裝子彈，就會啟動籌碼飛的動畫
@@ -184,10 +205,12 @@ export default defineComponent({
             totalBet.value = 0
             //清空選取的籌碼
             currentCoint.coinElement = null
+            currentCoint.point = null
             //清空注區籌碼
             coinPosition.forEach(i => {
                 i.coinArray = []
                 i.initBottom = 0
+                i.betStatus = 0 
             })
             //清空籌碼飛彈槍管
             coin.forEach(i => {
@@ -196,7 +219,7 @@ export default defineComponent({
         }
         return{
             //data
-            totalBet,coin,currentCoint,coinPosition,
+            totalBet,coin,currentCoint,coinPosition,betRecall,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame
         }

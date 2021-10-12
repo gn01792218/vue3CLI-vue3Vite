@@ -6,15 +6,15 @@ export const state = {
     }
   },
 };
-export const actions = {};
+export const actions = {}
 
 export const mutations = {
-  setTableJoinRecall(state:any, payload:any) { //接收wbSocket的訊息
-    state.TableJoinRecall=payload;
+  TableJoinRecall(state:any, payload:any) { //接收wbSocket的訊息
+    state.TableJoinRecall=payload
     console.log("vuex-tableInfo資料更新",state.TableJoinRecall)
   },
 };
-export const getters = {};
+export const getters = {}
 
 export default {
   state,

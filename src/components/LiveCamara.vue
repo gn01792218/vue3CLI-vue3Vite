@@ -9,16 +9,12 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,ref, watch, watchEffect} from 'vue'
+import {computed, defineComponent,onMounted,ref, watch, watchEffect} from 'vue'
 import {useStore} from 'vuex'
 import flvjs from 'flv.js';
 import store from '@/store';
 export default defineComponent({
   props: {
-        url:{
-          type:String,
-          default:"",
-        },
         width:{
           type:Number,
           default:840
@@ -28,37 +24,48 @@ export default defineComponent({
           default:530
         }
     },
-    setup(props){
+    setup(){
+      const flvPlayer = ref<any | null>({});
+      onMounted(()=>{
+        createFlv()
+      })
       //vuex
       const store = useStore()
-      let propsUrl = ref("")
-      // 監聽外面有傳網址來，就開啟直播
-      watch(propsUrl,()=>{
-        // if(propsUrl){
-           createFlv()
-        // }
+      const flvStream = computed(()=>{
+        return store.state.table.TableJoinRecall.table.streamingUrl
       })
-      watchEffect(()=>{
-         propsUrl.value = store.state.table.TableJoinRecall.table.streamingUrl
+      //監聽換桌的直播網址
+      watch(flvStream,()=>{
+        reloadVideo(flvPlayer.value)
       })
       //影片播放設置
-      const flvPlayer = ref<any | null>({});
       const createFlv = () => {
         // let url = "http://flv.bdplay.nodemedia.cn/live/bbb.flv";
         // let url = "http://35.201.183.73/live?app=demo&stream=table1";
-        // let url = flvUrl.value 
         if (flvjs.isSupported()) {
         let videoElement = document.getElementById("videoElement");
         flvPlayer.value = flvjs.createPlayer({
           type: "flv",
           isLive: true,
           hasAudio: false, //直播流中没有包含音频流就要設置false
-          url:propsUrl.value
-        });
+          url:flvStream.value
+        },
+        );
         flvPlayer.value.attachMediaElement(videoElement);
         flvPlayer.value.load();
         flvPlayer.value.play();
       }
+      }
+      const destoryVideo = (flvPlayer:any) => {
+        console.log(flvPlayer)
+        flvPlayer.pause()
+        flvPlayer.unload()
+        flvPlayer.detachMediaElement()
+        flvPlayer = null
+      }
+      const reloadVideo = (flvPlayer:any) => {
+        destoryVideo(flvPlayer)
+        createFlv()
       }
       const play = () => {   //防止玩家再次點擊直播畫面
         flvPlayer.value.pause();
@@ -69,12 +76,9 @@ export default defineComponent({
         //data
         flvPlayer,
         //methods
-        createFlv,play,
+        createFlv,play,destoryVideo,reloadVideo,
       }
     },
-    // mounted(){
-    //   this.createFlv()
-    // }
 })
 
 </script>
