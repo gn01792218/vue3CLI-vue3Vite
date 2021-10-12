@@ -1,8 +1,7 @@
 <template>
   <div class="gem-main">
     <!-- <h1>{{tableNum}}</h1> -->
-    <LiveCamara
-    />
+    <LiveCamara/>
     <Counter class="counter"
       :round ="roundCount"
       :countNum ="countSec"
@@ -39,28 +38,28 @@ export default defineComponent({
     Counter,
   },
   setup(){
-    //路由處理，取得當前桌號
-    const router = useRouter()
-    const tableNum = computed(()=>{
-      return router.currentRoute.value.params.tableId
-    })
-    //創建websocket連線，並發送登入請求
+   //創建websocket連線，並發送登入請求
     createSocket()
     sendLogin({
           uri: "LoginCall",
           account: "user",
           password: "password"
-          })
+    })
+    //路由處理，取得當前桌號
+    const router = useRouter()
+    const tableNum = computed(()=>{
+      return router.currentRoute.value.params.tableId
+    })
     //vuex資料
     const store = useStore()
-    const loginState = computed(()=>{
+    const loginState = computed(()=>{  //取得登入狀態
       return store.state.auth.LoginRecall.status
     })
-    const tables = reactive(computed(()=>{
+    const tables = reactive(computed(()=>{  //桌號uuid
       return store.state.lobby.LobbyInfo
     }))
     //監聽
-    //1.監聽換桌時發送登入請求
+    //1.監聽換桌時發送登入請求-->以換取上桌資訊
     watch(tableNum,()=>{
       if(tableNum.value){
         //先發送LoginCall請求

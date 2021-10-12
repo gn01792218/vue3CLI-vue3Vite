@@ -128,11 +128,11 @@ export default defineComponent({
                     {
                     // scale:1.1,
                     },
-                    {duration:0.5,
+                    {duration:0.8,
                     ease:Power4.easeIn,
                     scale:0.5,
                     x:target.x-currentCoint.x,
-                    y:target.y-currentCoint.y,
+                    y:target.y-currentCoint.y-50,
                     zIndex:"1",
                     },
                     {
@@ -182,6 +182,8 @@ export default defineComponent({
         const resetGame = () => {
             //重置totalBet
             totalBet.value = 0
+            //清空選取的籌碼
+            currentCoint.coinElement = null
             //清空注區籌碼
             coinPosition.forEach(i => {
                 i.coinArray = []

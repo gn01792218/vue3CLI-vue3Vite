@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "proto": "pbjs -t json-module -w commonjs -o src/assets/js/proto.js src/proto/*/*.proto",
+    "proto": "pbjs -t json-module -w es6 -o src/assets/js/proto.js src/proto/*/*.proto",
     "protots": "pbjs -t static-module src/proto/*/*.proto | pbts -o src/assets/js/proto.d.ts -"
   },
   "dependencies": {

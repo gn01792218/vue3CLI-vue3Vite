@@ -393,6 +393,436 @@ export namespace auth {
     }
 }
 
+/** Namespace bet. */
+export namespace bet {
+
+    /** Error enum. */
+    enum Error {
+        Default = 1,
+        BetIndexInvalid = 2,
+        BetAreaInvalid = 3,
+        ReachMaxLimit = 4,
+        RoundNotFound = 5
+    }
+
+    /** BetArea enum. */
+    enum BetArea {
+        Banker = 1,
+        Player = 2,
+        BankerPair = 3,
+        Tie = 4,
+        PlayerPair = 5
+    }
+
+    /** Properties of a BetStatus. */
+    interface IBetStatus {
+
+        /** BetStatus Banker */
+        Banker?: (number|null);
+
+        /** BetStatus Player */
+        Player?: (number|null);
+
+        /** BetStatus BankerPair */
+        BankerPair?: (number|null);
+
+        /** BetStatus Tie */
+        Tie?: (number|null);
+
+        /** BetStatus PlayerPair */
+        PlayerPair?: (number|null);
+    }
+
+    /** Represents a BetStatus. */
+    class BetStatus implements IBetStatus {
+
+        /**
+         * Constructs a new BetStatus.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IBetStatus);
+
+        /** BetStatus Banker. */
+        public Banker: number;
+
+        /** BetStatus Player. */
+        public Player: number;
+
+        /** BetStatus BankerPair. */
+        public BankerPair: number;
+
+        /** BetStatus Tie. */
+        public Tie: number;
+
+        /** BetStatus PlayerPair. */
+        public PlayerPair: number;
+
+        /**
+         * Creates a new BetStatus instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetStatus instance
+         */
+        public static create(properties?: bet.IBetStatus): bet.BetStatus;
+
+        /**
+         * Encodes the specified BetStatus message. Does not implicitly {@link bet.BetStatus.verify|verify} messages.
+         * @param message BetStatus message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IBetStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetStatus message, length delimited. Does not implicitly {@link bet.BetStatus.verify|verify} messages.
+         * @param message BetStatus message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IBetStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetStatus message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.BetStatus;
+
+        /**
+         * Decodes a BetStatus message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.BetStatus;
+
+        /**
+         * Verifies a BetStatus message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetStatus message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetStatus
+         */
+        public static fromObject(object: { [k: string]: any }): bet.BetStatus;
+
+        /**
+         * Creates a plain object from a BetStatus message. Also converts values to other types if specified.
+         * @param message BetStatus
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.BetStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetStatus to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetCall. */
+    interface IBetCall {
+
+        /** BetCall gameUuid */
+        gameUuid?: (string|null);
+
+        /** BetCall betIndex */
+        betIndex?: (number|null);
+
+        /** BetCall betArea */
+        betArea?: (bet.BetArea|null);
+    }
+
+    /** Represents a BetCall. */
+    class BetCall implements IBetCall {
+
+        /**
+         * Constructs a new BetCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IBetCall);
+
+        /** BetCall gameUuid. */
+        public gameUuid: string;
+
+        /** BetCall betIndex. */
+        public betIndex: number;
+
+        /** BetCall betArea. */
+        public betArea: bet.BetArea;
+
+        /**
+         * Creates a new BetCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetCall instance
+         */
+        public static create(properties?: bet.IBetCall): bet.BetCall;
+
+        /**
+         * Encodes the specified BetCall message. Does not implicitly {@link bet.BetCall.verify|verify} messages.
+         * @param message BetCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IBetCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetCall message, length delimited. Does not implicitly {@link bet.BetCall.verify|verify} messages.
+         * @param message BetCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IBetCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.BetCall;
+
+        /**
+         * Decodes a BetCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.BetCall;
+
+        /**
+         * Verifies a BetCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetCall
+         */
+        public static fromObject(object: { [k: string]: any }): bet.BetCall;
+
+        /**
+         * Creates a plain object from a BetCall message. Also converts values to other types if specified.
+         * @param message BetCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.BetCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetRecall. */
+    interface IBetRecall {
+
+        /** BetRecall result */
+        result?: (number|null);
+
+        /** BetRecall betStatus */
+        betStatus?: (bet.IBetStatus|null);
+    }
+
+    /** Represents a BetRecall. */
+    class BetRecall implements IBetRecall {
+
+        /**
+         * Constructs a new BetRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IBetRecall);
+
+        /** BetRecall result. */
+        public result: number;
+
+        /** BetRecall betStatus. */
+        public betStatus?: (bet.IBetStatus|null);
+
+        /**
+         * Creates a new BetRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetRecall instance
+         */
+        public static create(properties?: bet.IBetRecall): bet.BetRecall;
+
+        /**
+         * Encodes the specified BetRecall message. Does not implicitly {@link bet.BetRecall.verify|verify} messages.
+         * @param message BetRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IBetRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetRecall message, length delimited. Does not implicitly {@link bet.BetRecall.verify|verify} messages.
+         * @param message BetRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IBetRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.BetRecall;
+
+        /**
+         * Decodes a BetRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.BetRecall;
+
+        /**
+         * Verifies a BetRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetRecall
+         */
+        public static fromObject(object: { [k: string]: any }): bet.BetRecall;
+
+        /**
+         * Creates a plain object from a BetRecall message. Also converts values to other types if specified.
+         * @param message BetRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.BetRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetError. */
+    interface IBetError {
+
+        /** BetError error */
+        error?: (bet.Error|null);
+
+        /** BetError errorMessage */
+        errorMessage?: (string|null);
+    }
+
+    /** Represents a BetError. */
+    class BetError implements IBetError {
+
+        /**
+         * Constructs a new BetError.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IBetError);
+
+        /** BetError error. */
+        public error: bet.Error;
+
+        /** BetError errorMessage. */
+        public errorMessage: string;
+
+        /**
+         * Creates a new BetError instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetError instance
+         */
+        public static create(properties?: bet.IBetError): bet.BetError;
+
+        /**
+         * Encodes the specified BetError message. Does not implicitly {@link bet.BetError.verify|verify} messages.
+         * @param message BetError message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IBetError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetError message, length delimited. Does not implicitly {@link bet.BetError.verify|verify} messages.
+         * @param message BetError message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IBetError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetError message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetError
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.BetError;
+
+        /**
+         * Decodes a BetError message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetError
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.BetError;
+
+        /**
+         * Verifies a BetError message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetError message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetError
+         */
+        public static fromObject(object: { [k: string]: any }): bet.BetError;
+
+        /**
+         * Creates a plain object from a BetError message. Also converts values to other types if specified.
+         * @param message BetError
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.BetError, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetError to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace foundation. */
 export namespace foundation {
 
@@ -481,6 +911,96 @@ export namespace foundation {
 
         /**
          * Converts this Header to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a Message. */
+    interface IMessage {
+
+        /** Message header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a Message. */
+    class Message implements IMessage {
+
+        /**
+         * Constructs a new Message.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: foundation.IMessage);
+
+        /** Message header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new Message instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Message instance
+         */
+        public static create(properties?: foundation.IMessage): foundation.Message;
+
+        /**
+         * Encodes the specified Message message. Does not implicitly {@link foundation.Message.verify|verify} messages.
+         * @param message Message message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: foundation.IMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Message message, length delimited. Does not implicitly {@link foundation.Message.verify|verify} messages.
+         * @param message Message message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: foundation.IMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Message message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Message
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): foundation.Message;
+
+        /**
+         * Decodes a Message message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Message
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): foundation.Message;
+
+        /**
+         * Verifies a Message message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Message message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Message
+         */
+        public static fromObject(object: { [k: string]: any }): foundation.Message;
+
+        /**
+         * Creates a plain object from a Message message. Also converts values to other types if specified.
+         * @param message Message
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: foundation.Message, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Message to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -688,12 +1208,15 @@ export namespace route {
 
     /** URI enum. */
     enum URI {
-        LoginCall = 0,
-        LoginRecall = 1,
-        LobbyInfo = 2,
-        UserInfo = 3,
-        TableJoinCall = 4,
-        TableJoinRecall = 5
+        Default = 0,
+        LoginCall = 1,
+        LoginRecall = 2,
+        LobbyInfo = 3,
+        UserInfo = 4,
+        TableJoinCall = 5,
+        TableJoinRecall = 6,
+        BetCall = 7,
+        BetRecall = 8
     }
 }
 

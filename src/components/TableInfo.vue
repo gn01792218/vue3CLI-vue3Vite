@@ -17,14 +17,14 @@
                             <li class="font-red">Banker Natural</li> 
                             <li class="font-yellow">Player Natural</li>
                         </div>
-                        <div class="col-6 text-md-right">
-                            <li>376,798/1300</li> 
-                            <li>332,648/508</li> 
-                            <li>11,999/280</li> 
-                            <li>9,406/224</li> 
-                            <li>9,232/225</li> 
-                            <li>1,145/1</li> 
-                            <li>0/0</li>
+                        <div class="col-6 text-md-right" v-if="betInfo">
+                            <li>{{betInfo.Banker}}</li> 
+                            <li>{{betInfo.Player}}</li> 
+                            <li>{{betInfo.Tie}}</li> 
+                            <li>{{betInfo.PlayerPair}}</li> 
+                            <li>{{betInfo.BankerPair}}</li> 
+                            <li>{{betInfo.BankerNatural}}</li> 
+                            <li>{{betInfo.PlayerNatural}}</li>
                         </div>
                     </div>
                 </section>
@@ -51,9 +51,22 @@
 </template>
 
 <script>
-import {defineComponent, reactive, ref,nextTick} from 'vue'
+import {defineComponent, reactive, ref,nextTick,computed} from 'vue'
+import {useStore} from 'vuex'
 export default defineComponent({
+     props: {
+        betStatus:{
+            type:Object,
+            default:{},
+        }
+    },
     setup(){
+        // vuex
+        const store = useStore()
+        const betInfo = computed(()=>{
+            return store.state.table.TableJoinRecall.table.betStatus
+        })
+       
         //切換TableInfo頁籤
         const tabArray = reactive(["Table Info","Cards"]) //將來有需要可以再增加
         const onClickTab = ref("Cards") //預設是Cards
@@ -62,22 +75,26 @@ export default defineComponent({
         }
         //撲克牌業務代碼
         const cards = reactive({
-            banker:[],
+            banker:[
+                
+            ],
             player:[],
         })
-        const pushCards = ()=>{
-            //1.假如可以開牌，從Vuex中取得卡牌資訊
-            cards.banker = ['0-11','2-7','3-9']
-            cards.player = ['3-10','2-9','1-13']
-        }
+        // const pushCards = ()=>{
+        //     //1.假如可以開牌，從Vuex中取得卡牌資訊
+        //     cards.banker = ['0-11','2-7','3-9']
+        //     cards.player = ['3-10','2-9','1-13']
+        // }
         const showCards = () => {
-            pushCards()
+            // pushCards()
+            const bc = ['0-11','2-7','3-9']
+            const pc = ['3-10','2-9','1-13']
             const uw = 373
             const uh = 556
             //2.顯示卡牌
             for(let i = 0 ; i <3 ;i++){
-                // cards.banker[i] = bc[i]
-                // cards.player[i] = pc[i]
+                cards.banker[i] = bc[i]
+                cards.player[i] = pc[i]
                 const bcArr = cards.banker[i].split("-")
                 const  pcArr = cards.player[i].split("-")
                 nextTick(()=>{
@@ -86,12 +103,11 @@ export default defineComponent({
                 bankPoker.style.backgroundPosition = `-${(bcArr[1]-1)*uw}px -${bcArr[0]*uh}px` 
                 playerPoker.style.backgroundPosition = `-${(pcArr[1]-1)*uw}px -${pcArr[0]*uh}px` 
                 })
-                
             }
         }
         return{
             //data
-            tabArray,onClickTab,cards,
+            tabArray,onClickTab,cards,betInfo,
             //methods
             switchTab,showCards
         }
@@ -120,10 +136,6 @@ export default defineComponent({
         width:373px;
         height:556px;
         background-image:url('../images/poker.png');
-        // background-size: 1300% 400%;
-        // width:1300%;
-        // height:400%;
-        // transform: scale(0.2);
-        zoom:0.3;  //這個方式的話 必須要每種此吋下去塞選
+        zoom:0.25;  //這個方式的話 必須要每種此吋下去塞選
     }
 </style>

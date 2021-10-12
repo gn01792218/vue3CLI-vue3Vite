@@ -9,11 +9,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, reactive, ref} from 'vue'
+import {computed, defineComponent,ref, watch, watchEffect} from 'vue'
+import {useStore} from 'vuex'
 import flvjs from 'flv.js';
+import store from '@/store';
 export default defineComponent({
   props: {
-        url:String,
+        url:{
+          type:String,
+          default:"",
+        },
         width:{
           type:Number,
           default:840
@@ -23,23 +28,32 @@ export default defineComponent({
           default:530
         }
     },
-    setup(){
-      //初始化
-      onMounted(() => {
-        createFlv();
+    setup(props){
+      //vuex
+      const store = useStore()
+      let propsUrl = ref("")
+      // 監聽外面有傳網址來，就開啟直播
+      watch(propsUrl,()=>{
+        // if(propsUrl){
+           createFlv()
+        // }
+      })
+      watchEffect(()=>{
+         propsUrl.value = store.state.table.TableJoinRecall.table.streamingUrl
       })
       //影片播放設置
       const flvPlayer = ref<any | null>({});
       const createFlv = () => {
         // let url = "http://flv.bdplay.nodemedia.cn/live/bbb.flv";
-        let url = "http://35.201.183.73/live?app=demo&stream=table1";
+        // let url = "http://35.201.183.73/live?app=demo&stream=table1";
+        // let url = flvUrl.value 
         if (flvjs.isSupported()) {
         let videoElement = document.getElementById("videoElement");
         flvPlayer.value = flvjs.createPlayer({
           type: "flv",
           isLive: true,
           hasAudio: false, //直播流中没有包含音频流就要設置false
-          url
+          url:propsUrl.value
         });
         flvPlayer.value.attachMediaElement(videoElement);
         flvPlayer.value.load();
@@ -57,7 +71,10 @@ export default defineComponent({
         //methods
         createFlv,play,
       }
-    }
+    },
+    // mounted(){
+    //   this.createFlv()
+    // }
 })
 
 </script>
