@@ -2,6 +2,7 @@
     <div class="stand-box">
         <div class="flex">
             <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+               <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
                         <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
@@ -11,11 +12,13 @@
         </div>  
         <div class="flex">
             <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
+                 <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                 <ul class="coinPosition">
                     <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
                         <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                     </transition-group>
                 </ul>
+               
             </div>
         </div>
         <div class="em font-totel">Total Bet {{totalBet}}</div>
@@ -172,7 +175,8 @@ export default defineComponent({
         const loadCoin = () => {
             coin[currentCoint.num].ammo.push(currentCoint.coinElement.className)
         }
-        const setCoinPosition = (cp,positionCoinElement) => {
+        const setCoinPosition = (cp,positionCoinElement) => {  //到時候要監聽到serverBetRecall之後再啟動
+            cp.betStatus += currentCoint.point
             cp.coinArray.push(currentCoint.coinElement.className)
                 if(positionCoinElement.nodeName !== '#text'){
                 cp.initBottom += 5;
@@ -180,7 +184,7 @@ export default defineComponent({
             }  
         }
         const bet = (e,index) => {  //下注!
-
+        console.log(e.srcElement)
             if(currentCoint.coinElement){
             //發送下注請求
             sendBetCall({
@@ -241,6 +245,7 @@ export default defineComponent({
         display: flex;
         position: absolute;
         .shotCoinPice{
+            pointer-events: none; //使能被穿透
             position: absolute;
             top:-25px;
         }
@@ -265,6 +270,7 @@ export default defineComponent({
     }
     .coinPosition{
             li{
+                pointer-events: none; //使能被穿透
                 position: absolute;
                 transform: scale(0.5);
                 clear: left;
@@ -275,4 +281,11 @@ export default defineComponent({
     .activeCoin {
         box-shadow: 0px 0px 25px rgba(255, 255, 178, 1);
         }
+    .betStatus{
+        pointer-events: none; //使能被穿透
+        color:white;
+        position: absolute;
+        bottom:0;
+        font-size: 2rem;
+    }
 </style>
