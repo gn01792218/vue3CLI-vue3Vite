@@ -1,13 +1,11 @@
 <template>
   <div class="gem-main">
-    <!-- <h1>{{tableNum}}</h1> -->
     <LiveCamara/>
     <Counter class="counter"
       :round ="roundCount"
       :countNum ="countSec"
     />
     <GameHistory/>
-    <!-- <HelloWorld/> -->
     <button class="countButton" @click="playCount">開始倒數</button>
   </div>
   <div class="gem-right">
@@ -18,7 +16,6 @@
 
 <script lang="ts">
 import {computed, defineComponent,reactive,ref, watch} from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue'
 import LiveCamara from '@/components/LiveCamara.vue'
 import BettingArea from '@/components/BettingArea.vue'
 import TableInfo from '@/components/TableInfo.vue';
@@ -30,7 +27,6 @@ import {createSocket} from '../webSocket'
 import {sendLogin,sendTableJoinCall} from '../socketApi'
 export default defineComponent({
   components:{
-    HelloWorld,
     LiveCamara,
     BettingArea,
     TableInfo,

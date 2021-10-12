@@ -2,14 +2,9 @@
   <div class="bp-box">
       <section class="main">
         <div class="main-gride" v-for="(grid,index) in main " :key="index"><div class="btn-b">莊</div></div>
-        <!-- <div class=" btn-c">和</div>
-        <div class=" btn-b">莊</div> -->
       </section>
       <section class="second">
         <div class="sec-gride" v-for="(grid,index) in second " :key="index"><div class="btn-ps">閒</div></div>
-        <!-- <div class="btn-bs">莊</div>
-        <div class="btn-ps">閒</div>
-        <div class="btn-cs">和</div> -->
         <section class="bottom">
           <div class="third">
             <div class="third-gride" v-for="(grid,index) in third " :key="index"></div>
@@ -20,10 +15,7 @@
           <div class="fifth">
             <div class="fifth-gride" v-for="(grid,index) in fifth " :key="index"></div>
           </div>
-        <!-- <div class="btn-bss"></div>
-        <div class="btn-pss"></div>
-        <div class="btn-css"></div> -->
-      </section>
+        </section>
       </section>
      
       
