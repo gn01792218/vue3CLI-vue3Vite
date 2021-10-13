@@ -1,6 +1,4 @@
-import protoRoot from '@/assets/js/proto'
-import protobuf from "protobufjs";
-import {protoHeader} from "./socketApi"
+
 const url = "ws://139.162.102.189:8199/ws";  //後端網址
 //建立webSocket實例
 let Socket:WebSocket | null
@@ -41,17 +39,6 @@ const oncloseWs = () => {
       if (Socket?.readyState === 0) { //readyState 0 表示正在連接中，那就繼續connecting
         connecting(message)
       } else {
-        // let bytes:any;
-        //做假資料時，每個假資料都會有Header
-        // let Product =  protoRoot.lookupType(lookupType);
-        // bytes =Product?.encode(message).finish();
-        // console.log("發送資料",message)
-        // protobuf.load(protoRoot,protoRoot,(err,root)=>{
-        //   if(err)throw err;
-        //   let Product = root?.lookupType(lookupType);
-        //   bytes =Product?.encode(message).finish();
-        //   console.log("發送資料",message)
-        // })
         Socket?.send(message)
         
       }
@@ -67,20 +54,7 @@ const oncloseWs = () => {
       Socket.close()
       createSocket()
     } else if (Socket?.readyState === 1) { //已經連接，且可以通訊
-      // let bytes:any;
-      //做假資料時，每個假資料都會有Header
-      // let Product = protoRoot.lookupType(lookupType);
-      // bytes =Product?.encode(message).finish();
-      // console.log("client發送",message)
-      // protobuf.load(protoRoot,protoRoot,(err,root)=>{
-      //   if(err)throw err;
-      //   let Product = root?.lookupType(lookupType);
-      //   bytes =Product?.encode(message).finish();
-      //   console.log("client發送",message)
-      // })
       Socket.send(message)
-      // console.log(bytes)
-      // console.log("傳送成功",bytes)
     } else if (Socket?.readyState === 0) { //正在連接中
       connecting(message)
       console.log("readyState:"+Socket.readyState,"準備傳送:"+message);
@@ -89,28 +63,12 @@ const oncloseWs = () => {
 
   export const onmessageWs=(msg:any)=>{
     if(msg){ 
-      // let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
-      // console.log('返回數據',msg.data)
         //註冊一個自訂義的onmessageWs事件，帶header給第二層去處理要裝到哪個Vuex裡面
       window.dispatchEvent(new CustomEvent('onmessageWs',{
           detail:{
             msg
           }
         }))
-      // protobuf.load(protoRoot)
-      // .then((root)=>{
-      //   let header= protoHeader.decode(new Uint8Array(msg.data)); //要先轉成Unit8再用Header解析meg
-      //   console.log('返回數據',header)
-      //   //註冊一個自訂義的onmessageWs事件，帶header給第二層去處理要裝到哪個Vuex裡面
-      //   window.dispatchEvent(new CustomEvent('onmessageWs',{
-      //     detail:{
-      //       header, 
-      //       msg
-      //     }
-      //   }))
-      // }).catch(err=>{
-      //   if(err) throw err
-      // })
     }
 }
   /**发送心跳

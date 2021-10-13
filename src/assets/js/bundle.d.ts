@@ -398,15 +398,16 @@ export namespace bet {
 
     /** Error enum. */
     enum Error {
-        Default = 1,
-        BetIndexInvalid = 2,
-        BetAreaInvalid = 3,
-        ReachMaxLimit = 4,
-        RoundNotFound = 5
+        ErrorDefault = 0,
+        BetIndexInvalid = 1,
+        BetAreaInvalid = 2,
+        ReachMaxLimit = 3,
+        RoundNotFound = 4
     }
 
     /** BetArea enum. */
     enum BetArea {
+        BetAreaDefault = 0,
         Banker = 1,
         Player = 2,
         BankerPair = 3,
@@ -531,6 +532,9 @@ export namespace bet {
     /** Properties of a BetCall. */
     interface IBetCall {
 
+        /** BetCall header */
+        header?: (foundation.IHeader|null);
+
         /** BetCall gameUuid */
         gameUuid?: (string|null);
 
@@ -549,6 +553,9 @@ export namespace bet {
          * @param [properties] Properties to set
          */
         constructor(properties?: bet.IBetCall);
+
+        /** BetCall header. */
+        public header?: (foundation.IHeader|null);
 
         /** BetCall gameUuid. */
         public gameUuid: string;
@@ -633,8 +640,14 @@ export namespace bet {
     /** Properties of a BetRecall. */
     interface IBetRecall {
 
+        /** BetRecall header */
+        header?: (foundation.IHeader|null);
+
         /** BetRecall result */
         result?: (number|null);
+
+        /** BetRecall totalBets */
+        totalBets?: (number|null);
 
         /** BetRecall betStatus */
         betStatus?: (bet.IBetStatus|null);
@@ -649,8 +662,14 @@ export namespace bet {
          */
         constructor(properties?: bet.IBetRecall);
 
+        /** BetRecall header. */
+        public header?: (foundation.IHeader|null);
+
         /** BetRecall result. */
         public result: number;
+
+        /** BetRecall totalBets. */
+        public totalBets: number;
 
         /** BetRecall betStatus. */
         public betStatus?: (bet.IBetStatus|null);
@@ -721,6 +740,210 @@ export namespace bet {
 
         /**
          * Converts this BetRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetResetCall. */
+    interface IBetResetCall {
+
+        /** BetResetCall header */
+        header?: (foundation.IHeader|null);
+
+        /** BetResetCall gameUuid */
+        gameUuid?: (string|null);
+    }
+
+    /** Represents a BetResetCall. */
+    class BetResetCall implements IBetResetCall {
+
+        /**
+         * Constructs a new BetResetCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IBetResetCall);
+
+        /** BetResetCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BetResetCall gameUuid. */
+        public gameUuid: string;
+
+        /**
+         * Creates a new BetResetCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetResetCall instance
+         */
+        public static create(properties?: bet.IBetResetCall): bet.BetResetCall;
+
+        /**
+         * Encodes the specified BetResetCall message. Does not implicitly {@link bet.BetResetCall.verify|verify} messages.
+         * @param message BetResetCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IBetResetCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetResetCall message, length delimited. Does not implicitly {@link bet.BetResetCall.verify|verify} messages.
+         * @param message BetResetCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IBetResetCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetResetCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetResetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.BetResetCall;
+
+        /**
+         * Decodes a BetResetCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetResetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.BetResetCall;
+
+        /**
+         * Verifies a BetResetCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetResetCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetResetCall
+         */
+        public static fromObject(object: { [k: string]: any }): bet.BetResetCall;
+
+        /**
+         * Creates a plain object from a BetResetCall message. Also converts values to other types if specified.
+         * @param message BetResetCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.BetResetCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetResetCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetResetRecall. */
+    interface IBetResetRecall {
+
+        /** BetResetRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** BetResetRecall result */
+        result?: (number|null);
+
+        /** BetResetRecall totalBets */
+        totalBets?: (number|null);
+
+        /** BetResetRecall betStatus */
+        betStatus?: (bet.IBetStatus|null);
+    }
+
+    /** Represents a BetResetRecall. */
+    class BetResetRecall implements IBetResetRecall {
+
+        /**
+         * Constructs a new BetResetRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IBetResetRecall);
+
+        /** BetResetRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BetResetRecall result. */
+        public result: number;
+
+        /** BetResetRecall totalBets. */
+        public totalBets: number;
+
+        /** BetResetRecall betStatus. */
+        public betStatus?: (bet.IBetStatus|null);
+
+        /**
+         * Creates a new BetResetRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetResetRecall instance
+         */
+        public static create(properties?: bet.IBetResetRecall): bet.BetResetRecall;
+
+        /**
+         * Encodes the specified BetResetRecall message. Does not implicitly {@link bet.BetResetRecall.verify|verify} messages.
+         * @param message BetResetRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IBetResetRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetResetRecall message, length delimited. Does not implicitly {@link bet.BetResetRecall.verify|verify} messages.
+         * @param message BetResetRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IBetResetRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetResetRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetResetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.BetResetRecall;
+
+        /**
+         * Decodes a BetResetRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetResetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.BetResetRecall;
+
+        /**
+         * Verifies a BetResetRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetResetRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetResetRecall
+         */
+        public static fromObject(object: { [k: string]: any }): bet.BetResetRecall;
+
+        /**
+         * Creates a plain object from a BetResetRecall message. Also converts values to other types if specified.
+         * @param message BetResetRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.BetResetRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetResetRecall to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

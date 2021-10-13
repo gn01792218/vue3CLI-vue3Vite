@@ -51,7 +51,9 @@ export default defineComponent({
             return store.state.bet.BetRecall
         }))
         let betResult = ref(-1) //下注成功否的狀態
-        
+        const user = computed(()=>{
+            return store.state.auth.UserInfo.user
+        })
         //下注額度
         let totalBet = ref(0)
         //籌碼動畫、下注邏輯
@@ -183,9 +185,8 @@ export default defineComponent({
                 positionCoinElement.style.bottom = `${cp.initBottom}px`
             }  
         }
-        const bet = (e,index) => {  //下注!
-        console.log(e.srcElement)
-            if(currentCoint.coinElement){
+        const bet = (e,index) => {     //下注! 
+            if(currentCoint.coinElement && user.value.wallet>=currentCoint.point){
             //發送下注請求
             sendBetCall({
                 gameUuid:'@13E2F345FF6p7890',

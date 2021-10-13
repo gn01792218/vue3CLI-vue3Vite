@@ -46,7 +46,6 @@ export default defineComponent({
     const tableNum = computed(()=>{
       return router.currentRoute.value.params.tableId
     })
-    
     //vuex資料
     const store = useStore()
     
