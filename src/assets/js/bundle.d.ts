@@ -1439,7 +1439,9 @@ export namespace route {
         TableJoinCall = 5,
         TableJoinRecall = 6,
         BetCall = 7,
-        BetRecall = 8
+        BetRecall = 8,
+        BetResetCall = 9,
+        BetResetRecall = 10
     }
 }
 

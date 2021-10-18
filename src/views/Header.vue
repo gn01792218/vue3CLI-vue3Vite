@@ -22,13 +22,13 @@ export default defineComponent({
         //路由處理
         const router = useRouter()
         //換桌
-        const toGametable = (tableNum) => {
+        function toGametable (tableNum) {
             router.push({
                 path:`/BaccaratGame/${tableNum}`
             })
         }
         //回大廳，關閉視窗
-        const closeWindow = ()=>{
+        function closeWindow () {
             window.opener = null;
             window.open("about:blank","_self").close();
         }
@@ -44,6 +44,6 @@ export default defineComponent({
 
 <style lang="scss" scope>
     .gem-left{
-        height:auto !important;
+        height:95.5% !important;  //這個之後在手機板不能使用import
     }
 </style>

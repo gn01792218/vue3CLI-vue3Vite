@@ -1,6 +1,6 @@
 <template>
   <div id="wap" class="app">
-    <div class="container-fluid">
+    <div class="container">
       <div class="container-waps row min-vh-100">
         <Header/>
         <router-view/>
@@ -20,12 +20,14 @@ export default defineComponent({
     Header,Footer,BaccaratGame
   },
   setup() {
+    
   },
 })
 </script>
 
 <style lang="scss">
 .container-waps{
-  max-height:100vh !important;
+  // max-height:100vh !important;
+  height:100vh !important;
 }
 </style>

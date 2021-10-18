@@ -9,10 +9,9 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,onMounted,ref, watch, watchEffect} from 'vue'
+import {computed, defineComponent,onMounted,ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import flvjs from 'flv.js';
-import store from '@/store';
 export default defineComponent({
   props: {
         width:{
@@ -25,7 +24,9 @@ export default defineComponent({
         }
     },
     setup(){
+      //直播物件
       const flvPlayer = ref<any | null>({});
+      //初始化
       onMounted(()=>{
         createFlv()
       })
@@ -39,35 +40,33 @@ export default defineComponent({
         reloadVideo(flvPlayer.value)
       })
       //影片播放設置
-      const createFlv = () => {
+      function createFlv () {
         // let url = "http://flv.bdplay.nodemedia.cn/live/bbb.flv";
         // let url = "http://35.201.183.73/live?app=demo&stream=table1";
         if (flvjs.isSupported()) {
-        let videoElement = document.getElementById("videoElement");
-        flvPlayer.value = flvjs.createPlayer({
-          type: "flv",
-          isLive: true,
-          hasAudio: false, //直播流中没有包含音频流就要設置false
-          url:flvStream.value
-        },
-        );
+          let videoElement = document.getElementById("videoElement");
+          flvPlayer.value = flvjs.createPlayer({
+            type: "flv",
+            isLive: true,
+            hasAudio: false, //直播流中没有包含音频流就要設置false
+            url:flvStream.value
+          });
         flvPlayer.value.attachMediaElement(videoElement);
         flvPlayer.value.load();
         flvPlayer.value.play();
+        }
       }
-      }
-      const destoryVideo = (flvPlayer:any) => {
-        console.log(flvPlayer)
+      function destoryVideo (flvPlayer:any) {
         flvPlayer.pause()
         flvPlayer.unload()
         flvPlayer.detachMediaElement()
         flvPlayer = null
       }
-      const reloadVideo = (flvPlayer:any) => {
+      function reloadVideo (flvPlayer:any) {
         destoryVideo(flvPlayer)
         createFlv()
       }
-      const play = () => {   //防止玩家再次點擊直播畫面
+      function play () { //防止玩家再次點擊直播畫面
         flvPlayer.value.pause();
         flvPlayer.value.load();
         flvPlayer.value.play();
@@ -84,6 +83,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scope>
+.video-box{
+  height: 46%;
+}
 
 //以下是用來控制撥放器按鈕顯示的CSS，可以依據需求關閉
 video::-webkit-media-controls-fullscreen-button {

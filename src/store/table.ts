@@ -14,7 +14,9 @@ export const mutations = {
     console.log("vuex-tableInfo資料更新",state.TableJoinRecall)
   },
 };
-export const getters = {}
+export const getters = {
+ 
+}
 
 export default {
   state,

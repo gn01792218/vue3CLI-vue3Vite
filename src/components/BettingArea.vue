@@ -1,63 +1,99 @@
 <template>
     <div class="stand-box">
-        <div class="flex">
-            <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
-               <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
-                <ul class="coinPosition">
-                    <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
-                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
-                    </transition-group>
-                </ul>
-            </div>
-        </div>  
-        <div class="flex">
-            <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
-                 <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
-                <ul class="coinPosition">
-                    <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
-                        <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
-                    </transition-group>
-                </ul>
-               
+        <!-- PC版本注區 -->
+        <div class="stand-flex">
+                <div class="flex">
+                    <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+                        <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
+                        <ul class="coinPosition">
+                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                                <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
+                            </transition-group>
+                        </ul>
+                    </div>
+                </div>  
+                <div class="flex">
+                    <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
+                        <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
+                        <ul class="coinPosition">
+                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                                <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
+                            </transition-group>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <!-- mobile注區 -->
+        <div class="stand-flexs">
+            <div class="flexs">
+                <div :class ="i.configClass" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+                    <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
+                    <ul class="coinPosition">
+                        <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                            <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
+                        </transition-group>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="em font-totel">Total Bet {{totalBet}}</div>
+        <div class="coin-area">
+            <button @click="resetGame">重置遊戲</button>
+            <!-- 籌碼列表 -->
+            <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
+            <!-- 籌碼子彈 -->
+            <ul class="shotCoinUl">
+                <div v-for="coin,index in coin" :key="index">
+                    <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
+                        <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index+1"></div>
+                    </transition-group>
+                </div>
+            </ul>
+        </div>
     </div>
-    <div class="coin-area">
-        <button @click="resetGame">重置遊戲</button>
-        <!-- 籌碼列表 -->
-        <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
-        <!-- 籌碼子彈 -->
-        <ul class="shotCoinUl">
-            <div v-for="coin,index in coin" :key="index">
-            <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
-                <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index+1"></div>
-            </transition-group>
-            </div>
-        </ul>
-    </div>
+    
 </template>
 
 <script>
-import {computed, defineComponent, reactive, ref} from 'vue'
+import {computed, defineComponent, reactive, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
-import {sendBetCall} from '../socketApi'
+import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
 export default defineComponent({
     setup(){
         //vuex
         const store = useStore();
-        const betRecall = reactive(computed(()=>{
-            return store.state.bet.BetRecall
-        }))
-        let betResult = ref(-1) //下注成功否的狀態
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
+        const betStatus = computed(()=>{  //各注區下注狀況
+            return store.state.bet.BetRecall.betStatus
+        })
+        const betResult = computed(()=>{ //下注成功否的狀態
+            return store.state.bet.BetRecall.result
+        })
+        //監聽
+        watch(betStatus,()=>{
+            coinPosition[0].betStatus = betStatus.value.Banker
+            coinPosition[1].betStatus = betStatus.value.Player
+            coinPosition[2].betStatus = betStatus.value.BankerPair
+            coinPosition[3].betStatus = betStatus.value.Tie
+            coinPosition[4].betStatus = betStatus.value.PlayerPair
+        })
         //下注額度
-        let totalBet = ref(0)
+        const totalBet = computed({
+            get(){
+                let sun = 0
+                coinPosition.forEach(i=>{
+                    sun+=i.betStatus
+                })
+                return sun
+            },
+            set(num){
+                return num
+            }
+        })
         //籌碼動畫、下注邏輯
-        
         const coin = reactive([  //籌碼基本資料
                     {
                     point:5,
@@ -133,15 +169,15 @@ export default defineComponent({
                 betStatus:0 //目前這一回合的下注狀況
             },
         ]) 
-        const chooseCoint = (index,e) => { //點選籌碼的設置
+        function chooseCoint (index,e) {
             currentCoint.coinElement = e.target; //得到該元素
             currentCoint.x = e.x;  //設置籌碼起始座標點
             currentCoint.y = e.y;
             currentCoint.num = index;
             currentCoint.point = coin[index].point
         }
-        const cointAnimate = (e) => {  //籌碼飛的動畫
-            gsap
+        function cointAnimate (e) {
+             gsap
             .to(e,{
                 keyframes:[
                     {
@@ -160,7 +196,7 @@ export default defineComponent({
                 ]
             })
         }
-        const generateCoin = (e) => {
+        function generateCoin (e) {
             gsap
             .to(e,{
                 keyframes:[
@@ -174,39 +210,47 @@ export default defineComponent({
                     
             })
         }
-        const loadCoin = () => {
+        function loadCoin () {
             coin[currentCoint.num].ammo.push(currentCoint.coinElement.className)
         }
-        const setCoinPosition = (cp,positionCoinElement) => {  //到時候要監聽到serverBetRecall之後再啟動
-            cp.betStatus += currentCoint.point
+        function setCoinPosition (cp,positionCoinElement) {
             cp.coinArray.push(currentCoint.coinElement.className)
                 if(positionCoinElement.nodeName !== '#text'){
                 cp.initBottom += 5;
                 positionCoinElement.style.bottom = `${cp.initBottom}px`
             }  
         }
-        const bet = (e,index) => {     //下注! 
-            if(currentCoint.coinElement && user.value.wallet>=currentCoint.point){
+        function bet (e,index) {
+             if(currentCoint.coinElement && user.value.wallet>=currentCoint.point){
             //發送下注請求
-            sendBetCall({
-                gameUuid:'@13E2F345FF6p7890',
-                betIndex:currentCoint.num+1,
-                betArea:index+1,
-            })
-            //下注額度改變
-                totalBet.value += currentCoint.point
-            //裝子彈，就會啟動籌碼飛的動畫
-                loadCoin()  
-                let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
-                target.x = rect.left;
-                target.y = rect.bottom;
-                let cp = coinPosition[index]; //用來存點選到的注區
-                let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
-                setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置 
-            }
+                sendBetCall({
+                    gameUuid:'@13E2F345FF6p7890',
+                    betIndex:currentCoint.num,
+                    betArea:index+1,
+                })
+                if(betResult.value!==-1){
+                    //下注額度改變
+                    totalBet.value += currentCoint.point
+                    //裝子彈，就會啟動籌碼飛的動畫
+                    loadCoin()  
+                    let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
+                    target.x = rect.left;
+                    target.y = rect.bottom;
+                    let cp = coinPosition[index]; //用來存點選到的注區
+                    let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
+                    setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置 
+                }else if(betResult.value===-1){
+                    alert("伺服器忙碌中，請重下")
+                }
+            }else if(user.value.wallet<currentCoint.point){
+                    alert("餘額不足")
+                }
         }
-        const resetGame = () => {
-            //重置totalBet
+        function resetGame () {
+            sendBetResetCall({
+                 gameUuid:'@13E2F345FF6p7890',
+            })
+            //重置totalBet-->到時候
             totalBet.value = 0
             //清空選取的籌碼
             currentCoint.coinElement = null
@@ -224,7 +268,7 @@ export default defineComponent({
         }
         return{
             //data
-            totalBet,coin,currentCoint,coinPosition,betRecall,
+            totalBet,coin,currentCoint,coinPosition,betStatus,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame
         }
@@ -288,5 +332,6 @@ export default defineComponent({
         position: absolute;
         bottom:0;
         font-size: 2rem;
+        z-index:1;
     }
 </style>

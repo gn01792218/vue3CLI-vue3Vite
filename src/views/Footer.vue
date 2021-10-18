@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer">
+    <footer class="footer ">
         <div class="rows">
             <div class="col-sm text-md-left">
                 <span class="b"><i class="bi bi-bar-chart-fill"></i></span>
@@ -11,7 +11,7 @@
             <div class="col-sm text-md-right">
                 <span class="b"><i class="bi bi-person-circle"></i><span v-if="user">{{user.name}}</span></span>
                 <span class="b"><i class="bi bi-alarm"></i>{{date}}(UTC+8)</span>
-                <span class="b"><i class="bi bi-arrows-fullscreen"></i></span>
+                <span class="b"><i class="bi bi-arrows-fullscreen" @click="fullScreen"></i></span>
             </div>
         </div>
     </footer>
@@ -20,6 +20,7 @@
 <script>
 import {computed, defineComponent, onMounted, ref} from 'vue'
 import {useStore} from 'vuex'
+import screenfull from 'screenfull'
 export default defineComponent({
     setup(){
         //初始化
@@ -34,7 +35,7 @@ export default defineComponent({
         })
         //日期顯示
         const date = ref("")
-        const dateRun = () => {  //日期更新
+        function dateRun () {
             setInterval(() => {
                 let temp = new Date();
                 date.value =""
@@ -42,11 +43,19 @@ export default defineComponent({
                               temp.getHours() + ":" + temp.getMinutes() + ":" + temp.getSeconds();
             },1100)
         }
+        //全螢幕
+        function fullScreen () {
+            console.log("全螢幕")
+            if(screenfull.isEnabled){
+                
+                screenfull.toggle()
+            }
+        }
         return {
             //data
             date,user,
             //methods
-            dateRun
+            dateRun,fullScreen
         }
     }
 })
@@ -55,5 +64,8 @@ export default defineComponent({
 <style>
 .rows{
     display: flex;
+}
+.b{
+    cursor: pointer;
 }
 </style>

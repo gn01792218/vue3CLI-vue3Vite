@@ -1,6 +1,6 @@
 export const state = {
-  BetRecall:{
-  },
+  BetRecall:{},
+  BetResetRecall:{}
 };
 export const actions = {}
 
@@ -9,8 +9,14 @@ export const mutations = {
     state.BetRecall=payload
     console.log("vuex-BetRecall資料更新",state.BetRecall)
   },
+  BetResetRecall(state:any, payload:any){
+    state.BetResetRecall=payload
+    console.log("vuex-BetResetRecall資料更新",state.BetResetRecall)
+  }
 };
-export const getters = {}
+export const getters = {
+  
+}
 
 export default {
   state,

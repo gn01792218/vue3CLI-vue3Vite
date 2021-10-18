@@ -55,7 +55,7 @@ export default defineComponent({
           },
         ])
         //路圖更新
-        const historyUpdate = () => {
+        function historyUpdate () {
           //根據serve傳來的資料更新路圖
         }
         return {

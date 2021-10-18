@@ -7,7 +7,10 @@ height: 100%; margin: 0; padding: 0;
 
 }
 
-
+img{
+	max-width:100%;
+	height:auto;
+}
 body{
 	padding: 0px;
 	background-color: #000;
@@ -15,7 +18,9 @@ body{
 	background-repeat: repeat;
 	color: #FFF;
 }
-
+ul{
+	list-style: none;
+}
 ul,
 ol {
 	padding: 0;
@@ -49,7 +54,7 @@ ol {
 	float: left;
 	width: 100%;
 	background-color: rgba(2,29,35,0.5);
-	line-height: 2.5em;
+	line-height: 2em;
 	text-align: center;
 }
 .rows{
@@ -74,9 +79,7 @@ ol {
 
 .logo{
 	float: left;
-	width: 100%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	height: 80px;
 }
 
 .left-btn{
@@ -84,15 +87,13 @@ ol {
 	width: 100%;
 }
 
+
 .container-wap{
 	
 	width: 96%;
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 1280px;
-	  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 
 }
 .container-waps{
@@ -100,33 +101,26 @@ ol {
 	width: 100%;
 	background-color: #000000;
 	border: 1px solid #362903;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	height: 100%;
 }	
 
 .video-box{
-	border: 2px solid #644d31;
-	float: left;
-	width: 70%;
+	border: 2px solid #644d31;float: left;
+	width: 100%;
 }
 .bp-box{
 	border: 1px solid #fff;
 	float: left;
-	width: 70%;
+	width: 100%;
 	background-color: #FFF;
-	height: 50%;
 }
 
 .coin-area{
 	float: left;
 	width: 100%;
 	background-color: #1e1e1e;
-	border: 0px solid #333;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	text-align: center;
+	border: 1px solid #333;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .coin-area .s{
 	float: left;
@@ -139,9 +133,9 @@ ol {
 
 
 .stand-box{
-	border: 1px solid #262626;
+	border: 2px solid #262626;
 	float: left;
-	width: 30%;
+	width: 100%;
 	background-image: url('../../images/Stand-bg.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -165,21 +159,9 @@ ol {
 	border-right-color: #FFF;
 }
 
-.stand-flex{
-	float: left;
-	width: 100%;
-	display: block;
-}
-
-.stand-flexs{
-	float: left;
-	width: 100%;
-	display: none;
-}
-
 .tabs-area{
-float: left;
-width: 30%;
+	float: left;
+	width: 100%;
 /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+1,000000+100&0.65+3,0+9 */
 background: -moz-linear-gradient(top,  rgba(56,56,56,0.65) 1%, rgba(55,55,55,0.65) 3%, rgba(52,52,52,0) 9%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -226,10 +208,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6383838', e
 	background: -webkit-linear-gradient(top,  rgba(174,139,39,1) 0%,rgba(119,81,36,1) 99%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  rgba(174,139,39,1) 0%,rgba(119,81,36,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
-
-
-
-
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ae8b27', endColorstr='#775124',GradientType=0 ); /* IE6-9 */
 	border-radius: 10px;
 	box-shadow: 0px 0px 0px #9e9e9e;
@@ -266,7 +244,6 @@ background: linear-gradient(to bottom,  rgba(119,81,36,1) 0%,rgba(174,139,39,1) 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', endColorstr='#ae8b27',GradientType=0 ); /* IE6-9 */
 	transition: 1s;
 }.btn.active,.btn:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn.disabled,.btn[disabled],fieldset[disabled] .btn{cursor:not-allowed;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none;opacity:.65}a.btn.disabled,fieldset[disabled] a.btn{pointer-events:none}
-
 
 
 .btn-p{
@@ -697,12 +674,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', end
 	background-repeat: no-repeat;
 	background-position: left top;
 	position: relative;
-	height: 100%;height: 100vh;
+	height: 100%;
 }
-.gem-main{
-	float: left;
-	width: 90%;
-}
+.gem-main{float: left;width: 64%;}
 .gem-right{	float: left;width: 26%;}
 
 .grid-container {
@@ -721,7 +695,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', end
 -------------------------------------------*/
 .flex {
   display: flex;
-  /* height: 180px; */
+  height: 180px;
   padding: 0px;
   flex-wrap: wrap;
 }
@@ -751,7 +725,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', end
 	flex-basis: 25%;
 	border: 1px solid #FFF;
 	font-size: 280%;
-	line-height: 1.2em;
+	line-height: 1em;
 	color: #ffd236;
 }
 .flex-2 {
@@ -773,44 +747,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', end
 	background: -moz-linear-gradient(top,  rgba(51,29,2,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(top,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
-
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 	border-top-width: 1px;
 	border-top-style: solid;
 	border-top-color: #9a8326;
 	float: left;
 	width: 100%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	color: #d2c0a8;
-	line-height: 1.75em;
 }
-
-
 
 /*-------------------------------------------
      自適應設定區
 -------------------------------------------*/
 @media screen and (max-width: 1280px) {
 	
-.container{
-	width: 1000px;
-}
-	
 .logo{
-	float: left;
-	width: 20%;
-	padding-top: 5px;
-	padding-bottom: 0px;
-}
-
-.left-btn{
-	float: left;
-	width: 80%;
-}
-
-
+	float: left;height: 80px;
+}	
+	
 .align-items-end{
 	-ms-flex-align: end!important;
 	align-items: flex-end!important;
@@ -818,10 +774,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', end
 	bottom: 0px;
 	width: 100%;
 	float: left;
-	display: none;
 }
-
-
 	
 /*-------------------------------------------
      欄目設定區
@@ -844,7 +797,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', end
      按鈕設定區
 -------------------------------------------*/
 .btn{
-	max-width:90px;
+	max-width:120px;
 	display: inline-block;
 	line-height: 1.75em;
 	text-align: center;
@@ -863,9 +816,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', end
 	text-decoration: none;
 	color: #fff6d5;
 	padding-top: 5px;
-	padding-right: 10px;
+	padding-right: 20px;
 	padding-bottom: 5px;
-	padding-left: 10px;
+	padding-left: 20px;
 	margin-top: 5px;
 	margin-right: 0px;
 	margin-bottom: 5px;
@@ -884,93 +837,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ae8b27', end
 	transition: 1s;
 }
 
-.w-85{width:30%!important}
-
-.align-items-end{
-	-ms-flex-align: end!important;
-	align-items: flex-end!important;
-	position: absolute;
-	bottom: 0px;
-	width: 100%;
-}
-
-
-.video-box{
-	border: 2px solid #644d31;
-	float: left;
-	width: 100%;
-}
-
-
-.stand-box{
-	border: 2px solid #262626;
-	float: left;
-	width: 100%;
-	background-image: url('../../images/Stand-bg.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center top;
-}
-
-.stand-flex{
-	float: left;
-	width: 100%;
-	display: none;
-}
-
-.stand-flexs{
-	float: left;
-	width: 100%;
-	display: block;
-}
-
-.flexs {
-  display: flex;
-  justify-content: space-around;
-}
-
-.item {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.2rem;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.bp-box{
-	border: 1px solid #fff;
-	float: left;
-	width:100%;
-	background-color: #FFF;
-	height: auto;
-}
-
-.tabs-area{
-	float: left;
-	width: 100%;
-	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+1,000000+100&0.65+3,0+9 */
-	background: -moz-linear-gradient(top,  rgba(56,56,56,0.65) 1%, rgba(55,55,55,0.65) 3%, rgba(52,52,52,0) 9%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6383838', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-	background-color: #000;
-	background-position: bottom;
-}
-
 	}
-@media screen and (max-width: 768px) {.container{
-	width: 760px;
-}
-	}
-	
-	@media screen and (max-width: 414px) {.container{
-	width: 400px;
-}
-	}
-	
-@media screen and (max-width: 375px) {.container{
-	width: 360px;
-}
-	}	
-	

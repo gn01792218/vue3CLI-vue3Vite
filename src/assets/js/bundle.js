@@ -2656,6 +2656,8 @@ export const foundation = $root.foundation = (() => {
                 case 6:
                 case 7:
                 case 8:
+                case 9:
+                case 10:
                     break;
                 }
             return null;
@@ -2709,6 +2711,14 @@ export const foundation = $root.foundation = (() => {
             case "BetRecall":
             case 8:
                 message.uri = 8;
+                break;
+            case "BetResetCall":
+            case 9:
+                message.uri = 9;
+                break;
+            case "BetResetRecall":
+            case 10:
+                message.uri = 10;
                 break;
             }
             return message;
@@ -3423,6 +3433,8 @@ export const route = $root.route = (() => {
      * @property {number} TableJoinRecall=6 TableJoinRecall value
      * @property {number} BetCall=7 BetCall value
      * @property {number} BetRecall=8 BetRecall value
+     * @property {number} BetResetCall=9 BetResetCall value
+     * @property {number} BetResetRecall=10 BetResetRecall value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -3435,6 +3447,8 @@ export const route = $root.route = (() => {
         values[valuesById[6] = "TableJoinRecall"] = 6;
         values[valuesById[7] = "BetCall"] = 7;
         values[valuesById[8] = "BetRecall"] = 8;
+        values[valuesById[9] = "BetResetCall"] = 9;
+        values[valuesById[10] = "BetResetRecall"] = 10;
         return values;
     })();
 

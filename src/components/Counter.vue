@@ -1,7 +1,9 @@
 <template>
+    <div>
     <div class="count-container">
         <div id="loading"></div>
         <h1 id="countNumber">{{count}}</h1>
+    </div>
     </div>
 </template>
 
@@ -24,11 +26,12 @@ export default defineComponent({
     setup(props){
         //計時器
         const count = ref<number>(props.countNum as number)
-        const roundNum = computed(()=>{ 
+        const roundNum = computed(()=>{ //計算現在是第幾圈
             return props.round
         })
-        const loadingCount = () => { //計時器loading特效
+        function loadingCount () { //計時器loading特效
             //外框動畫
+            if(count.value<10){
             gsap
             .to('#loading',{
                 keyframes:[
@@ -36,10 +39,26 @@ export default defineComponent({
                     {duration:0.5,
                     ease:Power1.easeInOut,
                     rotation:360,
+                    borderColor:'transparent transparent red brown',
+                    filter:'blur(2px)',
                     display:'none'
                     }
                 ]
             })
+            }else{
+            gsap
+            .to('#loading',{
+                keyframes:[
+                    {rotation:0,display:'block', borderColor:'transparent transparent #724a0a #9b7726'},
+                    {duration:0.5,
+                    ease:Power1.easeInOut,
+                    rotation:360,
+                    filter:'blur(2px)',
+                    display:'none'
+                    }
+                ]
+            })
+            }
             //個位數字的居中
             if(count.value<10){
                 gsap
@@ -51,14 +70,15 @@ export default defineComponent({
                 {x:0,opacity:"1",ease:Power4.easeIn})
             }
         }
-        const setCount =() => {  //倒數計時
-        let timer = setInterval(()=>{
+        function setCount () { //倒數計時
+            let timer = setInterval(()=>{
                 if(count.value<=0){ //倒數完時
                     clearInterval(timer)
                     count.value=props.countNum //預備下次重新計算
                     gsap //最後要將數字隱藏
                     .fromTo('#countNumber',{x:20,opacity:"0",display:"none"},
                     {x:20,opacity:"1",ease:Power4.easeInOut,display:"none"})
+                    console.log("第"+props.round+"回合倒數結束")
                 }else{  //在1以上時才會執行
                     count.value-=1
                     loadingCount()
@@ -67,6 +87,7 @@ export default defineComponent({
         }
         //監聽回和數進行倒數計時
         watch(roundNum,()=>{
+            console.log("第"+props.round+"回合倒數開始")
             setCount()
         })
         return{
@@ -82,6 +103,9 @@ export default defineComponent({
 <style lang="scss">
 .count-container{
     position: relative;
+    // overflow: hidden;
+    //要調整計時器的位置，請在這裡設置top bottom left right
+    
 }
 #countNumber{
     position: absolute;

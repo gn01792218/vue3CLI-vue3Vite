@@ -1,17 +1,21 @@
 <template>
   <div class="gem-main">
-    <LiveCamara/>
-    <Counter class="counter"
+   
+       <LiveCamara />
+   
+    <Counter
       :round ="roundCount"
       :countNum ="countSec"
     />
+    <BettingArea/>
     <GameHistory/>
+    <TableInfo/>
     <button class="countButton" @click="playCount">開始倒數</button>
   </div>
-  <div class="gem-right">
-      <BettingArea/>
-      <TableInfo/>
-  </div>
+  <!-- <div class="gem-right">
+      
+      
+  </div> -->
 </template>
 
 <script lang="ts">
@@ -48,7 +52,6 @@ export default defineComponent({
     })
     //vuex資料
     const store = useStore()
-    
     const loginState = computed(()=>{  //取得登入狀態
       return store.state.auth.LoginRecall.status
     })
@@ -56,19 +59,9 @@ export default defineComponent({
       return store.state.lobby.LobbyInfo
     }))
     //監聽
-    //1.監聽換桌時發送登入請求-->以換取上桌資訊
-    watch(tableNum,()=>{
-      if(tableNum.value){
-        //先發送LoginCall請求
-          sendLogin({
-          uri: "LoginCall",
-          account: "user",
-          password: "password"
-          })
-      }
-    })
     //2.發送換桌請求
-    watch(tables,()=>{
+    //問題:重整時就不會觸動換桌請求
+    watch([tableNum,tables],()=>{
       if(tableNum.value === "A"){
           sendTableJoinCall({
           uri:"TableJoinCall",
@@ -83,15 +76,14 @@ export default defineComponent({
         console.log("上桌請求",tables.value.tables[1].uuid)
       }
     })
-    router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!!!因為Vue3資料會響應!!!
+    router.afterEach((to,from,next) => { //換桌時強制刷新-->可能不需要了!!因為Vue3資料會響應!!
       // router.go(0)
     })
-    //倒數計時
+    //倒數計時-->到時候通通讓counter自己決定就可以囉
     const roundCount = ref(0) //第幾回合-->到時候要computed
-    const countSec = ref(15) //要倒數幾秒-->到時候要computed
-    const playCount = ()=>{  //需要由serve傳送倒數指令才能啟動
+    const countSec = ref(20) //要倒數幾秒-->到時候要computed
+    function playCount () {
       roundCount.value++;
-      console.log("第"+roundCount.value+"回合倒數開始")
     }
     return{
       //data
@@ -102,13 +94,10 @@ export default defineComponent({
   },
 })
 </script>
-<style scoped>
+<style>
   .gem-righ{
     clear: left;
     position: relative;
-  }
-  .counter{
-    position: absolute;
   }
   .countButton{
     position: absolute;
