@@ -4,6 +4,10 @@ import router from './router'
 import store from './store'
 
 import { getReCall } from './socketApi'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
+
 import "../src/assets/css/bootstrap.min.css"
 import './assets/css/game.css';  //最後引入主要CSS
 

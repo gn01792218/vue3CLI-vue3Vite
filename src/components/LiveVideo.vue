@@ -1,28 +1,22 @@
 <template>
-  <video class="video-box"
-    id="videoElement"
-    ref="videoElement"
-    controls
-    muted
-    @click="play"
-  ></video>
+  <div class="video-box">
+    <video class="video"
+      id="videoElement"
+      ref="videoElement"
+      controls
+      muted
+      @click="play"
+    ></video>
+  </div>
+  <!-- <button @click="zoonIn">螢幕縮放</button> -->
 </template>
 
 <script lang="ts">
 import {computed, defineComponent,onMounted,ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import flvjs from 'flv.js';
+import gsap from 'gsap'
 export default defineComponent({
-  props: {
-        width:{
-          type:Number,
-          default:840
-        },
-        height:{
-          type:Number,
-          default:530
-        }
-    },
     setup(){
       //直播物件
       const flvPlayer = ref<any | null>({});
@@ -71,22 +65,36 @@ export default defineComponent({
         flvPlayer.value.load();
         flvPlayer.value.play();
       }
+      //螢幕縮放動畫
+      function zoonIn () {
+        console.log("啟動視訊縮放")
+        gsap.to('#videoElement',{
+          keyframes:[
+            {duration:1,scale:1.5},
+            {duration:1,scale:1}
+          ]
+        })
+      }
       return{
         //data
         flvPlayer,
         //methods
-        createFlv,play,destoryVideo,reloadVideo,
+        createFlv,play,destoryVideo,reloadVideo,zoonIn,
       }
     },
 })
 
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 .video-box{
-  height: 46%;
+  overflow: hidden;
+  width:100%;
+  .video{
+    width:100%;
+    height:100%;
+  }
 }
-
 //以下是用來控制撥放器按鈕顯示的CSS，可以依據需求關閉
 video::-webkit-media-controls-fullscreen-button {
     display: none;

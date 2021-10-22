@@ -919,6 +919,7 @@ export const bet = $root.bet = (() => {
      * @property {number} BetAreaInvalid=2 BetAreaInvalid value
      * @property {number} ReachMaxLimit=3 ReachMaxLimit value
      * @property {number} RoundNotFound=4 RoundNotFound value
+     * @property {number} NoEnoughWallet=5 NoEnoughWallet value
      */
     bet.Error = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -927,6 +928,7 @@ export const bet = $root.bet = (() => {
         values[valuesById[2] = "BetAreaInvalid"] = 2;
         values[valuesById[3] = "ReachMaxLimit"] = 3;
         values[valuesById[4] = "RoundNotFound"] = 4;
+        values[valuesById[5] = "NoEnoughWallet"] = 5;
         return values;
     })();
 
@@ -2416,6 +2418,7 @@ export const bet = $root.bet = (() => {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
                     break;
                 }
             if (message.errorMessage != null && message.hasOwnProperty("errorMessage"))
@@ -2456,6 +2459,10 @@ export const bet = $root.bet = (() => {
             case "RoundNotFound":
             case 4:
                 message.error = 4;
+                break;
+            case "NoEnoughWallet":
+            case 5:
+                message.error = 5;
                 break;
             }
             if (object.errorMessage != null)
@@ -2502,6 +2509,547 @@ export const bet = $root.bet = (() => {
     })();
 
     return bet;
+})();
+
+export const dealer = $root.dealer = (() => {
+
+    /**
+     * Namespace dealer.
+     * @exports dealer
+     * @namespace
+     */
+    const dealer = {};
+
+    /**
+     * Suit enum.
+     * @name dealer.Suit
+     * @enum {number}
+     * @property {number} Default=0 Default value
+     * @property {number} Heart=1 Heart value
+     * @property {number} Diamond=2 Diamond value
+     * @property {number} Spade=3 Spade value
+     * @property {number} Club=4 Club value
+     */
+    dealer.Suit = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "Default"] = 0;
+        values[valuesById[1] = "Heart"] = 1;
+        values[valuesById[2] = "Diamond"] = 2;
+        values[valuesById[3] = "Spade"] = 3;
+        values[valuesById[4] = "Club"] = 4;
+        return values;
+    })();
+
+    dealer.Card = (function() {
+
+        /**
+         * Properties of a Card.
+         * @memberof dealer
+         * @interface ICard
+         * @property {dealer.Suit|null} [Suit] Card Suit
+         * @property {number|null} [point] Card point
+         */
+
+        /**
+         * Constructs a new Card.
+         * @memberof dealer
+         * @classdesc Represents a Card.
+         * @implements ICard
+         * @constructor
+         * @param {dealer.ICard=} [properties] Properties to set
+         */
+        function Card(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Card Suit.
+         * @member {dealer.Suit} Suit
+         * @memberof dealer.Card
+         * @instance
+         */
+        Card.prototype.Suit = 0;
+
+        /**
+         * Card point.
+         * @member {number} point
+         * @memberof dealer.Card
+         * @instance
+         */
+        Card.prototype.point = 0;
+
+        /**
+         * Creates a new Card instance using the specified properties.
+         * @function create
+         * @memberof dealer.Card
+         * @static
+         * @param {dealer.ICard=} [properties] Properties to set
+         * @returns {dealer.Card} Card instance
+         */
+        Card.create = function create(properties) {
+            return new Card(properties);
+        };
+
+        /**
+         * Encodes the specified Card message. Does not implicitly {@link dealer.Card.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.Card
+         * @static
+         * @param {dealer.ICard} message Card message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Card.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.Suit != null && Object.hasOwnProperty.call(message, "Suit"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.Suit);
+            if (message.point != null && Object.hasOwnProperty.call(message, "point"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.point);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Card message, length delimited. Does not implicitly {@link dealer.Card.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.Card
+         * @static
+         * @param {dealer.ICard} message Card message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Card.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Card message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.Card
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.Card} Card
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Card.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.Card();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.Suit = reader.int32();
+                    break;
+                case 2:
+                    message.point = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Card message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.Card
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.Card} Card
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Card.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Card message.
+         * @function verify
+         * @memberof dealer.Card
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Card.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.Suit != null && message.hasOwnProperty("Suit"))
+                switch (message.Suit) {
+                default:
+                    return "Suit: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    break;
+                }
+            if (message.point != null && message.hasOwnProperty("point"))
+                if (!$util.isInteger(message.point))
+                    return "point: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a Card message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.Card
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.Card} Card
+         */
+        Card.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.Card)
+                return object;
+            let message = new $root.dealer.Card();
+            switch (object.Suit) {
+            case "Default":
+            case 0:
+                message.Suit = 0;
+                break;
+            case "Heart":
+            case 1:
+                message.Suit = 1;
+                break;
+            case "Diamond":
+            case 2:
+                message.Suit = 2;
+                break;
+            case "Spade":
+            case 3:
+                message.Suit = 3;
+                break;
+            case "Club":
+            case 4:
+                message.Suit = 4;
+                break;
+            }
+            if (object.point != null)
+                message.point = object.point | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Card message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.Card
+         * @static
+         * @param {dealer.Card} message Card
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Card.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.Suit = options.enums === String ? "Default" : 0;
+                object.point = 0;
+            }
+            if (message.Suit != null && message.hasOwnProperty("Suit"))
+                object.Suit = options.enums === String ? $root.dealer.Suit[message.Suit] : message.Suit;
+            if (message.point != null && message.hasOwnProperty("point"))
+                object.point = message.point;
+            return object;
+        };
+
+        /**
+         * Converts this Card to JSON.
+         * @function toJSON
+         * @memberof dealer.Card
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Card.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Card;
+    })();
+
+    /**
+     * Side enum.
+     * @name dealer.Side
+     * @enum {number}
+     * @property {number} Default=0 Default value
+     * @property {number} Banker=1 Banker value
+     * @property {number} Player=2 Player value
+     */
+    dealer.Side = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "Default"] = 0;
+        values[valuesById[1] = "Banker"] = 1;
+        values[valuesById[2] = "Player"] = 2;
+        return values;
+    })();
+
+    dealer.Draw = (function() {
+
+        /**
+         * Properties of a Draw.
+         * @memberof dealer
+         * @interface IDraw
+         * @property {dealer.Side|null} [side] Draw side
+         * @property {number|null} [position] Draw position
+         * @property {dealer.ICard|null} [card] Draw card
+         */
+
+        /**
+         * Constructs a new Draw.
+         * @memberof dealer
+         * @classdesc Represents a Draw.
+         * @implements IDraw
+         * @constructor
+         * @param {dealer.IDraw=} [properties] Properties to set
+         */
+        function Draw(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Draw side.
+         * @member {dealer.Side} side
+         * @memberof dealer.Draw
+         * @instance
+         */
+        Draw.prototype.side = 0;
+
+        /**
+         * Draw position.
+         * @member {number} position
+         * @memberof dealer.Draw
+         * @instance
+         */
+        Draw.prototype.position = 0;
+
+        /**
+         * Draw card.
+         * @member {dealer.ICard|null|undefined} card
+         * @memberof dealer.Draw
+         * @instance
+         */
+        Draw.prototype.card = null;
+
+        /**
+         * Creates a new Draw instance using the specified properties.
+         * @function create
+         * @memberof dealer.Draw
+         * @static
+         * @param {dealer.IDraw=} [properties] Properties to set
+         * @returns {dealer.Draw} Draw instance
+         */
+        Draw.create = function create(properties) {
+            return new Draw(properties);
+        };
+
+        /**
+         * Encodes the specified Draw message. Does not implicitly {@link dealer.Draw.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.Draw
+         * @static
+         * @param {dealer.IDraw} message Draw message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Draw.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.side != null && Object.hasOwnProperty.call(message, "side"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.side);
+            if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.position);
+            if (message.card != null && Object.hasOwnProperty.call(message, "card"))
+                $root.dealer.Card.encode(message.card, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Draw message, length delimited. Does not implicitly {@link dealer.Draw.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.Draw
+         * @static
+         * @param {dealer.IDraw} message Draw message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Draw.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Draw message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.Draw
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.Draw} Draw
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Draw.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.Draw();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.side = reader.int32();
+                    break;
+                case 2:
+                    message.position = reader.int32();
+                    break;
+                case 3:
+                    message.card = $root.dealer.Card.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Draw message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.Draw
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.Draw} Draw
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Draw.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Draw message.
+         * @function verify
+         * @memberof dealer.Draw
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Draw.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.side != null && message.hasOwnProperty("side"))
+                switch (message.side) {
+                default:
+                    return "side: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.position != null && message.hasOwnProperty("position"))
+                if (!$util.isInteger(message.position))
+                    return "position: integer expected";
+            if (message.card != null && message.hasOwnProperty("card")) {
+                let error = $root.dealer.Card.verify(message.card);
+                if (error)
+                    return "card." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a Draw message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.Draw
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.Draw} Draw
+         */
+        Draw.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.Draw)
+                return object;
+            let message = new $root.dealer.Draw();
+            switch (object.side) {
+            case "Default":
+            case 0:
+                message.side = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.side = 1;
+                break;
+            case "Player":
+            case 2:
+                message.side = 2;
+                break;
+            }
+            if (object.position != null)
+                message.position = object.position | 0;
+            if (object.card != null) {
+                if (typeof object.card !== "object")
+                    throw TypeError(".dealer.Draw.card: object expected");
+                message.card = $root.dealer.Card.fromObject(object.card);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Draw message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.Draw
+         * @static
+         * @param {dealer.Draw} message Draw
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Draw.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.side = options.enums === String ? "Default" : 0;
+                object.position = 0;
+                object.card = null;
+            }
+            if (message.side != null && message.hasOwnProperty("side"))
+                object.side = options.enums === String ? $root.dealer.Side[message.side] : message.side;
+            if (message.position != null && message.hasOwnProperty("position"))
+                object.position = message.position;
+            if (message.card != null && message.hasOwnProperty("card"))
+                object.card = $root.dealer.Card.toObject(message.card, options);
+            return object;
+        };
+
+        /**
+         * Converts this Draw to JSON.
+         * @function toJSON
+         * @memberof dealer.Draw
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Draw.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Draw;
+    })();
+
+    return dealer;
 })();
 
 export const foundation = $root.foundation = (() => {
@@ -2658,6 +3206,7 @@ export const foundation = $root.foundation = (() => {
                 case 8:
                 case 9:
                 case 10:
+                case 11:
                     break;
                 }
             return null;
@@ -2719,6 +3268,10 @@ export const foundation = $root.foundation = (() => {
             case "BetResetRecall":
             case 10:
                 message.uri = 10;
+                break;
+            case "Draw":
+            case 11:
+                message.uri = 11;
                 break;
             }
             return message;
@@ -3435,6 +3988,7 @@ export const route = $root.route = (() => {
      * @property {number} BetRecall=8 BetRecall value
      * @property {number} BetResetCall=9 BetResetCall value
      * @property {number} BetResetRecall=10 BetResetRecall value
+     * @property {number} Draw=11 Draw value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -3449,6 +4003,7 @@ export const route = $root.route = (() => {
         values[valuesById[8] = "BetRecall"] = 8;
         values[valuesById[9] = "BetResetCall"] = 9;
         values[valuesById[10] = "BetResetRecall"] = 10;
+        values[valuesById[11] = "Draw"] = 11;
         return values;
     })();
 

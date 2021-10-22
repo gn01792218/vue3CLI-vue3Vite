@@ -72,6 +72,12 @@ export default defineComponent({
         const betResult = computed(()=>{ //下注成功否的狀態
             return store.state.bet.BetRecall.result
         })
+        const roundUuid = computed(()=>{ //遊戲回合的Uuid
+
+        })
+        const roundStatus = computed(()=>{ //遊戲回合狀態
+            
+        })
         //監聽
         watch(betStatus,()=>{
             coinPosition[0].betStatus = betStatus.value.Banker
@@ -222,7 +228,7 @@ export default defineComponent({
         }
         function bet (e,index) {
              if(currentCoint.coinElement && user.value.wallet>=currentCoint.point){
-            //發送下注請求
+                //發送下注請求
                 sendBetCall({
                     gameUuid:'@13E2F345FF6p7890',
                     betIndex:currentCoint.num,
@@ -244,7 +250,9 @@ export default defineComponent({
                 }
             }else if(user.value.wallet<currentCoint.point){
                     alert("餘額不足")
-                }
+            }else if(roundStatus.value!==1){
+                alert('非下注時間')
+            }
         }
         function resetGame () {
             sendBetResetCall({

@@ -1,8 +1,8 @@
 
 import {sendWSPush} from "./webSocket"
 import protoRoot from '@/assets/js/bundle'
-
 import store from './store' //在元件之外要使用store，不能用useStore
+import router from "./router"
 //proto型態
 const foundation = protoRoot.foundation
 const route = protoRoot.route.URI
@@ -10,6 +10,7 @@ const auth = protoRoot.auth
 const lobby = protoRoot.lobby
 const table = protoRoot.table
 const bet = protoRoot.bet
+const dealer = protoRoot.dealer
 //各種send方法
 //發送登入訊息
 export const sendLogin =(data:any) => {
@@ -50,7 +51,7 @@ export const sendBetCall = (data:any) => {
     console.log("sendBetCall",proto)
     sendWSPush(bytes);
 }
-//發送下注資訊
+//發送下注重置
 export const sendBetResetCall = (data:any) => {
     let proto = bet.BetResetCall.create({
         header:foundation.Header.create({
@@ -98,6 +99,11 @@ export const getReCall = (e:any) =>{
             let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('BetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
-
+            break;
+        case route.Draw:
+            let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
+            console.log('Draw',Draw)
+            store.commit('dealer/Draw',Draw)
+            break;
     }
 }

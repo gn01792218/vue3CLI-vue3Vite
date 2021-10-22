@@ -1,41 +1,37 @@
 <template>
   <div class="gem-main">
-   
-       <LiveCamara />
-   
-    <Counter
+    <Counter class="counter"
       :round ="roundCount"
-      :countNum ="countSec"
     />
+    <LiveVideo/>
     <BettingArea/>
     <GameHistory/>
     <TableInfo/>
     <button class="countButton" @click="playCount">開始倒數</button>
   </div>
-  <!-- <div class="gem-right">
-      
-      
-  </div> -->
+  <!-- <Practice/> -->
 </template>
 
 <script lang="ts">
 import {computed, defineComponent,reactive,ref, watch} from 'vue'
-import LiveCamara from '@/components/LiveCamara.vue'
+import LiveVideo from '@/components/LiveVideo.vue'
 import BettingArea from '@/components/BettingArea.vue'
-import TableInfo from '@/components/TableInfo.vue';
+import TableInfo from '@/components/TableInfo.vue'
 import GameHistory from '@/components/GameHistory.vue'
 import Counter from '@/components/Counter.vue'
 import { useRouter } from 'vue-router'
 import {useStore} from 'vuex'
 import {createSocket} from '../webSocket'
 import {sendLogin,sendTableJoinCall} from '../socketApi'
+import Practice from '../views/Practice.vue'
 export default defineComponent({
   components:{
-    LiveCamara,
+    LiveVideo,
     BettingArea,
     TableInfo,
     GameHistory,
     Counter,
+    Practice
   },
   setup(){
    //創建websocket連線，並發送登入請求
@@ -81,13 +77,12 @@ export default defineComponent({
     })
     //倒數計時-->到時候通通讓counter自己決定就可以囉
     const roundCount = ref(0) //第幾回合-->到時候要computed
-    const countSec = ref(20) //要倒數幾秒-->到時候要computed
     function playCount () {
       roundCount.value++;
     }
     return{
       //data
-      loginState,tableNum,roundCount,countSec,
+      loginState,tableNum,roundCount,
       //methods
       playCount,
     }
@@ -95,6 +90,10 @@ export default defineComponent({
 })
 </script>
 <style>
+  .gem-main{
+  display: flex;
+  flex-wrap: wrap;
+  }
   .gem-righ{
     clear: left;
     position: relative;
@@ -103,5 +102,8 @@ export default defineComponent({
     position: absolute;
     top:10%;
     left:11%;
+  }
+  .counter{
+    /* position: absolute; */
   }
 </style>

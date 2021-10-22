@@ -1,7 +1,7 @@
 <template>
   <div id="wap" class="app">
-    <div class="container">
-      <div class="container-waps row min-vh-100">
+    <div class="container-fluid">
+      <div class="container-waps row">
         <Header/>
         <router-view/>
          <Footer/>
@@ -26,8 +26,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.container-waps{
-  // max-height:100vh !important;
-  height:100vh !important;
+// .container-waps{
+//   // max-height:100vh !important;
+//   height:100vh !important;
+// }
+.container{
+  // max-width:1600px !important;
+  max-width:90% !important;
 }
 </style>

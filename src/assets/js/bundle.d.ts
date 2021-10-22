@@ -402,7 +402,8 @@ export namespace bet {
         BetIndexInvalid = 1,
         BetAreaInvalid = 2,
         ReachMaxLimit = 3,
-        RoundNotFound = 4
+        RoundNotFound = 4,
+        NoEnoughWallet = 5
     }
 
     /** BetArea enum. */
@@ -1046,6 +1047,224 @@ export namespace bet {
     }
 }
 
+/** Namespace dealer. */
+export namespace dealer {
+
+    /** Suit enum. */
+    enum Suit {
+        Default = 0,
+        Heart = 1,
+        Diamond = 2,
+        Spade = 3,
+        Club = 4
+    }
+
+    /** Properties of a Card. */
+    interface ICard {
+
+        /** Card Suit */
+        Suit?: (dealer.Suit|null);
+
+        /** Card point */
+        point?: (number|null);
+    }
+
+    /** Represents a Card. */
+    class Card implements ICard {
+
+        /**
+         * Constructs a new Card.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.ICard);
+
+        /** Card Suit. */
+        public Suit: dealer.Suit;
+
+        /** Card point. */
+        public point: number;
+
+        /**
+         * Creates a new Card instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Card instance
+         */
+        public static create(properties?: dealer.ICard): dealer.Card;
+
+        /**
+         * Encodes the specified Card message. Does not implicitly {@link dealer.Card.verify|verify} messages.
+         * @param message Card message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.ICard, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Card message, length delimited. Does not implicitly {@link dealer.Card.verify|verify} messages.
+         * @param message Card message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.ICard, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Card message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Card
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.Card;
+
+        /**
+         * Decodes a Card message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Card
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.Card;
+
+        /**
+         * Verifies a Card message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Card message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Card
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.Card;
+
+        /**
+         * Creates a plain object from a Card message. Also converts values to other types if specified.
+         * @param message Card
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.Card, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Card to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Side enum. */
+    enum Side {
+        Default = 0,
+        Banker = 1,
+        Player = 2
+    }
+
+    /** Properties of a Draw. */
+    interface IDraw {
+
+        /** Draw side */
+        side?: (dealer.Side|null);
+
+        /** Draw position */
+        position?: (number|null);
+
+        /** Draw card */
+        card?: (dealer.ICard|null);
+    }
+
+    /** Represents a Draw. */
+    class Draw implements IDraw {
+
+        /**
+         * Constructs a new Draw.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.IDraw);
+
+        /** Draw side. */
+        public side: dealer.Side;
+
+        /** Draw position. */
+        public position: number;
+
+        /** Draw card. */
+        public card?: (dealer.ICard|null);
+
+        /**
+         * Creates a new Draw instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Draw instance
+         */
+        public static create(properties?: dealer.IDraw): dealer.Draw;
+
+        /**
+         * Encodes the specified Draw message. Does not implicitly {@link dealer.Draw.verify|verify} messages.
+         * @param message Draw message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.IDraw, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Draw message, length delimited. Does not implicitly {@link dealer.Draw.verify|verify} messages.
+         * @param message Draw message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.IDraw, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Draw message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Draw
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.Draw;
+
+        /**
+         * Decodes a Draw message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Draw
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.Draw;
+
+        /**
+         * Verifies a Draw message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Draw message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Draw
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.Draw;
+
+        /**
+         * Creates a plain object from a Draw message. Also converts values to other types if specified.
+         * @param message Draw
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.Draw, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Draw to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace foundation. */
 export namespace foundation {
 
@@ -1441,7 +1660,8 @@ export namespace route {
         BetCall = 7,
         BetRecall = 8,
         BetResetCall = 9,
-        BetResetRecall = 10
+        BetResetRecall = 10,
+        Draw = 11
     }
 }
 

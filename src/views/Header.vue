@@ -44,6 +44,6 @@ export default defineComponent({
 
 <style lang="scss" scope>
     .gem-left{
-        height:95.5% !important;  //這個之後在手機板不能使用import
+        // height:95.5% !important;  //這個之後在手機板不能使用import
     }
 </style>

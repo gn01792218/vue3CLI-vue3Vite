@@ -9,27 +9,53 @@
     <button @click="play">開始倒數</button>
     <!-- 有zoomin動畫的video -->
     <div class="videoContain" ref="av">
-      <LiveCamara 
+      <LiveVideo
       class="video"
       url='HIHI'
       :width="videoWidth"
       :height="videoHeight"
-    ></LiveCamara>
+    ></LiveVideo>
     </div>
     <button @click="zoonIn">螢幕起飛</button>
     <button @click="scaleVideo">視訊縮放</button>
       <p ref="p" @click="move">hello</p>
     </div>
+ 
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script lang="ts">
   import {defineComponent, ref} from 'vue'
-  import LiveCamara from '@/components/LiveCamara.vue'
+  import LiveVideo from '@/components/LiveVideo.vue'
   import Counter from '@/components/Counter.vue'
   import gsap from 'gsap'
   export default defineComponent({
     components:{
-      LiveCamara,Counter
+      LiveVideo,Counter
     },
     setup(){
       //倒數計時操控
