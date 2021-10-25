@@ -121,7 +121,7 @@ export default defineComponent({
     // pointer-events: none; //使能被穿透
     width:373px;
     height:566px;
-    zoom:0.25; //這個方式的話 必須要每種此吋下去塞選
+    zoom:0.22; //這個方式的話 必須要每種此吋下去塞選
     //預設margin，響應式的時候可以依照情況拿掉
     margin-right:40px;
     margin-left:40px;

@@ -1,7 +1,7 @@
 <template>
     <div class="stand-box">
         <!-- PC版本注區 -->
-        <div class="stand-flex">
+        <div class="stand-pc">
                 <div class="flex">
                     <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
@@ -24,8 +24,8 @@
                 </div>
         </div>
         <!-- mobile注區 -->
-        <div class="stand-flexs">
-            <div class="flexs">
+        <div class="stand-mobile">
+            <div class="stand-mobile-container flexs">
                 <div :class ="i.configClass" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
@@ -36,12 +36,16 @@
                 </div>
             </div>
         </div>
-        <div class="em font-totel">Total Bet {{totalBet}}</div>
+        <!-- total Bet -->
+        <div class="em font-total">
+            <TotalBet/>
+        </div>
+        <!-- coin -->
         <div class="coin-area">
             <button @click="resetGame">重置遊戲</button>
-            <!-- 籌碼列表 -->
+            <!-- coin list -->
             <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
-            <!-- 籌碼子彈 -->
+            <!-- coin ammo -->
             <ul class="shotCoinUl">
                 <div v-for="coin,index in coin" :key="index">
                     <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
@@ -59,7 +63,11 @@ import {computed, defineComponent, reactive, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
+import TotalBet from'@/components/ToTalBet.vue'
 export default defineComponent({
+    components:{
+        TotalBet,
+    },
     setup(){
         //vuex
         const store = useStore();
@@ -85,19 +93,6 @@ export default defineComponent({
             coinPosition[2].betStatus = betStatus.value.BankerPair
             coinPosition[3].betStatus = betStatus.value.Tie
             coinPosition[4].betStatus = betStatus.value.PlayerPair
-        })
-        //下注額度
-        const totalBet = computed({
-            get(){
-                let sun = 0
-                coinPosition.forEach(i=>{
-                    sun+=i.betStatus
-                })
-                return sun
-            },
-            set(num){
-                return num
-            }
         })
         //籌碼動畫、下注邏輯
         const coin = reactive([  //籌碼基本資料
@@ -236,7 +231,7 @@ export default defineComponent({
                 })
                 if(betResult.value!==-1){
                     //下注額度改變
-                    totalBet.value += currentCoint.point
+                    // totalBet.value += currentCoint.point
                     //裝子彈，就會啟動籌碼飛的動畫
                     loadCoin()  
                     let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
@@ -259,7 +254,7 @@ export default defineComponent({
                  gameUuid:'@13E2F345FF6p7890',
             })
             //重置totalBet-->到時候
-            totalBet.value = 0
+            // totalBet.value = 0
             //清空選取的籌碼
             currentCoint.coinElement = null
             currentCoint.point = null
@@ -276,7 +271,7 @@ export default defineComponent({
         }
         return{
             //data
-            totalBet,coin,currentCoint,coinPosition,betStatus,
+            coin,currentCoint,coinPosition,betStatus,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame
         }
@@ -290,9 +285,6 @@ export default defineComponent({
     }
     .coin-area{
         position: relative;
-        .coin{
-            cursor: pointer;
-        }
     }
     .shotCoinUl{  
         display: flex;

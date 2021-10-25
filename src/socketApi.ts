@@ -96,7 +96,8 @@ export const getReCall = (e:any) =>{
             store.commit('bet/BetRecall',BetRecall)
             break;
         case route.BetResetRecall:
-            let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data))
+            let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data)).toJSON()
+            console.log(BetResetRecall)
             console.log('BetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
             break;

@@ -14,8 +14,8 @@
 <script>
 import {defineComponent, reactive, ref,computed} from 'vue'
 import {useStore} from 'vuex'
-import CardInfo from './CardInfo.vue'
-import BetInfor from './BetInfor.vue'
+import CardInfo from '../components/CardInfo.vue'
+import BetInfor from '../components/BetInfor.vue'
 export default defineComponent({
     components:{
         CardInfo,

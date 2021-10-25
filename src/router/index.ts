@@ -1,11 +1,12 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import BaccaratGame from '../views/BaccaratGame.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Cookies from 'js-cookie'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '/:userToken',
     name: 'Home',
-    component: BaccaratGame
+    component:()=>import('../views/Home.vue')
+    // component: BaccaratGame
   },
   {
     path:'/BaccaratGame/:tableId',   //點擊btn的時候會帶參數，選擇是哪一桌
@@ -23,8 +24,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
-
 export default router

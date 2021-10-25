@@ -1,6 +1,6 @@
 <template>
       <!-- BigRoad -->
-     <div class="mainRoad">
+        <div class="mainRoad">
       <div class="mainRoad-column" :class="`mainRoad-column${index}`" v-for="(mc,index) in mainColumn" :key="index">
         <!-- putRoad in here -->
         <div class='mainRoad-item' v-for="(mr,index) in mainRow" :key="index" :class="[`mainRoad-item${index}`]">
