@@ -25,7 +25,7 @@ export default defineComponent({
     //vuex
      const store = useStore()
      const roundUuid = computed(()=>{
-
+        store.state.game.BetRoundStart.gameUuid
      })
      const roundState = computed(()=>{
       
@@ -37,6 +37,11 @@ export default defineComponent({
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
      })
+     watch(DrawCard,()=>{
+       console.log("畫卡")
+        pushCards()
+        showCards()
+     })
      //撲克牌業務代碼
      const cards = reactive({  //內含莊閒的卡牌陣列
         banker:new Array(3),
@@ -44,9 +49,12 @@ export default defineComponent({
      })
      const cardCound = ref(0) //計算開第幾張牌了
      function pushCards () {
+       console.log("畫")
       //回合結束時開牌，
       //1.假如可以開牌，從Vuex中取得卡牌資訊
       if(cardCound.value<3){
+        //1.switchDraw封包，判斷是莊閒哪一家
+        
         cards.banker[cardCound.value] = '0-11'
         cards.player[cardCound.value] = '3-9'
       }
@@ -64,7 +72,7 @@ export default defineComponent({
       }
      }
      function showCards () { //每次開牌，伺服器就會傳一次，server給的陣列固定長度3，還沒開牌的給空值即可
-      pushCards()
+      // pushCards() //這個要放在外面!!!!!!!!!!
       cardCound.value++
       const uw = 373
       const uh = 556
@@ -80,8 +88,8 @@ export default defineComponent({
             playerPoker = document.querySelector('.playerPoker0')
           }
           if(cards.banker[i] && cards.player[i]){
-            const bcArr = cards.banker[i].split("-")
-            const pcArr = cards.player[i].split("-")
+            const bcArr = cards.banker[i].split("-")   //不需要切
+            const pcArr = cards.player[i].split("-")   //不需要切
             bankPoker.classList.add('poker')
             playerPoker.classList.add('poker')
             bankPoker.style.backgroundPosition = `-${(bcArr[1]-1)*uw}px -${bcArr[0]*uh}px`

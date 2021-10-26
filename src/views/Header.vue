@@ -16,10 +16,16 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
-import { useRouter } from 'vue-router'
+import {computed, defineComponent} from 'vue'
+import { useRouter} from 'vue-router'
+import {useStore} from 'vuex'
 export default defineComponent({
     setup(){
+        //vuex
+        const store = useStore()
+        const userToken = computed(()=>{
+            return store.state.auth.userToken
+        })
         //路由處理
         const router = useRouter()
         //換桌
@@ -30,7 +36,8 @@ export default defineComponent({
         }
         //回Home
         function backToHome () {
-            router.push('/')
+            //要記得帶userToken唷
+            router.push(`/Home/${userToken.value}`)
         }
         //關閉視窗
         function closeWindow () {

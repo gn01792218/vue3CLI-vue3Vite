@@ -1062,8 +1062,8 @@ export namespace dealer {
     /** Properties of a Card. */
     interface ICard {
 
-        /** Card Suit */
-        Suit?: (dealer.Suit|null);
+        /** Card suit */
+        suit?: (dealer.Suit|null);
 
         /** Card point */
         point?: (number|null);
@@ -1078,8 +1078,8 @@ export namespace dealer {
          */
         constructor(properties?: dealer.ICard);
 
-        /** Card Suit. */
-        public Suit: dealer.Suit;
+        /** Card suit. */
+        public suit: dealer.Suit;
 
         /** Card point. */
         public point: number;
@@ -1165,6 +1165,9 @@ export namespace dealer {
     /** Properties of a Draw. */
     interface IDraw {
 
+        /** Draw header */
+        header?: (foundation.IHeader|null);
+
         /** Draw side */
         side?: (dealer.Side|null);
 
@@ -1183,6 +1186,9 @@ export namespace dealer {
          * @param [properties] Properties to set
          */
         constructor(properties?: dealer.IDraw);
+
+        /** Draw header. */
+        public header?: (foundation.IHeader|null);
 
         /** Draw side. */
         public side: dealer.Side;
@@ -1259,6 +1265,112 @@ export namespace dealer {
 
         /**
          * Converts this Draw to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Result enum. */
+    enum Result {
+        Default = 0,
+        Tie = 1,
+        Banker = 2,
+        Player = 3,
+        BankerPair = 4,
+        PlayerPair = 5
+    }
+
+    /** Properties of a GameResult. */
+    interface IGameResult {
+
+        /** GameResult header */
+        header?: (foundation.IHeader|null);
+
+        /** GameResult results */
+        results?: (dealer.Result[]|null);
+    }
+
+    /** Represents a GameResult. */
+    class GameResult implements IGameResult {
+
+        /**
+         * Constructs a new GameResult.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.IGameResult);
+
+        /** GameResult header. */
+        public header?: (foundation.IHeader|null);
+
+        /** GameResult results. */
+        public results: dealer.Result[];
+
+        /**
+         * Creates a new GameResult instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GameResult instance
+         */
+        public static create(properties?: dealer.IGameResult): dealer.GameResult;
+
+        /**
+         * Encodes the specified GameResult message. Does not implicitly {@link dealer.GameResult.verify|verify} messages.
+         * @param message GameResult message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.IGameResult, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GameResult message, length delimited. Does not implicitly {@link dealer.GameResult.verify|verify} messages.
+         * @param message GameResult message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.IGameResult, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GameResult message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GameResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.GameResult;
+
+        /**
+         * Decodes a GameResult message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GameResult
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.GameResult;
+
+        /**
+         * Verifies a GameResult message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GameResult message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GameResult
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.GameResult;
+
+        /**
+         * Creates a plain object from a GameResult message. Also converts values to other types if specified.
+         * @param message GameResult
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.GameResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GameResult to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -1443,6 +1555,208 @@ export namespace foundation {
 
         /**
          * Converts this Message to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace game. */
+export namespace game {
+
+    /** Properties of a BetRoundStart. */
+    interface IBetRoundStart {
+
+        /** BetRoundStart header */
+        header?: (foundation.IHeader|null);
+
+        /** BetRoundStart gameUuid */
+        gameUuid?: (string|null);
+
+        /** BetRoundStart timeRemain */
+        timeRemain?: (number|null);
+    }
+
+    /** Represents a BetRoundStart. */
+    class BetRoundStart implements IBetRoundStart {
+
+        /**
+         * Constructs a new BetRoundStart.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IBetRoundStart);
+
+        /** BetRoundStart header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BetRoundStart gameUuid. */
+        public gameUuid: string;
+
+        /** BetRoundStart timeRemain. */
+        public timeRemain: number;
+
+        /**
+         * Creates a new BetRoundStart instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetRoundStart instance
+         */
+        public static create(properties?: game.IBetRoundStart): game.BetRoundStart;
+
+        /**
+         * Encodes the specified BetRoundStart message. Does not implicitly {@link game.BetRoundStart.verify|verify} messages.
+         * @param message BetRoundStart message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IBetRoundStart, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetRoundStart message, length delimited. Does not implicitly {@link game.BetRoundStart.verify|verify} messages.
+         * @param message BetRoundStart message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IBetRoundStart, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetRoundStart message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetRoundStart
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.BetRoundStart;
+
+        /**
+         * Decodes a BetRoundStart message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetRoundStart
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.BetRoundStart;
+
+        /**
+         * Verifies a BetRoundStart message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetRoundStart message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetRoundStart
+         */
+        public static fromObject(object: { [k: string]: any }): game.BetRoundStart;
+
+        /**
+         * Creates a plain object from a BetRoundStart message. Also converts values to other types if specified.
+         * @param message BetRoundStart
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.BetRoundStart, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetRoundStart to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetRoundCountdown. */
+    interface IBetRoundCountdown {
+
+        /** BetRoundCountdown header */
+        header?: (foundation.IHeader|null);
+
+        /** BetRoundCountdown timeRemain */
+        timeRemain?: (number|null);
+    }
+
+    /** Represents a BetRoundCountdown. */
+    class BetRoundCountdown implements IBetRoundCountdown {
+
+        /**
+         * Constructs a new BetRoundCountdown.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IBetRoundCountdown);
+
+        /** BetRoundCountdown header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BetRoundCountdown timeRemain. */
+        public timeRemain: number;
+
+        /**
+         * Creates a new BetRoundCountdown instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetRoundCountdown instance
+         */
+        public static create(properties?: game.IBetRoundCountdown): game.BetRoundCountdown;
+
+        /**
+         * Encodes the specified BetRoundCountdown message. Does not implicitly {@link game.BetRoundCountdown.verify|verify} messages.
+         * @param message BetRoundCountdown message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IBetRoundCountdown, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetRoundCountdown message, length delimited. Does not implicitly {@link game.BetRoundCountdown.verify|verify} messages.
+         * @param message BetRoundCountdown message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IBetRoundCountdown, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetRoundCountdown message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetRoundCountdown
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.BetRoundCountdown;
+
+        /**
+         * Decodes a BetRoundCountdown message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetRoundCountdown
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.BetRoundCountdown;
+
+        /**
+         * Verifies a BetRoundCountdown message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetRoundCountdown message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetRoundCountdown
+         */
+        public static fromObject(object: { [k: string]: any }): game.BetRoundCountdown;
+
+        /**
+         * Creates a plain object from a BetRoundCountdown message. Also converts values to other types if specified.
+         * @param message BetRoundCountdown
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.BetRoundCountdown, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetRoundCountdown to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -1661,7 +1975,12 @@ export namespace route {
         BetRecall = 8,
         BetResetCall = 9,
         BetResetRecall = 10,
-        Draw = 11
+        Draw = 11,
+        DealerGameResult = 12,
+        BroadcastGameResult = 13,
+        BetRoundStart = 14,
+        BetRoundEnd = 15,
+        BetRoundCountdown = 16
     }
 }
 

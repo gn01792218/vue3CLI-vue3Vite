@@ -85,6 +85,7 @@ export const sendPing = (time = 5500, ping = 'ping') => {
   }
   //建立ws
 export const createSocket =()=>{  //使用createSocket的方法，會自動開啟監聽連線、訊息等等方法
+    console.log("創建伺服器")
     Socket && Socket.close()
     if(!Socket){
         Socket = new WebSocket(url);

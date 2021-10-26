@@ -42,7 +42,7 @@
         </div>
         <!-- coin -->
         <div class="coinArea">
-            <button @click="resetGame">重置遊戲</button>
+            <!-- <button @click="resetGame">重置遊戲</button> -->
             <!-- coin list -->
             <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
@@ -134,7 +134,7 @@ export default defineComponent({
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
                 host:"莊家",
-                configClass:"betArea-item flex-1",
+                configClass:"betArea-item yellow",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -142,7 +142,7 @@ export default defineComponent({
                 coinArray:[],
                 odds:"1:1",
                 host:"閒家",
-                configClass:"betArea-item flex-2",
+                configClass:"betArea-item red",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {

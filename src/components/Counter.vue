@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,ref,reactive,watch} from 'vue'
+import {computed, defineComponent,ref,watch} from 'vue'
 import {gsap,Power1,Power4} from 'gsap'
 import {useStore} from 'vuex'
 export default defineComponent({
@@ -22,12 +22,14 @@ export default defineComponent({
         //vuex
         const store = useStore()
         const roundUuid = computed(()=>{ //每個回合獨特的uuid
-            return 
+            return store.state.game.BetRoundStart.gameUuid
         })
         const roundStatus = computed(()=>{ //每回合的狀態
             return store
         })
-        const lastCount = computed(()=>{})  //換桌時的剩餘秒數
+        const lastCount = computed(()=>{
+            return store.state.game.BetRoundStart.timeRemain
+        })  //換桌時的剩餘秒數
         const defaultCount = ref<number>(30) //倒數預設預設30。
         const count = ref<number>(30)  //倒數數字
         const timer = ref<any | null>(null) //計時器
@@ -68,12 +70,12 @@ export default defineComponent({
                 gsap
                 .fromTo('#countNumber',{x:30,opacity:"0",display:"block"},
                 {x:30,opacity:"1",ease:Power4.easeIn})
-            }else if(count.value%10===1){
-                gsap
-                .fromTo('#countNumber',{x:20,opacity:"0",display:"block"},
-                {x:20,opacity:"1",ease:Power4.easeIn})
-            }
-            else {
+                if(count.value==1){
+                    gsap
+                    .fromTo('#countNumber',{x:35,opacity:"0",display:"block"},
+                    {x:35,opacity:"1",ease:Power4.easeIn})
+                }
+            }else {
                 gsap
                 .fromTo('#countNumber',{x:15,opacity:"0",display:"block"},
                 {x:15,opacity:"1",ease:Power4.easeIn})
@@ -112,15 +114,19 @@ export default defineComponent({
             setCount()
         })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
-        // watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
-        //     switch(roundStatus.value){
-        //         case 1 :  //下注時間內
-        //             timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
-        //             count.value = lastCount.value
-        //             setCount()
-        //             break;
-        //     }
-        // })
+        watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
+                console.log("uuid改變")
+                timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
+                count.value = lastCount.value
+                setCount()
+            // switch(roundUuid.value){
+            //     case 1:  //下注時間內
+            //         timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
+            //         count.value = lastCount.value
+            //         setCount()
+            //         break
+            // }
+        })
 
         // //for遊戲回合更新時
         // watch(roundStatus,()=>{  //監視每個回合的uuid即可達到切換桌子也啟動計時器判斷；監聽切桌和更新回合時

@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import { defineComponent} from 'vue'
+import { defineComponent, onUnmounted} from 'vue'
 import Header from './views/Header.vue'
 import Footer from './views/Footer.vue'
 import BaccaratGame from './views/BaccaratGame.vue'
@@ -20,7 +20,6 @@ export default defineComponent({
     Header,Footer,BaccaratGame
   },
   setup() {
-    
   },
 })
 </script>

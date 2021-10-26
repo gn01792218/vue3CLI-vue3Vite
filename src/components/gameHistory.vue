@@ -5,7 +5,7 @@
       <!--for mobil verson show poker -->
       <!-- v-if gameState is show Poker -->
       <!-- 手機版本的卡牌zoom2.24就可以了 -->
-      <div class="lightBox position-absolute" v-if="show">
+      <div class="lightBox position-absolute d-md-none" v-if="show">
         <CardInfo  class="mobilePoker"/>
       </div>
       <button class="test position-absolute" @click="showCard">秀卡牌</button>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {defineComponent, onMounted, reactive, ref} from 'vue'
+import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import BigRoadGrid from './BigRoadGrid.vue'
 import SideRoadGrid from './SideRoadGrid.vue'
@@ -26,8 +26,11 @@ export default defineComponent({
   },
     setup(){
         //Vuex資料
-        const store = useStore
+        const store = useStore()
         const show = ref(false)
+        const Draw = computed(()=>{
+          return store.state.dealer.Draw
+        })
         //初始化
         onMounted(() => {
           historyUpdate()
@@ -51,6 +54,12 @@ export default defineComponent({
         function historyUpdate () {
           //根據serve傳來的資料更新路圖
         }
+        watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
+          // if(!show.value){
+          //   showCard()
+          // }
+          
+        })
         function showCard(){
           console.log("切換")
           show.value = !show.value
@@ -71,6 +80,7 @@ export default defineComponent({
   border: 1px solid #654d31 !important;
 }
 .lightBox{
+  // display: none;
   width:100%;
   height:100%;
   background-color: #654d3160;

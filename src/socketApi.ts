@@ -2,7 +2,6 @@
 import {sendWSPush} from "./webSocket"
 import protoRoot from '@/assets/js/bundle'
 import store from './store' //在元件之外要使用store，不能用useStore
-import router from "./router"
 //proto型態
 const foundation = protoRoot.foundation
 const route = protoRoot.route.URI
@@ -11,6 +10,7 @@ const lobby = protoRoot.lobby
 const table = protoRoot.table
 const bet = protoRoot.bet
 const dealer = protoRoot.dealer
+const game = protoRoot.game
 //各種send方法
 //發送登入訊息
 export const sendLogin =(data:any) => {
@@ -67,44 +67,60 @@ export const sendBetResetCall = (data:any) => {
 
 
 //各種接收訊息的方法，在main.js中全局註冊監聽
-export const getReCall = (e:any) =>{
+export const getMsgReCall = (e:any) =>{
     let header = foundation.Message.decode(new Uint8Array(e.detail.msg.data)).header
     switch(header?.uri){
         case route.LoginRecall:
             let loginRecall = auth.LoginRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('LoginRecall',loginRecall)
             store.commit('auth/LoginRecall',loginRecall)
-            break;
+            break
         case route.LobbyInfo:
             let lobbyInfo = lobby.LobbyInfo.decode(new Uint8Array(e.detail.msg.data))
-            console.log('lobbyInfo',lobbyInfo)
+            // console.log('lobbyInfo',lobbyInfo)
             store.commit('lobby/LobbyInfo',lobbyInfo)
-            break;
+            break
         case route.UserInfo:
             let UserInfo = auth.UserInfo.decode(new Uint8Array(e.detail.msg.data))
-            console.log('UserInfo',UserInfo)
+            // console.log('UserInfo',UserInfo)
             store.commit('auth/UserInfo',UserInfo)
-            break;
+            break
         case route.TableJoinRecall:
             let TableJoinRecall = table.TableJoinRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
-            break;
+            break
         case route.BetRecall:
             let BetRecall = bet.BetRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('BetRecall',BetRecall)
             store.commit('bet/BetRecall',BetRecall)
-            break;
+            break
         case route.BetResetRecall:
             let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data)).toJSON()
             console.log(BetResetRecall)
             console.log('BetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
-            break;
+            break
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
             console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
-            break;
+            break
+        case route.DealerGameResult:
+            let DealerGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
+            console.log('DealerGameResult',DealerGameResult)
+            store.commit('dealer/GameResult',DealerGameResult)
+            break
+        case route.BetRoundStart:
+            let BetRoundStart = game.BetRoundStart.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BetRoundStart',BetRoundStart)
+            store.commit('game/BetRoundStart',BetRoundStart)
+            break
+        // case route.BetRoundCountdown:
+        //     let BetRoundCountdown = game.BetRoundCountdown.decode(new Uint8Array(e.detail.msg.data))
+        //     console.log('BetRoundCountdown',BetRoundCountdown)
+        //     store.commit('game/BetRoundCountdown',BetRoundCountdown)
+        //     break
+            
     }
 }

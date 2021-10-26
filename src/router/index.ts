@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/:userToken',
+    path: '/Home/:userToken',
     name: 'Home',
     component:()=>import('../views/Home.vue')
     // component: BaccaratGame

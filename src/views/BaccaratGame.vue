@@ -7,7 +7,6 @@
       <BettingArea/>
       <GameHistory/>
       <TableInfo/>
-    <button class="countButton position-absolute" @click="playCount">開始倒數</button>
   </div>
   <!-- <Practice/> -->
 </template>
@@ -19,7 +18,7 @@ import BettingArea from '@/views/BettingArea.vue'
 import TableInfo from '@/views/TableInfo.vue'
 import GameHistory from '@/components/GameHistory.vue'
 import Counter from '@/components/Counter.vue'
-import { useRouter } from 'vue-router'
+import {useRoute } from 'vue-router'
 import {useStore} from 'vuex'
 import {sendTableJoinCall} from '../socketApi'
 import Practice from '../views/Practice.vue'
@@ -33,11 +32,10 @@ export default defineComponent({
     Practice
   },
   setup(){
-    
     //路由處理，取得當前桌號
-    const router = useRouter()
+    const route = useRoute()
     const tableNum = computed(()=>{
-      return router.currentRoute.value.params.tableId
+      return route.params.tableId
     })
     //vuex資料
     const store = useStore()
@@ -83,9 +81,4 @@ export default defineComponent({
 })
 </script>
 <style>
-/* 測試時使用，之後刪除 */
-  .countButton{
-    top:10%;
-    left:11%;
-  }
 </style>
