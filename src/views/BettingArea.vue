@@ -1,8 +1,8 @@
 <template>
-    <div class="stand-box">
+    <div class="betArea">
         <!-- PC版本注區 -->
-        <div class="stand-pc">
-                <div class="flex">
+        <div class="betArea-pc">
+                <div class="betArea-pc-container">
                     <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
@@ -12,7 +12,7 @@
                         </ul>
                     </div>
                 </div>  
-                <div class="flex">
+                <div class="betArea-pc-container">
                     <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
@@ -24,8 +24,8 @@
                 </div>
         </div>
         <!-- mobile注區 -->
-        <div class="stand-mobile">
-            <div class="stand-mobile-container flexs">
+        <div class="betArea-mobile">
+            <div class="betArea-mobile-container flexs">
                 <div :class ="i.configClass" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
@@ -41,12 +41,12 @@
             <TotalBet/>
         </div>
         <!-- coin -->
-        <div class="coin-area">
+        <div class="coinArea">
             <button @click="resetGame">重置遊戲</button>
             <!-- coin list -->
             <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
-            <ul class="shotCoinUl">
+            <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coin" :key="index">
                     <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
                         <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index+1"></div>
@@ -134,7 +134,7 @@ export default defineComponent({
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
                 host:"莊家",
-                configClass:"one item flex-1",
+                configClass:"betArea-item flex-1",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -142,7 +142,7 @@ export default defineComponent({
                 coinArray:[],
                 odds:"1:1",
                 host:"閒家",
-                configClass:"two item flex-2",
+                configClass:"betArea-item flex-2",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -150,7 +150,7 @@ export default defineComponent({
                 coinArray:[],
                 odds:"1:11",
                 host:"莊對",
-                configClass:"three item yellow",
+                configClass:"betArea-item yellow",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -158,7 +158,7 @@ export default defineComponent({
                 coinArray:[],
                 odds:"1:8",
                 host:"和局",
-                configClass:"four item green",
+                configClass:"betArea-item green",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -166,7 +166,7 @@ export default defineComponent({
                 coinArray:[],
                 odds:"1:11",
                 host:"閒對",
-                configClass:"five item yellow",
+                configClass:"betArea-item yellow",
                 betStatus:0 //目前這一回合的下注狀況
             },
         ]) 
@@ -280,15 +280,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-    .item,.s{
-        cursor: pointer;
-    }
-    .coin-area{
-        position: relative;
-    }
     .shotCoinUl{  
-        display: flex;
-        position: absolute;
         .shotCoinPice{
             pointer-events: none; //使能被穿透
             position: absolute;
@@ -310,9 +302,6 @@ export default defineComponent({
            left:330px;
         }
     }
-    .one,.two,.three,.four,.five{
-        position: relative;
-    }
     .coinPosition{
             li{
                 pointer-events: none; //使能被穿透
@@ -325,7 +314,7 @@ export default defineComponent({
         }
     .activeCoin {
         box-shadow: 0px 0px 25px rgba(255, 255, 178, 1);
-        }
+    }
     .betStatus{
         pointer-events: none; //使能被穿透
         color:white;

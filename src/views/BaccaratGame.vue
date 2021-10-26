@@ -1,5 +1,5 @@
 <template>
-  <div class="gem-main">
+  <div class="mainGame">
     <Counter class="counter"
       :round ="roundCount"
     />
@@ -7,7 +7,7 @@
       <BettingArea/>
       <GameHistory/>
       <TableInfo/>
-    <button class="countButton" @click="playCount">開始倒數</button>
+    <button class="countButton position-absolute" @click="playCount">開始倒數</button>
   </div>
   <!-- <Practice/> -->
 </template>
@@ -83,20 +83,9 @@ export default defineComponent({
 })
 </script>
 <style>
-  .gem-main{
-  display: flex;
-  flex-wrap: wrap;
-  }
-  .gem-righ{
-    clear: left;
-    position: relative;
-  }
+/* 測試時使用，之後刪除 */
   .countButton{
-    position: absolute;
     top:10%;
     left:11%;
-  }
-  .counter{
-    /* position: absolute; */
   }
 </style>

@@ -1,14 +1,14 @@
 <template>
-  <div class="bp-box">
+  <div class="gameHistory d-flex position-relative">
      <BigRoadGrid/>
      <SideRoadGrid/>
       <!--for mobil verson show poker -->
       <!-- v-if gameState is show Poker -->
       <!-- 手機版本的卡牌zoom2.24就可以了 -->
-      <div class="lightBox" v-if="show">
+      <div class="lightBox position-absolute" v-if="show">
         <CardInfo  class="mobilePoker"/>
       </div>
-      <button class="test" @click="showCard">秀卡牌</button>
+      <button class="test position-absolute" @click="showCard">秀卡牌</button>
     </div>
 </template>
 
@@ -67,21 +67,13 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-.bp-box{
-  display: flex;
-  position: relative;
+.gameHistory{
   border: 1px solid #654d31 !important;
-}
-.bp-box-container{
-  // display: flex;
-  // position: relative;
-  // height:100%;
 }
 .lightBox{
   width:100%;
   height:100%;
   background-color: #654d3160;
-  position: absolute;
   left:50%;
   transform: translateX(-50%);
 }
@@ -90,7 +82,6 @@ export default defineComponent({
   vertical-align: top !important;;
 }
 .test{
-  position: absolute;
   bottom: 0;
 }
 </style>

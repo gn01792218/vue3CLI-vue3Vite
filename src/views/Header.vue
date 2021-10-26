@@ -1,6 +1,6 @@
 <template>
-    <div class="gem-left">
-        <div class="logo"><a href="#"><img src="../images/logo.png" class="rwd-img"></a></div>
+    <div class="header">
+        <div class="header-logo"><a href="#"><img src="../images/logo.png"></a></div>
         <div class="header-btnList">
             <a class="header-btn" @click="toGametable('A')" >A桌</a>
             <a class="header-btn" @click="toGametable('B')" >B桌</a>
@@ -47,8 +47,5 @@ export default defineComponent({
 }) 
 </script>
 
-<style lang="scss" scope>
-    .gem-left{
-        // height:95.5% !important;  //這個之後在手機板不能使用import
-    }
+<style>
 </style>

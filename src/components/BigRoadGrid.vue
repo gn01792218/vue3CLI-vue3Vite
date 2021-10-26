@@ -1,18 +1,18 @@
 <template>
       <!-- BigRoad -->
-        <div class="mainRoad">
-      <div class="mainRoad-column" :class="`mainRoad-column${index}`" v-for="(mc,index) in mainColumn" :key="index">
+        <div class="mainRoad d-flex">
+      <div class="mainRoad-column d-flex" :class="`mainRoad-column${index}`" v-for="(mc,index) in mainColumn" :key="index">
         <!-- putRoad in here -->
-        <div class='mainRoad-item' v-for="(mr,index) in mainRow" :key="index" :class="[`mainRoad-item${index}`]">
+        <div class='mainRoad-item d-flex' v-for="(mr,index) in mainRow" :key="index" :class="[`mainRoad-item${index}`]">
           <i>莊</i>
         </div>
       </div>
     </div>
     <div class="main-row position-absolute">
-      <div class="mainROad-row" v-for="(mr,index) in mainRow" :key="index">
+      <div class="mainRoad-row d-flex" v-for="(mr,index) in mainRow" :key="index">
       </div>
     </div>
-    <button class="try" @click="pushRoad">玩玩看</button>
+    <button class="position-absolute" @click="pushRoad">玩玩看</button>
 </template>
 
 <script>
@@ -56,29 +56,23 @@ export default defineComponent({
 </script>
 
 <style>
-.try{
-  position: absolute;
-}
 .mainRoad{
   width:35%;  /*調整欄寬 */
   height:100%;
-  display: flex;
   background-color: white;
 }
 .mainRoad-column{
   border: 0.5px solid gray;
   width:12.5%;
   height: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
-.mainROad-row{
+.mainRoad-row{
    border: 0.5px solid gray;
    width:100%;
    height:16.6666666%;
-   display: flex;
    justify-content: space-around;
 }
 .main-row{
@@ -89,7 +83,6 @@ export default defineComponent({
 .mainRoad-item{
   width:100%;
   height:16.666666%;
-  display: flex;
   align-items: center;
   justify-content: center;
 }

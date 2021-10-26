@@ -1,10 +1,10 @@
 <template>
   <!--- tab --->
-    <div class="tabs-area">
-        <div class="tabs-bottom">
-            <div v-for="(tab,index) in tabArray" :key="index" @click="switchTab(tab)" :class="{onclick:onClickTab===tab}" >{{tab}}</div>
+    <div class="tabsArea">
+        <div class="tabsArea-btn d-flex">
+            <div v-for="(tab,index) in tabArray" :key="index" @click="switchTab(tab)" :class="{onclickTab:onClickTab===tab}" >{{tab}}</div>
         </div>
-        <div class="ulstynone">
+        <div class="tabsArea-showItem">
             <BetInfor v-if="onClickTab===tabArray[0]"/>
             <CardInfo v-if="onClickTab===tabArray[1]"/>
         </div>
@@ -41,21 +41,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-    .tbTab{
-        list-style: none;
-    }
-    .tabs-bottom{
-        display: flex;
+    .tabsArea-btn{
         div{
             cursor: pointer;
             padding:10px 35px;
         }
     }
-    .onclick{
+    .onclickTab{
         background-color: black;
-    }
-    .ulstynone{
-        // list-style: none;
-        height: 250px;
     }
 </style>

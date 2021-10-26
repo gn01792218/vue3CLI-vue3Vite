@@ -25,9 +25,6 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
-// .container{
-//   // max-width:1600px !important;
-//   max-width:90% !important;
-// }
+<style>
+
 </style>

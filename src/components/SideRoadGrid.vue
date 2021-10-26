@@ -1,22 +1,22 @@
 <template>
   <!-- sideRoadBackgroundGrid -->
-    <div class="secRoad sideWidth">
+    <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
     </div>
     <div class="sec-column position-absolute sideWidth">
       <div class="secRoad-row" :class="[{'boundary-bottom':index===5}]" v-for="(sr,index) in secHeight" :key="index"></div>
     </div>
     <!-- topRoadGrid -->
-    <div class="topRoad sideWidth">
+    <div class="topRoad d-flex sideWidth position-absolute">
       <div class="topRoad-column" :class="[`topRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
         <div class="tpRoad-item" :class="[`tpRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
           <i class="btn-bs">閒</i>
         </div>
       </div>
     </div>
-    <div class="bottomRoad sideWidth position-absolute">
+    <div class="bottomRoad d-flex sideWidth position-absolute">
        <!-- bottom1Grid -->
-      <div class="bottomRoad-w45 bottomFlex">
+      <div class="bottomRoad-w45 d-flex">
         <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===9}]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <i></i>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <!-- bottom2Grid -->
-      <div class="bottomRoad-w45 bottomFlex">
+      <div class="bottomRoad-w45 d-flex">
         <div class="bottomRoad1-column" :class="[`bottomRoad2-column${index}`,{'boundary-right':index===9}]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <i></i>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <!-- bottom3Grid -->
-      <div class="bottomRoad-w10 bottomFlex">
+      <div class="bottomRoad-w10 d-flex">
         <div class="bottomRoad3-column" v-for="(b1,index) in bottom3width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <i></i>
@@ -91,7 +91,6 @@ export default defineComponent({
 /* 背景格子 */
 .secRoad{
   height:100%;
-  display: flex;
   background-color: white;
 }
 .secRoad-column{
@@ -111,11 +110,9 @@ export default defineComponent({
 
 /* 放置四種路圖的格子 */
 .topRoad{
-  position: absolute;
   top:0;
   right:0;
   height:66%;
-  display: flex;
 }
 .topRoad-column{
   /* border: 2px solid yellow; */
@@ -127,7 +124,6 @@ export default defineComponent({
   height:16.6666666%;
 }
 .bottomRoad{
-  display: flex;
   height:33.3333333%;
   /* border: blue solid 2px; */
   right:0;
@@ -162,9 +158,6 @@ export default defineComponent({
 /* 共用區 */
 .sideWidth{   /*用來統一調整sideRode佔寬比 */
   width:65%;
-}
-.bottomFlex{
-  display: flex;
 }
 .boundary-bottom{
   border-bottom:2px solid gray;

@@ -1,7 +1,7 @@
 <template>
-    <div class="count-container">
-        <div id="loading"></div>
-        <h1 id="countNumber">{{count}}</h1>
+    <div class="counter position-relative">
+        <div id="loading" class="position-absolute"></div>
+        <h1 id="countNumber" class="position-absolute">{{count}}</h1>
     </div>
 </template>
 
@@ -143,14 +143,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.count-container{
-    position: relative;
+.counter{
     // overflow: hidden;
     //要調整計時器的位置，請在這裡設置top bottom left right
     z-index: 1;
 }
 #countNumber{
-    position: absolute;
     top:0;
     font-size: 5rem;
     color:white;
@@ -158,7 +156,6 @@ export default defineComponent({
 }
 #loading{
     display: none;
-    position: absolute;
     border:4px solid;
     border-color:transparent transparent #724a0a #9b7726;
     background-color: rgba(128, 128, 128, 0.507);
@@ -166,5 +163,4 @@ export default defineComponent({
     height:110px;
     border-radius: 50%;
 }
-
 </style>

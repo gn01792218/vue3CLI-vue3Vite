@@ -1,6 +1,6 @@
 <template>
 	<div class="row">
-    	<ul class="betInfor col-6 text-md-left">
+    	<ul class="col-6 text-md-left">
         	<li class="font_red">Banker 52%</li>    
           	<li class="font_yellow">Player 46%</li> 
           	<li class="font_green">Tie 2%</li> 
@@ -9,7 +9,7 @@
          	<li class="font_red">Banker Natural</li> 
           	<li class="font_yellow">Player Natural</li>
         </ul>
-        <ul class="betInfor col-6 text-md-right" v-if="betInfo">
+        <ul class="col-6 text-md-right" v-if="betInfo">
           <li v-for="(i,index) in betInfo" :key="index">{{i}}</li>
         </ul>
       </div>
@@ -38,7 +38,4 @@ export default defineComponent({
 </script>
 
 <style>
-.betInfor{
-  list-style: none;
-}
 </style>

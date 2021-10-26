@@ -1,10 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
-
 html,body{
-
-height: 100%; margin: 0; padding: 0;
-
+	height: 100%; margin: 0; padding: 0;
 }
 body{
 	padding: 0px;
@@ -13,18 +10,19 @@ body{
 	background-repeat: repeat;
 	color: #FFF;
 }
-
 ul,
 ol {
 	padding: 0;
 	margin: 0;
+	list-style: none;
 }
-
-.rwd-img{width: 100%;}
+img{
+	max-width:100%;
+	height:auto;
+}
 .font_red{
 	color: #bd0505;
 }
-
 .font_green{
 	color: #009200;
 }
@@ -49,28 +47,6 @@ ol {
 	padding-left: 10px;
 }
 
-.b{
-	margin-right: 5px;
-	margin-left: 5px;
-
-}
-/* 
-div.grid {
-    background: #fff;
-    background-image:
-        linear-gradient(rgba(60,60,60,.3) 1px, transparent 0),
-        linear-gradient(90deg, rgba(60,60,60,.3) 1px, transparent 0),
-        linear-gradient(DarkGrey 1px, transparent 0),
-        linear-gradient(90deg, DarkGrey 1px, transparent 0);
-    background-size: 
-            15px 15px,
-            15px 15px,
-            75px 75px,
-            75px 75px;
-    width: 100%;
-    height: 200px;
-} */
-
 /*-------------------------------------------
      基本版面設定區
 -------------------------------------------*/
@@ -83,7 +59,7 @@ div.grid {
 	width:90%;
 	height:95%;
 }
-.logo{
+.header-logo{
 	float: left;
 	width: 100%;
 	padding-top: 10px;
@@ -121,7 +97,7 @@ div.grid {
 	float: left;
 	width: 65%;
 }
-.bp-box{
+.gameHistory{
 	border: 1px solid #fff;
 	float: left;
 	width: 65%;
@@ -129,7 +105,7 @@ div.grid {
 	background-size: contain;
 }
 
-.coin-area{
+.coinArea{
 	float: left;
 	width: 100%;
 	background-color: #1e1e1e;
@@ -138,14 +114,7 @@ div.grid {
 	padding-bottom: 10px;
 	text-align: center;
 }
-.coin-area .s{
-	float: left;
-	width: 20%;
-	text-align: center;
-	padding-right: 1%;
-	padding-left: 1%;
-}
-.stand-box{
+.betArea{
 	border: 1px solid #262626;
 	float: left;
 	width: 35%;
@@ -154,7 +123,7 @@ div.grid {
 	background-repeat: no-repeat;
 	background-position: center top;
 }
-.stand-box .em{
+.betArea .em{
 	float: left;
 	width: 100%;
 	text-align: center;
@@ -165,22 +134,22 @@ div.grid {
 	border-top-style: solid;
 	border-top-color: #CCC;
 }
-.stand-box .ems{
+.betArea .ems{
 	float: left;
 	width: 100%;
 	border-right-width: 2px;
 	border-right-style: solid;
 	border-right-color: #FFF;
 }
-.stand-pc{
+.betArea-pc{
 	float: left;
 	width: 100%;
 	display: block;
 }
-.stand-mobile{
+.betArea-mobile{
 	display: none;
 }
-.tabs-area{
+.tabsArea{
 	float: left;
 	width: 35%;
 	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+1,000000+100&0.65+3,0+9 */
@@ -189,6 +158,9 @@ div.grid {
 	background: linear-gradient(to bottom,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6383838', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 
+}
+.tabsArea-showItem{
+	height: 250px;
 }
 /*-------------------------------------------
      按鈕設定區
@@ -666,7 +638,7 @@ div.grid {
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
-.gem-left{
+.header{
 	float: left;
 	width: 10%;
 	background-color: #1e1101;
@@ -677,13 +649,12 @@ div.grid {
 	position: relative;
 	/* height: 100vh; */
 }
-.gem-main{
-	float: left;
+.mainGame{
+	display: flex;
+	flex-wrap: wrap;
 	width: 90%;
 	height:95%;
 }
-.gem-right{	float: left;width: 26%;}
-
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
@@ -698,14 +669,15 @@ div.grid {
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
-.flex {
+.betArea-pc-container {
   display: flex;
   height: 280px;
   padding: 0px;
   flex-wrap: wrap;
 }
-
-.item {
+.betArea-item {
+	position: relative;
+	cursor: pointer;
 	flex: 25%;
 	margin: 0px;
 	display: flex;
@@ -765,9 +737,11 @@ div.grid {
 	line-height: 1.55em;
 	/* height:5%; */
 }
-
-
-
+.footer-item{
+	cursor: pointer;
+	margin-right: 5px;
+	margin-left: 5px;
+}
 /*-------------------------------------------
      自適應設定區
 -------------------------------------------*/
@@ -775,7 +749,7 @@ div.grid {
 	/* .container{
 	width: 1000px;
 	} */
-	.logo{
+	.header-logo{
 		width: 20%;
 		padding-top: 5px;
 		padding-bottom: 0px;
@@ -792,12 +766,13 @@ div.grid {
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
-	.gem-left{
+	.header{
 		width: 100%;
 		height: auto;
 	}
-	.gem-main{width: 100%;}
-	.gem-right{width: 100%;}	
+	.mainGame{
+		width: 100%;
+	}	
 /*-------------------------------------------
      按鈕設定區
 -------------------------------------------*/
@@ -807,14 +782,14 @@ div.grid {
 	.video-box{
 		width: 100%;
 	}
-	.stand-box{
+	.betArea{
 		border: 2px solid #262626;
 		width: 100%;
 	}
-	.stand-pc{
+	.betArea-pc{
 		display: none;
 	}
-	.stand-mobile{
+	.betArea-mobile{
 		display: block;
 	}
 	.container-waps{
@@ -825,21 +800,21 @@ div.grid {
   		justify-content: space-around;
 	}
 
-	.item {
+	.betArea-item {
 		flex: 1;
 		font-size: 1rem;
 		padding-top: 0px;
 		padding-bottom: 0px;
 	}
 
-	.bp-box{
+	.gameHistory{
 		width: 100%;
 		height: 37.5%;
 		background-image: url(../../images/cardroad_bg_20.png);
 		background-repeat: repeat;
 		background-position: left top;
 	}
-	.tabs-area{
+	.tabsArea{
 		width: 100%;
 		background-color: #000;
 		background-position: bottom;
@@ -849,7 +824,7 @@ div.grid {
 	.video-box{
 		height:325px;
 	}
-	.stand-mobile-container{
+	.betArea-mobile-container{
 		height:180px !important;
 	}
 
@@ -861,20 +836,21 @@ div.grid {
 	.video-box{
 		height:325px;
 	}
-	.stand-mobile-container{
+	.betArea-mobile-container{
 		height:180px !important;
 	}
-	.tabs-area{
+	.tabsArea{
 		display: none;
 	}	
 	.container{
 		width: 760px;
 	}
-	.coin-area{
+	.coinArea{
+		position: relative;
 		padding-top: 0px;
 		padding-bottom: 0px;
 	}
-	.item {
+	.betArea-item {
 		font-size: 2rem;
 	}
 	.coin{
@@ -890,7 +866,7 @@ div.grid {
 		.video-box{
 			height:217px;
 		}
-		.item {
+		.betArea-item {
 			font-size: 1.5rem;
 		}
 		.stand-mobile-container{
@@ -904,18 +880,14 @@ div.grid {
 		.video-box{
 			height:195px;
 		}
-		.item {
+		.betArea-item {
 			font-size: 1rem;
 		}
-		.stand-mobile-container{
+		.betArea-mobile-container{
 			height:110px !important;
 		}
 		.caritem{
 			zoom: 0.15;
 		}
-		/* .footer{
-			padding: 0px 0px;
-		} */
-		
 	}	
 	

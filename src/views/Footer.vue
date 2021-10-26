@@ -1,18 +1,18 @@
 <template>
     <UserBetInfo/>
     <footer class="footer">
-        <div class="rows">
-            <div class="col-sm text-md-left test">
-                <span class="b d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span>
-                <span class="b d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
-                <span class="b d-none d-md-flex"><i class="bi bi-eye-fill "></i></span>
-                <span class="b" v-if="user">{{user.wallet}}</span>
-                <span class="b d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span>
+        <div class="rows d-flex">
+            <div class="col-sm text-md-left d-flex">
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span>
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-eye-fill "></i></span>
+                <span class="footer-item" v-if="user">{{user.wallet}}</span>
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span>
             </div>
-            <div class="col-sm text-md-right justify-content-end test">
-                <span class="b" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle"></i><span v-if="user">{{user.name}}</span></span>
-                <span class="b d-none d-md-flex"><i class="bi bi-alarm"></i><Date/></span>
-                <span class="b d-none d-md-flex"><i class="bi bi-arrows-fullscreen" @click="fullScreen"></i></span>
+            <div class="col-sm text-md-right justify-content-end d-flex">
+                <span class="footer-item" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle"></i><span v-if="user">{{user.name}}</span></span>
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-alarm"></i><Date/></span>
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-arrows-fullscreen" @click="fullScreen"></i></span>
             </div>
         </div>
     </footer>
@@ -54,13 +54,4 @@ export default defineComponent({
 </script>
 
 <style>
-.test{
-    display: flex;
-}
-.rows{
-    display: flex;
-}
-.b{
-    cursor: pointer;
-}
 </style>

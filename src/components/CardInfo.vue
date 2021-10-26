@@ -2,14 +2,14 @@
     <div>
   		<button class="shocardBtn" @click="showCards">取得當前卡牌</button>
       <!-- <p>{{DrawCard}}</p> -->
-    	<section class="card-container justify-content-center">
-      	<div class="row card-box">
-        	<div :class="['caritem',{'card-item-w col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
+    	<section class="card-container d-flex justify-content-center">
+      	<div class=" card-box row justify-content-center">
+        	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>
         	</div>
       	</div>
-      	<div class="row card-box">
-        	<div :class="['caritem',{'card-item-w col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
+      	<div class="card-box row justify-content-center">
+        	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
       	</div>
@@ -105,12 +105,10 @@ export default defineComponent({
 <style lang="scss">
   .card-container{
     pointer-events: none; //使能被穿透
-    display: flex;
     margin-top:-30px;
   }    
-  .card-box{
+  .card-box{ //測試用，完成可以消除
     // border:yellow 1px solid;
-    justify-content: center;
   }
   .poker{ //顯示卡牌
     width:373px;
@@ -129,8 +127,6 @@ export default defineComponent({
     // border:1px solid blue;
   }
   .card-item-w{
-    display: flex;
     transform: rotate(90deg);
-    justify-content: center;
   }
 </style>
