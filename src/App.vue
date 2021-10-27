@@ -9,7 +9,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent, onUnmounted} from 'vue'
 import Header from './views/Header.vue'
 import Footer from './views/Footer.vue'

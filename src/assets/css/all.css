@@ -300,6 +300,29 @@ img {
   height: 250px;
 }
 
+.card-container {
+  pointer-events: none;
+}
+
+.poker {
+  width: 373px;
+  height: 556px;
+  background-image: url("../../images/poker.png");
+}
+
+.caritem {
+  width: 373px;
+  height: 566px;
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-top: -70px;
+}
+
+.card-item-w {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
 /*-------------------------------------------
      頁底設定區
 -------------------------------------------*/
@@ -932,7 +955,7 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     font-size: 2rem;
   }
   .caritem {
-    zoom: 0.22;
+    zoom: 0.2;
   }
   .gameHistory {
     height: 30%;

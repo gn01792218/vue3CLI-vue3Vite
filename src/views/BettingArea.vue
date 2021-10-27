@@ -58,7 +58,7 @@
     
 </template>
 
-<script>
+<script lang="ts">
 import {computed, defineComponent, reactive, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
@@ -118,15 +118,15 @@ export default defineComponent({
                     }
                 ])
         const currentCoint = reactive({ //選擇的籌碼
-            coinElement:HTMLElement | null, //選擇的籌碼div元素
-            num:Number | null,  //儲存點到的是第幾個
-            point:Number | null,
-            x:Number | null, //起飛的x
-            y:Number | null, //起飛的y
+            coinElement:HTMLElement, //選擇的籌碼div元素
+            num:Number,  //儲存點到的是第幾個
+            point:Number,
+            x:Number, //起飛的x
+            y:Number, //起飛的y
         });  
         const target = reactive({ //目標位置
-            x : Number | null,
-            y : Number | null,
+            x : Number,
+            y : Number,
         })
         const coinPosition = reactive([//注區
             {
@@ -170,14 +170,14 @@ export default defineComponent({
                 betStatus:0 //目前這一回合的下注狀況
             },
         ]) 
-        function chooseCoint (index,e) {
+        function chooseCoint (index:NumberConstructor,e:any) {
             currentCoint.coinElement = e.target; //得到該元素
             currentCoint.x = e.x;  //設置籌碼起始座標點
             currentCoint.y = e.y;
             currentCoint.num = index;
             currentCoint.point = coin[index].point
         }
-        function cointAnimate (e) {
+        function cointAnimate (e:any) {
              gsap
             .to(e,{
                 keyframes:[
@@ -187,7 +187,7 @@ export default defineComponent({
                     {duration:0.8,
                     ease:Power4.easeIn,
                     scale:0.5,
-                    x:target.x-currentCoint.x,
+                    x:target.x-currentCoint.x as number,
                     y:target.y-currentCoint.y-50,
                     zIndex:"1",
                     },

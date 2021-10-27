@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {computed, defineComponent} from 'vue'
 import { useRouter} from 'vue-router'
 import {useStore} from 'vuex'
@@ -29,7 +29,7 @@ export default defineComponent({
         //路由處理
         const router = useRouter()
         //換桌
-        function toGametable (tableNum) {
+        function toGametable (tableNum:string) {
             router.push({
                 path:`/BaccaratGame/${tableNum}`
             })
@@ -42,7 +42,7 @@ export default defineComponent({
         //關閉視窗
         function closeWindow () {
             window.opener = null;
-            window.open("about:blank","_self").close();
+            window.open("about:blank","_self")?.close();
         }
         return{
             //data

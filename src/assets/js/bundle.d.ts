@@ -8,11 +8,8 @@ export namespace auth {
         /** LoginCall header */
         header?: (foundation.IHeader|null);
 
-        /** LoginCall account */
-        account?: (string|null);
-
-        /** LoginCall password */
-        password?: (string|null);
+        /** LoginCall token */
+        token?: (string|null);
     }
 
     /** Represents a LoginCall. */
@@ -27,11 +24,8 @@ export namespace auth {
         /** LoginCall header. */
         public header?: (foundation.IHeader|null);
 
-        /** LoginCall account. */
-        public account: string;
-
-        /** LoginCall password. */
-        public password: string;
+        /** LoginCall token. */
+        public token: string;
 
         /**
          * Creates a new LoginCall instance using the specified properties.

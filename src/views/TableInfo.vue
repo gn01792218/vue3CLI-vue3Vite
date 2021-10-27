@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent, reactive, ref} from 'vue'
 import {useStore} from 'vuex'
 import CardInfo from '../components/CardInfo.vue'
@@ -27,7 +27,7 @@ export default defineComponent({
         //切換TableInfo頁籤
         const tabArray = reactive(["Table Info","Cards"]) //將來有需要可以再增加
         const onClickTab = ref("Cards") //預設是Cards
-        function switchTab (tab) {
+        function switchTab (tab:string) {
              onClickTab.value = tab
         }
         return{

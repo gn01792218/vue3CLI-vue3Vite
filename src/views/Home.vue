@@ -8,7 +8,7 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import { useRouter,useRoute } from 'vue-router'
@@ -27,17 +27,17 @@ export default defineComponent({
       const store = useStore()
       store.commit('auth/setUserToken',route.params.userToken)
       const isLogin = ref(true)
-      const userToken = ref(Cookies.get('userToken'))
+      const userToken = ref<string>(store.state.auth.userToken)
+      console.log(userToken.value)
       const loginState = computed(()=>{  //取得登入狀態
       return store.state.auth.LoginRecall.status
       })
       //創建websocket連線，並發送登入請求
-        createSocket()
+        createSocket(userToken.value)
         sendLogin({
           uri: "LoginCall",
           //之後要傳送的是token
-          account: "user",
-          password: "password"
+          token: userToken.value,
         })
         // if(Cookies.get('userToken') === 'ImLogin'){
         //   Cookies.remove('userToken')
@@ -50,10 +50,10 @@ export default defineComponent({
           case 1:
             isLogin.value = false
             userToken.value = "ImLogin"
-            Cookies.set('userToken',userToken.value,'30s')
+            Cookies.set('userToken',userToken.value,{expires:0.1})
             break
-          case 2:
-            alert("驗證失敗，請先註冊")
+          case -1:
+            alert("驗證失敗，請重新登入")
         }
       })
       return{

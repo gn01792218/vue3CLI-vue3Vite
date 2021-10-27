@@ -75,3 +75,29 @@
 .tabsArea-showItem{
 	height: 250px;
 }
+//卡牌區
+.card-container{
+    pointer-events: none; //使能被穿透
+    // margin-top:-30px;
+  }    
+  .card-box{ //測試用，完成可以消除
+    // border:yellow 1px solid;
+  }
+  .poker{ //顯示卡牌
+    width:373px;
+    height:556px;
+    background-image:url('../../images/poker.png');
+  }
+  .caritem{
+    // pointer-events: none; //使能被穿透
+    width:373px;
+    height:566px;
+    //預設margin，響應式的時候可以依照情況拿掉
+    margin-right:40px;
+    margin-left:40px;
+    margin-top: -70px;
+    // border:1px solid blue;
+  }
+  .card-item-w{
+    transform: rotate(90deg);
+  }

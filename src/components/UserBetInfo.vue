@@ -31,7 +31,7 @@
   
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent,computed} from 'vue'
 import {useStore} from 'vuex'
 import Date from '@/components/Date'

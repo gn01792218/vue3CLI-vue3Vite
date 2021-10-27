@@ -23,8 +23,7 @@ const onerrorWs = ()=>{
 //監聽關閉
 const oncloseWs = () => {
     clearInterval(setIntervalWesocketPush)
-    alert('websocket已断开....正在尝试重连')
-    console.log('websocket已断开....正在尝试重连')
+    alert('websocket已斷開....正在嘗試重連')
     if (Socket?.readyState !== 2) {  //readyState 2 = 連接正在關閉
       Socket = null
       createSocket()
@@ -84,11 +83,13 @@ export const sendPing = (time = 5500, ping = 'ping') => {
     }, time)
   }
   //建立ws
-export const createSocket =()=>{  //使用createSocket的方法，會自動開啟監聽連線、訊息等等方法
+export const createSocket =(token?:string)=>{  //使用createSocket的方法，會自動開啟監聽連線、訊息等等方法
     console.log("創建伺服器")
     Socket && Socket.close()
     if(!Socket){
-        Socket = new WebSocket(url);
+        // Socket = new WebSocket(url,token)
+        console.log("token",token)
+        Socket = new WebSocket(url,token);
         Socket.binaryType='arraybuffer' //切記將binaryType設成二進制
         Socket.onopen = onopenWs  //會打開心跳
         Socket.onmessage = onmessageWs    

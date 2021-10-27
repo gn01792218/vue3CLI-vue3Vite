@@ -23,8 +23,7 @@ export const auth = $root.auth = (() => {
          * @memberof auth
          * @interface ILoginCall
          * @property {foundation.IHeader|null} [header] LoginCall header
-         * @property {string|null} [account] LoginCall account
-         * @property {string|null} [password] LoginCall password
+         * @property {string|null} [token] LoginCall token
          */
 
         /**
@@ -51,20 +50,12 @@ export const auth = $root.auth = (() => {
         LoginCall.prototype.header = null;
 
         /**
-         * LoginCall account.
-         * @member {string} account
+         * LoginCall token.
+         * @member {string} token
          * @memberof auth.LoginCall
          * @instance
          */
-        LoginCall.prototype.account = "";
-
-        /**
-         * LoginCall password.
-         * @member {string} password
-         * @memberof auth.LoginCall
-         * @instance
-         */
-        LoginCall.prototype.password = "";
+        LoginCall.prototype.token = "";
 
         /**
          * Creates a new LoginCall instance using the specified properties.
@@ -92,10 +83,8 @@ export const auth = $root.auth = (() => {
                 writer = $Writer.create();
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
                 $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.account != null && Object.hasOwnProperty.call(message, "account"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.account);
-            if (message.password != null && Object.hasOwnProperty.call(message, "password"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.password);
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
             return writer;
         };
 
@@ -134,10 +123,7 @@ export const auth = $root.auth = (() => {
                     message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.account = reader.string();
-                    break;
-                case 3:
-                    message.password = reader.string();
+                    message.token = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -179,12 +165,9 @@ export const auth = $root.auth = (() => {
                 if (error)
                     return "header." + error;
             }
-            if (message.account != null && message.hasOwnProperty("account"))
-                if (!$util.isString(message.account))
-                    return "account: string expected";
-            if (message.password != null && message.hasOwnProperty("password"))
-                if (!$util.isString(message.password))
-                    return "password: string expected";
+            if (message.token != null && message.hasOwnProperty("token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
             return null;
         };
 
@@ -205,10 +188,8 @@ export const auth = $root.auth = (() => {
                     throw TypeError(".auth.LoginCall.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
-            if (object.account != null)
-                message.account = String(object.account);
-            if (object.password != null)
-                message.password = String(object.password);
+            if (object.token != null)
+                message.token = String(object.token);
             return message;
         };
 
@@ -227,15 +208,12 @@ export const auth = $root.auth = (() => {
             let object = {};
             if (options.defaults) {
                 object.header = null;
-                object.account = "";
-                object.password = "";
+                object.token = "";
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
-            if (message.account != null && message.hasOwnProperty("account"))
-                object.account = message.account;
-            if (message.password != null && message.hasOwnProperty("password"))
-                object.password = message.password;
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
             return object;
         };
 

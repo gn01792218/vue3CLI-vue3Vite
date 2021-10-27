@@ -22,7 +22,7 @@ export default defineComponent({
         //vuex
         const store = useStore()
         const roundUuid = computed(()=>{ //每個回合獨特的uuid
-            return store.state.game.BetRoundStart.gameUuid
+            return store.state.game.gameUuid
         })
         const roundStatus = computed(()=>{ //每回合的狀態
             return store
@@ -115,7 +115,6 @@ export default defineComponent({
         })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
-                console.log("uuid改變")
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 count.value = lastCount.value
                 setCount()

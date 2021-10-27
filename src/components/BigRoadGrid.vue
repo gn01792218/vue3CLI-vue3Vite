@@ -15,7 +15,7 @@
     <button class="position-absolute" @click="pushRoad">玩玩看</button>
 </template>
 
-<script>
+<script laang="ts">
 import {defineComponent} from 'vue'
 export default defineComponent({
     setup(){

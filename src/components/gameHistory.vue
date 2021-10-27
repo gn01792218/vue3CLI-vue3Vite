@@ -12,7 +12,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import BigRoadGrid from './BigRoadGrid.vue'

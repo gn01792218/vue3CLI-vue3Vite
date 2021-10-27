@@ -18,8 +18,7 @@ export const sendLogin =(data:any) => {
         header:foundation.Header.create({
             uri:route.LoginCall
         }),
-        account:data.account,
-        password:data.password
+        token:data.token,
     })
     let bytes = auth.LoginCall.encode(proto).finish()
     console.log("sendLogin",proto)

@@ -42,16 +42,16 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from 'vue'
 export default defineComponent({
     setup(){
         //抓取元素要在onmounted或是function中，因為setup在mounted之前，DOM還沒長出來
         //表格
         const secWidth = new Array(22)
-        const secHeight = new Array(9)
+        const secHeight = new Array(12)
         const topHeight = new Array(6)
-        const bottomHeight = new Array(3)
+        const bottomHeight = new Array(6)
         const bottom1width = new Array(10)
         const bottom3width = new Array(2)
         //添加格子
@@ -103,7 +103,7 @@ export default defineComponent({
   height:100%;
 }
 .secRoad-row{
-  height:11.1111111%;
+  height:8.33333333333333333%;
   width:100%;
   border: 1px solid gray;
 }
@@ -112,7 +112,7 @@ export default defineComponent({
 .topRoad{
   top:0;
   right:0;
-  height:66%;
+  height:50%;
 }
 .topRoad-column{
   /* border: 2px solid yellow; */
@@ -124,7 +124,7 @@ export default defineComponent({
   height:16.6666666%;
 }
 .bottomRoad{
-  height:33.3333333%;
+  height:50%;
   /* border: blue solid 2px; */
   right:0;
   bottom:0;
@@ -147,7 +147,7 @@ export default defineComponent({
 }
 .bottomRoad-item{
   width:100%;
-  height:33.333333333%;
+  height:16.66666666666%;
   /* border:springgreen solid 2px; */
 }
 .bottomRoad3-column{

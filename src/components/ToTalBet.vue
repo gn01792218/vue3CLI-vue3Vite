@@ -2,25 +2,26 @@
   <span>{{total}}</span>
 </template>
 
-<script>
+<script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue'
 import {useStore} from 'vuex'
 export default defineComponent({
     setup(){
         //vuex
         const store = useStore();
-        const total = ref(0)
+        const total = ref<number>(0)
         const totalBetInfo = computed({  //每次下注的時候都更新totalBet
             get(){
                 return store.state.bet.totalBets
             },
-            set(num){
+            set(num:number){
                 total.value = num
             }
             
         })
 
-        const roundStatus = computed(()=>{
+        const roundStatus = computed<number>(()=>{
+            return 0 as number
         })
         //監聽
         watch(totalBetInfo,()=>{  
