@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {defineComponent, reactive, ref,computed} from 'vue'
+import {defineComponent, reactive, ref} from 'vue'
 import {useStore} from 'vuex'
 import CardInfo from '../components/CardInfo.vue'
 import BetInfor from '../components/BetInfor.vue'

@@ -1,7 +1,6 @@
 <template>
     <div>
-  		<button class="shocardBtn" @click="showCards">取得當前卡牌</button>
-      <!-- <p>{{DrawCard}}</p> -->
+  		<!-- <button class="shocardBtn" @click="showCards">取得當前卡牌</button> -->
     	<section class="card-container d-flex justify-content-center">
       	<div class=" card-box row justify-content-center">
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">

@@ -1,5 +1,5 @@
 <template>
-  <span>Total Bet {{total}}</span>
+  <span>{{total}}</span>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default defineComponent({
         const total = ref(0)
         const totalBetInfo = computed({  //每次下注的時候都更新totalBet
             get(){
-                return store.state.bet.BetRecall.totalBets
+                return store.state.bet.totalBets
             },
             set(num){
                 total.value = num

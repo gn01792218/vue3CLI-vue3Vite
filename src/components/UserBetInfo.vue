@@ -14,12 +14,11 @@
                 <div class="modal-body">
                     <h2 class="modal-body">玩家下注資訊</h2>
                     <ul class="userBetInfo">
-                        <li>場次:</li>
+                        <li>場次:{{gameUuid}}</li>
                         <li>遊戲單:</li>
                         <li>時間:<Date/></li>
                         <li>遊戲輸贏:</li>
-                        <li>下注:</li>
-                        
+                        <li>下注:<TotalBet/></li>
                     </ul>
                 </div>
                 <div class="modal-footer">
@@ -33,16 +32,22 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import {defineComponent,computed} from 'vue'
 import {useStore} from 'vuex'
 import Date from '@/components/Date'
+import TotalBet from '@/components/ToTalBet.vue'
 export default defineComponent({
     components:{
-        Date
+        Date,TotalBet
     },
     setup(){
+        const store = useStore()
+        const gameUuid = computed(()=>{
+            return store.state.game.gameUuid
+        })
         return{
             //data
+            gameUuid,
             //methods
         }
     }

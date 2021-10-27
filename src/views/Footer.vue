@@ -1,7 +1,7 @@
 <template>
     <UserBetInfo/>
     <footer class="footer">
-        <div class="rows d-flex">
+        <div class="pl-1 pr-1 d-flex">
             <div class="col-sm text-md-left d-flex">
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
@@ -31,10 +31,11 @@ export default defineComponent({
     setup(){
         //vuex
         const store = useStore()
-        //computed玩家資訊
+        //computed
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
+        
         //全螢幕
         function fullScreen () {
             console.log("全螢幕")

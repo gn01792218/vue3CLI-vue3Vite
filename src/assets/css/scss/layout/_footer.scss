@@ -1,0 +1,25 @@
+/*-------------------------------------------
+     頁底設定區
+-------------------------------------------*/
+.footer{
+	background: rgb(51,29,2); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(51,29,2,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #9a8326;
+	float: left;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #d2c0a8;
+	line-height: 1.55em;
+	/* height:5%; */
+}
+.footer-item{
+	cursor: pointer;
+	margin-right: 5px;
+	margin-left: 5px;
+}

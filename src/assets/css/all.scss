@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+//base
+@import './scss/base/variable';
+@import './scss/base/base';
+//layout
+@import './scss//layout/mainLayout';
+@import './scss/layout/grid';
+@import './scss/layout/header';
+@import './scss/layout/mainGame';
+@import './scss/layout/footer';
+//component
+@import './scss/components/buttom';
+@import './scss//components//coin';
+
+//rwd
+@import './scss/rwd/rwd';
+	

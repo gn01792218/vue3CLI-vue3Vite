@@ -38,7 +38,7 @@
         </div>
         <!-- total Bet -->
         <div class="em font-total">
-            <TotalBet/>
+            Total Bet <TotalBet/>
         </div>
         <!-- coin -->
         <div class="coinArea">

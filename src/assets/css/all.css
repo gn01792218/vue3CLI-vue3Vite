@@ -1,0 +1,1120 @@
+@charset "UTF-8";
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0px;
+  background-color: #000;
+  background-image: url("../../images/body-bg.png");
+  background-repeat: repeat;
+  color: #FFF;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.font_red {
+  color: #bd0505;
+}
+
+.font_green {
+  color: #009200;
+}
+
+.font_yellow {
+  color: #ffd236;
+}
+
+.font_yellows {
+  color: #fff6d7;
+  line-height: 2em;
+}
+
+.font
+.font-total {
+  color: #fff;
+  float: left;
+  width: 100%;
+  background-color: rgba(2, 29, 35, 0.5);
+  line-height: 2.5em;
+  text-align: center;
+}
+
+/*-------------------------------------------
+     基本版面設定區
+-------------------------------------------*/
+#wap {
+  float: left;
+  width: 100%;
+}
+
+.home {
+  width: 90%;
+  height: 95%;
+}
+
+.container-wap {
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.container-waps {
+  float: left;
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #362903;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100vh;
+}
+
+/*-------------------------------------------
+     網格設定區
+-------------------------------------------*/
+.game-board {
+  width: 35px;
+  height: 35px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[6];
+  -ms-grid-columns: (1fr)[8];
+      grid-template: repeat(6, 1fr)/repeat(8, 1fr);
+  float: left;
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.header {
+  float: left;
+  width: 10%;
+  background-color: #1e1101;
+  border: 1px solid #654d31;
+  background-image: url(../../images/left-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: left top;
+  position: relative;
+  /* height: 100vh; */
+}
+
+.mainGame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 90%;
+  height: 95%;
+}
+
+.grid-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(153, 153, 153, 0.8);
+  padding: 0px;
+  text-align: center;
+}
+
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.betArea-pc-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 280px;
+  padding: 0px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.betArea-item {
+  position: relative;
+  cursor: pointer;
+  -webkit-box-flex: 25%;
+      -ms-flex: 25%;
+          flex: 25%;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 2rem;
+  border: 1px solid #FFF;
+  text-align: center;
+  line-height: 1.55em;
+}
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: #FC0;
+}
+
+.green {
+  color: #093;
+}
+
+.header-logo {
+  float: left;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.header-btnList {
+  float: left;
+  width: 100%;
+}
+
+.video-box {
+  border: 2px solid #644d31;
+  float: left;
+  width: 65%;
+}
+
+.gameHistory {
+  border: 1px solid #fff;
+  float: left;
+  width: 65%;
+  height: 26.5%;
+  background-size: contain;
+}
+
+.coinArea {
+  float: left;
+  width: 100%;
+  background-color: #1e1e1e;
+  border: 0px solid #333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.betArea {
+  border: 1px solid #262626;
+  float: left;
+  width: 35%;
+  background-image: url(../../images/Stand-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.betArea .em {
+  float: left;
+  width: 100%;
+  text-align: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #FFF;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #CCC;
+}
+
+.betArea .ems {
+  float: left;
+  width: 100%;
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-right-color: #FFF;
+}
+
+.betArea-pc {
+  float: left;
+  width: 100%;
+  display: block;
+}
+
+.betArea-mobile {
+  display: none;
+}
+
+.tabsArea {
+  float: left;
+  width: 35%;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+1,000000+100&0.65+3,0+9 */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, rgba(56, 56, 56, 0.65)), color-stop(3%, rgba(55, 55, 55, 0.65)), color-stop(9%, rgba(52, 52, 52, 0)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(to bottom, rgba(56, 56, 56, 0.65) 1%, rgba(55, 55, 55, 0.65) 3%, rgba(52, 52, 52, 0) 9%, rgba(0, 0, 0, 0) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6383838', endColorstr='#00000000',GradientType=0 );
+  /* IE6-9 */
+}
+
+.tabsArea-showItem {
+  height: 250px;
+}
+
+/*-------------------------------------------
+     頁底設定區
+-------------------------------------------*/
+.footer {
+  background: #331d02;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#331d02), to(black));
+  background: linear-gradient(to bottom, #331d02 0%, black 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #9a8326;
+  float: left;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #d2c0a8;
+  line-height: 1.55em;
+  /* height:5%; */
+}
+
+.footer-item {
+  cursor: pointer;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+/*-------------------------------------------
+     按鈕設定區
+-------------------------------------------*/
+.header-btn {
+  width: 85%;
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  font-size: 136%;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #fff6d5;
+  padding: 5px 0px;
+  margin: 5px 10px;
+  border: 0px solid #d0c0a4;
+  background-color: #ae8b27;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ae8b27+0,775124+99 */
+  background: #ae8b27;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#ae8b27), color-stop(99%, #775124));
+  background: linear-gradient(to bottom, #ae8b27 0%, #775124 99%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ae8b27', endColorstr='#775124',GradientType=0 );
+  /* IE6-9 */
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 0px #9e9e9e;
+          box-shadow: 0px 0px 0px #9e9e9e;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  text-decoration: none;
+  color: #372710;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.header-btn.focus, .header-btn:focus, .header-btn:hover {
+  border-radius: 10px;
+  padding: 5px 0px;
+  margin: 5px 10px;
+  color: #372710;
+  text-decoration: none;
+  background-color: #ae8b27;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#775124+0,ae8b27+100 */
+  background: #775124;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#775124), to(#ae8b27));
+  background: linear-gradient(to bottom, #775124 0%, #ae8b27 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', endColorstr='#ae8b27',GradientType=0 );
+  /* IE6-9 */
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.header-btn.active, .header-btn:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+}
+
+a.btn.disabled, fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+.btn-p {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 15px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #0066CC;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  padding: 8px 0px;
+}
+
+.btn-p .dots {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 700;
+  text-align: center;
+  line-height: 10px;
+  background-color: #0066CC;
+  right: 0px;
+  border: 1px solid #FFF;
+  bottom: -1px;
+}
+
+.btn-ps {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  font-size: 12px;
+  color: #0066CC;
+  background-color: #fff;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  border: 2px solid #0066CC;
+}
+
+.btn-ps .dots {
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 700;
+  text-align: center;
+  line-height: 10px;
+  background-color: #0066CC;
+  right: -3px;
+  border: 1px solid #FFF;
+  bottom: -3px;
+}
+
+.btn-pss {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  font-size: 12px;
+  color: #FFFFFF;
+  background-color: #0066CC;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+}
+
+.btn-p.active.focus, .btn-p.active:focus, .btn-p.focus, .btn-p:active.focus, .btn-p:active:focus, .btn-p:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  text-decoration: none;
+  color: #fff;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.btn-p.focus, .btn-p:focus, .btn-p:hover {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.btn-p.active, .btn-p:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-p.disabled, .btn-p[disabled], fieldset[disabled] .btn-p {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+}
+
+a.btn-p.disabled, fieldset[disabled] a.btn-p {
+  pointer-events: none;
+}
+
+.btn-b {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 15px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #FF0000;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  padding: 8px 0px;
+}
+
+.btn-b .dots {
+  position: absolute;
+  top: -1px;
+  height: 10px;
+  width: 10px;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 700;
+  text-align: center;
+  line-height: 10px;
+  background-color: #FF0000;
+  left: 0px;
+  border: 1px solid #FFF;
+}
+
+.btn-b.active.focus, .btn-b.active:focus, .btn-b.focus, .btn-b:active.focus, .btn-b:active:focus, .btn-b:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  text-decoration: none;
+  color: #fff;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.btn-b.focus, .btn-b:focus, .btn-b:hover {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.btn-b.active, .btn-b:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-b.disabled, .btn-b[disabled], fieldset[disabled] .btn-b {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+}
+
+a.btn-b.disabled, fieldset[disabled] a.btn-b {
+  pointer-events: none;
+}
+
+.btn-bs {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #FF0000;
+  background-color: #fff;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  padding-left: 0;
+  border: 2px solid #FF0000;
+}
+
+.btn-bs .dots {
+  position: absolute;
+  top: -3px;
+  height: 8px;
+  width: 8px;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 700;
+  text-align: center;
+  line-height: 10px;
+  background-color: #FF0000;
+  left: -2px;
+  border: 1px solid #FFF;
+}
+
+.btn-bss {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #FF0000;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  padding-left: 0;
+}
+
+.btn-c {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 15px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #166d0a;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  padding: 8px 0px;
+}
+
+.btn-cs {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #166d0a;
+  background-color: #FFFFFF;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  border: 2px solid #166d0a;
+}
+
+.btn-css {
+  display: inline-block;
+  line-height: 1.75em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
+  text-decoration: none;
+  color: #166d0a;
+  background-color: #FFFFFF;
+  -webkit-transition: 1s;
+  transition: 1s;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  line-height: 1.428571429;
+  border-radius: 20px;
+  margin: 1px;
+  border: 2px solid #166d0a;
+}
+
+.btn-c.active.focus, .btn-c.active:focus, .btn-c.focus, .btn-c:active.focus, .btn-c:active:focus, .btn-c:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  text-decoration: none;
+  color: #fff;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.btn-c.focus, .btn-c:focus, .btn-c:hover {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.btn-c.active, .btn-c:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-c.disabled, .btn-c[disabled], fieldset[disabled] .btn-c {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65;
+}
+
+a.btn-c.disabled, fieldset[disabled] a.btn-c {
+  pointer-events: none;
+}
+
+/*-------------------------------------------
+     硬幣設定區
+-------------------------------------------*/
+.coin {
+  cursor: pointer;
+  float: left;
+  height: 65px;
+  width: 79px;
+  zoom: 0.8;
+}
+
+.coin-menu1 {
+  background-image: url("../../images/coin.png");
+  background-position: 0px 0px;
+}
+
+.coin-menu1:hover, .coin-menu1-current {
+  background-image: url("../../images/coin.png");
+  background-position: 0px -65px;
+}
+
+.coin-menu2 {
+  background-image: url("../../images/coin.png");
+  background-position: -79px 0px;
+}
+
+.coin-menu2:hover, .coin-menu2-current {
+  background-image: url("../../images/coin.png");
+  background-position: -79px -65px;
+}
+
+.coin-menu3 {
+  background-image: url("../../images/coin.png");
+  background-position: -158px 0px;
+}
+
+.coin-menu3:hover, .coin-menu3-current {
+  background-image: url("../../images/coin.png");
+  background-position: -158px -65px;
+}
+
+.coin-menu4 {
+  background-image: url("../../images/coin.png");
+  background-position: -237px 0px;
+}
+
+.coin-menu4:hover, .coin-menu4-current {
+  background-image: url("../../images/coin.png");
+  background-position: -237px -65px;
+}
+
+.coin-menu5 {
+  background-image: url("../../images/coin.png");
+  background-position: -316px 0px;
+}
+
+.coin-menu5:hover, .coin-menu5-current {
+  background-image: url("../../images/coin.png");
+  background-position: -316px -65px;
+}
+
+/*-------------------------------------------
+     自適應設定區
+-------------------------------------------*/
+@media screen and (min-width: 1281px) {
+  .video-box {
+    height: 70%;
+  }
+  .betArea {
+    height: 70%;
+  }
+  .betArea-pc {
+    height: 79%;
+  }
+  .coinArea {
+    height: 17%;
+  }
+  .betArea-pc-container {
+    height: 50%;
+  }
+  .betArea-item {
+    font-size: 2rem;
+  }
+  .caritem {
+    zoom: 0.22;
+  }
+  .gameHistory {
+    height: 30%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .video-box {
+    height: 75%;
+  }
+  .betArea {
+    height: 75%;
+  }
+  .betArea-pc {
+    height: 75%;
+  }
+  .betArea-pc-container {
+    height: 50%;
+  }
+  .betArea-item {
+    font-size: 1.5rem;
+  }
+  .caritem {
+    zoom: 0.16;
+  }
+  .gameHistory {
+    height: 25%;
+  }
+  .coinArea {
+    height: 21%;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .header-logo {
+    width: 20%;
+    padding-top: 5px;
+    padding-bottom: 0px;
+  }
+  .header-btnList {
+    width: 80%;
+  }
+  .header-bottom {
+    display: none;
+  }
+  .font-total {
+    line-height: 1.5em;
+  }
+  /*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+  .header {
+    width: 100%;
+    height: auto;
+  }
+  .mainGame {
+    width: 100%;
+  }
+  /*-------------------------------------------
+     按鈕設定區
+-------------------------------------------*/
+  .header-btn {
+    width: 30%;
+  }
+  .video-box {
+    width: 100%;
+  }
+  .betArea {
+    border: 2px solid #262626;
+    width: 100%;
+  }
+  .betArea-pc {
+    display: none;
+  }
+  .betArea-mobile {
+    display: block;
+  }
+  .container-waps {
+    height: auto;
+  }
+  .flexs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .betArea-item {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    font-size: 1rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .gameHistory {
+    width: 100%;
+    height: 37.5%;
+    background-image: url(../../images/cardroad_bg_20.png);
+    background-repeat: repeat;
+    background-position: left top;
+  }
+  .tabsArea {
+    width: 100%;
+    background-color: #000;
+    background-position: bottom;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .video-box {
+    height: 325px;
+  }
+  .betArea-mobile-container {
+    height: 180px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-btn {
+    width: 20%;
+  }
+  .video-box {
+    height: 325px;
+  }
+  .lightBox {
+    display: block;
+  }
+  .betArea-mobile-container {
+    height: 180px !important;
+  }
+  .tabsArea {
+    display: none;
+  }
+  .container {
+    width: 760px;
+  }
+  .coinArea {
+    position: relative;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .betArea-item {
+    font-size: 2rem;
+  }
+  .coin {
+    zoom: 0.7;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .header-btn {
+    width: 26%;
+    height: 45px;
+    font-size: large;
+  }
+  .video-box {
+    height: 217px;
+  }
+  .betArea-item {
+    font-size: 1.5rem;
+  }
+  .stand-mobile-container {
+    height: 187px !important;
+  }
+  .caritem {
+    zoom: 0.15;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .video-box {
+    height: 195px;
+  }
+  .betArea-item {
+    font-size: 1rem;
+  }
+  .betArea-mobile-container {
+    height: 110px !important;
+  }
+  .caritem {
+    zoom: 0.15;
+  }
+}
+/*# sourceMappingURL=all.css.map */

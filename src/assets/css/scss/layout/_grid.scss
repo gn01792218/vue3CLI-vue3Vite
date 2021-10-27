@@ -1,0 +1,82 @@
+/*-------------------------------------------
+     網格設定區
+-------------------------------------------*/
+
+.game-board
+{
+	width: 35px;
+	height: 35px;
+	display: grid;
+	grid-template: repeat(6, 1fr) / repeat(8, 1fr);
+	float: left;
+}
+
+.box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.header{
+	float: left;
+	width: 10%;
+	background-color: #1e1101;
+	border: 1px solid #654d31;
+	background-image: url(../../images/left-bg.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: relative;
+	/* height: 100vh; */
+}
+.mainGame{
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	height:95%;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+}
+.grid-item {
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(153,153,153,0.8);
+	padding: 0px;
+	text-align: center;
+}
+
+/*-------------------------------------------
+     欄目設定區
+-------------------------------------------*/
+.betArea-pc-container {
+  display: flex;
+  height: 280px;
+  padding: 0px;
+  flex-wrap: wrap;
+}
+.betArea-item {
+	position: relative;
+	cursor: pointer;
+	flex: 25%;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 2rem;
+	border: 1px solid #FFF;
+	text-align: center;
+	line-height: 1.55em;
+}
+.red{
+	color:red;
+}
+.yellow{
+	color: #FC0;
+}
+.green{
+	color: #093;
+}

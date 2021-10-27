@@ -1,12 +1,14 @@
 export const state = {
   BetRecall:{},
-  BetResetRecall:{}
+  BetResetRecall:{},
+  totalBets:0,
 };
 export const actions = {}
 
 export const mutations = {
   BetRecall(state:any, payload:any) { //接收wbSocket的訊息
-    state.BetRecall=payload
+    state.BetRecall = payload
+    state.totalBets = payload.totalBets
     console.log("vuex-BetRecall資料更新",state.BetRecall)
   },
   BetResetRecall(state:any, payload:any){
