@@ -34,7 +34,7 @@
 <script lang="ts">
 import {defineComponent,computed} from 'vue'
 import {useStore} from 'vuex'
-import Date from '@/components/Date'
+import Date from '@/components/Date.vue'
 import TotalBet from '@/components/ToTalBet.vue'
 export default defineComponent({
     components:{

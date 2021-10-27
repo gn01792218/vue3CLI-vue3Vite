@@ -44,10 +44,10 @@
         <div class="coinArea">
             <!-- <button @click="resetGame">重置遊戲</button> -->
             <!-- coin list -->
-            <div v-for="(coin,index) in coin" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
+            <div v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
-                <div v-for="coin,index in coin" :key="index">
+                <div v-for="coin,index in coinList" :key="index">
                     <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
                         <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index+1"></div>
                     </transition-group>
@@ -64,6 +64,29 @@ import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
 import TotalBet from'@/components/ToTalBet.vue'
+interface currentCoint {
+    coinElement:any | null , //選擇的籌碼div元素
+    num:number | null,  //儲存點到的是第幾個
+    point:number | null,
+    x:number, //起飛的x
+    y:number, //起飛的y
+}
+interface target {
+    x : number,
+    y : number,
+}
+interface coint {
+    point:number,
+    ammo:string[],
+}
+interface coinPosition {
+    initBottom:number,  //初始化的bottom值
+    coinArray:string[],//生籌碼的地方
+    odds:string,
+    host:string,
+    configClass:string,
+    betStatus:number //目前這一回合的下注狀況
+}
 export default defineComponent({
     components:{
         TotalBet,
@@ -84,7 +107,7 @@ export default defineComponent({
 
         })
         const roundStatus = computed(()=>{ //遊戲回合狀態
-            
+            return 1
         })
         //監聽
         watch(betStatus,()=>{
@@ -95,7 +118,7 @@ export default defineComponent({
             coinPosition[4].betStatus = betStatus.value.PlayerPair
         })
         //籌碼動畫、下注邏輯
-        const coin = reactive([  //籌碼基本資料
+        const coinList = reactive<coint[]>([  //籌碼基本資料
                     {
                     point:5,
                     ammo:[], //子彈陣列
@@ -117,18 +140,18 @@ export default defineComponent({
                     ammo:[], //子彈陣列
                     }
                 ])
-        const currentCoint = reactive({ //選擇的籌碼
-            coinElement:HTMLElement, //選擇的籌碼div元素
-            num:Number,  //儲存點到的是第幾個
-            point:Number,
-            x:Number, //起飛的x
-            y:Number, //起飛的y
+        const currentCoint = reactive<currentCoint>({ 
+            coinElement:null, //選擇的籌碼div元素
+            num:null,  //儲存點到的是第幾個
+            point:null,
+            x:0, //起飛的x
+            y:0, //起飛的y
         });  
-        const target = reactive({ //目標位置
-            x : Number,
-            y : Number,
+        const target = reactive<target>({ //目標位置
+            x : 0,
+            y : 0,
         })
-        const coinPosition = reactive([//注區
+        const coinPosition = reactive<coinPosition[]>([//注區
             {
                 initBottom:0,  //初始化的bottom值
                 coinArray:[],//生籌碼的地方
@@ -170,15 +193,15 @@ export default defineComponent({
                 betStatus:0 //目前這一回合的下注狀況
             },
         ]) 
-        function chooseCoint (index:NumberConstructor,e:any) {
+        function chooseCoint (index:number,e:MouseEvent) {
             currentCoint.coinElement = e.target; //得到該元素
             currentCoint.x = e.x;  //設置籌碼起始座標點
             currentCoint.y = e.y;
             currentCoint.num = index;
-            currentCoint.point = coin[index].point
+            currentCoint.point = coinList[index].point
         }
-        function cointAnimate (e:any) {
-             gsap
+        function cointAnimate (e:HTMLElement) {
+                gsap
             .to(e,{
                 keyframes:[
                     {
@@ -187,7 +210,7 @@ export default defineComponent({
                     {duration:0.8,
                     ease:Power4.easeIn,
                     scale:0.5,
-                    x:target.x-currentCoint.x as number,
+                    x:target.x-currentCoint.x,
                     y:target.y-currentCoint.y-50,
                     zIndex:"1",
                     },
@@ -197,7 +220,7 @@ export default defineComponent({
                 ]
             })
         }
-        function generateCoin (e) {
+        function generateCoin (e:HTMLElement) {
             gsap
             .to(e,{
                 keyframes:[
@@ -212,18 +235,23 @@ export default defineComponent({
             })
         }
         function loadCoin () {
-            coin[currentCoint.num].ammo.push(currentCoint.coinElement.className)
+            if(currentCoint.num && currentCoint.coinElement){
+                coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
+            }
         }
-        function setCoinPosition (cp,positionCoinElement) {
-            cp.coinArray.push(currentCoint.coinElement.className)
+        function setCoinPosition (cp:coinPosition,positionCoinElement:HTMLElement) {
+            if(currentCoint.coinElement){
+                 cp.coinArray.push(currentCoint.coinElement.className)
                 if(positionCoinElement.nodeName !== '#text'){
                 cp.initBottom += 5;
                 positionCoinElement.style.bottom = `${cp.initBottom}px`
             }  
+            }
         }
-        function bet (e,index) {
-             if(currentCoint.coinElement && user.value.wallet>=currentCoint.point){
-                //發送下注請求
+        function bet (e:any,index:number) {
+             if(currentCoint.coinElement && currentCoint.point){
+                 if(user.value.wallet>=currentCoint.point){
+                     //發送下注請求
                 sendBetCall({
                     gameUuid:'@13E2F345FF6p7890',
                     betIndex:currentCoint.num,
@@ -243,7 +271,9 @@ export default defineComponent({
                 }else if(betResult.value===-1){
                     alert("伺服器忙碌中，請重下")
                 }
-            }else if(user.value.wallet<currentCoint.point){
+                }
+            }else if(currentCoint.point){
+                    if(user.value.wallet<currentCoint.point)
                     alert("餘額不足")
             }else if(roundStatus.value!==1){
                 alert('非下注時間')
@@ -265,13 +295,13 @@ export default defineComponent({
                 i.betStatus = 0 
             })
             //清空籌碼飛彈槍管
-            coin.forEach(i => {
+            coinList.forEach(i => {
                 i.ammo = []
             })
         }
         return{
             //data
-            coin,currentCoint,coinPosition,betStatus,
+            coinList,currentCoint,coinPosition,betStatus,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame
         }
