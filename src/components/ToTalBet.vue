@@ -19,24 +19,29 @@ export default defineComponent({
             }
             
         })
-
-        const roundStatus = computed<number>(()=>{
-            return 0 as number
+        const roundUuid = computed<number>(()=>{
+            return store.state.game.gameUuid
         })
+        // const roundStatus = computed<number>(()=>{
+        //     return 0 as number
+        // })
         //監聽
         watch(totalBetInfo,()=>{  
             total.value = totalBetInfo.value
         })
-        //監聽回合狀態
-        watch(roundStatus,()=>{ //當回合狀態變為停止下注時total也要規0
-            switch(roundStatus.value){
-                case 1:
-                    break
-                case 2:
-                    total.value = 0
-                    break
-            }
+        watch(roundUuid,()=>{
+            total.value = 0
         })
+        // //監聽回合狀態
+        // watch(roundStatus,()=>{ //當回合狀態變為停止下注時total也要規0
+        //     switch(roundStatus.value){
+        //         case 1:
+        //             break
+        //         case 2:
+        //             total.value = 0
+        //             break
+        //     }
+        // })
         return{
             //data
             total,totalBetInfo,

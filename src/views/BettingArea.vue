@@ -42,7 +42,6 @@
         </div>
         <!-- coin -->
         <div class="coinArea">
-            <button @click="resetGame">重置遊戲</button>
             <!-- coin list -->
             <div v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
@@ -59,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, reactive, watch} from 'vue'
+import {computed, defineComponent, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
@@ -109,6 +108,8 @@ export default defineComponent({
         const roundStatus = computed(()=>{ //遊戲回合狀態
             return 1
         })
+        //基本資料
+        const test = ref(false)
         //監聽
         watch(betStatus,()=>{
             coinPosition[0].betStatus = betStatus.value.Banker
@@ -116,6 +117,9 @@ export default defineComponent({
             coinPosition[2].betStatus = betStatus.value.BankerPair
             coinPosition[3].betStatus = betStatus.value.Tie
             coinPosition[4].betStatus = betStatus.value.PlayerPair
+        })
+        watch(roundUuid,()=>{
+            resetGame()
         })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
@@ -272,6 +276,8 @@ export default defineComponent({
                 }
                 }else{
                 if(currentCoint.point && user.value.wallet < currentCoint.point){
+                    let e = document.querySelector('.test') as HTMLElement
+                    e.style.display = 'block'
                      alert("餘額不足")
                 }
                 if(roundStatus.value!==1){
@@ -301,7 +307,7 @@ export default defineComponent({
         }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,
+            coinList,currentCoint,coinPosition,betStatus,test,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame
         }
@@ -310,6 +316,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+    .alert{
+    position: absolute;
+    top:0;
+    left:0;
+    }
     .shotCoinUl{  
         .shotCoinPice{
             pointer-events: none; //使能被穿透

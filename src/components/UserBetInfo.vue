@@ -6,13 +6,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">玩家下注資訊</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2 class="modal-body">玩家下注資訊</h2>
+                    <h2 class="modal-body"></h2>
                     <ul class="userBetInfo">
                         <li>場次:{{gameUuid}}</li>
                         <li>遊戲單:</li>
@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-  
 </template>
 
 <script lang="ts">
@@ -55,6 +54,9 @@ export default defineComponent({
 </script>
 
 <style>
+.modal-header{
+    background-color:#644d31;
+}
 .modal-body{
     color:black;
     text-align: center;
