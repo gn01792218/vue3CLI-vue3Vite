@@ -1036,7 +1036,7 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     display: block;
   }
   .betArea-mobile-container {
-    height: 130px !important;
+    height: 130px;
   }
   .container-waps {
     height: auto;
@@ -1076,8 +1076,11 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
   .lightBox {
     display: block;
   }
+  .betArea-mobile {
+    height: 160px;
+  }
   .betArea-mobile-container {
-    height: 180px !important;
+    height: 160px;
   }
   .tabsArea {
     display: none;
@@ -1101,17 +1104,27 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
 @media screen and (max-width: 414px) {
   .header-btn {
     width: 26%;
-    height: 45px;
-    font-size: large;
   }
   .video-box {
-    height: 217px;
+    height: 320px;
+  }
+  .betArea {
+    height: 340px;
+  }
+  .betArea-mobile {
+    height: 240px;
+  }
+  .betArea-mobile-container {
+    height: 240px;
   }
   .betArea-item {
     font-size: 1.5rem;
   }
   .stand-mobile-container {
-    height: 187px !important;
+    height: 187px;
+  }
+  .gameHistory {
+    height: 115px;
   }
   .caritem {
     zoom: 0.15;
@@ -1119,14 +1132,8 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
 }
 
 @media screen and (max-width: 375px) {
-  .video-box {
-    height: 195px;
-  }
   .betArea-item {
-    font-size: 1rem;
-  }
-  .betArea-mobile-container {
-    height: 110px !important;
+    font-size: 1.5rem;
   }
   .caritem {
     zoom: 0.15;
