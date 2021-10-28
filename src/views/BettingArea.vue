@@ -42,14 +42,14 @@
         </div>
         <!-- coin -->
         <div class="coinArea">
-            <!-- <button @click="resetGame">重置遊戲</button> -->
+            <button @click="resetGame">重置遊戲</button>
             <!-- coin list -->
             <div v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coinList" :key="index">
                     <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
-                        <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index+1"></div>
+                        <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index"></div>
                     </transition-group>
                 </div>
             </ul>
@@ -104,7 +104,7 @@ export default defineComponent({
             return store.state.bet.BetRecall.result
         })
         const roundUuid = computed(()=>{ //遊戲回合的Uuid
-
+            return store.state.game.gameUuid
         })
         const roundStatus = computed(()=>{ //遊戲回合狀態
             return 1
@@ -141,7 +141,7 @@ export default defineComponent({
                     }
                 ])
         const currentCoint = reactive<currentCoint>({ 
-            coinElement:null, //選擇的籌碼div元素
+            coinElement:null, //選擇的籌碼元素
             num:null,  //儲存點到的是第幾個
             point:null,
             x:0, //起飛的x
@@ -200,8 +200,8 @@ export default defineComponent({
             currentCoint.num = index;
             currentCoint.point = coinList[index].point
         }
-        function cointAnimate (e:HTMLElement) {
-                gsap
+        function cointAnimate (e:any) {
+            gsap
             .to(e,{
                 keyframes:[
                     {
@@ -235,7 +235,7 @@ export default defineComponent({
             })
         }
         function loadCoin () {
-            if(currentCoint.num && currentCoint.coinElement){
+            if(currentCoint.num!==null){
                 coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
             }
         }
@@ -249,17 +249,16 @@ export default defineComponent({
             }
         }
         function bet (e:any,index:number) {
+            //使用者的$$如果變成0將不會進入判斷!!!!!
              if(currentCoint.coinElement && currentCoint.point){
                  if(user.value.wallet>=currentCoint.point){
                      //發送下注請求
-                sendBetCall({
-                    gameUuid:'@13E2F345FF6p7890',
+                    sendBetCall({
+                    gameUuid:roundUuid.value,
                     betIndex:currentCoint.num,
                     betArea:index+1,
                 })
                 if(betResult.value!==-1){
-                    //下注額度改變
-                    // totalBet.value += currentCoint.point
                     //裝子彈，就會啟動籌碼飛的動畫
                     loadCoin()  
                     let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
@@ -271,23 +270,24 @@ export default defineComponent({
                 }else if(betResult.value===-1){
                     alert("伺服器忙碌中，請重下")
                 }
+                }else{
+                if(currentCoint.point && user.value.wallet < currentCoint.point){
+                     alert("餘額不足")
                 }
-            }else if(currentCoint.point){
-                    if(user.value.wallet<currentCoint.point)
-                    alert("餘額不足")
-            }else if(roundStatus.value!==1){
-                alert('非下注時間')
+                if(roundStatus.value!==1){
+                    alert('非下注時間')
+                }
+            }
             }
         }
         function resetGame () {
             sendBetResetCall({
-                 gameUuid:'@13E2F345FF6p7890',
+                 gameUuid:roundUuid.value,
             })
-            //重置totalBet-->到時候
-            // totalBet.value = 0
             //清空選取的籌碼
             currentCoint.coinElement = null
             currentCoint.point = null
+            currentCoint.num = null
             //清空注區籌碼
             coinPosition.forEach(i => {
                 i.coinArray = []
