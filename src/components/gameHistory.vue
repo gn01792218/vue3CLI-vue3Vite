@@ -5,7 +5,7 @@
       <!--for mobil verson show poker -->
       <!-- v-if gameState is show Poker -->
       <!-- 手機版本的卡牌zoom2.24就可以了 -->
-      <div class="lightBox position-absolute d-md-none" v-if="show">
+      <div class="lightBox position-absolute" v-if="show">
         <CardInfo  class="mobilePoker"/>
       </div>
       <button class="test position-absolute" @click="showCard">秀卡牌</button>
@@ -31,6 +31,9 @@ export default defineComponent({
         const Draw = computed(()=>{
           return store.state.dealer.Draw
         })
+        const roundUuid = computed<string>(()=>{
+          return store.state.game.gameUuid
+        })
         //初始化
         onMounted(() => {
           historyUpdate()
@@ -55,10 +58,10 @@ export default defineComponent({
           //根據serve傳來的資料更新路圖
         }
         watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
-          // if(!show.value){
-          //   showCard()
-          // }
-          
+          show.value = true
+        })
+        watch(roundUuid,()=>{
+          show.value = false
         })
         function showCard(){
           console.log("切換")
@@ -80,7 +83,7 @@ export default defineComponent({
   border: 1px solid #654d31 !important;
 }
 .lightBox{
-  // display: none;
+  display: none;
   width:100%;
   height:100%;
   background-color: #654d3160;
