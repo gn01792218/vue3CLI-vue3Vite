@@ -1,7 +1,7 @@
 <template>
       <!-- BigRoad -->
     <div class="mainRoad d-flex">
-      <div class="mainRoad-column d-flex" :class="`mainRoad-column${index}`" v-for="(mc,index) in mainColumn" :key="index">
+      <div class="mainRoad-column d-flex" :class="[`mainRoad-column${index}`,{'bigRoadboundary':index===7}]" v-for="(mc,index) in mainColumn" :key="index">
         <!-- putRoad in here -->
         <div class='mainRoad-item d-flex' v-for="(mr,index) in mainRow" :key="index" :class="[`mainRoad-item${index}`]">
           <i>莊</i>
@@ -74,6 +74,7 @@ export default defineComponent({
    width:100%;
    height:16.6666666%;
    justify-content: space-around;
+   border-right: 0px;
 }
 .main-row{
   width:35%; /*調整欄寬 */
@@ -85,5 +86,8 @@ export default defineComponent({
   height:16.666666%;
   align-items: center;
   justify-content: center;
+}
+.bigRoadboundary{
+  border-right: solid 2px black;
 }
 </style>

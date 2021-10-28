@@ -4,42 +4,42 @@
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
     </div>
     <div class="sec-column position-absolute sideWidth">
-      <div class="secRoad-row" :class="[{'boundary-bottom':index===5}]" v-for="(sr,index) in secHeight" :key="index"></div>
+      <div class="secRoad-row" :class="[{'boundary-bottom':index===5 | index===8}]" v-for="(sr,index) in secHeight" :key="index"></div>
     </div>
     <!-- topRoadGrid -->
-    <div class="topRoad d-flex sideWidth position-absolute">
+    <section class="topRoad d-flex sideWidth position-absolute">
       <div class="topRoad-column" :class="[`topRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
-        <div class="tpRoad-item" :class="[`tpRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
+        <div class="tpRoad-item d-flex" :class="[`tpRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
           <i class="btn-bs">閒</i>
         </div>
       </div>
-    </div>
-    <div class="bottomRoad d-flex sideWidth position-absolute">
-       <!-- bottom1Grid -->
-      <div class="bottomRoad-w45 d-flex">
-        <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===9}]" v-for="(b1,index) in bottom1width" :key="index">
+    </section>
+    <!-- centerRoad -->
+    <section class="centerRoad d-flex sideWidth position-absolute">
+      <div class="centerRoad-colum" :class="[`centerRoad-column${index}`]" v-for="(cc,index) in secWidth" :key="index">
+        <div class="centerRoad-item" :class="[`centerRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
+          <i></i>
+        </div>
+      </div>
+    </section>
+    <section class="bottomRoad d-flex sideWidth position-absolute">
+    <!-- bottom1Grid -->
+      <div class="bottomRoad1 d-flex w-50">
+        <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===10}]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <i></i>
           </div>
         </div>
       </div>
       <!-- bottom2Grid -->
-      <div class="bottomRoad-w45 d-flex">
-        <div class="bottomRoad1-column" :class="[`bottomRoad2-column${index}`,{'boundary-right':index===9}]" v-for="(b1,index) in bottom1width" :key="index">
+      <div class="bottomRoad2 d-flex w-50">
+        <div class="bottomRoad1-column" :class="[`bottomRoad2-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <i></i>
           </div>
         </div>
       </div>
-      <!-- bottom3Grid -->
-      <div class="bottomRoad-w10 d-flex">
-        <div class="bottomRoad3-column" v-for="(b1,index) in bottom3width" :key="index">
-          <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <i></i>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
 </template>
 
 <script lang="ts">
@@ -51,9 +51,8 @@ export default defineComponent({
         const secWidth = new Array(22)
         const secHeight = new Array(12)
         const topHeight = new Array(6)
-        const bottomHeight = new Array(6)
-        const bottom1width = new Array(10)
-        const bottom3width = new Array(2)
+        const bottomHeight = new Array(3)
+        const bottom1width = new Array(11)
         //添加格子
         function pushRoad(){
           console.log("開始")
@@ -79,7 +78,7 @@ export default defineComponent({
         }
         return {
           //data
-          topHeight,secWidth,bottomHeight,secHeight,bottom1width,bottom3width,
+          topHeight,secWidth,bottomHeight,secHeight,bottom1width,
           //methods
           pushRoad,
         }
@@ -87,7 +86,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style lang="scss">
 /* 背景格子 */
 .secRoad{
   height:100%;
@@ -122,17 +121,35 @@ export default defineComponent({
 .tpRoad-item{
   /* border: blue solid 1px; */
   height:16.6666666%;
+  flex-direction: column;
+  align-items: center;
+}
+.centerRoad{
+  width:100%;
+  // border:solid red 2px;
+  height:25%;
+  right:0;
+  top:50%;
+}
+.centerRoad-colum{
+  // border:solid peru 2px;
+  width:4.5454545454%;
+  height:100%;
+}
+.centerRoad-item{
+  width:100%;
+  height:33.333333333%;
+  // border:rebeccapurple 2px solid;
 }
 .bottomRoad{
-  height:50%;
+  height:25%;
   /* border: blue solid 2px; */
   right:0;
   bottom:0;
 }
-.bottomRoad-w45{
-  width:45.4545454545%;
+.bottomRoad1,.bottomRoad2{
   height:100%;
-  /* border: solid 2px yellow; */
+  // border: solid 2px yellow;
   /* right:30%; */
 } 
 .bottomRoad-w10{
@@ -147,22 +164,18 @@ export default defineComponent({
 }
 .bottomRoad-item{
   width:100%;
-  height:16.66666666666%;
-  /* border:springgreen solid 2px; */
-}
-.bottomRoad3-column{
-  width:50%;
-  height:100%;
-  /* border:red solid 2px; */
+  height:33.333333333%;
+  // border:springgreen solid 2px;
 }
 /* 共用區 */
 .sideWidth{   /*用來統一調整sideRode佔寬比 */
   width:65%;
 }
 .boundary-bottom{
-  border-bottom:2px solid gray;
+  border-bottom:2px solid black;
 }
 .boundary-right{
-  border-right:2px solid gray;
+  border-right:2px solid black;
 }
+
 </style>
