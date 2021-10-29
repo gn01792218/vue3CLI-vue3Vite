@@ -57,7 +57,7 @@ export default defineComponent({
 
 <style>
 .mainRoad{
-  width:35%;  /*調整欄寬 */
+  width:40%;  /*調整欄寬 */
   height:100%;
   background-color: white;
 }
@@ -77,7 +77,7 @@ export default defineComponent({
    border-right: 0px;
 }
 .main-row{
-  width:35%; /*調整欄寬 */
+  width:40%; /*調整欄寬 */
   left:0;
   height:100%;
 }

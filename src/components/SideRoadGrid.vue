@@ -169,7 +169,7 @@ export default defineComponent({
 }
 /* 共用區 */
 .sideWidth{   /*用來統一調整sideRode佔寬比 */
-  width:65%;
+  width:60%;
 }
 .boundary-bottom{
   border-bottom:1px solid rgba(0, 0, 0, 0.719);

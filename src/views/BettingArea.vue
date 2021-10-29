@@ -3,7 +3,7 @@
         <!-- PC版本注區 -->
         <div class="betArea-pc">
                 <div class="betArea-pc-container">
-                    <div :class ="i.configClass" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+                    <div :class ="[i.configClass,'col-6']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
                             <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
@@ -13,7 +13,7 @@
                     </div>
                 </div>  
                 <div class="betArea-pc-container">
-                    <div :class="i.configClass" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
+                    <div :class="[i.configClass,'col-4']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
                             <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
@@ -25,8 +25,8 @@
         </div>
         <!-- mobile注區 -->
         <div class="betArea-mobile">
-            <div class="betArea-mobile-container flexs">
-                <div :class ="i.configClass" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+            <div class="betArea-mobile-container d-flex">
+                <div :class ="[i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1}]" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
                         <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
@@ -276,8 +276,6 @@ export default defineComponent({
                 }
                 }else{
                 if(currentCoint.point && user.value.wallet < currentCoint.point){
-                    let e = document.querySelector('.test') as HTMLElement
-                    e.style.display = 'block'
                      alert("餘額不足")
                 }
                 if(roundStatus.value!==1){
