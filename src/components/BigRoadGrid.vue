@@ -62,7 +62,7 @@ export default defineComponent({
   background-color: white;
 }
 .mainRoad-column{
-  border: 0.5px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0.219);
   width:12.5%;
   height: 100%;
   flex-direction: column;
@@ -70,7 +70,7 @@ export default defineComponent({
   align-items: center;
 }
 .mainRoad-row{
-   border: 0.5px solid gray;
+   border: 1px solid rgba(128, 128, 128, 0.219);
    width:100%;
    height:16.6666666%;
    justify-content: space-around;
@@ -88,6 +88,6 @@ export default defineComponent({
   justify-content: center;
 }
 .bigRoadboundary{
-  border-right: solid 2px black;
+  border-right: solid 1px rgba(0, 0, 0, 0.719);
 }
 </style>

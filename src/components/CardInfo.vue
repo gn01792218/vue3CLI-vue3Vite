@@ -34,6 +34,7 @@ export default defineComponent({
      })
      //watch
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
+     
       resetCards () //不管哪個狀態都先執行一次清除卡牌
      })
      watch(DrawCard,()=>{
@@ -49,19 +50,25 @@ export default defineComponent({
       for(let i=0 ;i<3;i++){
         cards.banker[i]=null
         cards.player[i]=null
-        let bankPoker = document.querySelector(`.bankPoker${i}`)
-        let playerPoker = document.querySelector(`.playerPoker${i}`)
-        bankPoker?.classList.remove('poker')
-        playerPoker?.classList.remove('poker')
+        let bankPoker = document.querySelectorAll(`.bankPoker${i}`)
+        let playerPoker = document.querySelectorAll(`.playerPoker${i}`)
+        bankPoker.forEach(i=>{
+          i.classList.remove('poker')
+        })
+        playerPoker.forEach(i=>{
+          i.classList.remove('poker')
+        })
+        // bankPoker?.classList.remove('poker')
+        // playerPoker?.classList.remove('poker')
       }
      }
-     function getCardPosition(position:number,cardSideClassName:string):HTMLElement | undefined{
+     function getCardPosition(position:number,cardSideClassName:string):NodeListOf<HTMLElement> | undefined{
        switch(position){  
         case 1:
         case 2:
-          return document.querySelector(`${cardSideClassName}${position}`) as HTMLElement
+          return document.querySelectorAll(`${cardSideClassName}${position}`)
         case 3:
-          return document.querySelector(`${cardSideClassName}0`) as HTMLElement
+          return document.querySelectorAll(`${cardSideClassName}0`)
        }
      }
      function showCards () { //每次開牌，伺服器就會傳一次，server給的陣列固定長度3，還沒開牌的給空值即可
@@ -70,18 +77,22 @@ export default defineComponent({
       let suit = DrawCard.value.card.suit
       let point = DrawCard.value.card.point
       let position = DrawCard.value.position
-      let cardElement:HTMLElement | undefined
+      let cardElement:NodeListOf<HTMLElement> | undefined
       switch(DrawCard.value.side){
         case 1:
-          cardElement = getCardPosition(position,'.bankPoker') as HTMLElement
+          cardElement = getCardPosition(position,'.bankPoker')
           break
         case 2:
-          cardElement = getCardPosition(position,'.playerPoker') as HTMLElement
+          cardElement = getCardPosition(position,'.playerPoker')
           break
       }
       if(cardElement){
-        cardElement.classList.add('poker')
-        cardElement.style.backgroundPosition = `-${(point-1)*uw}px -${(suit-1)*uh}px`
+        cardElement.forEach(i=>{
+          i.classList.add('poker')
+          i.style.backgroundPosition = `-${(point-1)*uw}px -${(suit-1)*uh}px`
+        })
+        // cardElement.classList.add('poker')
+        //   cardElement.style.backgroundPosition = `-${(point-1)*uw}px -${(suit-1)*uh}px`
       }
      }
     return {

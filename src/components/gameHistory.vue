@@ -5,10 +5,10 @@
       <!--for mobil verson show poker -->
       <!-- v-if gameState is show Poker -->
       <!-- 手機版本的卡牌zoom2.24就可以了 -->
-      <div class="lightBox position-absolute" v-if="show">
-        <CardInfo  class="mobilePoker"/>
+      <div class="lightBox position-absolute" v-show="show">
+        <CardInfo class="mobilePoker"/>
       </div>
-      <button class="test position-absolute" @click="showCard">秀卡牌</button>
+      <!-- <button class="test position-absolute" @click="showCard">秀卡牌</button> -->
     </div>
 </template>
 
@@ -37,6 +37,10 @@ export default defineComponent({
         //初始化
         onMounted(() => {
           historyUpdate()
+          if(screen.width>1024){
+            let lightElement = document.querySelector('.lightBox') as HTMLElement
+            lightElement.style.display = 'none'
+          }
         })
         //data
         const winer = reactive([  //存放贏家的樣式和文字
@@ -57,23 +61,24 @@ export default defineComponent({
         function historyUpdate () {
           //根據serve傳來的資料更新路圖
         }
-        watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
-          show.value = true
-        })
-        watch(roundUuid,()=>{
-          show.value = false
-        })
-        function showCard(){
-          console.log("切換")
-          show.value = !show.value
-          console.log(show.value)
+        if(screen.width<=1024){  //ipad以下版本才共用卡牌資訊
+          watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
+            show.value = true
+          })
+          watch(roundUuid,()=>{
+            show.value = false
+          })
         }
+        // function showCard(){
+        //   show.value = !show.value
+        //   console.log(show.value)
+        // }
         return {
           //data
           winer,show,
 
           //methods
-          historyUpdate,showCard
+          historyUpdate
         }
     }
 })
@@ -83,7 +88,6 @@ export default defineComponent({
   border: 1px solid #654d31 !important;
 }
 .lightBox{
-  display: none;
   width:100%;
   height:100%;
   background-color: #654d3160;

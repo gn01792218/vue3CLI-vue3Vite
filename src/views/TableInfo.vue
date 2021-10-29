@@ -5,8 +5,10 @@
             <div v-for="(tab,index) in tabArray" :key="index" @click="switchTab(tab)" :class="{onclickTab:onClickTab===tab}" >{{tab}}</div>
         </div>
         <div class="tabsArea-showItem">
-            <BetInfor v-if="onClickTab===tabArray[0]"/>
-            <CardInfo v-if="onClickTab===tabArray[1]"/>
+            <BetInfor v-show="onClickTab===tabArray[0]"/>
+            <div v-show="onClickTab===tabArray[1]"> 
+                <CardInfo />
+            </div>
         </div>
     </div>
 </template>

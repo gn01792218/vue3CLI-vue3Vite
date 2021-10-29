@@ -93,7 +93,7 @@ export default defineComponent({
   background-color: white;
 }
 .secRoad-column{
-  border: 1px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0.219);
   width:4.54545454%; /*調整欄寬 */
   height: 100%;
 }
@@ -104,7 +104,7 @@ export default defineComponent({
 .secRoad-row{
   height:8.33333333333333333%;
   width:100%;
-  border: 1px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0.219);
 }
 
 /* 放置四種路圖的格子 */
@@ -172,10 +172,10 @@ export default defineComponent({
   width:65%;
 }
 .boundary-bottom{
-  border-bottom:2px solid black;
+  border-bottom:1px solid rgba(0, 0, 0, 0.719);
 }
 .boundary-right{
-  border-right:2px solid black;
+  border-right:1px solid rgba(0, 0, 0, 0.719);
 }
 
 </style>

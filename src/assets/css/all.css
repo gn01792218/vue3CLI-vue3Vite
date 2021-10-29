@@ -1061,9 +1061,6 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     background-repeat: repeat;
     background-position: left top;
   }
-  .lightBox {
-    display: block;
-  }
   .caritem {
     zoom: 0.22;
   }
