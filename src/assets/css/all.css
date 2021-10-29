@@ -391,435 +391,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   pointer-events: none;
 }
 
-.btn-p {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 15px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #FFFFFF;
-  background-color: #0066CC;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 36px;
-  height: 36px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  padding: 8px 0px;
-}
-
-.btn-p .dots {
-  position: absolute;
-  height: 10px;
-  width: 10px;
-  color: #ffffff;
-  border-radius: 50%;
-  font-weight: 700;
-  text-align: center;
-  line-height: 10px;
-  background-color: #0066CC;
-  right: 0px;
-  border: 1px solid #FFF;
-  bottom: -1px;
-}
-
-.btn-ps {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  font-size: 12px;
-  color: #0066CC;
-  background-color: #fff;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  border: 2px solid #0066CC;
-}
-
-.btn-ps .dots {
-  position: absolute;
-  height: 8px;
-  width: 8px;
-  color: #ffffff;
-  border-radius: 50%;
-  font-weight: 700;
-  text-align: center;
-  line-height: 10px;
-  background-color: #0066CC;
-  right: -3px;
-  border: 1px solid #FFF;
-  bottom: -3px;
-}
-
-.btn-pss {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  font-size: 12px;
-  color: #FFFFFF;
-  background-color: #0066CC;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 10px;
-  height: 10px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-}
-
-.btn-p.active.focus, .btn-p.active:focus, .btn-p.focus, .btn-p:active.focus, .btn-p:active:focus, .btn-p:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-  text-decoration: none;
-  color: #fff;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-.btn-p.focus, .btn-p:focus, .btn-p:hover {
-  color: #fff;
-  text-decoration: none;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-.btn-p.active, .btn-p:active {
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-
-.btn-p.disabled, .btn-p[disabled], fieldset[disabled] .btn-p {
-  cursor: not-allowed;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  opacity: .65;
-}
-
-a.btn-p.disabled, fieldset[disabled] a.btn-p {
-  pointer-events: none;
-}
-
-.btn-b {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 15px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #FFFFFF;
-  background-color: #FF0000;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 36px;
-  height: 36px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  padding: 8px 0px;
-}
-
-.btn-b .dots {
-  position: absolute;
-  top: -1px;
-  height: 10px;
-  width: 10px;
-  color: #ffffff;
-  border-radius: 50%;
-  font-weight: 700;
-  text-align: center;
-  line-height: 10px;
-  background-color: #FF0000;
-  left: 0px;
-  border: 1px solid #FFF;
-}
-
-.btn-b.active.focus, .btn-b.active:focus, .btn-b.focus, .btn-b:active.focus, .btn-b:active:focus, .btn-b:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-  text-decoration: none;
-  color: #fff;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-.btn-b.focus, .btn-b:focus, .btn-b:hover {
-  color: #fff;
-  text-decoration: none;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-.btn-b.active, .btn-b:active {
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-
-.btn-b.disabled, .btn-b[disabled], fieldset[disabled] .btn-b {
-  cursor: not-allowed;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  opacity: .65;
-}
-
-a.btn-b.disabled, fieldset[disabled] a.btn-b {
-  pointer-events: none;
-}
-
-.btn-bs {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 12px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #FF0000;
-  background-color: #fff;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  padding-left: 0;
-  border: 2px solid #FF0000;
-}
-
-.btn-bs .dots {
-  position: absolute;
-  top: -3px;
-  height: 8px;
-  width: 8px;
-  color: #ffffff;
-  border-radius: 50%;
-  font-weight: 700;
-  text-align: center;
-  line-height: 10px;
-  background-color: #FF0000;
-  left: -2px;
-  border: 1px solid #FFF;
-}
-
-.btn-bss {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 12px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #FFFFFF;
-  background-color: #FF0000;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 10px;
-  height: 10px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  padding-left: 0;
-}
-
-.btn-c {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 15px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #FFFFFF;
-  background-color: #166d0a;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 36px;
-  height: 36px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  padding: 8px 0px;
-}
-
-.btn-cs {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 12px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #166d0a;
-  background-color: #FFFFFF;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  border: 2px solid #166d0a;
-}
-
-.btn-css {
-  display: inline-block;
-  line-height: 1.75em;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 12px;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
-  text-decoration: none;
-  color: #166d0a;
-  background-color: #FFFFFF;
-  -webkit-transition: 1s;
-  transition: 1s;
-  width: 10px;
-  height: 10px;
-  text-align: center;
-  line-height: 1.428571429;
-  border-radius: 20px;
-  margin: 1px;
-  border: 2px solid #166d0a;
-}
-
-.btn-c.active.focus, .btn-c.active:focus, .btn-c.focus, .btn-c:active.focus, .btn-c:active:focus, .btn-c:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-  text-decoration: none;
-  color: #fff;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-.btn-c.focus, .btn-c:focus, .btn-c:hover {
-  color: #fff;
-  text-decoration: none;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-.btn-c.active, .btn-c:active {
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-
-.btn-c.disabled, .btn-c[disabled], fieldset[disabled] .btn-c {
-  cursor: not-allowed;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  opacity: .65;
-}
-
-a.btn-c.disabled, fieldset[disabled] a.btn-c {
-  pointer-events: none;
-}
-
 /*-------------------------------------------
      硬幣設定區
 -------------------------------------------*/
@@ -828,7 +399,8 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
   float: left;
   height: 65px;
   width: 79px;
-  zoom: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .coin-menu1 {
@@ -879,6 +451,177 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
 .coin-menu5:hover, .coin-menu5-current {
   background-image: url("../../images/coin.png");
   background-position: -316px -65px;
+}
+
+.bankerRoadIcon0 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: 0px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon1 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -100px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon2 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -200px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon3 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -300px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon4 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -400px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon5 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -500px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon6 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -600px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon7 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -700px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.bankerRoadIcon8 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -800px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon0 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -900px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon1 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1000px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon2 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1100px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon3 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1200px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon4 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1300px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon5 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1400px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon6 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1500px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon7 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1600px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.playerRoadIcon8 {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1700px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
+}
+
+.tieRoadIcon {
+  background-image: url("../../images/road-sprite.png");
+  background-position: -1800px 0px;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  zoom: 0.45;
 }
 
 /*-------------------------------------------
@@ -998,7 +741,8 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     height: 280px;
   }
   .coin {
-    zoom: 1.7;
+    -webkit-transform: scale(1.7);
+            transform: scale(1.7);
   }
   .betArea-item {
     font-size: 2.5rem;
@@ -1055,7 +799,8 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     font-size: 2rem;
   }
   .coin {
-    zoom: 1.2;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 }
 
@@ -1089,7 +834,8 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
             flex: auto;
   }
   .coin {
-    zoom: 0.9;
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
   }
   .ammo5 {
     left: -200px !important;
@@ -1121,6 +867,9 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     font-size: 2.6rem;
     top: 2px;
   }
+  .btn-p {
+    zoom: 0.15;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -1137,7 +886,8 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     height: 179px;
   }
   .coin {
-    zoom: 0.8;
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
   }
   .caritem {
     zoom: 0.15;

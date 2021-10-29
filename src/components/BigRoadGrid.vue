@@ -4,7 +4,6 @@
       <div class="mainRoad-column d-flex" :class="[`mainRoad-column${index}`,{'bigRoadboundary':index===7}]" v-for="(mc,index) in mainColumn" :key="index">
         <!-- putRoad in here -->
         <div class='mainRoad-item d-flex' v-for="(mr,index) in mainRow" :key="index" :class="[`mainRoad-item${index}`]">
-          <i>莊</i>
         </div>
       </div>
     </div>
@@ -40,7 +39,7 @@ export default defineComponent({
               count = 0
             }else if(columnCount>6 && count>5){clearInterval(timer)}
             let element = document.querySelector(`.mainRoad-column${columnCount}`)
-            element.children[count].children[0].classList.add('btn-c')   //0 1 2 3 4 5
+            element.children[count].classList.add('tieRoadIcon')   //0 1 2 3 4 5
             count++  //1 2 3 4 5 6
           },1000)
         }

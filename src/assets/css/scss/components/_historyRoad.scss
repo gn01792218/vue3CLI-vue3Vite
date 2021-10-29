@@ -1,0 +1,73 @@
+//路圖圖示區
+@mixin hisRoadSpritePosition($x,$y){
+	background-image:$historyRoad-spriteImg;
+	background-position: $x $y;
+    cursor: pointer;
+    width:100px;
+    height:100px;
+    zoom:0.45;
+    // transform:scale(0.45);
+    // -moz-transform: scale(0.45);　　 
+    // -ms-transform: scale(0.45);　　　　
+    //  -o-transform: scale(0.45);　　 
+}
+
+.bankerRoadIcon0{
+    @include hisRoadSpritePosition(0px,0px);
+}
+.bankerRoadIcon1{
+    @include hisRoadSpritePosition(-100px,0px);
+}
+.bankerRoadIcon2{
+    @include hisRoadSpritePosition(-200px,0px);
+}
+.bankerRoadIcon3{
+    @include hisRoadSpritePosition(-300px,0px);
+}
+.bankerRoadIcon4{
+    @include hisRoadSpritePosition(-400px,0px);
+}
+.bankerRoadIcon5{
+    @include hisRoadSpritePosition(-500px,0px);
+}
+.bankerRoadIcon6{
+    @include hisRoadSpritePosition(-600px,0px);
+}
+.bankerRoadIcon7{
+    @include hisRoadSpritePosition(-700px,0px);
+}
+.bankerRoadIcon8{
+    @include hisRoadSpritePosition(-800px,0px);
+}
+
+.playerRoadIcon0{
+    @include hisRoadSpritePosition(-900px,0px);
+}
+.playerRoadIcon1{
+    @include hisRoadSpritePosition(-1000px,0px);
+}
+.playerRoadIcon2{
+    @include hisRoadSpritePosition(-1100px,0px);
+}
+
+.playerRoadIcon3{
+    @include hisRoadSpritePosition(-1200px,0px);
+}
+.playerRoadIcon4{
+    @include hisRoadSpritePosition(-1300px,0px);
+}
+.playerRoadIcon5{
+    @include hisRoadSpritePosition(-1400px,0px);
+}
+.playerRoadIcon6{
+    @include hisRoadSpritePosition(-1500px,0px);
+}
+.playerRoadIcon7{
+    @include hisRoadSpritePosition(-1600px,0px);
+}
+.playerRoadIcon8{
+    @include hisRoadSpritePosition(-1700px,0px);
+}
+.tieRoadIcon{
+    @include hisRoadSpritePosition(-1800px,0px);
+}

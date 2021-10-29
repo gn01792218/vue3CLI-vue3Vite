@@ -4,8 +4,10 @@
 $betArea_yellow:#ffd236;
 $betArea_red:#bd0505;
 
+//注意這裡的路徑要放引用的SCSS檔案的相對路徑
 //網站圖片
 $body-bg-img:url('../../images/body-bg.png');
 //coin序列圖
 $coin-spriteImg:url('../../images/coin.png');
-
+//路圖序列圖
+$historyRoad-spriteImg:url('../../images/road-sprite.png')
