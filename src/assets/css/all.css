@@ -176,7 +176,15 @@ img {
 }
 
 .coinArea {
-  float: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   background-color: #1e1e1e;
   border: 0px solid #333;
@@ -820,7 +828,7 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
   float: left;
   height: 65px;
   width: 79px;
-  zoom: 0.8;
+  zoom: 1;
 }
 
 .coin-menu1 {
@@ -990,7 +998,7 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
     height: 280px;
   }
   .coin {
-    zoom: 1.5;
+    zoom: 1.7;
   }
   .betArea-item {
     font-size: 2.5rem;
@@ -1082,6 +1090,18 @@ a.btn-c.disabled, fieldset[disabled] a.btn-c {
   }
   .coin {
     zoom: 0.9;
+  }
+  .ammo5 {
+    left: -200px !important;
+  }
+  .ammo10 {
+    left: -120px !important;
+  }
+  .ammo100 {
+    left: 50px !important;
+  }
+  .ammo500 {
+    left: 120px !important;
   }
   .stand-mobile-container {
     height: 187px;

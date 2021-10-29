@@ -96,11 +96,9 @@
 		width: 100%;
 		height:560px;
 	}
-	
 	.mainGame{
 		width: 100%;
 	}	
-	
 	.betArea{
 		border: 2px solid #262626;
 		width: 100%;
@@ -116,7 +114,7 @@
 		height:280px;
 	}
 	.coin{
-		zoom:1.5;
+		zoom:1.7;
 	}
 	.betArea-item {
 		font-size: 2.5rem;
@@ -203,6 +201,18 @@
 		.coin{
 			zoom:0.9;
 		}
+		.ammo5{
+            left:-200px !important;
+        }
+        .ammo10{
+            left:-120px !important;
+        }
+        .ammo100{
+            left:50px !important;
+        }
+        .ammo500{
+           left:120px !important;
+        }
 		.stand-mobile-container{
 			height:187px;
 		}

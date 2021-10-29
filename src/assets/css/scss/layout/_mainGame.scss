@@ -17,7 +17,7 @@
 
 //3.下注區
 .coinArea{
-	float: left;
+	@include flex-x-spaceEvenly-y-center ;
 	width: 100%;
 	background-color: #1e1e1e;
 	border: 0px solid #333;

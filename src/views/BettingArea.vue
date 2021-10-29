@@ -326,19 +326,19 @@ export default defineComponent({
             top:-25px;
         }
         .ammo5{
-            left:10px;
+            left:-300px;
         }
         .ammo10{
-            left:85px;
+            left:-150px;
         }
         .ammo50{
-            left:165px;
+            left:-50px;
         }
         .ammo100{
-            left:247px;
+            left:100px;
         }
         .ammo500{
-           left:330px;
+           left:220px;
         }
     }
     .coinPosition{
