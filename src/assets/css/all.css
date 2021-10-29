@@ -65,20 +65,6 @@ img {
   height: 95%;
 }
 
-.container-wap {
-  width: 96%;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1280px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
 .container-waps {
   float: left;
   width: 100%;
@@ -95,32 +81,6 @@ img {
 }
 
 /*-------------------------------------------
-     網格設定區
--------------------------------------------*/
-.game-board {
-  width: 35px;
-  height: 35px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: (1fr)[6];
-  -ms-grid-columns: (1fr)[8];
-      grid-template: repeat(6, 1fr)/repeat(8, 1fr);
-  float: left;
-}
-
-.box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-/*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
 .header {
@@ -132,7 +92,6 @@ img {
   background-repeat: no-repeat;
   background-position: left top;
   position: relative;
-  /* height: 100vh; */
 }
 
 .mainGame {
@@ -145,20 +104,6 @@ img {
   height: 95%;
 }
 
-.grid-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-      grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-}
-
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(153, 153, 153, 0.8);
-  padding: 0px;
-  text-align: center;
-}
-
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
@@ -166,10 +111,10 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 280px;
-  padding: 0px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  height: 280px;
+  padding: 0px;
 }
 
 .betArea-item {
@@ -342,7 +287,6 @@ img {
   padding-bottom: 10px;
   color: #d2c0a8;
   line-height: 1.55em;
-  /* height:5%; */
 }
 
 .footer-item {

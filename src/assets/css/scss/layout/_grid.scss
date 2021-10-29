@@ -1,21 +1,3 @@
-/*-------------------------------------------
-     網格設定區
--------------------------------------------*/
-
-.game-board
-{
-	width: 35px;
-	height: 35px;
-	display: grid;
-	grid-template: repeat(6, 1fr) / repeat(8, 1fr);
-	float: left;
-}
-
-.box{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 
 /*-------------------------------------------
      欄目設定區
@@ -29,33 +11,19 @@
 	background-repeat: no-repeat;
 	background-position: left top;
 	position: relative;
-	/* height: 100vh; */
 }
 .mainGame{
-	display: flex;
-	flex-wrap: wrap;
+	@include flex-wrap;
 	width: 90%;
 	height:95%;
 }
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-}
-.grid-item {
-	background-color: rgba(255, 255, 255, 0.8);
-	border: 1px solid rgba(153,153,153,0.8);
-	padding: 0px;
-	text-align: center;
-}
-
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
 .betArea-pc-container {
-  display: flex;
+  @include flex-wrap;
   height: 280px;
   padding: 0px;
-  flex-wrap: wrap;
 }
 .betArea-item {
 	position: relative;

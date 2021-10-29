@@ -10,23 +10,12 @@
 	width:90%;
 	height:95%;
 }
-.container-wap{
-	width: 96%;
-	margin-right: auto;
-	margin-left: auto;
-	max-width: 1280px;
-	display: flex;
-  	flex-wrap: wrap;
-  	justify-content: space-around;
-
-}
 .container-waps{
 	float: left;
 	width: 100%;
 	background-color: #000000;
 	border: 1px solid #362903;
-	display: flex;
-	flex-wrap: wrap;
+	@include flex-wrap;
 	justify-content: space-around;
 	height: 100vh;
 }	
