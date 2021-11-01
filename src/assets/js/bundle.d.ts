@@ -1464,6 +1464,186 @@ export namespace foundation {
         public toJSON(): { [k: string]: any };
     }
 
+    /** Properties of a HeartbeatPing. */
+    interface IHeartbeatPing {
+
+        /** HeartbeatPing header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a HeartbeatPing. */
+    class HeartbeatPing implements IHeartbeatPing {
+
+        /**
+         * Constructs a new HeartbeatPing.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: foundation.IHeartbeatPing);
+
+        /** HeartbeatPing header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new HeartbeatPing instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns HeartbeatPing instance
+         */
+        public static create(properties?: foundation.IHeartbeatPing): foundation.HeartbeatPing;
+
+        /**
+         * Encodes the specified HeartbeatPing message. Does not implicitly {@link foundation.HeartbeatPing.verify|verify} messages.
+         * @param message HeartbeatPing message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: foundation.IHeartbeatPing, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified HeartbeatPing message, length delimited. Does not implicitly {@link foundation.HeartbeatPing.verify|verify} messages.
+         * @param message HeartbeatPing message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: foundation.IHeartbeatPing, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a HeartbeatPing message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns HeartbeatPing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): foundation.HeartbeatPing;
+
+        /**
+         * Decodes a HeartbeatPing message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns HeartbeatPing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): foundation.HeartbeatPing;
+
+        /**
+         * Verifies a HeartbeatPing message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a HeartbeatPing message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns HeartbeatPing
+         */
+        public static fromObject(object: { [k: string]: any }): foundation.HeartbeatPing;
+
+        /**
+         * Creates a plain object from a HeartbeatPing message. Also converts values to other types if specified.
+         * @param message HeartbeatPing
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: foundation.HeartbeatPing, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this HeartbeatPing to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a HeartbeatPong. */
+    interface IHeartbeatPong {
+
+        /** HeartbeatPong header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a HeartbeatPong. */
+    class HeartbeatPong implements IHeartbeatPong {
+
+        /**
+         * Constructs a new HeartbeatPong.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: foundation.IHeartbeatPong);
+
+        /** HeartbeatPong header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new HeartbeatPong instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns HeartbeatPong instance
+         */
+        public static create(properties?: foundation.IHeartbeatPong): foundation.HeartbeatPong;
+
+        /**
+         * Encodes the specified HeartbeatPong message. Does not implicitly {@link foundation.HeartbeatPong.verify|verify} messages.
+         * @param message HeartbeatPong message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: foundation.IHeartbeatPong, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified HeartbeatPong message, length delimited. Does not implicitly {@link foundation.HeartbeatPong.verify|verify} messages.
+         * @param message HeartbeatPong message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: foundation.IHeartbeatPong, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a HeartbeatPong message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns HeartbeatPong
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): foundation.HeartbeatPong;
+
+        /**
+         * Decodes a HeartbeatPong message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns HeartbeatPong
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): foundation.HeartbeatPong;
+
+        /**
+         * Verifies a HeartbeatPong message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a HeartbeatPong message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns HeartbeatPong
+         */
+        public static fromObject(object: { [k: string]: any }): foundation.HeartbeatPong;
+
+        /**
+         * Creates a plain object from a HeartbeatPong message. Also converts values to other types if specified.
+         * @param message HeartbeatPong
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: foundation.HeartbeatPong, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this HeartbeatPong to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a Message. */
     interface IMessage {
 
@@ -1974,7 +2154,9 @@ export namespace route {
         BroadcastGameResult = 13,
         BetRoundStart = 14,
         BetRoundEnd = 15,
-        BetRoundCountdown = 16
+        BetRoundCountdown = 16,
+        HeartbeatPing = 17,
+        HeartbeatPong = 18
     }
 }
 

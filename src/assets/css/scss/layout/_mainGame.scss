@@ -70,7 +70,6 @@
 	background: -webkit-linear-gradient(top,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  rgba(56,56,56,0.65) 1%,rgba(55,55,55,0.65) 3%,rgba(52,52,52,0) 9%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6383838', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-
 }
 .tabsArea-showItem{
 	height: 250px;
@@ -78,7 +77,6 @@
 //卡牌區
 .card-container{
     pointer-events: none; //使能被穿透
-    // margin-top:-30px;
   }    
   .card-box{ //測試用，完成可以消除
     // border:yellow 1px solid;

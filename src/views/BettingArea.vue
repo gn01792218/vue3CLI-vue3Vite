@@ -43,7 +43,7 @@
         <!-- coin -->
         <div class="coinArea">
             <!-- coin list -->
-            <div v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'','coin']" @click="chooseCoint(index,$event)"></div>
+            <div v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coinList" :key="index">

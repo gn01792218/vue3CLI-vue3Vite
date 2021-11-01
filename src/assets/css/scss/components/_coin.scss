@@ -1,46 +1,40 @@
-
-@mixin coinSpritePosition($x,$y){
-	background-image:$coin-spriteImg;
-	background-position: $x $y;
-}
-
-/*-------------------------------------------
-     硬幣設定區
--------------------------------------------*/
-.coin{
-	cursor: pointer;
-	float: left;
-	height: 65px;
-	width: 79px;
-	transform: scale(1);
-}
 .coin-menu1{
-	@include coinSpritePosition(0px,0px)
+	@extend %coin;
+	@include coinSpritePosition(0,0,1)
 }
 .coin-menu1:hover,.coin-menu1-current{
-	@include coinSpritePosition(0px,-65px)
+	@extend %coin;
+	@include coinSpritePosition(0,-65,1)
 }
 .coin-menu2{
-	@include coinSpritePosition(-79px,0px)
+	@extend %coin;
+	@include coinSpritePosition(-79,0,1)
 }
 .coin-menu2:hover,.coin-menu2-current{
-	@include coinSpritePosition(-79px,-65px)
+	@extend %coin;
+	@include coinSpritePosition(-79,-65,1)
 }
 .coin-menu3{
-	@include coinSpritePosition(-158px,0px)
+	@extend %coin;
+	@include coinSpritePosition(-158,0,1)
 }
 .coin-menu3:hover,.coin-menu3-current{
-	@include coinSpritePosition(-158px,-65px)
+	@extend %coin;
+	@include coinSpritePosition(-158,-65,1)
 }
 .coin-menu4{
-	@include coinSpritePosition(-237px,0px)
+	@extend %coin;
+	@include coinSpritePosition(-237,0,1)
 }
 .coin-menu4:hover,.coin-menu4-current{
-	@include coinSpritePosition(-237px,-65px)
+	@extend %coin;
+	@include coinSpritePosition(-237,-65,1)
 }
 .coin-menu5{
-	@include coinSpritePosition(-316px,0px)
+	@extend %coin;
+	@include coinSpritePosition(-316,0,1)
 }
 .coin-menu5:hover,.coin-menu5-current{
-	@include coinSpritePosition(-316px,-65px)
+	@extend %coin;
+	@include coinSpritePosition(-316,-65,1)
 }

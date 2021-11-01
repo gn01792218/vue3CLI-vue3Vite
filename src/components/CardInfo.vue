@@ -91,8 +91,6 @@ export default defineComponent({
           i.classList.add('poker')
           i.style.backgroundPosition = `-${(point-1)*uw}px -${(suit-1)*uh}px`
         })
-        // cardElement.classList.add('poker')
-        //   cardElement.style.backgroundPosition = `-${(point-1)*uw}px -${(suit-1)*uh}px`
       }
      }
     return {
@@ -104,7 +102,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss">
-
-</style>

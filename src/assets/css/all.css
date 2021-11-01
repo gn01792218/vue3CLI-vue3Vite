@@ -1,4 +1,14 @@
 @charset "UTF-8";
+.bankerRoadIcon0, .bankerRoadIcon1, .bankerRoadIcon2, .bankerRoadIcon3, .bankerRoadIcon4, .bankerRoadIcon5, .bankerRoadIcon6, .bankerRoadIcon7, .bankerRoadIcon8, .playerRoadIcon0, .playerRoadIcon1, .playerRoadIcon2, .playerRoadIcon3, .playerRoadIcon4, .playerRoadIcon5, .playerRoadIcon6, .playerRoadIcon7, .playerRoadIcon8, .tieRoadIcon {
+  cursor: pointer;
+  background-image: url("../../images/road-sprite.png");
+}
+
+.coin-menu1, .coin-menu1:hover, .coin-menu1-current, .coin-menu2, .coin-menu2:hover, .coin-menu2-current, .coin-menu3, .coin-menu3:hover, .coin-menu3-current, .coin-menu4, .coin-menu4:hover, .coin-menu4-current, .coin-menu5, .coin-menu5:hover, .coin-menu5-current {
+  background-image: url("../../images/coin.png");
+  cursor: pointer;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -42,8 +52,7 @@ img {
   line-height: 2em;
 }
 
-.font
-.font-total {
+.font .font-total {
   color: #fff;
   float: left;
   width: 100%;
@@ -391,237 +400,213 @@ a.btn.disabled, fieldset[disabled] a.btn {
   pointer-events: none;
 }
 
-/*-------------------------------------------
-     硬幣設定區
--------------------------------------------*/
-.coin {
-  cursor: pointer;
-  float: left;
-  height: 65px;
-  width: 79px;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-
 .coin-menu1 {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: 0px 0px;
+  background-size: 395px 195px;
 }
 
 .coin-menu1:hover, .coin-menu1-current {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: 0px -65px;
+  background-size: 395px 195px;
 }
 
 .coin-menu2 {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -79px 0px;
+  background-size: 395px 195px;
 }
 
 .coin-menu2:hover, .coin-menu2-current {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -79px -65px;
+  background-size: 395px 195px;
 }
 
 .coin-menu3 {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -158px 0px;
+  background-size: 395px 195px;
 }
 
 .coin-menu3:hover, .coin-menu3-current {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -158px -65px;
+  background-size: 395px 195px;
 }
 
 .coin-menu4 {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -237px 0px;
+  background-size: 395px 195px;
 }
 
 .coin-menu4:hover, .coin-menu4-current {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -237px -65px;
+  background-size: 395px 195px;
 }
 
 .coin-menu5 {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -316px 0px;
+  background-size: 395px 195px;
 }
 
 .coin-menu5:hover, .coin-menu5-current {
-  background-image: url("../../images/coin.png");
+  width: 79px;
+  height: 65px;
   background-position: -316px -65px;
+  background-size: 395px 195px;
 }
 
 .bankerRoadIcon0 {
-  background-image: url("../../images/road-sprite.png");
+  width: 45px;
+  height: 45px;
   background-position: 0px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon1 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -100px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -45px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon2 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -200px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -90px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon3 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -300px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -135px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon4 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -400px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -180px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon5 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -500px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -225px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon6 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -600px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -270px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon7 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -700px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -315px 0px;
+  background-size: 855px auto;
 }
 
 .bankerRoadIcon8 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -800px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -360px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon0 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -900px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -405px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon1 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1000px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -450px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon2 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1100px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -495px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon3 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1200px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -540px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon4 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1300px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -585px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon5 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1400px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -630px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon6 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1500px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -675px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon7 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1600px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -720px 0px;
+  background-size: 855px auto;
 }
 
 .playerRoadIcon8 {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1700px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -765px 0px;
+  background-size: 855px auto;
 }
 
 .tieRoadIcon {
-  background-image: url("../../images/road-sprite.png");
-  background-position: -1800px 0px;
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  zoom: 0.45;
+  width: 45px;
+  height: 45px;
+  background-position: -810px 0px;
+  background-size: 855px auto;
+}
+
+.LoadingPage {
+  background-image: url("../../images/loading.svg");
+  background-color: #644d31;
+  text-align: center;
 }
 
 /*-------------------------------------------
@@ -740,9 +725,65 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-mobile-container {
     height: 280px;
   }
-  .coin {
-    -webkit-transform: scale(1.7);
-            transform: scale(1.7);
+  .coin-menu1 {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: 0px 0px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu1:hover, .coin-menu1-current {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: 0px -110.5px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu2 {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -134.3px 0px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu2:hover, .coin-menu2-current {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -134.3px -110.5px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu3 {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -268.6px 0px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu3:hover, .coin-menu3-current {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -268.6px -110.5px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu4 {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -402.9px 0px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu4:hover, .coin-menu4-current {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -402.9px -110.5px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu5 {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -537.2px 0px;
+    background-size: 671.5px 331.5px;
+  }
+  .coin-menu5:hover, .coin-menu5-current {
+    width: 134.3px;
+    height: 110.5px;
+    background-position: -537.2px -110.5px;
+    background-size: 671.5px 331.5px;
   }
   .betArea-item {
     font-size: 2.5rem;
@@ -762,6 +803,120 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .tabsArea {
     display: none;
+  }
+  .bankerRoadIcon0 {
+    width: 35px;
+    height: 35px;
+    background-position: 0px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon1 {
+    width: 35px;
+    height: 35px;
+    background-position: -35px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon2 {
+    width: 35px;
+    height: 35px;
+    background-position: -70px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon3 {
+    width: 35px;
+    height: 35px;
+    background-position: -105px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon4 {
+    width: 35px;
+    height: 35px;
+    background-position: -140px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon5 {
+    width: 35px;
+    height: 35px;
+    background-position: -175px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon6 {
+    width: 35px;
+    height: 35px;
+    background-position: -210px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon7 {
+    width: 35px;
+    height: 35px;
+    background-position: -245px 0px;
+    background-size: 665px auto;
+  }
+  .bankerRoadIcon8 {
+    width: 35px;
+    height: 35px;
+    background-position: -280px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon0 {
+    width: 35px;
+    height: 35px;
+    background-position: -315px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon1 {
+    width: 35px;
+    height: 35px;
+    background-position: -350px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon2 {
+    width: 35px;
+    height: 35px;
+    background-position: -385px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon3 {
+    width: 35px;
+    height: 35px;
+    background-position: -420px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon4 {
+    width: 35px;
+    height: 35px;
+    background-position: -455px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon5 {
+    width: 35px;
+    height: 35px;
+    background-position: -490px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon6 {
+    width: 35px;
+    height: 35px;
+    background-position: -525px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon7 {
+    width: 35px;
+    height: 35px;
+    background-position: -560px 0px;
+    background-size: 665px auto;
+  }
+  .playerRoadIcon8 {
+    width: 35px;
+    height: 35px;
+    background-position: -595px 0px;
+    background-size: 665px auto;
+  }
+  .tieRoadIcon {
+    width: 35px;
+    height: 35px;
+    background-position: -630px 0px;
+    background-size: 665px auto;
   }
 }
 
@@ -798,9 +953,119 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item {
     font-size: 2rem;
   }
-  .coin {
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
+  .bankerRoadIcon0 {
+    width: 30px;
+    height: 30px;
+    background-position: 0px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon1 {
+    width: 30px;
+    height: 30px;
+    background-position: -30px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon2 {
+    width: 30px;
+    height: 30px;
+    background-position: -60px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon3 {
+    width: 30px;
+    height: 30px;
+    background-position: -90px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon4 {
+    width: 30px;
+    height: 30px;
+    background-position: -120px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon5 {
+    width: 30px;
+    height: 30px;
+    background-position: -150px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon6 {
+    width: 30px;
+    height: 30px;
+    background-position: -180px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon7 {
+    width: 30px;
+    height: 30px;
+    background-position: -210px 0px;
+    background-size: 570px auto;
+  }
+  .bankerRoadIcon8 {
+    width: 30px;
+    height: 30px;
+    background-position: -240px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon0 {
+    width: 30px;
+    height: 30px;
+    background-position: -270px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon1 {
+    width: 30px;
+    height: 30px;
+    background-position: -300px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon2 {
+    width: 30px;
+    height: 30px;
+    background-position: -330px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon3 {
+    width: 30px;
+    height: 30px;
+    background-position: -360px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon4 {
+    width: 30px;
+    height: 30px;
+    background-position: -390px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon5 {
+    width: 30px;
+    height: 30px;
+    background-position: -420px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon6 {
+    width: 30px;
+    height: 30px;
+    background-position: -450px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon7 {
+    width: 30px;
+    height: 30px;
+    background-position: -480px 0px;
+    background-size: 570px auto;
+  }
+  .playerRoadIcon8 {
+    width: 30px;
+    height: 30px;
+    background-position: -510px 0px;
+    background-size: 570px auto;
+  }
+  .tieRoadIcon {
+    width: 30px;
+    height: 30px;
+    background-position: -540px 0px;
+    background-size: 570px auto;
   }
 }
 
@@ -833,9 +1098,65 @@ a.btn.disabled, fieldset[disabled] a.btn {
         -ms-flex: auto;
             flex: auto;
   }
-  .coin {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+  .coin-menu1 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: 0px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu1:hover, .coin-menu1-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: 0px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu2 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -71.1px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu2:hover, .coin-menu2-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -71.1px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu3 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -142.2px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu3:hover, .coin-menu3-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -142.2px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu4 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -213.3px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu4:hover, .coin-menu4-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -213.3px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu5 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -284.4px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu5:hover, .coin-menu5-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -284.4px -58.5px;
+    background-size: 355.5px 175.5px;
   }
   .ammo5 {
     left: -200px !important;
@@ -867,8 +1188,119 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 2.6rem;
     top: 2px;
   }
-  .btn-p {
-    zoom: 0.15;
+  .bankerRoadIcon0 {
+    width: 15px;
+    height: 15px;
+    background-position: 0px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon1 {
+    width: 15px;
+    height: 15px;
+    background-position: -15px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon2 {
+    width: 15px;
+    height: 15px;
+    background-position: -30px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon3 {
+    width: 15px;
+    height: 15px;
+    background-position: -45px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon4 {
+    width: 15px;
+    height: 15px;
+    background-position: -60px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon5 {
+    width: 15px;
+    height: 15px;
+    background-position: -75px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon6 {
+    width: 15px;
+    height: 15px;
+    background-position: -90px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon7 {
+    width: 15px;
+    height: 15px;
+    background-position: -105px 0px;
+    background-size: 285px auto;
+  }
+  .bankerRoadIcon8 {
+    width: 15px;
+    height: 15px;
+    background-position: -120px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon0 {
+    width: 15px;
+    height: 15px;
+    background-position: -135px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon1 {
+    width: 15px;
+    height: 15px;
+    background-position: -150px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon2 {
+    width: 15px;
+    height: 15px;
+    background-position: -165px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon3 {
+    width: 15px;
+    height: 15px;
+    background-position: -180px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon4 {
+    width: 15px;
+    height: 15px;
+    background-position: -195px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon5 {
+    width: 15px;
+    height: 15px;
+    background-position: -210px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon6 {
+    width: 15px;
+    height: 15px;
+    background-position: -225px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon7 {
+    width: 15px;
+    height: 15px;
+    background-position: -240px 0px;
+    background-size: 285px auto;
+  }
+  .playerRoadIcon8 {
+    width: 15px;
+    height: 15px;
+    background-position: -255px 0px;
+    background-size: 285px auto;
+  }
+  .tieRoadIcon {
+    width: 15px;
+    height: 15px;
+    background-position: -270px 0px;
+    background-size: 285px auto;
   }
 }
 
@@ -884,10 +1316,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-mobile-container {
     height: 179px;
-  }
-  .coin {
-    -webkit-transform: scale(0.8);
-            transform: scale(0.8);
   }
   .caritem {
     zoom: 0.15;

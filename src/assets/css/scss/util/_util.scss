@@ -7,3 +7,38 @@
     justify-content: space-evenly;
     align-items: center;
 }
+
+@mixin hisRoadSpritePosition($x,$y,$scale){
+    $WIDTH:(100*$scale);
+    $HEIGHT:(100*$scale);
+    $POSITIONX:($x*$scale);
+    $POSITIONY:($y*$scale);
+    $BGSIZEX:(1900*$WIDTH/100);
+    width:$WIDTH+px;
+    height:$HEIGHT+px;
+	background-position: $POSITIONX+px $POSITIONY+px;
+    background-size: $BGSIZEX+px auto;
+}
+
+
+@mixin coinSpritePosition($x,$y,$scale){
+    $WIDTH:(79*$scale);
+    $HEIGHT:(65*$scale);
+    $POSITIONX:($x*$scale);
+    $POSITIONY:($y*$scale);
+    $BGSIZEX:(395*$WIDTH/79);
+    $BGSIZEY:(195*$HEIGHT/65);
+    width:$WIDTH+px;
+    height:$HEIGHT+px;
+	background-position: $POSITIONX+px $POSITIONY+px;
+    background-size: $BGSIZEX+px $BGSIZEY+px;
+}
+
+%hisRoad{
+    cursor: pointer;
+    background-image:$historyRoad-spriteImg;
+}
+%coin{
+    background-image:$coin-spriteImg;
+    cursor: pointer;
+}

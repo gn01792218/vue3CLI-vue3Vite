@@ -2,6 +2,7 @@
 import {sendWSPush} from "./webSocket"
 import protoRoot from '@/assets/js/bundle'
 import store from './store' //在元件之外要使用store，不能用useStore
+import router from "./router"
 //proto型態
 const foundation = protoRoot.foundation
 const route = protoRoot.route.URI
@@ -12,6 +13,17 @@ const bet = protoRoot.bet
 const dealer = protoRoot.dealer
 const game = protoRoot.game
 //各種send方法
+//發送心跳
+const sendPon = ()=>{
+    let proto = foundation.HeartbeatPong.create({
+        header:foundation.Header.create({
+            uri:route.HeartbeatPong
+        })
+    })
+    let bytes = foundation.HeartbeatPong.encode(proto).finish()
+    console.log("sendPon",proto)
+    sendWSPush(bytes)
+}
 //發送登入訊息
 export const sendLogin =(data:any) => {
     let proto = auth.LoginCall.create({
@@ -62,13 +74,17 @@ export const sendBetResetCall = (data:any) => {
     console.log("sendBetResetCall",proto)
     sendWSPush(bytes);
 }
-//發送...
+
 
 
 //各種接收訊息的方法，在main.js中全局註冊監聽
 export const getMsgReCall = (e:any) =>{
     let header = foundation.Message.decode(new Uint8Array(e.detail.msg.data)).header
     switch(header?.uri){
+        case route.HeartbeatPing:
+            console.log("接收ping")
+            sendPon()
+            break
         case route.LoginRecall:
             let loginRecall = auth.LoginRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('LoginRecall',loginRecall)

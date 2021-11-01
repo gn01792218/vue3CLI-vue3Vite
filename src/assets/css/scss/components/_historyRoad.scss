@@ -1,73 +1,79 @@
 //路圖圖示區
-@mixin hisRoadSpritePosition($x,$y){
-	background-image:$historyRoad-spriteImg;
-	background-position: $x $y;
-    cursor: pointer;
-    width:100px;
-    height:100px;
-    zoom:0.45;
-    // transform:scale(0.45);
-    // -moz-transform: scale(0.45);　　 
-    // -ms-transform: scale(0.45);　　　　
-    //  -o-transform: scale(0.45);　　 
-}
-
 .bankerRoadIcon0{
-    @include hisRoadSpritePosition(0px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(0,0,0.45);
 }
 .bankerRoadIcon1{
-    @include hisRoadSpritePosition(-100px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-100,0,0.45);
 }
 .bankerRoadIcon2{
-    @include hisRoadSpritePosition(-200px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-200,0,0.45);
 }
 .bankerRoadIcon3{
-    @include hisRoadSpritePosition(-300px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-300,0,0.45);
 }
 .bankerRoadIcon4{
-    @include hisRoadSpritePosition(-400px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-400,0,0.45);
 }
 .bankerRoadIcon5{
-    @include hisRoadSpritePosition(-500px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-500,0,0.45);
 }
 .bankerRoadIcon6{
-    @include hisRoadSpritePosition(-600px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-600,0,0.45);
 }
 .bankerRoadIcon7{
-    @include hisRoadSpritePosition(-700px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-700,0,0.45);
 }
 .bankerRoadIcon8{
-    @include hisRoadSpritePosition(-800px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-800,0,0.45);
 }
 
 .playerRoadIcon0{
-    @include hisRoadSpritePosition(-900px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-900,0,0.45);
 }
 .playerRoadIcon1{
-    @include hisRoadSpritePosition(-1000px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1000,0,0.45);
 }
 .playerRoadIcon2{
-    @include hisRoadSpritePosition(-1100px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1100,0,0.45);
 }
 
 .playerRoadIcon3{
-    @include hisRoadSpritePosition(-1200px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1200,0,0.45);
 }
 .playerRoadIcon4{
-    @include hisRoadSpritePosition(-1300px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1300,0,0.45);
 }
 .playerRoadIcon5{
-    @include hisRoadSpritePosition(-1400px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1400,0,0.45);
 }
 .playerRoadIcon6{
-    @include hisRoadSpritePosition(-1500px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1500,0,0.45);
 }
 .playerRoadIcon7{
-    @include hisRoadSpritePosition(-1600px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1600,0,0.45);
 }
 .playerRoadIcon8{
-    @include hisRoadSpritePosition(-1700px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1700,0,0.45);
 }
 .tieRoadIcon{
-    @include hisRoadSpritePosition(-1800px,0px);
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1800,0,0.45);
 }

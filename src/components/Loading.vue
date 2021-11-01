@@ -14,9 +14,5 @@ export default defineComponent({
 </script>
 
 <style>
-    .LoadingPage{
-        background-image: url('../images/loading.svg');
-        background-color: #644d31;
-        text-align: center;
-  }
+  
 </style>

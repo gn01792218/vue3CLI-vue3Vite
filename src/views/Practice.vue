@@ -1,12 +1,13 @@
 <template>
   <div class="about">
+    //要縮放0.45倍
+    <i class="bankerRoadIcon6"></i>
     <h1>This is an about page</h1>
     <!-- 計時器 -->
     <Counter
      :round="startCount"
      :countNum="countTime"
     />
-    <button @click="play">開始倒數</button>
     <!-- 有zoomin動畫的video -->
     <div class="videoContain" ref="av">
       <LiveVideo
@@ -21,6 +22,7 @@
       <p ref="p" @click="move">hello</p>
     </div>
     <UserBetInfo/>
+    
 </template>
 
 <script lang="ts">
@@ -89,6 +91,9 @@
   margin-right: auto;
   width:300px;
   height:300px;
+}
+.about{
+  background-color: white;
 }
   
 </style>

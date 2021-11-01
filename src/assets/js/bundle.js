@@ -3513,6 +3513,8 @@ export const foundation = $root.foundation = (() => {
                 case 14:
                 case 15:
                 case 16:
+                case 17:
+                case 18:
                     break;
                 }
             return null;
@@ -3599,6 +3601,14 @@ export const foundation = $root.foundation = (() => {
             case 16:
                 message.uri = 16;
                 break;
+            case "HeartbeatPing":
+            case 17:
+                message.uri = 17;
+                break;
+            case "HeartbeatPong":
+            case 18:
+                message.uri = 18;
+                break;
             }
             return message;
         };
@@ -3635,6 +3645,390 @@ export const foundation = $root.foundation = (() => {
         };
 
         return Header;
+    })();
+
+    foundation.HeartbeatPing = (function() {
+
+        /**
+         * Properties of a HeartbeatPing.
+         * @memberof foundation
+         * @interface IHeartbeatPing
+         * @property {foundation.IHeader|null} [header] HeartbeatPing header
+         */
+
+        /**
+         * Constructs a new HeartbeatPing.
+         * @memberof foundation
+         * @classdesc Represents a HeartbeatPing.
+         * @implements IHeartbeatPing
+         * @constructor
+         * @param {foundation.IHeartbeatPing=} [properties] Properties to set
+         */
+        function HeartbeatPing(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * HeartbeatPing header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof foundation.HeartbeatPing
+         * @instance
+         */
+        HeartbeatPing.prototype.header = null;
+
+        /**
+         * Creates a new HeartbeatPing instance using the specified properties.
+         * @function create
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {foundation.IHeartbeatPing=} [properties] Properties to set
+         * @returns {foundation.HeartbeatPing} HeartbeatPing instance
+         */
+        HeartbeatPing.create = function create(properties) {
+            return new HeartbeatPing(properties);
+        };
+
+        /**
+         * Encodes the specified HeartbeatPing message. Does not implicitly {@link foundation.HeartbeatPing.verify|verify} messages.
+         * @function encode
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {foundation.IHeartbeatPing} message HeartbeatPing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HeartbeatPing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified HeartbeatPing message, length delimited. Does not implicitly {@link foundation.HeartbeatPing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {foundation.IHeartbeatPing} message HeartbeatPing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HeartbeatPing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a HeartbeatPing message from the specified reader or buffer.
+         * @function decode
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {foundation.HeartbeatPing} HeartbeatPing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HeartbeatPing.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.foundation.HeartbeatPing();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a HeartbeatPing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {foundation.HeartbeatPing} HeartbeatPing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HeartbeatPing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a HeartbeatPing message.
+         * @function verify
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        HeartbeatPing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a HeartbeatPing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {foundation.HeartbeatPing} HeartbeatPing
+         */
+        HeartbeatPing.fromObject = function fromObject(object) {
+            if (object instanceof $root.foundation.HeartbeatPing)
+                return object;
+            let message = new $root.foundation.HeartbeatPing();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".foundation.HeartbeatPing.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a HeartbeatPing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof foundation.HeartbeatPing
+         * @static
+         * @param {foundation.HeartbeatPing} message HeartbeatPing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        HeartbeatPing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this HeartbeatPing to JSON.
+         * @function toJSON
+         * @memberof foundation.HeartbeatPing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        HeartbeatPing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return HeartbeatPing;
+    })();
+
+    foundation.HeartbeatPong = (function() {
+
+        /**
+         * Properties of a HeartbeatPong.
+         * @memberof foundation
+         * @interface IHeartbeatPong
+         * @property {foundation.IHeader|null} [header] HeartbeatPong header
+         */
+
+        /**
+         * Constructs a new HeartbeatPong.
+         * @memberof foundation
+         * @classdesc Represents a HeartbeatPong.
+         * @implements IHeartbeatPong
+         * @constructor
+         * @param {foundation.IHeartbeatPong=} [properties] Properties to set
+         */
+        function HeartbeatPong(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * HeartbeatPong header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof foundation.HeartbeatPong
+         * @instance
+         */
+        HeartbeatPong.prototype.header = null;
+
+        /**
+         * Creates a new HeartbeatPong instance using the specified properties.
+         * @function create
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {foundation.IHeartbeatPong=} [properties] Properties to set
+         * @returns {foundation.HeartbeatPong} HeartbeatPong instance
+         */
+        HeartbeatPong.create = function create(properties) {
+            return new HeartbeatPong(properties);
+        };
+
+        /**
+         * Encodes the specified HeartbeatPong message. Does not implicitly {@link foundation.HeartbeatPong.verify|verify} messages.
+         * @function encode
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {foundation.IHeartbeatPong} message HeartbeatPong message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HeartbeatPong.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified HeartbeatPong message, length delimited. Does not implicitly {@link foundation.HeartbeatPong.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {foundation.IHeartbeatPong} message HeartbeatPong message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HeartbeatPong.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a HeartbeatPong message from the specified reader or buffer.
+         * @function decode
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {foundation.HeartbeatPong} HeartbeatPong
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HeartbeatPong.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.foundation.HeartbeatPong();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a HeartbeatPong message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {foundation.HeartbeatPong} HeartbeatPong
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HeartbeatPong.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a HeartbeatPong message.
+         * @function verify
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        HeartbeatPong.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a HeartbeatPong message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {foundation.HeartbeatPong} HeartbeatPong
+         */
+        HeartbeatPong.fromObject = function fromObject(object) {
+            if (object instanceof $root.foundation.HeartbeatPong)
+                return object;
+            let message = new $root.foundation.HeartbeatPong();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".foundation.HeartbeatPong.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a HeartbeatPong message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof foundation.HeartbeatPong
+         * @static
+         * @param {foundation.HeartbeatPong} message HeartbeatPong
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        HeartbeatPong.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this HeartbeatPong to JSON.
+         * @function toJSON
+         * @memberof foundation.HeartbeatPong
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        HeartbeatPong.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return HeartbeatPong;
     })();
 
     foundation.Message = (function() {
@@ -4784,6 +5178,8 @@ export const route = $root.route = (() => {
      * @property {number} BetRoundStart=14 BetRoundStart value
      * @property {number} BetRoundEnd=15 BetRoundEnd value
      * @property {number} BetRoundCountdown=16 BetRoundCountdown value
+     * @property {number} HeartbeatPing=17 HeartbeatPing value
+     * @property {number} HeartbeatPong=18 HeartbeatPong value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -4804,6 +5200,8 @@ export const route = $root.route = (() => {
         values[valuesById[14] = "BetRoundStart"] = 14;
         values[valuesById[15] = "BetRoundEnd"] = 15;
         values[valuesById[16] = "BetRoundCountdown"] = 16;
+        values[valuesById[17] = "HeartbeatPing"] = 17;
+        values[valuesById[18] = "HeartbeatPong"] = 18;
         return values;
     })();
 
