@@ -263,6 +263,11 @@ img {
   pointer-events: none;
 }
 
+.card-wrap {
+  position: relative;
+  z-index: 2;
+}
+
 .caritem {
   margin-right: 40px;
 }
@@ -788,6 +793,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .tabsArea {
     display: none;
+  }
+  .card-box {
+    margin-top: -20px;
   }
   .bankerRoadIcon0 {
     width: 35px;

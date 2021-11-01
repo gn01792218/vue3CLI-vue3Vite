@@ -151,6 +151,9 @@
 	.tabsArea{
 		display: none;
 	}
+	.card-box{
+		margin-top: -20px;
+	}
 	.bankerRoadIcon0{
 		@include hisRoadSpritePosition(0,0,0.35);
 	}

@@ -78,6 +78,10 @@
 .card-container{
     pointer-events: none; //使能被穿透
 }    
+.card-wrap{
+	position: relative;
+	z-index: 2;
+}
 .card-box{ //測試用，完成可以消除
     // border:yellow 1px solid;
 }

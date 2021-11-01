@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card-wrap">
     	<section class="card-container d-flex justify-content-center">
       	<div class=" card-box row justify-content-center">
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
@@ -104,7 +104,7 @@ export default defineComponent({
           if(viewportWidth<=1280 && viewportWidth>1024){
             scale.value = 0.16
           }else if(viewportWidth<=1024 && viewportWidth>414){
-            scale.value = 0.22
+            scale.value = 0.25
           }else if(viewportWidth<=414){
             scale.value = 0.14
           }

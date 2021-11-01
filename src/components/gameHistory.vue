@@ -93,6 +93,7 @@ export default defineComponent({
   background-color: #654d3160;
   left:50%;
   transform: translateX(-50%);
+  z-index:2;
 }
 //客製化修改
 .btn-ps{

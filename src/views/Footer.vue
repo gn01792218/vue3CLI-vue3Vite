@@ -40,7 +40,6 @@ export default defineComponent({
         function fullScreen () {
             console.log("全螢幕")
             if(screenfull.isEnabled){
-                
                 screenfull.toggle()
             }
         }
