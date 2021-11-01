@@ -263,23 +263,8 @@ img {
   pointer-events: none;
 }
 
-.poker {
-  width: 373px;
-  height: 556px;
-  background-image: url("../../images/poker.png");
-}
-
 .caritem {
-  width: 373px;
-  height: 566px;
   margin-right: 40px;
-  margin-left: 40px;
-  margin-top: -70px;
-}
-
-.card-item-w {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
 }
 
 /*-------------------------------------------
@@ -609,6 +594,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
   text-align: center;
 }
 
+.poker {
+  background-image: url("../../images/poker.png");
+}
+
+.card-item-w {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
 /*-------------------------------------------
      自適應設定區
 -------------------------------------------*/
@@ -631,9 +625,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item {
     font-size: 2rem;
   }
-  .caritem {
-    zoom: 0.2;
-  }
   .gameHistory {
     height: 30%;
   }
@@ -654,9 +645,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item {
     font-size: 1.5rem;
-  }
-  .caritem {
-    zoom: 0.16;
   }
   .gameHistory {
     height: 25%;
@@ -797,9 +785,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-image: url(../../images/cardroad_bg_20.png);
     background-repeat: repeat;
     background-position: left top;
-  }
-  .caritem {
-    zoom: 0.22;
   }
   .tabsArea {
     display: none;
@@ -1158,6 +1143,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -284.4px -58.5px;
     background-size: 355.5px 175.5px;
   }
+  .caritem {
+    margin-right: 10px;
+  }
   .ammo5 {
     left: -200px !important;
   }
@@ -1175,9 +1163,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .gameHistory {
     height: 115px;
-  }
-  .caritem {
-    zoom: 0.15;
   }
   #loading {
     width: 60px;
@@ -1316,9 +1301,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-mobile-container {
     height: 179px;
-  }
-  .caritem {
-    zoom: 0.15;
   }
 }
 /*# sourceMappingURL=all.css.map */

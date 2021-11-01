@@ -20,10 +20,6 @@
 	.betArea-item{
 		font-size:2rem;
 	}
-	.caritem{
-		// transform: scale(0.2);
-		zoom:0.2;
-	}
 	.gameHistory{
 		height:30%;
 	}
@@ -43,10 +39,6 @@
 	}
 	.betArea-item{
 		font-size:1.5rem;
-	}
-	.caritem{
-		// transform: scale(0.16);
-		zoom:0.16;
 	}
 	.gameHistory{
 		height:25%;
@@ -155,10 +147,6 @@
 		background-image: url(../../images/cardroad_bg_20.png);
 		background-repeat: repeat;
 		background-position: left top;
-	}
-	.caritem{
-		// transform: scale(0.22);
-		zoom:0.22;
 	}
 	.tabsArea{
 		display: none;
@@ -369,6 +357,9 @@
 		.coin-menu5:hover,.coin-menu5-current{
 			@include coinSpritePosition(-316,-65,0.9)
 		}
+		.caritem{
+			margin-right: 10px;
+		}
 		.ammo5{
             left:-200px !important;
         }
@@ -386,10 +377,6 @@
 		}
 		.gameHistory{
 			height:115px;
-		}
-		.caritem{
-			// transform: scale(0.15);
-			zoom: 0.15;
 		}
 		#loading{
 			width:60px;
@@ -471,8 +458,8 @@
 		.betArea-mobile-container{
 			height:179px;
 		}
-		.caritem{
-			// transform: scale(0.15);
-			zoom: 0.15;
-		}
+		// .caritem{
+		// 	// transform: scale(0.15);
+		// 	zoom: 0.15;
+		// }
 }	

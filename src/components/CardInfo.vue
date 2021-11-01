@@ -1,6 +1,5 @@
 <template>
     <div>
-  		<!-- <button class="shocardBtn" @click="showCards">取得當前卡牌</button> -->
     	<section class="card-container d-flex justify-content-center">
       	<div class=" card-box row justify-content-center">
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
@@ -17,10 +16,18 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,reactive, watch} from 'vue'
+import {computed, defineComponent,onMounted,reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
 export default defineComponent({
   setup(){
+    //初始化卡牌位置
+    onMounted(()=>{
+      cardPositionInit()
+    })
+    //卡牌響應式操作資料
+    let scale = ref(0.2)
+    const uw = 373
+    const uh = 556
     //vuex
      const store = useStore()
      const roundUuid = computed(()=>{
@@ -34,7 +41,6 @@ export default defineComponent({
      })
      //watch
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
-     
       resetCards () //不管哪個狀態都先執行一次清除卡牌
      })
      watch(DrawCard,()=>{
@@ -58,8 +64,6 @@ export default defineComponent({
         playerPoker.forEach(i=>{
           i.classList.remove('poker')
         })
-        // bankPoker?.classList.remove('poker')
-        // playerPoker?.classList.remove('poker')
       }
      }
      function getCardPosition(position:number,cardSideClassName:string):NodeListOf<HTMLElement> | undefined{
@@ -72,8 +76,6 @@ export default defineComponent({
        }
      }
      function showCards () { //每次開牌，伺服器就會傳一次，server給的陣列固定長度3，還沒開牌的給空值即可
-      const uw = 373
-      const uh = 556
       let suit = DrawCard.value.card.suit
       let point = DrawCard.value.card.point
       let position = DrawCard.value.position
@@ -88,10 +90,28 @@ export default defineComponent({
       }
       if(cardElement){
         cardElement.forEach(i=>{
-          i.classList.add('poker')
-          i.style.backgroundPosition = `-${(point-1)*uw}px -${(suit-1)*uh}px`
+          i.classList.add('poker') //只給圖片        
+          i.style.width = `${uw*scale.value}px`
+          i.style.height = `${uh*scale.value}px`
+          i.style.backgroundPosition = `-${(point-1)*uw*scale.value}px -${(suit-1)*uh*scale.value}px`
+          i.style.backgroundSize = `${4849*(uw*scale.value)/uw}px ${2224*(uh*scale.value)/uh}px`
         })
       }
+     }
+     function cardPositionInit () { //響應式初始化卡牌出現的位置
+      let cardItem = document.querySelectorAll('.caritem') as NodeListOf<HTMLElement>
+      const viewportWidth = screen.width
+          if(viewportWidth<=1280 && viewportWidth>1024){
+            scale.value = 0.16
+          }else if(viewportWidth<=1024 && viewportWidth>414){
+            scale.value = 0.22
+          }else if(viewportWidth<=414){
+            scale.value = 0.14
+          }
+      cardItem.forEach(i=>{
+        i.style.width = `${uw*scale.value}px`
+        i.style.height = `${uh*scale.value}px`
+      })
      }
     return {
       //data
