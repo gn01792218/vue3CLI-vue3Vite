@@ -112,6 +112,7 @@ export default defineComponent({
         i.style.width = `${uw*scale.value}px`
         i.style.height = `${uh*scale.value}px`
       })
+      //設置一個setTimer，0.5秒後刪除圖片
      }
     return {
       //data
