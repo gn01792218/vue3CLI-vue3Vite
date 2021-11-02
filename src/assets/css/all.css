@@ -1325,4 +1325,109 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 179px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .header {
+    height: 40px;
+  }
+  .header-btn {
+    width: 24%;
+    line-height: 1rem;
+    font-size: 100%;
+  }
+  .footer {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .video-box {
+    height: 165px;
+  }
+  .gameHistory {
+    height: 100px;
+  }
+  .betArea {
+    height: 235px;
+  }
+  .betArea-mobile {
+    height: 160px;
+  }
+  .betArea-mobile-container {
+    height: 160px;
+  }
+  .coin-menu1 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: 0px 0px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu1:hover, .coin-menu1-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: 0px -45.5px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu2 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -55.3px 0px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu2:hover, .coin-menu2-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -55.3px -45.5px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu3 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -110.6px 0px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu3:hover, .coin-menu3-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -110.6px -45.5px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu4 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -165.9px 0px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu4:hover, .coin-menu4-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -165.9px -45.5px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu5 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -221.2px 0px;
+    background-size: 276.5px 136.5px;
+  }
+  .coin-menu5:hover, .coin-menu5-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -221.2px -45.5px;
+    background-size: 276.5px 136.5px;
+  }
+  .ammo5 {
+    left: -130px !important;
+  }
+  .ammo10 {
+    left: -80px !important;
+  }
+  .ammo50 {
+    left: -20px !important;
+  }
+  .ammo100 {
+    left: 30px !important;
+  }
+  .ammo500 {
+    left: 80px !important;
+  }
+}
 /*# sourceMappingURL=all.css.map */

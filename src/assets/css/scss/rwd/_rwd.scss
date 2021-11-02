@@ -461,3 +461,77 @@
 			height:179px;
 		}
 }	
+@media screen and (max-width: 320px) {
+	.header{
+		height:40px;
+	}
+	.header-btn{
+		width:24%;
+		line-height:1rem;
+		font-size:100%;
+	}
+	.footer{
+		padding-top:0px;
+		padding-bottom: 0px;
+	}
+	.video-box{
+		height:165px;
+	}
+	.gameHistory{
+		height:100px;
+	}
+	.betArea{
+		height:235px;
+	}
+	.betArea-mobile{
+		height:160px;
+	}
+	.betArea-mobile-container{
+		height:160px;
+	}
+	.coin-menu1{
+		@include coinSpritePosition(0,0,0.7)
+	}
+	.coin-menu1:hover,.coin-menu1-current{
+		@include coinSpritePosition(0,-65,0.7)
+	}
+	.coin-menu2{
+		@include coinSpritePosition(-79,0,0.7)
+	}
+	.coin-menu2:hover,.coin-menu2-current{
+		@include coinSpritePosition(-79,-65,0.7)
+	}
+	.coin-menu3{
+		@include coinSpritePosition(-158,0,0.7)
+	}
+	.coin-menu3:hover,.coin-menu3-current{
+		@include coinSpritePosition(-158,-65,0.7)
+	}
+	.coin-menu4{
+		@include coinSpritePosition(-237,0,0.7)
+	}
+	.coin-menu4:hover,.coin-menu4-current{
+		@include coinSpritePosition(-237,-65,0.7)
+	}
+	.coin-menu5{
+		@include coinSpritePosition(-316,0,0.7)
+	}
+	.coin-menu5:hover,.coin-menu5-current{
+		@include coinSpritePosition(-316,-65,0.7)
+	}
+	.ammo5{
+		left:-130px !important;
+	}
+	.ammo10{
+		left:-80px !important;
+	}
+	.ammo50{
+		left:-20px !important;
+	}
+	.ammo100{
+		left:30px !important;
+	}
+	.ammo500{
+	   left:80px !important;
+	}
+}	
