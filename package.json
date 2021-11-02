@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/js-cookie": "^3.0.0",
+    "@vue/cli-plugin-babel": "^4.5.15",
     "bootstrap": "^4.5.3",
     "flv.js": "^1.6.2",
     "gsap": "^3.7.1",
@@ -26,8 +27,6 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
