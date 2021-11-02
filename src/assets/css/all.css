@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.bankerRoadIcon0, .bankerRoadIcon1, .bankerRoadIcon2, .bankerRoadIcon3, .bankerRoadIcon4, .bankerRoadIcon5, .bankerRoadIcon6, .bankerRoadIcon7, .bankerRoadIcon8, .playerRoadIcon0, .playerRoadIcon1, .playerRoadIcon2, .playerRoadIcon3, .playerRoadIcon4, .playerRoadIcon5, .playerRoadIcon6, .playerRoadIcon7, .playerRoadIcon8, .tieRoadIcon {
+.bankerRoadIcon0, .bankerRoadIcon1, .bankerRoadIcon2, .bankerRoadIcon3, .bankerRoadIcon3-1, .bankerRoadIcon4, .bankerRoadIcon5, .bankerRoadIcon6, .bankerRoadIcon7, .bankerRoadIcon8, .playerRoadIcon0, .playerRoadIcon1, .playerRoadIcon2, .playerRoadIcon3, .playerRoadIcon3-1, .playerRoadIcon4, .playerRoadIcon5, .playerRoadIcon6, .playerRoadIcon7, .playerRoadIcon8, .tieRoadIcon {
   cursor: pointer;
   background-image: url("../../images/road-sprite.png");
 }
@@ -482,45 +482,52 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bankerRoadIcon3 {
-  width: 45px;
-  height: 45px;
-  background-position: -135px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -69px 0px;
+  background-size: 437px auto;
+}
+
+.bankerRoadIcon3-1 {
+  width: 12px;
+  height: 12px;
+  background-position: -36px 0px;
+  background-size: 228px auto;
 }
 
 .bankerRoadIcon4 {
-  width: 45px;
-  height: 45px;
-  background-position: -180px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -92px 0px;
+  background-size: 437px auto;
 }
 
 .bankerRoadIcon5 {
-  width: 45px;
-  height: 45px;
-  background-position: -225px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -115px 0px;
+  background-size: 437px auto;
 }
 
 .bankerRoadIcon6 {
-  width: 45px;
-  height: 45px;
-  background-position: -270px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -138px 0px;
+  background-size: 437px auto;
 }
 
 .bankerRoadIcon7 {
-  width: 45px;
-  height: 45px;
-  background-position: -315px 0px;
-  background-size: 855px auto;
+  width: 12px;
+  height: 12px;
+  background-position: -84px 0px;
+  background-size: 228px auto;
 }
 
 .bankerRoadIcon8 {
-  width: 45px;
-  height: 45px;
-  background-position: -360px 0px;
-  background-size: 855px auto;
+  width: 12px;
+  height: 12px;
+  background-position: -96px 0px;
+  background-size: 228px auto;
 }
 
 .playerRoadIcon0 {
@@ -545,45 +552,52 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .playerRoadIcon3 {
-  width: 45px;
-  height: 45px;
-  background-position: -540px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -276px 0px;
+  background-size: 437px auto;
+}
+
+.playerRoadIcon3-1 {
+  width: 12px;
+  height: 12px;
+  background-position: -144px 0px;
+  background-size: 228px auto;
 }
 
 .playerRoadIcon4 {
-  width: 45px;
-  height: 45px;
-  background-position: -585px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -299px 0px;
+  background-size: 437px auto;
 }
 
 .playerRoadIcon5 {
-  width: 45px;
-  height: 45px;
-  background-position: -630px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -322px 0px;
+  background-size: 437px auto;
 }
 
 .playerRoadIcon6 {
-  width: 45px;
-  height: 45px;
-  background-position: -675px 0px;
-  background-size: 855px auto;
+  width: 23px;
+  height: 23px;
+  background-position: -345px 0px;
+  background-size: 437px auto;
 }
 
 .playerRoadIcon7 {
-  width: 45px;
-  height: 45px;
-  background-position: -720px 0px;
-  background-size: 855px auto;
+  width: 12px;
+  height: 12px;
+  background-position: -192px 0px;
+  background-size: 228px auto;
 }
 
 .playerRoadIcon8 {
-  width: 45px;
-  height: 45px;
-  background-position: -765px 0px;
-  background-size: 855px auto;
+  width: 12px;
+  height: 12px;
+  background-position: -204px 0px;
+  background-size: 228px auto;
 }
 
 .tieRoadIcon {
@@ -816,40 +830,46 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 665px auto;
   }
   .bankerRoadIcon3 {
-    width: 35px;
-    height: 35px;
-    background-position: -105px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -60px 0px;
+    background-size: 380px auto;
+  }
+  .bankerRoadIcon3-1 {
+    width: 9px;
+    height: 9px;
+    background-position: -27px 0px;
+    background-size: 171px auto;
   }
   .bankerRoadIcon4 {
-    width: 35px;
-    height: 35px;
-    background-position: -140px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -80px 0px;
+    background-size: 380px auto;
   }
   .bankerRoadIcon5 {
-    width: 35px;
-    height: 35px;
-    background-position: -175px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -100px 0px;
+    background-size: 380px auto;
   }
   .bankerRoadIcon6 {
-    width: 35px;
-    height: 35px;
-    background-position: -210px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -120px 0px;
+    background-size: 380px auto;
   }
   .bankerRoadIcon7 {
-    width: 35px;
-    height: 35px;
-    background-position: -245px 0px;
-    background-size: 665px auto;
+    width: 9px;
+    height: 9px;
+    background-position: -63px 0px;
+    background-size: 171px auto;
   }
   .bankerRoadIcon8 {
-    width: 35px;
-    height: 35px;
-    background-position: -280px 0px;
-    background-size: 665px auto;
+    width: 9px;
+    height: 9px;
+    background-position: -72px 0px;
+    background-size: 171px auto;
   }
   .playerRoadIcon0 {
     width: 35px;
@@ -870,40 +890,46 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 665px auto;
   }
   .playerRoadIcon3 {
-    width: 35px;
-    height: 35px;
-    background-position: -420px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -240px 0px;
+    background-size: 380px auto;
+  }
+  .playerRoadIcon3-1 {
+    width: 9px;
+    height: 9px;
+    background-position: -108px 0px;
+    background-size: 171px auto;
   }
   .playerRoadIcon4 {
-    width: 35px;
-    height: 35px;
-    background-position: -455px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -260px 0px;
+    background-size: 380px auto;
   }
   .playerRoadIcon5 {
-    width: 35px;
-    height: 35px;
-    background-position: -490px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -280px 0px;
+    background-size: 380px auto;
   }
   .playerRoadIcon6 {
-    width: 35px;
-    height: 35px;
-    background-position: -525px 0px;
-    background-size: 665px auto;
+    width: 20px;
+    height: 20px;
+    background-position: -300px 0px;
+    background-size: 380px auto;
   }
   .playerRoadIcon7 {
-    width: 35px;
-    height: 35px;
-    background-position: -560px 0px;
-    background-size: 665px auto;
+    width: 9px;
+    height: 9px;
+    background-position: -144px 0px;
+    background-size: 171px auto;
   }
   .playerRoadIcon8 {
-    width: 35px;
-    height: 35px;
-    background-position: -595px 0px;
-    background-size: 665px auto;
+    width: 9px;
+    height: 9px;
+    background-position: -153px 0px;
+    background-size: 171px auto;
   }
   .tieRoadIcon {
     width: 35px;
@@ -965,40 +991,28 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 570px auto;
   }
   .bankerRoadIcon3 {
-    width: 30px;
-    height: 30px;
-    background-position: -90px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -51px 0px;
+    background-size: 323px auto;
   }
   .bankerRoadIcon4 {
-    width: 30px;
-    height: 30px;
-    background-position: -120px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -68px 0px;
+    background-size: 323px auto;
   }
   .bankerRoadIcon5 {
-    width: 30px;
-    height: 30px;
-    background-position: -150px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -85px 0px;
+    background-size: 323px auto;
   }
   .bankerRoadIcon6 {
-    width: 30px;
-    height: 30px;
-    background-position: -180px 0px;
-    background-size: 570px auto;
-  }
-  .bankerRoadIcon7 {
-    width: 30px;
-    height: 30px;
-    background-position: -210px 0px;
-    background-size: 570px auto;
-  }
-  .bankerRoadIcon8 {
-    width: 30px;
-    height: 30px;
-    background-position: -240px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -102px 0px;
+    background-size: 323px auto;
   }
   .playerRoadIcon0 {
     width: 30px;
@@ -1019,40 +1033,28 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 570px auto;
   }
   .playerRoadIcon3 {
-    width: 30px;
-    height: 30px;
-    background-position: -360px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -204px 0px;
+    background-size: 323px auto;
   }
   .playerRoadIcon4 {
-    width: 30px;
-    height: 30px;
-    background-position: -390px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -221px 0px;
+    background-size: 323px auto;
   }
   .playerRoadIcon5 {
-    width: 30px;
-    height: 30px;
-    background-position: -420px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -238px 0px;
+    background-size: 323px auto;
   }
   .playerRoadIcon6 {
-    width: 30px;
-    height: 30px;
-    background-position: -450px 0px;
-    background-size: 570px auto;
-  }
-  .playerRoadIcon7 {
-    width: 30px;
-    height: 30px;
-    background-position: -480px 0px;
-    background-size: 570px auto;
-  }
-  .playerRoadIcon8 {
-    width: 30px;
-    height: 30px;
-    background-position: -510px 0px;
-    background-size: 570px auto;
+    width: 17px;
+    height: 17px;
+    background-position: -255px 0px;
+    background-size: 323px auto;
   }
   .tieRoadIcon {
     width: 30px;
@@ -1200,40 +1202,46 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 285px auto;
   }
   .bankerRoadIcon3 {
-    width: 15px;
-    height: 15px;
-    background-position: -45px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -24px 0px;
+    background-size: 152px auto;
+  }
+  .bankerRoadIcon3-1 {
+    width: 4px;
+    height: 4px;
+    background-position: -12px 0px;
+    background-size: 76px auto;
   }
   .bankerRoadIcon4 {
-    width: 15px;
-    height: 15px;
-    background-position: -60px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -32px 0px;
+    background-size: 152px auto;
   }
   .bankerRoadIcon5 {
-    width: 15px;
-    height: 15px;
-    background-position: -75px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -40px 0px;
+    background-size: 152px auto;
   }
   .bankerRoadIcon6 {
-    width: 15px;
-    height: 15px;
-    background-position: -90px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -48px 0px;
+    background-size: 152px auto;
   }
   .bankerRoadIcon7 {
-    width: 15px;
-    height: 15px;
-    background-position: -105px 0px;
-    background-size: 285px auto;
+    width: 4px;
+    height: 4px;
+    background-position: -28px 0px;
+    background-size: 76px auto;
   }
   .bankerRoadIcon8 {
-    width: 15px;
-    height: 15px;
-    background-position: -120px 0px;
-    background-size: 285px auto;
+    width: 4px;
+    height: 4px;
+    background-position: -32px 0px;
+    background-size: 76px auto;
   }
   .playerRoadIcon0 {
     width: 15px;
@@ -1254,40 +1262,46 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 285px auto;
   }
   .playerRoadIcon3 {
-    width: 15px;
-    height: 15px;
-    background-position: -180px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -96px 0px;
+    background-size: 152px auto;
+  }
+  .playerRoadIcon3-1 {
+    width: 4px;
+    height: 4px;
+    background-position: -48px 0px;
+    background-size: 76px auto;
   }
   .playerRoadIcon4 {
-    width: 15px;
-    height: 15px;
-    background-position: -195px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -104px 0px;
+    background-size: 152px auto;
   }
   .playerRoadIcon5 {
-    width: 15px;
-    height: 15px;
-    background-position: -210px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -112px 0px;
+    background-size: 152px auto;
   }
   .playerRoadIcon6 {
-    width: 15px;
-    height: 15px;
-    background-position: -225px 0px;
-    background-size: 285px auto;
+    width: 8px;
+    height: 8px;
+    background-position: -120px 0px;
+    background-size: 152px auto;
   }
   .playerRoadIcon7 {
-    width: 15px;
-    height: 15px;
-    background-position: -240px 0px;
-    background-size: 285px auto;
+    width: 4px;
+    height: 4px;
+    background-position: -64px 0px;
+    background-size: 76px auto;
   }
   .playerRoadIcon8 {
-    width: 15px;
-    height: 15px;
-    background-position: -255px 0px;
-    background-size: 285px auto;
+    width: 4px;
+    height: 4px;
+    background-position: -68px 0px;
+    background-size: 76px auto;
   }
   .tieRoadIcon {
     width: 15px;

@@ -164,22 +164,25 @@
 		@include hisRoadSpritePosition(-200,0,0.35);
 	}
 	.bankerRoadIcon3{
-		@include hisRoadSpritePosition(-300,0,0.35);
+		@include hisRoadSpritePosition(-300,0,0.2);
+	}
+	.bankerRoadIcon3-1{
+		@include hisRoadSpritePosition(-300,0,0.09);
 	}
 	.bankerRoadIcon4{
-		@include hisRoadSpritePosition(-400,0,0.35);
+		@include hisRoadSpritePosition(-400,0,0.2);
 	}
 	.bankerRoadIcon5{
-		@include hisRoadSpritePosition(-500,0,0.35);
+		@include hisRoadSpritePosition(-500,0,0.2);
 	}
 	.bankerRoadIcon6{
-		@include hisRoadSpritePosition(-600,0,0.35);
+		@include hisRoadSpritePosition(-600,0,0.2);
 	}
 	.bankerRoadIcon7{
-		@include hisRoadSpritePosition(-700,0,0.35);
+		@include hisRoadSpritePosition(-700,0,0.09);
 	}
 	.bankerRoadIcon8{
-		@include hisRoadSpritePosition(-800,0,0.35);
+		@include hisRoadSpritePosition(-800,0,0.09);
 	}
 	.playerRoadIcon0{
 		@include hisRoadSpritePosition(-900,0,0.35);
@@ -191,28 +194,30 @@
 		@include hisRoadSpritePosition(-1100,0,0.35);
 	}
 	.playerRoadIcon3{
-		@include hisRoadSpritePosition(-1200,0,0.35);
+		@include hisRoadSpritePosition(-1200,0,0.2);
+	}
+	.playerRoadIcon3-1{
+		@include hisRoadSpritePosition(-1200,0,0.09);
 	}
 	.playerRoadIcon4{
-		@include hisRoadSpritePosition(-1300,0,0.35);
+		@include hisRoadSpritePosition(-1300,0,0.2);
 	}
 	.playerRoadIcon5{
-		@include hisRoadSpritePosition(-1400,0,0.35);
+		@include hisRoadSpritePosition(-1400,0,0.2);
 	}
 	.playerRoadIcon6{
-		@include hisRoadSpritePosition(-1500,0,0.35);
+		@include hisRoadSpritePosition(-1500,0,0.2);
 	}
 	.playerRoadIcon7{
-		@include hisRoadSpritePosition(-1600,0,0.35);
+		@include hisRoadSpritePosition(-1600,0,0.09);
 	}
 	.playerRoadIcon8{
-		@include hisRoadSpritePosition(-1700,0,0.35);
+		@include hisRoadSpritePosition(-1700,0,0.09);
 	}
 	.tieRoadIcon{
 		@include hisRoadSpritePosition(-1800,0,0.35);
 	}
 }
-
 @media screen and (max-width: 768px) {
 	.header{
 		height:70px;
@@ -256,22 +261,16 @@
 		@include hisRoadSpritePosition(-200,0,0.3);
 	}
 	.bankerRoadIcon3{
-		@include hisRoadSpritePosition(-300,0,0.3);
+		@include hisRoadSpritePosition(-300,0,0.17);
 	}
 	.bankerRoadIcon4{
-		@include hisRoadSpritePosition(-400,0,0.3);
+		@include hisRoadSpritePosition(-400,0,0.17);
 	}
 	.bankerRoadIcon5{
-		@include hisRoadSpritePosition(-500,0,0.3);
+		@include hisRoadSpritePosition(-500,0,0.17);
 	}
 	.bankerRoadIcon6{
-		@include hisRoadSpritePosition(-600,0,0.3);
-	}
-	.bankerRoadIcon7{
-		@include hisRoadSpritePosition(-700,0,0.3);
-	}
-	.bankerRoadIcon8{
-		@include hisRoadSpritePosition(-800,0,0.3);
+		@include hisRoadSpritePosition(-600,0,0.17);
 	}
 	.playerRoadIcon0{
 		@include hisRoadSpritePosition(-900,0,0.3);
@@ -283,22 +282,16 @@
 		@include hisRoadSpritePosition(-1100,0,0.3);
 	}
 	.playerRoadIcon3{
-		@include hisRoadSpritePosition(-1200,0,0.3);
+		@include hisRoadSpritePosition(-1200,0,0.17);
 	}
 	.playerRoadIcon4{
-		@include hisRoadSpritePosition(-1300,0,0.3);
+		@include hisRoadSpritePosition(-1300,0,0.17);
 	}
 	.playerRoadIcon5{
-		@include hisRoadSpritePosition(-1400,0,0.3);
+		@include hisRoadSpritePosition(-1400,0,0.17);
 	}
 	.playerRoadIcon6{
-		@include hisRoadSpritePosition(-1500,0,0.3);
-	}
-	.playerRoadIcon7{
-		@include hisRoadSpritePosition(-1600,0,0.3);
-	}
-	.playerRoadIcon8{
-		@include hisRoadSpritePosition(-1700,0,0.3);
+		@include hisRoadSpritePosition(-1500,0,0.17);
 	}
 	.tieRoadIcon{
 		@include hisRoadSpritePosition(-1800,0,0.3);
@@ -400,22 +393,25 @@
 			@include hisRoadSpritePosition(-200,0,0.15);
 		}
 		.bankerRoadIcon3{
-			@include hisRoadSpritePosition(-300,0,0.15);
+			@include hisRoadSpritePosition(-300,0,0.08);
+		}
+		.bankerRoadIcon3-1{
+			@include hisRoadSpritePosition(-300,0,0.04);
 		}
 		.bankerRoadIcon4{
-			@include hisRoadSpritePosition(-400,0,0.15);
+			@include hisRoadSpritePosition(-400,0,0.08);
 		}
 		.bankerRoadIcon5{
-			@include hisRoadSpritePosition(-500,0,0.15);
+			@include hisRoadSpritePosition(-500,0,0.08);
 		}
 		.bankerRoadIcon6{
-			@include hisRoadSpritePosition(-600,0,0.15);
+			@include hisRoadSpritePosition(-600,0,0.08);
 		}
 		.bankerRoadIcon7{
-			@include hisRoadSpritePosition(-700,0,0.15);
+			@include hisRoadSpritePosition(-700,0,0.04);
 		}
 		.bankerRoadIcon8{
-			@include hisRoadSpritePosition(-800,0,0.15);
+			@include hisRoadSpritePosition(-800,0,0.04);
 		}
 		.playerRoadIcon0{
 			@include hisRoadSpritePosition(-900,0,0.15);
@@ -427,22 +423,25 @@
 			@include hisRoadSpritePosition(-1100,0,0.15);
 		}
 		.playerRoadIcon3{
-			@include hisRoadSpritePosition(-1200,0,0.15);
+			@include hisRoadSpritePosition(-1200,0,0.08);
+		}
+		.playerRoadIcon3-1{
+			@include hisRoadSpritePosition(-1200,0,0.04);
 		}
 		.playerRoadIcon4{
-			@include hisRoadSpritePosition(-1300,0,0.15);
+			@include hisRoadSpritePosition(-1300,0,0.08);
 		}
 		.playerRoadIcon5{
-			@include hisRoadSpritePosition(-1400,0,0.15);
+			@include hisRoadSpritePosition(-1400,0,0.08);
 		}
 		.playerRoadIcon6{
-			@include hisRoadSpritePosition(-1500,0,0.15);
+			@include hisRoadSpritePosition(-1500,0,0.08);
 		}
 		.playerRoadIcon7{
-			@include hisRoadSpritePosition(-1600,0,0.15);
+			@include hisRoadSpritePosition(-1600,0,0.04);
 		}
 		.playerRoadIcon8{
-			@include hisRoadSpritePosition(-1700,0,0.15);
+			@include hisRoadSpritePosition(-1700,0,0.04);
 		}
 		.tieRoadIcon{
 			@include hisRoadSpritePosition(-1800,0,0.15);
@@ -461,8 +460,4 @@
 		.betArea-mobile-container{
 			height:179px;
 		}
-		// .caritem{
-		// 	// transform: scale(0.15);
-		// 	zoom: 0.15;
-		// }
 }	

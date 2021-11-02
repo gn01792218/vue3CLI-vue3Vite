@@ -10,24 +10,24 @@
     <section class="topRoad d-flex sideWidth position-absolute">
       <div class="topRoad-column" :class="[`topRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
         <div class="tpRoad-item d-flex" :class="[`tpRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
-          <i class="btn-bs">閒</i>
+          <div class="playerRoadIcon4"></div>
         </div>
       </div>
     </section>
     <!-- centerRoad -->
     <section class="centerRoad d-flex sideWidth position-absolute">
-      <div class="centerRoad-colum" :class="[`centerRoad-column${index}`]" v-for="(cc,index) in secWidth" :key="index">
+      <div class="centerRoad-colum" :class="[`centerRoad-column${index}`]" v-for="(cc,index) in centerRoadWidth" :key="index">
         <div class="centerRoad-item" :class="[`centerRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
-          <i></i>
+          <div class="playerRoadIcon3-1"></div>
         </div>
       </div>
     </section>
     <section class="bottomRoad d-flex sideWidth position-absolute">
     <!-- bottom1Grid -->
       <div class="bottomRoad1 d-flex w-50">
-        <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===10}]" v-for="(b1,index) in bottom1width" :key="index">
+        <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===21}]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <i></i>
+            <div class="playerRoadIcon7"></div>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div class="bottomRoad2 d-flex w-50">
         <div class="bottomRoad1-column" :class="[`bottomRoad2-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <i></i>
+            <div class="bankerRoadIcon8"></div>
           </div>
         </div>
       </div>
@@ -51,8 +51,9 @@ export default defineComponent({
         const secWidth = new Array(22)
         const secHeight = new Array(12)
         const topHeight = new Array(6)
-        const bottomHeight = new Array(3)
-        const bottom1width = new Array(11)
+        const centerRoadWidth =new Array(44)
+        const bottomHeight = new Array(6)
+        const bottom1width = new Array(22)
         //添加格子
         function pushRoad(){
           console.log("開始")
@@ -78,7 +79,7 @@ export default defineComponent({
         }
         return {
           //data
-          topHeight,secWidth,bottomHeight,secHeight,bottom1width,
+          topHeight,centerRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
           //methods
           pushRoad,
         }
@@ -132,13 +133,13 @@ export default defineComponent({
   top:50%;
 }
 .centerRoad-colum{
-  // border:solid peru 2px;
-  width:4.5454545454%;
+  // border:solid peru 1px;
+  width:2.272727272727%;
   height:100%;
 }
 .centerRoad-item{
   width:100%;
-  height:33.333333333%;
+  height:16.666666666%;
   // border:rebeccapurple 2px solid;
 }
 .bottomRoad{
@@ -158,13 +159,13 @@ export default defineComponent({
   /* border: solid 2px brown; */
 }
 .bottomRoad1-column{
-  width:10%;
+  width:5%;
   height:100%;
-  /* border:red solid 2px; */
+  // border:red solid 2px;
 }
 .bottomRoad-item{
   width:100%;
-  height:33.333333333%;
+  height:16.6666666666%;
   // border:springgreen solid 2px;
 }
 /* 共用區 */

@@ -13,27 +13,31 @@
 }
 .bankerRoadIcon3{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-300,0,0.45);
+    @include hisRoadSpritePosition(-300,0,0.23);
+}
+.bankerRoadIcon3-1{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-300,0,0.12);
 }
 .bankerRoadIcon4{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-400,0,0.45);
+    @include hisRoadSpritePosition(-400,0,0.23);
 }
 .bankerRoadIcon5{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-500,0,0.45);
+    @include hisRoadSpritePosition(-500,0,0.23);
 }
 .bankerRoadIcon6{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-600,0,0.45);
+    @include hisRoadSpritePosition(-600,0,0.23);
 }
 .bankerRoadIcon7{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-700,0,0.45);
+    @include hisRoadSpritePosition(-700,0,0.12);
 }
 .bankerRoadIcon8{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-800,0,0.45);
+    @include hisRoadSpritePosition(-800,0,0.12);
 }
 
 .playerRoadIcon0{
@@ -51,27 +55,31 @@
 
 .playerRoadIcon3{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-1200,0,0.45);
+    @include hisRoadSpritePosition(-1200,0,0.23);
+}
+.playerRoadIcon3-1{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1200,0,0.12);
 }
 .playerRoadIcon4{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-1300,0,0.45);
+    @include hisRoadSpritePosition(-1300,0,0.23);
 }
 .playerRoadIcon5{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-1400,0,0.45);
+    @include hisRoadSpritePosition(-1400,0,0.23);
 }
 .playerRoadIcon6{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-1500,0,0.45);
+    @include hisRoadSpritePosition(-1500,0,0.23);
 }
 .playerRoadIcon7{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-1600,0,0.45);
+    @include hisRoadSpritePosition(-1600,0,0.12);
 }
 .playerRoadIcon8{
     @extend %hisRoad;
-    @include hisRoadSpritePosition(-1700,0,0.45);
+    @include hisRoadSpritePosition(-1700,0,0.12);
 }
 .tieRoadIcon{
     @extend %hisRoad;
