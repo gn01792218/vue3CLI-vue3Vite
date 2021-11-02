@@ -36,7 +36,9 @@ export default defineComponent({
              onClickTab.value = tab
         }
         watch(DrawCard,()=>{
-            onClickTab.value = "Cards"
+            if(onClickTab.value!="Cards"){
+                onClickTab.value = "Cards"
+            }
         })
         return{
             //data
