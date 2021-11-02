@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, ref} from 'vue'
+import {computed, defineComponent, reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import CardInfo from '../components/CardInfo.vue'
 import BetInfor from '../components/BetInfor.vue'
@@ -26,12 +26,18 @@ export default defineComponent({
     setup(){
         // vuex
         const store = useStore()
+        const DrawCard = computed(()=>{
+            return store.state.dealer.Draw
+        })
         //切換TableInfo頁籤
         const tabArray = reactive(["Table Info","Cards"]) //將來有需要可以再增加
         const onClickTab = ref("Cards") //預設是Cards
         function switchTab (tab:string) {
              onClickTab.value = tab
         }
+        watch(DrawCard,()=>{
+            onClickTab.value = "Cards"
+        })
         return{
             //data
             tabArray,onClickTab,
