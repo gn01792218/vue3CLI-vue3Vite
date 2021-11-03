@@ -1,4 +1,5 @@
 <template>
+
   <div class="mainGame">
     <Counter class="counter"
       :round ="roundCount"
