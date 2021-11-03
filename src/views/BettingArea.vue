@@ -322,6 +322,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.gameresult{
+    top:25%;
+}
 .showResult{  //測試用
     right:0;
 }

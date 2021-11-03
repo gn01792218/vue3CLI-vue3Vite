@@ -141,7 +141,7 @@ img {
           align-items: center;
   color: white;
   font-size: 2rem;
-  border: 1px solid #FFF;
+  border: 1px solid gray;
   text-align: center;
   line-height: 1.55em;
 }
@@ -274,51 +274,83 @@ img {
 }
 
 .gameResult {
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background-color: #1E1101;
+  top: 0;
+  left: 0;
+  background-color: #1e1101d0;
   border: 2px solid #654d31;
   -webkit-box-shadow: 5px 5px black;
           box-shadow: 5px 5px black;
   text-align: center;
   -webkit-animation-name: fade;
           animation-name: fade;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
 }
 
 @-webkit-keyframes fade {
   from {
-    -webkit-transform: translate(-50%, -50%) scale(0.5);
-            transform: translate(-50%, -50%) scale(0.5);
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
     opacity: 0;
   }
   to {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
     opacity: 1;
   }
 }
 
 @keyframes fade {
   from {
-    -webkit-transform: translate(-50%, -50%) scale(0.5);
-            transform: translate(-50%, -50%) scale(0.5);
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
     opacity: 0;
   }
   to {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
     opacity: 1;
   }
 }
 
 .result-text {
-  font-size: 2rem;
+  font-size: 200%;
+}
+
+.gameResult-title {
+  border-bottom: 1px #654d31 solid;
+  height: 20%;
+  font-size: 150%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.gameResult-title p {
+  margin: 0;
+}
+
+.gameResult-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 80%;
 }
 
 /*-------------------------------------------

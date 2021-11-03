@@ -1,7 +1,13 @@
 <template>
-    <div class="gameResult w-50 h-50 position-absolute">
-        <p>遊戲結果</p>
-        <p class="font_yellow result-text">莊家贏</p>
+    <div class="gameResult w-100 h-100 position-absolute">
+        <section class="gameResult-title">
+            <p>遊戲結果</p>
+        </section>
+        <section class="gameResult-content">
+            <p class="font_yellow result-text">莊家贏</p>
+            <p>獲得金額:-1000</p>
+        </section>
+        
     </div>
 </template>
 
