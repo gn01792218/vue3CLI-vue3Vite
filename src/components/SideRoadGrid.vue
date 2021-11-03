@@ -10,7 +10,7 @@
     <section class="topRoad d-flex sideWidth position-absolute">
       <div class="topRoad-column" :class="[`topRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
         <div class="tpRoad-item d-flex" :class="[`tpRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
-          <div class="playerRoadIcon4"></div>
+          <div class="playerRoadIcon6"></div>
         </div>
       </div>
     </section>
