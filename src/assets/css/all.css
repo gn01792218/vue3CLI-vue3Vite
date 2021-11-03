@@ -210,6 +210,7 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
+  position: relative;
 }
 
 .betArea .em {
@@ -270,6 +271,54 @@ img {
 
 .caritem {
   margin-right: 10px;
+}
+
+.gameResult {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #1E1101;
+  border: 2px solid #654d31;
+  -webkit-box-shadow: 5px 5px black;
+          box-shadow: 5px 5px black;
+  text-align: center;
+  -webkit-animation-name: fade;
+          animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@-webkit-keyframes fade {
+  from {
+    -webkit-transform: translate(-50%, -50%) scale(0.5);
+            transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    -webkit-transform: translate(-50%, -50%) scale(0.5);
+            transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.result-text {
+  font-size: 2rem;
 }
 
 /*-------------------------------------------

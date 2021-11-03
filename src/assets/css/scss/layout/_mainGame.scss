@@ -33,6 +33,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center top;
+	position: relative;
 }
 .betArea .em{
 	float: left;
@@ -89,4 +90,31 @@
     //預設margin，響應式的時候可以依照情況拿掉
     margin-right:10px;
     // border:1px solid blue;
+}
+
+//遊戲結果
+.gameResult{
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	background-color: #1E1101;
+	border:2px solid #654d31;
+	box-shadow: 5px 5px black;
+	text-align: center;
+	animation-name:fade;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+}
+@keyframes fade {
+	from{
+		transform: translate(-50%,-50%) scale(0.5);
+		opacity: 0;
+		
+	}to{
+		transform: translate(-50%,-50%) scale(1);
+		opacity: 1;
+	}
+}
+.result-text{
+	font-size: 2rem;
 }

@@ -13,11 +13,11 @@ export default defineComponent({
     inheritAttrs: false, //防止出現Vue warn
     //倒數計時需要server傳現在下注狀態，以及當前還剩下幾秒過來
     //然後倒數計時器只要使用當前秒數開始倒數即可
-    props:{
-        round:{  //外面傳進來的值，給數字代表計算幾次-->預計等於下注的round uuid
-            type:Number,
-        },
-    },
+    // props:{
+    //     round:{  //外面傳進來的值，給數字代表計算幾次-->預計等於下注的round uuid
+    //         type:Number,
+    //     },
+    // },
     setup(props){
         //vuex
         const store = useStore()
@@ -91,7 +91,6 @@ export default defineComponent({
                     gsap //最後要將數字隱藏
                     .fromTo('#countNumber',{x:20,opacity:"0",display:"none"},
                     {x:20,opacity:"1",ease:Power4.easeInOut,display:"none"})
-                    console.log("第"+props.round+"回合倒數結束")
                 }else{  //在1以上時才會執行
                     count.value-=1
                     loadingCount()
@@ -106,13 +105,12 @@ export default defineComponent({
         //     }
         // })
         //監聽回和數進行倒數計時
-         const roundNum = computed(()=>{ //計算現在是第幾圈-->之後不需要了
-            return props.round
-        })
-        watch(roundNum,()=>{  //之後要被下面的取代
-            console.log("第"+props.round+"回合倒數開始")
-            setCount()
-        })
+        //  const roundNum = computed(()=>{ //計算現在是第幾圈-->之後不需要了
+        //     return props.round
+        // })
+        // watch(roundNum,()=>{  //之後要被下面的取代
+        //     setCount()
+        // })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer

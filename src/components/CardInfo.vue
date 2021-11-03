@@ -28,6 +28,10 @@ export default defineComponent({
     let scale = ref(0.2)
     const uw = 373
     const uh = 556
+    const cards = reactive({
+        banker:new Array(3),
+        player:new Array(3),
+     })
     //vuex
      const store = useStore()
      const roundUuid = computed(()=>{
@@ -47,12 +51,7 @@ export default defineComponent({
         showCards()
      })
      //撲克牌業務代碼
-     const cards = reactive({  //內含莊閒的卡牌陣列
-        banker:new Array(3),
-        player:new Array(3),
-     })
      function resetCards () {
-      //到時應該是回合結束時開牌，新回合開始時reset
       for(let i=0 ;i<3;i++){
         cards.banker[i]=null
         cards.player[i]=null
@@ -75,7 +74,7 @@ export default defineComponent({
           return document.querySelectorAll(`${cardSideClassName}0`)
        }
      }
-     function showCards () { //每次開牌，伺服器就會傳一次，server給的陣列固定長度3，還沒開牌的給空值即可
+     function showCards () { 
       let suit = DrawCard.value.card.suit
       let point = DrawCard.value.card.point
       let position = DrawCard.value.position
@@ -90,7 +89,7 @@ export default defineComponent({
       }
       if(cardElement){
         cardElement.forEach(i=>{
-          i.classList.add('poker') //只給圖片        
+          i.classList.add('poker')
           i.style.width = `${uw*scale.value}px`
           i.style.height = `${uh*scale.value}px`
           i.style.backgroundPosition = `-${(point-1)*uw*scale.value}px -${(suit-1)*uh*scale.value}px`
@@ -101,18 +100,17 @@ export default defineComponent({
      function cardPositionInit () { //響應式初始化卡牌出現的位置
       let cardItem = document.querySelectorAll('.caritem') as NodeListOf<HTMLElement>
       const viewportWidth = screen.width
-          if(viewportWidth<=1280 && viewportWidth>1024){
-            scale.value = 0.16
-          }else if(viewportWidth<=1024 && viewportWidth>414){
-            scale.value = 0.25
-          }else if(viewportWidth<=414){
-            scale.value = 0.14
-          }
+        if(viewportWidth<=1280 && viewportWidth>1024){
+          scale.value = 0.16
+        }else if(viewportWidth<=1024 && viewportWidth>414){
+          scale.value = 0.25
+        }else if(viewportWidth<=414){
+          scale.value = 0.14
+        }
       cardItem.forEach(i=>{
         i.style.width = `${uw*scale.value}px`
         i.style.height = `${uh*scale.value}px`
       })
-      //設置一個setTimer，0.5秒後刪除圖片
      }
     return {
       //data

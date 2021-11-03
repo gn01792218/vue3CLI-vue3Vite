@@ -53,8 +53,10 @@
                 </div>
             </ul>
         </div>
+        <GameResult v-if="hasGameResult"/>
+     <button @click="showResult" class="gameresult position-absolute">遊戲結果</button>
     </div>
-    
+     
 </template>
 
 <script lang="ts">
@@ -63,6 +65,7 @@ import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
 import TotalBet from'@/components/ToTalBet.vue'
+import GameResult from '@/components/GameResult.vue'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
@@ -88,7 +91,7 @@ interface coinPosition {
 }
 export default defineComponent({
     components:{
-        TotalBet,
+        TotalBet,GameResult,
     },
     setup(){
         //vuex
@@ -109,7 +112,7 @@ export default defineComponent({
             return 1
         })
         //基本資料
-        const test = ref(false)
+        const hasGameResult = ref(false)
         //監聽
         watch(betStatus,()=>{
             coinPosition[0].betStatus = betStatus.value.Banker
@@ -120,6 +123,7 @@ export default defineComponent({
         })
         watch(roundUuid,()=>{
             resetGame()
+            hasGameResult.value = true
         })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
@@ -303,17 +307,24 @@ export default defineComponent({
                 i.ammo = []
             })
         }
+        function showResult () { 
+        console.log("切換")
+        hasGameResult.value = !hasGameResult.value
+        }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,test,
+            coinList,currentCoint,coinPosition,betStatus,hasGameResult,
             //methods
-            chooseCoint,cointAnimate,generateCoin,bet,resetGame
+            chooseCoint,cointAnimate,generateCoin,bet,resetGame,showResult
         }
     }
 })
 </script>
 
 <style lang="scss">
+.showResult{  //測試用
+    right:0;
+}
     .alert{
     position: absolute;
     top:0;

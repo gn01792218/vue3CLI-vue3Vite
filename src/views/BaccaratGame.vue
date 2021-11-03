@@ -1,8 +1,7 @@
 <template>
-
   <div class="mainGame">
     <Counter class="counter"
-      :round ="roundCount"
+  
     />
       <LiveVideo/>
       <BettingArea/>
@@ -50,8 +49,6 @@ export default defineComponent({
     watch([tableNum,tables],()=>{
       tableJoin()
     })
-    //倒數計時-->到時候通通讓counter自己決定就可以囉
-    const roundCount = ref(0) //第幾回合-->到時候要computed
     function tableJoin (){
       switch(tableNum.value){
         case 'A':
@@ -69,14 +66,12 @@ export default defineComponent({
           console.log("上桌請求",tables.value.tables[1].uuid)
       }
     }
-    function playCount () {
-      roundCount.value++;
-    }
+    
     return{
       //data
-      tableNum,roundCount,
+      tableNum,
       //methods
-      playCount,
+   
     }
   },
 })
