@@ -2,7 +2,7 @@
     <audio id="gameresultSound">
         <source  src="../assets/audio/bankerWin.mp3" type="audio/mp3">
     </audio>
-    <button class="position-absolute" @click="playGameResult">播放不同聲音</button>
+    <!-- <button class="position-absolute" @click="playGameResult">播放不同聲音</button> -->
 </template>
 
 <script lang="ts">

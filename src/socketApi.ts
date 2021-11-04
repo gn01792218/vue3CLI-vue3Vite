@@ -113,7 +113,7 @@ export const getMsgReCall = (e:any) =>{
         case route.BetResetRecall:
             let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data)).toJSON()
             console.log(BetResetRecall)
-            console.log('BetRecall',BetResetRecall)
+            console.log('BetReSetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
             break
         case route.BetError:
@@ -125,16 +125,26 @@ export const getMsgReCall = (e:any) =>{
             console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
             break
-        case route.DealerGameResult:
-            let DealerGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
-            console.log('DealerGameResult',DealerGameResult)
-            store.commit('dealer/GameResult',DealerGameResult)
+        case route.BroadcastGameResult:
+            let BroadcastGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BroadcastGameResult',BroadcastGameResult)
+            store.commit('dealer/BroadcastGameResult',BroadcastGameResult)
             break
         case route.BetRoundStart:
             let BetRoundStart = game.BetRoundStart.decode(new Uint8Array(e.detail.msg.data))
             console.log('BetRoundStart',BetRoundStart)
             store.commit('game/BetRoundStart',BetRoundStart)
             break
+        case route.BetRoundEnd:
+            let BetRoundEnd = game.BetRoundEnd.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BetRoundEnd',BetRoundEnd)
+            store.commit('game/BetRoundEnd',BetRoundEnd)
+            break
+        case route.GameStatus:
+            console.log("gamestatus")
+            let GameStatus = game.GameStatus.decode(new Uint8Array(e.detail.msg.data))
+            console.log('GameStatus',GameStatus)
+            store.commit('game/GameStatus',GameStatus)
         // case route.BetRoundCountdown:
         //     let BetRoundCountdown = game.BetRoundCountdown.decode(new Uint8Array(e.detail.msg.data))
         //     console.log('BetRoundCountdown',BetRoundCountdown)

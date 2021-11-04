@@ -28,10 +28,13 @@ export default defineComponent({
             return store
         })
         const lastCount = computed(()=>{
-            return store.state.game.BetRoundStart.timeRemain
+            return store.state.game.GameStatus.timeRemain
         })  //換桌時的剩餘秒數
-        const defaultCount = ref<number>(30) //倒數預設預設30。
-        const count = ref<number>(30)  //倒數數字
+        const gameStatus = computed(()=>{
+            return store.state.game.GameStatus.status
+        })
+        const defaultCount = ref<number>(15) //倒數預設預設30。
+        const count = ref<number>(15)  //倒數數字
         const timer = ref<any | null>(null) //計時器
        
         //計時器動畫
@@ -83,6 +86,7 @@ export default defineComponent({
         }
         //倒數計時器邏輯
         function setCount () { //倒數計時
+        console.log("設置計時器",count.value)
             timer.value = setInterval(()=>{
                 if(count.value<=0){ //倒數完時
                     clearInterval(timer.value)
@@ -91,6 +95,7 @@ export default defineComponent({
                     gsap //最後要將數字隱藏
                     .fromTo('#countNumber',{x:20,opacity:"0",display:"none"},
                     {x:20,opacity:"1",ease:Power4.easeInOut,display:"none"})
+                    console.log("計時器結束",count.value)
                 }else{  //在1以上時才會執行
                     count.value-=1
                     loadingCount()
@@ -113,8 +118,8 @@ export default defineComponent({
         // })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
+                console.log("新局開始",count.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
-                count.value = lastCount.value
                 setCount()
             // switch(roundUuid.value){
             //     case 1:  //下注時間內
@@ -123,6 +128,14 @@ export default defineComponent({
             //         setCount()
             //         break
             // }
+        })
+        watch(lastCount,()=>{ //換桌時候會偵測現在的秒數
+            if(gameStatus.value==1){
+                console.log(lastCount.value)
+                timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
+                count.value = lastCount.value
+                setCount()
+            }
         })
 
         // //for遊戲回合更新時

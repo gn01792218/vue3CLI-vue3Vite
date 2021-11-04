@@ -1325,124 +1325,82 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 540px) {
   .header {
     height: 50px;
   }
   .header-btn {
-    width: 26%;
-    line-height: 1.75rem;
-    font-size: 130%;
+    line-height: 1.5rem;
+    width: 28%;
   }
   .video-box {
-    height: 220px;
+    height: 288px;
   }
-  .betArea {
-    height: 300px;
-  }
-  .betArea-mobile {
-    height: 211px;
-  }
-  .betArea-mobile-container {
-    height: 211px;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .betArea-item {
-    font-size: 1.2rem;
-    -webkit-box-flex: 1;
-        -ms-flex: auto;
-            flex: auto;
+  .betArea-mobile, .betArea-mobile-container {
+    height: 130px;
   }
   .coin-menu1 {
-    width: 71.1px;
-    height: 58.5px;
+    width: 55.3px;
+    height: 45.5px;
     background-position: 0px 0px;
-    background-size: 355.5px 175.5px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu1:hover, .coin-menu1-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: 0px -58.5px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: 0px -45.5px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu2 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -71.1px 0px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -55.3px 0px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu2:hover, .coin-menu2-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -71.1px -58.5px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -55.3px -45.5px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu3 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -142.2px 0px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -110.6px 0px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu3:hover, .coin-menu3-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -142.2px -58.5px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -110.6px -45.5px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu4 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -213.3px 0px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -165.9px 0px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu4:hover, .coin-menu4-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -213.3px -58.5px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -165.9px -45.5px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu5 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -284.4px 0px;
-    background-size: 355.5px 175.5px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -221.2px 0px;
+    background-size: 276.5px 136.5px;
   }
   .coin-menu5:hover, .coin-menu5-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -284.4px -58.5px;
-    background-size: 355.5px 175.5px;
-  }
-  .caritem {
-    margin-right: 10px;
-  }
-  .ammo5 {
-    left: -200px !important;
-  }
-  .ammo10 {
-    left: -120px !important;
-  }
-  .ammo100 {
-    left: 50px !important;
-  }
-  .ammo500 {
-    left: 120px !important;
-  }
-  .stand-mobile-container {
-    height: 187px;
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -221.2px -45.5px;
+    background-size: 276.5px 136.5px;
   }
   .gameHistory {
-    height: 115px;
-  }
-  #loading {
-    width: 60px;
-    height: 60px;
-    left: 10px;
-  }
-  #countNumber {
-    font-size: 2.6rem;
-    top: 2px;
+    height: 130px;
   }
   .bankerRoadIcon0 {
     width: 15px;
@@ -1569,6 +1527,127 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 15px;
     background-position: -270px 0px;
     background-size: 285px auto;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .header {
+    height: 50px;
+  }
+  .header-btn {
+    width: 26%;
+    line-height: 1.75rem;
+    font-size: 130%;
+  }
+  .video-box {
+    height: 220px;
+  }
+  .betArea {
+    height: 300px;
+  }
+  .betArea-mobile {
+    height: 211px;
+  }
+  .betArea-mobile-container {
+    height: 211px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .betArea-item {
+    font-size: 1.2rem;
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+  }
+  .coin-menu1 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: 0px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu1:hover, .coin-menu1-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: 0px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu2 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -71.1px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu2:hover, .coin-menu2-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -71.1px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu3 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -142.2px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu3:hover, .coin-menu3-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -142.2px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu4 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -213.3px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu4:hover, .coin-menu4-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -213.3px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu5 {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -284.4px 0px;
+    background-size: 355.5px 175.5px;
+  }
+  .coin-menu5:hover, .coin-menu5-current {
+    width: 71.1px;
+    height: 58.5px;
+    background-position: -284.4px -58.5px;
+    background-size: 355.5px 175.5px;
+  }
+  .caritem {
+    margin-right: 10px;
+  }
+  .ammo5 {
+    left: -200px !important;
+  }
+  .ammo10 {
+    left: -120px !important;
+  }
+  .ammo100 {
+    left: 50px !important;
+  }
+  .ammo500 {
+    left: 120px !important;
+  }
+  .stand-mobile-container {
+    height: 187px;
+  }
+  .gameHistory {
+    height: 115px;
+  }
+  #loading {
+    width: 60px;
+    height: 60px;
+    left: 10px;
+  }
+  #countNumber {
+    font-size: 2.6rem;
+    top: 2px;
   }
 }
 

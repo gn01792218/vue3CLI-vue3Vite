@@ -1924,6 +1924,14 @@ export namespace foundation {
 /** Namespace game. */
 export namespace game {
 
+    /** Status enum. */
+    enum Status {
+        default = 0,
+        beting = 1,
+        drawing = 2,
+        waiting = 3
+    }
+
     /** Properties of a BetRoundStart. */
     interface IBetRoundStart {
 
@@ -2117,6 +2125,210 @@ export namespace game {
 
         /**
          * Converts this BetRoundCountdown to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetRoundEnd. */
+    interface IBetRoundEnd {
+
+        /** BetRoundEnd header */
+        header?: (foundation.IHeader|null);
+
+        /** BetRoundEnd gameUuid */
+        gameUuid?: (string|null);
+    }
+
+    /** Represents a BetRoundEnd. */
+    class BetRoundEnd implements IBetRoundEnd {
+
+        /**
+         * Constructs a new BetRoundEnd.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IBetRoundEnd);
+
+        /** BetRoundEnd header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BetRoundEnd gameUuid. */
+        public gameUuid: string;
+
+        /**
+         * Creates a new BetRoundEnd instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetRoundEnd instance
+         */
+        public static create(properties?: game.IBetRoundEnd): game.BetRoundEnd;
+
+        /**
+         * Encodes the specified BetRoundEnd message. Does not implicitly {@link game.BetRoundEnd.verify|verify} messages.
+         * @param message BetRoundEnd message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IBetRoundEnd, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetRoundEnd message, length delimited. Does not implicitly {@link game.BetRoundEnd.verify|verify} messages.
+         * @param message BetRoundEnd message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IBetRoundEnd, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetRoundEnd message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetRoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.BetRoundEnd;
+
+        /**
+         * Decodes a BetRoundEnd message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetRoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.BetRoundEnd;
+
+        /**
+         * Verifies a BetRoundEnd message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetRoundEnd message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetRoundEnd
+         */
+        public static fromObject(object: { [k: string]: any }): game.BetRoundEnd;
+
+        /**
+         * Creates a plain object from a BetRoundEnd message. Also converts values to other types if specified.
+         * @param message BetRoundEnd
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.BetRoundEnd, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetRoundEnd to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a GameStatus. */
+    interface IGameStatus {
+
+        /** GameStatus header */
+        header?: (foundation.IHeader|null);
+
+        /** GameStatus status */
+        status?: (game.Status|null);
+
+        /** GameStatus timeRemain */
+        timeRemain?: (number|null);
+
+        /** GameStatus draws */
+        draws?: (dealer.IDraw[]|null);
+    }
+
+    /** Represents a GameStatus. */
+    class GameStatus implements IGameStatus {
+
+        /**
+         * Constructs a new GameStatus.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IGameStatus);
+
+        /** GameStatus header. */
+        public header?: (foundation.IHeader|null);
+
+        /** GameStatus status. */
+        public status: game.Status;
+
+        /** GameStatus timeRemain. */
+        public timeRemain: number;
+
+        /** GameStatus draws. */
+        public draws: dealer.IDraw[];
+
+        /**
+         * Creates a new GameStatus instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GameStatus instance
+         */
+        public static create(properties?: game.IGameStatus): game.GameStatus;
+
+        /**
+         * Encodes the specified GameStatus message. Does not implicitly {@link game.GameStatus.verify|verify} messages.
+         * @param message GameStatus message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IGameStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GameStatus message, length delimited. Does not implicitly {@link game.GameStatus.verify|verify} messages.
+         * @param message GameStatus message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IGameStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GameStatus message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GameStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.GameStatus;
+
+        /**
+         * Decodes a GameStatus message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GameStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.GameStatus;
+
+        /**
+         * Verifies a GameStatus message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GameStatus message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GameStatus
+         */
+        public static fromObject(object: { [k: string]: any }): game.GameStatus;
+
+        /**
+         * Creates a plain object from a GameStatus message. Also converts values to other types if specified.
+         * @param message GameStatus
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.GameStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GameStatus to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -2345,7 +2557,8 @@ export namespace route {
         HeartbeatPong = 18,
         DealerRoundStart = 19,
         DealerRoundEnd = 20,
-        BetError = 21
+        BetError = 21,
+        GameStatus = 22
     }
 }
 

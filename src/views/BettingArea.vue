@@ -39,7 +39,7 @@
         </div>
         <!-- total Bet -->
         <div class="em font-total">
-            Total Bet <TotalBet/>
+            Total Bet {{total}}
         </div>
         <!-- coin -->
         <div class="coinArea">
@@ -66,7 +66,6 @@ import {computed, defineComponent, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
-import TotalBet from'@/components/ToTalBet.vue'
 import GameResult from '@/components/GameResult.vue'
 import GameresultSound from '@/components/GameResultSound.vue'
 interface currentCoint {
@@ -94,11 +93,9 @@ interface coinPosition {
 }
 export default defineComponent({
     components:{
-        TotalBet,GameResult,GameresultSound,
+        GameResult,GameresultSound,
     },
     setup(){
-        //音樂測試
-        const gameresultSound = ref<HTMLAudioElement | null>(null)
         //vuex
         const store = useStore();
         const user = computed(()=>{
@@ -110,11 +107,27 @@ export default defineComponent({
         const betResult = computed(()=>{ //下注成功否的狀態
             return store.state.bet.BetRecall.result
         })
+        const betResetresult = computed(()=>{
+            return store.state.bet.BetResetRecall.result
+        })
         const roundUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
         })
         const roundStatus = computed(()=>{ //遊戲回合狀態
             return 1
+        })
+        const gameResult = computed(()=>{ //回傳的是陣列
+            return store.state.dealer.BroadcastGameResult.results
+        }) 
+        const total = ref<number>(0)
+        const totalBetInfo = computed({  //每次下注的時候都更新totalBet
+            get(){
+                return store.state.bet.totalBets
+            },
+            set(num:number){
+                total.value = num
+            }
+            
         })
         //基本資料
         const hasGameResult = ref(false)
@@ -128,8 +141,21 @@ export default defineComponent({
         })
         watch(roundUuid,()=>{
             resetGame()
-            hasGameResult.value = true
+            
         })
+        watch(betResetresult,()=>{
+            console.log(betResetresult.value)
+            if(betResetresult.value===1){
+                 resetGame()
+            }
+        })
+        watch(totalBetInfo,()=>{  
+            total.value = totalBetInfo.value
+        })
+        // watch(gameResult,()=>{
+        //     console.log("出畫面")
+        //     hasGameResult.value = true
+        // })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
                     {
@@ -299,6 +325,7 @@ export default defineComponent({
             })
         }
         function resetGame () {
+            total.value = 0
             //清空選取的籌碼
             currentCoint.coinElement = null
             currentCoint.point = null
@@ -313,14 +340,15 @@ export default defineComponent({
             coinList.forEach(i => {
                 i.ammo = []
             })
+            store.commit('bet/setBetResultRest')
         }
         function showResult () { 
-        console.log("切換")
-        hasGameResult.value = !hasGameResult.value
+            console.log("切換")
+            hasGameResult.value = !hasGameResult.value
         }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,hasGameResult,gameresultSound,
+            coinList,currentCoint,coinPosition,betStatus,hasGameResult,total,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame,showResult,getAllBetBack
         }

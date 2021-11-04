@@ -3929,6 +3929,7 @@ export const foundation = $root.foundation = (() => {
                 case 19:
                 case 20:
                 case 21:
+                case 22:
                     break;
                 }
             return null;
@@ -4034,6 +4035,10 @@ export const foundation = $root.foundation = (() => {
             case "BetError":
             case 21:
                 message.uri = 21;
+                break;
+            case "GameStatus":
+            case 22:
+                message.uri = 22;
                 break;
             }
             return message;
@@ -4661,6 +4666,24 @@ export const game = $root.game = (() => {
      */
     const game = {};
 
+    /**
+     * Status enum.
+     * @name game.Status
+     * @enum {number}
+     * @property {number} default=0 default value
+     * @property {number} beting=1 beting value
+     * @property {number} drawing=2 drawing value
+     * @property {number} waiting=3 waiting value
+     */
+    game.Status = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "default"] = 0;
+        values[valuesById[1] = "beting"] = 1;
+        values[valuesById[2] = "drawing"] = 2;
+        values[valuesById[3] = "waiting"] = 3;
+        return values;
+    })();
+
     game.BetRoundStart = (function() {
 
         /**
@@ -5111,6 +5134,525 @@ export const game = $root.game = (() => {
         };
 
         return BetRoundCountdown;
+    })();
+
+    game.BetRoundEnd = (function() {
+
+        /**
+         * Properties of a BetRoundEnd.
+         * @memberof game
+         * @interface IBetRoundEnd
+         * @property {foundation.IHeader|null} [header] BetRoundEnd header
+         * @property {string|null} [gameUuid] BetRoundEnd gameUuid
+         */
+
+        /**
+         * Constructs a new BetRoundEnd.
+         * @memberof game
+         * @classdesc Represents a BetRoundEnd.
+         * @implements IBetRoundEnd
+         * @constructor
+         * @param {game.IBetRoundEnd=} [properties] Properties to set
+         */
+        function BetRoundEnd(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BetRoundEnd header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.BetRoundEnd
+         * @instance
+         */
+        BetRoundEnd.prototype.header = null;
+
+        /**
+         * BetRoundEnd gameUuid.
+         * @member {string} gameUuid
+         * @memberof game.BetRoundEnd
+         * @instance
+         */
+        BetRoundEnd.prototype.gameUuid = "";
+
+        /**
+         * Creates a new BetRoundEnd instance using the specified properties.
+         * @function create
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {game.IBetRoundEnd=} [properties] Properties to set
+         * @returns {game.BetRoundEnd} BetRoundEnd instance
+         */
+        BetRoundEnd.create = function create(properties) {
+            return new BetRoundEnd(properties);
+        };
+
+        /**
+         * Encodes the specified BetRoundEnd message. Does not implicitly {@link game.BetRoundEnd.verify|verify} messages.
+         * @function encode
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {game.IBetRoundEnd} message BetRoundEnd message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetRoundEnd.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameUuid);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BetRoundEnd message, length delimited. Does not implicitly {@link game.BetRoundEnd.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {game.IBetRoundEnd} message BetRoundEnd message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetRoundEnd.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BetRoundEnd message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.BetRoundEnd} BetRoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetRoundEnd.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.BetRoundEnd();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.gameUuid = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BetRoundEnd message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.BetRoundEnd} BetRoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetRoundEnd.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BetRoundEnd message.
+         * @function verify
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BetRoundEnd.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BetRoundEnd message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.BetRoundEnd} BetRoundEnd
+         */
+        BetRoundEnd.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.BetRoundEnd)
+                return object;
+            let message = new $root.game.BetRoundEnd();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.BetRoundEnd.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BetRoundEnd message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.BetRoundEnd
+         * @static
+         * @param {game.BetRoundEnd} message BetRoundEnd
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BetRoundEnd.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.gameUuid = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
+            return object;
+        };
+
+        /**
+         * Converts this BetRoundEnd to JSON.
+         * @function toJSON
+         * @memberof game.BetRoundEnd
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BetRoundEnd.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BetRoundEnd;
+    })();
+
+    game.GameStatus = (function() {
+
+        /**
+         * Properties of a GameStatus.
+         * @memberof game
+         * @interface IGameStatus
+         * @property {foundation.IHeader|null} [header] GameStatus header
+         * @property {game.Status|null} [status] GameStatus status
+         * @property {number|null} [timeRemain] GameStatus timeRemain
+         * @property {Array.<dealer.IDraw>|null} [draws] GameStatus draws
+         */
+
+        /**
+         * Constructs a new GameStatus.
+         * @memberof game
+         * @classdesc Represents a GameStatus.
+         * @implements IGameStatus
+         * @constructor
+         * @param {game.IGameStatus=} [properties] Properties to set
+         */
+        function GameStatus(properties) {
+            this.draws = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameStatus header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.header = null;
+
+        /**
+         * GameStatus status.
+         * @member {game.Status} status
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.status = 0;
+
+        /**
+         * GameStatus timeRemain.
+         * @member {number} timeRemain
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.timeRemain = 0;
+
+        /**
+         * GameStatus draws.
+         * @member {Array.<dealer.IDraw>} draws
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.draws = $util.emptyArray;
+
+        /**
+         * Creates a new GameStatus instance using the specified properties.
+         * @function create
+         * @memberof game.GameStatus
+         * @static
+         * @param {game.IGameStatus=} [properties] Properties to set
+         * @returns {game.GameStatus} GameStatus instance
+         */
+        GameStatus.create = function create(properties) {
+            return new GameStatus(properties);
+        };
+
+        /**
+         * Encodes the specified GameStatus message. Does not implicitly {@link game.GameStatus.verify|verify} messages.
+         * @function encode
+         * @memberof game.GameStatus
+         * @static
+         * @param {game.IGameStatus} message GameStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStatus.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
+            if (message.timeRemain != null && Object.hasOwnProperty.call(message, "timeRemain"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.timeRemain);
+            if (message.draws != null && message.draws.length)
+                for (let i = 0; i < message.draws.length; ++i)
+                    $root.dealer.Draw.encode(message.draws[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameStatus message, length delimited. Does not implicitly {@link game.GameStatus.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.GameStatus
+         * @static
+         * @param {game.IGameStatus} message GameStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStatus.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameStatus message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.GameStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.GameStatus} GameStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStatus.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.GameStatus();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.status = reader.int32();
+                    break;
+                case 3:
+                    message.timeRemain = reader.int32();
+                    break;
+                case 4:
+                    if (!(message.draws && message.draws.length))
+                        message.draws = [];
+                    message.draws.push($root.dealer.Draw.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameStatus message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.GameStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.GameStatus} GameStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStatus.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameStatus message.
+         * @function verify
+         * @memberof game.GameStatus
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameStatus.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.status != null && message.hasOwnProperty("status"))
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.timeRemain != null && message.hasOwnProperty("timeRemain"))
+                if (!$util.isInteger(message.timeRemain))
+                    return "timeRemain: integer expected";
+            if (message.draws != null && message.hasOwnProperty("draws")) {
+                if (!Array.isArray(message.draws))
+                    return "draws: array expected";
+                for (let i = 0; i < message.draws.length; ++i) {
+                    let error = $root.dealer.Draw.verify(message.draws[i]);
+                    if (error)
+                        return "draws." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GameStatus message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.GameStatus
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.GameStatus} GameStatus
+         */
+        GameStatus.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.GameStatus)
+                return object;
+            let message = new $root.game.GameStatus();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.GameStatus.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            switch (object.status) {
+            case "default":
+            case 0:
+                message.status = 0;
+                break;
+            case "beting":
+            case 1:
+                message.status = 1;
+                break;
+            case "drawing":
+            case 2:
+                message.status = 2;
+                break;
+            case "waiting":
+            case 3:
+                message.status = 3;
+                break;
+            }
+            if (object.timeRemain != null)
+                message.timeRemain = object.timeRemain | 0;
+            if (object.draws) {
+                if (!Array.isArray(object.draws))
+                    throw TypeError(".game.GameStatus.draws: array expected");
+                message.draws = [];
+                for (let i = 0; i < object.draws.length; ++i) {
+                    if (typeof object.draws[i] !== "object")
+                        throw TypeError(".game.GameStatus.draws: object expected");
+                    message.draws[i] = $root.dealer.Draw.fromObject(object.draws[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameStatus message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.GameStatus
+         * @static
+         * @param {game.GameStatus} message GameStatus
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameStatus.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.draws = [];
+            if (options.defaults) {
+                object.header = null;
+                object.status = options.enums === String ? "default" : 0;
+                object.timeRemain = 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = options.enums === String ? $root.game.Status[message.status] : message.status;
+            if (message.timeRemain != null && message.hasOwnProperty("timeRemain"))
+                object.timeRemain = message.timeRemain;
+            if (message.draws && message.draws.length) {
+                object.draws = [];
+                for (let j = 0; j < message.draws.length; ++j)
+                    object.draws[j] = $root.dealer.Draw.toObject(message.draws[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GameStatus to JSON.
+         * @function toJSON
+         * @memberof game.GameStatus
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameStatus.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return GameStatus;
     })();
 
     return game;
@@ -5609,6 +6151,7 @@ export const route = $root.route = (() => {
      * @property {number} DealerRoundStart=19 DealerRoundStart value
      * @property {number} DealerRoundEnd=20 DealerRoundEnd value
      * @property {number} BetError=21 BetError value
+     * @property {number} GameStatus=22 GameStatus value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -5634,6 +6177,7 @@ export const route = $root.route = (() => {
         values[valuesById[19] = "DealerRoundStart"] = 19;
         values[valuesById[20] = "DealerRoundEnd"] = 20;
         values[valuesById[21] = "BetError"] = 21;
+        values[valuesById[22] = "GameStatus"] = 22;
         return values;
     })();
 

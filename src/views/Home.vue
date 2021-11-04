@@ -1,11 +1,8 @@
 <template>
-
   <div class="home">
       <h1>點選左側選擇遊戲</h1>
   </div>
-
   <Loading v-if="isLogin"/>
-
 </template>
 
 <script lang="ts">
@@ -33,7 +30,8 @@ export default defineComponent({
       return store.state.auth.LoginRecall.status
       })
       //創建websocket連線，並發送登入請求
-        createSocket(userToken.value)
+        createSocket()
+        console.log(userToken.value)
         sendLogin({
           uri: "LoginCall",
           //之後要傳送的是token

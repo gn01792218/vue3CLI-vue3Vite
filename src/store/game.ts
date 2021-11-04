@@ -2,6 +2,8 @@ export const state = {
     BetRoundStart:{},  //回合開始，含uuid
     BetRoundCountdown:{}, //此回合還剩多少秒
     gameUuid:"",
+    GameStatus:{},
+    BetRoundEnd:{},
   };
   export const actions = {}
   
@@ -14,7 +16,14 @@ export const state = {
     BetRoundCountdown(state:any, payload:any){
       state.BetRoundCountdown = payload
       // console.log("vuex-BetRoundCountdown資料更新",state.BetRoundCountdown)
-    }
+    },
+    GameStatus(state:any, payload:any){
+      state.GameStatus = payload
+    },
+    BetRoundEnd(state:any, payload:any){
+      state.BetRoundEnd = payload
+      // console.log("vuex-BetRoundCountdown資料更新",state.BetRoundCountdown)
+    },
   };
   export const getters = {
     

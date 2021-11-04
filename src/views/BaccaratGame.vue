@@ -47,6 +47,7 @@ export default defineComponent({
     //監聽
     //2.發送換桌請求
     watch([tableNum,tables],()=>{
+      console.log("發上桌請求")
       tableJoin()
     })
     function tableJoin (){

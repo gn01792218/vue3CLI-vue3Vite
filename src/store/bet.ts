@@ -14,6 +14,9 @@ export const mutations = {
   BetResetRecall(state:any, payload:any){
     state.BetResetRecall=payload
     console.log("vuex-BetResetRecall資料更新",state.BetResetRecall)
+  },
+  setBetResultRest(state:any){
+    state.BetResetRecall.result = 0
   }
 };
 export const getters = {

@@ -22,6 +22,14 @@ export default defineComponent({
         const roundUuid = computed<number>(()=>{
             return store.state.game.gameUuid
         })
+         const betResetresult = computed(()=>{
+            return store.state.bet.BetResetRecall.result
+        })
+         watch(betResetresult,()=>{
+            if(betResetresult.value===1){
+                total.value = 0
+            }
+        })
         // const roundStatus = computed<number>(()=>{
         //     return 0 as number
         // })
