@@ -1025,15 +1025,15 @@ export const bet = $root.bet = (() => {
             if (!writer)
                 writer = $Writer.create();
             if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.Banker);
+                writer.uint32(/* id 1, wireType 1 =*/9).double(message.Banker);
             if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.Player);
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.Player);
             if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.BankerPair);
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.BankerPair);
             if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
-                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.Tie);
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.Tie);
             if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
-                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.PlayerPair);
+                writer.uint32(/* id 5, wireType 1 =*/41).double(message.PlayerPair);
             return writer;
         };
 
@@ -1069,19 +1069,19 @@ export const bet = $root.bet = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.Banker = reader.int32();
+                    message.Banker = reader.double();
                     break;
                 case 2:
-                    message.Player = reader.int32();
+                    message.Player = reader.double();
                     break;
                 case 3:
-                    message.BankerPair = reader.int32();
+                    message.BankerPair = reader.double();
                     break;
                 case 4:
-                    message.Tie = reader.int32();
+                    message.Tie = reader.double();
                     break;
                 case 5:
-                    message.PlayerPair = reader.int32();
+                    message.PlayerPair = reader.double();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1119,20 +1119,20 @@ export const bet = $root.bet = (() => {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.Banker != null && message.hasOwnProperty("Banker"))
-                if (!$util.isInteger(message.Banker))
-                    return "Banker: integer expected";
+                if (typeof message.Banker !== "number")
+                    return "Banker: number expected";
             if (message.Player != null && message.hasOwnProperty("Player"))
-                if (!$util.isInteger(message.Player))
-                    return "Player: integer expected";
+                if (typeof message.Player !== "number")
+                    return "Player: number expected";
             if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                if (!$util.isInteger(message.BankerPair))
-                    return "BankerPair: integer expected";
+                if (typeof message.BankerPair !== "number")
+                    return "BankerPair: number expected";
             if (message.Tie != null && message.hasOwnProperty("Tie"))
-                if (!$util.isInteger(message.Tie))
-                    return "Tie: integer expected";
+                if (typeof message.Tie !== "number")
+                    return "Tie: number expected";
             if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                if (!$util.isInteger(message.PlayerPair))
-                    return "PlayerPair: integer expected";
+                if (typeof message.PlayerPair !== "number")
+                    return "PlayerPair: number expected";
             return null;
         };
 
@@ -1149,15 +1149,15 @@ export const bet = $root.bet = (() => {
                 return object;
             let message = new $root.bet.BetStatus();
             if (object.Banker != null)
-                message.Banker = object.Banker | 0;
+                message.Banker = Number(object.Banker);
             if (object.Player != null)
-                message.Player = object.Player | 0;
+                message.Player = Number(object.Player);
             if (object.BankerPair != null)
-                message.BankerPair = object.BankerPair | 0;
+                message.BankerPair = Number(object.BankerPair);
             if (object.Tie != null)
-                message.Tie = object.Tie | 0;
+                message.Tie = Number(object.Tie);
             if (object.PlayerPair != null)
-                message.PlayerPair = object.PlayerPair | 0;
+                message.PlayerPair = Number(object.PlayerPair);
             return message;
         };
 
@@ -1182,15 +1182,15 @@ export const bet = $root.bet = (() => {
                 object.PlayerPair = 0;
             }
             if (message.Banker != null && message.hasOwnProperty("Banker"))
-                object.Banker = message.Banker;
+                object.Banker = options.json && !isFinite(message.Banker) ? String(message.Banker) : message.Banker;
             if (message.Player != null && message.hasOwnProperty("Player"))
-                object.Player = message.Player;
+                object.Player = options.json && !isFinite(message.Player) ? String(message.Player) : message.Player;
             if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                object.BankerPair = message.BankerPair;
+                object.BankerPair = options.json && !isFinite(message.BankerPair) ? String(message.BankerPair) : message.BankerPair;
             if (message.Tie != null && message.hasOwnProperty("Tie"))
-                object.Tie = message.Tie;
+                object.Tie = options.json && !isFinite(message.Tie) ? String(message.Tie) : message.Tie;
             if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                object.PlayerPair = message.PlayerPair;
+                object.PlayerPair = options.json && !isFinite(message.PlayerPair) ? String(message.PlayerPair) : message.PlayerPair;
             return object;
         };
 
@@ -1588,7 +1588,7 @@ export const bet = $root.bet = (() => {
             if (message.result != null && Object.hasOwnProperty.call(message, "result"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result);
             if (message.totalBets != null && Object.hasOwnProperty.call(message, "totalBets"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.totalBets);
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.totalBets);
             if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
                 $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
@@ -1632,7 +1632,7 @@ export const bet = $root.bet = (() => {
                     message.result = reader.int32();
                     break;
                 case 3:
-                    message.totalBets = reader.int32();
+                    message.totalBets = reader.double();
                     break;
                 case 4:
                     message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
@@ -1681,8 +1681,8 @@ export const bet = $root.bet = (() => {
                 if (!$util.isInteger(message.result))
                     return "result: integer expected";
             if (message.totalBets != null && message.hasOwnProperty("totalBets"))
-                if (!$util.isInteger(message.totalBets))
-                    return "totalBets: integer expected";
+                if (typeof message.totalBets !== "number")
+                    return "totalBets: number expected";
             if (message.betStatus != null && message.hasOwnProperty("betStatus")) {
                 let error = $root.bet.BetStatus.verify(message.betStatus);
                 if (error)
@@ -1711,7 +1711,7 @@ export const bet = $root.bet = (() => {
             if (object.result != null)
                 message.result = object.result | 0;
             if (object.totalBets != null)
-                message.totalBets = object.totalBets | 0;
+                message.totalBets = Number(object.totalBets);
             if (object.betStatus != null) {
                 if (typeof object.betStatus !== "object")
                     throw TypeError(".bet.BetRecall.betStatus: object expected");
@@ -1744,7 +1744,7 @@ export const bet = $root.bet = (() => {
             if (message.result != null && message.hasOwnProperty("result"))
                 object.result = message.result;
             if (message.totalBets != null && message.hasOwnProperty("totalBets"))
-                object.totalBets = message.totalBets;
+                object.totalBets = options.json && !isFinite(message.totalBets) ? String(message.totalBets) : message.totalBets;
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             return object;
@@ -2067,7 +2067,7 @@ export const bet = $root.bet = (() => {
             if (message.result != null && Object.hasOwnProperty.call(message, "result"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result);
             if (message.totalBets != null && Object.hasOwnProperty.call(message, "totalBets"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.totalBets);
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.totalBets);
             if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
                 $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
@@ -2111,7 +2111,7 @@ export const bet = $root.bet = (() => {
                     message.result = reader.int32();
                     break;
                 case 3:
-                    message.totalBets = reader.int32();
+                    message.totalBets = reader.double();
                     break;
                 case 4:
                     message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
@@ -2160,8 +2160,8 @@ export const bet = $root.bet = (() => {
                 if (!$util.isInteger(message.result))
                     return "result: integer expected";
             if (message.totalBets != null && message.hasOwnProperty("totalBets"))
-                if (!$util.isInteger(message.totalBets))
-                    return "totalBets: integer expected";
+                if (typeof message.totalBets !== "number")
+                    return "totalBets: number expected";
             if (message.betStatus != null && message.hasOwnProperty("betStatus")) {
                 let error = $root.bet.BetStatus.verify(message.betStatus);
                 if (error)
@@ -2190,7 +2190,7 @@ export const bet = $root.bet = (() => {
             if (object.result != null)
                 message.result = object.result | 0;
             if (object.totalBets != null)
-                message.totalBets = object.totalBets | 0;
+                message.totalBets = Number(object.totalBets);
             if (object.betStatus != null) {
                 if (typeof object.betStatus !== "object")
                     throw TypeError(".bet.BetResetRecall.betStatus: object expected");
@@ -2223,7 +2223,7 @@ export const bet = $root.bet = (() => {
             if (message.result != null && message.hasOwnProperty("result"))
                 object.result = message.result;
             if (message.totalBets != null && message.hasOwnProperty("totalBets"))
-                object.totalBets = message.totalBets;
+                object.totalBets = options.json && !isFinite(message.totalBets) ? String(message.totalBets) : message.totalBets;
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             return object;
@@ -2249,6 +2249,7 @@ export const bet = $root.bet = (() => {
          * Properties of a BetError.
          * @memberof bet
          * @interface IBetError
+         * @property {foundation.IHeader|null} [header] BetError header
          * @property {bet.Error|null} [error] BetError error
          * @property {string|null} [errorMessage] BetError errorMessage
          */
@@ -2267,6 +2268,14 @@ export const bet = $root.bet = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * BetError header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.BetError
+         * @instance
+         */
+        BetError.prototype.header = null;
 
         /**
          * BetError error.
@@ -2308,10 +2317,12 @@ export const bet = $root.bet = (() => {
         BetError.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.error != null && Object.hasOwnProperty.call(message, "error"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.error);
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.error);
             if (message.errorMessage != null && Object.hasOwnProperty.call(message, "errorMessage"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.errorMessage);
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.errorMessage);
             return writer;
         };
 
@@ -2347,9 +2358,12 @@ export const bet = $root.bet = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.error = reader.int32();
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
+                    message.error = reader.int32();
+                    break;
+                case 3:
                     message.errorMessage = reader.string();
                     break;
                 default:
@@ -2387,6 +2401,11 @@ export const bet = $root.bet = (() => {
         BetError.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
             if (message.error != null && message.hasOwnProperty("error"))
                 switch (message.error) {
                 default:
@@ -2417,6 +2436,11 @@ export const bet = $root.bet = (() => {
             if (object instanceof $root.bet.BetError)
                 return object;
             let message = new $root.bet.BetError();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.BetError.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
             switch (object.error) {
             case "ErrorDefault":
             case 0:
@@ -2462,9 +2486,12 @@ export const bet = $root.bet = (() => {
                 options = {};
             let object = {};
             if (options.defaults) {
+                object.header = null;
                 object.error = options.enums === String ? "ErrorDefault" : 0;
                 object.errorMessage = "";
             }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.error != null && message.hasOwnProperty("error"))
                 object.error = options.enums === String ? $root.bet.Error[message.error] : message.error;
             if (message.errorMessage != null && message.hasOwnProperty("errorMessage"))
@@ -2760,13 +2787,13 @@ export const dealer = $root.dealer = (() => {
      * Side enum.
      * @name dealer.Side
      * @enum {number}
-     * @property {number} Default=0 Default value
+     * @property {number} SideDefault=0 SideDefault value
      * @property {number} Banker=1 Banker value
      * @property {number} Player=2 Player value
      */
     dealer.Side = (function() {
         const valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "Default"] = 0;
+        values[valuesById[0] = "SideDefault"] = 0;
         values[valuesById[1] = "Banker"] = 1;
         values[valuesById[2] = "Player"] = 2;
         return values;
@@ -2987,7 +3014,7 @@ export const dealer = $root.dealer = (() => {
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
             switch (object.side) {
-            case "Default":
+            case "SideDefault":
             case 0:
                 message.side = 0;
                 break;
@@ -3025,7 +3052,7 @@ export const dealer = $root.dealer = (() => {
             let object = {};
             if (options.defaults) {
                 object.header = null;
-                object.side = options.enums === String ? "Default" : 0;
+                object.side = options.enums === String ? "SideDefault" : 0;
                 object.position = 0;
                 object.card = null;
             }
@@ -3052,6 +3079,390 @@ export const dealer = $root.dealer = (() => {
         };
 
         return Draw;
+    })();
+
+    dealer.RoundStart = (function() {
+
+        /**
+         * Properties of a RoundStart.
+         * @memberof dealer
+         * @interface IRoundStart
+         * @property {foundation.IHeader|null} [header] RoundStart header
+         */
+
+        /**
+         * Constructs a new RoundStart.
+         * @memberof dealer
+         * @classdesc Represents a RoundStart.
+         * @implements IRoundStart
+         * @constructor
+         * @param {dealer.IRoundStart=} [properties] Properties to set
+         */
+        function RoundStart(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RoundStart header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.RoundStart
+         * @instance
+         */
+        RoundStart.prototype.header = null;
+
+        /**
+         * Creates a new RoundStart instance using the specified properties.
+         * @function create
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {dealer.IRoundStart=} [properties] Properties to set
+         * @returns {dealer.RoundStart} RoundStart instance
+         */
+        RoundStart.create = function create(properties) {
+            return new RoundStart(properties);
+        };
+
+        /**
+         * Encodes the specified RoundStart message. Does not implicitly {@link dealer.RoundStart.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {dealer.IRoundStart} message RoundStart message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundStart.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RoundStart message, length delimited. Does not implicitly {@link dealer.RoundStart.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {dealer.IRoundStart} message RoundStart message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundStart.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RoundStart message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.RoundStart} RoundStart
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundStart.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundStart();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RoundStart message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.RoundStart} RoundStart
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundStart.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RoundStart message.
+         * @function verify
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RoundStart.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a RoundStart message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.RoundStart} RoundStart
+         */
+        RoundStart.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.RoundStart)
+                return object;
+            let message = new $root.dealer.RoundStart();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.RoundStart.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RoundStart message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.RoundStart
+         * @static
+         * @param {dealer.RoundStart} message RoundStart
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RoundStart.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this RoundStart to JSON.
+         * @function toJSON
+         * @memberof dealer.RoundStart
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RoundStart.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return RoundStart;
+    })();
+
+    dealer.RoundEnd = (function() {
+
+        /**
+         * Properties of a RoundEnd.
+         * @memberof dealer
+         * @interface IRoundEnd
+         * @property {foundation.IHeader|null} [header] RoundEnd header
+         */
+
+        /**
+         * Constructs a new RoundEnd.
+         * @memberof dealer
+         * @classdesc Represents a RoundEnd.
+         * @implements IRoundEnd
+         * @constructor
+         * @param {dealer.IRoundEnd=} [properties] Properties to set
+         */
+        function RoundEnd(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RoundEnd header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.RoundEnd
+         * @instance
+         */
+        RoundEnd.prototype.header = null;
+
+        /**
+         * Creates a new RoundEnd instance using the specified properties.
+         * @function create
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {dealer.IRoundEnd=} [properties] Properties to set
+         * @returns {dealer.RoundEnd} RoundEnd instance
+         */
+        RoundEnd.create = function create(properties) {
+            return new RoundEnd(properties);
+        };
+
+        /**
+         * Encodes the specified RoundEnd message. Does not implicitly {@link dealer.RoundEnd.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {dealer.IRoundEnd} message RoundEnd message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundEnd.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RoundEnd message, length delimited. Does not implicitly {@link dealer.RoundEnd.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {dealer.IRoundEnd} message RoundEnd message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundEnd.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RoundEnd message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.RoundEnd} RoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundEnd.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundEnd();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RoundEnd message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.RoundEnd} RoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundEnd.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RoundEnd message.
+         * @function verify
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RoundEnd.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a RoundEnd message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.RoundEnd} RoundEnd
+         */
+        RoundEnd.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.RoundEnd)
+                return object;
+            let message = new $root.dealer.RoundEnd();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.RoundEnd.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RoundEnd message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.RoundEnd
+         * @static
+         * @param {dealer.RoundEnd} message RoundEnd
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RoundEnd.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this RoundEnd to JSON.
+         * @function toJSON
+         * @memberof dealer.RoundEnd
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RoundEnd.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return RoundEnd;
     })();
 
     /**
@@ -3515,6 +3926,9 @@ export const foundation = $root.foundation = (() => {
                 case 16:
                 case 17:
                 case 18:
+                case 19:
+                case 20:
+                case 21:
                     break;
                 }
             return null;
@@ -3608,6 +4022,18 @@ export const foundation = $root.foundation = (() => {
             case "HeartbeatPong":
             case 18:
                 message.uri = 18;
+                break;
+            case "DealerRoundStart":
+            case 19:
+                message.uri = 19;
+                break;
+            case "DealerRoundEnd":
+            case 20:
+                message.uri = 20;
+                break;
+            case "BetError":
+            case 21:
+                message.uri = 21;
                 break;
             }
             return message;
@@ -5180,6 +5606,9 @@ export const route = $root.route = (() => {
      * @property {number} BetRoundCountdown=16 BetRoundCountdown value
      * @property {number} HeartbeatPing=17 HeartbeatPing value
      * @property {number} HeartbeatPong=18 HeartbeatPong value
+     * @property {number} DealerRoundStart=19 DealerRoundStart value
+     * @property {number} DealerRoundEnd=20 DealerRoundEnd value
+     * @property {number} BetError=21 BetError value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -5202,6 +5631,9 @@ export const route = $root.route = (() => {
         values[valuesById[16] = "BetRoundCountdown"] = 16;
         values[valuesById[17] = "HeartbeatPing"] = 17;
         values[valuesById[18] = "HeartbeatPong"] = 18;
+        values[valuesById[19] = "DealerRoundStart"] = 19;
+        values[valuesById[20] = "DealerRoundEnd"] = 20;
+        values[valuesById[21] = "BetError"] = 21;
         return values;
     })();
 

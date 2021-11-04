@@ -947,6 +947,9 @@ export namespace bet {
     /** Properties of a BetError. */
     interface IBetError {
 
+        /** BetError header */
+        header?: (foundation.IHeader|null);
+
         /** BetError error */
         error?: (bet.Error|null);
 
@@ -962,6 +965,9 @@ export namespace bet {
          * @param [properties] Properties to set
          */
         constructor(properties?: bet.IBetError);
+
+        /** BetError header. */
+        public header?: (foundation.IHeader|null);
 
         /** BetError error. */
         public error: bet.Error;
@@ -1151,7 +1157,7 @@ export namespace dealer {
 
     /** Side enum. */
     enum Side {
-        Default = 0,
+        SideDefault = 0,
         Banker = 1,
         Player = 2
     }
@@ -1259,6 +1265,186 @@ export namespace dealer {
 
         /**
          * Converts this Draw to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a RoundStart. */
+    interface IRoundStart {
+
+        /** RoundStart header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a RoundStart. */
+    class RoundStart implements IRoundStart {
+
+        /**
+         * Constructs a new RoundStart.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.IRoundStart);
+
+        /** RoundStart header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new RoundStart instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RoundStart instance
+         */
+        public static create(properties?: dealer.IRoundStart): dealer.RoundStart;
+
+        /**
+         * Encodes the specified RoundStart message. Does not implicitly {@link dealer.RoundStart.verify|verify} messages.
+         * @param message RoundStart message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.IRoundStart, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RoundStart message, length delimited. Does not implicitly {@link dealer.RoundStart.verify|verify} messages.
+         * @param message RoundStart message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.IRoundStart, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RoundStart message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns RoundStart
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.RoundStart;
+
+        /**
+         * Decodes a RoundStart message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns RoundStart
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.RoundStart;
+
+        /**
+         * Verifies a RoundStart message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RoundStart message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RoundStart
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.RoundStart;
+
+        /**
+         * Creates a plain object from a RoundStart message. Also converts values to other types if specified.
+         * @param message RoundStart
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.RoundStart, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RoundStart to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a RoundEnd. */
+    interface IRoundEnd {
+
+        /** RoundEnd header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a RoundEnd. */
+    class RoundEnd implements IRoundEnd {
+
+        /**
+         * Constructs a new RoundEnd.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.IRoundEnd);
+
+        /** RoundEnd header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new RoundEnd instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RoundEnd instance
+         */
+        public static create(properties?: dealer.IRoundEnd): dealer.RoundEnd;
+
+        /**
+         * Encodes the specified RoundEnd message. Does not implicitly {@link dealer.RoundEnd.verify|verify} messages.
+         * @param message RoundEnd message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.IRoundEnd, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RoundEnd message, length delimited. Does not implicitly {@link dealer.RoundEnd.verify|verify} messages.
+         * @param message RoundEnd message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.IRoundEnd, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RoundEnd message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns RoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.RoundEnd;
+
+        /**
+         * Decodes a RoundEnd message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns RoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.RoundEnd;
+
+        /**
+         * Verifies a RoundEnd message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RoundEnd message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RoundEnd
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.RoundEnd;
+
+        /**
+         * Creates a plain object from a RoundEnd message. Also converts values to other types if specified.
+         * @param message RoundEnd
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.RoundEnd, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RoundEnd to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -2156,7 +2342,10 @@ export namespace route {
         BetRoundEnd = 15,
         BetRoundCountdown = 16,
         HeartbeatPing = 17,
-        HeartbeatPong = 18
+        HeartbeatPong = 18,
+        DealerRoundStart = 19,
+        DealerRoundEnd = 20,
+        BetError = 21
     }
 }
 

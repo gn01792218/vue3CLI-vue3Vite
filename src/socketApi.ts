@@ -116,6 +116,10 @@ export const getMsgReCall = (e:any) =>{
             console.log('BetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
             break
+        case route.BetError:
+            let BetError = bet.BetError.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BetError',BetError)
+            break
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
             console.log('Draw',Draw)

@@ -1,4 +1,5 @@
 <template>
+    <GameresultSound/>
     <div class="betArea">
         <!-- PC版本注區 -->
         <div class="betArea-pc">
@@ -55,6 +56,7 @@
         </div>
         <GameResult v-if="hasGameResult"/>
      <button @click="showResult" class="gameresult position-absolute">遊戲結果</button>
+     <button class="position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
     </div>
      
 </template>
@@ -66,6 +68,7 @@ import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
 import TotalBet from'@/components/ToTalBet.vue'
 import GameResult from '@/components/GameResult.vue'
+import GameresultSound from '@/components/GameResultSound.vue'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
@@ -91,9 +94,11 @@ interface coinPosition {
 }
 export default defineComponent({
     components:{
-        TotalBet,GameResult,
+        TotalBet,GameResult,GameresultSound,
     },
     setup(){
+        //音樂測試
+        const gameresultSound = ref<HTMLAudioElement | null>(null)
         //vuex
         const store = useStore();
         const user = computed(()=>{
@@ -288,10 +293,12 @@ export default defineComponent({
             }
             }
         }
-        function resetGame () {
+        function getAllBetBack(){
             sendBetResetCall({
                  gameUuid:roundUuid.value,
             })
+        }
+        function resetGame () {
             //清空選取的籌碼
             currentCoint.coinElement = null
             currentCoint.point = null
@@ -313,9 +320,9 @@ export default defineComponent({
         }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,hasGameResult,
+            coinList,currentCoint,coinPosition,betStatus,hasGameResult,gameresultSound,
             //methods
-            chooseCoint,cointAnimate,generateCoin,bet,resetGame,showResult
+            chooseCoint,cointAnimate,generateCoin,bet,resetGame,showResult,getAllBetBack
         }
     }
 })

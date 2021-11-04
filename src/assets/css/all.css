@@ -417,8 +417,6 @@ img {
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 0px #9e9e9e;
           box-shadow: 0px 0px 0px #9e9e9e;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
@@ -427,8 +425,6 @@ img {
   outline-offset: -2px;
   text-decoration: none;
   color: #372710;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .header-btn.focus, .header-btn:focus, .header-btn:hover {
@@ -448,8 +444,6 @@ img {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#775124', endColorstr='#ae8b27',GradientType=0 );
   /* IE6-9 */
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .header-btn.active, .header-btn:active {
