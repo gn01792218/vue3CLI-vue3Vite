@@ -119,6 +119,7 @@ export const getMsgReCall = (e:any) =>{
         case route.BetError:
             let BetError = bet.BetError.decode(new Uint8Array(e.detail.msg.data))
             console.log('BetError',BetError)
+            store.commit('bet/BetError',BetError)
             break
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
@@ -145,6 +146,7 @@ export const getMsgReCall = (e:any) =>{
             let GameStatus = game.GameStatus.decode(new Uint8Array(e.detail.msg.data))
             console.log('GameStatus',GameStatus)
             store.commit('game/GameStatus',GameStatus)
+            break
         // case route.BetRoundCountdown:
         //     let BetRoundCountdown = game.BetRoundCountdown.decode(new Uint8Array(e.detail.msg.data))
         //     console.log('BetRoundCountdown',BetRoundCountdown)

@@ -86,7 +86,7 @@ export default defineComponent({
         }
         //倒數計時器邏輯
         function setCount () { //倒數計時
-        console.log("設置計時器",count.value)
+        // console.log("設置計時器",count.value)
             timer.value = setInterval(()=>{
                 if(count.value<=0){ //倒數完時
                     clearInterval(timer.value)
@@ -95,7 +95,7 @@ export default defineComponent({
                     gsap //最後要將數字隱藏
                     .fromTo('#countNumber',{x:20,opacity:"0",display:"none"},
                     {x:20,opacity:"1",ease:Power4.easeInOut,display:"none"})
-                    console.log("計時器結束",count.value)
+                    // console.log("計時器結束",count.value)
                 }else{  //在1以上時才會執行
                     count.value-=1
                     loadingCount()
@@ -118,7 +118,7 @@ export default defineComponent({
         // })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
-                console.log("新局開始",count.value)
+                // console.log("新局開始",count.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 setCount()
             // switch(roundUuid.value){

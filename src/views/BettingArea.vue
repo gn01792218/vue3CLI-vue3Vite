@@ -55,7 +55,6 @@
             </ul>
         </div>
         <GameResult v-if="hasGameResult"/>
-        <button @click="showResult" class="gameresult position-absolute">遊戲結果</button>
         <button class="position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
     </div>
 </template>
@@ -109,15 +108,12 @@ export default defineComponent({
         const betResetresult = computed(()=>{
             return store.state.bet.BetResetRecall.result
         })
+        const betError = computed(()=>{
+            return store.state.bet.BetError.error
+        })
         const roundUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
         })
-        const roundStatus = computed(()=>{ //遊戲回合狀態
-            return 1
-        })
-        const gameResult = computed(()=>{ //回傳的是陣列
-            return store.state.dealer.BroadcastGameResult.results
-        }) 
         const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
         })
@@ -134,14 +130,14 @@ export default defineComponent({
         //基本資料
         const hasGameResult = ref(false)
         //監聽
-        watch(betStatus,()=>{
+        watch(betStatus,()=>{  //更新每次下注後顯示再注區的數字
             coinPosition[0].betStatus = betStatus.value.Banker
             coinPosition[1].betStatus = betStatus.value.Player
             coinPosition[2].betStatus = betStatus.value.BankerPair
             coinPosition[3].betStatus = betStatus.value.Tie
             coinPosition[4].betStatus = betStatus.value.PlayerPair
         })
-        watch(roundUuid,()=>{
+        watch(roundUuid,()=>{  //回合開始時重置遊戲
             console.log("開始下注")
             resetGame()
             hasGameResult.value = false
@@ -156,13 +152,9 @@ export default defineComponent({
                  resetGame()
             }
         })
-        watch(totalBetInfo,()=>{  
+        watch(totalBetInfo,()=>{  //下注總額的更新
             total.value = totalBetInfo.value
         })
-        // watch(gameResult,()=>{
-        //     console.log("出畫面")
-        //     hasGameResult.value = true
-        // })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
                     {
@@ -303,8 +295,8 @@ export default defineComponent({
                     gameUuid:roundUuid.value,
                     betIndex:currentCoint.num,
                     betArea:index+1,
-                })
-                if(betResult.value!==-1){
+                    })
+                    if(betResult.value!==-1){
                     //裝子彈，就會啟動籌碼飛的動畫
                     loadCoin()  
                     let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
@@ -313,17 +305,38 @@ export default defineComponent({
                     let cp = coinPosition[index]; //用來存點選到的注區
                     let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
                     setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置 
-                }else if(betResult.value===-1){
-                    alert("伺服器忙碌中，請重下")
+                    }else{
+                        switch(betError.value){
+                            case 1:
+                                alert("非下注時間")
+                                break
+                            case 2:
+                                alert("非法的籌碼")
+                                break
+                            case 3:
+                                alert("非法的注區")
+                                break
+                            case 4:
+                                alert("超過最高下注額度")
+                                break
+                            case 5:
+                                alert("非法遊戲局")
+                                break
+                            case 6:
+                                alert("使用者餘額不足")
+                                break
+
+                        }
+                    }
                 }
-                }else{
-                if(currentCoint.point && user.value.wallet < currentCoint.point){
-                     alert("餘額不足")
-                }
-                if(roundStatus.value!==1){
-                    alert('非下注時間')
-                }
-            }
+                // else{
+                // if(currentCoint.point && user.value.wallet < currentCoint.point){
+                //      alert("餘額不足")
+                // }
+                // if(roundStatus.value!==1){
+                //     alert('非下注時間')
+                // }
+                // }
             }
         }
         function getAllBetBack(){

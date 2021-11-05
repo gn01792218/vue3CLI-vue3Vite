@@ -393,11 +393,12 @@ export namespace bet {
     /** Error enum. */
     enum Error {
         ErrorDefault = 0,
-        BetIndexInvalid = 1,
-        BetAreaInvalid = 2,
-        ReachMaxLimit = 3,
-        RoundNotFound = 4,
-        NoEnoughWallet = 5
+        BetTimeNotInvlid = 1,
+        BetIndexInvalid = 2,
+        BetAreaInvalid = 3,
+        ReachMaxLimit = 4,
+        RoundNotFound = 5,
+        NoEnoughWallet = 6
     }
 
     /** BetArea enum. */
@@ -646,6 +647,9 @@ export namespace bet {
 
         /** BetRecall betStatus */
         betStatus?: (bet.IBetStatus|null);
+
+        /** BetRecall betError */
+        betError?: (bet.IBetError|null);
     }
 
     /** Represents a BetRecall. */
@@ -668,6 +672,9 @@ export namespace bet {
 
         /** BetRecall betStatus. */
         public betStatus?: (bet.IBetStatus|null);
+
+        /** BetRecall betError. */
+        public betError?: (bet.IBetError|null);
 
         /**
          * Creates a new BetRecall instance using the specified properties.

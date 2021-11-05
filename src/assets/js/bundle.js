@@ -893,20 +893,22 @@ export const bet = $root.bet = (() => {
      * @name bet.Error
      * @enum {number}
      * @property {number} ErrorDefault=0 ErrorDefault value
-     * @property {number} BetIndexInvalid=1 BetIndexInvalid value
-     * @property {number} BetAreaInvalid=2 BetAreaInvalid value
-     * @property {number} ReachMaxLimit=3 ReachMaxLimit value
-     * @property {number} RoundNotFound=4 RoundNotFound value
-     * @property {number} NoEnoughWallet=5 NoEnoughWallet value
+     * @property {number} BetTimeNotInvlid=1 BetTimeNotInvlid value
+     * @property {number} BetIndexInvalid=2 BetIndexInvalid value
+     * @property {number} BetAreaInvalid=3 BetAreaInvalid value
+     * @property {number} ReachMaxLimit=4 ReachMaxLimit value
+     * @property {number} RoundNotFound=5 RoundNotFound value
+     * @property {number} NoEnoughWallet=6 NoEnoughWallet value
      */
     bet.Error = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "ErrorDefault"] = 0;
-        values[valuesById[1] = "BetIndexInvalid"] = 1;
-        values[valuesById[2] = "BetAreaInvalid"] = 2;
-        values[valuesById[3] = "ReachMaxLimit"] = 3;
-        values[valuesById[4] = "RoundNotFound"] = 4;
-        values[valuesById[5] = "NoEnoughWallet"] = 5;
+        values[valuesById[1] = "BetTimeNotInvlid"] = 1;
+        values[valuesById[2] = "BetIndexInvalid"] = 2;
+        values[valuesById[3] = "BetAreaInvalid"] = 3;
+        values[valuesById[4] = "ReachMaxLimit"] = 4;
+        values[valuesById[5] = "RoundNotFound"] = 5;
+        values[valuesById[6] = "NoEnoughWallet"] = 6;
         return values;
     })();
 
@@ -1510,6 +1512,7 @@ export const bet = $root.bet = (() => {
          * @property {number|null} [result] BetRecall result
          * @property {number|null} [totalBets] BetRecall totalBets
          * @property {bet.IBetStatus|null} [betStatus] BetRecall betStatus
+         * @property {bet.IBetError|null} [betError] BetRecall betError
          */
 
         /**
@@ -1560,6 +1563,14 @@ export const bet = $root.bet = (() => {
         BetRecall.prototype.betStatus = null;
 
         /**
+         * BetRecall betError.
+         * @member {bet.IBetError|null|undefined} betError
+         * @memberof bet.BetRecall
+         * @instance
+         */
+        BetRecall.prototype.betError = null;
+
+        /**
          * Creates a new BetRecall instance using the specified properties.
          * @function create
          * @memberof bet.BetRecall
@@ -1591,6 +1602,8 @@ export const bet = $root.bet = (() => {
                 writer.uint32(/* id 3, wireType 1 =*/25).double(message.totalBets);
             if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
                 $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.betError != null && Object.hasOwnProperty.call(message, "betError"))
+                $root.bet.BetError.encode(message.betError, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
 
@@ -1636,6 +1649,9 @@ export const bet = $root.bet = (() => {
                     break;
                 case 4:
                     message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.betError = $root.bet.BetError.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1688,6 +1704,11 @@ export const bet = $root.bet = (() => {
                 if (error)
                     return "betStatus." + error;
             }
+            if (message.betError != null && message.hasOwnProperty("betError")) {
+                let error = $root.bet.BetError.verify(message.betError);
+                if (error)
+                    return "betError." + error;
+            }
             return null;
         };
 
@@ -1717,6 +1738,11 @@ export const bet = $root.bet = (() => {
                     throw TypeError(".bet.BetRecall.betStatus: object expected");
                 message.betStatus = $root.bet.BetStatus.fromObject(object.betStatus);
             }
+            if (object.betError != null) {
+                if (typeof object.betError !== "object")
+                    throw TypeError(".bet.BetRecall.betError: object expected");
+                message.betError = $root.bet.BetError.fromObject(object.betError);
+            }
             return message;
         };
 
@@ -1738,6 +1764,7 @@ export const bet = $root.bet = (() => {
                 object.result = 0;
                 object.totalBets = 0;
                 object.betStatus = null;
+                object.betError = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -1747,6 +1774,8 @@ export const bet = $root.bet = (() => {
                 object.totalBets = options.json && !isFinite(message.totalBets) ? String(message.totalBets) : message.totalBets;
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
+            if (message.betError != null && message.hasOwnProperty("betError"))
+                object.betError = $root.bet.BetError.toObject(message.betError, options);
             return object;
         };
 
@@ -2416,6 +2445,7 @@ export const bet = $root.bet = (() => {
                 case 3:
                 case 4:
                 case 5:
+                case 6:
                     break;
                 }
             if (message.errorMessage != null && message.hasOwnProperty("errorMessage"))
@@ -2446,25 +2476,29 @@ export const bet = $root.bet = (() => {
             case 0:
                 message.error = 0;
                 break;
-            case "BetIndexInvalid":
+            case "BetTimeNotInvlid":
             case 1:
                 message.error = 1;
                 break;
-            case "BetAreaInvalid":
+            case "BetIndexInvalid":
             case 2:
                 message.error = 2;
                 break;
-            case "ReachMaxLimit":
+            case "BetAreaInvalid":
             case 3:
                 message.error = 3;
                 break;
-            case "RoundNotFound":
+            case "ReachMaxLimit":
             case 4:
                 message.error = 4;
                 break;
-            case "NoEnoughWallet":
+            case "RoundNotFound":
             case 5:
                 message.error = 5;
+                break;
+            case "NoEnoughWallet":
+            case 6:
+                message.error = 6;
                 break;
             }
             if (object.errorMessage != null)

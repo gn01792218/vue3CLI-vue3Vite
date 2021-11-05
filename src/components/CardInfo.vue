@@ -37,18 +37,24 @@ export default defineComponent({
      const roundUuid = computed(()=>{
        return store.state.game.gameUuid
      })
-     const roundState = computed(()=>{
-      
+     const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
+      return store.state.game.GameStatus.draws
      })
-     const DrawCard = computed(()=>{
+     const DrawCard = computed(()=>{  //每次都傳一張
        return store.state.dealer.Draw
      })
      //watch
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
      })
-     watch(DrawCard,()=>{
-        showCards()
+     watch(DrawCard,()=>{  //開牌
+       let card = DrawCard.value
+        showCards(card.side,card.card.suit,card.card.point,card.position)
+     })
+     watch(lastDrawCard,()=>{  //補畫進場前的卡牌
+       lastDrawCard.value.forEach((i:any)=>{
+         showCards (i.side,i.card.suit,i.card.point,i.position)
+       })
      })
      //撲克牌業務代碼
      function resetCards () {
@@ -74,12 +80,12 @@ export default defineComponent({
           return document.querySelectorAll(`${cardSideClassName}0`)
        }
      }
-     function showCards () { 
-      let suit = DrawCard.value.card.suit
-      let point = DrawCard.value.card.point
-      let position = DrawCard.value.position
+     function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
+      let suit = cardSuit
+      let point = cardPoint
+      let position = cardPosition
       let cardElement:NodeListOf<HTMLElement> | undefined
-      switch(DrawCard.value.side){
+      switch(cardSide){
         case 1:
           cardElement = getCardPosition(position,'.bankPoker')
           break
@@ -107,7 +113,7 @@ export default defineComponent({
         }else if(viewportWidth<=414){
           scale.value = 0.14
         }
-      cardItem.forEach(i=>{
+        cardItem.forEach(i=>{
         i.style.width = `${uw*scale.value}px`
         i.style.height = `${uh*scale.value}px`
       })
