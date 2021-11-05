@@ -55,10 +55,9 @@
             </ul>
         </div>
         <GameResult v-if="hasGameResult"/>
-     <button @click="showResult" class="gameresult position-absolute">遊戲結果</button>
-     <button class="position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
+        <button @click="showResult" class="gameresult position-absolute">遊戲結果</button>
+        <button class="position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
     </div>
-     
 </template>
 
 <script lang="ts">
@@ -119,6 +118,9 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         }) 
+        const gameEndUuid = computed(()=>{
+            return store.state.game.gameEndUuid
+        })
         const total = ref<number>(0)
         const totalBetInfo = computed({  //每次下注的時候都更新totalBet
             get(){
@@ -140,10 +142,15 @@ export default defineComponent({
             coinPosition[4].betStatus = betStatus.value.PlayerPair
         })
         watch(roundUuid,()=>{
+            console.log("開始下注")
             resetGame()
-            
+            hasGameResult.value = false
         })
-        watch(betResetresult,()=>{
+        watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
+            console.log("停止下注")
+            hasGameResult.value = true
+        })
+        watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
             console.log(betResetresult.value)
             if(betResetresult.value===1){
                  resetGame()

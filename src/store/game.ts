@@ -4,6 +4,7 @@ export const state = {
     gameUuid:"",
     GameStatus:{},
     BetRoundEnd:{},
+    gameEndUuid:"",
   };
   export const actions = {}
   
@@ -22,6 +23,7 @@ export const state = {
     },
     BetRoundEnd(state:any, payload:any){
       state.BetRoundEnd = payload
+      state.gameEndUuid = payload.gameUuid
       // console.log("vuex-BetRoundCountdown資料更新",state.BetRoundCountdown)
     },
   };

@@ -688,6 +688,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   text-align: center;
 }
 
+.gameResultLoading {
+  background-image: url("../../images/loading.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 .poker {
   background-image: url("../../images/poker.png");
 }

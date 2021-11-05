@@ -1,9 +1,12 @@
 <template>
     <div class="gameResult w-100 h-100 position-absolute">
         <section class="gameResult-title">
-            <p>遊戲結果</p>
+            <!-- //要改成響應式的refData唷!!! -->
+            <p v-if="isWait">等待遊戲結果...請稍後</p>
+            <p v-else>遊戲結果</p>
         </section>
         <section class="gameResult-content">
+            <GameResultLoading v-if="isWait"/>
             <ul id="result">
             </ul>
             <p>獲得金額:-1000</p>
@@ -15,7 +18,11 @@
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue'
 import {useStore} from 'vuex'
+import GameResultLoading from '@/components/GameResultLoading.vue'
 export default defineComponent({
+    components:{
+        GameResultLoading,
+    },
     setup(){
         const store = useStore()
         const gameResult = computed(()=>{ //回傳的是陣列
@@ -24,13 +31,21 @@ export default defineComponent({
         const gameUuid = computed(()=>{
             return store.state.game.gameUuid
         })
+        const gameEndUuid = computed(()=>{
+            return store.state.game.gameEndUuid
+        })
+        const isWait = ref(true)
         watch(gameUuid,()=>{
             console.log("重置遊戲結果")
             resetGameResult()
         })
+        watch(gameEndUuid,()=>{
+            console.log("等待遊戲結果...")
+        })
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
             console.log("改變")
+            isWait.value = false //關閉Loading效果
             let result = document.querySelector('#result') as HTMLElement  //這是ul
             gameResult.value.forEach((i:any)=>{
                 switch(i){
@@ -77,12 +92,13 @@ export default defineComponent({
             result.innerHTML=""
         }
         return{
-            
+            //data
+            isWait,
         }
     }
 })
 </script>
 
 <style>
-
+  
 </style>
