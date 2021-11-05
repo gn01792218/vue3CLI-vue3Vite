@@ -38,3 +38,20 @@
 	@extend %coin;
 	@include coinSpritePosition(-316,-65,1)
 }
+
+//籌碼子彈
+.ammo5{
+	left:5%;
+}
+.ammo10{
+	left:25%;
+}
+.ammo50{
+	left:45%;
+}
+.ammo100{
+	left:65%;
+}
+.ammo500{
+   left:85%;
+}

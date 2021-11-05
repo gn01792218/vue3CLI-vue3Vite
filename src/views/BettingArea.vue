@@ -55,7 +55,7 @@
             </ul>
         </div>
         <GameResult v-if="hasGameResult"/>
-        <button class="position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
+        <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
     </div>
 </template>
 
@@ -377,6 +377,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.test{
+    bottom:0;
+}
 .gameresult{
     top:25%;
 }
@@ -389,25 +392,11 @@ export default defineComponent({
     left:0;
     }
     .shotCoinUl{  
+        width:100%;
         .shotCoinPice{
             pointer-events: none; //使能被穿透
             position: absolute;
             top:-25px;
-        }
-        .ammo5{
-            left:-300px;
-        }
-        .ammo10{
-            left:-150px;
-        }
-        .ammo50{
-            left:-50px;
-        }
-        .ammo100{
-            left:100px;
-        }
-        .ammo500{
-           left:220px;
         }
     }
     .coinPosition{

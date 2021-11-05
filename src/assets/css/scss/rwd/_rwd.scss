@@ -562,18 +562,18 @@
 		.caritem{
 			margin-right: 10px;
 		}
-		.ammo5{
-            left:-200px !important;
-        }
-        .ammo10{
-            left:-120px !important;
-        }
-        .ammo100{
-            left:50px !important;
-        }
-        .ammo500{
-           left:120px !important;
-        }
+		// .ammo5{
+        //     left:-200px !important;
+        // }
+        // .ammo10{
+        //     left:-120px !important;
+        // }
+        // .ammo100{
+        //     left:50px !important;
+        // }
+        // .ammo500{
+        //    left:120px !important;
+        // }
 		.stand-mobile-container{
 			height:187px;
 		}
@@ -662,19 +662,19 @@
 	.coin-menu5:hover,.coin-menu5-current{
 		@include coinSpritePosition(-316,-65,0.7)
 	}
-	.ammo5{
-		left:-130px !important;
-	}
-	.ammo10{
-		left:-80px !important;
-	}
-	.ammo50{
-		left:-20px !important;
-	}
-	.ammo100{
-		left:30px !important;
-	}
-	.ammo500{
-	   left:80px !important;
-	}
+	// .ammo5{
+	// 	left:-130px !important;
+	// }
+	// .ammo10{
+	// 	left:-80px !important;
+	// }
+	// .ammo50{
+	// 	left:-20px !important;
+	// }
+	// .ammo100{
+	// 	left:30px !important;
+	// }
+	// .ammo500{
+	//    left:80px !important;
+	// }
 }	

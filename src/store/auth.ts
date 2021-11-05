@@ -1,6 +1,6 @@
 
 export const state = {
-  userToken:String,
+  userToken:"",
   LoginRecall: {},
   UserInfo:{},
 };

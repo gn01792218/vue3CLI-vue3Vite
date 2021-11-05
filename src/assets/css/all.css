@@ -535,6 +535,26 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-size: 395px 195px;
 }
 
+.ammo5 {
+  left: 5%;
+}
+
+.ammo10 {
+  left: 25%;
+}
+
+.ammo50 {
+  left: 45%;
+}
+
+.ammo100 {
+  left: 65%;
+}
+
+.ammo500 {
+  left: 85%;
+}
+
 .bankerRoadIcon0 {
   width: 35px;
   height: 35px;
@@ -1628,18 +1648,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .caritem {
     margin-right: 10px;
   }
-  .ammo5 {
-    left: -200px !important;
-  }
-  .ammo10 {
-    left: -120px !important;
-  }
-  .ammo100 {
-    left: 50px !important;
-  }
-  .ammo500 {
-    left: 120px !important;
-  }
   .stand-mobile-container {
     height: 187px;
   }
@@ -1759,21 +1767,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 45.5px;
     background-position: -221.2px -45.5px;
     background-size: 276.5px 136.5px;
-  }
-  .ammo5 {
-    left: -130px !important;
-  }
-  .ammo10 {
-    left: -80px !important;
-  }
-  .ammo50 {
-    left: -20px !important;
-  }
-  .ammo100 {
-    left: 30px !important;
-  }
-  .ammo500 {
-    left: 80px !important;
   }
 }
 /*# sourceMappingURL=all.css.map */

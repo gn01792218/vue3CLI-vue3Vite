@@ -2864,25 +2864,25 @@ export namespace table {
     interface IBetStatus {
 
         /** BetStatus Banker */
-        Banker?: (number|null);
+        Banker?: (string|null);
 
         /** BetStatus Player */
-        Player?: (number|null);
+        Player?: (string|null);
 
         /** BetStatus Tie */
-        Tie?: (number|null);
+        Tie?: (string|null);
 
         /** BetStatus BankerPair */
-        BankerPair?: (number|null);
+        BankerPair?: (string|null);
 
         /** BetStatus PlayerPair */
-        PlayerPair?: (number|null);
+        PlayerPair?: (string|null);
 
         /** BetStatus BankerNatural */
-        BankerNatural?: (number|null);
+        BankerNatural?: (string|null);
 
         /** BetStatus PlayerNatural */
-        PlayerNatural?: (number|null);
+        PlayerNatural?: (string|null);
     }
 
     /** Represents a BetStatus. */
@@ -2895,25 +2895,25 @@ export namespace table {
         constructor(properties?: table.IBetStatus);
 
         /** BetStatus Banker. */
-        public Banker: number;
+        public Banker: string;
 
         /** BetStatus Player. */
-        public Player: number;
+        public Player: string;
 
         /** BetStatus Tie. */
-        public Tie: number;
+        public Tie: string;
 
         /** BetStatus BankerPair. */
-        public BankerPair: number;
+        public BankerPair: string;
 
         /** BetStatus PlayerPair. */
-        public PlayerPair: number;
+        public PlayerPair: string;
 
         /** BetStatus BankerNatural. */
-        public BankerNatural: number;
+        public BankerNatural: string;
 
         /** BetStatus PlayerNatural. */
-        public PlayerNatural: number;
+        public PlayerNatural: string;
 
         /**
          * Creates a new BetStatus instance using the specified properties.

@@ -6883,13 +6883,13 @@ export const table = $root.table = (() => {
          * Properties of a BetStatus.
          * @memberof table
          * @interface IBetStatus
-         * @property {number|null} [Banker] BetStatus Banker
-         * @property {number|null} [Player] BetStatus Player
-         * @property {number|null} [Tie] BetStatus Tie
-         * @property {number|null} [BankerPair] BetStatus BankerPair
-         * @property {number|null} [PlayerPair] BetStatus PlayerPair
-         * @property {number|null} [BankerNatural] BetStatus BankerNatural
-         * @property {number|null} [PlayerNatural] BetStatus PlayerNatural
+         * @property {string|null} [Banker] BetStatus Banker
+         * @property {string|null} [Player] BetStatus Player
+         * @property {string|null} [Tie] BetStatus Tie
+         * @property {string|null} [BankerPair] BetStatus BankerPair
+         * @property {string|null} [PlayerPair] BetStatus PlayerPair
+         * @property {string|null} [BankerNatural] BetStatus BankerNatural
+         * @property {string|null} [PlayerNatural] BetStatus PlayerNatural
          */
 
         /**
@@ -6909,59 +6909,59 @@ export const table = $root.table = (() => {
 
         /**
          * BetStatus Banker.
-         * @member {number} Banker
+         * @member {string} Banker
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.Banker = 0;
+        BetStatus.prototype.Banker = "";
 
         /**
          * BetStatus Player.
-         * @member {number} Player
+         * @member {string} Player
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.Player = 0;
+        BetStatus.prototype.Player = "";
 
         /**
          * BetStatus Tie.
-         * @member {number} Tie
+         * @member {string} Tie
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.Tie = 0;
+        BetStatus.prototype.Tie = "";
 
         /**
          * BetStatus BankerPair.
-         * @member {number} BankerPair
+         * @member {string} BankerPair
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.BankerPair = 0;
+        BetStatus.prototype.BankerPair = "";
 
         /**
          * BetStatus PlayerPair.
-         * @member {number} PlayerPair
+         * @member {string} PlayerPair
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.PlayerPair = 0;
+        BetStatus.prototype.PlayerPair = "";
 
         /**
          * BetStatus BankerNatural.
-         * @member {number} BankerNatural
+         * @member {string} BankerNatural
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.BankerNatural = 0;
+        BetStatus.prototype.BankerNatural = "";
 
         /**
          * BetStatus PlayerNatural.
-         * @member {number} PlayerNatural
+         * @member {string} PlayerNatural
          * @memberof table.BetStatus
          * @instance
          */
-        BetStatus.prototype.PlayerNatural = 0;
+        BetStatus.prototype.PlayerNatural = "";
 
         /**
          * Creates a new BetStatus instance using the specified properties.
@@ -6988,19 +6988,19 @@ export const table = $root.table = (() => {
             if (!writer)
                 writer = $Writer.create();
             if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.Banker);
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.Banker);
             if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.Player);
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.Player);
             if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.Tie);
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.Tie);
             if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
-                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.BankerPair);
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.BankerPair);
             if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
-                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.PlayerPair);
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.PlayerPair);
             if (message.BankerNatural != null && Object.hasOwnProperty.call(message, "BankerNatural"))
-                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.BankerNatural);
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.BankerNatural);
             if (message.PlayerNatural != null && Object.hasOwnProperty.call(message, "PlayerNatural"))
-                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.PlayerNatural);
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.PlayerNatural);
             return writer;
         };
 
@@ -7036,25 +7036,25 @@ export const table = $root.table = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.Banker = reader.int32();
+                    message.Banker = reader.string();
                     break;
                 case 2:
-                    message.Player = reader.int32();
+                    message.Player = reader.string();
                     break;
                 case 3:
-                    message.Tie = reader.int32();
+                    message.Tie = reader.string();
                     break;
                 case 4:
-                    message.BankerPair = reader.int32();
+                    message.BankerPair = reader.string();
                     break;
                 case 5:
-                    message.PlayerPair = reader.int32();
+                    message.PlayerPair = reader.string();
                     break;
                 case 6:
-                    message.BankerNatural = reader.int32();
+                    message.BankerNatural = reader.string();
                     break;
                 case 7:
-                    message.PlayerNatural = reader.int32();
+                    message.PlayerNatural = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7092,26 +7092,26 @@ export const table = $root.table = (() => {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.Banker != null && message.hasOwnProperty("Banker"))
-                if (!$util.isInteger(message.Banker))
-                    return "Banker: integer expected";
+                if (!$util.isString(message.Banker))
+                    return "Banker: string expected";
             if (message.Player != null && message.hasOwnProperty("Player"))
-                if (!$util.isInteger(message.Player))
-                    return "Player: integer expected";
+                if (!$util.isString(message.Player))
+                    return "Player: string expected";
             if (message.Tie != null && message.hasOwnProperty("Tie"))
-                if (!$util.isInteger(message.Tie))
-                    return "Tie: integer expected";
+                if (!$util.isString(message.Tie))
+                    return "Tie: string expected";
             if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                if (!$util.isInteger(message.BankerPair))
-                    return "BankerPair: integer expected";
+                if (!$util.isString(message.BankerPair))
+                    return "BankerPair: string expected";
             if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                if (!$util.isInteger(message.PlayerPair))
-                    return "PlayerPair: integer expected";
+                if (!$util.isString(message.PlayerPair))
+                    return "PlayerPair: string expected";
             if (message.BankerNatural != null && message.hasOwnProperty("BankerNatural"))
-                if (!$util.isInteger(message.BankerNatural))
-                    return "BankerNatural: integer expected";
+                if (!$util.isString(message.BankerNatural))
+                    return "BankerNatural: string expected";
             if (message.PlayerNatural != null && message.hasOwnProperty("PlayerNatural"))
-                if (!$util.isInteger(message.PlayerNatural))
-                    return "PlayerNatural: integer expected";
+                if (!$util.isString(message.PlayerNatural))
+                    return "PlayerNatural: string expected";
             return null;
         };
 
@@ -7128,19 +7128,19 @@ export const table = $root.table = (() => {
                 return object;
             let message = new $root.table.BetStatus();
             if (object.Banker != null)
-                message.Banker = object.Banker | 0;
+                message.Banker = String(object.Banker);
             if (object.Player != null)
-                message.Player = object.Player | 0;
+                message.Player = String(object.Player);
             if (object.Tie != null)
-                message.Tie = object.Tie | 0;
+                message.Tie = String(object.Tie);
             if (object.BankerPair != null)
-                message.BankerPair = object.BankerPair | 0;
+                message.BankerPair = String(object.BankerPair);
             if (object.PlayerPair != null)
-                message.PlayerPair = object.PlayerPair | 0;
+                message.PlayerPair = String(object.PlayerPair);
             if (object.BankerNatural != null)
-                message.BankerNatural = object.BankerNatural | 0;
+                message.BankerNatural = String(object.BankerNatural);
             if (object.PlayerNatural != null)
-                message.PlayerNatural = object.PlayerNatural | 0;
+                message.PlayerNatural = String(object.PlayerNatural);
             return message;
         };
 
@@ -7158,13 +7158,13 @@ export const table = $root.table = (() => {
                 options = {};
             let object = {};
             if (options.defaults) {
-                object.Banker = 0;
-                object.Player = 0;
-                object.Tie = 0;
-                object.BankerPair = 0;
-                object.PlayerPair = 0;
-                object.BankerNatural = 0;
-                object.PlayerNatural = 0;
+                object.Banker = "";
+                object.Player = "";
+                object.Tie = "";
+                object.BankerPair = "";
+                object.PlayerPair = "";
+                object.BankerNatural = "";
+                object.PlayerNatural = "";
             }
             if (message.Banker != null && message.hasOwnProperty("Banker"))
                 object.Banker = message.Banker;

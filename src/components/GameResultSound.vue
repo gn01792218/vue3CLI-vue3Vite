@@ -17,10 +17,6 @@ export default defineComponent({
         //為何開始下注的時候會播放遊戲音樂?
         watch(gameResult,()=>{
             if(gameResult.value.length>0){
-                // let gameresultSound = document.querySelector('#gameresultSound') as HTMLAudioElement
-                // gameresultSound.src = require('../assets/audio/bankerWin.mp3')
-                // gameresultSound?.play()
-                // console.log("播放遊戲結果音樂")
                 playGameResult(gameResult.value)
             }
             //之後改這個
@@ -30,34 +26,33 @@ export default defineComponent({
             
         }
         function playGameResult (gameResults:Array<number>){  //之後這裡要帶參數進去
-        let gameresultSound = document.querySelector('#gameresultSound') as HTMLAudioElement
-        gameResults.forEach(async(i)=>{
-            switch(i){
+            let gameresultSound = document.querySelector('#gameresultSound') as HTMLAudioElement
+            gameResults.forEach(async(i)=>{
+                switchSound(gameresultSound,i)
+                await gameresultSound?.play()
+            })  
+        }
+        function switchSound (audioElement:HTMLAudioElement,soundNumber:number) {
+            switch(soundNumber){
                 case 1:
-                    gameresultSound.src = require('../assets/audio/tie.mp3')
+                    audioElement.src = require('../assets/audio/tie.mp3')
                     break
                 case 2:
                     console.log("播放莊家音效")
-                    gameresultSound.src = require('../assets/audio/bankerWin.mp3')
+                    audioElement.src = require('../assets/audio/bankerWin.mp3')
                     break
                 case 3:
-                    gameresultSound.src = require('../assets/audio/playerWin.mp3')
+                    audioElement.src = require('../assets/audio/playerWin.mp3')
                     break
                 case 4:
                     console.log("播放莊對音效")
-                    gameresultSound.src = require('../assets/audio/playerWin.mp3')  //暫時測試
+                    audioElement.src = require('../assets/audio/playerWin.mp3')  //暫時測試
                     // gameresultSound.src = require('../assets/audio/bankerPair.mp3')
                     break
                 case 5:
                     // gameresultSound.src = require('../assets/audio/playerPair.mp3')
                     break
             }
-            await gameresultSound?.play()
-        })
-             //之後這裡要根據不同的情況，撥放不同的src
-            
-            
-            
         }
         return {
             //methods
