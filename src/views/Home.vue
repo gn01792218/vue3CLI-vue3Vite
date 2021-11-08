@@ -4,7 +4,6 @@
   </div>
   <Loading/>
 </template>
-
 <script lang="ts">
 import {computed, defineComponent,ref, watch} from 'vue'
 import {useStore} from 'vuex'
@@ -28,25 +27,17 @@ export default defineComponent({
       const loginState = computed(()=>{  //取得登入狀態
         return store.state.auth.LoginRecall.status
       })
-      //創建websocket連線，並發送登入請求
-        // onMounted(()=>{
-        //   console.log("mounted",vuexUserToken.value,loginState.value)
-        //   if(!vuexUserToken.value){
-        //     console.log("創")
-            
-        //   }
-        // })
-        if(vuexUserToken.value==""){ //再次返回大廳時使用者token已經存在，就不會再創server
-            createSocket()
-            sendLogin({
-              uri: "LoginCall",
-              token: route.params.userToken,
-            })
-        }
+      //創建連線(再次返回大廳時使用者token已經存在，就不會再創server)
+      if(vuexUserToken.value==""){ 
+        createSocket()
+        sendLogin({
+          uri: "LoginCall",
+          token: route.params.userToken,
+        })
+      }
       //驗證使用者token
       // const userToken = ref(router.currentRoute.value.params.userToken)
       //如果LoginReCall是正確的，就設置cookie為ImLogin
-      //bug:因為loginState進來後就不會變了，所以無法關閉login效果
       watch(loginState,()=>{
         switch(loginState.value){
           case 1:
