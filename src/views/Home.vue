@@ -43,7 +43,7 @@ export default defineComponent({
           case 1:
             userToken.value = "ImLogin"
             store.commit('auth/setUserToken',route.params.userToken)
-            // Cookies.set('userToken',userToken.value,{expires:0.1})
+            Cookies.set('userToken',userToken.value,{expires:0.1})
             //以下是暫時性的
             router.push('/BaccaratGame/A')
             break

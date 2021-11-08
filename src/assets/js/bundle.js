@@ -3504,19 +3504,19 @@ export const dealer = $root.dealer = (() => {
      * @name dealer.Result
      * @enum {number}
      * @property {number} Default=0 Default value
-     * @property {number} Tie=1 Tie value
-     * @property {number} Banker=2 Banker value
-     * @property {number} Player=3 Player value
-     * @property {number} BankerPair=4 BankerPair value
+     * @property {number} Banker=1 Banker value
+     * @property {number} Player=2 Player value
+     * @property {number} BankerPair=3 BankerPair value
+     * @property {number} Tie=4 Tie value
      * @property {number} PlayerPair=5 PlayerPair value
      */
     dealer.Result = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "Default"] = 0;
-        values[valuesById[1] = "Tie"] = 1;
-        values[valuesById[2] = "Banker"] = 2;
-        values[valuesById[3] = "Player"] = 3;
-        values[valuesById[4] = "BankerPair"] = 4;
+        values[valuesById[1] = "Banker"] = 1;
+        values[valuesById[2] = "Player"] = 2;
+        values[valuesById[3] = "BankerPair"] = 3;
+        values[valuesById[4] = "Tie"] = 4;
         values[valuesById[5] = "PlayerPair"] = 5;
         return values;
     })();
@@ -3729,19 +3729,19 @@ export const dealer = $root.dealer = (() => {
                     case 0:
                         message.results[i] = 0;
                         break;
-                    case "Tie":
+                    case "Banker":
                     case 1:
                         message.results[i] = 1;
                         break;
-                    case "Banker":
+                    case "Player":
                     case 2:
                         message.results[i] = 2;
                         break;
-                    case "Player":
+                    case "BankerPair":
                     case 3:
                         message.results[i] = 3;
                         break;
-                    case "BankerPair":
+                    case "Tie":
                     case 4:
                         message.results[i] = 4;
                         break;

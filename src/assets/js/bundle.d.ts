@@ -1460,10 +1460,10 @@ export namespace dealer {
     /** Result enum. */
     enum Result {
         Default = 0,
-        Tie = 1,
-        Banker = 2,
-        Player = 3,
-        BankerPair = 4,
+        Banker = 1,
+        Player = 2,
+        BankerPair = 3,
+        Tie = 4,
         PlayerPair = 5
     }
 

@@ -4,7 +4,7 @@
         <!-- PC版本注區 -->
         <div class="betArea-pc">
                 <div class="betArea-pc-container">
-                    <div :class ="[i.configClass,'col-6']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+                    <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
                             <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
@@ -14,7 +14,7 @@
                     </div>
                 </div>  
                 <div class="betArea-pc-container">
-                    <div :class="[i.configClass,'col-4']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
+                    <div :class="[`betArea-item${index+3}`,i.configClass,'col-4']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
                             <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
@@ -27,7 +27,7 @@
         <!-- mobile注區 -->
         <div class="betArea-mobile">
             <div class="betArea-mobile-container d-flex">
-                <div :class ="[i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1}]" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
+                <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1}]" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
                         <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
@@ -117,6 +117,9 @@ export default defineComponent({
         const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
         })
+        const gameResult = computed(()=>{ //回傳的是陣列
+            return store.state.dealer.BroadcastGameResult.results
+        })
         const total = ref<number>(0)
         const totalBetInfo = computed({  //每次下注的時候都更新totalBet
             get(){
@@ -130,7 +133,7 @@ export default defineComponent({
         //基本資料
         const hasGameResult = ref(false)
         //監聽
-        watch(betStatus,()=>{  //更新每次下注後顯示再注區的數字
+        watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             coinPosition[0].betStatus = betStatus.value.Banker
             coinPosition[1].betStatus = betStatus.value.Player
             coinPosition[2].betStatus = betStatus.value.BankerPair
@@ -139,6 +142,7 @@ export default defineComponent({
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
             console.log("開始下注")
+            reSetBetAreaAnimation()
             resetGame()
             hasGameResult.value = false
         })
@@ -154,6 +158,9 @@ export default defineComponent({
         })
         watch(totalBetInfo,()=>{  //下注總額的更新
             total.value = totalBetInfo.value
+        })
+        watch(gameResult,()=>{
+            showResult()
         })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
@@ -329,14 +336,6 @@ export default defineComponent({
                         }
                     }
                 }
-                // else{
-                // if(currentCoint.point && user.value.wallet < currentCoint.point){
-                //      alert("餘額不足")
-                // }
-                // if(roundStatus.value!==1){
-                //     alert('非下注時間')
-                // }
-                // }
             }
         }
         function getAllBetBack(){
@@ -363,8 +362,22 @@ export default defineComponent({
             store.commit('bet/setBetResultRest')
         }
         function showResult () { 
-            console.log("切換")
-            hasGameResult.value = !hasGameResult.value
+            // hasGameResult.value = !hasGameResult.value
+            //為贏的注區套上閃爍動畫
+            gameResult.value.forEach((i:number)=>{
+                // console.log(i)
+                let betArea = document.querySelector(`.betArea-item${i}`) as HTMLElement
+                betArea.classList.add('winAnimation')
+            })
+        }
+        function reSetBetAreaAnimation(){
+            if(gameResult.value){
+                console.log("要重置")
+                gameResult.value.forEach((i:number)=>{
+                let betArea = document.querySelector(`.betArea-item${i}`) as HTMLElement
+                betArea.classList.remove('winAnimation')
+            })
+            }
         }
         return{
             //data
@@ -400,15 +413,15 @@ export default defineComponent({
         }
     }
     .coinPosition{
-            li{
-                pointer-events: none; //使能被穿透
-                position: absolute;
-                transform: scale(0.5);
-                clear: left;
-                left:0;
-                bottom:0;
-            }
+        li{
+            pointer-events: none; //使能被穿透
+            position: absolute;
+            transform: scale(0.5);
+            clear: left;
+            left:0;
+            bottom:0;
         }
+    }
     .activeCoin {
         box-shadow: 0px 0px 25px rgba(255, 255, 178, 1);
     }
@@ -419,5 +432,17 @@ export default defineComponent({
         bottom:0;
         font-size: 2rem;
         z-index:1;
+    }
+    .winAnimation{
+        animation: win 0.5s ease infinite;
+        background-color: chartreuse;
+    }
+    @keyframes win {
+        from{
+            opacity: 0;
+            scale: 2;
+        }to{
+            opacity: 0.5;
+        }
     }
 </style>
