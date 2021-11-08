@@ -1,4 +1,7 @@
 //路圖圖示區
+.roadImg-preLoad {
+    @extend %hisRoad;
+}
 .bankerRoadIcon0{
     @extend %hisRoad;
     @include hisRoadSpritePosition(0,0,0.35);

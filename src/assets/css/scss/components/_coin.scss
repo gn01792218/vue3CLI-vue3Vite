@@ -1,3 +1,6 @@
+.coin-preLoad {
+	@extend %coin
+}
 .coin-menu1{
 	@extend %coin;
 	@include coinSpritePosition(0,0,1)

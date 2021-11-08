@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,reactive,ref, watch} from 'vue'
+import {computed, defineComponent,onMounted,reactive,watch} from 'vue'
 import LiveVideo from '@/components/LiveVideo.vue'
 import BettingArea from '@/views/BettingArea.vue'
 import TableInfo from '@/views/TableInfo.vue'
@@ -46,7 +46,7 @@ export default defineComponent({
     tableJoin()
     //監聽
     //2.發送換桌請求
-    watch([tableNum,tables],()=>{
+    watch([tableNum],()=>{
       console.log("發上桌請求")
       tableJoin()
     })

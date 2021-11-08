@@ -1,10 +1,10 @@
 @charset "UTF-8";
-.bankerRoadIcon0, .bankerRoadIcon1, .bankerRoadIcon2, .bankerRoadIcon3, .bankerRoadIcon3-1, .bankerRoadIcon4, .bankerRoadIcon5, .bankerRoadIcon6, .bankerRoadIcon7, .bankerRoadIcon8, .playerRoadIcon0, .playerRoadIcon1, .playerRoadIcon2, .playerRoadIcon3, .playerRoadIcon3-1, .playerRoadIcon4, .playerRoadIcon5, .playerRoadIcon6, .playerRoadIcon7, .playerRoadIcon8, .tieRoadIcon {
+.roadImg-preLoad, .bankerRoadIcon0, .bankerRoadIcon1, .bankerRoadIcon2, .bankerRoadIcon3, .bankerRoadIcon3-1, .bankerRoadIcon4, .bankerRoadIcon5, .bankerRoadIcon6, .bankerRoadIcon7, .bankerRoadIcon8, .playerRoadIcon0, .playerRoadIcon1, .playerRoadIcon2, .playerRoadIcon3, .playerRoadIcon3-1, .playerRoadIcon4, .playerRoadIcon5, .playerRoadIcon6, .playerRoadIcon7, .playerRoadIcon8, .tieRoadIcon {
   cursor: pointer;
   background-image: url("../../images/road-sprite.png");
 }
 
-.coin-menu1, .coin-menu1:hover, .coin-menu1-current, .coin-menu2, .coin-menu2:hover, .coin-menu2-current, .coin-menu3, .coin-menu3:hover, .coin-menu3-current, .coin-menu4, .coin-menu4:hover, .coin-menu4-current, .coin-menu5, .coin-menu5:hover, .coin-menu5-current {
+.coin-preLoad, .coin-menu1, .coin-menu1:hover, .coin-menu1-current, .coin-menu2, .coin-menu2:hover, .coin-menu2-current, .coin-menu3, .coin-menu3:hover, .coin-menu3-current, .coin-menu4, .coin-menu4:hover, .coin-menu4-current, .coin-menu5, .coin-menu5:hover, .coin-menu5-current {
   background-image: url("../../images/coin.png");
   cursor: pointer;
 }
