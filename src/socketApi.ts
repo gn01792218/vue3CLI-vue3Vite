@@ -21,7 +21,7 @@ const sendPon = ()=>{
         })
     })
     let bytes = foundation.HeartbeatPong.encode(proto).finish()
-    console.log("sendPon",proto)
+    // console.log("sendPon",proto)
     sendWSPush(bytes)
 }
 //發送登入訊息
@@ -33,7 +33,7 @@ export const sendLogin =(data:any) => {
         token:data.token,
     })
     let bytes = auth.LoginCall.encode(proto).finish()
-    console.log("sendLogin",proto)
+    // console.log("sendLogin",proto)
     sendWSPush(bytes);
 }
 //發送選桌訊息
@@ -45,7 +45,7 @@ export const sendTableJoinCall =(data:any) => {
         uuid:data.uuid
     })
     let bytes = table.TableJoinCall.encode(proto).finish()
-    console.log("sendTableJoinCall",proto)
+    // console.log("sendTableJoinCall",proto)
     sendWSPush(bytes);
 }
 //發送下注資訊
@@ -71,7 +71,7 @@ export const sendBetResetCall = (data:any) => {
         gameUuid:data.gameUuid,
     })
     let bytes = bet.BetResetCall.encode(proto).finish()
-    console.log("sendBetResetCall",proto)
+    // console.log("sendBetResetCall",proto)
     sendWSPush(bytes);
 }
 
@@ -82,12 +82,12 @@ export const getMsgReCall = (e:any) =>{
     let header = foundation.Message.decode(new Uint8Array(e.detail.msg.data)).header
     switch(header?.uri){
         case route.HeartbeatPing:
-            console.log("接收ping")
+            // console.log("接收ping")
             sendPon()
             break
         case route.LoginRecall:
             let loginRecall = auth.LoginRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('LoginRecall',loginRecall)
+            // console.log('LoginRecall',loginRecall)
             store.commit('auth/LoginRecall',loginRecall)
             break
         case route.LobbyInfo:
@@ -102,7 +102,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.TableJoinRecall:
             let TableJoinRecall = table.TableJoinRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('TableJoinRecall',TableJoinRecall)
+            // console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
             break
         case route.BetRecall:
@@ -113,7 +113,7 @@ export const getMsgReCall = (e:any) =>{
         case route.BetResetRecall:
             let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data)).toJSON()
             console.log(BetResetRecall)
-            console.log('BetReSetRecall',BetResetRecall)
+            // console.log('BetReSetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
             break
         case route.BetError:
@@ -123,28 +123,27 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
-            console.log('Draw',Draw)
+            // console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
             break
         case route.BroadcastGameResult:
             let BroadcastGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BroadcastGameResult',BroadcastGameResult)
+            // console.log('BroadcastGameResult',BroadcastGameResult)
             store.commit('dealer/BroadcastGameResult',BroadcastGameResult)
             break
         case route.BetRoundStart:
             let BetRoundStart = game.BetRoundStart.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BetRoundStart',BetRoundStart)
+            // console.log('BetRoundStart',BetRoundStart)
             store.commit('game/BetRoundStart',BetRoundStart)
             break
         case route.BetRoundEnd:
             let BetRoundEnd = game.BetRoundEnd.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BetRoundEnd',BetRoundEnd)
+            // console.log('BetRoundEnd',BetRoundEnd)
             store.commit('game/BetRoundEnd',BetRoundEnd)
             break
         case route.GameStatus:
-            console.log("gamestatus")
             let GameStatus = game.GameStatus.decode(new Uint8Array(e.detail.msg.data))
-            console.log('GameStatus',GameStatus)
+            // console.log('GameStatus',GameStatus)
             store.commit('game/GameStatus',GameStatus)
             break
         // case route.BetRoundCountdown:

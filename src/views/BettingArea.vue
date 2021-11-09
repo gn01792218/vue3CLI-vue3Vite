@@ -54,7 +54,7 @@
                 </div>
             </ul>
         </div>
-        <GameResult v-if="hasGameResult"/>
+        <GameResult/>
         <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
     </div>
 </template>
@@ -109,7 +109,7 @@ export default defineComponent({
             return store.state.bet.BetResetRecall.result
         })
         const betError = computed(()=>{
-            return store.state.bet.BetError.error
+            return store.state.bet.BetRecall.betError.error
         })
         const roundUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
@@ -130,28 +130,23 @@ export default defineComponent({
             }
             
         })
-        //基本資料
-        const hasGameResult = ref(false)
+        
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
-            coinPosition[0].betStatus = betStatus.value.Banker
-            coinPosition[1].betStatus = betStatus.value.Player
-            coinPosition[2].betStatus = betStatus.value.BankerPair
-            coinPosition[3].betStatus = betStatus.value.Tie
-            coinPosition[4].betStatus = betStatus.value.PlayerPair
+            if(betResult.value!==-1){
+                coinPosition[0].betStatus = betStatus.value.Banker
+                coinPosition[1].betStatus = betStatus.value.Player
+                coinPosition[2].betStatus = betStatus.value.BankerPair
+                coinPosition[3].betStatus = betStatus.value.Tie
+                coinPosition[4].betStatus = betStatus.value.PlayerPair
+            }   
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
             console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
-            hasGameResult.value = false
-        })
-        watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
-            console.log("停止下注")
-            hasGameResult.value = true
         })
         watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
-            console.log(betResetresult.value)
             if(betResetresult.value===1){
                  resetGame()
             }
@@ -313,8 +308,10 @@ export default defineComponent({
                     let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
                     setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置 
                     }else{
+                        console.log(betResult.value)
                         switch(betError.value){
                             case 1:
+                                console.log("非下注時間")
                                 alert("非下注時間")
                                 break
                             case 2:
@@ -346,9 +343,9 @@ export default defineComponent({
         function resetGame () {
             total.value = 0
             //清空選取的籌碼
-            currentCoint.coinElement = null
-            currentCoint.point = null
-            currentCoint.num = null
+            // currentCoint.coinElement = null
+            // currentCoint.point = null
+            // currentCoint.num = null
             //清空注區籌碼
             coinPosition.forEach(i => {
                 i.coinArray = []
@@ -362,10 +359,8 @@ export default defineComponent({
             store.commit('bet/setBetResultRest')
         }
         function showResult () { 
-            // hasGameResult.value = !hasGameResult.value
             //為贏的注區套上閃爍動畫
             gameResult.value.forEach((i:number)=>{
-                // console.log(i)
                 let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
                 betArea.forEach((i:HTMLElement)=>{
                     i.classList.add('winAnimation')
@@ -374,7 +369,6 @@ export default defineComponent({
         }
         function reSetBetAreaAnimation(){
             if(gameResult.value){
-                console.log("要重置")
                 gameResult.value.forEach((i:number)=>{
                 let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
                  betArea.forEach((i:HTMLElement)=>{
@@ -385,7 +379,7 @@ export default defineComponent({
         }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,hasGameResult,total,
+            coinList,currentCoint,coinPosition,betStatus,total,
             //methods
             chooseCoint,cointAnimate,generateCoin,bet,resetGame,showResult,getAllBetBack
         }

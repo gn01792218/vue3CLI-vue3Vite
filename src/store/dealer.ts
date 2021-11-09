@@ -15,7 +15,6 @@ export const mutations = {
   },
   resetGameResults(state:any){
     if(state.BroadcastGameResult.results){
-      console.log("清空遊戲結果")
       state.BroadcastGameResult.results = []
     }
   }

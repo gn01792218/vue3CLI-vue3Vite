@@ -1,7 +1,6 @@
 <template>
   <div class="mainGame">
     <Counter class="counter"
-  
     />
       <LiveVideo/>
       <BettingArea/>
@@ -47,7 +46,6 @@ export default defineComponent({
     //監聽
     //2.發送換桌請求
     watch([tableNum],()=>{
-      console.log("發上桌請求")
       tableJoin()
     })
     function tableJoin (){
@@ -57,14 +55,14 @@ export default defineComponent({
             uri:"TableJoinCall",
             uuid:tables.value.tables[0].uuid
           })
-          console.log("上桌請求",tables.value.tables[0].uuid)
+          // console.log("上桌請求",tables.value.tables[0].uuid)
           break
         case 'B':
           sendTableJoinCall({
             uri:"TableJoinCall",
             uuid:tables.value.tables[1].uuid
           })
-          console.log("上桌請求",tables.value.tables[1].uuid)
+          // console.log("上桌請求",tables.value.tables[1].uuid)
       }
     }
     

@@ -1,5 +1,5 @@
 <template>
-    <div class="gameResult w-100 position-absolute">
+    <div class="gameResult w-100 position-absolute" v-if="hasGameResult">
         <!-- <section class="gameResult-title">
             <p v-if="isWait">等待遊戲結果...請稍後</p>
             <p v-else>遊戲結果</p>
@@ -34,18 +34,25 @@ export default defineComponent({
         const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
         })
+        //基本資料
+        const hasGameResult = ref(false)
         const isWait = ref(true)
         watch(gameUuid,()=>{
-            console.log("重置遊戲結果")
-            resetGameResult()
+            if(gameResult.value){ //如果有上一局的結果，才要清空
+                resetGameResult()
+            }
+            hasGameResult.value = false
         })
-        watch(gameEndUuid,()=>{
-            console.log("等待遊戲結果...")
+        watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
+            console.log("停止下注")
+            hasGameResult.value = true
         })
+        // watch(gameEndUuid,()=>{
+        //     console.log("等待遊戲結果...")
+        // })
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
             if(gameResult.value.length>0){
-                console.log("顯示遊戲結果")
                 isWait.value = false //關閉Loading效果
                 let result = document.querySelector('#result') as HTMLElement  //這是ul
                 let gainMoney = document.querySelector('.gainMoney') as HTMLElement
@@ -99,7 +106,7 @@ export default defineComponent({
         }
         return{
             //data
-            isWait,
+            isWait,hasGameResult
         }
     }
 })
