@@ -9,7 +9,6 @@
             <p class="gainMoney"></p>
             <ul id="result">
             </ul>
-           
         </section>
         
     </div>
@@ -38,9 +37,7 @@ export default defineComponent({
         const hasGameResult = ref(false)
         const isWait = ref(true)
         watch(gameUuid,()=>{
-            if(gameResult.value){ //如果有上一局的結果，才要清空
-                resetGameResult()
-            }
+            resetGameResult()
             hasGameResult.value = false
         })
         watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
@@ -52,10 +49,17 @@ export default defineComponent({
         // })
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
-            if(gameResult.value.length>0){
-                isWait.value = false //關閉Loading效果
+            // if(gameResult.value){
+              showGameResult()
+            // }
+            
+        })
+        function showGameResult () {
+            //   isWait.value = false //關閉Loading效果
                 let result = document.querySelector('#result') as HTMLElement  //這是ul
                 let gainMoney = document.querySelector('.gainMoney') as HTMLElement
+                console.log(result)
+               if(result){
                 gameResult.value.forEach((i:any)=>{
                     switch(i){
                         case 1:
@@ -96,13 +100,14 @@ export default defineComponent({
                     }
                 })
                 gainMoney.innerHTML = "贏得籌碼: 1000"
-            }
-            
-        })
+               }
+        }
         function resetGameResult () {
             let result = document.querySelector('#result') as HTMLElement  //這是ul
-            result.innerHTML=""
-            store.commit("dealer/resetGameResults")  //記得清空Vuex裡面的遊戲結果
+            if(result){
+                result.innerHTML=""
+                store.commit("dealer/resetGameResults")  //記得清空Vuex裡面的遊戲結果
+            }
         }
         return{
             //data
