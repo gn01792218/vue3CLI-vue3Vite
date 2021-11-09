@@ -253,7 +253,7 @@ export default defineComponent({
                     {duration:0.8,
                     ease:Power4.easeIn,
                     scale:0.5,
-                    x:target.x-currentCoint.x,
+                    x:target.x-currentCoint.x+20,
                     y:target.y-currentCoint.y-50,
                     zIndex:"1",
                     },
@@ -269,15 +269,15 @@ export default defineComponent({
             gsap
             .to(e,{
                 keyframes:[
-                    {
-                        duration:0.5,
-                        x:-10,
-                        y:-coinPosition[currentBetPosition.betAreaIndex].initBottom,
-                        opacity:1,
-                        display:"block"
-                    }
+                    {display:"none"},
+                    {delay:0.75,
+                duration:0.5,
+                // x:-10,
+                y:-coinPosition[currentBetPosition.betAreaIndex].initBottom,
+                opacity:1,
+                display:"block"}
                 ]
-                    
+                
             })
         }
         function loadCoin () {
