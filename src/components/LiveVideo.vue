@@ -20,6 +20,7 @@ export default defineComponent({
     setup(){
       //直播物件
       const flvPlayer = ref<any | null>({});
+      const zoonScale = ref<number>(1)
       //初始化
       onMounted(()=>{
         createFlv()
@@ -29,14 +30,24 @@ export default defineComponent({
       const flvStream = computed(()=>{
         return store.state.table.TableJoinRecall.table.streamingUrl
       })
+      const gameUuid = computed(()=>{ //遊戲回合的Uuid
+            return store.state.game.gameUuid
+        })
+      const gameEndUuid = computed(()=>{
+            return store.state.game.gameEndUuid
+        })
       //監聽換桌的直播網址
       watch(flvStream,()=>{
         reloadVideo(flvPlayer.value)
       })
+      watch(gameUuid,()=>{  //新回合開始時，將螢幕縮回去
+        resetZoon()
+      })
+      watch(gameEndUuid,()=>{ //回合結束時，拉近螢幕
+        zoonIn()
+      })
       //影片播放設置
       function createFlv () {
-        // let url = "http://flv.bdplay.nodemedia.cn/live/bbb.flv";
-        // let url = "http://35.201.183.73/live?app=demo&stream=table1";
         if (flvjs.isSupported()) {
           let videoElement = document.getElementById("videoElement");
           flvPlayer.value = flvjs.createPlayer({
@@ -66,14 +77,35 @@ export default defineComponent({
         flvPlayer.value.play();
       }
       //螢幕縮放動畫
+      // function zoonIn () {
+      //   console.log("啟動視訊縮放")
+      //   gsap.to('#videoElement',{
+      //     keyframes:[
+      //       {duration:1,scale:1.5},
+      //       {duration:1,scale:1}
+      //     ]
+      //   })
+      // }
       function zoonIn () {
-        console.log("啟動視訊縮放")
-        gsap.to('#videoElement',{
-          keyframes:[
-            {duration:1,scale:1.5},
-            {duration:1,scale:1}
-          ]
-        })
+        if(zoonScale.value !== 1.5){
+          zoonScale.value = 1.5
+          gsap.to('#videoElement',{
+            keyframes:[
+              {delay:1},
+              {duration:1,scale:zoonScale.value}
+            ]
+          })
+        }
+        
+      }
+      function resetZoon () {
+        if(zoonScale.value!==1){
+          zoonScale.value=1
+          gsap.to('#videoElement',
+          {
+            duration:1,scale:zoonScale.value
+          })
+        }
       }
       return{
         //data
