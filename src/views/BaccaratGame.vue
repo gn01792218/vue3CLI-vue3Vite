@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,onMounted,reactive,watch} from 'vue'
+import {computed, defineComponent,reactive,watch} from 'vue'
 import LiveVideo from '@/components/LiveVideo.vue'
 import BettingArea from '@/views/BettingArea.vue'
 import TableInfo from '@/views/TableInfo.vue'

@@ -32,13 +32,16 @@ export default defineComponent({
         const gameUuid = computed(()=>{
             return store.state.game.gameUuid
         })
+        const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
+        return store.state.game.GameStatus
+        })
         //切換TableInfo頁籤
         const tabArray = reactive(["Table Info","Cards"]) //將來有需要可以再增加
         const onClickTab = ref("Table Info") //預設是Table Info
         function switchTab (tab:string) {
              onClickTab.value = tab
         }
-        watch(DrawCard,()=>{
+        watch([DrawCard,lastDrawCard],()=>{
             if(onClickTab.value!="Cards"){
                 onClickTab.value = "Cards"
             }
