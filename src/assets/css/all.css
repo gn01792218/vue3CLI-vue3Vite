@@ -274,49 +274,28 @@ img {
 }
 
 .gameResult {
-  top: 0;
+  top: 28%;
   left: 0;
-  background-color: #1e1101d0;
-  border: 2px solid #654d31;
-  -webkit-box-shadow: 5px 5px black;
-          box-shadow: 5px 5px black;
+  background-color: #523e25ab;
   text-align: center;
-  -webkit-animation-name: fade;
-          animation-name: fade;
-  -webkit-animation-duration: 0.2s;
-          animation-duration: 0.2s;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
 }
 
-@-webkit-keyframes fade {
-  from {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes fade {
-  from {
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
+#result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .result-text {
+  font-size: 400%;
+}
+
+.gainMoney {
   font-size: 200%;
+  margin-bottom: -20px;
 }
 
 .gameResult-title {
@@ -1247,6 +1226,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .tabsArea {
     display: none;
+  }
+  .gameResult {
+    top: 0;
   }
   .container {
     width: 760px;

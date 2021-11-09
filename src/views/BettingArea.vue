@@ -366,16 +366,20 @@ export default defineComponent({
             //為贏的注區套上閃爍動畫
             gameResult.value.forEach((i:number)=>{
                 // console.log(i)
-                let betArea = document.querySelector(`.betArea-item${i}`) as HTMLElement
-                betArea.classList.add('winAnimation')
+                let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
+                betArea.forEach((i:HTMLElement)=>{
+                    i.classList.add('winAnimation')
+                })
             })
         }
         function reSetBetAreaAnimation(){
             if(gameResult.value){
                 console.log("要重置")
                 gameResult.value.forEach((i:number)=>{
-                let betArea = document.querySelector(`.betArea-item${i}`) as HTMLElement
-                betArea.classList.remove('winAnimation')
+                let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
+                 betArea.forEach((i:HTMLElement)=>{
+                    i.classList.remove('winAnimation')
+                })
             })
             }
         }
@@ -434,15 +438,14 @@ export default defineComponent({
         z-index:1;
     }
     .winAnimation{
-        animation: win 0.5s ease infinite;
-        background-color: chartreuse;
+        animation: win 0.5s ease-in infinite;
     }
     @keyframes win {
         from{
-            opacity: 0;
+            background-color: rgba(128, 255, 0, 0.007);
             scale: 2;
         }to{
-            opacity: 0.5;
+            background-color: rgba(128, 255, 0, 0.5);
         }
     }
 </style>

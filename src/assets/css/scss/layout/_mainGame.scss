@@ -94,28 +94,20 @@
 
 //遊戲結果
 .gameResult{
-	top:0;
+	top:28%;
 	left:0;
-	background-color: #1e1101d0;
-	border:2px solid #654d31;
-	box-shadow: 5px 5px black;
+	background-color: #523e25ab;
 	text-align: center;
-	animation-name:fade;
-	animation-duration: 0.2s;
-	animation-timing-function: linear;
 }
-@keyframes fade {
-	from{
-		transform:scale(0.5);
-		opacity: 0;
-		
-	}to{
-		transform:scale(1);
-		opacity: 1;
-	}
+#result{
+	@include flex-justify-method;
 }
 .result-text{
+	font-size: 400%;
+}
+.gainMoney{
 	font-size: 200%;
+	margin-bottom: -20px;
 }
 .gameResult-title{
 	border-bottom: 1px #654d31 solid;

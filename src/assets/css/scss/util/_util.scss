@@ -2,6 +2,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+@mixin flex-justify-method ($method:center){
+    display: flex;
+    justify-content: $method;
+}
 @mixin flex-x-spaceEvenly-y-center {
     display: flex;
     justify-content: space-evenly;
