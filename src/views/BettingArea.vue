@@ -7,7 +7,7 @@
                     <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
-                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
                                 <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                             </transition-group>
                         </ul>
@@ -17,7 +17,7 @@
                     <div :class="[`betArea-item${index+3}`,i.configClass,'col-4']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="bet($event,index+2)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
-                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
                                 <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                             </transition-group>
                         </ul>
@@ -30,7 +30,7 @@
                 <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1}]" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
-                        <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoin">
+                        <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
                             <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                         </transition-group>
                     </ul>
@@ -187,6 +187,9 @@ export default defineComponent({
             x:0, //起飛的x
             y:0, //起飛的y
         });  
+        const currentBetPosition = reactive({
+            betAreaIndex:-1,
+        })
         const target = reactive<target>({ //目標位置
             x : 0,
             y : 0,
@@ -240,7 +243,7 @@ export default defineComponent({
             currentCoint.num = index;
             currentCoint.point = coinList[index].point
         }
-        function cointAnimate (e:any) {
+        function cointAnimate (e:HTMLElement) {
             gsap
             .to(e,{
                 keyframes:[
@@ -260,13 +263,16 @@ export default defineComponent({
                 ]
             })
         }
-        function generateCoin (e:HTMLElement) {
+        function generateCoinAnimate (e:HTMLElement) {
+            //想要橫飛打開此選項，並且關閉下方y
+            // e.style.bottom = `${coinPosition[currentBetPosition.betAreaIndex].initBottom}px`
             gsap
             .to(e,{
                 keyframes:[
                     {
                         duration:0.5,
                         x:-10,
+                        y:-coinPosition[currentBetPosition.betAreaIndex].initBottom,
                         opacity:1,
                         display:"block"
                     }
@@ -279,13 +285,12 @@ export default defineComponent({
                 coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
             }
         }
-        function setCoinPosition (cp:coinPosition,positionCoinElement:HTMLElement) {
-            if(currentCoint.coinElement){
-                 cp.coinArray.push(currentCoint.coinElement.className)
-                if(positionCoinElement.nodeName !== '#text'){
-                cp.initBottom += 5;
-                positionCoinElement.style.bottom = `${cp.initBottom}px`
-            }  
+        function setCoinPosition (cp:coinPosition,e:any) {
+            let positionCoinElement = e.target.lastChild.lastChild; //撈取最後一個li元素；第一次點會是text
+            if(currentCoint.coinElement){  //有選擇籌碼時，才會生籌碼
+                cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
+                console.log(positionCoinElement.nodeName)
+                    cp.initBottom += 5;  //修改樣式
             }
         }
         function bet (e:any,index:number) {
@@ -305,11 +310,13 @@ export default defineComponent({
                     target.x = rect.left;
                     target.y = rect.bottom;
                     let cp = coinPosition[index]; //用來存點選到的注區
-                    let positionCoinElement = e.target.lastChild.lastChild.previousSibling; //撈取最後一個li元素；第一次點會是text
-                    setCoinPosition(cp,positionCoinElement)  //在駐區生成籌碼並設置起始位置 
+                    currentBetPosition.betAreaIndex = index   //測試用
+                    //coin-menu1 coin-menu1-current index0-->會增加的是index
+                    setCoinPosition(cp,e)  //在駐區生成籌碼並設置起始位置 
                     }else{
-                        console.log(betResult.value)
-                        switch(betError.value){
+                        if(betResult.value==-1){
+                            console.log(betResult.value)
+                             switch(betError.value){
                             case 1:
                                 console.log("非下注時間")
                                 alert("非下注時間")
@@ -331,6 +338,8 @@ export default defineComponent({
                                 break
 
                         }
+                        }
+                       
                     }
                 }
             }
@@ -381,7 +390,7 @@ export default defineComponent({
             //data
             coinList,currentCoint,coinPosition,betStatus,total,
             //methods
-            chooseCoint,cointAnimate,generateCoin,bet,resetGame,showResult,getAllBetBack
+            chooseCoint,cointAnimate,generateCoinAnimate,bet,resetGame,showResult,getAllBetBack
         }
     }
 })

@@ -58,7 +58,6 @@ export default defineComponent({
             //   isWait.value = false //關閉Loading效果
                 let result = document.querySelector('#result') as HTMLElement  //這是ul
                 let gainMoney = document.querySelector('.gainMoney') as HTMLElement
-                console.log(result)
                if(result){
                 gameResult.value.forEach((i:any)=>{
                     switch(i){

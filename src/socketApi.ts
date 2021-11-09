@@ -146,11 +146,11 @@ export const getMsgReCall = (e:any) =>{
             // console.log('GameStatus',GameStatus)
             store.commit('game/GameStatus',GameStatus)
             break
-        // case route.BetRoundCountdown:
-        //     let BetRoundCountdown = game.BetRoundCountdown.decode(new Uint8Array(e.detail.msg.data))
-        //     console.log('BetRoundCountdown',BetRoundCountdown)
-        //     store.commit('game/BetRoundCountdown',BetRoundCountdown)
-        //     break
+        case route.BetRoundCountdown:
+            let BetRoundCountdown = game.BetRoundCountdown.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BetRoundCountdown',BetRoundCountdown)
+            store.commit('game/BetRoundCountdown',BetRoundCountdown)
+            break
             
     }
 }
