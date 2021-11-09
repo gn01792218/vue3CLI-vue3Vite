@@ -3115,24 +3115,24 @@ export const dealer = $root.dealer = (() => {
         return Draw;
     })();
 
-    dealer.RoundStart = (function() {
+    dealer.RoundStartCall = (function() {
 
         /**
-         * Properties of a RoundStart.
+         * Properties of a RoundStartCall.
          * @memberof dealer
-         * @interface IRoundStart
-         * @property {foundation.IHeader|null} [header] RoundStart header
+         * @interface IRoundStartCall
+         * @property {foundation.IHeader|null} [header] RoundStartCall header
          */
 
         /**
-         * Constructs a new RoundStart.
+         * Constructs a new RoundStartCall.
          * @memberof dealer
-         * @classdesc Represents a RoundStart.
-         * @implements IRoundStart
+         * @classdesc Represents a RoundStartCall.
+         * @implements IRoundStartCall
          * @constructor
-         * @param {dealer.IRoundStart=} [properties] Properties to set
+         * @param {dealer.IRoundStartCall=} [properties] Properties to set
          */
-        function RoundStart(properties) {
+        function RoundStartCall(properties) {
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3140,35 +3140,35 @@ export const dealer = $root.dealer = (() => {
         }
 
         /**
-         * RoundStart header.
+         * RoundStartCall header.
          * @member {foundation.IHeader|null|undefined} header
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @instance
          */
-        RoundStart.prototype.header = null;
+        RoundStartCall.prototype.header = null;
 
         /**
-         * Creates a new RoundStart instance using the specified properties.
+         * Creates a new RoundStartCall instance using the specified properties.
          * @function create
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
-         * @param {dealer.IRoundStart=} [properties] Properties to set
-         * @returns {dealer.RoundStart} RoundStart instance
+         * @param {dealer.IRoundStartCall=} [properties] Properties to set
+         * @returns {dealer.RoundStartCall} RoundStartCall instance
          */
-        RoundStart.create = function create(properties) {
-            return new RoundStart(properties);
+        RoundStartCall.create = function create(properties) {
+            return new RoundStartCall(properties);
         };
 
         /**
-         * Encodes the specified RoundStart message. Does not implicitly {@link dealer.RoundStart.verify|verify} messages.
+         * Encodes the specified RoundStartCall message. Does not implicitly {@link dealer.RoundStartCall.verify|verify} messages.
          * @function encode
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
-         * @param {dealer.IRoundStart} message RoundStart message or plain object to encode
+         * @param {dealer.IRoundStartCall} message RoundStartCall message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RoundStart.encode = function encode(message, writer) {
+        RoundStartCall.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
@@ -3177,33 +3177,33 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Encodes the specified RoundStart message, length delimited. Does not implicitly {@link dealer.RoundStart.verify|verify} messages.
+         * Encodes the specified RoundStartCall message, length delimited. Does not implicitly {@link dealer.RoundStartCall.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
-         * @param {dealer.IRoundStart} message RoundStart message or plain object to encode
+         * @param {dealer.IRoundStartCall} message RoundStartCall message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RoundStart.encodeDelimited = function encodeDelimited(message, writer) {
+        RoundStartCall.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a RoundStart message from the specified reader or buffer.
+         * Decodes a RoundStartCall message from the specified reader or buffer.
          * @function decode
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {dealer.RoundStart} RoundStart
+         * @returns {dealer.RoundStartCall} RoundStartCall
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RoundStart.decode = function decode(reader, length) {
+        RoundStartCall.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundStart();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundStartCall();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -3219,30 +3219,30 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Decodes a RoundStart message from the specified reader or buffer, length delimited.
+         * Decodes a RoundStartCall message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {dealer.RoundStart} RoundStart
+         * @returns {dealer.RoundStartCall} RoundStartCall
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RoundStart.decodeDelimited = function decodeDelimited(reader) {
+        RoundStartCall.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a RoundStart message.
+         * Verifies a RoundStartCall message.
          * @function verify
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        RoundStart.verify = function verify(message) {
+        RoundStartCall.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.header != null && message.hasOwnProperty("header")) {
@@ -3254,35 +3254,35 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Creates a RoundStart message from a plain object. Also converts values to their respective internal types.
+         * Creates a RoundStartCall message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {dealer.RoundStart} RoundStart
+         * @returns {dealer.RoundStartCall} RoundStartCall
          */
-        RoundStart.fromObject = function fromObject(object) {
-            if (object instanceof $root.dealer.RoundStart)
+        RoundStartCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.RoundStartCall)
                 return object;
-            let message = new $root.dealer.RoundStart();
+            let message = new $root.dealer.RoundStartCall();
             if (object.header != null) {
                 if (typeof object.header !== "object")
-                    throw TypeError(".dealer.RoundStart.header: object expected");
+                    throw TypeError(".dealer.RoundStartCall.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
             return message;
         };
 
         /**
-         * Creates a plain object from a RoundStart message. Also converts values to other types if specified.
+         * Creates a plain object from a RoundStartCall message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @static
-         * @param {dealer.RoundStart} message RoundStart
+         * @param {dealer.RoundStartCall} message RoundStartCall
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        RoundStart.toObject = function toObject(message, options) {
+        RoundStartCall.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             let object = {};
@@ -3294,37 +3294,37 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Converts this RoundStart to JSON.
+         * Converts this RoundStartCall to JSON.
          * @function toJSON
-         * @memberof dealer.RoundStart
+         * @memberof dealer.RoundStartCall
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        RoundStart.prototype.toJSON = function toJSON() {
+        RoundStartCall.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return RoundStart;
+        return RoundStartCall;
     })();
 
-    dealer.RoundEnd = (function() {
+    dealer.RoundEndCall = (function() {
 
         /**
-         * Properties of a RoundEnd.
+         * Properties of a RoundEndCall.
          * @memberof dealer
-         * @interface IRoundEnd
-         * @property {foundation.IHeader|null} [header] RoundEnd header
+         * @interface IRoundEndCall
+         * @property {foundation.IHeader|null} [header] RoundEndCall header
          */
 
         /**
-         * Constructs a new RoundEnd.
+         * Constructs a new RoundEndCall.
          * @memberof dealer
-         * @classdesc Represents a RoundEnd.
-         * @implements IRoundEnd
+         * @classdesc Represents a RoundEndCall.
+         * @implements IRoundEndCall
          * @constructor
-         * @param {dealer.IRoundEnd=} [properties] Properties to set
+         * @param {dealer.IRoundEndCall=} [properties] Properties to set
          */
-        function RoundEnd(properties) {
+        function RoundEndCall(properties) {
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3332,35 +3332,35 @@ export const dealer = $root.dealer = (() => {
         }
 
         /**
-         * RoundEnd header.
+         * RoundEndCall header.
          * @member {foundation.IHeader|null|undefined} header
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @instance
          */
-        RoundEnd.prototype.header = null;
+        RoundEndCall.prototype.header = null;
 
         /**
-         * Creates a new RoundEnd instance using the specified properties.
+         * Creates a new RoundEndCall instance using the specified properties.
          * @function create
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
-         * @param {dealer.IRoundEnd=} [properties] Properties to set
-         * @returns {dealer.RoundEnd} RoundEnd instance
+         * @param {dealer.IRoundEndCall=} [properties] Properties to set
+         * @returns {dealer.RoundEndCall} RoundEndCall instance
          */
-        RoundEnd.create = function create(properties) {
-            return new RoundEnd(properties);
+        RoundEndCall.create = function create(properties) {
+            return new RoundEndCall(properties);
         };
 
         /**
-         * Encodes the specified RoundEnd message. Does not implicitly {@link dealer.RoundEnd.verify|verify} messages.
+         * Encodes the specified RoundEndCall message. Does not implicitly {@link dealer.RoundEndCall.verify|verify} messages.
          * @function encode
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
-         * @param {dealer.IRoundEnd} message RoundEnd message or plain object to encode
+         * @param {dealer.IRoundEndCall} message RoundEndCall message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RoundEnd.encode = function encode(message, writer) {
+        RoundEndCall.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
@@ -3369,33 +3369,33 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Encodes the specified RoundEnd message, length delimited. Does not implicitly {@link dealer.RoundEnd.verify|verify} messages.
+         * Encodes the specified RoundEndCall message, length delimited. Does not implicitly {@link dealer.RoundEndCall.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
-         * @param {dealer.IRoundEnd} message RoundEnd message or plain object to encode
+         * @param {dealer.IRoundEndCall} message RoundEndCall message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RoundEnd.encodeDelimited = function encodeDelimited(message, writer) {
+        RoundEndCall.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a RoundEnd message from the specified reader or buffer.
+         * Decodes a RoundEndCall message from the specified reader or buffer.
          * @function decode
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {dealer.RoundEnd} RoundEnd
+         * @returns {dealer.RoundEndCall} RoundEndCall
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RoundEnd.decode = function decode(reader, length) {
+        RoundEndCall.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundEnd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundEndCall();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -3411,30 +3411,30 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Decodes a RoundEnd message from the specified reader or buffer, length delimited.
+         * Decodes a RoundEndCall message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {dealer.RoundEnd} RoundEnd
+         * @returns {dealer.RoundEndCall} RoundEndCall
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RoundEnd.decodeDelimited = function decodeDelimited(reader) {
+        RoundEndCall.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a RoundEnd message.
+         * Verifies a RoundEndCall message.
          * @function verify
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        RoundEnd.verify = function verify(message) {
+        RoundEndCall.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.header != null && message.hasOwnProperty("header")) {
@@ -3446,35 +3446,35 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Creates a RoundEnd message from a plain object. Also converts values to their respective internal types.
+         * Creates a RoundEndCall message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {dealer.RoundEnd} RoundEnd
+         * @returns {dealer.RoundEndCall} RoundEndCall
          */
-        RoundEnd.fromObject = function fromObject(object) {
-            if (object instanceof $root.dealer.RoundEnd)
+        RoundEndCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.RoundEndCall)
                 return object;
-            let message = new $root.dealer.RoundEnd();
+            let message = new $root.dealer.RoundEndCall();
             if (object.header != null) {
                 if (typeof object.header !== "object")
-                    throw TypeError(".dealer.RoundEnd.header: object expected");
+                    throw TypeError(".dealer.RoundEndCall.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
             return message;
         };
 
         /**
-         * Creates a plain object from a RoundEnd message. Also converts values to other types if specified.
+         * Creates a plain object from a RoundEndCall message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @static
-         * @param {dealer.RoundEnd} message RoundEnd
+         * @param {dealer.RoundEndCall} message RoundEndCall
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        RoundEnd.toObject = function toObject(message, options) {
+        RoundEndCall.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             let object = {};
@@ -3486,17 +3486,491 @@ export const dealer = $root.dealer = (() => {
         };
 
         /**
-         * Converts this RoundEnd to JSON.
+         * Converts this RoundEndCall to JSON.
          * @function toJSON
-         * @memberof dealer.RoundEnd
+         * @memberof dealer.RoundEndCall
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        RoundEnd.prototype.toJSON = function toJSON() {
+        RoundEndCall.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return RoundEnd;
+        return RoundEndCall;
+    })();
+
+    dealer.RoundStartRecall = (function() {
+
+        /**
+         * Properties of a RoundStartRecall.
+         * @memberof dealer
+         * @interface IRoundStartRecall
+         * @property {foundation.IHeader|null} [header] RoundStartRecall header
+         * @property {number|null} [status] RoundStartRecall status
+         * @property {string|null} [message] RoundStartRecall message
+         */
+
+        /**
+         * Constructs a new RoundStartRecall.
+         * @memberof dealer
+         * @classdesc Represents a RoundStartRecall.
+         * @implements IRoundStartRecall
+         * @constructor
+         * @param {dealer.IRoundStartRecall=} [properties] Properties to set
+         */
+        function RoundStartRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RoundStartRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.RoundStartRecall
+         * @instance
+         */
+        RoundStartRecall.prototype.header = null;
+
+        /**
+         * RoundStartRecall status.
+         * @member {number} status
+         * @memberof dealer.RoundStartRecall
+         * @instance
+         */
+        RoundStartRecall.prototype.status = 0;
+
+        /**
+         * RoundStartRecall message.
+         * @member {string} message
+         * @memberof dealer.RoundStartRecall
+         * @instance
+         */
+        RoundStartRecall.prototype.message = "";
+
+        /**
+         * Creates a new RoundStartRecall instance using the specified properties.
+         * @function create
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {dealer.IRoundStartRecall=} [properties] Properties to set
+         * @returns {dealer.RoundStartRecall} RoundStartRecall instance
+         */
+        RoundStartRecall.create = function create(properties) {
+            return new RoundStartRecall(properties);
+        };
+
+        /**
+         * Encodes the specified RoundStartRecall message. Does not implicitly {@link dealer.RoundStartRecall.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {dealer.IRoundStartRecall} message RoundStartRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundStartRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RoundStartRecall message, length delimited. Does not implicitly {@link dealer.RoundStartRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {dealer.IRoundStartRecall} message RoundStartRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundStartRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RoundStartRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.RoundStartRecall} RoundStartRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundStartRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundStartRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.status = reader.int32();
+                    break;
+                case 3:
+                    message.message = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RoundStartRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.RoundStartRecall} RoundStartRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundStartRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RoundStartRecall message.
+         * @function verify
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RoundStartRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isInteger(message.status))
+                    return "status: integer expected";
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a RoundStartRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.RoundStartRecall} RoundStartRecall
+         */
+        RoundStartRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.RoundStartRecall)
+                return object;
+            let message = new $root.dealer.RoundStartRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.RoundStartRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.status != null)
+                message.status = object.status | 0;
+            if (object.message != null)
+                message.message = String(object.message);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RoundStartRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.RoundStartRecall
+         * @static
+         * @param {dealer.RoundStartRecall} message RoundStartRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RoundStartRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.status = 0;
+                object.message = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            return object;
+        };
+
+        /**
+         * Converts this RoundStartRecall to JSON.
+         * @function toJSON
+         * @memberof dealer.RoundStartRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RoundStartRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return RoundStartRecall;
+    })();
+
+    dealer.RoundEndRecall = (function() {
+
+        /**
+         * Properties of a RoundEndRecall.
+         * @memberof dealer
+         * @interface IRoundEndRecall
+         * @property {foundation.IHeader|null} [header] RoundEndRecall header
+         * @property {number|null} [status] RoundEndRecall status
+         * @property {string|null} [message] RoundEndRecall message
+         */
+
+        /**
+         * Constructs a new RoundEndRecall.
+         * @memberof dealer
+         * @classdesc Represents a RoundEndRecall.
+         * @implements IRoundEndRecall
+         * @constructor
+         * @param {dealer.IRoundEndRecall=} [properties] Properties to set
+         */
+        function RoundEndRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RoundEndRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.RoundEndRecall
+         * @instance
+         */
+        RoundEndRecall.prototype.header = null;
+
+        /**
+         * RoundEndRecall status.
+         * @member {number} status
+         * @memberof dealer.RoundEndRecall
+         * @instance
+         */
+        RoundEndRecall.prototype.status = 0;
+
+        /**
+         * RoundEndRecall message.
+         * @member {string} message
+         * @memberof dealer.RoundEndRecall
+         * @instance
+         */
+        RoundEndRecall.prototype.message = "";
+
+        /**
+         * Creates a new RoundEndRecall instance using the specified properties.
+         * @function create
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {dealer.IRoundEndRecall=} [properties] Properties to set
+         * @returns {dealer.RoundEndRecall} RoundEndRecall instance
+         */
+        RoundEndRecall.create = function create(properties) {
+            return new RoundEndRecall(properties);
+        };
+
+        /**
+         * Encodes the specified RoundEndRecall message. Does not implicitly {@link dealer.RoundEndRecall.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {dealer.IRoundEndRecall} message RoundEndRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundEndRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.message);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RoundEndRecall message, length delimited. Does not implicitly {@link dealer.RoundEndRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {dealer.IRoundEndRecall} message RoundEndRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RoundEndRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RoundEndRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.RoundEndRecall} RoundEndRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundEndRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.RoundEndRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.status = reader.int32();
+                    break;
+                case 3:
+                    message.message = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RoundEndRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.RoundEndRecall} RoundEndRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RoundEndRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RoundEndRecall message.
+         * @function verify
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RoundEndRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.status != null && message.hasOwnProperty("status"))
+                if (!$util.isInteger(message.status))
+                    return "status: integer expected";
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a RoundEndRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.RoundEndRecall} RoundEndRecall
+         */
+        RoundEndRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.RoundEndRecall)
+                return object;
+            let message = new $root.dealer.RoundEndRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.RoundEndRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.status != null)
+                message.status = object.status | 0;
+            if (object.message != null)
+                message.message = String(object.message);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RoundEndRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.RoundEndRecall
+         * @static
+         * @param {dealer.RoundEndRecall} message RoundEndRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RoundEndRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.status = 0;
+                object.message = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.status != null && message.hasOwnProperty("status"))
+                object.status = message.status;
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            return object;
+        };
+
+        /**
+         * Converts this RoundEndRecall to JSON.
+         * @function toJSON
+         * @memberof dealer.RoundEndRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RoundEndRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return RoundEndRecall;
     })();
 
     /**
@@ -3795,6 +4269,221 @@ export const dealer = $root.dealer = (() => {
         return GameResult;
     })();
 
+    dealer.GameStatus = (function() {
+
+        /**
+         * Properties of a GameStatus.
+         * @memberof dealer
+         * @interface IGameStatus
+         * @property {foundation.IHeader|null} [header] GameStatus header
+         * @property {boolean|null} [isGaming] GameStatus isGaming
+         */
+
+        /**
+         * Constructs a new GameStatus.
+         * @memberof dealer
+         * @classdesc Represents a GameStatus.
+         * @implements IGameStatus
+         * @constructor
+         * @param {dealer.IGameStatus=} [properties] Properties to set
+         */
+        function GameStatus(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameStatus header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.header = null;
+
+        /**
+         * GameStatus isGaming.
+         * @member {boolean} isGaming
+         * @memberof dealer.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.isGaming = false;
+
+        /**
+         * Creates a new GameStatus instance using the specified properties.
+         * @function create
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {dealer.IGameStatus=} [properties] Properties to set
+         * @returns {dealer.GameStatus} GameStatus instance
+         */
+        GameStatus.create = function create(properties) {
+            return new GameStatus(properties);
+        };
+
+        /**
+         * Encodes the specified GameStatus message. Does not implicitly {@link dealer.GameStatus.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {dealer.IGameStatus} message GameStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStatus.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.isGaming != null && Object.hasOwnProperty.call(message, "isGaming"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isGaming);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameStatus message, length delimited. Does not implicitly {@link dealer.GameStatus.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {dealer.IGameStatus} message GameStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameStatus.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameStatus message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.GameStatus} GameStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStatus.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.GameStatus();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.isGaming = reader.bool();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameStatus message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.GameStatus} GameStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameStatus.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameStatus message.
+         * @function verify
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameStatus.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.isGaming != null && message.hasOwnProperty("isGaming"))
+                if (typeof message.isGaming !== "boolean")
+                    return "isGaming: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a GameStatus message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.GameStatus} GameStatus
+         */
+        GameStatus.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.GameStatus)
+                return object;
+            let message = new $root.dealer.GameStatus();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.GameStatus.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.isGaming != null)
+                message.isGaming = Boolean(object.isGaming);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameStatus message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.GameStatus
+         * @static
+         * @param {dealer.GameStatus} message GameStatus
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameStatus.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.isGaming = false;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.isGaming != null && message.hasOwnProperty("isGaming"))
+                object.isGaming = message.isGaming;
+            return object;
+        };
+
+        /**
+         * Converts this GameStatus to JSON.
+         * @function toJSON
+         * @memberof dealer.GameStatus
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameStatus.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return GameStatus;
+    })();
+
     return dealer;
 })();
 
@@ -3964,6 +4653,9 @@ export const foundation = $root.foundation = (() => {
                 case 20:
                 case 21:
                 case 22:
+                case 23:
+                case 24:
+                case 25:
                     break;
                 }
             return null;
@@ -4058,21 +4750,33 @@ export const foundation = $root.foundation = (() => {
             case 18:
                 message.uri = 18;
                 break;
-            case "DealerRoundStart":
+            case "DealerRoundStartCall":
             case 19:
                 message.uri = 19;
                 break;
-            case "DealerRoundEnd":
+            case "DealerRoundStartRecall":
             case 20:
                 message.uri = 20;
                 break;
-            case "BetError":
+            case "DealerRoundEndCall":
             case 21:
                 message.uri = 21;
                 break;
-            case "GameStatus":
+            case "DealerRoundEndRecall":
             case 22:
                 message.uri = 22;
+                break;
+            case "BetError":
+            case 23:
+                message.uri = 23;
+                break;
+            case "GameStatus":
+            case 24:
+                message.uri = 24;
+                break;
+            case "DealerGameStatus":
+            case 25:
+                message.uri = 25;
                 break;
             }
             return message;
@@ -6182,10 +6886,13 @@ export const route = $root.route = (() => {
      * @property {number} BetRoundCountdown=16 BetRoundCountdown value
      * @property {number} HeartbeatPing=17 HeartbeatPing value
      * @property {number} HeartbeatPong=18 HeartbeatPong value
-     * @property {number} DealerRoundStart=19 DealerRoundStart value
-     * @property {number} DealerRoundEnd=20 DealerRoundEnd value
-     * @property {number} BetError=21 BetError value
-     * @property {number} GameStatus=22 GameStatus value
+     * @property {number} DealerRoundStartCall=19 DealerRoundStartCall value
+     * @property {number} DealerRoundStartRecall=20 DealerRoundStartRecall value
+     * @property {number} DealerRoundEndCall=21 DealerRoundEndCall value
+     * @property {number} DealerRoundEndRecall=22 DealerRoundEndRecall value
+     * @property {number} BetError=23 BetError value
+     * @property {number} GameStatus=24 GameStatus value
+     * @property {number} DealerGameStatus=25 DealerGameStatus value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -6208,10 +6915,13 @@ export const route = $root.route = (() => {
         values[valuesById[16] = "BetRoundCountdown"] = 16;
         values[valuesById[17] = "HeartbeatPing"] = 17;
         values[valuesById[18] = "HeartbeatPong"] = 18;
-        values[valuesById[19] = "DealerRoundStart"] = 19;
-        values[valuesById[20] = "DealerRoundEnd"] = 20;
-        values[valuesById[21] = "BetError"] = 21;
-        values[valuesById[22] = "GameStatus"] = 22;
+        values[valuesById[19] = "DealerRoundStartCall"] = 19;
+        values[valuesById[20] = "DealerRoundStartRecall"] = 20;
+        values[valuesById[21] = "DealerRoundEndCall"] = 21;
+        values[valuesById[22] = "DealerRoundEndRecall"] = 22;
+        values[valuesById[23] = "BetError"] = 23;
+        values[valuesById[24] = "GameStatus"] = 24;
+        values[valuesById[25] = "DealerGameStatus"] = 25;
         return values;
     })();
 
