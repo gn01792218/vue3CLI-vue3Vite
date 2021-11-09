@@ -373,7 +373,13 @@ export default defineComponent({
                 let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
                 betArea.forEach((i:HTMLElement)=>{
                     i.classList.add('winAnimation')
+                    i.children[1].classList.add('winCoin')  //取得注區數字
                 })
+            })
+            let betAreaMoney = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
+            betAreaMoney.forEach((i:HTMLElement)=>{
+                if(!i.className.includes('winCoin'))
+                     i.style.color = "grey"
             })
         }
         function reSetBetAreaAnimation(){
@@ -442,6 +448,10 @@ export default defineComponent({
     }
     .winAnimation{
         animation: win 0.5s ease-in infinite;
+        
+    }
+    .winCoin{
+        animation: winCoin 0.5s ease-in infinite;
     }
     @keyframes win {
         from{
@@ -449,6 +459,15 @@ export default defineComponent({
             scale: 2;
         }to{
             background-color: rgba(128, 255, 0, 0.5);
+        }
+    }
+    @keyframes winCoin {
+        from{
+            color:rgba(255, 0, 0, 0.062);
+            scale: 2;
+        }to{
+            color:red;
+            scale: 1;
         }
     }
 </style>
