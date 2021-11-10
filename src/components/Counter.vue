@@ -75,8 +75,8 @@ export default defineComponent({
             }else {
                 //15-15
                 gsap
-                .fromTo('#countNumber',{x:15,display:"block"},
-                {x:15,ease:Power4.easeIn})
+                .fromTo('#countNumber',{display:"block"},
+                {ease:Power4.easeIn})
             }
         }
         //倒數計時器邏輯
