@@ -7,17 +7,19 @@
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-eye-fill "></i></span>
                 <span class="footer-item" v-if="user">{{user.wallet}}</span>
-                <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span>
+                <div class="footer-item d-flex">
+                    <i class="bi bi-person-circle" data-toggle="modal" data-target="#exampleModal"></i>
+                    {{user.name}}
+                </div>
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">
-                <span class="footer-item" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle"></i><span v-if="user">{{user.name}}</span></span>
+                <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-alarm"></i><Date/></span>
-                <span class="footer-item d-none d-md-flex"><i class="bi bi-arrows-fullscreen" @click="fullScreen"></i></span>
+                <span class="footer-item d-md-flex"><i class="bi bi-arrows-fullscreen" @click="fullScreen"></i></span>
             </div>
         </div>
     </footer>
 </template>
-
 <script lang="ts">
 import {computed, defineComponent} from 'vue'
 import {useStore} from 'vuex'
@@ -38,7 +40,6 @@ export default defineComponent({
         
         //全螢幕
         function fullScreen () {
-            console.log("全螢幕")
             if(screenfull.isEnabled){
                 screenfull.toggle()
             }

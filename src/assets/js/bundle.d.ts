@@ -1679,6 +1679,9 @@ export namespace dealer {
 
         /** GameResult results */
         results?: (dealer.Result[]|null);
+
+        /** GameResult totalWin */
+        totalWin?: (number|null);
     }
 
     /** Represents a GameResult. */
@@ -1695,6 +1698,9 @@ export namespace dealer {
 
         /** GameResult results. */
         public results: dealer.Result[];
+
+        /** GameResult totalWin. */
+        public totalWin: number;
 
         /**
          * Creates a new GameResult instance using the specified properties.

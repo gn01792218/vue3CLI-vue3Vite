@@ -4003,6 +4003,7 @@ export const dealer = $root.dealer = (() => {
          * @interface IGameResult
          * @property {foundation.IHeader|null} [header] GameResult header
          * @property {Array.<dealer.Result>|null} [results] GameResult results
+         * @property {number|null} [totalWin] GameResult totalWin
          */
 
         /**
@@ -4038,6 +4039,14 @@ export const dealer = $root.dealer = (() => {
         GameResult.prototype.results = $util.emptyArray;
 
         /**
+         * GameResult totalWin.
+         * @member {number} totalWin
+         * @memberof dealer.GameResult
+         * @instance
+         */
+        GameResult.prototype.totalWin = 0;
+
+        /**
          * Creates a new GameResult instance using the specified properties.
          * @function create
          * @memberof dealer.GameResult
@@ -4069,6 +4078,8 @@ export const dealer = $root.dealer = (() => {
                     writer.int32(message.results[i]);
                 writer.ldelim();
             }
+            if (message.totalWin != null && Object.hasOwnProperty.call(message, "totalWin"))
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.totalWin);
             return writer;
         };
 
@@ -4115,6 +4126,9 @@ export const dealer = $root.dealer = (() => {
                             message.results.push(reader.int32());
                     } else
                         message.results.push(reader.int32());
+                    break;
+                case 3:
+                    message.totalWin = reader.double();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -4172,6 +4186,9 @@ export const dealer = $root.dealer = (() => {
                         break;
                     }
             }
+            if (message.totalWin != null && message.hasOwnProperty("totalWin"))
+                if (typeof message.totalWin !== "number")
+                    return "totalWin: number expected";
             return null;
         };
 
@@ -4225,6 +4242,8 @@ export const dealer = $root.dealer = (() => {
                         break;
                     }
             }
+            if (object.totalWin != null)
+                message.totalWin = Number(object.totalWin);
             return message;
         };
 
@@ -4243,8 +4262,10 @@ export const dealer = $root.dealer = (() => {
             let object = {};
             if (options.arrays || options.defaults)
                 object.results = [];
-            if (options.defaults)
+            if (options.defaults) {
                 object.header = null;
+                object.totalWin = 0;
+            }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.results && message.results.length) {
@@ -4252,6 +4273,8 @@ export const dealer = $root.dealer = (() => {
                 for (let j = 0; j < message.results.length; ++j)
                     object.results[j] = options.enums === String ? $root.dealer.Result[message.results[j]] : message.results[j];
             }
+            if (message.totalWin != null && message.hasOwnProperty("totalWin"))
+                object.totalWin = options.json && !isFinite(message.totalWin) ? String(message.totalWin) : message.totalWin;
             return object;
         };
 

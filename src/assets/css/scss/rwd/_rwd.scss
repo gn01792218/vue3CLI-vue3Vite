@@ -324,6 +324,9 @@
 	.lightBox{
 		display: block;
 	}
+	#countNumber{
+		top:2%;
+	}
 	.betArea-mobile{
 		height:180px;
 	}
@@ -345,7 +348,7 @@
 		padding-bottom: 0px;
 	}
 	.betArea-item {
-		font-size: 2rem;
+		font-size: 1.6rem;
 	}
 	.bankerRoadIcon0{
 		@include hisRoadSpritePosition(0,0,0.3);
@@ -403,6 +406,12 @@
 	}
 	.video-box{
 		height:288px;
+	}
+	#countNumber{
+		top:3%;
+	}
+	.betArea-item ,.betStatus{
+		font-size: 1.5rem;
 	}
 	.betArea-mobile,.betArea-mobile-container{
 		height:130px;
@@ -518,6 +527,15 @@
 		.video-box{
 			height:220px;
 		}
+		#countNumber{
+			top:2%;
+			font-size: 2.6rem;
+		}
+		#loading{
+			width:60px;
+			height:60px;
+			left:10px;
+		}
 		.betArea{
 			height:300px;
 		}
@@ -565,32 +583,21 @@
 		.caritem{
 			margin-right: 10px;
 		}
-		// .ammo5{
-        //     left:-200px !important;
-        // }
-        // .ammo10{
-        //     left:-120px !important;
-        // }
-        // .ammo100{
-        //     left:50px !important;
-        // }
-        // .ammo500{
-        //    left:120px !important;
-        // }
 		.stand-mobile-container{
 			height:187px;
 		}
 		.gameHistory{
 			height:115px;
 		}
-		#loading{
-			width:60px;
-			height:60px;
-			left:10px;
+		.gameResult{
+			top:25%;
 		}
-		#countNumber{
-			font-size: 2.6rem;
-			top:2px;
+		.gainMoney{
+			font-size:100%;
+			margin-bottom:0;
+		}
+		.result-text{
+			font-size:150%;
 		}
 }
 @media screen and (max-width: 375px) {
@@ -605,6 +612,9 @@
 		}
 		.betArea-mobile-container{
 			height:179px;
+		}
+		.gameResult{
+			top:20%;
 		}
 }	
 @media screen and (max-width: 320px) {
@@ -625,6 +635,12 @@
 	}
 	.gameHistory{
 		height:100px;
+	}
+	.gainMoney{
+		font-size:80%;
+	}
+	.result-text{
+		font-size:130%;
 	}
 	.betArea{
 		height:235px;

@@ -1,7 +1,8 @@
 <template>
     <div class="counter position-relative">
         <div id="loading" class="position-absolute"></div>
-        <h1 id="countNumber" class="position-absolute">{{count}}</h1>
+        <!-- <h1 id="countNumber" class="position-absolute">{{count}}</h1> -->
+        <h1 id="countNumber" class="position-absolute">{{displayNum}}</h1>
     </div>
 </template>
 
@@ -26,10 +27,10 @@ export default defineComponent({
         const gameStatus = computed(()=>{
             return store.state.game.GameStatus.status
         })
-        const defaultCount = ref<number>(15) //倒數預設預設30。
-        const count = ref<number>(15)  //倒數數字
+        const defaultCount = ref(15) //倒數預設預設30。
+        const count = ref(15)  //倒數數字
         const timer = ref<any | null>(null) //計時器
-       
+        const displayNum=ref<number | string>()  //顯示的文字
         //計時器動畫
         function loadingCount () { //計時器loading特效
             //外框動畫
@@ -61,18 +62,21 @@ export default defineComponent({
             }
             //個位數字的居中
             if(count.value<10){
+                //30~30
                 gsap
-                .fromTo('#countNumber',{x:30,opacity:"0",display:"block"},
-                {x:30,opacity:"1",ease:Power4.easeIn})
+                .fromTo('#countNumber',{display:"block"},
+                {ease:Power4.easeIn})
                 if(count.value==1){
+                    //35-35
                     gsap
-                    .fromTo('#countNumber',{x:35,opacity:"0",display:"block"},
-                    {x:35,opacity:"1",ease:Power4.easeIn})
+                    .fromTo('#countNumber',{display:"block"},
+                    {ease:Power4.easeIn})
                 }
             }else {
+                //15-15
                 gsap
-                .fromTo('#countNumber',{x:15,opacity:"0",display:"block"},
-                {x:15,opacity:"1",ease:Power4.easeIn})
+                .fromTo('#countNumber',{x:15,display:"block"},
+                {x:15,ease:Power4.easeIn})
             }
         }
         //倒數計時器邏輯
@@ -84,11 +88,17 @@ export default defineComponent({
                     timer.value = null
                     count.value=defaultCount.value //預備下次重新計算
                     gsap //最後要將數字隱藏
-                    .fromTo('#countNumber',{x:20,opacity:"0",display:"none"},
-                    {x:20,opacity:"1",ease:Power4.easeInOut,display:"none"})
+                    .fromTo('#countNumber',{display:"none"},
+                    {ease:Power4.easeInOut,display:"none"})
                     // console.log("計時器結束",count.value)
                 }else{  //在1以上時才會執行
                     count.value-=1
+                    if(count.value<10){  //小於10的前面補0
+                        displayNum.value = `0${count.value}`
+                    }else{
+                        displayNum.value = count.value
+                    }
+                    
                     loadingCount()
                 }
             },1000)
@@ -116,33 +126,10 @@ export default defineComponent({
         })
         return{
             //data
-            count,
+            count,displayNum,
             //methods
             setCount
         }
     },
 })
 </script>
-
-<style lang="scss">
-.counter{
-    // overflow: hidden;
-    //要調整計時器的位置，請在這裡設置top bottom left right
-    z-index: 1;
-}
-#countNumber{
-    top:0;
-    font-size: 5rem;
-    color:white;
-    display: none;
-}
-#loading{
-    display: none;
-    border:4px solid;
-    border-color:transparent transparent #724a0a #9b7726;
-    background-color: rgba(128, 128, 128, 0.507);
-    width:110px;
-    height:110px;
-    border-radius: 50%;
-}
-</style>

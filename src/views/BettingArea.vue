@@ -314,12 +314,10 @@ export default defineComponent({
                     //coin-menu1 coin-menu1-current index0-->會增加的是index
                     setCoinPosition(cp,e)  //在駐區生成籌碼並設置起始位置 
                     }else{
-                        if(betResult.value==-1){
-                            console.log(betResult.value)
-                             switch(betError.value){
+                            switch(betError.value){
                             case 1:
-                                console.log("非下注時間")
-                                alert("非下注時間")
+                                console.log("下注失敗")
+                                alert("下注失敗")
                                 break
                             case 2:
                                 alert("非法的籌碼")
@@ -336,10 +334,7 @@ export default defineComponent({
                             case 6:
                                 alert("使用者餘額不足")
                                 break
-
-                        }
-                        }
-                       
+                            }
                     }
                 }
             }
