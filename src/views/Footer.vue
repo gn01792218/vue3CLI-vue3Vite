@@ -7,8 +7,9 @@
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-eye-fill "></i></span>
                 <span class="footer-item" v-if="user">{{user.wallet}}</span>
-                <div class="footer-item d-flex">
-                    <i class="bi bi-person-circle" data-toggle="modal" data-target="#exampleModal"></i>
+                <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
+                >
+                    <i class="bi bi-person-circle" ></i>
                     <i v-if="user">{{user.name}}</i>
                 </div>
             </div>

@@ -8,7 +8,6 @@
       @click="play"
     ></video>
   </div>
-  <!-- <button @click="zoonIn">螢幕縮放</button> -->
 </template>
 
 <script lang="ts">
@@ -54,12 +53,30 @@ export default defineComponent({
             type: "flv",
             isLive: true,
             hasAudio: false, //直播流中没有包含音频流就要設置false
-            url:flvStream.value
+            url:flvStream.value,
+          },{
+            enableWorker:true,
+            enableStashBuffer:false,
+            stashInitialSize:128,
           });
-        flvPlayer.value.attachMediaElement(videoElement);
-        flvPlayer.value.load();
-        flvPlayer.value.play();
-        }
+          flvPlayer.value.attachMediaElement(videoElement);
+          flvPlayer.value.load();
+          flvPlayer.value.play();
+          // reduceDelay()
+        } 
+      }
+      function reduceDelay () {
+         setInterval(() => {
+           console.log(flvPlayer.value.buffered.length)
+            if (flvPlayer.value.buffered.length) {
+              let end = flvPlayer.value.buffered.end(0);//获取当前buffered值
+              let diff = end - flvPlayer.value.currentTime;//获取buffered与currentTime的差值
+              if (diff >= 0.5) {
+              //如果差值大于等于0.5 手动跳帧 这里可根据自身需求来定
+                flvPlayer.value.currentTime = flvPlayer.value.buffered.end(0);//手动跳帧
+              }
+            }
+          }, 2000); //2000毫秒执行一次 
       }
       function destoryVideo (flvPlayer:any) {
         flvPlayer.pause()
@@ -76,16 +93,6 @@ export default defineComponent({
         flvPlayer.value.load();
         flvPlayer.value.play();
       }
-      //螢幕縮放動畫
-      // function zoonIn () {
-      //   console.log("啟動視訊縮放")
-      //   gsap.to('#videoElement',{
-      //     keyframes:[
-      //       {duration:1,scale:1.5},
-      //       {duration:1,scale:1}
-      //     ]
-      //   })
-      // }
       function zoonIn () {
         if(zoonScale.value !== 1.5){
           zoonScale.value = 1.5
