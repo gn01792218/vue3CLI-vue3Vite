@@ -62,21 +62,7 @@ export default defineComponent({
           flvPlayer.value.attachMediaElement(videoElement);
           flvPlayer.value.load();
           flvPlayer.value.play();
-          // reduceDelay()
         } 
-      }
-      function reduceDelay () {
-         setInterval(() => {
-           console.log(flvPlayer.value.buffered.length)
-            if (flvPlayer.value.buffered.length) {
-              let end = flvPlayer.value.buffered.end(0);//获取当前buffered值
-              let diff = end - flvPlayer.value.currentTime;//获取buffered与currentTime的差值
-              if (diff >= 0.5) {
-              //如果差值大于等于0.5 手动跳帧 这里可根据自身需求来定
-                flvPlayer.value.currentTime = flvPlayer.value.buffered.end(0);//手动跳帧
-              }
-            }
-          }, 2000); //2000毫秒执行一次 
       }
       function destoryVideo (flvPlayer:any) {
         flvPlayer.pause()
