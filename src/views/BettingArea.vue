@@ -2,7 +2,12 @@
     <GameresultSound/>
     <div class="betArea">
         <!-- PC版本注區 -->
-        <div class="betArea-pc">
+        <div class="betArea-pc position-relative">
+            <ul class="betError position-absolute">
+                <transition-group @enter="betErrorAnimation">
+                    <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
+                </transition-group>
+            </ul>
                 <div class="betArea-pc-container">
                     <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
@@ -25,7 +30,12 @@
                 </div>
         </div>
         <!-- mobile注區 -->
-        <div class="betArea-mobile">
+        <div class="betArea-mobile position-relative">
+            <ul class="betError position-absolute">
+                <transition-group @enter="betErrorAnimation">
+                    <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
+                </transition-group>
+            </ul>
             <div class="betArea-mobile-container d-flex">
                 <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1}]" v-for ="(i,index) in coinPosition" :key ="index" @click ="bet($event,index)" >{{i.host}}<br>{{i.odds}}
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
@@ -236,12 +246,17 @@ export default defineComponent({
                 betStatus:0 //目前這一回合的下注狀況
             },
         ]) 
+        const betErrorArray = ref<Array<string>>([])
         function chooseCoint (index:number,e:MouseEvent) {
             currentCoint.coinElement = e.target; //得到該元素
             currentCoint.x = e.x;  //設置籌碼起始座標點
             currentCoint.y = e.y;
             currentCoint.num = index;
             currentCoint.point = coinList[index].point
+        }
+        function betErrorAnimation (e:HTMLElement) {
+            gsap
+            .fromTo(e,{opacity:0},{opacity:1,display:"none"})
         }
         function cointAnimate (e:HTMLElement) {
             gsap
@@ -316,23 +331,22 @@ export default defineComponent({
                     }else{
                             switch(betError.value){
                             case 1:
-                                console.log("下注失敗")
-                                alert("下注失敗")
+                                betErrorArray.value?.push('下注失敗')
                                 break
                             case 2:
-                                alert("非法的籌碼")
+                                 betErrorArray.value?.push('非法的籌碼')
                                 break
                             case 3:
-                                alert("非法的注區")
+                                 betErrorArray.value?.push('非法的注區')
                                 break
                             case 4:
-                                alert("超過最高下注額度")
+                                 betErrorArray.value?.push('超過最高下注額度')
                                 break
                             case 5:
-                                alert("非法遊戲局")
+                                 betErrorArray.value?.push('非法遊戲局')
                                 break
                             case 6:
-                                alert("使用者餘額不足")
+                                 betErrorArray.value?.push('餘額不足')
                                 break
                             }
                     }
@@ -389,80 +403,10 @@ export default defineComponent({
         }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,total,
+            coinList,currentCoint,coinPosition,betStatus,total,betErrorArray,
             //methods
-            chooseCoint,cointAnimate,generateCoinAnimate,bet,resetGame,showResult,getAllBetBack
+            chooseCoint,cointAnimate,generateCoinAnimate,bet,resetGame,showResult,getAllBetBack,betErrorAnimation,
         }
     }
 })
 </script>
-
-<style lang="scss">
-.test{
-    bottom:0;
-}
-.gameresult{
-    top:25%;
-}
-.showResult{  //測試用
-    right:0;
-}
-    .alert{
-    position: absolute;
-    top:0;
-    left:0;
-    }
-    .shotCoinUl{  
-        width:100%;
-        .shotCoinPice{
-            pointer-events: none; //使能被穿透
-            position: absolute;
-            top:-25px;
-        }
-    }
-    .coinPosition{
-        li{
-            pointer-events: none; //使能被穿透
-            position: absolute;
-            transform: scale(0.5);
-            clear: left;
-            left:0;
-            bottom:0;
-        }
-    }
-    .activeCoin {
-        box-shadow: 0px 0px 25px rgba(255, 255, 178, 1);
-    }
-    .betStatus{
-        pointer-events: none; //使能被穿透
-        color:white;
-        position: absolute;
-        bottom:0;
-        font-size: 2rem;
-        z-index:1;
-    }
-    .winAnimation{
-        animation: win 0.5s ease-in infinite;
-        
-    }
-    .winCoin{
-        animation: winCoin 0.5s ease-in infinite;
-    }
-    @keyframes win {
-        from{
-            background-color: rgba(128, 255, 0, 0.007);
-            scale: 2;
-        }to{
-            background-color: rgba(128, 255, 0, 0.5);
-        }
-    }
-    @keyframes winCoin {
-        from{
-            color:rgba(255, 0, 0, 0.062);
-            scale: 2;
-        }to{
-            color:red;
-            scale: 1;
-        }
-    }
-</style>

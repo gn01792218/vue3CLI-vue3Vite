@@ -1,0 +1,75 @@
+    .betError{ //下注錯誤訊息顯示器
+        // background-color: gray;
+        width:200px;
+        height:100px;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        li{
+            color:red;
+            font-size: larger;
+            font-weight: bolder;
+        }
+    }
+    .gameresult{
+        top:25%;
+    }
+    // .alert{
+    // position: absolute;
+    // top:0;
+    // left:0;
+    // }
+    .shotCoinUl{  
+        width:100%;
+        .shotCoinPice{
+            pointer-events: none; //使能被穿透
+            position: absolute;
+            top:-25px;
+        }
+    }
+    .coinPosition{
+        li{
+            pointer-events: none; //使能被穿透
+            position: absolute;
+            transform: scale(0.5);
+            clear: left;
+            left:0;
+            bottom:0;
+        }
+    }
+    .activeCoin {
+        box-shadow: 0px 0px 25px rgba(255, 255, 178, 1);
+    }
+    .betStatus{
+        pointer-events: none; //使能被穿透
+        color:white;
+        position: absolute;
+        bottom:0;
+        font-size: 2rem;
+        z-index:1;
+    }
+    .winAnimation{
+        animation: win 0.5s ease-in infinite;
+        
+    }
+    .winCoin{
+        animation: winCoin 0.5s ease-in infinite;
+    }
+    @keyframes win {
+        from{
+            background-color: rgba(128, 255, 0, 0.007);
+            scale: 2;
+        }to{
+            background-color: rgba(128, 255, 0, 0.5);
+        }
+    }
+    @keyframes winCoin {
+        from{
+            color:rgba(255, 0, 0, 0.062);
+            scale: 2;
+        }to{
+            color:red;
+            scale: 1;
+        }
+    }

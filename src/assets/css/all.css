@@ -534,6 +534,112 @@ a.btn.disabled, fieldset[disabled] a.btn {
   left: 85%;
 }
 
+.betError {
+  width: 200px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.betError li {
+  color: red;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.gameresult {
+  top: 25%;
+}
+
+.shotCoinUl {
+  width: 100%;
+}
+
+.shotCoinUl .shotCoinPice {
+  pointer-events: none;
+  position: absolute;
+  top: -25px;
+}
+
+.coinPosition li {
+  pointer-events: none;
+  position: absolute;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  clear: left;
+  left: 0;
+  bottom: 0;
+}
+
+.activeCoin {
+  -webkit-box-shadow: 0px 0px 25px #ffffb2;
+          box-shadow: 0px 0px 25px #ffffb2;
+}
+
+.betStatus {
+  pointer-events: none;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+.winAnimation {
+  -webkit-animation: win 0.5s ease-in infinite;
+          animation: win 0.5s ease-in infinite;
+}
+
+.winCoin {
+  -webkit-animation: winCoin 0.5s ease-in infinite;
+          animation: winCoin 0.5s ease-in infinite;
+}
+
+@-webkit-keyframes win {
+  from {
+    background-color: rgba(128, 255, 0, 0.007);
+    scale: 2;
+  }
+  to {
+    background-color: rgba(128, 255, 0, 0.5);
+  }
+}
+
+@keyframes win {
+  from {
+    background-color: rgba(128, 255, 0, 0.007);
+    scale: 2;
+  }
+  to {
+    background-color: rgba(128, 255, 0, 0.5);
+  }
+}
+
+@-webkit-keyframes winCoin {
+  from {
+    color: rgba(255, 0, 0, 0.062);
+    scale: 2;
+  }
+  to {
+    color: red;
+    scale: 1;
+  }
+}
+
+@keyframes winCoin {
+  from {
+    color: rgba(255, 0, 0, 0.062);
+    scale: 2;
+  }
+  to {
+    color: red;
+    scale: 1;
+  }
+}
+
 .bankerRoadIcon0 {
   width: 35px;
   height: 35px;
