@@ -256,7 +256,7 @@ export default defineComponent({
         }
         function betErrorAnimation (e:HTMLElement) {
             gsap
-            .fromTo(e,{opacity:0},{opacity:1,display:"none"})
+            .fromTo(e,{opacity:0},{opacity:1,y:-100,ease:Power4.easeOut,display:"none"})
         }
         function cointAnimate (e:HTMLElement) {
             gsap
