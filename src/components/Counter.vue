@@ -60,30 +60,15 @@ export default defineComponent({
                 ]
             })
             }
-            //個位數字的居中
-            if(count.value<10){
-                //30~30
-                gsap
+            // 數字動畫
+            gsap
                 .fromTo('#countNumber',{display:"block"},
                 {ease:Power4.easeIn})
-                if(count.value==1){
-                    //35-35
-                    gsap
-                    .fromTo('#countNumber',{display:"block"},
-                    {ease:Power4.easeIn})
-                }
-            }else {
-                //15-15
-                gsap
-                .fromTo('#countNumber',{display:"block"},
-                {ease:Power4.easeIn})
-            }
         }
         //倒數計時器邏輯
         function setCount () { //倒數計時
-        // console.log("設置計時器",count.value)
             timer.value = setInterval(()=>{
-                if(count.value<=0){ //倒數完時
+                if(count.value<=1){ //假如要呈現00，就改成<=0即可
                     clearInterval(timer.value)
                     timer.value = null
                     count.value=defaultCount.value //預備下次重新計算
@@ -98,7 +83,6 @@ export default defineComponent({
                     }else{
                         displayNum.value = count.value
                     }
-                    
                     loadingCount()
                 }
             },1000)
