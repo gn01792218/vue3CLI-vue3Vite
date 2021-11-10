@@ -27,6 +27,9 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
+        const winMoney = computed(()=>{
+            return store.state.dealer.BroadcastGameResult.totalWin
+        })
         const gameUuid = computed(()=>{
             return store.state.game.gameUuid
         })
@@ -98,7 +101,9 @@ export default defineComponent({
                             break
                     }
                 })
-                gainMoney.innerHTML = "贏得籌碼: 1000"
+                if(winMoney.value) {
+                     gainMoney.innerHTML = `贏得籌碼:${winMoney.value}`
+                }
                }
         }
         function resetGameResult () {

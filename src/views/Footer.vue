@@ -9,7 +9,7 @@
                 <span class="footer-item" v-if="user">{{user.wallet}}</span>
                 <div class="footer-item d-flex">
                     <i class="bi bi-person-circle" data-toggle="modal" data-target="#exampleModal"></i>
-                    {{user.name}}
+                    <i v-if="user">{{user.name}}</i>
                 </div>
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">

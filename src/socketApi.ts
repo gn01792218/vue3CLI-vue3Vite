@@ -97,7 +97,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.UserInfo:
             let UserInfo = auth.UserInfo.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('UserInfo',UserInfo)
+            console.log('UserInfo',UserInfo)
             store.commit('auth/UserInfo',UserInfo)
             break
         case route.TableJoinRecall:
@@ -128,7 +128,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.BroadcastGameResult:
             let BroadcastGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('BroadcastGameResult',BroadcastGameResult)
+            console.log('BroadcastGameResult',BroadcastGameResult)
             store.commit('dealer/BroadcastGameResult',BroadcastGameResult)
             break
         case route.BetRoundStart:
