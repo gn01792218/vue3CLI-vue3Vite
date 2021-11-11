@@ -47,9 +47,7 @@ export default defineComponent({
       })
       //解決視窗失焦掉秒數問題
       window.addEventListener('focus',()=>{
-        console.log("獲得焦點")
         if(flvPlayer.value.toString!=="{}"){
-          console.log("重載")
           reloadVideo(flvPlayer.value)
         }
       })

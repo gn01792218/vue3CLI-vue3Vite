@@ -165,6 +165,7 @@ export default defineComponent({
             total.value = totalBetInfo.value
         })
         watch(gameResult,()=>{
+            clearLoseArea(gameResult.value)
             showResult()
             winCoinAnimation()
         })
@@ -400,7 +401,6 @@ export default defineComponent({
                     target.y = rect.bottom;
                     let cp = coinPosition[index]; //用來存點選到的注區
                     currentBetPosition.betAreaIndex = index   //測試用
-                    //coin-menu1 coin-menu1-current index0-->會增加的是index
                     setCoinPosition(cp,e)  //在駐區生成籌碼並設置起始位置 
                     }else{
                             switch(betError.value){
@@ -424,6 +424,8 @@ export default defineComponent({
                                 break
                             }
                     }
+                }else{
+                    betErrorArray.value?.push('餘額不足')
                 }
             }
         }
@@ -432,17 +434,31 @@ export default defineComponent({
                  gameUuid:roundUuid.value,
             })
         }
+        function clearLoseArea (winAreaArray:Array<number>) {
+            let winArea1 = winAreaArray[0]-1
+            let winArea2 = winAreaArray[1]-1  //若沒有，就是undefined
+             //清空注區籌碼，除了贏的
+            coinPosition.forEach((i,index) => {
+                if(index!==winArea1 && index!==winArea2){
+                    i.coinArray = []
+                    i.initBottom = 0
+                    i.betStatus = 0 
+                }
+            })
+        }
         function resetGame () {
             total.value = 0
             //清空選取的籌碼
             // currentCoint.coinElement = null
             // currentCoint.point = null
             // currentCoint.num = null
-            //清空注區籌碼
-            coinPosition.forEach(i => {
-                i.coinArray = []
-                i.initBottom = 0
-                i.betStatus = 0 
+            //清空注區籌碼，最後只需要清除贏
+            coinPosition.forEach((i,index) => {
+                if(index==gameResult.value[0] || index==gameResult.value[1]){
+                    i.coinArray = []
+                    i.initBottom = 0
+                    i.betStatus = 0 
+                }
             })
             //清空籌碼飛彈槍管
             coinList.forEach(i => {
