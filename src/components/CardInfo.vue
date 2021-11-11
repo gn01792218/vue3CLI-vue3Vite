@@ -108,9 +108,10 @@ export default defineComponent({
       const viewportWidth = screen.width
         if(viewportWidth<=1280 && viewportWidth>1024){
           scale.value = 0.16
-        }else if(viewportWidth<=1024 && viewportWidth>414){
+        }else if(viewportWidth<=1024 && viewportWidth>540){
           scale.value = 0.25
-        }else if(viewportWidth<=414){
+        }
+        else if(viewportWidth<=540){
           scale.value = 0.14
         }
         cardItem.forEach(i=>{

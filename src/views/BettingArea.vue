@@ -271,10 +271,11 @@ export default defineComponent({
                 let liY = getCenterPoint(liRect.top,liRect.bottom)
                 console.log("目標",coinX,coinY,"起點",liX,liY)
                 gsap.to(liElement,{
-                    delay:0.5,
-                    duration:0.5,
+                    delay:0.1,
+                    duration:1,
                     x:coinX-liX,
                     y:coinY-liY,
+                    ease:Power4.easeIn,
                     display:'none'
                 })
             }

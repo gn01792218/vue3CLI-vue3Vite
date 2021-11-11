@@ -1380,8 +1380,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
     padding-top: 0px;
     padding-bottom: 0px;
   }
+  .betArea-mobile, .betArea-mobile-container {
+    height: 145px;
+  }
   .betArea-item {
     font-size: 1.6rem;
+  }
+  .card-container {
+    margin-top: -35px;
   }
   .bankerRoadIcon0 {
     width: 30px;
@@ -1684,6 +1690,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -270px 0px;
     background-size: 285px auto;
   }
+  .card-container {
+    margin-top: -10px;
+  }
 }
 
 @media screen and (max-width: 414px) {
@@ -1787,6 +1796,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 58.5px;
     background-position: -284.4px -58.5px;
     background-size: 355.5px 175.5px;
+  }
+  .card-container {
+    margin-top: -25px;
   }
   .caritem {
     margin-right: 10px;
@@ -1934,6 +1946,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 45.5px;
     background-position: -221.2px -45.5px;
     background-size: 276.5px 136.5px;
+  }
+  .card-container {
+    margin-top: -35px;
   }
 }
 /*# sourceMappingURL=all.css.map */
