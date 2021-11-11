@@ -540,6 +540,9 @@
 		.betArea{
 			height:300px;
 		}
+		.betStatus{
+			font-size: 1.2rem;
+		}
 		.betArea-mobile{
 			height:211px;
 		}
@@ -608,6 +611,9 @@
 		.betArea{
 			height:260px;
 		}
+		.betStatus{
+			font-size: 1.1rem;
+		}
 		.betArea-mobile{
 			height:179px;
 		}
@@ -650,6 +656,12 @@
 	}
 	.betArea{
 		height:235px;
+	}
+	.betArea-item{
+		font-size: 1rem;
+	}
+	.betStatus{
+		font-size: 1rem;
 	}
 	.betArea-mobile{
 		height:160px;

@@ -280,12 +280,12 @@ export default defineComponent({
             }
         }
         function winCoinAnimation () {
-            console.log("執行")
             //啟動時機:得到betResult之後；並且在reset之前!
             if(gameResult.value){
                 gameResult.value.forEach((betAreaIndex:number)=>{
-                let betArea = document.querySelector(`.betArea-item${betAreaIndex}`) as HTMLElement
-                let ul = betArea.children[2]   //這裡假如沒有下注的時候，會是1
+                let betArea = document.querySelectorAll(`.betArea-item${betAreaIndex}`) as NodeListOf<Element>
+                betArea.forEach((i)=>{
+                     let ul = i.children[2]   //這裡假如沒有下注的時候，會是1
                 if(ul){
                     console.log(ul.children)
                     let liList = ul.children as HTMLCollection
@@ -326,7 +326,8 @@ export default defineComponent({
                                 break
                         }
                     }
-                    }
+                }
+                })
             })
             }
         }
