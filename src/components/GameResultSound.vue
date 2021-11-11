@@ -34,22 +34,22 @@ export default defineComponent({
         }
         function switchSound (audioElement:HTMLAudioElement,soundNumber:number) {
             switch(soundNumber){
-                case 1:
+                case 4:
                     audioElement.src = require('../assets/audio/tie.mp3')
                     break
-                case 2:
+                case 1:
                     console.log("播放莊家音效")
                     audioElement.src = require('../assets/audio/bankerWin.mp3')
                     break
-                case 3:
+                case 2:
                     audioElement.src = require('../assets/audio/playerWin.mp3')
                     break
-                case 4:
+                case 5:
                     console.log("播放莊對音效")
                     audioElement.src = require('../assets/audio/playerWin.mp3')  //暫時測試
                     // gameresultSound.src = require('../assets/audio/bankerPair.mp3')
                     break
-                case 5:
+                case 3:
                     audioElement.src = require('../assets/audio/bankerWin.mp3')  //暫時測試
                     // gameresultSound.src = require('../assets/audio/playerPair.mp3')
                     break

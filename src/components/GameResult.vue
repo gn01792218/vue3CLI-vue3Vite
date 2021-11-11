@@ -12,7 +12,6 @@
         </section>
     </div>
 </template>
-
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue'
 import {useStore} from 'vuex'
@@ -57,7 +56,7 @@ export default defineComponent({
                 isWait.value = false //關閉Loading效果
                 let result = document.querySelector('#result') as HTMLElement  //這是ul
                 let gainMoney = document.querySelector('.gainMoney') as HTMLElement
-               if(result){
+                if(result){
                 gameResult.value.forEach((i:any)=>{
                     switch(i){
                         case 1:

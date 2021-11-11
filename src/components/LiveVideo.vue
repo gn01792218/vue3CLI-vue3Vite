@@ -5,6 +5,7 @@
       ref="videoElement"
       controls
       muted
+      autoplay
       @click="play"
     ></video>
   </div>
@@ -16,6 +17,7 @@ import {useStore} from 'vuex'
 import flvjs from 'flv.js';
 import gsap from 'gsap'
 export default defineComponent({
+  //修正蘋果手機無法撥放的問題 
     setup(){
       //直播物件
       const flvPlayer = ref<any | null>({});

@@ -454,11 +454,11 @@ export default defineComponent({
             // currentCoint.num = null
             //清空注區籌碼，最後只需要清除贏
             coinPosition.forEach((i,index) => {
-                if(index==gameResult.value[0] || index==gameResult.value[1]){
+                // if(index==gameResult.value[0] || index==gameResult.value[1]){
                     i.coinArray = []
                     i.initBottom = 0
                     i.betStatus = 0 
-                }
+                // }
             })
             //清空籌碼飛彈槍管
             coinList.forEach(i => {

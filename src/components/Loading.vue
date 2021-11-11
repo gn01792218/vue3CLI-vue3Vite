@@ -5,6 +5,15 @@
         <span class="coin-preLoad"></span>
         <span class="poker"></span>
         <span class="roadImg-preLoad"></span>
+        <audio  preload >
+            <source src="../assets/audio/bankerWin.mp3" > 
+        </audio>
+        <audio  preload>
+            <source src="../assets/audio/playerWin.mp3">
+        </audio>
+        <audio  preload>
+            <source src="../assets/audio/tie.mp3">
+        </audio>
     </div>
     </div>
     
@@ -15,6 +24,8 @@ import {defineComponent,ref,computed,watch, onMounted} from 'vue'
 import { useStore } from 'vuex'
 export default defineComponent({
     setup(){
+        // let preMusic =  document.querySelector('#gameresultSound') as HTMLAudioElement
+        // preMusic.play()
         const store = useStore()
         const loading = ref(true)
         const preLoad = ref(true)
