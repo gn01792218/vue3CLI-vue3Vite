@@ -91,34 +91,3 @@
     margin-right:10px;
     // border:1px solid blue;
 }
-
-//遊戲結果
-.gameResult{
-	top:28%;
-	left:0;
-	background-color: #523e25ab;
-	text-align: center;
-}
-#result{
-	@include flex-justify-method;
-}
-.result-text{
-	font-size: 400%;
-}
-.gainMoney{
-	font-size: 200%;
-	margin-bottom: -20px;
-}
-.gameResult-title{
-	border-bottom: 1px #654d31 solid;
-	height:20%;
-	font-size: 150%;
-	@include flex-colum-content-center;
-	p{
-		margin: 0;
-	}
-}
-.gameResult-content{
-	@include flex-colum-content-center;
-	height:80%;
-}

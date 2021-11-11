@@ -273,65 +273,6 @@ img {
   margin-right: 10px;
 }
 
-.gameResult {
-  top: 28%;
-  left: 0;
-  background-color: #523e25ab;
-  text-align: center;
-}
-
-#result {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.result-text {
-  font-size: 400%;
-}
-
-.gainMoney {
-  font-size: 200%;
-  margin-bottom: -20px;
-}
-
-.gameResult-title {
-  border-bottom: 1px #654d31 solid;
-  height: 20%;
-  font-size: 150%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.gameResult-title p {
-  margin: 0;
-}
-
-.gameResult-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 80%;
-}
-
 /*-------------------------------------------
      頁底設定區
 -------------------------------------------*/
@@ -599,13 +540,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .winAnimation {
-  -webkit-animation: win 0.5s ease-in infinite;
-          animation: win 0.5s ease-in infinite;
+  -webkit-animation: win 1s ease-in infinite;
+          animation: win 1s ease-in infinite;
 }
 
 .winCoin {
-  -webkit-animation: winCoin 0.5s ease-in infinite;
-          animation: winCoin 0.5s ease-in infinite;
+  -webkit-animation: winCoin 1s ease-in infinite;
+          animation: winCoin 1s ease-in infinite;
 }
 
 @-webkit-keyframes win {
@@ -614,7 +555,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     scale: 2;
   }
   to {
-    background-color: rgba(128, 255, 0, 0.5);
+    background-color: rgba(128, 255, 0, 0.411);
   }
 }
 
@@ -624,7 +565,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     scale: 2;
   }
   to {
-    background-color: rgba(128, 255, 0, 0.5);
+    background-color: rgba(128, 255, 0, 0.411);
   }
 }
 
@@ -648,6 +589,65 @@ a.btn.disabled, fieldset[disabled] a.btn {
     color: red;
     scale: 1;
   }
+}
+
+.gameResult {
+  top: 28%;
+  left: 0;
+  background-color: #523e25ab;
+  text-align: center;
+}
+
+#result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.result-text {
+  font-size: 400%;
+}
+
+.gainMoney {
+  font-size: 200%;
+  margin-bottom: -20px;
+}
+
+.gameResult-title {
+  border-bottom: 1px #654d31 solid;
+  height: 20%;
+  font-size: 150%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.gameResult-title p {
+  margin: 0;
+}
+
+.gameResult-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 80%;
 }
 
 .bankerRoadIcon0 {
@@ -803,10 +803,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   text-align: center;
 }
 
-.gameResultLoading {
-  background-image: url("../../images/loading.svg");
-  background-repeat: no-repeat;
-  background-position: center center;
+.gameResultLoading p {
+  font-size: 400%;
+  font-weight: bolder;
+  color: red;
 }
 
 .poker {

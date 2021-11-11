@@ -17,11 +17,6 @@
     .gameresult{
         top:25%;
     }
-    // .alert{
-    // position: absolute;
-    // top:0;
-    // left:0;
-    // }
     .shotCoinUl{  
         width:100%;
         .shotCoinPice{
@@ -52,18 +47,18 @@
         z-index:1;
     }
     .winAnimation{
-        animation: win 0.5s ease-in infinite;
+        animation: win 1s ease-in infinite;
         
     }
     .winCoin{
-        animation: winCoin 0.5s ease-in infinite;
+        animation: winCoin 1s ease-in infinite;
     }
     @keyframes win {
         from{
             background-color: rgba(128, 255, 0, 0.007);
             scale: 2;
         }to{
-            background-color: rgba(128, 255, 0, 0.5);
+            background-color: rgba(128, 255, 0, 0.411);
         }
     }
     @keyframes winCoin {

@@ -4,7 +4,13 @@
     text-align: center;
 }
 .gameResultLoading{
-    background-image: $loading-img;
-    background-repeat: no-repeat;
-    background-position: center center;
+    // background-color: #644d31;
+    p{
+        font-size: 400%;
+        font-weight: bolder;
+        color:red;
+    }
+    // background-image: $loading-img;
+    // background-repeat: no-repeat;
+    // background-position: center center;
 }
