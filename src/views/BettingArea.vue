@@ -54,7 +54,7 @@
         <!-- coin -->
         <div class="coinArea">
             <!-- coin list -->
-            <div v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
+            <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coinList" :key="index">
@@ -166,6 +166,7 @@ export default defineComponent({
         })
         watch(gameResult,()=>{
             showResult()
+            winCoinAnimation()
         })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
@@ -204,6 +205,7 @@ export default defineComponent({
             x : 0,
             y : 0,
         })
+        //coin-menu2 coin-menu2-current index0
         const coinPosition = reactive<coinPosition[]>([//注區
             {
                 initBottom:0,  //初始化的bottom值
@@ -257,6 +259,76 @@ export default defineComponent({
         function betErrorAnimation (e:HTMLElement) {
             gsap
             .fromTo(e,{opacity:0},{opacity:1,y:-100,ease:Power4.easeOut,display:"none"})
+        }
+        function getCenterPoint (leftOrTop:number,rightOrBottom:number):number{
+            return leftOrTop+(rightOrBottom-leftOrTop)/2
+        }
+        function goDefaultCoinPosition(Coin1Rect:DOMRect,liRect:DOMRect,liElement:HTMLElement){
+            if(Coin1Rect && liRect){
+                let coinX =getCenterPoint(Coin1Rect.left,Coin1Rect.right)
+                let coinY =getCenterPoint(Coin1Rect.top,Coin1Rect.bottom)
+                let liX = getCenterPoint(liRect.left,liRect.right)
+                let liY = getCenterPoint(liRect.top,liRect.bottom)
+                console.log("目標",coinX,coinY,"起點",liX,liY)
+                gsap.to(liElement,{
+                    delay:0.5,
+                    duration:0.5,
+                    x:coinX-liX,
+                    y:coinY-liY,
+                    display:'none'
+                })
+            }
+        }
+        function winCoinAnimation () {
+            console.log("執行")
+            //啟動時機:得到betResult之後；並且在reset之前!
+            if(gameResult.value){
+                gameResult.value.forEach((betAreaIndex:number)=>{
+                let betArea = document.querySelector(`.betArea-item${betAreaIndex}`) as HTMLElement
+                let ul = betArea.children[2]   //這裡假如沒有下注的時候，會是1
+                if(ul){
+                    console.log(ul.children)
+                    let liList = ul.children as HTMLCollection
+                    for(let i = liList.length-1 ; i>=0 ; i--){  //這裡有問題，會數到-1
+                        console.log(liList[i])
+                        console.log(liList[i].className.split(" ")[0])   //獲得coin-menu4  coin-menu2
+                        //問題:會全部解讀成最後一個li的籌碼!!!怪!!!
+                        switch(liList[i].className.split(" ")[0]){
+                            case 'coin-menu1':
+                                let Coin1Rect = document.querySelector('#defaultCoin1')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
+                                let liRect1 = liList[i].getBoundingClientRect() as DOMRect
+                                goDefaultCoinPosition(Coin1Rect,liRect1,liList[i] as HTMLElement)
+                                console.log("執行coin-menu1動畫")
+                                break
+                            case 'coin-menu2':
+                                let Coin2Rect = document.querySelector('#defaultCoin2')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
+                                let liRect2 = liList[i].getBoundingClientRect() as DOMRect
+                                goDefaultCoinPosition(Coin2Rect,liRect2,liList[i] as HTMLElement)
+                                console.log("執行coin-menu2動畫")
+                                break
+                            case 'coin-menu3':
+                                let Coin3Rect = document.querySelector('#defaultCoin3')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
+                                let liRect3 = liList[i].getBoundingClientRect() as DOMRect
+                                goDefaultCoinPosition(Coin3Rect,liRect3,liList[i] as HTMLElement)
+                                console.log("執行coin-menu4動畫")
+                                break
+                            case 'coin-menu4':
+                                let Coin4Rect = document.querySelector('#defaultCoin4')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
+                                let liRect4 = liList[i].getBoundingClientRect() as DOMRect
+                                goDefaultCoinPosition(Coin4Rect,liRect4,liList[i] as HTMLElement)
+                                console.log("執行coin-menu4動畫")
+                                break
+                            case 'coin-menu5':
+                                let Coin5Rect = document.querySelector('#defaultCoin5')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
+                                let liRect5 = liList[i].getBoundingClientRect() as DOMRect
+                                goDefaultCoinPosition(Coin5Rect,liRect5,liList[i] as HTMLElement)
+                                console.log("執行coin-menu2動畫")
+                                break
+                        }
+                    }
+                    }
+            })
+            }
         }
         function cointAnimate (e:HTMLElement) {
             gsap

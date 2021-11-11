@@ -1,7 +1,6 @@
 <template>
     <div class="counter position-relative">
         <div id="loading" class="position-absolute"></div>
-        <!-- <h1 id="countNumber" class="position-absolute">{{count}}</h1> -->
         <h1 id="countNumber" class="position-absolute">{{displayNum}}</h1>
     </div>
 </template>

@@ -16,6 +16,11 @@ export const mutations = {
   resetGameResults(state:any){
     if(state.BroadcastGameResult.results){
       state.BroadcastGameResult.results = []
+      if(state.BroadcastGameResult.totalWin){
+        state.BroadcastGameResult.totalWin = null
+        console.log("重置金錢",state.BroadcastGameResult.totalWin)
+      }
+      
     }
   }
 };

@@ -10,7 +10,6 @@
             <ul id="result">
             </ul>
         </section>
-        
     </div>
 </template>
 
@@ -27,7 +26,7 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-        const winMoney = computed(()=>{
+        const winMoney = computed(()=>{ 
             return store.state.dealer.BroadcastGameResult.totalWin
         })
         const gameUuid = computed(()=>{
@@ -55,7 +54,6 @@ export default defineComponent({
             // if(gameResult.value){
               showGameResult()
             // }
-            
         })
         function showGameResult () {
             //   isWait.value = false //關閉Loading效果
@@ -101,16 +99,24 @@ export default defineComponent({
                             break
                     }
                 })
-                if(winMoney.value) {
+                console.log("錢的狀況",winMoney.value)
+                if(winMoney.value!==0 &&  winMoney.value!==null) {
+                    console.log("顯示錢")
                      gainMoney.innerHTML = `贏得籌碼:${winMoney.value}`
+                }else{
+                    console.log("錢的狀況",winMoney.value,"不顯示$$")
                 }
                }
         }
         function resetGameResult () {
             let result = document.querySelector('#result') as HTMLElement  //這是ul
+            let gainMoney = document.querySelector('.gainMoney') as HTMLElement
             if(result){
-                result.innerHTML=""
+                result.innerHTML = ""
                 store.commit("dealer/resetGameResults")  //記得清空Vuex裡面的遊戲結果
+            }
+            if(gainMoney){
+                gainMoney.innerHTML = ""
             }
         }
         return{
