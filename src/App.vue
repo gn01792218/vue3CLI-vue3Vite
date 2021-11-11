@@ -20,6 +20,7 @@ export default defineComponent({
     Header,Footer,BaccaratGame
   },
   setup() {
+    
   },
 })
 </script>
