@@ -16,12 +16,16 @@ export default defineComponent({
             //1.下注狀態 2.開牌狀態 3.等待狀態
            return store.state.game.GameStatus
         })
+        const gameUuid = computed(()=>{
+            return store.state.game.gameUuid
+        })
         const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
         })
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
+
         //之後要監聽一個wait狀態，當有這個狀態的時候打開loading顯示等待中。
         
         watch(gameState,()=>{   //上桌時，接到遊戲狀態時要顯示文字
@@ -32,9 +36,12 @@ export default defineComponent({
                     break
             }
         })
+        watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
+            isWait.value = false
+        })
         watch(gameEndUuid,()=>{ //倒數結束時
             isWait.value = true
-             stateMsg.value = "停止下注"
+            stateMsg.value = "停止下注"
         })
          watch(gameResult,()=>{  //公布結果時，關閉顯示
            //關閉loading效果 
