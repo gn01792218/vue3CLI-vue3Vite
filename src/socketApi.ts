@@ -143,7 +143,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.GameStatus:
             let GameStatus = game.GameStatus.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('GameStatus',GameStatus)
+            console.log('GameStatus',GameStatus)
             store.commit('game/GameStatus',GameStatus)
             break
         case route.BetRoundCountdown:

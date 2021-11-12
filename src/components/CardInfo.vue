@@ -49,7 +49,7 @@ export default defineComponent({
      })
      watch(DrawCard,()=>{  //開牌
        let card = DrawCard.value
-        showCards(card.side,card.card.suit,card.card.point,card.position)
+       showCards(card.side,card.card.suit,card.card.point,card.position)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
        lastDrawCard.value.forEach((i:any)=>{

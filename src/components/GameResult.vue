@@ -5,7 +5,7 @@
             <p v-else>遊戲結果</p>
         </section> -->
         <section class="gameResult-content">
-            <GameResultLoading v-if="isWait"/>
+            <GameResultLoading/>
             <p class="gainMoney"></p>
             <ul id="result">
             </ul>
@@ -34,9 +34,12 @@ export default defineComponent({
         const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
         })
+    //     const gameState = computed(()=>{  //上桌時會得到遊戲狀態，要播放現在是什麼狀態
+    //         //1.下注狀態 2.開牌狀態 3.等待狀態
+    //        return store.state.game.GameStatus
+    //    })
         //基本資料
         const hasGameResult = ref(false)
-        const isWait = ref(true)
         watch(gameUuid,()=>{
             resetGameResult()
             hasGameResult.value = false
@@ -44,7 +47,7 @@ export default defineComponent({
         watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
             console.log("停止下注")
             hasGameResult.value = true
-            isWait.value = true
+            // isWait.value = true
         })
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
@@ -53,7 +56,7 @@ export default defineComponent({
             // }
         })
         function showGameResult () {
-                isWait.value = false //關閉Loading效果
+                // isWait.value = false //關閉Loading效果
                 let result = document.querySelector('#result') as HTMLElement  //這是ul
                 let gainMoney = document.querySelector('.gainMoney') as HTMLElement
                 if(result){
@@ -114,7 +117,7 @@ export default defineComponent({
         }
         return{
             //data
-            isWait,hasGameResult
+            hasGameResult,
         }
     }
 })
