@@ -379,7 +379,6 @@ export default defineComponent({
             let positionCoinElement = e.target.lastChild.lastChild; //撈取最後一個li元素；第一次點會是text
             if(currentCoint.coinElement){  //有選擇籌碼時，才會生籌碼
                 cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
-                console.log(positionCoinElement.nodeName)
                     cp.initBottom += 5;  //修改樣式
             }
         }
