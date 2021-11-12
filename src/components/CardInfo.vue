@@ -103,16 +103,22 @@ export default defineComponent({
         })
       }
      }
+     const mqlMax1280 = window.matchMedia("(max-width :1280px)")
+     mqlMax1280.addEventListener('change',()=>{
+       cardPositionInit()
+     })
      function cardPositionInit () { //響應式初始化卡牌出現的位置
       let cardItem = document.querySelectorAll('.caritem') as NodeListOf<HTMLElement>
-      const viewportWidth = screen.width
+      const viewportWidth = window.innerWidth
         if(viewportWidth<=1280 && viewportWidth>1024){
-          scale.value = 0.16
+          scale.value = 0.14
         }else if(viewportWidth<=1024 && viewportWidth>540){
           scale.value = 0.25
         }
         else if(viewportWidth<=540){
           scale.value = 0.14
+        }else{
+          scale.value = 0.19
         }
         cardItem.forEach(i=>{
         i.style.width = `${uw*scale.value}px`

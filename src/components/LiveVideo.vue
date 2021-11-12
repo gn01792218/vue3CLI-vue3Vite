@@ -12,7 +12,6 @@
       muted
       autoplay
       autobuffer
-      controls
       preload="auto"
       webkit-playsinline
       playsinline="true"
@@ -41,10 +40,10 @@ export default defineComponent({
       const userSystem = navigator.userAgent //使用者作業系統
       const isAndroid = userSystem.indexOf('Android') > -1 || userSystem.indexOf('Adr') >-1
       const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/)
-      // if(isIOS){
-      //   console.log("蘋果系統")
+      if(isIOS){
+        console.log("蘋果系統")
         
-      // }
+      }
       // document.addEventListener('WeixinJSBridgeReady',function () {
       //     flvPlayer?.play()
       //     console.log("自動撥放")

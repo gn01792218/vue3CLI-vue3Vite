@@ -65,7 +65,7 @@
             </ul>
         </div>
         <GameResult/>
-        <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
+        <!-- <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button> -->
     </div>
 </template>
 

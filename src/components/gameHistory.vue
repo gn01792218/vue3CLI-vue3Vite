@@ -62,13 +62,29 @@ export default defineComponent({
           //根據serve傳來的資料更新路圖
         }
         const mqlMax1024 = window.matchMedia("(max-width :1024px)")
+        const mqlMax1280 = window.matchMedia("(max-width :1280px)")
+        mqlMax1280.addEventListener('change',()=>{
+          console.log("1280",mqlMax1280)
+         
+        })
+        const mqltest = window.matchMedia("(max-height:1280px)")
+        mqltest.addEventListener('change',()=>{
+          console.log("偵測到螢幕高度")
+        })
         mqlMax1024.addEventListener('change',()=>{
+          console.log("1024",mqlMax1024)
           if(mqlMax1024.matches){
+            console.log("要監聽1024以下歷史圖的開牌")
             watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
-              show.value = true
+              if(mqlMax1024.matches){
+                show.value = true
+                console.log("監聽畫牌")
+              }
             })
             watch(roundUuid,()=>{
-            show.value = false
+              if(mqlMax1024.matches){
+                show.value = false
+              }
             })
           }else{
             show.value = false
@@ -77,7 +93,6 @@ export default defineComponent({
         return {
           //data
           winer,show,
-
           //methods
           historyUpdate
         }
