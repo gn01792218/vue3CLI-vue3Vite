@@ -552,7 +552,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @-webkit-keyframes win {
   from {
     background-color: rgba(128, 255, 0, 0.007);
-    scale: 2;
   }
   to {
     background-color: rgba(128, 255, 0, 0.411);
@@ -562,7 +561,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @keyframes win {
   from {
     background-color: rgba(128, 255, 0, 0.007);
-    scale: 2;
   }
   to {
     background-color: rgba(128, 255, 0, 0.411);
@@ -572,22 +570,18 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @-webkit-keyframes winCoin {
   from {
     color: rgba(255, 0, 0, 0.062);
-    scale: 2;
   }
   to {
     color: red;
-    scale: 1;
   }
 }
 
 @keyframes winCoin {
   from {
     color: rgba(255, 0, 0, 0.062);
-    scale: 2;
   }
   to {
     color: red;
-    scale: 1;
   }
 }
 

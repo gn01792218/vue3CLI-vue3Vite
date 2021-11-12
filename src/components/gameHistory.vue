@@ -61,18 +61,19 @@ export default defineComponent({
         function historyUpdate () {
           //根據serve傳來的資料更新路圖
         }
-        if(screen.width<=1024){  //ipad以下版本才共用卡牌資訊
-          watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
-            show.value = true
-          })
-          watch(roundUuid,()=>{
+        const mqlMax1024 = window.matchMedia("(max-width :1024px)")
+        mqlMax1024.addEventListener('change',()=>{
+          if(mqlMax1024.matches){
+            watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
+              show.value = true
+            })
+            watch(roundUuid,()=>{
             show.value = false
-          })
-        }
-        // function showCard(){
-        //   show.value = !show.value
-        //   console.log(show.value)
-        // }
+            })
+          }else{
+            show.value = false
+          }
+        })
         return {
           //data
           winer,show,

@@ -1,13 +1,29 @@
 <template>
   <div class="video-box">
-    <video class="video"
+      <!-- <video class="video"
       id="videoElement"
       ref="videoElement"
-      controls
+      muted
+      @click="play"
+      ></video> -->
+     <video class="video"
+      id="videoElement"
+      ref="videoElement"
       muted
       autoplay
+      autobuffer
+      controls
+      preload="auto"
+      webkit-playsinline
+      playsinline="true"
       @click="play"
     ></video>
+      <!-- <video class="video" v-else
+      id="videoElement"
+      ref="videoElement"
+      muted
+      @click="play"
+    ></video> -->
   </div>
 </template>
 
@@ -22,6 +38,18 @@ export default defineComponent({
       //直播物件
       const flvPlayer = ref<any | null>({});
       const zoonScale = ref<number>(1)
+      const userSystem = navigator.userAgent //使用者作業系統
+      const isAndroid = userSystem.indexOf('Android') > -1 || userSystem.indexOf('Adr') >-1
+      const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/)
+      // if(isIOS){
+      //   console.log("蘋果系統")
+        
+      // }
+      // document.addEventListener('WeixinJSBridgeReady',function () {
+      //     flvPlayer?.play()
+      //     console.log("自動撥放")
+      //   },false)
+      const hasAutoPlayed = ref(false)
       //初始化
       onMounted(()=>{
         createFlv()
@@ -47,19 +75,63 @@ export default defineComponent({
       watch(gameEndUuid,()=>{ //回合結束時，拉近螢幕
         zoonIn()
       })
+      //解決IOS版本無法自動播放問題
+      window.addEventListener('touchstart',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+          reloadVideo(flvPlayer.value).then(r=>{
+            hasAutoPlayed.value = true
+            console.log("重新加載")
+          }
+          )
+        }
+      })
+      window.addEventListener('touchmove',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+          reloadVideo(flvPlayer.value).then(r=>{
+            hasAutoPlayed.value = true
+            console.log("重新加載")
+          }
+          )
+        }
+      })
+      window.addEventListener('touchend',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+          reloadVideo(flvPlayer.value).then(r=>{
+            hasAutoPlayed.value = true
+            console.log("重新加載")
+          }
+          )
+        }
+      })
+      window.addEventListener('touchcancel',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+          reloadVideo(flvPlayer.value).then(r=>{
+            hasAutoPlayed.value = true
+            console.log("重新加載")
+          }
+          )
+        }
+      })
+      // window.addEventListener('mousedown',()=>{ //專門給手機版本
+      //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+      //     reloadVideo(flvPlayer.value).then(r=>{
+      //       hasAutoPlayed.value = true
+      //       console.log("重新加載")
+      //     }
+      //     )
+      //   }
+      // })
       //解決視窗失焦掉秒數問題
       window.addEventListener('focus',()=>{
         if(flvPlayer.value.toString!=="{}"){
-          reloadVideo(flvPlayer.value)
+          reloadVideo(flvPlayer.value).then(r=>{
+            console.log("重新加載")
+          }
+          )
         }
       })
-      window.addEventListener('blur',()=>{
-        console.log("失去焦點")
-        // if(flvPlayer.value.toString!=="{}"){
-        //   console.log("摧毀直播")
-        //   destoryVideo(flvPlayer.value)
-        // }
-      })
+      //偵測使用者裝置作業系統
+
       //影片播放設置
       function createFlv () {
         if (flvjs.isSupported()) {
@@ -79,14 +151,14 @@ export default defineComponent({
           flvPlayer.value.play();
         } 
       }
-      function destoryVideo (flvPlayer:any) {
+      async function destoryVideo (flvPlayer:any) {
         flvPlayer.pause()
         flvPlayer.unload()
         flvPlayer.detachMediaElement()
         flvPlayer = null
       }
-      function reloadVideo (flvPlayer:any) {
-        destoryVideo(flvPlayer)
+      async function reloadVideo (flvPlayer:any) {
+        await destoryVideo(flvPlayer)
         createFlv()
       }
       function play () { //防止玩家再次點擊直播畫面
@@ -117,11 +189,16 @@ export default defineComponent({
       }
       return{
         //data
-        flvPlayer,
+        flvPlayer,isIOS,
         //methods
         createFlv,play,destoryVideo,reloadVideo,zoonIn,
       }
     },
+    // methods:{
+    //   testEquipment () {
+    //     this.u = navigator.userAgent
+    //   }
+    // }
 })
 
 </script>
