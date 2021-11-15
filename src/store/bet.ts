@@ -23,6 +23,9 @@ export const mutations = {
     state.BetError=payload
     // console.log("vuex-BetError資料更新",state.BetError)
   },
+  resetBetResult(state:any){
+    state.BetRecall.result = 0
+  }
 };
 export const getters = {
   
