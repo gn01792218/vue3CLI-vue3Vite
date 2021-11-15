@@ -8,8 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import "../src/assets/css/bootstrap.min.css"
 import './assets/css/all.css';  //最後引入主要CSS
-
-createApp(App).use(store).use(router).mount('#app')
+NodePlayer.load(()=>{
+    createApp(App).use(store).use(router).mount('#app')
+})
 window.addEventListener('onmessageWs',getMsgReCall)  //全局註冊wbSocket的訊息監聽
 
 router.beforeEach((to,from,next)=>{

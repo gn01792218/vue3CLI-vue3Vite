@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
+    "target": "es2015",
+    "module": "commonJS",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -23,6 +23,7 @@
     "lib": [
       "esnext",
       "dom",
+      "es5",
       "dom.iterable",
       "scripthost"
     ]
@@ -32,9 +33,10 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "src/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

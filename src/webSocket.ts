@@ -1,5 +1,7 @@
 
 const url = "ws://139.162.102.189:8199/ws";  //後端網址
+//8199 由keypir控制
+//8200 可以自由測的
 //建立webSocket實例
 let Socket:WebSocket | null
 let setIntervalWesocketPush:number

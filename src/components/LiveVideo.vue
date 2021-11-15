@@ -1,12 +1,13 @@
 <template>
-  <div class="video-box">
+  <canvas class="video-box" id="video" width="640" height="360" /><br/>
+  <!-- <div class="video-box"> -->
       <!-- <video class="video"
       id="videoElement"
       ref="videoElement"
       muted
       @click="play"
       ></video> -->
-     <video class="video"
+     <!-- <video class="video"
       id="videoElement"
       ref="videoElement"
       muted
@@ -16,20 +17,20 @@
       webkit-playsinline
       playsinline="true"
       @click="play"
-    ></video>
+    ></video> -->
       <!-- <video class="video" v-else
       id="videoElement"
       ref="videoElement"
       muted
       @click="play"
     ></video> -->
-  </div>
+  <!-- </div> -->
 </template>
 
 <script lang="ts">
 import {computed, defineComponent,onMounted,ref, watch} from 'vue'
 import {useStore} from 'vuex'
-import flvjs from 'flv.js';
+import flvjs from 'flv.js'
 import gsap from 'gsap'
 export default defineComponent({
   //修正蘋果手機無法撥放的問題 
@@ -50,9 +51,24 @@ export default defineComponent({
       //   },false)
       const hasAutoPlayed = ref(false)
       //初始化
+      let np = new NodePlayer()
       onMounted(()=>{
-        createFlv()
+        np.setView("video");
+        np.setScaleMode(2)
+        np.on('stats',(s)=>{
+        //  console.log(s)
+        })
+        // createFlv()
+        startPlay()
       })
+      function startPlay (){
+        console.log("開始撥放",flvStream.value)
+        np.start(flvStream.value)
+      }
+      function stopPlay () {
+        np.stop()
+        np.clearView()  //清除上一個視頻留下的東西
+      }
       //vuex
       const store = useStore()
       const flvStream = computed(()=>{
@@ -66,51 +82,55 @@ export default defineComponent({
         })
       //監聽換桌的直播網址
       watch(flvStream,()=>{
-        reloadVideo(flvPlayer.value)
+        stopPlay()
+        startPlay()
+        // reloadVideo(flvPlayer.value)
       })
       watch(gameUuid,()=>{  //新回合開始時，將螢幕縮回去
+      console.log('恢復螢幕')
         resetZoon()
       })
       watch(gameEndUuid,()=>{ //回合結束時，拉近螢幕
+      console.log("拉近螢幕")
         zoonIn()
       })
       //解決IOS版本無法自動播放問題
-      window.addEventListener('touchstart',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
-        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
-          reloadVideo(flvPlayer.value).then(r=>{
-            hasAutoPlayed.value = true
-            console.log("重新加載")
-          }
-          )
-        }
-      })
-      window.addEventListener('touchmove',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
-        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
-          reloadVideo(flvPlayer.value).then(r=>{
-            hasAutoPlayed.value = true
-            console.log("重新加載")
-          }
-          )
-        }
-      })
-      window.addEventListener('touchend',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
-        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
-          reloadVideo(flvPlayer.value).then(r=>{
-            hasAutoPlayed.value = true
-            console.log("重新加載")
-          }
-          )
-        }
-      })
-      window.addEventListener('touchcancel',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
-        if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
-          reloadVideo(flvPlayer.value).then(r=>{
-            hasAutoPlayed.value = true
-            console.log("重新加載")
-          }
-          )
-        }
-      })
+      // window.addEventListener('touchstart',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+      //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+      //     reloadVideo(flvPlayer.value).then(r=>{
+      //       hasAutoPlayed.value = true
+      //       console.log("重新加載")
+      //     }
+      //     )
+      //   }
+      // })
+      // window.addEventListener('touchmove',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+      //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+      //     reloadVideo(flvPlayer.value).then(r=>{
+      //       hasAutoPlayed.value = true
+      //       console.log("重新加載")
+      //     }
+      //     )
+      //   }
+      // })
+      // window.addEventListener('touchend',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+      //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+      //     reloadVideo(flvPlayer.value).then(r=>{
+      //       hasAutoPlayed.value = true
+      //       console.log("重新加載")
+      //     }
+      //     )
+      //   }
+      // })
+      // window.addEventListener('touchcancel',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
+      //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
+      //     reloadVideo(flvPlayer.value).then(r=>{
+      //       hasAutoPlayed.value = true
+      //       console.log("重新加載")
+      //     }
+      //     )
+      //   }
+      // })
       // window.addEventListener('mousedown',()=>{ //專門給手機版本
       //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
       //     reloadVideo(flvPlayer.value).then(r=>{
@@ -122,12 +142,16 @@ export default defineComponent({
       // })
       //解決視窗失焦掉秒數問題
       window.addEventListener('focus',()=>{
-        if(flvPlayer.value.toString!=="{}"){
-          reloadVideo(flvPlayer.value).then(r=>{
-            console.log("重新加載")
-          }
-          )
+        if(np){
+          stopPlay()
+          startPlay()
         }
+        // if(flvPlayer.value.toString!=="{}"){
+        //   reloadVideo(flvPlayer.value).then(r=>{
+        //     console.log("重新加載")
+        //   }
+        //   )
+        // }
       })
       //偵測使用者裝置作業系統
 
@@ -193,11 +217,6 @@ export default defineComponent({
         createFlv,play,destoryVideo,reloadVideo,zoonIn,
       }
     },
-    // methods:{
-    //   testEquipment () {
-    //     this.u = navigator.userAgent
-    //   }
-    // }
 })
 
 </script>
