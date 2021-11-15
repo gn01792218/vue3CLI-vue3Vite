@@ -3,6 +3,7 @@
     <div class="betArea">
         <!-- PC版本注區 -->
         <div class="betArea-pc position-relative">
+            <GameResultLoading/>
             <ul class="betError position-absolute">
                 <transition-group @enter="betErrorAnimation">
                     <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
@@ -31,6 +32,7 @@
         </div>
         <!-- mobile注區 -->
         <div class="betArea-mobile position-relative">
+            <GameResultLoading/>
             <ul class="betError position-absolute">
                 <transition-group @enter="betErrorAnimation">
                     <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
@@ -76,6 +78,7 @@ import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
 import GameResult from '@/components/GameResult.vue'
 import GameresultSound from '@/components/GameResultSound.vue'
+import GameResultLoading from '@/components/GameResultLoading.vue'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
@@ -101,7 +104,7 @@ interface coinPosition {
 }
 export default defineComponent({
     components:{
-        GameResult,GameresultSound,
+        GameResult,GameresultSound,GameResultLoading,
     },
     setup(){
         //vuex

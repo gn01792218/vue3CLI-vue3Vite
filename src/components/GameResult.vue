@@ -5,7 +5,7 @@
             <p v-else>遊戲結果</p>
         </section> -->
         <section class="gameResult-content">
-            <GameResultLoading/>
+            <!-- <GameResultLoading/> -->
             <p class="gainMoney"></p>
             <ul id="result">
             </ul>
@@ -15,10 +15,10 @@
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue'
 import {useStore} from 'vuex'
-import GameResultLoading from '@/components/GameResultLoading.vue'
+// import GameResultLoading from '@/components/GameResultLoading.vue'
 export default defineComponent({
     components:{
-        GameResultLoading,
+        // GameResultLoading,
     },
     setup(){
         const store = useStore()

@@ -1,5 +1,5 @@
 <template>
-    <div class="gameResultLoading w-100 h-100" v-if="isWait">
+    <div class="gameResultLoading w-100 position-absolute" v-show="isWait==true">
         <p>{{stateMsg}}</p>
     </div>
 </template>
@@ -25,31 +25,40 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-
         //之後要監聽一個wait狀態，當有這個狀態的時候打開loading顯示等待中。
-        
         watch(gameState,()=>{   //上桌時，接到遊戲狀態時要顯示文字
             switch(gameState.value.status){
                 case 1:
                     isWait.value = true
                     stateMsg.value = "下注中..."
+                    setTimeout(()=>{
+                    isWait.value = false
+                    },500)
                     break
                 case 2:
                     isWait.value = true
                     stateMsg.value = "開牌中..."
+                    setTimeout(()=>{
+                    isWait.value = false
+                    },500)
                     break
                 case 3:
                     isWait.value = true
                     stateMsg.value = "等待中..."
+                    setTimeout(()=>{
+                    isWait.value = false
+                    },500)
                     break
             }
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
-        console.log("顯示開始下注")
+            console.log("原本的",isWait.value)
             isWait.value = true
             stateMsg.value = "開始下注"
+            console.log("顯示開始下注",isWait.value)
             setTimeout(()=>{
                 isWait.value = false
+                console.log("關閉開始下注提示",isWait.value)
             },1000)
         })
         watch(gameEndUuid,()=>{ //倒數結束時

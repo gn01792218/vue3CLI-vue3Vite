@@ -206,7 +206,7 @@ img {
   border: 1px solid #262626;
   float: left;
   width: 35%;
-  background-image: url(../../images/Stand-bg.jpg);
+  background-color: #0f4d79;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -797,7 +797,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   text-align: center;
 }
 
+.gameResultLoading {
+  top: 35%;
+  background-color: #523e25ab;
+}
+
 .gameResultLoading p {
+  text-align: center;
   font-size: 400%;
   font-weight: bolder;
   color: red;
@@ -1699,6 +1705,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 414px) {
+  .gameResultLoading {
+    top: 25%;
+    font-size: 40%;
+  }
   .header {
     height: 50px;
   }
