@@ -30,6 +30,14 @@ export default defineComponent({
         
         watch(gameState,()=>{   //上桌時，接到遊戲狀態時要顯示文字
             switch(gameState.value.status){
+                case 1:
+                    isWait.value = true
+                    stateMsg.value = "下注中..."
+                    break
+                case 2:
+                    isWait.value = true
+                    stateMsg.value = "開牌中..."
+                    break
                 case 3:
                     isWait.value = true
                     stateMsg.value = "等待中..."
@@ -37,7 +45,12 @@ export default defineComponent({
             }
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
-            isWait.value = false
+        console.log("顯示開始下注")
+            isWait.value = true
+            stateMsg.value = "開始下注"
+            setTimeout(()=>{
+                isWait.value = false
+            },1000)
         })
         watch(gameEndUuid,()=>{ //倒數結束時
             isWait.value = true

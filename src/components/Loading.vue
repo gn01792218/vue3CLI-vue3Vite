@@ -14,6 +14,12 @@
         <audio  preload>
             <source src="../assets/audio/tie.mp3">
         </audio>
+        <audio  preload>
+            <source src="../assets/audio/start.mp3">
+        </audio>
+        <audio  preload>
+            <source src="../assets/audio/stop.mp3">
+        </audio>
     </div>
     </div>
     

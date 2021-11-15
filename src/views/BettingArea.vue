@@ -374,8 +374,8 @@ export default defineComponent({
                 coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
             }
         }
-        function setCoinPosition (cp:coinPosition,e:any) {
-            let positionCoinElement = e.target.lastChild.lastChild; //撈取最後一個li元素；第一次點會是text
+        function setCoinPosition (cp:coinPosition) {
+            // let positionCoinElement = e.target.lastChild.lastChild; //撈取最後一個li元素；第一次點會是text
             if(currentCoint.coinElement){  //有選擇籌碼時，才會生籌碼
                 cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
                     cp.initBottom += 5;  //修改樣式
@@ -395,7 +395,7 @@ export default defineComponent({
             })
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
-            if(betResult.value!==-1){   
+            if(betResult.value==1){   
                 console.log("籌碼非")
                 //裝子彈，就會啟動籌碼飛的動畫
                 //問題:第一次下注時，得到的betResult是
@@ -405,10 +405,10 @@ export default defineComponent({
                 target.y = rect.bottom;
                 let cp = coinPosition[index]; //用來存點選到的注區
                 currentBetPosition.betAreaIndex = index   //測試用
-                setCoinPosition(cp,betAreaElement)  //在駐區生成籌碼並設置起始位置 
+                setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
+                store.commit('bet/resetBetResult') //重置result狀態
             }else{
                 console.log('噴錯誤')
-                
                 switch(betError.value){
                     case 1:
                         betErrorArray.value?.push('下注失敗')
@@ -435,7 +435,7 @@ export default defineComponent({
         watch(betResult,()=>{
             console.log("偵測到回應",betResult.value)
             if(betResult.value!==0){
-                 let betArrayShift = betArray.shift()
+                let betArrayShift = betArray.shift()
                 betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
             }
         })
@@ -458,7 +458,7 @@ export default defineComponent({
                         target.y = rect.bottom;
                         let cp = coinPosition[index]; //用來存點選到的注區
                         currentBetPosition.betAreaIndex = index   //測試用
-                        setCoinPosition(cp,e)  //在駐區生成籌碼並設置起始位置 
+                        setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
                         }else{
                                 switch(betError.value){
                                 case 1:
