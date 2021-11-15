@@ -86,14 +86,14 @@ export default defineComponent({
         startPlay()
         // reloadVideo(flvPlayer.value)
       })
-      watch(gameUuid,()=>{  //新回合開始時，將螢幕縮回去
-      console.log('恢復螢幕')
-        resetZoon()
-      })
-      watch(gameEndUuid,()=>{ //回合結束時，拉近螢幕
-      console.log("拉近螢幕")
-        zoonIn()
-      })
+      // watch(gameUuid,()=>{  //改用子母畫面，暫時不需要。新回合開始時，將螢幕縮回去
+      // console.log('恢復螢幕')
+      //   resetZoon()
+      // })
+      // watch(gameEndUuid,()=>{ //改用子母畫面，暫時不需要。回合結束時，拉近螢幕
+      // console.log("拉近螢幕")
+      //   zoonIn()
+      // })
       //解決IOS版本無法自動播放問題
       // window.addEventListener('touchstart',()=>{  //桌機版本只要滑鼠有動就算自動撥放過了
       //   if(flvPlayer.value.toString!=="{}" && !hasAutoPlayed.value){
