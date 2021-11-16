@@ -147,13 +147,17 @@ export default defineComponent({
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1){
-                console.log("閒家顯示",coinPosition[0].configClass,betStatus.value.Player)
-                console.log("莊家顯示",coinPosition[1].configClass,betStatus.value.Banker)
+                // console.log("閒家顯示",coinPosition[0].configClass,betStatus.value.Player)
+                // console.log("莊家顯示",coinPosition[1].configClass,betStatus.value.Banker)
                 coinPosition[0].betStatus = betStatus.value.Player
+                // coinPosition[0].betStatus = betStatus.value.Banker
                 coinPosition[1].betStatus = betStatus.value.Banker
+                // coinPosition[1].betStatus = betStatus.value.Player
                 coinPosition[2].betStatus = betStatus.value.PlayerPair
+                // coinPosition[2].betStatus = betStatus.value.BankerPair
                 coinPosition[3].betStatus = betStatus.value.Tie
                 coinPosition[4].betStatus = betStatus.value.BankerPair
+                // coinPosition[4].betStatus = betStatus.value.PlayerPair
             }   
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲

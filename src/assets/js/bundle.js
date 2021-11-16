@@ -917,20 +917,20 @@ export const bet = $root.bet = (() => {
      * @name bet.BetArea
      * @enum {number}
      * @property {number} BetAreaDefault=0 BetAreaDefault value
-     * @property {number} Banker=1 Banker value
-     * @property {number} Player=2 Player value
-     * @property {number} BankerPair=3 BankerPair value
+     * @property {number} Player=1 Player value
+     * @property {number} Banker=2 Banker value
+     * @property {number} PlayerPair=3 PlayerPair value
      * @property {number} Tie=4 Tie value
-     * @property {number} PlayerPair=5 PlayerPair value
+     * @property {number} BankerPair=5 BankerPair value
      */
     bet.BetArea = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "BetAreaDefault"] = 0;
-        values[valuesById[1] = "Banker"] = 1;
-        values[valuesById[2] = "Player"] = 2;
-        values[valuesById[3] = "BankerPair"] = 3;
+        values[valuesById[1] = "Player"] = 1;
+        values[valuesById[2] = "Banker"] = 2;
+        values[valuesById[3] = "PlayerPair"] = 3;
         values[valuesById[4] = "Tie"] = 4;
-        values[valuesById[5] = "PlayerPair"] = 5;
+        values[valuesById[5] = "BankerPair"] = 5;
         return values;
     })();
 
@@ -1434,15 +1434,15 @@ export const bet = $root.bet = (() => {
             case 0:
                 message.betArea = 0;
                 break;
-            case "Banker":
+            case "Player":
             case 1:
                 message.betArea = 1;
                 break;
-            case "Player":
+            case "Banker":
             case 2:
                 message.betArea = 2;
                 break;
-            case "BankerPair":
+            case "PlayerPair":
             case 3:
                 message.betArea = 3;
                 break;
@@ -1450,7 +1450,7 @@ export const bet = $root.bet = (() => {
             case 4:
                 message.betArea = 4;
                 break;
-            case "PlayerPair":
+            case "BankerPair":
             case 5:
                 message.betArea = 5;
                 break;

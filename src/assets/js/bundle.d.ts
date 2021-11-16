@@ -404,11 +404,11 @@ export namespace bet {
     /** BetArea enum. */
     enum BetArea {
         BetAreaDefault = 0,
-        Banker = 1,
-        Player = 2,
-        BankerPair = 3,
+        Player = 1,
+        Banker = 2,
+        PlayerPair = 3,
         Tie = 4,
-        PlayerPair = 5
+        BankerPair = 5
     }
 
     /** Properties of a BetStatus. */

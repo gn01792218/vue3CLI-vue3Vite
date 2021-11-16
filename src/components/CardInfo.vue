@@ -87,10 +87,10 @@ export default defineComponent({
       let cardElement:NodeListOf<HTMLElement> | undefined
       switch(cardSide){
         case 1:
-          cardElement = getCardPosition(position,'.bankPoker')
+        cardElement = getCardPosition(position,'.bankPoker')
           break
         case 2:
-          cardElement = getCardPosition(position,'.playerPoker')
+        cardElement = getCardPosition(position,'.playerPoker')
           break
       }
       if(cardElement){
