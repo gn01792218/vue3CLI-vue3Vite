@@ -128,7 +128,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.BroadcastGameResult:
             let BroadcastGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BroadcastGameResult',BroadcastGameResult)
+            // console.log('BroadcastGameResult',BroadcastGameResult)
             store.commit('dealer/BroadcastGameResult',BroadcastGameResult)
             break
         case route.BetRoundStart:

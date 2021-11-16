@@ -65,18 +65,18 @@ export default defineComponent({
         np.setView("video");
         np.setScaleMode(2)
         np.on('videoInfo',(w)=>{
-          console.log("開始撥放Video",w)
+          // console.log("開始撥放Video",w)
            loadingVideo.value = false
         })
         np.on('stop',()=>{
-         console.log("結束播放Video")
+        //  console.log("結束播放Video")
          loadingVideo.value = true
         })
         // createFlv()
         startPlay()
       })
       function startPlay (){
-        console.log("開始撥放",flvStream.value)
+        console.log("LiveVideo開始撥放",flvStream.value)
         np.setKeepScreenOn()
         np.start(flvStream.value)
       }

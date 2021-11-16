@@ -11,7 +11,7 @@ export const mutations = {
   },
   BroadcastGameResult(state:any, payload:any){
     state.BroadcastGameResult = payload
-    console.log("vuex-BroadcastGameResult資料更新",state.BroadcastGameResult)
+    // console.log("vuex-BroadcastGameResult資料更新",state.BroadcastGameResult)
   },
   resetGameResults(state:any){
     if(state.BroadcastGameResult.results){

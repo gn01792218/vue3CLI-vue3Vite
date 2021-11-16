@@ -41,6 +41,13 @@ export default defineComponent({
     const tables = reactive(computed(()=>{  //桌號uuid
       return store.state.lobby.LobbyInfo
     }))
+    //測試資料
+    const tableRecall = reactive(computed(()=>{  //桌號uuid
+      return store.state.table.TableJoinRecall
+    }))
+    watch(tableRecall,()=>{
+      console.log("回應上桌資料:",tableRecall.value)
+    })
     //先送一次tableJoinCall
     tableJoin()
     //監聽
@@ -49,21 +56,46 @@ export default defineComponent({
       tableJoin()
     })
     function tableJoin (){
-      switch(tableNum.value){
+       switch(tableNum.value){
         case 'A':
-          sendTableJoinCall({
-            uri:"TableJoinCall",
-            uuid:tables.value.tables[0].uuid
-          })
-          // console.log("上桌請求",tables.value.tables[0].uuid)
+          for(let i = 0 ; i<tables.value.tables.length ; i++){
+            if(tables.value.tables[i].name=="A桌"){
+              sendTableJoinCall({
+                uri:"TableJoinCall",
+                uuid:tables.value.tables[i].uuid
+              })
+              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value.tables[i].name,"uuid:"+tables.value.tables[i].uuid,"Loby資訊:",tables.value)
+              break
+            }
+          }
           break
         case 'B':
-          sendTableJoinCall({
-            uri:"TableJoinCall",
-            uuid:tables.value.tables[1].uuid
-          })
-          // console.log("上桌請求",tables.value.tables[1].uuid)
+           for(let i = 0 ; i<tables.value.tables.length ; i++){
+            if(tables.value.tables[i].name=="B桌"){
+              sendTableJoinCall({
+                uri:"TableJoinCall",
+                uuid:tables.value.tables[i].uuid
+              })
+              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value.tables[i].name,"uuid:"+tables.value.tables[i].uuid,"Loby資訊:",tables.value)
+              break
+            }
+          }
       }
+      // switch(tableNum.value){
+      //   case 'A':
+      //     sendTableJoinCall({
+      //       uri:"TableJoinCall",
+      //       uuid:tables.value.tables[0].uuid
+      //     })
+      //     console.log("請求A桌","桌號:"+tableNum.value,"uuid:"+tables.value.tables[0].uuid,"Loby資訊:",tables.value)
+      //     break
+      //   case 'B':
+      //     sendTableJoinCall({
+      //       uri:"TableJoinCall",
+      //       uuid:tables.value.tables[1].uuid
+      //     })
+      //     console.log("請求B桌","桌號:"+tableNum.value,"uuid:"+tables.value.tables[0].uuid,"Loby資訊:"+tables.value)
+      // }
     }
     
     return{
