@@ -1,5 +1,10 @@
 <template>
-  <canvas class="video-box" id="video" width="640" height="360" /><br/>
+  <div class="video-box position-relative">
+    <canvas class="video"  id="video" width="640" height="360" /><br/>
+    <VideoLoading
+      v-show="loadingVideo"
+    />
+  </div>
   <!-- <div class="video-box"> -->
       <!-- <video class="video"
       id="videoElement"
@@ -30,9 +35,13 @@
 <script lang="ts">
 import {computed, defineComponent,onMounted,ref, watch} from 'vue'
 import {useStore} from 'vuex'
+import VideoLoading from '@/components/VideoLoading.vue'
 import flvjs from 'flv.js'
 import gsap from 'gsap'
 export default defineComponent({
+  components:{
+    VideoLoading,
+  },
   //修正蘋果手機無法撥放的問題 
     setup(){
       //直播物件
@@ -43,26 +52,32 @@ export default defineComponent({
       const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/)
       if(isIOS){
         console.log("蘋果系統")
-        
       }
       // document.addEventListener('WeixinJSBridgeReady',function () {
       //     flvPlayer?.play()
       //     console.log("自動撥放")
       //   },false)
       const hasAutoPlayed = ref(false)
+      const loadingVideo = ref(true)
       //初始化
       let np = new NodePlayer()
       onMounted(()=>{
         np.setView("video");
         np.setScaleMode(2)
-        np.on('stats',(s)=>{
-        //  console.log(s)
+        np.on('videoInfo',(w)=>{
+          console.log("開始撥放Video",w)
+           loadingVideo.value = false
+        })
+        np.on('stop',()=>{
+         console.log("結束播放Video")
+         loadingVideo.value = true
         })
         // createFlv()
         startPlay()
       })
       function startPlay (){
         console.log("開始撥放",flvStream.value)
+        np.setKeepScreenOn()
         np.start(flvStream.value)
       }
       function stopPlay () {
@@ -212,7 +227,7 @@ export default defineComponent({
       }
       return{
         //data
-        flvPlayer,isIOS,
+        flvPlayer,isIOS,loadingVideo,
         //methods
         createFlv,play,destoryVideo,reloadVideo,zoonIn,
       }
