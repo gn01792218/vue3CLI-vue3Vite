@@ -5,19 +5,19 @@
         <span class="coin-preLoad"></span>
         <span class="poker"></span>
         <span class="roadImg-preLoad"></span>
-        <audio  preload >
+        <audio class="preaudio" preload muted>
             <source src="../assets/audio/bankerWin.mp3" > 
         </audio>
-        <audio  preload>
+        <audio class="preaudio" preload muted>
             <source src="../assets/audio/playerWin.mp3">
         </audio>
-        <audio  preload>
+        <audio class="preaudio" preload muted>
             <source src="../assets/audio/tie.mp3">
         </audio>
-        <audio  preload>
+        <audio class="preaudio" preload muted>
             <source src="../assets/audio/start.mp3">
         </audio>
-        <audio  preload>
+        <audio class="preaudio" preload muted>
             <source src="../assets/audio/stop.mp3">
         </audio>
     </div>
@@ -30,8 +30,14 @@ import {defineComponent,ref,computed,watch, onMounted} from 'vue'
 import { useStore } from 'vuex'
 export default defineComponent({
     setup(){
-        // let preMusic =  document.querySelector('#gameresultSound') as HTMLAudioElement
-        // preMusic.play()
+        onMounted(()=>{
+            console.log("預載入音效") 
+            preaudio.value.muted = true
+            preaudio.value.play()
+        })
+        const preaudio = computed(()=>{  //只要抓其中一個就可以了
+            return document.querySelector('.preaudio') as HTMLAudioElement
+        })
         const store = useStore()
         const loading = ref(true)
         const preLoad = ref(true)

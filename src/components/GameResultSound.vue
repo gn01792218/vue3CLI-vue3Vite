@@ -10,11 +10,31 @@ import {defineComponent,computed,watch} from 'vue'
 import {useStore} from 'vuex'
 export default defineComponent({
    setup(){
-       const store = useStore();
-       const gameResult = computed(()=>{ //回傳的是陣列
+        const store = useStore();
+        const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-        //為何開始下注的時候會播放遊戲音樂?
+        const gameUuid = computed(()=>{ //遊戲回合的Uuid
+            return store.state.game.gameUuid
+        })
+        const gameEndUuid = computed(()=>{
+            return store.state.game.gameEndUuid
+        })
+        const audio = computed<HTMLAudioElement>(()=>{
+            return document.querySelector('#gameresultSound') as HTMLAudioElement
+        })
+        watch(gameUuid,()=>{
+            if(audio){
+                audio.value.src = require('../assets/audio/start.mp3')
+                audio.value.play()
+            }
+        })
+        watch(gameEndUuid,()=>{
+            if(audio){
+                audio.value.src = require('../assets/audio/stop.mp3')
+                audio.value.play()
+            }
+        })
         watch(gameResult,()=>{
             if(gameResult.value.length>0){
                 playGameResult(gameResult.value)
@@ -22,14 +42,12 @@ export default defineComponent({
             //之後改這個
             // playGameResult(result)
         })
-        function playSoundList () {
-            
-        }
+
         function playGameResult (gameResults:Array<number>){  //之後這裡要帶參數進去
             let gameresultSound = document.querySelector('#gameresultSound') as HTMLAudioElement
             gameResults.forEach(async(i)=>{
-                switchSound(gameresultSound,i)
-                await gameresultSound?.play()
+                switchSound(audio.value,i)
+                await audio?.value.play()
             })  
         }
         function switchSound (audioElement:HTMLAudioElement,soundNumber:number) {

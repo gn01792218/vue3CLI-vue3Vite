@@ -147,17 +147,25 @@ export default defineComponent({
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1){
-                coinPosition[0].betStatus = betStatus.value.Banker
-                coinPosition[1].betStatus = betStatus.value.Player
-                coinPosition[2].betStatus = betStatus.value.BankerPair
+                console.log("閒家顯示",coinPosition[0].configClass,betStatus.value.Player)
+                console.log("莊家顯示",coinPosition[1].configClass,betStatus.value.Banker)
+                coinPosition[0].betStatus = betStatus.value.Player
+                coinPosition[1].betStatus = betStatus.value.Banker
+                coinPosition[2].betStatus = betStatus.value.PlayerPair
                 coinPosition[3].betStatus = betStatus.value.Tie
-                coinPosition[4].betStatus = betStatus.value.PlayerPair
+                coinPosition[4].betStatus = betStatus.value.BankerPair
             }   
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
             console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
+        })
+        watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
+            if(betResult.value!==0){
+                let betArrayShift = betArray.shift()
+                betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
+            }
         })
         watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
             if(betResetresult.value===1){
@@ -212,14 +220,6 @@ export default defineComponent({
         //coin-menu2 coin-menu2-current index0
         const coinPosition = reactive<coinPosition[]>([//注區
             {
-                initBottom:0,  //初始化的bottom值
-                coinArray:[],//生籌碼的地方
-                odds:"1:0.95",
-                host:"莊家",
-                configClass:"betArea-item yellow",
-                betStatus:0 //目前這一回合的下注狀況
-            },
-            {
                 initBottom:0,
                 coinArray:[],
                 odds:"1:1",
@@ -228,11 +228,19 @@ export default defineComponent({
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
+                initBottom:0,  //初始化的bottom值
+                coinArray:[],//生籌碼的地方
+                odds:"1:0.95",
+                host:"莊家",
+                configClass:"betArea-item yellow",
+                betStatus:0 //目前這一回合的下注狀況
+            },
+             {
                 initBottom:0,
                 coinArray:[],
                 odds:"1:11",
-                host:"莊對",
-                configClass:"betArea-item yellow",
+                host:"閒對",
+                configClass:"betArea-item red",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -247,10 +255,11 @@ export default defineComponent({
                 initBottom:0,
                 coinArray:[],
                 odds:"1:11",
-                host:"閒對",
+                host:"莊對",
                 configClass:"betArea-item yellow",
                 betStatus:0 //目前這一回合的下注狀況
             },
+           
         ]) 
         const betErrorArray = ref<Array<string>>([])
         function chooseCoint (index:number,e:MouseEvent) {
@@ -273,7 +282,6 @@ export default defineComponent({
                 let coinY =getCenterPoint(Coin1Rect.top,Coin1Rect.bottom)
                 let liX = getCenterPoint(liRect.left,liRect.right)
                 let liY = getCenterPoint(liRect.top,liRect.bottom)
-                console.log("目標",coinX,coinY,"起點",liX,liY)
                 gsap.to(liElement,{
                     delay:0.1,
                     duration:1,
@@ -378,7 +386,6 @@ export default defineComponent({
             }
         }
         function setCoinPosition (cp:coinPosition) {
-            // let positionCoinElement = e.target.lastChild.lastChild; //撈取最後一個li元素；第一次點會是text
             if(currentCoint.coinElement){  //有選擇籌碼時，才會生籌碼
                 cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
                     cp.initBottom += 5;  //修改樣式
@@ -399,7 +406,6 @@ export default defineComponent({
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
             if(betResult.value==1){   
-                console.log("籌碼非")
                 //裝子彈，就會啟動籌碼飛的動畫
                 //問題:第一次下注時，得到的betResult是
                 loadCoin()   
@@ -407,11 +413,10 @@ export default defineComponent({
                 target.x = rect.left;
                 target.y = rect.bottom;
                 let cp = coinPosition[index]; //用來存點選到的注區
-                currentBetPosition.betAreaIndex = index   //測試用
+                currentBetPosition.betAreaIndex = index   
                 setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
                 store.commit('bet/resetBetResult') //重置result狀態
             }else{
-                console.log('噴錯誤')
                 switch(betError.value){
                     case 1:
                         betErrorArray.value?.push('下注失敗')
@@ -435,13 +440,6 @@ export default defineComponent({
                 store.commit('bet/resetBetResult') //重置result狀態
             }
         }
-        watch(betResult,()=>{
-            console.log("偵測到回應",betResult.value)
-            if(betResult.value!==0){
-                let betArrayShift = betArray.shift()
-                betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
-            }
-        })
         function bet (e:any,index:number) {
             //使用者的$$如果變成0將不會進入判斷!!!!!
              if(currentCoint.coinElement && currentCoint.point){
@@ -489,7 +487,6 @@ export default defineComponent({
                 }
             }
         }
-       
         function getAllBetBack(){
             sendBetResetCall({
                  gameUuid:roundUuid.value,
