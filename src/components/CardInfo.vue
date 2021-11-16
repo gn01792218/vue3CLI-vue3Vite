@@ -18,6 +18,7 @@
 <script lang="ts">
 import {computed, defineComponent,onMounted,reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
+import proto from '../assets/js/bundle'
 export default defineComponent({
   setup(){
     //初始化卡牌位置
@@ -86,10 +87,10 @@ export default defineComponent({
       let position = cardPosition
       let cardElement:NodeListOf<HTMLElement> | undefined
       switch(cardSide){
-        case 1:
+        case proto.dealer.Side.Banker:
         cardElement = getCardPosition(position,'.bankPoker')
           break
-        case 2:
+        case proto.dealer.Side.Player:
         cardElement = getCardPosition(position,'.playerPoker')
           break
       }

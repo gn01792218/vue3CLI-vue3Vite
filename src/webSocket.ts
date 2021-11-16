@@ -1,5 +1,6 @@
 
-const url = "ws://139.162.102.189:8200/ws";  //後端網址
+// const url = "ws://139.162.102.189:8199/ws";  //後端網址
+const url = process.env.VUE_APP_API_HOST;
 //8199 由keypir控制
 //8200 可以自由測的
 //建立webSocket實例

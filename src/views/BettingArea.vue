@@ -72,13 +72,14 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, nextTick, reactive, ref, watch} from 'vue'
+import {computed, defineComponent, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
 import GameResult from '@/components/GameResult.vue'
 import GameresultSound from '@/components/GameResultSound.vue'
 import GameResultLoading from '@/components/GameResultLoading.vue'
+import proto from '../assets/js/bundle'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
@@ -134,21 +135,12 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-        const total = ref<number>(0)
-        const totalBetInfo = computed({  //每次下注的時候都更新totalBet
-            get(){
-                return store.state.bet.totalBets
-            },
-            set(num:number){
-                total.value = num
-            }
-            
+        const total = computed(()=>{
+            return store.state.bet.totalBets
         })
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
-            if(betResult.value!==-1){
-                // console.log("閒家顯示",coinPosition[0].configClass,betStatus.value.Player)
-                // console.log("莊家顯示",coinPosition[1].configClass,betStatus.value.Banker)
+            if(betResult.value!==-1){ 
                 coinPosition[0].betStatus = betStatus.value.Player
                 // coinPosition[0].betStatus = betStatus.value.Banker
                 coinPosition[1].betStatus = betStatus.value.Banker
@@ -175,9 +167,6 @@ export default defineComponent({
             if(betResetresult.value===1){
                  resetGame()
             }
-        })
-        watch(totalBetInfo,()=>{  //下注總額的更新
-            total.value = totalBetInfo.value
         })
         watch(gameResult,()=>{
             clearLoseArea(gameResult.value)
@@ -444,53 +433,53 @@ export default defineComponent({
                 store.commit('bet/resetBetResult') //重置result狀態
             }
         }
-        function bet (e:any,index:number) {
-            //使用者的$$如果變成0將不會進入判斷!!!!!
-             if(currentCoint.coinElement && currentCoint.point){
-                 if(user.value.wallet>=currentCoint.point){
-                    //  //發送下注請求
-                    sendBetCall({
-                    gameUuid:roundUuid.value,
-                    betIndex:currentCoint.num,
-                    betArea:index+1,
-                    })
-                        if(betResult.value!==-1){   
-                        //裝子彈，就會啟動籌碼飛的動畫
-                        //問題:第一次下注時，得到的betResult是
-                        loadCoin()   
-                        let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
-                        target.x = rect.left;
-                        target.y = rect.bottom;
-                        let cp = coinPosition[index]; //用來存點選到的注區
-                        currentBetPosition.betAreaIndex = index   //測試用
-                        setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
-                        }else{
-                                switch(betError.value){
-                                case 1:
-                                    betErrorArray.value?.push('下注失敗')
-                                    break
-                                case 2:
-                                    betErrorArray.value?.push('非法的籌碼')
-                                    break
-                                case 3:
-                                    betErrorArray.value?.push('非法的注區')
-                                    break
-                                case 4:
-                                    betErrorArray.value?.push('超過最高下注額度')
-                                    break
-                                case 5:
-                                    betErrorArray.value?.push('非法遊戲局')
-                                    break
-                                case 6:
-                                    betErrorArray.value?.push('餘額不足')
-                                    break
-                                }
-                        }
-                }else{
-                    betErrorArray.value?.push('餘額不足')
-                }
-            }
-        }
+        // function bet (e:any,index:number) {
+        //     //使用者的$$如果變成0將不會進入判斷!!!!!
+        //      if(currentCoint.coinElement && currentCoint.point){
+        //          if(user.value.wallet>=currentCoint.point){
+        //             //  //發送下注請求
+        //             sendBetCall({
+        //             gameUuid:roundUuid.value,
+        //             betIndex:currentCoint.num,
+        //             betArea:index+1,
+        //             })
+        //                 if(betResult.value!==-1){   
+        //                 //裝子彈，就會啟動籌碼飛的動畫
+        //                 //問題:第一次下注時，得到的betResult是
+        //                 loadCoin()   
+        //                 let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
+        //                 target.x = rect.left;
+        //                 target.y = rect.bottom;
+        //                 let cp = coinPosition[index]; //用來存點選到的注區
+        //                 currentBetPosition.betAreaIndex = index   //測試用
+        //                 setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
+        //                 }else{
+        //                         switch(betError.value){
+        //                         case 1:
+        //                             betErrorArray.value?.push('下注失敗')
+        //                             break
+        //                         case 2:
+        //                             betErrorArray.value?.push('非法的籌碼')
+        //                             break
+        //                         case 3:
+        //                             betErrorArray.value?.push('非法的注區')
+        //                             break
+        //                         case 4:
+        //                             betErrorArray.value?.push('超過最高下注額度')
+        //                             break
+        //                         case 5:
+        //                             betErrorArray.value?.push('非法遊戲局')
+        //                             break
+        //                         case 6:
+        //                             betErrorArray.value?.push('餘額不足')
+        //                             break
+        //                         }
+        //                 }
+        //         }else{
+        //             betErrorArray.value?.push('餘額不足')
+        //         }
+        //     }
+        // }
         function getAllBetBack(){
             sendBetResetCall({
                  gameUuid:roundUuid.value,
@@ -509,7 +498,8 @@ export default defineComponent({
             })
         }
         function resetGame () {
-            total.value = 0
+            // total.value = 0
+            store.commit('bet/resetTotalBets')
             //清空選取的籌碼
             // currentCoint.coinElement = null
             // currentCoint.point = null
@@ -557,7 +547,7 @@ export default defineComponent({
             //data
             coinList,currentCoint,coinPosition,betStatus,total,betErrorArray,
             //methods
-            chooseCoint,cointAnimate,generateCoinAnimate,bet,resetGame,showResult,getAllBetBack,betErrorAnimation,sendBetData,
+            chooseCoint,cointAnimate,generateCoinAnimate,resetGame,showResult,getAllBetBack,betErrorAnimation,sendBetData,
         }
     }
 })

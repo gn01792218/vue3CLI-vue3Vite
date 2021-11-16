@@ -25,6 +25,9 @@ export const mutations = {
   },
   resetBetResult(state:any){
     state.BetRecall.result = 0
+  },
+  resetTotalBets(state:any){
+    state.totalBets = 0
   }
 };
 export const getters = {
