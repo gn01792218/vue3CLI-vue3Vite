@@ -294,40 +294,34 @@ export default defineComponent({
                     let ul = i.children[2]   //這裡假如沒有下注的時候，會是1
                     if(ul){
                         let liList = ul.children as HTMLCollection
-                        for(let i = liList.length-1 ; i>=0 ; i--){  //這裡有問題，會數到-1
-                            console.log(liList[i])
-                            console.log(liList[i].className.split(" ")[0])   //獲得coin-menu4  coin-menu2
+                        for(let i = liList.length-1 ; i>=0 ; i--){  
                             //問題:會全部解讀成最後一個li的籌碼!!!怪!!!
                             switch(liList[i].className.split(" ")[0]){
                                 case 'coin-menu1':
                                     let Coin1Rect = document.querySelector('#defaultCoin1')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect1 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin1Rect,liRect1,liList[i] as HTMLElement)
-                                    console.log("執行coin-menu1動畫")
+
                                     break
                                 case 'coin-menu2':
                                     let Coin2Rect = document.querySelector('#defaultCoin2')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect2 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin2Rect,liRect2,liList[i] as HTMLElement)
-                                    console.log("執行coin-menu2動畫")
                                     break
                                 case 'coin-menu3':
                                     let Coin3Rect = document.querySelector('#defaultCoin3')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect3 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin3Rect,liRect3,liList[i] as HTMLElement)
-                                    console.log("執行coin-menu4動畫")
                                     break
                                 case 'coin-menu4':
                                     let Coin4Rect = document.querySelector('#defaultCoin4')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect4 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin4Rect,liRect4,liList[i] as HTMLElement)
-                                    console.log("執行coin-menu4動畫")
                                     break
                                 case 'coin-menu5':
                                     let Coin5Rect = document.querySelector('#defaultCoin5')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect5 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin5Rect,liRect5,liList[i] as HTMLElement)
-                                    console.log("執行coin-menu2動畫")
                                     break
                             }
                         }
@@ -433,53 +427,6 @@ export default defineComponent({
                 store.commit('bet/resetBetResult') //重置result狀態
             }
         }
-        // function bet (e:any,index:number) {
-        //     //使用者的$$如果變成0將不會進入判斷!!!!!
-        //      if(currentCoint.coinElement && currentCoint.point){
-        //          if(user.value.wallet>=currentCoint.point){
-        //             //  //發送下注請求
-        //             sendBetCall({
-        //             gameUuid:roundUuid.value,
-        //             betIndex:currentCoint.num,
-        //             betArea:index+1,
-        //             })
-        //                 if(betResult.value!==-1){   
-        //                 //裝子彈，就會啟動籌碼飛的動畫
-        //                 //問題:第一次下注時，得到的betResult是
-        //                 loadCoin()   
-        //                 let rect = e.target.getBoundingClientRect();  //固定飛到點擊區域的左下方
-        //                 target.x = rect.left;
-        //                 target.y = rect.bottom;
-        //                 let cp = coinPosition[index]; //用來存點選到的注區
-        //                 currentBetPosition.betAreaIndex = index   //測試用
-        //                 setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
-        //                 }else{
-        //                         switch(betError.value){
-        //                         case 1:
-        //                             betErrorArray.value?.push('下注失敗')
-        //                             break
-        //                         case 2:
-        //                             betErrorArray.value?.push('非法的籌碼')
-        //                             break
-        //                         case 3:
-        //                             betErrorArray.value?.push('非法的注區')
-        //                             break
-        //                         case 4:
-        //                             betErrorArray.value?.push('超過最高下注額度')
-        //                             break
-        //                         case 5:
-        //                             betErrorArray.value?.push('非法遊戲局')
-        //                             break
-        //                         case 6:
-        //                             betErrorArray.value?.push('餘額不足')
-        //                             break
-        //                         }
-        //                 }
-        //         }else{
-        //             betErrorArray.value?.push('餘額不足')
-        //         }
-        //     }
-        // }
         function getAllBetBack(){
             sendBetResetCall({
                  gameUuid:roundUuid.value,

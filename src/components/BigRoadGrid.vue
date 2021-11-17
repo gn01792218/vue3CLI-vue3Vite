@@ -29,6 +29,9 @@ export default defineComponent({
         const roadIndex = ref(0)
         watch(gameResult,()=>{
           gameResult.value.forEach((i:any)=>{
+            if(bigRoadColumn.value>6 && roadIndex.value>5){
+              resetRoad()
+            }
             if(roadIndex.value>5){
               bigRoadColumn.value++
               roadIndex.value = 0
@@ -38,6 +41,17 @@ export default defineComponent({
         })
         const mainRow = new Array(6)
         const mainColumn = new Array(8)
+        function resetRoad(){
+          for(let i = 0 ; i <8 ; i++){
+            let bigRoadColum = document.querySelector(`.mainRoad-column${i}`) as HTMLElement
+            for(let i = 0 ; i<6 ;i++){
+              let bigRoadColItem = bigRoadColum.children[i].firstChild as HTMLElement
+              bigRoadColItem.setAttribute("class","")
+            }
+          }
+          bigRoadColumn.value = 0
+          roadIndex.value = 0
+        }
         //任意添加格子
         function putRoad(columnNum:number,roadnum:number,gameResult:number){
           let bigRoadColum = document.querySelector(`.mainRoad-column${columnNum}`) as HTMLElement
@@ -77,6 +91,7 @@ export default defineComponent({
   width:40%;  /*調整欄寬 */
   height:100%;
   background-color: white;
+  /* overflow: hidden; */
 }
 .mainRoad-column{
   border: 1px solid rgba(128, 128, 128, 0.219);
