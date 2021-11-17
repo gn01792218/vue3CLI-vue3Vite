@@ -12,43 +12,60 @@
       <div class="mainRoad-row d-flex" v-for="(mr,index) in mainRow" :key="index">
       </div>
     </div>
-    <button class="position-absolute" @click="pushRoad">玩玩看</button>
 </template>
 
-<script laang="ts">
-import {defineComponent} from 'vue'
+<script lang="ts">
+import {defineComponent, watch,ref,computed} from 'vue'
+import {useStore} from 'vuex'
 export default defineComponent({
     setup(){
         //抓取元素要在onmounted或是function中，因為setup在mounted之前，DOM還沒長出來
         //表格
+        const store = useStore()
+        const gameResult = computed(()=>{ //回傳的是陣列
+            return store.state.dealer.BroadcastGameResult.results
+        })
+        const bigRoadColumn = ref(0)
+        const roadIndex = ref(0)
+        watch(gameResult,()=>{
+          gameResult.value.forEach((i:any)=>{
+            if(roadIndex.value>5){
+              bigRoadColumn.value++
+              roadIndex.value = 0
+            }
+            putRoad(bigRoadColumn.value,roadIndex.value,i)
+          })
+        })
         const mainRow = new Array(6)
         const mainColumn = new Array(8)
-        //添加格子
-        function pushRoad(){
-          let columnCount = 0
-          let count = 0
-          const watchTimer = setInterval(()=>{
-            if(columnCount>6 && count>5){
-              clearInterval(timer)
-              clearInterval(watchTimer)
-            }
-          },500)
-          const timer = setInterval(()=>{
-            //每秒放一個東西進去
-            if(count>5){
-              columnCount++
-              count = 0
-            }else if(columnCount>6 && count>5){clearInterval(timer)}
-            let element = document.querySelector(`.mainRoad-column${columnCount}`)
-            element.children[count].firstChild.classList.add('playerRoadIcon2')   //0 1 2 3 4 5
-            count++  //1 2 3 4 5 6
-          },1000)
+        //任意添加格子
+        function putRoad(columnNum:number,roadnum:number,gameResult:number){
+          let bigRoadColum = document.querySelector(`.mainRoad-column${columnNum}`) as HTMLElement
+          let bigRoadColItem = bigRoadColum.children[roadnum].firstChild as HTMLElement
+          switch(gameResult){
+            case 1:
+              bigRoadColItem.classList.add('playerRoadIcon0')
+              break
+            case 2:
+              bigRoadColItem.classList.add('bankerRoadIcon0')
+              break
+            case 3:
+              bigRoadColItem.classList.add('playerRoadIcon0')
+              break
+            case 4:
+              bigRoadColItem.classList.add('tieRoadIcon')
+              break
+            case 5:
+              bigRoadColItem.classList.add('bankerRoadIcon0')
+              break
+          }
+          roadIndex.value++
         }
         return {
           //data
           mainRow,mainColumn,
           //methods
-          pushRoad,
+         
         }
     },
 
