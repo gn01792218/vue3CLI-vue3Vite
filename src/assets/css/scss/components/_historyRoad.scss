@@ -51,7 +51,7 @@
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1000,0,0.35);
 }
-.playerRoadIcon2{ //閒對
+.playerRoadIcon2{  //閒對
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1100,0,0.35);
 }

@@ -6874,6 +6874,1032 @@ export const lobby = $root.lobby = (() => {
         return TableInfo;
     })();
 
+    /**
+     * Block enum.
+     * @name lobby.Block
+     * @enum {number}
+     * @property {number} BlockDefault=0 BlockDefault value
+     * @property {number} Banker=1 Banker value
+     * @property {number} Player=2 Player value
+     * @property {number} Tie=3 Tie value
+     * @property {number} BankerAndBankerPair=4 BankerAndBankerPair value
+     * @property {number} BankerAndPlayerPair=5 BankerAndPlayerPair value
+     * @property {number} BankerAndBothPair=6 BankerAndBothPair value
+     * @property {number} PlayerAndBankerPair=7 PlayerAndBankerPair value
+     * @property {number} PlayerAndPlayerPair=8 PlayerAndPlayerPair value
+     * @property {number} PlayerAndBothPair=9 PlayerAndBothPair value
+     * @property {number} TieAndBankerPair=10 TieAndBankerPair value
+     * @property {number} TieAndPlayerPair=11 TieAndPlayerPair value
+     * @property {number} TieAndBothPair=12 TieAndBothPair value
+     */
+    lobby.Block = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "BlockDefault"] = 0;
+        values[valuesById[1] = "Banker"] = 1;
+        values[valuesById[2] = "Player"] = 2;
+        values[valuesById[3] = "Tie"] = 3;
+        values[valuesById[4] = "BankerAndBankerPair"] = 4;
+        values[valuesById[5] = "BankerAndPlayerPair"] = 5;
+        values[valuesById[6] = "BankerAndBothPair"] = 6;
+        values[valuesById[7] = "PlayerAndBankerPair"] = 7;
+        values[valuesById[8] = "PlayerAndPlayerPair"] = 8;
+        values[valuesById[9] = "PlayerAndBothPair"] = 9;
+        values[valuesById[10] = "TieAndBankerPair"] = 10;
+        values[valuesById[11] = "TieAndPlayerPair"] = 11;
+        values[valuesById[12] = "TieAndBothPair"] = 12;
+        return values;
+    })();
+
+    lobby.Column = (function() {
+
+        /**
+         * Properties of a Column.
+         * @memberof lobby
+         * @interface IColumn
+         * @property {Array.<lobby.Block>|null} [blocks] Column blocks
+         */
+
+        /**
+         * Constructs a new Column.
+         * @memberof lobby
+         * @classdesc Represents a Column.
+         * @implements IColumn
+         * @constructor
+         * @param {lobby.IColumn=} [properties] Properties to set
+         */
+        function Column(properties) {
+            this.blocks = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Column blocks.
+         * @member {Array.<lobby.Block>} blocks
+         * @memberof lobby.Column
+         * @instance
+         */
+        Column.prototype.blocks = $util.emptyArray;
+
+        /**
+         * Creates a new Column instance using the specified properties.
+         * @function create
+         * @memberof lobby.Column
+         * @static
+         * @param {lobby.IColumn=} [properties] Properties to set
+         * @returns {lobby.Column} Column instance
+         */
+        Column.create = function create(properties) {
+            return new Column(properties);
+        };
+
+        /**
+         * Encodes the specified Column message. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * @function encode
+         * @memberof lobby.Column
+         * @static
+         * @param {lobby.IColumn} message Column message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Column.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.blocks != null && message.blocks.length) {
+                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+                for (let i = 0; i < message.blocks.length; ++i)
+                    writer.int32(message.blocks[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Column message, length delimited. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof lobby.Column
+         * @static
+         * @param {lobby.IColumn} message Column message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Column.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Column message from the specified reader or buffer.
+         * @function decode
+         * @memberof lobby.Column
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {lobby.Column} Column
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Column.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.Column();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.blocks && message.blocks.length))
+                        message.blocks = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.blocks.push(reader.int32());
+                    } else
+                        message.blocks.push(reader.int32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Column message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof lobby.Column
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {lobby.Column} Column
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Column.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Column message.
+         * @function verify
+         * @memberof lobby.Column
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Column.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.blocks != null && message.hasOwnProperty("blocks")) {
+                if (!Array.isArray(message.blocks))
+                    return "blocks: array expected";
+                for (let i = 0; i < message.blocks.length; ++i)
+                    switch (message.blocks[i]) {
+                    default:
+                        return "blocks: enum value[] expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        break;
+                    }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a Column message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof lobby.Column
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {lobby.Column} Column
+         */
+        Column.fromObject = function fromObject(object) {
+            if (object instanceof $root.lobby.Column)
+                return object;
+            let message = new $root.lobby.Column();
+            if (object.blocks) {
+                if (!Array.isArray(object.blocks))
+                    throw TypeError(".lobby.Column.blocks: array expected");
+                message.blocks = [];
+                for (let i = 0; i < object.blocks.length; ++i)
+                    switch (object.blocks[i]) {
+                    default:
+                    case "BlockDefault":
+                    case 0:
+                        message.blocks[i] = 0;
+                        break;
+                    case "Banker":
+                    case 1:
+                        message.blocks[i] = 1;
+                        break;
+                    case "Player":
+                    case 2:
+                        message.blocks[i] = 2;
+                        break;
+                    case "Tie":
+                    case 3:
+                        message.blocks[i] = 3;
+                        break;
+                    case "BankerAndBankerPair":
+                    case 4:
+                        message.blocks[i] = 4;
+                        break;
+                    case "BankerAndPlayerPair":
+                    case 5:
+                        message.blocks[i] = 5;
+                        break;
+                    case "BankerAndBothPair":
+                    case 6:
+                        message.blocks[i] = 6;
+                        break;
+                    case "PlayerAndBankerPair":
+                    case 7:
+                        message.blocks[i] = 7;
+                        break;
+                    case "PlayerAndPlayerPair":
+                    case 8:
+                        message.blocks[i] = 8;
+                        break;
+                    case "PlayerAndBothPair":
+                    case 9:
+                        message.blocks[i] = 9;
+                        break;
+                    case "TieAndBankerPair":
+                    case 10:
+                        message.blocks[i] = 10;
+                        break;
+                    case "TieAndPlayerPair":
+                    case 11:
+                        message.blocks[i] = 11;
+                        break;
+                    case "TieAndBothPair":
+                    case 12:
+                        message.blocks[i] = 12;
+                        break;
+                    }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Column message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof lobby.Column
+         * @static
+         * @param {lobby.Column} message Column
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Column.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.blocks = [];
+            if (message.blocks && message.blocks.length) {
+                object.blocks = [];
+                for (let j = 0; j < message.blocks.length; ++j)
+                    object.blocks[j] = options.enums === String ? $root.lobby.Block[message.blocks[j]] : message.blocks[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Column to JSON.
+         * @function toJSON
+         * @memberof lobby.Column
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Column.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Column;
+    })();
+
+    lobby.BeadPlate = (function() {
+
+        /**
+         * Properties of a BeadPlate.
+         * @memberof lobby
+         * @interface IBeadPlate
+         * @property {Array.<lobby.Block>|null} [blocks] BeadPlate blocks
+         */
+
+        /**
+         * Constructs a new BeadPlate.
+         * @memberof lobby
+         * @classdesc Represents a BeadPlate.
+         * @implements IBeadPlate
+         * @constructor
+         * @param {lobby.IBeadPlate=} [properties] Properties to set
+         */
+        function BeadPlate(properties) {
+            this.blocks = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BeadPlate blocks.
+         * @member {Array.<lobby.Block>} blocks
+         * @memberof lobby.BeadPlate
+         * @instance
+         */
+        BeadPlate.prototype.blocks = $util.emptyArray;
+
+        /**
+         * Creates a new BeadPlate instance using the specified properties.
+         * @function create
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {lobby.IBeadPlate=} [properties] Properties to set
+         * @returns {lobby.BeadPlate} BeadPlate instance
+         */
+        BeadPlate.create = function create(properties) {
+            return new BeadPlate(properties);
+        };
+
+        /**
+         * Encodes the specified BeadPlate message. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * @function encode
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {lobby.IBeadPlate} message BeadPlate message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BeadPlate.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.blocks != null && message.blocks.length) {
+                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+                for (let i = 0; i < message.blocks.length; ++i)
+                    writer.int32(message.blocks[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BeadPlate message, length delimited. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {lobby.IBeadPlate} message BeadPlate message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BeadPlate.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BeadPlate message from the specified reader or buffer.
+         * @function decode
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {lobby.BeadPlate} BeadPlate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BeadPlate.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.BeadPlate();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.blocks && message.blocks.length))
+                        message.blocks = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.blocks.push(reader.int32());
+                    } else
+                        message.blocks.push(reader.int32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BeadPlate message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {lobby.BeadPlate} BeadPlate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BeadPlate.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BeadPlate message.
+         * @function verify
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BeadPlate.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.blocks != null && message.hasOwnProperty("blocks")) {
+                if (!Array.isArray(message.blocks))
+                    return "blocks: array expected";
+                for (let i = 0; i < message.blocks.length; ++i)
+                    switch (message.blocks[i]) {
+                    default:
+                        return "blocks: enum value[] expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        break;
+                    }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BeadPlate message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {lobby.BeadPlate} BeadPlate
+         */
+        BeadPlate.fromObject = function fromObject(object) {
+            if (object instanceof $root.lobby.BeadPlate)
+                return object;
+            let message = new $root.lobby.BeadPlate();
+            if (object.blocks) {
+                if (!Array.isArray(object.blocks))
+                    throw TypeError(".lobby.BeadPlate.blocks: array expected");
+                message.blocks = [];
+                for (let i = 0; i < object.blocks.length; ++i)
+                    switch (object.blocks[i]) {
+                    default:
+                    case "BlockDefault":
+                    case 0:
+                        message.blocks[i] = 0;
+                        break;
+                    case "Banker":
+                    case 1:
+                        message.blocks[i] = 1;
+                        break;
+                    case "Player":
+                    case 2:
+                        message.blocks[i] = 2;
+                        break;
+                    case "Tie":
+                    case 3:
+                        message.blocks[i] = 3;
+                        break;
+                    case "BankerAndBankerPair":
+                    case 4:
+                        message.blocks[i] = 4;
+                        break;
+                    case "BankerAndPlayerPair":
+                    case 5:
+                        message.blocks[i] = 5;
+                        break;
+                    case "BankerAndBothPair":
+                    case 6:
+                        message.blocks[i] = 6;
+                        break;
+                    case "PlayerAndBankerPair":
+                    case 7:
+                        message.blocks[i] = 7;
+                        break;
+                    case "PlayerAndPlayerPair":
+                    case 8:
+                        message.blocks[i] = 8;
+                        break;
+                    case "PlayerAndBothPair":
+                    case 9:
+                        message.blocks[i] = 9;
+                        break;
+                    case "TieAndBankerPair":
+                    case 10:
+                        message.blocks[i] = 10;
+                        break;
+                    case "TieAndPlayerPair":
+                    case 11:
+                        message.blocks[i] = 11;
+                        break;
+                    case "TieAndBothPair":
+                    case 12:
+                        message.blocks[i] = 12;
+                        break;
+                    }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BeadPlate message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof lobby.BeadPlate
+         * @static
+         * @param {lobby.BeadPlate} message BeadPlate
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BeadPlate.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.blocks = [];
+            if (message.blocks && message.blocks.length) {
+                object.blocks = [];
+                for (let j = 0; j < message.blocks.length; ++j)
+                    object.blocks[j] = options.enums === String ? $root.lobby.Block[message.blocks[j]] : message.blocks[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BeadPlate to JSON.
+         * @function toJSON
+         * @memberof lobby.BeadPlate
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BeadPlate.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BeadPlate;
+    })();
+
+    lobby.BigRoad = (function() {
+
+        /**
+         * Properties of a BigRoad.
+         * @memberof lobby
+         * @interface IBigRoad
+         * @property {Array.<lobby.IColumn>|null} [columns] BigRoad columns
+         */
+
+        /**
+         * Constructs a new BigRoad.
+         * @memberof lobby
+         * @classdesc Represents a BigRoad.
+         * @implements IBigRoad
+         * @constructor
+         * @param {lobby.IBigRoad=} [properties] Properties to set
+         */
+        function BigRoad(properties) {
+            this.columns = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BigRoad columns.
+         * @member {Array.<lobby.IColumn>} columns
+         * @memberof lobby.BigRoad
+         * @instance
+         */
+        BigRoad.prototype.columns = $util.emptyArray;
+
+        /**
+         * Creates a new BigRoad instance using the specified properties.
+         * @function create
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {lobby.IBigRoad=} [properties] Properties to set
+         * @returns {lobby.BigRoad} BigRoad instance
+         */
+        BigRoad.create = function create(properties) {
+            return new BigRoad(properties);
+        };
+
+        /**
+         * Encodes the specified BigRoad message. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * @function encode
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {lobby.IBigRoad} message BigRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BigRoad.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.columns != null && message.columns.length)
+                for (let i = 0; i < message.columns.length; ++i)
+                    $root.lobby.Column.encode(message.columns[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BigRoad message, length delimited. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {lobby.IBigRoad} message BigRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BigRoad.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BigRoad message from the specified reader or buffer.
+         * @function decode
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {lobby.BigRoad} BigRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BigRoad.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.BigRoad();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.columns && message.columns.length))
+                        message.columns = [];
+                    message.columns.push($root.lobby.Column.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BigRoad message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {lobby.BigRoad} BigRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BigRoad.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BigRoad message.
+         * @function verify
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BigRoad.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.columns != null && message.hasOwnProperty("columns")) {
+                if (!Array.isArray(message.columns))
+                    return "columns: array expected";
+                for (let i = 0; i < message.columns.length; ++i) {
+                    let error = $root.lobby.Column.verify(message.columns[i]);
+                    if (error)
+                        return "columns." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BigRoad message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {lobby.BigRoad} BigRoad
+         */
+        BigRoad.fromObject = function fromObject(object) {
+            if (object instanceof $root.lobby.BigRoad)
+                return object;
+            let message = new $root.lobby.BigRoad();
+            if (object.columns) {
+                if (!Array.isArray(object.columns))
+                    throw TypeError(".lobby.BigRoad.columns: array expected");
+                message.columns = [];
+                for (let i = 0; i < object.columns.length; ++i) {
+                    if (typeof object.columns[i] !== "object")
+                        throw TypeError(".lobby.BigRoad.columns: object expected");
+                    message.columns[i] = $root.lobby.Column.fromObject(object.columns[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BigRoad message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof lobby.BigRoad
+         * @static
+         * @param {lobby.BigRoad} message BigRoad
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BigRoad.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.columns = [];
+            if (message.columns && message.columns.length) {
+                object.columns = [];
+                for (let j = 0; j < message.columns.length; ++j)
+                    object.columns[j] = $root.lobby.Column.toObject(message.columns[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BigRoad to JSON.
+         * @function toJSON
+         * @memberof lobby.BigRoad
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BigRoad.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BigRoad;
+    })();
+
+    lobby.roadmap = (function() {
+
+        /**
+         * Properties of a roadmap.
+         * @memberof lobby
+         * @interface Iroadmap
+         * @property {lobby.IBeadPlate|null} [beadPlate] roadmap beadPlate
+         * @property {lobby.IBigRoad|null} [bigRoad] roadmap bigRoad
+         */
+
+        /**
+         * Constructs a new roadmap.
+         * @memberof lobby
+         * @classdesc Represents a roadmap.
+         * @implements Iroadmap
+         * @constructor
+         * @param {lobby.Iroadmap=} [properties] Properties to set
+         */
+        function roadmap(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * roadmap beadPlate.
+         * @member {lobby.IBeadPlate|null|undefined} beadPlate
+         * @memberof lobby.roadmap
+         * @instance
+         */
+        roadmap.prototype.beadPlate = null;
+
+        /**
+         * roadmap bigRoad.
+         * @member {lobby.IBigRoad|null|undefined} bigRoad
+         * @memberof lobby.roadmap
+         * @instance
+         */
+        roadmap.prototype.bigRoad = null;
+
+        /**
+         * Creates a new roadmap instance using the specified properties.
+         * @function create
+         * @memberof lobby.roadmap
+         * @static
+         * @param {lobby.Iroadmap=} [properties] Properties to set
+         * @returns {lobby.roadmap} roadmap instance
+         */
+        roadmap.create = function create(properties) {
+            return new roadmap(properties);
+        };
+
+        /**
+         * Encodes the specified roadmap message. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
+         * @function encode
+         * @memberof lobby.roadmap
+         * @static
+         * @param {lobby.Iroadmap} message roadmap message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        roadmap.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.beadPlate != null && Object.hasOwnProperty.call(message, "beadPlate"))
+                $root.lobby.BeadPlate.encode(message.beadPlate, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.bigRoad != null && Object.hasOwnProperty.call(message, "bigRoad"))
+                $root.lobby.BigRoad.encode(message.bigRoad, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified roadmap message, length delimited. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof lobby.roadmap
+         * @static
+         * @param {lobby.Iroadmap} message roadmap message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        roadmap.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a roadmap message from the specified reader or buffer.
+         * @function decode
+         * @memberof lobby.roadmap
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {lobby.roadmap} roadmap
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        roadmap.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.roadmap();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.beadPlate = $root.lobby.BeadPlate.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.bigRoad = $root.lobby.BigRoad.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a roadmap message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof lobby.roadmap
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {lobby.roadmap} roadmap
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        roadmap.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a roadmap message.
+         * @function verify
+         * @memberof lobby.roadmap
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        roadmap.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.beadPlate != null && message.hasOwnProperty("beadPlate")) {
+                let error = $root.lobby.BeadPlate.verify(message.beadPlate);
+                if (error)
+                    return "beadPlate." + error;
+            }
+            if (message.bigRoad != null && message.hasOwnProperty("bigRoad")) {
+                let error = $root.lobby.BigRoad.verify(message.bigRoad);
+                if (error)
+                    return "bigRoad." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a roadmap message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof lobby.roadmap
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {lobby.roadmap} roadmap
+         */
+        roadmap.fromObject = function fromObject(object) {
+            if (object instanceof $root.lobby.roadmap)
+                return object;
+            let message = new $root.lobby.roadmap();
+            if (object.beadPlate != null) {
+                if (typeof object.beadPlate !== "object")
+                    throw TypeError(".lobby.roadmap.beadPlate: object expected");
+                message.beadPlate = $root.lobby.BeadPlate.fromObject(object.beadPlate);
+            }
+            if (object.bigRoad != null) {
+                if (typeof object.bigRoad !== "object")
+                    throw TypeError(".lobby.roadmap.bigRoad: object expected");
+                message.bigRoad = $root.lobby.BigRoad.fromObject(object.bigRoad);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a roadmap message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof lobby.roadmap
+         * @static
+         * @param {lobby.roadmap} message roadmap
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        roadmap.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.beadPlate = null;
+                object.bigRoad = null;
+            }
+            if (message.beadPlate != null && message.hasOwnProperty("beadPlate"))
+                object.beadPlate = $root.lobby.BeadPlate.toObject(message.beadPlate, options);
+            if (message.bigRoad != null && message.hasOwnProperty("bigRoad"))
+                object.bigRoad = $root.lobby.BigRoad.toObject(message.bigRoad, options);
+            return object;
+        };
+
+        /**
+         * Converts this roadmap to JSON.
+         * @function toJSON
+         * @memberof lobby.roadmap
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        roadmap.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return roadmap;
+    })();
+
     return lobby;
 })();
 

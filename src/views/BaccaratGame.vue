@@ -7,7 +7,6 @@
       <GameHistory/>
       <TableInfo/>
   </div>
-  <!-- <Practice/> -->
 </template>
 
 <script lang="ts">
@@ -20,7 +19,6 @@ import Counter from '@/components/Counter.vue'
 import {useRoute } from 'vue-router'
 import {useStore} from 'vuex'
 import {sendTableJoinCall} from '../socketApi'
-import Practice from '../views/Practice.vue'
 export default defineComponent({
   components:{
     LiveVideo,
@@ -28,7 +26,6 @@ export default defineComponent({
     TableInfo,
     GameHistory,
     Counter,
-    Practice
   },
   setup(){
     //路由處理，取得當前桌號

@@ -6,11 +6,11 @@
     <div class="sec-column position-absolute sideWidth">
       <div class="secRoad-row" :class="[{'boundary-bottom':index===5 | index===8}]" v-for="(sr,index) in secHeight" :key="index"></div>
     </div>
-    <!-- topRoadGrid -->
-    <section class="topRoad d-flex sideWidth position-absolute">
-      <div class="topRoad-column" :class="[`topRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
-        <div class="tpRoad-item d-flex" :class="[`tpRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
-          <div class="playerRoadIcon6"></div>
+    <!-- bigRoadGrid -->
+    <section class="bigRoad d-flex sideWidth position-absolute">
+      <div class="bigRoad-column" :class="[`bigRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
+        <div class="bigRoad-item d-flex" :class="[`bigRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
+          <div></div>
         </div>
       </div>
     </section>
@@ -43,10 +43,15 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent,computed,ref, watch} from 'vue'
+import { useStore } from 'vuex'
 export default defineComponent({
     setup(){
-        //抓取元素要在onmounted或是function中，因為setup在mounted之前，DOM還沒長出來
+        //vuex
+        const store = useStore()
+        const gameResult = computed(()=>{ //回傳的是陣列
+            return store.state.dealer.BroadcastGameResult.results
+        })
         //表格
         const secWidth = new Array(22)
         const secHeight = new Array(12)
@@ -54,34 +59,95 @@ export default defineComponent({
         const centerRoadWidth =new Array(44)
         const bottomHeight = new Array(6)
         const bottom1width = new Array(22)
-        //添加格子
-        function pushRoad(){
-          console.log("開始")
-          let columnCount = 0
-          let count = 0
-          const watchTimer = setInterval(()=>{
-            if(columnCount>6 && count>5){
-              clearInterval(timer)
-              clearInterval(watchTimer)
+        //基本資料
+        const bigRoadColumn = ref(0)
+        const bigRoadItemIndex = ref(0)
+        const currentBigRoadResult = ref(0)
+        const lastBigRoadResult = ref(0)
+        const roadOverFlowerTimes = ref(0)
+        watch(gameResult,()=>{
+          showBigRoad()
+        })
+        function recordBigRoad (gameResult:number){
+          switch(gameResult){
+              case 1:
+                currentBigRoadResult.value = 1   //閒贏
+                break
+              case 2:
+                currentBigRoadResult.value = 2   //莊贏
+                break
+              case 3:
+                currentBigRoadResult.value = 1   //等同於閒贏
+                break
+              case 5:
+                currentBigRoadResult.value = 2   //等同於莊贏
+                break
             }
-          },500)
-          const timer = setInterval(()=>{
-            console.log("開始史")
-            //每秒放一個東西進去
-            if(count>5){
-              columnCount++
-              count = 0
-            }else if(columnCount>6 && count>5){clearInterval(timer)}
-            let element = document.querySelector(`.mainRoad-column${columnCount}`)
-            element?.children[count].children[0].classList.add('btn-c')   //0 1 2 3 4 5
-            count++  //1 2 3 4 5 6
-          },1000)
+        }
+        function putBigRoad(colNum:number,roadIndex:number,gameResult:number){
+          if(gameResult!==4){ //和局不會記錄
+            let bigRoadCol = document.querySelector(`.bigRoad-column${colNum}`) as HTMLElement
+            let bigRoadColItem = bigRoadCol.children[roadIndex].firstChild as HTMLElement
+            switch(gameResult){
+            case 1:
+              bigRoadColItem.classList.add('playerRoadIcon3')
+              break
+            case 2:
+              bigRoadColItem.classList.add('bankerRoadIcon3')
+              break
+            case 3:
+              bigRoadColItem.classList.add('playerRoadIcon5')
+              break
+            case 5:
+              bigRoadColItem.classList.add('bankerRoadIcon4')
+              break
+            }
+            bigRoadItemIndex.value++
+          }
+        }
+        function showBigRoad () { //控制要放在哪
+          gameResult.value.forEach((i:any)=>{
+            recordBigRoad(i)
+            if(bigRoadColumn.value>20){
+              resetBigRoad()
+            }
+            if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){ //換行時機一:下一個是不同邊贏
+              console.log("有不同的輸贏")
+              if(roadOverFlowerTimes.value>0){
+                bigRoadColumn.value= bigRoadColumn.value-roadOverFlowerTimes.value-1
+                roadOverFlowerTimes.value = 0
+              }else{
+                bigRoadColumn.value++
+                bigRoadItemIndex.value = 0
+              }
+            }
+            if(bigRoadItemIndex.value>5 && currentBigRoadResult.value==lastBigRoadResult.value){  //換行時機二:同樣的滿了，就開始橫放到下一行最後一格
+              console.log("滿格了換行")
+              bigRoadColumn.value++
+              bigRoadItemIndex.value = 5
+              roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
+            }
+            putBigRoad(bigRoadColumn.value,bigRoadItemIndex.value,i)
+            lastBigRoadResult.value = currentBigRoadResult.value
+          })
+        }
+        function resetBigRoad () {
+          for(let i = 0 ; i <8 ; i++){
+            let checkerboardRoadCol = document.querySelector(`.mainRoad-column${i}`) as HTMLElement
+            for(let i = 0 ; i<6 ;i++){
+              let checkerboardRoadColItem = checkerboardRoadCol.children[i].firstChild as HTMLElement
+              checkerboardRoadColItem.setAttribute("class","")
+            }
+          }
+          bigRoadColumn.value = 0
+          bigRoadItemIndex.value = 0
+          roadOverFlowerTimes.value = 0
         }
         return {
           //data
           topHeight,centerRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
           //methods
-          pushRoad,
+          
         }
     },
 })
@@ -109,17 +175,17 @@ export default defineComponent({
 }
 
 /* 放置四種路圖的格子 */
-.topRoad{
+.bigRoad{
   top:0;
   right:0;
   height:50%;
 }
-.topRoad-column{
+.bigRoad-column{
   /* border: 2px solid yellow; */
   width:4.54545454%;  /*調整欄寬 */
   height:100%;
 }
-.tpRoad-item{
+.bigRoad-item{
   /* border: blue solid 1px; */
   height:16.6666666%;
   flex-direction: column;

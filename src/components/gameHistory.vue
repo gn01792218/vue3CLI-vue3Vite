@@ -1,6 +1,6 @@
 <template>
   <div class="gameHistory d-flex position-relative">
-     <BigRoadGrid/>
+     <BeadPlate/>
      <SideRoadGrid/>
       <!--for mobil verson show poker -->
       <!-- v-if gameState is show Poker -->
@@ -15,12 +15,12 @@
 <script lang="ts">
 import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
-import BigRoadGrid from './BigRoadGrid.vue'
+import BeadPlate from './BeadPlate.vue'
 import SideRoadGrid from './SideRoadGrid.vue'
 import CardInfo from './CardInfo.vue'
 export default defineComponent({
   components:{
-    BigRoadGrid,
+    BeadPlate,
     SideRoadGrid,
     CardInfo,
   },

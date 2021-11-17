@@ -52,13 +52,10 @@ export default defineComponent({
             }
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
-            console.log("原本的",isWait.value)
             isWait.value = true
             stateMsg.value = "開始下注"
-            console.log("顯示開始下注",isWait.value)
             setTimeout(()=>{
                 isWait.value = false
-                console.log("關閉開始下注提示",isWait.value)
             },1000)
         })
         watch(gameEndUuid,()=>{ //倒數結束時

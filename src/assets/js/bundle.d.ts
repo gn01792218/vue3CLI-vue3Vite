@@ -2842,6 +2842,389 @@ export namespace lobby {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Block enum. */
+    enum Block {
+        BlockDefault = 0,
+        Banker = 1,
+        Player = 2,
+        Tie = 3,
+        BankerAndBankerPair = 4,
+        BankerAndPlayerPair = 5,
+        BankerAndBothPair = 6,
+        PlayerAndBankerPair = 7,
+        PlayerAndPlayerPair = 8,
+        PlayerAndBothPair = 9,
+        TieAndBankerPair = 10,
+        TieAndPlayerPair = 11,
+        TieAndBothPair = 12
+    }
+
+    /** Properties of a Column. */
+    interface IColumn {
+
+        /** Column blocks */
+        blocks?: (lobby.Block[]|null);
+    }
+
+    /** Represents a Column. */
+    class Column implements IColumn {
+
+        /**
+         * Constructs a new Column.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: lobby.IColumn);
+
+        /** Column blocks. */
+        public blocks: lobby.Block[];
+
+        /**
+         * Creates a new Column instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Column instance
+         */
+        public static create(properties?: lobby.IColumn): lobby.Column;
+
+        /**
+         * Encodes the specified Column message. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * @param message Column message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: lobby.IColumn, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Column message, length delimited. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * @param message Column message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: lobby.IColumn, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Column message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Column
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.Column;
+
+        /**
+         * Decodes a Column message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Column
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.Column;
+
+        /**
+         * Verifies a Column message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Column message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Column
+         */
+        public static fromObject(object: { [k: string]: any }): lobby.Column;
+
+        /**
+         * Creates a plain object from a Column message. Also converts values to other types if specified.
+         * @param message Column
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: lobby.Column, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Column to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BeadPlate. */
+    interface IBeadPlate {
+
+        /** BeadPlate blocks */
+        blocks?: (lobby.Block[]|null);
+    }
+
+    /** Represents a BeadPlate. */
+    class BeadPlate implements IBeadPlate {
+
+        /**
+         * Constructs a new BeadPlate.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: lobby.IBeadPlate);
+
+        /** BeadPlate blocks. */
+        public blocks: lobby.Block[];
+
+        /**
+         * Creates a new BeadPlate instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BeadPlate instance
+         */
+        public static create(properties?: lobby.IBeadPlate): lobby.BeadPlate;
+
+        /**
+         * Encodes the specified BeadPlate message. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * @param message BeadPlate message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: lobby.IBeadPlate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BeadPlate message, length delimited. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * @param message BeadPlate message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: lobby.IBeadPlate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BeadPlate message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BeadPlate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.BeadPlate;
+
+        /**
+         * Decodes a BeadPlate message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BeadPlate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.BeadPlate;
+
+        /**
+         * Verifies a BeadPlate message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BeadPlate message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BeadPlate
+         */
+        public static fromObject(object: { [k: string]: any }): lobby.BeadPlate;
+
+        /**
+         * Creates a plain object from a BeadPlate message. Also converts values to other types if specified.
+         * @param message BeadPlate
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: lobby.BeadPlate, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BeadPlate to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BigRoad. */
+    interface IBigRoad {
+
+        /** BigRoad columns */
+        columns?: (lobby.IColumn[]|null);
+    }
+
+    /** Represents a BigRoad. */
+    class BigRoad implements IBigRoad {
+
+        /**
+         * Constructs a new BigRoad.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: lobby.IBigRoad);
+
+        /** BigRoad columns. */
+        public columns: lobby.IColumn[];
+
+        /**
+         * Creates a new BigRoad instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BigRoad instance
+         */
+        public static create(properties?: lobby.IBigRoad): lobby.BigRoad;
+
+        /**
+         * Encodes the specified BigRoad message. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * @param message BigRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: lobby.IBigRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BigRoad message, length delimited. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * @param message BigRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: lobby.IBigRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BigRoad message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BigRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.BigRoad;
+
+        /**
+         * Decodes a BigRoad message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BigRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.BigRoad;
+
+        /**
+         * Verifies a BigRoad message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BigRoad message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BigRoad
+         */
+        public static fromObject(object: { [k: string]: any }): lobby.BigRoad;
+
+        /**
+         * Creates a plain object from a BigRoad message. Also converts values to other types if specified.
+         * @param message BigRoad
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: lobby.BigRoad, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BigRoad to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a roadmap. */
+    interface Iroadmap {
+
+        /** roadmap beadPlate */
+        beadPlate?: (lobby.IBeadPlate|null);
+
+        /** roadmap bigRoad */
+        bigRoad?: (lobby.IBigRoad|null);
+    }
+
+    /** Represents a roadmap. */
+    class roadmap implements Iroadmap {
+
+        /**
+         * Constructs a new roadmap.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: lobby.Iroadmap);
+
+        /** roadmap beadPlate. */
+        public beadPlate?: (lobby.IBeadPlate|null);
+
+        /** roadmap bigRoad. */
+        public bigRoad?: (lobby.IBigRoad|null);
+
+        /**
+         * Creates a new roadmap instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns roadmap instance
+         */
+        public static create(properties?: lobby.Iroadmap): lobby.roadmap;
+
+        /**
+         * Encodes the specified roadmap message. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
+         * @param message roadmap message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: lobby.Iroadmap, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified roadmap message, length delimited. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
+         * @param message roadmap message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: lobby.Iroadmap, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a roadmap message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns roadmap
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.roadmap;
+
+        /**
+         * Decodes a roadmap message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns roadmap
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.roadmap;
+
+        /**
+         * Verifies a roadmap message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a roadmap message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns roadmap
+         */
+        public static fromObject(object: { [k: string]: any }): lobby.roadmap;
+
+        /**
+         * Creates a plain object from a roadmap message. Also converts values to other types if specified.
+         * @param message roadmap
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: lobby.roadmap, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this roadmap to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace route. */

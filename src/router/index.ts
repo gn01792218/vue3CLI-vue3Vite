@@ -12,14 +12,6 @@ const routes: Array<RouteRecordRaw> = [
     name:'/BaccaratGame',
     component:()=>import('../views/BaccaratGame.vue')
   },
-  {
-    path: '/practice',
-    name: 'Practice',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Practice.vue')
-  },
 ]
 
 const router = createRouter({

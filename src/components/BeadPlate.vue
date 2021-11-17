@@ -1,5 +1,5 @@
 <template>
-      <!-- BigRoad -->
+      <!-- BeadPlate -->
     <div class="mainRoad d-flex">
       <div class="mainRoad-column d-flex" :class="[`mainRoad-column${index}`,{'bigRoadboundary':index===7}]" v-for="(mc,index) in mainColumn" :key="index">
         <!-- putRoad in here -->
@@ -25,55 +25,57 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-        const bigRoadColumn = ref(0)
+        const checkerboardRoadColumn = ref(0)
         const roadIndex = ref(0)
         watch(gameResult,()=>{
-          gameResult.value.forEach((i:any)=>{
-            if(bigRoadColumn.value>6 && roadIndex.value>5){
-              resetRoad()
-            }
-            if(roadIndex.value>5){
-              bigRoadColumn.value++
-              roadIndex.value = 0
-            }
-            putRoad(bigRoadColumn.value,roadIndex.value,i)
-          })
+          showRoad ()
         })
         const mainRow = new Array(6)
         const mainColumn = new Array(8)
-        function resetRoad(){
-          for(let i = 0 ; i <8 ; i++){
-            let bigRoadColum = document.querySelector(`.mainRoad-column${i}`) as HTMLElement
-            for(let i = 0 ; i<6 ;i++){
-              let bigRoadColItem = bigRoadColum.children[i].firstChild as HTMLElement
-              bigRoadColItem.setAttribute("class","")
-            }
-          }
-          bigRoadColumn.value = 0
-          roadIndex.value = 0
-        }
-        //任意添加格子
         function putRoad(columnNum:number,roadnum:number,gameResult:number){
-          let bigRoadColum = document.querySelector(`.mainRoad-column${columnNum}`) as HTMLElement
-          let bigRoadColItem = bigRoadColum.children[roadnum].firstChild as HTMLElement
+          let checkerboardRoadCol = document.querySelector(`.mainRoad-column${columnNum}`) as HTMLElement
+          let checkerboardRoadColItem = checkerboardRoadCol.children[roadnum].firstChild as HTMLElement
           switch(gameResult){
             case 1:
-              bigRoadColItem.classList.add('playerRoadIcon0')
+              checkerboardRoadColItem.classList.add('playerRoadIcon0')
               break
             case 2:
-              bigRoadColItem.classList.add('bankerRoadIcon0')
+              checkerboardRoadColItem.classList.add('bankerRoadIcon0')
               break
             case 3:
-              bigRoadColItem.classList.add('playerRoadIcon2')
+              checkerboardRoadColItem.classList.add('playerRoadIcon2')
               break
             case 4:
-              bigRoadColItem.classList.add('tieRoadIcon')
+              checkerboardRoadColItem.classList.add('tieRoadIcon')
               break
             case 5:
-              bigRoadColItem.classList.add('bankerRoadIcon1')
+              checkerboardRoadColItem.classList.add('bankerRoadIcon1')
               break
           }
           roadIndex.value++
+        }
+        function showRoad () {
+          gameResult.value.forEach((i:any)=>{
+            if(checkerboardRoadColumn.value>6 && roadIndex.value>5){
+              resetRoad()
+            }
+            if(roadIndex.value>5){
+              checkerboardRoadColumn.value++
+              roadIndex.value = 0
+            }
+            putRoad(checkerboardRoadColumn.value,roadIndex.value,i)
+          })
+        }
+        function resetRoad(){
+          for(let i = 0 ; i <8 ; i++){
+            let checkerboardRoadCol = document.querySelector(`.mainRoad-column${i}`) as HTMLElement
+            for(let i = 0 ; i<6 ;i++){
+              let checkerboardRoadColItem = checkerboardRoadCol.children[i].firstChild as HTMLElement
+              checkerboardRoadColItem.setAttribute("class","")
+            }
+          }
+          checkerboardRoadColumn.value = 0
+          roadIndex.value = 0
         }
         return {
           //data
