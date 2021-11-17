@@ -55,17 +55,17 @@ export default defineComponent({
                 case 4:
                     audioElement.src = require('../assets/audio/tie.mp3')
                     break
-                case 1:
+                case 2:
                     audioElement.src = require('../assets/audio/bankerWin.mp3')
                     break
-                case 2:
+                case 1:
                     audioElement.src = require('../assets/audio/playerWin.mp3')
                     break
-                case 5:
+                case 3:
                     audioElement.src = require('../assets/audio/playerWin.mp3')  //暫時測試
                     // gameresultSound.src = require('../assets/audio/bankerPair.mp3')
                     break
-                case 3:
+                case 5:
                     audioElement.src = require('../assets/audio/bankerWin.mp3')  //暫時測試
                     // gameresultSound.src = require('../assets/audio/playerPair.mp3')
                     break

@@ -93,7 +93,7 @@ export default defineComponent({
                             break
                         case 3:
                             let appendElement5 = document.createElement('LI') as HTMLElement
-                            appendElement5.classList.add('font_yellow')
+                            appendElement5.classList.add('font_red')
                             appendElement5.classList.add('result-text')
                             appendElement5.innerText="閒對"
                             result.appendChild(appendElement5)
