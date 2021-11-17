@@ -6,7 +6,7 @@
     @extend %hisRoad;
     @include hisRoadSpritePosition(0,0,0.35);
 }
-.bankerRoadIcon1{
+.bankerRoadIcon1{  //莊對
     @extend %hisRoad;
     @include hisRoadSpritePosition(-100,0,0.35);
 }
@@ -51,7 +51,7 @@
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1000,0,0.35);
 }
-.playerRoadIcon2{
+.playerRoadIcon2{ //閒對
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1100,0,0.35);
 }

@@ -50,13 +50,13 @@ export default defineComponent({
               bigRoadColItem.classList.add('bankerRoadIcon0')
               break
             case 3:
-              bigRoadColItem.classList.add('playerRoadIcon0')
+              bigRoadColItem.classList.add('playerRoadIcon2')
               break
             case 4:
               bigRoadColItem.classList.add('tieRoadIcon')
               break
             case 5:
-              bigRoadColItem.classList.add('bankerRoadIcon0')
+              bigRoadColItem.classList.add('bankerRoadIcon1')
               break
           }
           roadIndex.value++
