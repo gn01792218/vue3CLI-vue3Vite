@@ -5,7 +5,7 @@ import table from './table'
 import bet from './bet'
 import game from './game'
 import dealer from './dealer'
-
+import roadmap from './roadmap'
 
 export default createStore({
   state: {
@@ -15,6 +15,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    lobby,auth,table,bet,game,dealer
+    lobby,auth,table,bet,game,dealer,roadmap,
   }
 })

@@ -1,4 +1,6 @@
 <template>
+<button class="test position-absolute" @click="put(2)">莊贏</button>
+<button class="position-absolute" @click="put(1)">閒贏</button>
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
@@ -43,15 +45,21 @@
 </template>
 
 <script lang="ts">
-import {defineComponent,computed,ref, watch} from 'vue'
+import {defineComponent,computed,ref, watch, reactive} from 'vue'
 import { useStore } from 'vuex'
+interface colObject{
+  limit:number,  //還剩下幾格可以放
+  putIndex:number, //目前放到第幾格
+}
 export default defineComponent({
     setup(){
         //vuex
         const store = useStore()
-        const gameResult = computed(()=>{ //回傳的是陣列
-            return store.state.dealer.BroadcastGameResult.results
-        })
+        // const gameResult = computed(()=>{ //回傳的是陣列
+        //     return store.state.dealer.BroadcastGameResult.results
+        // })
+        const gameResult = ref([1])
+        const gameResult2 = ref([2])
         //表格
         const secWidth = new Array(22)
         const secHeight = new Array(12)
@@ -60,14 +68,31 @@ export default defineComponent({
         const bottomHeight = new Array(6)
         const bottom1width = new Array(22)
         //基本資料
-        const bigRoadColumn = ref(0)
-        const bigRoadItemIndex = ref(0)
+        const bigRoadColumn = ref(0)  //這裡還是要記錄現在要到第幾欄
+        // const bigRoadItemIndex = ref(0)
         const currentBigRoadResult = ref(0)
         const lastBigRoadResult = ref(0)
         const roadOverFlowerTimes = ref(0)
-        watch(gameResult,()=>{
-          showBigRoad()
-        })
+        //新想法
+        const BigRoadColArr = reactive<colObject[]>([])
+        for(let i = 0 ; i <secWidth.length ;i++){ //初始化col物件
+          BigRoadColArr.push({
+            limit:5,
+            putIndex:0,
+          })
+        }
+        // watch(gameResult,()=>{
+        //   showBigRoad()
+        // })
+        function put(num:number) {
+          switch(num){
+            case 1:
+              showBigRoad()
+              break
+            case 2:
+              showBigRoad2()
+          }
+        }
         function recordBigRoad (gameResult:number){
           switch(gameResult){
               case 1:
@@ -84,10 +109,10 @@ export default defineComponent({
                 break
             }
         }
-        function putBigRoad(colNum:number,roadIndex:number,gameResult:number){
+        function putBigRoad(gameResult:number){
           if(gameResult!==4){ //和局不會記錄
-            let bigRoadCol = document.querySelector(`.bigRoad-column${colNum}`) as HTMLElement
-            let bigRoadColItem = bigRoadCol.children[roadIndex].firstChild as HTMLElement
+            let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
+            let bigRoadColItem = bigRoadCol.children[BigRoadColArr[bigRoadColumn.value].putIndex].firstChild as HTMLElement
             switch(gameResult){
             case 1:
               bigRoadColItem.classList.add('playerRoadIcon3')
@@ -102,58 +127,97 @@ export default defineComponent({
               bigRoadColItem.classList.add('bankerRoadIcon4')
               break
             }
-            bigRoadItemIndex.value++
+            BigRoadColArr[bigRoadColumn.value].putIndex++
           }
         }
-        function showBigRoad () { //控制要放在哪
-          gameResult.value.forEach((i:any)=>{
-            recordBigRoad(i)
-            if(bigRoadColumn.value>20){
-              resetBigRoad()
-            }
+        function showBigRoad2 () { //測試用
+          gameResult2.value.forEach((i:any)=>{
+            recordBigRoad(i)  //先記錄贏的陣營
+            // if(bigRoadColumn.value>=secWidth.length){ //全部滿格時
+            //   resetBigRoad()
+            // }
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){ //換行時機一:下一個是不同邊贏
-              console.log("有不同的輸贏")
-              if(roadOverFlowerTimes.value>0){
-                bigRoadColumn.value= bigRoadColumn.value-roadOverFlowerTimes.value-1
+              if(roadOverFlowerTimes.value>0){  //應付前次有連贏溢出情況
+                bigRoadColumn.value= bigRoadColumn.value-(roadOverFlowerTimes.value-1)
+                BigRoadColArr[bigRoadColumn.value].putIndex = 0
+                BigRoadColArr[bigRoadColumn.value].limit--
                 roadOverFlowerTimes.value = 0
+                console.log("恢復正常","畫行數",bigRoadColumn.value,"從第",BigRoadColArr[bigRoadColumn.value].putIndex,"格開始畫","溢出數值歸0")
               }else{
                 bigRoadColumn.value++
-                bigRoadItemIndex.value = 0
+                BigRoadColArr[bigRoadColumn.value].putIndex = 0
+                console.log("正常換行情形",bigRoadColumn.value)
               }
             }
-            if(bigRoadItemIndex.value>5 && currentBigRoadResult.value==lastBigRoadResult.value){  //換行時機二:同樣的滿了，就開始橫放到下一行最後一格
-              console.log("滿格了換行")
+            if(BigRoadColArr[bigRoadColumn.value].putIndex>BigRoadColArr[bigRoadColumn.value].limit && currentBigRoadResult.value==lastBigRoadResult.value){  //換行時機二:同樣連贏，就開始橫放到下一行最後一格
               bigRoadColumn.value++
-              bigRoadItemIndex.value = 5
+              BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit  //先畫再極限那一格
+              BigRoadColArr[bigRoadColumn.value].limit--  //再減去極限
               roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
+              console.log("連贏換行","行數:",bigRoadColumn.value,"畫再第",BigRoadColArr[bigRoadColumn.value].putIndex,"格","極限剩下",BigRoadColArr[bigRoadColumn.value].limit,"溢出",roadOverFlowerTimes.value)
             }
-            putBigRoad(bigRoadColumn.value,bigRoadItemIndex.value,i)
+            putBigRoad(i)
             lastBigRoadResult.value = currentBigRoadResult.value
           })
         }
-        function resetBigRoad () {
-          for(let i = 0 ; i <8 ; i++){
-            let checkerboardRoadCol = document.querySelector(`.mainRoad-column${i}`) as HTMLElement
-            for(let i = 0 ; i<6 ;i++){
-              let checkerboardRoadColItem = checkerboardRoadCol.children[i].firstChild as HTMLElement
-              checkerboardRoadColItem.setAttribute("class","")
+        function showBigRoad () { //控制要放在哪
+          gameResult.value.forEach((i:any)=>{
+            recordBigRoad(i)  //先記錄贏的陣營
+            // if(bigRoadColumn.value>=secWidth.length){ //全部滿格時
+            //   resetBigRoad()
+            // }
+            if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){ //換行時機一:下一個是不同邊贏
+              if(roadOverFlowerTimes.value>0){  //應付前次有連贏溢出情況
+                bigRoadColumn.value= bigRoadColumn.value-(roadOverFlowerTimes.value-1)
+                BigRoadColArr[bigRoadColumn.value].putIndex = 0  //從頭開始畫
+                BigRoadColArr[bigRoadColumn.value].limit--
+                roadOverFlowerTimes.value = 0
+                console.log("恢復正常","畫行數",bigRoadColumn.value,"從第",BigRoadColArr[bigRoadColumn.value].putIndex,"格開始畫")
+              }else{
+                bigRoadColumn.value++
+                BigRoadColArr[bigRoadColumn.value].putIndex = 0
+                console.log("正常換行情形",bigRoadColumn.value)
+              }
             }
-          }
-          bigRoadColumn.value = 0
-          bigRoadItemIndex.value = 0
-          roadOverFlowerTimes.value = 0
+            if(BigRoadColArr[bigRoadColumn.value].putIndex>BigRoadColArr[bigRoadColumn.value].limit && currentBigRoadResult.value==lastBigRoadResult.value){  //換行時機二:同樣連贏，就開始橫放到下一行最後一格
+              bigRoadColumn.value++
+              BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit    //先畫在極限那一格
+              BigRoadColArr[bigRoadColumn.value].limit-- //再減去極限
+              
+              roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
+              console.log("連贏換行","行數:",bigRoadColumn.value,"畫再第",BigRoadColArr[bigRoadColumn.value].putIndex,"格","極限剩下",BigRoadColArr[bigRoadColumn.value].limit,"溢出",roadOverFlowerTimes.value)
+            }
+            putBigRoad(i)
+            lastBigRoadResult.value = currentBigRoadResult.value
+          })
         }
+        // function resetBigRoad () {
+        //   for(let i = 0 ; i <8 ; i++){
+        //     let checkerboardRoadCol = document.querySelector(`.mainRoad-column${i}`) as HTMLElement
+        //     for(let i = 0 ; i<6 ;i++){
+        //       let checkerboardRoadColItem = checkerboardRoadCol.children[i].firstChild as HTMLElement
+        //       checkerboardRoadColItem.setAttribute("class","")
+        //     }
+        //   }
+        //   bigRoadColumn.value = 0
+        //   bigRoadItemIndex.value = 0
+        //   roadOverFlowerTimes.value = 0
+        // }
         return {
           //data
           topHeight,centerRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
           //methods
-          
+          put,
         }
     },
 })
 </script>
 
 <style lang="scss">
+.test{
+  left:10%;
+  bottom: 100%;
+}
 /* 背景格子 */
 .secRoad{
   height:100%;
