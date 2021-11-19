@@ -63,21 +63,21 @@ export default defineComponent({
                 if(result){
                 gameResult.value.forEach((i:any)=>{
                        switch(i){
-                        case 2:
+                        case 1:
                             let appendElement2 = document.createElement('LI') as HTMLElement
                             appendElement2.classList.add('font_yellow')
                             appendElement2.classList.add('result-text')
                             appendElement2.innerText="莊家贏"
                             result.appendChild(appendElement2)
                             break
-                        case 1:
+                        case 2:
                             let appendElement3 = document.createElement('LI') as HTMLElement
                             appendElement3.classList.add('font_red')
                             appendElement3.classList.add('result-text')
                             appendElement3.innerText="閒家贏"
                             result.appendChild(appendElement3)
                             break
-                        case 5:
+                        case 3:
                             let appendElement4 = document.createElement('LI') as HTMLElement
                             appendElement4.classList.add('font_yellow')
                             appendElement4.classList.add('result-text')
@@ -91,7 +91,7 @@ export default defineComponent({
                             appendElement1.innerText="和局"
                             result.appendChild(appendElement1)
                             break
-                        case 3:
+                        case 5:
                             let appendElement5 = document.createElement('LI') as HTMLElement
                             appendElement5.classList.add('font_red')
                             appendElement5.classList.add('result-text')

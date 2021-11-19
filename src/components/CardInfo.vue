@@ -105,15 +105,15 @@ export default defineComponent({
      function setWinCardBoxLight(){
        gameResult.value.forEach((i:any)=>{
          switch(i){
-           case 2:
-           case 5:
+           case 1:
+           case 3:
             let bankerCardBox = document.querySelectorAll('.banker')
             bankerCardBox.forEach(i=>{
               i.classList.add('winPoker')
             })
             break
-          case 1:
-          case 3:
+          case 2:
+          case 5:
             let playererCardBox = document.querySelectorAll('.player')
             playererCardBox.forEach(i=>{
               i.classList.add('winPoker')

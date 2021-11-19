@@ -468,11 +468,48 @@ export default defineComponent({
         function showResult () { 
             //為贏的注區套上閃爍動畫
             gameResult.value.forEach((i:number)=>{
-                let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
-                betArea.forEach((i:HTMLElement)=>{
-                    i.classList.add('winAnimation')
-                    i.children[1].classList.add('winCoin')  //取得注區數字
-                })
+                switch(i){
+                    case proto.dealer.Result.Banker:
+                      let betArea2 = document.querySelectorAll('.betArea-item2') as NodeListOf<HTMLElement>
+                        betArea2.forEach((i:HTMLElement)=>{
+                            i.classList.add('winAnimation')
+                            i.children[1].classList.add('winCoin')  //取得注區數字
+                        })
+                        break
+                    case proto.dealer.Result.Player:
+                        let betArea1 = document.querySelectorAll('.betArea-item1') as NodeListOf<HTMLElement>
+                        betArea1.forEach((i:HTMLElement)=>{
+                            i.classList.add('winAnimation')
+                            i.children[1].classList.add('winCoin')  //取得注區數字
+                        })
+                        break
+                    case proto.dealer.Result.BankerPair:
+                        let betArea5 = document.querySelectorAll('.betArea-item5') as NodeListOf<HTMLElement>
+                        betArea5.forEach((i:HTMLElement)=>{
+                            i.classList.add('winAnimation')
+                            i.children[1].classList.add('winCoin')  //取得注區數字
+                        })
+                        break
+                     case proto.dealer.Result.Tie:
+                        let betArea4 = document.querySelectorAll('.betArea-item4') as NodeListOf<HTMLElement>
+                        betArea4.forEach((i:HTMLElement)=>{
+                            i.classList.add('winAnimation')
+                            i.children[1].classList.add('winCoin')  //取得注區數字
+                        })
+                        break
+                     case proto.dealer.Result.PlayerPair:
+                        let betArea3 = document.querySelectorAll('.betArea-item3') as NodeListOf<HTMLElement>
+                        betArea3.forEach((i:HTMLElement)=>{
+                            i.classList.add('winAnimation')
+                            i.children[1].classList.add('winCoin')  //取得注區數字
+                        })
+                        break
+                }
+                // let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
+                // betArea.forEach((i:HTMLElement)=>{
+                //     i.classList.add('winAnimation')
+                //     i.children[1].classList.add('winCoin')  //取得注區數字
+                // })
             })
             let betAreaMoney = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
             betAreaMoney.forEach((i:HTMLElement)=>{
@@ -483,10 +520,40 @@ export default defineComponent({
         function reSetBetAreaAnimation(){
             if(gameResult.value){
                 gameResult.value.forEach((i:number)=>{
-                let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
-                 betArea.forEach((i:HTMLElement)=>{
-                    i.classList.remove('winAnimation')
-                })
+                    switch(i){
+                        case proto.dealer.Result.Banker:
+                            let betArea2 = document.querySelectorAll('.betArea-item2') as NodeListOf<HTMLElement>
+                            betArea2.forEach((i:HTMLElement)=>{
+                            i.classList.remove('winAnimation')
+                            })
+                            break
+                        case proto.dealer.Result.Player:
+                            let betArea1 = document.querySelectorAll('.betArea-item1') as NodeListOf<HTMLElement>
+                            betArea1.forEach((i:HTMLElement)=>{
+                            i.classList.remove('winAnimation')
+                            })
+                            break
+                        case proto.dealer.Result.BankerPair:
+                            let betArea5 = document.querySelectorAll('.betArea-item5') as NodeListOf<HTMLElement>
+                            betArea5.forEach((i:HTMLElement)=>{
+                            i.classList.remove('winAnimation')
+                            })
+                            break
+                        case proto.dealer.Result.Tie:
+                            let betArea4 = document.querySelectorAll('.betArea-item4') as NodeListOf<HTMLElement>
+                            betArea4.forEach((i:HTMLElement)=>{
+                            i.classList.remove('winAnimation')
+                            })
+                            break
+                        case proto.dealer.Result.PlayerPair:
+                            let betArea3 = document.querySelectorAll('.betArea-item3') as NodeListOf<HTMLElement>
+                            betArea3.forEach((i:HTMLElement)=>{
+                            i.classList.remove('winAnimation')
+                            })
+                            break
+                            
+                    }
+                
             })
             }
         }

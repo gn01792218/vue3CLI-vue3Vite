@@ -49,19 +49,19 @@ export default defineComponent({
           let beadPlateColItem = beadPlateCol.children[roadnum].firstChild as HTMLElement
           switch(gameResult){
             case 1:
-              beadPlateColItem.classList.add('playerRoadIcon0')
-              break
-            case 2:
               beadPlateColItem.classList.add('bankerRoadIcon0')
               break
+            case 2:
+              beadPlateColItem.classList.add('playerRoadIcon0')
+              break
             case 3:
-              beadPlateColItem.classList.add('playerRoadIcon2')
+              beadPlateColItem.classList.add('bankerRoadIcon1')
               break
             case 4:
               beadPlateColItem.classList.add('tieRoadIcon')
               break
             case 5:
-              beadPlateColItem.classList.add('bankerRoadIcon1')
+              beadPlateColItem.classList.add('playerRoadIcon2')
               break
           }
           roadIndex.value++
