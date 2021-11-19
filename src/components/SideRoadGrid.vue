@@ -73,6 +73,7 @@ export default defineComponent({
         const currentBigRoadResult = ref(0)
         const lastBigRoadResult = ref(0)
         const roadOverFlowerTimes = ref(0)
+        const preOverFlowerTimes = ref(22)
         //新想法
         const BigRoadColArr = reactive<colObject[]>([])
         for(let i = 0 ; i <secWidth.length ;i++){ //初始化col物件
@@ -140,21 +141,38 @@ export default defineComponent({
               if(roadOverFlowerTimes.value>0){  //應付前次有連贏溢出情況
                 bigRoadColumn.value= bigRoadColumn.value-(roadOverFlowerTimes.value-1)
                 BigRoadColArr[bigRoadColumn.value].putIndex = 0
-                BigRoadColArr[bigRoadColumn.value].limit--
+                // BigRoadColArr[bigRoadColumn.value].limit--
+                preOverFlowerTimes.value = roadOverFlowerTimes.value
                 roadOverFlowerTimes.value = 0
-                console.log("恢復正常","畫行數",bigRoadColumn.value,"從第",BigRoadColArr[bigRoadColumn.value].putIndex,"格開始畫","溢出數值歸0")
-              }else{
+                console.log("連贏中止，回退","畫行數",bigRoadColumn.value,"從第",BigRoadColArr[bigRoadColumn.value].putIndex,"格開始畫","當前溢出規0","前次溢出",preOverFlowerTimes.value )
+              }
+              else{
                 bigRoadColumn.value++
                 BigRoadColArr[bigRoadColumn.value].putIndex = 0
-                console.log("正常換行情形",bigRoadColumn.value)
+                console.log("不同陣營換行","行",bigRoadColumn.value,"位置",BigRoadColArr[bigRoadColumn.value].putIndex)
               }
             }
             if(BigRoadColArr[bigRoadColumn.value].putIndex>BigRoadColArr[bigRoadColumn.value].limit && currentBigRoadResult.value==lastBigRoadResult.value){  //換行時機二:同樣連贏，就開始橫放到下一行最後一格
-              bigRoadColumn.value++
-              BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit  //先畫再極限那一格
-              BigRoadColArr[bigRoadColumn.value].limit--  //再減去極限
-              roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
-              console.log("連贏換行","行數:",bigRoadColumn.value,"畫再第",BigRoadColArr[bigRoadColumn.value].putIndex,"格","極限剩下",BigRoadColArr[bigRoadColumn.value].limit,"溢出",roadOverFlowerTimes.value)
+              console.log("連贏溢出換行前","行",bigRoadColumn.value,"格",BigRoadColArr[bigRoadColumn.value].putIndex,"該格極限",BigRoadColArr[bigRoadColumn.value].limit)
+              if(roadOverFlowerTimes.value>=preOverFlowerTimes.value-1){
+                let preLimit = BigRoadColArr[bigRoadColumn.value].limit
+                bigRoadColumn.value++
+                BigRoadColArr[bigRoadColumn.value].limit = preLimit
+                
+                  BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit+1
+                
+                // BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit+1
+                roadOverFlowerTimes.value++ 
+                console.log("超越前次溢出","行",bigRoadColumn.value,"此行極限",BigRoadColArr[bigRoadColumn.value].limit,"格畫",BigRoadColArr[bigRoadColumn.value].putIndex,'溢出',roadOverFlowerTimes.value)
+              }else{
+                bigRoadColumn.value++
+                BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit  //畫在極限那一格
+                if(BigRoadColArr[bigRoadColumn.value].limit>0){
+                  BigRoadColArr[bigRoadColumn.value].limit--  //再減去極限
+                }
+                roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
+                console.log("連贏溢出換行","行數:",bigRoadColumn.value,"畫再第",BigRoadColArr[bigRoadColumn.value].putIndex,"格","極限剩下",BigRoadColArr[bigRoadColumn.value].limit,"溢出",roadOverFlowerTimes.value)
+              }
             }
             putBigRoad(i)
             lastBigRoadResult.value = currentBigRoadResult.value
@@ -170,22 +188,37 @@ export default defineComponent({
               if(roadOverFlowerTimes.value>0){  //應付前次有連贏溢出情況
                 bigRoadColumn.value= bigRoadColumn.value-(roadOverFlowerTimes.value-1)
                 BigRoadColArr[bigRoadColumn.value].putIndex = 0  //從頭開始畫
-                BigRoadColArr[bigRoadColumn.value].limit--
+                // BigRoadColArr[bigRoadColumn.value].limit--
+                preOverFlowerTimes.value = roadOverFlowerTimes.value  //紀錄上一次的溢出紀錄
                 roadOverFlowerTimes.value = 0
-                console.log("恢復正常","畫行數",bigRoadColumn.value,"從第",BigRoadColArr[bigRoadColumn.value].putIndex,"格開始畫")
-              }else{
+                console.log("連贏中止，回退","畫行數",bigRoadColumn.value,"從第",BigRoadColArr[bigRoadColumn.value].putIndex,"格開始畫","當前溢出規0","前次溢出",preOverFlowerTimes.value )
+              }
+              else{
                 bigRoadColumn.value++
                 BigRoadColArr[bigRoadColumn.value].putIndex = 0
-                console.log("正常換行情形",bigRoadColumn.value)
+                 console.log("不同陣營換行","行",bigRoadColumn.value,"位置",BigRoadColArr[bigRoadColumn.value].putIndex)
               }
             }
             if(BigRoadColArr[bigRoadColumn.value].putIndex>BigRoadColArr[bigRoadColumn.value].limit && currentBigRoadResult.value==lastBigRoadResult.value){  //換行時機二:同樣連贏，就開始橫放到下一行最後一格
-              bigRoadColumn.value++
-              BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit    //先畫在極限那一格
-              BigRoadColArr[bigRoadColumn.value].limit-- //再減去極限
-              
-              roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
-              console.log("連贏換行","行數:",bigRoadColumn.value,"畫再第",BigRoadColArr[bigRoadColumn.value].putIndex,"格","極限剩下",BigRoadColArr[bigRoadColumn.value].limit,"溢出",roadOverFlowerTimes.value)
+              console.log("連贏溢出換行前","行",bigRoadColumn.value,"格",BigRoadColArr[bigRoadColumn.value].putIndex,"該格極限",BigRoadColArr[bigRoadColumn.value].limit)
+              if(roadOverFlowerTimes.value>=preOverFlowerTimes.value-1){
+                let preLimit = BigRoadColArr[bigRoadColumn.value].limit
+                bigRoadColumn.value++
+                BigRoadColArr[bigRoadColumn.value].limit = preLimit
+                
+                  BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit+1
+                
+                roadOverFlowerTimes.value++ 
+                console.log("超越前次溢出","行",bigRoadColumn.value,"此行極限",BigRoadColArr[bigRoadColumn.value].limit,"格畫",BigRoadColArr[bigRoadColumn.value].putIndex,'溢出',roadOverFlowerTimes.value)
+              }else{
+                bigRoadColumn.value++
+                BigRoadColArr[bigRoadColumn.value].putIndex = BigRoadColArr[bigRoadColumn.value].limit    //先畫在極限那一格
+                if(BigRoadColArr[bigRoadColumn.value].limit>0){
+                  BigRoadColArr[bigRoadColumn.value].limit--  //再減去極限
+                }
+                roadOverFlowerTimes.value++ //滿格換行一次就會++；中斷後col要回退roadOverFlowerTimes.value-1
+                console.log("連贏溢出換行","行數:",bigRoadColumn.value,"畫再第",BigRoadColArr[bigRoadColumn.value].putIndex,"格","極限剩下",BigRoadColArr[bigRoadColumn.value].limit,"溢出",roadOverFlowerTimes.value)
+              }
             }
             putBigRoad(i)
             lastBigRoadResult.value = currentBigRoadResult.value

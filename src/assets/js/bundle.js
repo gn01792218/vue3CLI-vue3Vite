@@ -4679,6 +4679,7 @@ export const foundation = $root.foundation = (() => {
                 case 23:
                 case 24:
                 case 25:
+                case 26:
                     break;
                 }
             return null;
@@ -4800,6 +4801,10 @@ export const foundation = $root.foundation = (() => {
             case "DealerGameStatus":
             case 25:
                 message.uri = 25;
+                break;
+            case "Roadmap":
+            case 26:
+                message.uri = 26;
                 break;
             }
             return message;
@@ -6874,9 +6879,21 @@ export const lobby = $root.lobby = (() => {
         return TableInfo;
     })();
 
+    return lobby;
+})();
+
+export const roadmap = $root.roadmap = (() => {
+
+    /**
+     * Namespace roadmap.
+     * @exports roadmap
+     * @namespace
+     */
+    const roadmap = {};
+
     /**
      * Block enum.
-     * @name lobby.Block
+     * @name roadmap.Block
      * @enum {number}
      * @property {number} BlockDefault=0 BlockDefault value
      * @property {number} Banker=1 Banker value
@@ -6892,7 +6909,7 @@ export const lobby = $root.lobby = (() => {
      * @property {number} TieAndPlayerPair=11 TieAndPlayerPair value
      * @property {number} TieAndBothPair=12 TieAndBothPair value
      */
-    lobby.Block = (function() {
+    roadmap.Block = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "BlockDefault"] = 0;
         values[valuesById[1] = "Banker"] = 1;
@@ -6910,22 +6927,22 @@ export const lobby = $root.lobby = (() => {
         return values;
     })();
 
-    lobby.Column = (function() {
+    roadmap.Column = (function() {
 
         /**
          * Properties of a Column.
-         * @memberof lobby
+         * @memberof roadmap
          * @interface IColumn
-         * @property {Array.<lobby.Block>|null} [blocks] Column blocks
+         * @property {Array.<roadmap.Block>|null} [blocks] Column blocks
          */
 
         /**
          * Constructs a new Column.
-         * @memberof lobby
+         * @memberof roadmap
          * @classdesc Represents a Column.
          * @implements IColumn
          * @constructor
-         * @param {lobby.IColumn=} [properties] Properties to set
+         * @param {roadmap.IColumn=} [properties] Properties to set
          */
         function Column(properties) {
             this.blocks = [];
@@ -6937,8 +6954,8 @@ export const lobby = $root.lobby = (() => {
 
         /**
          * Column blocks.
-         * @member {Array.<lobby.Block>} blocks
-         * @memberof lobby.Column
+         * @member {Array.<roadmap.Block>} blocks
+         * @memberof roadmap.Column
          * @instance
          */
         Column.prototype.blocks = $util.emptyArray;
@@ -6946,21 +6963,21 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a new Column instance using the specified properties.
          * @function create
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
-         * @param {lobby.IColumn=} [properties] Properties to set
-         * @returns {lobby.Column} Column instance
+         * @param {roadmap.IColumn=} [properties] Properties to set
+         * @returns {roadmap.Column} Column instance
          */
         Column.create = function create(properties) {
             return new Column(properties);
         };
 
         /**
-         * Encodes the specified Column message. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * Encodes the specified Column message. Does not implicitly {@link roadmap.Column.verify|verify} messages.
          * @function encode
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
-         * @param {lobby.IColumn} message Column message or plain object to encode
+         * @param {roadmap.IColumn} message Column message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -6977,11 +6994,11 @@ export const lobby = $root.lobby = (() => {
         };
 
         /**
-         * Encodes the specified Column message, length delimited. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * Encodes the specified Column message, length delimited. Does not implicitly {@link roadmap.Column.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
-         * @param {lobby.IColumn} message Column message or plain object to encode
+         * @param {roadmap.IColumn} message Column message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -6992,18 +7009,18 @@ export const lobby = $root.lobby = (() => {
         /**
          * Decodes a Column message from the specified reader or buffer.
          * @function decode
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {lobby.Column} Column
+         * @returns {roadmap.Column} Column
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
         Column.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.Column();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.Column();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -7028,10 +7045,10 @@ export const lobby = $root.lobby = (() => {
         /**
          * Decodes a Column message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {lobby.Column} Column
+         * @returns {roadmap.Column} Column
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
@@ -7044,7 +7061,7 @@ export const lobby = $root.lobby = (() => {
         /**
          * Verifies a Column message.
          * @function verify
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -7081,18 +7098,18 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a Column message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {lobby.Column} Column
+         * @returns {roadmap.Column} Column
          */
         Column.fromObject = function fromObject(object) {
-            if (object instanceof $root.lobby.Column)
+            if (object instanceof $root.roadmap.Column)
                 return object;
-            let message = new $root.lobby.Column();
+            let message = new $root.roadmap.Column();
             if (object.blocks) {
                 if (!Array.isArray(object.blocks))
-                    throw TypeError(".lobby.Column.blocks: array expected");
+                    throw TypeError(".roadmap.Column.blocks: array expected");
                 message.blocks = [];
                 for (let i = 0; i < object.blocks.length; ++i)
                     switch (object.blocks[i]) {
@@ -7157,9 +7174,9 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a plain object from a Column message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @static
-         * @param {lobby.Column} message Column
+         * @param {roadmap.Column} message Column
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
@@ -7172,7 +7189,7 @@ export const lobby = $root.lobby = (() => {
             if (message.blocks && message.blocks.length) {
                 object.blocks = [];
                 for (let j = 0; j < message.blocks.length; ++j)
-                    object.blocks[j] = options.enums === String ? $root.lobby.Block[message.blocks[j]] : message.blocks[j];
+                    object.blocks[j] = options.enums === String ? $root.roadmap.Block[message.blocks[j]] : message.blocks[j];
             }
             return object;
         };
@@ -7180,7 +7197,7 @@ export const lobby = $root.lobby = (() => {
         /**
          * Converts this Column to JSON.
          * @function toJSON
-         * @memberof lobby.Column
+         * @memberof roadmap.Column
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
@@ -7191,22 +7208,22 @@ export const lobby = $root.lobby = (() => {
         return Column;
     })();
 
-    lobby.BeadPlate = (function() {
+    roadmap.BeadPlate = (function() {
 
         /**
          * Properties of a BeadPlate.
-         * @memberof lobby
+         * @memberof roadmap
          * @interface IBeadPlate
-         * @property {Array.<lobby.Block>|null} [blocks] BeadPlate blocks
+         * @property {Array.<roadmap.Block>|null} [blocks] BeadPlate blocks
          */
 
         /**
          * Constructs a new BeadPlate.
-         * @memberof lobby
+         * @memberof roadmap
          * @classdesc Represents a BeadPlate.
          * @implements IBeadPlate
          * @constructor
-         * @param {lobby.IBeadPlate=} [properties] Properties to set
+         * @param {roadmap.IBeadPlate=} [properties] Properties to set
          */
         function BeadPlate(properties) {
             this.blocks = [];
@@ -7218,8 +7235,8 @@ export const lobby = $root.lobby = (() => {
 
         /**
          * BeadPlate blocks.
-         * @member {Array.<lobby.Block>} blocks
-         * @memberof lobby.BeadPlate
+         * @member {Array.<roadmap.Block>} blocks
+         * @memberof roadmap.BeadPlate
          * @instance
          */
         BeadPlate.prototype.blocks = $util.emptyArray;
@@ -7227,21 +7244,21 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a new BeadPlate instance using the specified properties.
          * @function create
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
-         * @param {lobby.IBeadPlate=} [properties] Properties to set
-         * @returns {lobby.BeadPlate} BeadPlate instance
+         * @param {roadmap.IBeadPlate=} [properties] Properties to set
+         * @returns {roadmap.BeadPlate} BeadPlate instance
          */
         BeadPlate.create = function create(properties) {
             return new BeadPlate(properties);
         };
 
         /**
-         * Encodes the specified BeadPlate message. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * Encodes the specified BeadPlate message. Does not implicitly {@link roadmap.BeadPlate.verify|verify} messages.
          * @function encode
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
-         * @param {lobby.IBeadPlate} message BeadPlate message or plain object to encode
+         * @param {roadmap.IBeadPlate} message BeadPlate message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -7258,11 +7275,11 @@ export const lobby = $root.lobby = (() => {
         };
 
         /**
-         * Encodes the specified BeadPlate message, length delimited. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * Encodes the specified BeadPlate message, length delimited. Does not implicitly {@link roadmap.BeadPlate.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
-         * @param {lobby.IBeadPlate} message BeadPlate message or plain object to encode
+         * @param {roadmap.IBeadPlate} message BeadPlate message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -7273,18 +7290,18 @@ export const lobby = $root.lobby = (() => {
         /**
          * Decodes a BeadPlate message from the specified reader or buffer.
          * @function decode
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {lobby.BeadPlate} BeadPlate
+         * @returns {roadmap.BeadPlate} BeadPlate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
         BeadPlate.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.BeadPlate();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.BeadPlate();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -7309,10 +7326,10 @@ export const lobby = $root.lobby = (() => {
         /**
          * Decodes a BeadPlate message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {lobby.BeadPlate} BeadPlate
+         * @returns {roadmap.BeadPlate} BeadPlate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
@@ -7325,7 +7342,7 @@ export const lobby = $root.lobby = (() => {
         /**
          * Verifies a BeadPlate message.
          * @function verify
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -7362,18 +7379,18 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a BeadPlate message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {lobby.BeadPlate} BeadPlate
+         * @returns {roadmap.BeadPlate} BeadPlate
          */
         BeadPlate.fromObject = function fromObject(object) {
-            if (object instanceof $root.lobby.BeadPlate)
+            if (object instanceof $root.roadmap.BeadPlate)
                 return object;
-            let message = new $root.lobby.BeadPlate();
+            let message = new $root.roadmap.BeadPlate();
             if (object.blocks) {
                 if (!Array.isArray(object.blocks))
-                    throw TypeError(".lobby.BeadPlate.blocks: array expected");
+                    throw TypeError(".roadmap.BeadPlate.blocks: array expected");
                 message.blocks = [];
                 for (let i = 0; i < object.blocks.length; ++i)
                     switch (object.blocks[i]) {
@@ -7438,9 +7455,9 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a plain object from a BeadPlate message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @static
-         * @param {lobby.BeadPlate} message BeadPlate
+         * @param {roadmap.BeadPlate} message BeadPlate
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
@@ -7453,7 +7470,7 @@ export const lobby = $root.lobby = (() => {
             if (message.blocks && message.blocks.length) {
                 object.blocks = [];
                 for (let j = 0; j < message.blocks.length; ++j)
-                    object.blocks[j] = options.enums === String ? $root.lobby.Block[message.blocks[j]] : message.blocks[j];
+                    object.blocks[j] = options.enums === String ? $root.roadmap.Block[message.blocks[j]] : message.blocks[j];
             }
             return object;
         };
@@ -7461,7 +7478,7 @@ export const lobby = $root.lobby = (() => {
         /**
          * Converts this BeadPlate to JSON.
          * @function toJSON
-         * @memberof lobby.BeadPlate
+         * @memberof roadmap.BeadPlate
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
@@ -7472,22 +7489,22 @@ export const lobby = $root.lobby = (() => {
         return BeadPlate;
     })();
 
-    lobby.BigRoad = (function() {
+    roadmap.BigRoad = (function() {
 
         /**
          * Properties of a BigRoad.
-         * @memberof lobby
+         * @memberof roadmap
          * @interface IBigRoad
-         * @property {Array.<lobby.IColumn>|null} [columns] BigRoad columns
+         * @property {Array.<roadmap.IColumn>|null} [columns] BigRoad columns
          */
 
         /**
          * Constructs a new BigRoad.
-         * @memberof lobby
+         * @memberof roadmap
          * @classdesc Represents a BigRoad.
          * @implements IBigRoad
          * @constructor
-         * @param {lobby.IBigRoad=} [properties] Properties to set
+         * @param {roadmap.IBigRoad=} [properties] Properties to set
          */
         function BigRoad(properties) {
             this.columns = [];
@@ -7499,8 +7516,8 @@ export const lobby = $root.lobby = (() => {
 
         /**
          * BigRoad columns.
-         * @member {Array.<lobby.IColumn>} columns
-         * @memberof lobby.BigRoad
+         * @member {Array.<roadmap.IColumn>} columns
+         * @memberof roadmap.BigRoad
          * @instance
          */
         BigRoad.prototype.columns = $util.emptyArray;
@@ -7508,21 +7525,21 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a new BigRoad instance using the specified properties.
          * @function create
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
-         * @param {lobby.IBigRoad=} [properties] Properties to set
-         * @returns {lobby.BigRoad} BigRoad instance
+         * @param {roadmap.IBigRoad=} [properties] Properties to set
+         * @returns {roadmap.BigRoad} BigRoad instance
          */
         BigRoad.create = function create(properties) {
             return new BigRoad(properties);
         };
 
         /**
-         * Encodes the specified BigRoad message. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * Encodes the specified BigRoad message. Does not implicitly {@link roadmap.BigRoad.verify|verify} messages.
          * @function encode
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
-         * @param {lobby.IBigRoad} message BigRoad message or plain object to encode
+         * @param {roadmap.IBigRoad} message BigRoad message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -7531,16 +7548,16 @@ export const lobby = $root.lobby = (() => {
                 writer = $Writer.create();
             if (message.columns != null && message.columns.length)
                 for (let i = 0; i < message.columns.length; ++i)
-                    $root.lobby.Column.encode(message.columns[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.roadmap.Column.encode(message.columns[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
         /**
-         * Encodes the specified BigRoad message, length delimited. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * Encodes the specified BigRoad message, length delimited. Does not implicitly {@link roadmap.BigRoad.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
-         * @param {lobby.IBigRoad} message BigRoad message or plain object to encode
+         * @param {roadmap.IBigRoad} message BigRoad message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -7551,25 +7568,25 @@ export const lobby = $root.lobby = (() => {
         /**
          * Decodes a BigRoad message from the specified reader or buffer.
          * @function decode
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {lobby.BigRoad} BigRoad
+         * @returns {roadmap.BigRoad} BigRoad
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
         BigRoad.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.BigRoad();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.BigRoad();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
                     if (!(message.columns && message.columns.length))
                         message.columns = [];
-                    message.columns.push($root.lobby.Column.decode(reader, reader.uint32()));
+                    message.columns.push($root.roadmap.Column.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7582,10 +7599,10 @@ export const lobby = $root.lobby = (() => {
         /**
          * Decodes a BigRoad message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {lobby.BigRoad} BigRoad
+         * @returns {roadmap.BigRoad} BigRoad
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
@@ -7598,7 +7615,7 @@ export const lobby = $root.lobby = (() => {
         /**
          * Verifies a BigRoad message.
          * @function verify
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -7610,7 +7627,7 @@ export const lobby = $root.lobby = (() => {
                 if (!Array.isArray(message.columns))
                     return "columns: array expected";
                 for (let i = 0; i < message.columns.length; ++i) {
-                    let error = $root.lobby.Column.verify(message.columns[i]);
+                    let error = $root.roadmap.Column.verify(message.columns[i]);
                     if (error)
                         return "columns." + error;
                 }
@@ -7621,23 +7638,23 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a BigRoad message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {lobby.BigRoad} BigRoad
+         * @returns {roadmap.BigRoad} BigRoad
          */
         BigRoad.fromObject = function fromObject(object) {
-            if (object instanceof $root.lobby.BigRoad)
+            if (object instanceof $root.roadmap.BigRoad)
                 return object;
-            let message = new $root.lobby.BigRoad();
+            let message = new $root.roadmap.BigRoad();
             if (object.columns) {
                 if (!Array.isArray(object.columns))
-                    throw TypeError(".lobby.BigRoad.columns: array expected");
+                    throw TypeError(".roadmap.BigRoad.columns: array expected");
                 message.columns = [];
                 for (let i = 0; i < object.columns.length; ++i) {
                     if (typeof object.columns[i] !== "object")
-                        throw TypeError(".lobby.BigRoad.columns: object expected");
-                    message.columns[i] = $root.lobby.Column.fromObject(object.columns[i]);
+                        throw TypeError(".roadmap.BigRoad.columns: object expected");
+                    message.columns[i] = $root.roadmap.Column.fromObject(object.columns[i]);
                 }
             }
             return message;
@@ -7646,9 +7663,9 @@ export const lobby = $root.lobby = (() => {
         /**
          * Creates a plain object from a BigRoad message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @static
-         * @param {lobby.BigRoad} message BigRoad
+         * @param {roadmap.BigRoad} message BigRoad
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
@@ -7661,7 +7678,7 @@ export const lobby = $root.lobby = (() => {
             if (message.columns && message.columns.length) {
                 object.columns = [];
                 for (let j = 0; j < message.columns.length; ++j)
-                    object.columns[j] = $root.lobby.Column.toObject(message.columns[j], options);
+                    object.columns[j] = $root.roadmap.Column.toObject(message.columns[j], options);
             }
             return object;
         };
@@ -7669,7 +7686,7 @@ export const lobby = $root.lobby = (() => {
         /**
          * Converts this BigRoad to JSON.
          * @function toJSON
-         * @memberof lobby.BigRoad
+         * @memberof roadmap.BigRoad
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
@@ -7680,25 +7697,26 @@ export const lobby = $root.lobby = (() => {
         return BigRoad;
     })();
 
-    lobby.roadmap = (function() {
+    roadmap.Roadmap = (function() {
 
         /**
-         * Properties of a roadmap.
-         * @memberof lobby
-         * @interface Iroadmap
-         * @property {lobby.IBeadPlate|null} [beadPlate] roadmap beadPlate
-         * @property {lobby.IBigRoad|null} [bigRoad] roadmap bigRoad
+         * Properties of a Roadmap.
+         * @memberof roadmap
+         * @interface IRoadmap
+         * @property {foundation.IHeader|null} [header] Roadmap header
+         * @property {roadmap.IBeadPlate|null} [beadPlate] Roadmap beadPlate
+         * @property {roadmap.IBigRoad|null} [bigRoad] Roadmap bigRoad
          */
 
         /**
-         * Constructs a new roadmap.
-         * @memberof lobby
-         * @classdesc Represents a roadmap.
-         * @implements Iroadmap
+         * Constructs a new Roadmap.
+         * @memberof roadmap
+         * @classdesc Represents a Roadmap.
+         * @implements IRoadmap
          * @constructor
-         * @param {lobby.Iroadmap=} [properties] Properties to set
+         * @param {roadmap.IRoadmap=} [properties] Properties to set
          */
-        function roadmap(properties) {
+        function Roadmap(properties) {
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -7706,88 +7724,101 @@ export const lobby = $root.lobby = (() => {
         }
 
         /**
-         * roadmap beadPlate.
-         * @member {lobby.IBeadPlate|null|undefined} beadPlate
-         * @memberof lobby.roadmap
+         * Roadmap header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof roadmap.Roadmap
          * @instance
          */
-        roadmap.prototype.beadPlate = null;
+        Roadmap.prototype.header = null;
 
         /**
-         * roadmap bigRoad.
-         * @member {lobby.IBigRoad|null|undefined} bigRoad
-         * @memberof lobby.roadmap
+         * Roadmap beadPlate.
+         * @member {roadmap.IBeadPlate|null|undefined} beadPlate
+         * @memberof roadmap.Roadmap
          * @instance
          */
-        roadmap.prototype.bigRoad = null;
+        Roadmap.prototype.beadPlate = null;
 
         /**
-         * Creates a new roadmap instance using the specified properties.
+         * Roadmap bigRoad.
+         * @member {roadmap.IBigRoad|null|undefined} bigRoad
+         * @memberof roadmap.Roadmap
+         * @instance
+         */
+        Roadmap.prototype.bigRoad = null;
+
+        /**
+         * Creates a new Roadmap instance using the specified properties.
          * @function create
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
-         * @param {lobby.Iroadmap=} [properties] Properties to set
-         * @returns {lobby.roadmap} roadmap instance
+         * @param {roadmap.IRoadmap=} [properties] Properties to set
+         * @returns {roadmap.Roadmap} Roadmap instance
          */
-        roadmap.create = function create(properties) {
-            return new roadmap(properties);
+        Roadmap.create = function create(properties) {
+            return new Roadmap(properties);
         };
 
         /**
-         * Encodes the specified roadmap message. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
+         * Encodes the specified Roadmap message. Does not implicitly {@link roadmap.Roadmap.verify|verify} messages.
          * @function encode
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
-         * @param {lobby.Iroadmap} message roadmap message or plain object to encode
+         * @param {roadmap.IRoadmap} message Roadmap message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        roadmap.encode = function encode(message, writer) {
+        Roadmap.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.beadPlate != null && Object.hasOwnProperty.call(message, "beadPlate"))
-                $root.lobby.BeadPlate.encode(message.beadPlate, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.roadmap.BeadPlate.encode(message.beadPlate, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.bigRoad != null && Object.hasOwnProperty.call(message, "bigRoad"))
-                $root.lobby.BigRoad.encode(message.bigRoad, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.roadmap.BigRoad.encode(message.bigRoad, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
         /**
-         * Encodes the specified roadmap message, length delimited. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
+         * Encodes the specified Roadmap message, length delimited. Does not implicitly {@link roadmap.Roadmap.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
-         * @param {lobby.Iroadmap} message roadmap message or plain object to encode
+         * @param {roadmap.IRoadmap} message Roadmap message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        roadmap.encodeDelimited = function encodeDelimited(message, writer) {
+        Roadmap.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a roadmap message from the specified reader or buffer.
+         * Decodes a Roadmap message from the specified reader or buffer.
          * @function decode
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {lobby.roadmap} roadmap
+         * @returns {roadmap.Roadmap} Roadmap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        roadmap.decode = function decode(reader, length) {
+        Roadmap.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.roadmap();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.Roadmap();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.beadPlate = $root.lobby.BeadPlate.decode(reader, reader.uint32());
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.bigRoad = $root.lobby.BigRoad.decode(reader, reader.uint32());
+                    message.beadPlate = $root.roadmap.BeadPlate.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.bigRoad = $root.roadmap.BigRoad.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7798,39 +7829,44 @@ export const lobby = $root.lobby = (() => {
         };
 
         /**
-         * Decodes a roadmap message from the specified reader or buffer, length delimited.
+         * Decodes a Roadmap message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {lobby.roadmap} roadmap
+         * @returns {roadmap.Roadmap} Roadmap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        roadmap.decodeDelimited = function decodeDelimited(reader) {
+        Roadmap.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a roadmap message.
+         * Verifies a Roadmap message.
          * @function verify
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        roadmap.verify = function verify(message) {
+        Roadmap.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
             if (message.beadPlate != null && message.hasOwnProperty("beadPlate")) {
-                let error = $root.lobby.BeadPlate.verify(message.beadPlate);
+                let error = $root.roadmap.BeadPlate.verify(message.beadPlate);
                 if (error)
                     return "beadPlate." + error;
             }
             if (message.bigRoad != null && message.hasOwnProperty("bigRoad")) {
-                let error = $root.lobby.BigRoad.verify(message.bigRoad);
+                let error = $root.roadmap.BigRoad.verify(message.bigRoad);
                 if (error)
                     return "bigRoad." + error;
             }
@@ -7838,69 +7874,77 @@ export const lobby = $root.lobby = (() => {
         };
 
         /**
-         * Creates a roadmap message from a plain object. Also converts values to their respective internal types.
+         * Creates a Roadmap message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {lobby.roadmap} roadmap
+         * @returns {roadmap.Roadmap} Roadmap
          */
-        roadmap.fromObject = function fromObject(object) {
-            if (object instanceof $root.lobby.roadmap)
+        Roadmap.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.Roadmap)
                 return object;
-            let message = new $root.lobby.roadmap();
+            let message = new $root.roadmap.Roadmap();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".roadmap.Roadmap.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
             if (object.beadPlate != null) {
                 if (typeof object.beadPlate !== "object")
-                    throw TypeError(".lobby.roadmap.beadPlate: object expected");
-                message.beadPlate = $root.lobby.BeadPlate.fromObject(object.beadPlate);
+                    throw TypeError(".roadmap.Roadmap.beadPlate: object expected");
+                message.beadPlate = $root.roadmap.BeadPlate.fromObject(object.beadPlate);
             }
             if (object.bigRoad != null) {
                 if (typeof object.bigRoad !== "object")
-                    throw TypeError(".lobby.roadmap.bigRoad: object expected");
-                message.bigRoad = $root.lobby.BigRoad.fromObject(object.bigRoad);
+                    throw TypeError(".roadmap.Roadmap.bigRoad: object expected");
+                message.bigRoad = $root.roadmap.BigRoad.fromObject(object.bigRoad);
             }
             return message;
         };
 
         /**
-         * Creates a plain object from a roadmap message. Also converts values to other types if specified.
+         * Creates a plain object from a Roadmap message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @static
-         * @param {lobby.roadmap} message roadmap
+         * @param {roadmap.Roadmap} message Roadmap
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        roadmap.toObject = function toObject(message, options) {
+        Roadmap.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             let object = {};
             if (options.defaults) {
+                object.header = null;
                 object.beadPlate = null;
                 object.bigRoad = null;
             }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.beadPlate != null && message.hasOwnProperty("beadPlate"))
-                object.beadPlate = $root.lobby.BeadPlate.toObject(message.beadPlate, options);
+                object.beadPlate = $root.roadmap.BeadPlate.toObject(message.beadPlate, options);
             if (message.bigRoad != null && message.hasOwnProperty("bigRoad"))
-                object.bigRoad = $root.lobby.BigRoad.toObject(message.bigRoad, options);
+                object.bigRoad = $root.roadmap.BigRoad.toObject(message.bigRoad, options);
             return object;
         };
 
         /**
-         * Converts this roadmap to JSON.
+         * Converts this Roadmap to JSON.
          * @function toJSON
-         * @memberof lobby.roadmap
+         * @memberof roadmap.Roadmap
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        roadmap.prototype.toJSON = function toJSON() {
+        Roadmap.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return roadmap;
+        return Roadmap;
     })();
 
-    return lobby;
+    return roadmap;
 })();
 
 export const route = $root.route = (() => {
@@ -7942,6 +7986,7 @@ export const route = $root.route = (() => {
      * @property {number} BetError=23 BetError value
      * @property {number} GameStatus=24 GameStatus value
      * @property {number} DealerGameStatus=25 DealerGameStatus value
+     * @property {number} Roadmap=26 Roadmap value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -7971,6 +8016,7 @@ export const route = $root.route = (() => {
         values[valuesById[23] = "BetError"] = 23;
         values[valuesById[24] = "GameStatus"] = 24;
         values[valuesById[25] = "DealerGameStatus"] = 25;
+        values[valuesById[26] = "Roadmap"] = 26;
         return values;
     })();
 

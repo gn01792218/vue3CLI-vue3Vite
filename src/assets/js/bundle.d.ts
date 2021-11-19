@@ -2842,6 +2842,10 @@ export namespace lobby {
          */
         public toJSON(): { [k: string]: any };
     }
+}
+
+/** Namespace roadmap. */
+export namespace roadmap {
 
     /** Block enum. */
     enum Block {
@@ -2864,7 +2868,7 @@ export namespace lobby {
     interface IColumn {
 
         /** Column blocks */
-        blocks?: (lobby.Block[]|null);
+        blocks?: (roadmap.Block[]|null);
     }
 
     /** Represents a Column. */
@@ -2874,33 +2878,33 @@ export namespace lobby {
          * Constructs a new Column.
          * @param [properties] Properties to set
          */
-        constructor(properties?: lobby.IColumn);
+        constructor(properties?: roadmap.IColumn);
 
         /** Column blocks. */
-        public blocks: lobby.Block[];
+        public blocks: roadmap.Block[];
 
         /**
          * Creates a new Column instance using the specified properties.
          * @param [properties] Properties to set
          * @returns Column instance
          */
-        public static create(properties?: lobby.IColumn): lobby.Column;
+        public static create(properties?: roadmap.IColumn): roadmap.Column;
 
         /**
-         * Encodes the specified Column message. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * Encodes the specified Column message. Does not implicitly {@link roadmap.Column.verify|verify} messages.
          * @param message Column message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: lobby.IColumn, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: roadmap.IColumn, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified Column message, length delimited. Does not implicitly {@link lobby.Column.verify|verify} messages.
+         * Encodes the specified Column message, length delimited. Does not implicitly {@link roadmap.Column.verify|verify} messages.
          * @param message Column message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: lobby.IColumn, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: roadmap.IColumn, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a Column message from the specified reader or buffer.
@@ -2910,7 +2914,7 @@ export namespace lobby {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.Column;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.Column;
 
         /**
          * Decodes a Column message from the specified reader or buffer, length delimited.
@@ -2919,7 +2923,7 @@ export namespace lobby {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.Column;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.Column;
 
         /**
          * Verifies a Column message.
@@ -2933,7 +2937,7 @@ export namespace lobby {
          * @param object Plain object
          * @returns Column
          */
-        public static fromObject(object: { [k: string]: any }): lobby.Column;
+        public static fromObject(object: { [k: string]: any }): roadmap.Column;
 
         /**
          * Creates a plain object from a Column message. Also converts values to other types if specified.
@@ -2941,7 +2945,7 @@ export namespace lobby {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: lobby.Column, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: roadmap.Column, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this Column to JSON.
@@ -2954,7 +2958,7 @@ export namespace lobby {
     interface IBeadPlate {
 
         /** BeadPlate blocks */
-        blocks?: (lobby.Block[]|null);
+        blocks?: (roadmap.Block[]|null);
     }
 
     /** Represents a BeadPlate. */
@@ -2964,33 +2968,33 @@ export namespace lobby {
          * Constructs a new BeadPlate.
          * @param [properties] Properties to set
          */
-        constructor(properties?: lobby.IBeadPlate);
+        constructor(properties?: roadmap.IBeadPlate);
 
         /** BeadPlate blocks. */
-        public blocks: lobby.Block[];
+        public blocks: roadmap.Block[];
 
         /**
          * Creates a new BeadPlate instance using the specified properties.
          * @param [properties] Properties to set
          * @returns BeadPlate instance
          */
-        public static create(properties?: lobby.IBeadPlate): lobby.BeadPlate;
+        public static create(properties?: roadmap.IBeadPlate): roadmap.BeadPlate;
 
         /**
-         * Encodes the specified BeadPlate message. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * Encodes the specified BeadPlate message. Does not implicitly {@link roadmap.BeadPlate.verify|verify} messages.
          * @param message BeadPlate message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: lobby.IBeadPlate, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: roadmap.IBeadPlate, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified BeadPlate message, length delimited. Does not implicitly {@link lobby.BeadPlate.verify|verify} messages.
+         * Encodes the specified BeadPlate message, length delimited. Does not implicitly {@link roadmap.BeadPlate.verify|verify} messages.
          * @param message BeadPlate message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: lobby.IBeadPlate, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: roadmap.IBeadPlate, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a BeadPlate message from the specified reader or buffer.
@@ -3000,7 +3004,7 @@ export namespace lobby {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.BeadPlate;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.BeadPlate;
 
         /**
          * Decodes a BeadPlate message from the specified reader or buffer, length delimited.
@@ -3009,7 +3013,7 @@ export namespace lobby {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.BeadPlate;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.BeadPlate;
 
         /**
          * Verifies a BeadPlate message.
@@ -3023,7 +3027,7 @@ export namespace lobby {
          * @param object Plain object
          * @returns BeadPlate
          */
-        public static fromObject(object: { [k: string]: any }): lobby.BeadPlate;
+        public static fromObject(object: { [k: string]: any }): roadmap.BeadPlate;
 
         /**
          * Creates a plain object from a BeadPlate message. Also converts values to other types if specified.
@@ -3031,7 +3035,7 @@ export namespace lobby {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: lobby.BeadPlate, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: roadmap.BeadPlate, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this BeadPlate to JSON.
@@ -3044,7 +3048,7 @@ export namespace lobby {
     interface IBigRoad {
 
         /** BigRoad columns */
-        columns?: (lobby.IColumn[]|null);
+        columns?: (roadmap.IColumn[]|null);
     }
 
     /** Represents a BigRoad. */
@@ -3054,33 +3058,33 @@ export namespace lobby {
          * Constructs a new BigRoad.
          * @param [properties] Properties to set
          */
-        constructor(properties?: lobby.IBigRoad);
+        constructor(properties?: roadmap.IBigRoad);
 
         /** BigRoad columns. */
-        public columns: lobby.IColumn[];
+        public columns: roadmap.IColumn[];
 
         /**
          * Creates a new BigRoad instance using the specified properties.
          * @param [properties] Properties to set
          * @returns BigRoad instance
          */
-        public static create(properties?: lobby.IBigRoad): lobby.BigRoad;
+        public static create(properties?: roadmap.IBigRoad): roadmap.BigRoad;
 
         /**
-         * Encodes the specified BigRoad message. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * Encodes the specified BigRoad message. Does not implicitly {@link roadmap.BigRoad.verify|verify} messages.
          * @param message BigRoad message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: lobby.IBigRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: roadmap.IBigRoad, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified BigRoad message, length delimited. Does not implicitly {@link lobby.BigRoad.verify|verify} messages.
+         * Encodes the specified BigRoad message, length delimited. Does not implicitly {@link roadmap.BigRoad.verify|verify} messages.
          * @param message BigRoad message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: lobby.IBigRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: roadmap.IBigRoad, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a BigRoad message from the specified reader or buffer.
@@ -3090,7 +3094,7 @@ export namespace lobby {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.BigRoad;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.BigRoad;
 
         /**
          * Decodes a BigRoad message from the specified reader or buffer, length delimited.
@@ -3099,7 +3103,7 @@ export namespace lobby {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.BigRoad;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.BigRoad;
 
         /**
          * Verifies a BigRoad message.
@@ -3113,7 +3117,7 @@ export namespace lobby {
          * @param object Plain object
          * @returns BigRoad
          */
-        public static fromObject(object: { [k: string]: any }): lobby.BigRoad;
+        public static fromObject(object: { [k: string]: any }): roadmap.BigRoad;
 
         /**
          * Creates a plain object from a BigRoad message. Also converts values to other types if specified.
@@ -3121,7 +3125,7 @@ export namespace lobby {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: lobby.BigRoad, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: roadmap.BigRoad, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this BigRoad to JSON.
@@ -3130,97 +3134,103 @@ export namespace lobby {
         public toJSON(): { [k: string]: any };
     }
 
-    /** Properties of a roadmap. */
-    interface Iroadmap {
+    /** Properties of a Roadmap. */
+    interface IRoadmap {
 
-        /** roadmap beadPlate */
-        beadPlate?: (lobby.IBeadPlate|null);
+        /** Roadmap header */
+        header?: (foundation.IHeader|null);
 
-        /** roadmap bigRoad */
-        bigRoad?: (lobby.IBigRoad|null);
+        /** Roadmap beadPlate */
+        beadPlate?: (roadmap.IBeadPlate|null);
+
+        /** Roadmap bigRoad */
+        bigRoad?: (roadmap.IBigRoad|null);
     }
 
-    /** Represents a roadmap. */
-    class roadmap implements Iroadmap {
+    /** Represents a Roadmap. */
+    class Roadmap implements IRoadmap {
 
         /**
-         * Constructs a new roadmap.
+         * Constructs a new Roadmap.
          * @param [properties] Properties to set
          */
-        constructor(properties?: lobby.Iroadmap);
+        constructor(properties?: roadmap.IRoadmap);
 
-        /** roadmap beadPlate. */
-        public beadPlate?: (lobby.IBeadPlate|null);
+        /** Roadmap header. */
+        public header?: (foundation.IHeader|null);
 
-        /** roadmap bigRoad. */
-        public bigRoad?: (lobby.IBigRoad|null);
+        /** Roadmap beadPlate. */
+        public beadPlate?: (roadmap.IBeadPlate|null);
+
+        /** Roadmap bigRoad. */
+        public bigRoad?: (roadmap.IBigRoad|null);
 
         /**
-         * Creates a new roadmap instance using the specified properties.
+         * Creates a new Roadmap instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns roadmap instance
+         * @returns Roadmap instance
          */
-        public static create(properties?: lobby.Iroadmap): lobby.roadmap;
+        public static create(properties?: roadmap.IRoadmap): roadmap.Roadmap;
 
         /**
-         * Encodes the specified roadmap message. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
-         * @param message roadmap message or plain object to encode
+         * Encodes the specified Roadmap message. Does not implicitly {@link roadmap.Roadmap.verify|verify} messages.
+         * @param message Roadmap message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: lobby.Iroadmap, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: roadmap.IRoadmap, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified roadmap message, length delimited. Does not implicitly {@link lobby.roadmap.verify|verify} messages.
-         * @param message roadmap message or plain object to encode
+         * Encodes the specified Roadmap message, length delimited. Does not implicitly {@link roadmap.Roadmap.verify|verify} messages.
+         * @param message Roadmap message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: lobby.Iroadmap, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: roadmap.IRoadmap, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a roadmap message from the specified reader or buffer.
+         * Decodes a Roadmap message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns roadmap
+         * @returns Roadmap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.roadmap;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.Roadmap;
 
         /**
-         * Decodes a roadmap message from the specified reader or buffer, length delimited.
+         * Decodes a Roadmap message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns roadmap
+         * @returns Roadmap
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.roadmap;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.Roadmap;
 
         /**
-         * Verifies a roadmap message.
+         * Verifies a Roadmap message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a roadmap message from a plain object. Also converts values to their respective internal types.
+         * Creates a Roadmap message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns roadmap
+         * @returns Roadmap
          */
-        public static fromObject(object: { [k: string]: any }): lobby.roadmap;
+        public static fromObject(object: { [k: string]: any }): roadmap.Roadmap;
 
         /**
-         * Creates a plain object from a roadmap message. Also converts values to other types if specified.
-         * @param message roadmap
+         * Creates a plain object from a Roadmap message. Also converts values to other types if specified.
+         * @param message Roadmap
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: lobby.roadmap, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: roadmap.Roadmap, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this roadmap to JSON.
+         * Converts this Roadmap to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -3257,7 +3267,8 @@ export namespace route {
         DealerRoundEndRecall = 22,
         BetError = 23,
         GameStatus = 24,
-        DealerGameStatus = 25
+        DealerGameStatus = 25,
+        Roadmap = 26
     }
 }
 

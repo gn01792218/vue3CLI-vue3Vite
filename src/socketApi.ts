@@ -12,6 +12,7 @@ const table = protoRoot.table
 const bet = protoRoot.bet
 const dealer = protoRoot.dealer
 const game = protoRoot.game
+const roadmap = protoRoot.roadmap
 //各種send方法
 //發送心跳
 const sendPon = ()=>{
@@ -151,6 +152,10 @@ export const getMsgReCall = (e:any) =>{
             // console.log('BetRoundCountdown',BetRoundCountdown)
             store.commit('game/BetRoundCountdown',BetRoundCountdown)
             break
-            
+        case route.Roadmap:
+            let BeadPlate = roadmap.BeadPlate.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BeadPlate',BeadPlate)
+            store.commit('roadmap/BeadPlate',BeadPlate)
+            break
     }
 }
