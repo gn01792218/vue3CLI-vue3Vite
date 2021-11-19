@@ -32,18 +32,25 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
+        const beadPlateResult = computed(()=>{
+          return store.state.roadmap.map.beadPlate.blocks
+        })
         // const gameResult = ref([1])
         const beadPlateColumnCount = ref(0)
         const roadIndex = ref(0)
         const overflowCount = ref(0)
-        watch(gameResult,()=>{
+        watch(beadPlateResult,()=>{
           showRoad ()
+          console.log(beadPlateResult.value)
         })
+        // watch(gameResult,()=>{
+        //   showRoad ()
+        // })
         const beadPlateRow = new Array(6)
         const beadPlateColumn = new Array(8)
-        function put (){
-          showRoad ()
-        }
+        // function put (){
+        //   showRoadByGameResult  ()
+        // }
         function putRoad(columnNum:number,roadnum:number,gameResult:number){
           let beadPlateCol = document.querySelector(`.beadPlate-column${columnNum}`) as HTMLElement
           let beadPlateColItem = beadPlateCol.children[roadnum].firstChild as HTMLElement
@@ -67,7 +74,7 @@ export default defineComponent({
           roadIndex.value++
         }
         function showRoad () {
-          gameResult.value.forEach((i:any)=>{
+          beadPlateResult.value.forEach((i:any)=>{
             if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
               // resetRoad()
               addColumn()
@@ -79,6 +86,19 @@ export default defineComponent({
             putRoad(beadPlateColumnCount.value,roadIndex.value,i)
           })
         }
+        // function showRoadByGameResult () {
+        //   gameResult.value.forEach((i:any)=>{
+        //     if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
+        //       // resetRoad()
+        //       addColumn()
+        //     }
+        //     if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
+        //       beadPlateColumnCount.value++
+        //       roadIndex.value = 0
+        //     }
+        //     putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+        //   })
+        // }
         function addColumn () {  //滿格時一次增加一格的方法
           beadPlateColumnCount.value++
           roadIndex.value = 0
@@ -120,7 +140,7 @@ export default defineComponent({
           //data
           beadPlateRow,beadPlateColumn,
           //methods
-         put,
+        //  put,
         }
     },
 
