@@ -28,26 +28,29 @@ export default defineComponent({
     setup(){
         //抓取元素要在onmounted或是function中，因為setup在mounted之前，DOM還沒長出來
         //表格
+        const beadPlateRow = new Array(6)
+        const beadPlateColumn = new Array(8)
+        // const gameResult = ref([1])
+        const beadPlateColumnCount = ref(0)
+        const roadIndex = ref(0)
+        const overflowCount = ref(0)
         const store = useStore()
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
         const beadPlateResult = computed(()=>{
-          return store.state.roadmap.map.beadPlate.blocks
+          return store.state.roadmap.map.beadPlate
         })
-        // const gameResult = ref([1])
-        const beadPlateColumnCount = ref(0)
-        const roadIndex = ref(0)
-        const overflowCount = ref(0)
         watch(beadPlateResult,()=>{
-          showRoad ()
+          if(beadPlateResult.value){
+            showRoad ()
+          }
           console.log(beadPlateResult.value)
         })
-        // watch(gameResult,()=>{
-        //   showRoad ()
-        // })
-        const beadPlateRow = new Array(6)
-        const beadPlateColumn = new Array(8)
+        watch(gameResult,()=>{
+          showRoad ()
+        })
+       
         // function put (){
         //   showRoadByGameResult  ()
         // }
@@ -74,7 +77,7 @@ export default defineComponent({
           roadIndex.value++
         }
         function showRoad () {
-          beadPlateResult.value.forEach((i:any)=>{
+            beadPlateResult.value.blocks.forEach((i:any)=>{
             if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
               // resetRoad()
               addColumn()
