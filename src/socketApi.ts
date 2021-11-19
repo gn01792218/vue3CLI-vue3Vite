@@ -155,7 +155,7 @@ export const getMsgReCall = (e:any) =>{
         case route.Roadmap:
             let map = roadmap.Roadmap.decode(new Uint8Array(e.detail.msg.data))
             console.log('map',map)
-            store.commit('roadmap/map',map)
+            // store.commit('roadmap/map',map)
             break
     }
 }
