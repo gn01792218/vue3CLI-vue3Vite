@@ -1,7 +1,23 @@
 
 .poker{ //顯示卡牌
     background-image:$poker-spriteImg;
-  }
-  .card-item-w{
+}
+.card-item-w{
     transform: rotate(90deg);
+}
+.winPoker{
+  // background-color: rgba(206, 156, 94, 0.11);
+  background-color: rgba(206, 156, 94, 0.822);
+  animation-name: winpoker;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  box-shadow: 5px 5px #654d31;
+  border-radius: 10px;
+}
+@keyframes winpoker {
+  from{
+    background-color: rgba(206, 156, 94, 0.342);
+  }to{
+    background-color: rgba(206, 156, 94, 0.822);
   }
+}

@@ -1,15 +1,20 @@
 <template>
     <div class="card-wrap">
     	<section class="card-container d-flex justify-content-center">
-      	<div class=" card-box row justify-content-center">
+        
+      	<div class="player card-box row justify-content-center">
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
+          <span class="playerNum">{{playerPoint}}</span>
       	</div>
-      	<div class="card-box row justify-content-center">
+        
+      	<div class="banker card-box row justify-content-center">
+          
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>
         	</div>
+          <span class="bankerNum">{{bankerPoint}}</span>
       	</div>
     	</section>
     </div>
@@ -44,17 +49,29 @@ export default defineComponent({
      const DrawCard = computed(()=>{  //每次都傳一張
        return store.state.dealer.Draw
      })
+    const gameResult = computed(()=>{ //回傳的是陣列
+            return store.state.dealer.BroadcastGameResult.results
+    })
+    const playerPoint = ref(0)
+    const bankerPoint = ref(0)
      //watch
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
+      resetCardPoint()
+     })
+     watch(gameResult,()=>{
+       setWinCardBoxLight()
+       showCardTotalPoint()
      })
      watch(DrawCard,()=>{  //開牌
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
+       addCardPoint(card.side,card.card.point)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
        lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
+         addCardPoint(i.side,i.card.point)
        })
      })
      //撲克牌業務代碼
@@ -71,6 +88,10 @@ export default defineComponent({
           i.classList.remove('poker')
         })
       }
+      let winCardBox = document.querySelectorAll('.winPoker')
+      winCardBox.forEach(i=>{
+        i.classList.remove('winPoker')
+      })
      }
      function getCardPosition(position:number,cardSideClassName:string):NodeListOf<HTMLElement> | undefined{
        switch(position){  
@@ -80,6 +101,48 @@ export default defineComponent({
         case 3:
           return document.querySelectorAll(`${cardSideClassName}0`)
        }
+     }
+     function setWinCardBoxLight(){
+       gameResult.value.forEach((i:any)=>{
+         switch(i){
+           case 2:
+           case 5:
+            let bankerCardBox = document.querySelectorAll('.banker')
+            bankerCardBox.forEach(i=>{
+              i.classList.add('winPoker')
+            })
+            break
+          case 1:
+          case 3:
+            let playererCardBox = document.querySelectorAll('.player')
+            playererCardBox.forEach(i=>{
+              i.classList.add('winPoker')
+            })
+            break
+         }
+       })
+     }
+     function addCardPoint(cardside:number,point:number){ 
+       switch(cardside){
+        case proto.dealer.Side.Banker:
+          if(point!==10 && point!==11 && point!==12 && point!==13){
+            bankerPoint.value+=point
+          }
+           break
+        case proto.dealer.Side.Player:
+          if(point!==10 && point!==11 && point!==12 && point!==13){
+            playerPoint.value+=point
+          }
+           break
+       }
+     }
+     function resetCardPoint(){
+       playerPoint.value = 0
+       bankerPoint.value = 0
+     }
+     function showCardTotalPoint () {
+       playerPoint.value = playerPoint.value%10
+       bankerPoint.value = bankerPoint.value%10
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit
@@ -128,7 +191,7 @@ export default defineComponent({
      }
     return {
       //data
-      cards,DrawCard,
+      cards,DrawCard,playerPoint,bankerPoint,
       //methods
       showCards,
     }

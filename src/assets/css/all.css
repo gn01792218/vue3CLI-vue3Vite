@@ -827,6 +827,37 @@ a.btn.disabled, fieldset[disabled] a.btn {
           transform: rotate(90deg);
 }
 
+.winPoker {
+  background-color: rgba(206, 156, 94, 0.822);
+  -webkit-animation-name: winpoker;
+          animation-name: winpoker;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+  -webkit-box-shadow: 5px 5px #654d31;
+          box-shadow: 5px 5px #654d31;
+  border-radius: 10px;
+}
+
+@-webkit-keyframes winpoker {
+  from {
+    background-color: rgba(206, 156, 94, 0.342);
+  }
+  to {
+    background-color: rgba(206, 156, 94, 0.822);
+  }
+}
+
+@keyframes winpoker {
+  from {
+    background-color: rgba(206, 156, 94, 0.342);
+  }
+  to {
+    background-color: rgba(206, 156, 94, 0.822);
+  }
+}
+
 .counter {
   z-index: 1;
 }

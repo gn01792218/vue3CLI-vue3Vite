@@ -104,7 +104,7 @@ export default defineComponent({
 .lightBox{
   width:100%;
   height:100%;
-  background-color: #654d3160;
+  background-color: #654d31b7;
   left:50%;
   transform: translateX(-50%);
   z-index:2;
