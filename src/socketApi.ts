@@ -153,9 +153,9 @@ export const getMsgReCall = (e:any) =>{
             store.commit('game/BetRoundCountdown',BetRoundCountdown)
             break
         case route.Roadmap:
-            let BeadPlate = roadmap.BeadPlate.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BeadPlate',BeadPlate)
-            store.commit('roadmap/BeadPlate',BeadPlate)
+            let map = roadmap.Roadmap.decode(new Uint8Array(e.detail.msg.data))
+            console.log('map',map)
+            store.commit('roadmap/map',map)
             break
     }
 }

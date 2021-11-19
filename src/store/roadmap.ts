@@ -1,12 +1,12 @@
 export const state = {
-    BeadPlate:{},
+    map:{},
    
 };
 export const actions = {}
   
 export const mutations = {
-    BeadPlate(state:any,payload:any){
-        state.BeadPlate = payload
+    map(state:any,payload:any){
+        state.map= payload
     }
 
 };
