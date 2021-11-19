@@ -136,10 +136,10 @@ export default defineComponent({
               bigRoadColItem.classList.add('bankerRoadIcon4')
               break
             }
-            if(bigRoadItemIndex.value<=5){  //+到五就好了
+           
               bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value] = 1  //代表那一格已經畫過了
               bigRoadItemIndex.value ++  //增加當前的index
-            }
+            
             lastBigRoadResult.value = currentBigRoadResult.value //將這次陣營記錄到下一次的陣營中
             console.log("現在的格子",bigRoadItemIndex.value)
           }
@@ -161,6 +161,7 @@ export default defineComponent({
                console.log("格",bigRoadItemIndex.value)
             }
             //換行二:溢出換行
+            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]==1 || bigRoadItemIndex.value>5){
               bigRoadColumn.value++ //換行
               bigRoadItemIndex.value = bigRoadItemIndex.value-1
@@ -187,7 +188,7 @@ export default defineComponent({
                console.log("格",bigRoadItemIndex.value)
             }
             //換行二:溢出換行
-            //問題:如何讓超過
+            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
               //已經有過阻擋的格子，就不應該再加
               bigRoadColumn.value++ //換行
