@@ -79,6 +79,7 @@ export default defineComponent({
           roadIndex.value++
         }
         function showRoad () {
+          //問題:要接著畫，不能直接畫
             beadPlateResult.value.blocks.forEach((i:any)=>{
             if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
               // resetRoad()
@@ -131,10 +132,13 @@ export default defineComponent({
         function resetRoad(){ //路圖全部清空，換靴時呼叫
           //還要重置所有col原本的class 
           //使用document.setAttribute("class","")
-          for(let i = 0 ; i <beadPlateColumn.length ; i++){
-            let beadPlateCol = document.querySelector(`.beadPlate-column${i+overflowCount.value}`) as HTMLElement
+          //萬全版本:
+          //1.直接刪除beadPlatRoadPlace下所有的beadPlate-column
+          //2.建立新的八條beadPlate-column，記得包beadPlate-item下要再增加一個空div
+          for(let i = 0 ; i <beadPlateColumn.length ; i++){  //目前版本只要跑固定8行就好；之後若可以滑動需要跑原本的長度+overflowCount的col
+            let beadPlateCol = document.querySelector(`.beadPlate-column${i}`) as HTMLElement
             beadPlateCol.setAttribute("class",`beadPlate-column${i}`)
-            for(let i = 0 ; i<beadPlateRow.length ;i++){
+            for(let i = 0 ; i<beadPlateRow.length ;i++){  //清空col下所有item的class
               let checkerboardRoadColItem = beadPlateCol.children[i].firstChild as HTMLElement
               checkerboardRoadColItem.setAttribute("class","")
             }
@@ -177,7 +181,6 @@ export default defineComponent({
   height:100%;
 }
 .beadPlateGrid-column{
-  /* border: 1px solid rgba(128, 128, 128, 0.219); */
   width:12.5%;
   height: 100%;
   flex-direction: column;

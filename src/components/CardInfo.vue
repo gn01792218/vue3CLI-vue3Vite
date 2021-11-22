@@ -112,14 +112,12 @@ export default defineComponent({
        gameResult.value.forEach((i:any)=>{
          switch(i){
            case 1:
-           case 3:
             let bankerCardBox = document.querySelectorAll('.banker')
             bankerCardBox.forEach(i=>{
               i.classList.add('winPoker')
             })
             break
           case 2:
-          case 5:
             let playererCardBox = document.querySelectorAll('.player')
             playererCardBox.forEach(i=>{
               i.classList.add('winPoker')
@@ -133,11 +131,13 @@ export default defineComponent({
         case proto.dealer.Side.Banker:
           if(point!==10 && point!==11 && point!==12 && point!==13){
             bankerPoint.value+=point
+            bankerPoint.value = bankerPoint.value%10
           }
            break
         case proto.dealer.Side.Player:
           if(point!==10 && point!==11 && point!==12 && point!==13){
             playerPoint.value+=point
+            bankerPoint.value = bankerPoint.value%10
           }
            break
        }
@@ -147,8 +147,8 @@ export default defineComponent({
        bankerPoint.value = 0
      }
      function showCardTotalPoint () {
-       playerPoint.value = playerPoint.value%10
-       bankerPoint.value = bankerPoint.value%10
+       playerPoint.value = playerPoint.value
+       bankerPoint.value = bankerPoint.value
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit

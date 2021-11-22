@@ -52,9 +52,9 @@ export default defineComponent({
                 case 3:
                     isWait.value = true
                     stateMsg.value = "等待中..."
-                    setTimeout(()=>{
-                    isWait.value = false
-                    },500)
+                    // setTimeout(()=>{
+                    // isWait.value = false
+                    // },500)
                     break
             }
         })
