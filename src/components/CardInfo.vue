@@ -51,9 +51,16 @@ export default defineComponent({
     const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
     })
+    const gameEnd = computed(()=>{
+            return store.state.dealer.end
+    })
     const playerPoint = ref(0)
     const bankerPoint = ref(0)
      //watch
+    watch(gameEnd,()=>{ //換薛時也要重置
+      resetCards () //不管哪個狀態都先執行一次清除卡牌
+      resetCardPoint()
+    })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()

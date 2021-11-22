@@ -25,6 +25,13 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
+        const gameEnd = computed(()=>{
+            return store.state.dealer.end
+        })
+        watch(gameEnd,()=>{
+            isWait.value = true
+            stateMsg.value = "等待中..."
+        })
         //之後要監聽一個wait狀態，當有這個狀態的時候打開loading顯示等待中。
         watch(gameState,()=>{   //上桌時，接到遊戲狀態時要顯示文字
             switch(gameState.value.status){

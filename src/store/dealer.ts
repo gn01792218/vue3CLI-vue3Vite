@@ -1,6 +1,7 @@
 export const state = {
   Draw:{},  //要再改成卡牌的
   BroadcastGameResult:{},
+  end:{},
 };
 export const actions = {}
 
@@ -22,6 +23,9 @@ export const mutations = {
       }
       
     }
+  },
+  end(state:any,payload:any){
+    state.end = payload
   }
 };
 export const getters = {

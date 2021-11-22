@@ -3973,6 +3973,198 @@ export const dealer = $root.dealer = (() => {
         return RoundEndRecall;
     })();
 
+    dealer.BroadcastDealerRoundEnd = (function() {
+
+        /**
+         * Properties of a BroadcastDealerRoundEnd.
+         * @memberof dealer
+         * @interface IBroadcastDealerRoundEnd
+         * @property {foundation.IHeader|null} [header] BroadcastDealerRoundEnd header
+         */
+
+        /**
+         * Constructs a new BroadcastDealerRoundEnd.
+         * @memberof dealer
+         * @classdesc Represents a BroadcastDealerRoundEnd.
+         * @implements IBroadcastDealerRoundEnd
+         * @constructor
+         * @param {dealer.IBroadcastDealerRoundEnd=} [properties] Properties to set
+         */
+        function BroadcastDealerRoundEnd(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastDealerRoundEnd header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @instance
+         */
+        BroadcastDealerRoundEnd.prototype.header = null;
+
+        /**
+         * Creates a new BroadcastDealerRoundEnd instance using the specified properties.
+         * @function create
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {dealer.IBroadcastDealerRoundEnd=} [properties] Properties to set
+         * @returns {dealer.BroadcastDealerRoundEnd} BroadcastDealerRoundEnd instance
+         */
+        BroadcastDealerRoundEnd.create = function create(properties) {
+            return new BroadcastDealerRoundEnd(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastDealerRoundEnd message. Does not implicitly {@link dealer.BroadcastDealerRoundEnd.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {dealer.IBroadcastDealerRoundEnd} message BroadcastDealerRoundEnd message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastDealerRoundEnd.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastDealerRoundEnd message, length delimited. Does not implicitly {@link dealer.BroadcastDealerRoundEnd.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {dealer.IBroadcastDealerRoundEnd} message BroadcastDealerRoundEnd message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastDealerRoundEnd.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastDealerRoundEnd message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.BroadcastDealerRoundEnd} BroadcastDealerRoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastDealerRoundEnd.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.BroadcastDealerRoundEnd();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastDealerRoundEnd message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.BroadcastDealerRoundEnd} BroadcastDealerRoundEnd
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastDealerRoundEnd.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastDealerRoundEnd message.
+         * @function verify
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastDealerRoundEnd.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastDealerRoundEnd message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.BroadcastDealerRoundEnd} BroadcastDealerRoundEnd
+         */
+        BroadcastDealerRoundEnd.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.BroadcastDealerRoundEnd)
+                return object;
+            let message = new $root.dealer.BroadcastDealerRoundEnd();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.BroadcastDealerRoundEnd.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastDealerRoundEnd message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @static
+         * @param {dealer.BroadcastDealerRoundEnd} message BroadcastDealerRoundEnd
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastDealerRoundEnd.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastDealerRoundEnd to JSON.
+         * @function toJSON
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastDealerRoundEnd.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastDealerRoundEnd;
+    })();
+
     /**
      * Result enum.
      * @name dealer.Result
@@ -4676,6 +4868,7 @@ export const foundation = $root.foundation = (() => {
                 case 20:
                 case 21:
                 case 22:
+                case 220:
                 case 23:
                 case 24:
                 case 25:
@@ -4789,6 +4982,10 @@ export const foundation = $root.foundation = (() => {
             case "DealerRoundEndRecall":
             case 22:
                 message.uri = 22;
+                break;
+            case "BroadcastDealerRoundEnd":
+            case 220:
+                message.uri = 220;
                 break;
             case "BetError":
             case 23:
@@ -6908,6 +7105,14 @@ export const roadmap = $root.roadmap = (() => {
      * @property {number} TieAndBankerPair=10 TieAndBankerPair value
      * @property {number} TieAndPlayerPair=11 TieAndPlayerPair value
      * @property {number} TieAndBothPair=12 TieAndBothPair value
+     * @property {number} BankerAndTie=13 BankerAndTie value
+     * @property {number} BankerAndBankerPairAndTie=14 BankerAndBankerPairAndTie value
+     * @property {number} BankerAndPlayerPairAndTie=15 BankerAndPlayerPairAndTie value
+     * @property {number} BankerAndBothPairAndTie=16 BankerAndBothPairAndTie value
+     * @property {number} PlayerAndTie=17 PlayerAndTie value
+     * @property {number} PlayerAndBankerPairAndTie=18 PlayerAndBankerPairAndTie value
+     * @property {number} PlayerAndPlayerPairAndTie=19 PlayerAndPlayerPairAndTie value
+     * @property {number} PlayerAndBothPairAndTie=20 PlayerAndBothPairAndTie value
      */
     roadmap.Block = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -6924,6 +7129,14 @@ export const roadmap = $root.roadmap = (() => {
         values[valuesById[10] = "TieAndBankerPair"] = 10;
         values[valuesById[11] = "TieAndPlayerPair"] = 11;
         values[valuesById[12] = "TieAndBothPair"] = 12;
+        values[valuesById[13] = "BankerAndTie"] = 13;
+        values[valuesById[14] = "BankerAndBankerPairAndTie"] = 14;
+        values[valuesById[15] = "BankerAndPlayerPairAndTie"] = 15;
+        values[valuesById[16] = "BankerAndBothPairAndTie"] = 16;
+        values[valuesById[17] = "PlayerAndTie"] = 17;
+        values[valuesById[18] = "PlayerAndBankerPairAndTie"] = 18;
+        values[valuesById[19] = "PlayerAndPlayerPairAndTie"] = 19;
+        values[valuesById[20] = "PlayerAndBothPairAndTie"] = 20;
         return values;
     })();
 
@@ -7089,6 +7302,14 @@ export const roadmap = $root.roadmap = (() => {
                     case 10:
                     case 11:
                     case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
                         break;
                     }
             }
@@ -7165,6 +7386,38 @@ export const roadmap = $root.roadmap = (() => {
                     case "TieAndBothPair":
                     case 12:
                         message.blocks[i] = 12;
+                        break;
+                    case "BankerAndTie":
+                    case 13:
+                        message.blocks[i] = 13;
+                        break;
+                    case "BankerAndBankerPairAndTie":
+                    case 14:
+                        message.blocks[i] = 14;
+                        break;
+                    case "BankerAndPlayerPairAndTie":
+                    case 15:
+                        message.blocks[i] = 15;
+                        break;
+                    case "BankerAndBothPairAndTie":
+                    case 16:
+                        message.blocks[i] = 16;
+                        break;
+                    case "PlayerAndTie":
+                    case 17:
+                        message.blocks[i] = 17;
+                        break;
+                    case "PlayerAndBankerPairAndTie":
+                    case 18:
+                        message.blocks[i] = 18;
+                        break;
+                    case "PlayerAndPlayerPairAndTie":
+                    case 19:
+                        message.blocks[i] = 19;
+                        break;
+                    case "PlayerAndBothPairAndTie":
+                    case 20:
+                        message.blocks[i] = 20;
                         break;
                     }
             }
@@ -7370,6 +7623,14 @@ export const roadmap = $root.roadmap = (() => {
                     case 10:
                     case 11:
                     case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
                         break;
                     }
             }
@@ -7446,6 +7707,38 @@ export const roadmap = $root.roadmap = (() => {
                     case "TieAndBothPair":
                     case 12:
                         message.blocks[i] = 12;
+                        break;
+                    case "BankerAndTie":
+                    case 13:
+                        message.blocks[i] = 13;
+                        break;
+                    case "BankerAndBankerPairAndTie":
+                    case 14:
+                        message.blocks[i] = 14;
+                        break;
+                    case "BankerAndPlayerPairAndTie":
+                    case 15:
+                        message.blocks[i] = 15;
+                        break;
+                    case "BankerAndBothPairAndTie":
+                    case 16:
+                        message.blocks[i] = 16;
+                        break;
+                    case "PlayerAndTie":
+                    case 17:
+                        message.blocks[i] = 17;
+                        break;
+                    case "PlayerAndBankerPairAndTie":
+                    case 18:
+                        message.blocks[i] = 18;
+                        break;
+                    case "PlayerAndPlayerPairAndTie":
+                    case 19:
+                        message.blocks[i] = 19;
+                        break;
+                    case "PlayerAndBothPairAndTie":
+                    case 20:
+                        message.blocks[i] = 20;
                         break;
                     }
             }
@@ -7983,6 +8276,7 @@ export const route = $root.route = (() => {
      * @property {number} DealerRoundStartRecall=20 DealerRoundStartRecall value
      * @property {number} DealerRoundEndCall=21 DealerRoundEndCall value
      * @property {number} DealerRoundEndRecall=22 DealerRoundEndRecall value
+     * @property {number} BroadcastDealerRoundEnd=220 BroadcastDealerRoundEnd value
      * @property {number} BetError=23 BetError value
      * @property {number} GameStatus=24 GameStatus value
      * @property {number} DealerGameStatus=25 DealerGameStatus value
@@ -8013,6 +8307,7 @@ export const route = $root.route = (() => {
         values[valuesById[20] = "DealerRoundStartRecall"] = 20;
         values[valuesById[21] = "DealerRoundEndCall"] = 21;
         values[valuesById[22] = "DealerRoundEndRecall"] = 22;
+        values[valuesById[220] = "BroadcastDealerRoundEnd"] = 220;
         values[valuesById[23] = "BetError"] = 23;
         values[valuesById[24] = "GameStatus"] = 24;
         values[valuesById[25] = "DealerGameStatus"] = 25;

@@ -138,6 +138,9 @@ export default defineComponent({
         const total = computed(()=>{
             return store.state.bet.totalBets
         })
+        const gameEnd = computed(()=>{
+            return store.state.dealer.end
+        })
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1){ 
@@ -151,6 +154,10 @@ export default defineComponent({
                 coinPosition[4].betStatus = betStatus.value.BankerPair
                 // coinPosition[4].betStatus = betStatus.value.PlayerPair
             }   
+        })
+        watch(gameEnd,()=>{ //換薛時也要重置
+            reSetBetAreaAnimation()
+            resetGame()
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
             console.log("開始下注")

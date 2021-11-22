@@ -157,5 +157,9 @@ export const getMsgReCall = (e:any) =>{
             console.log('map',map)
             store.commit('roadmap/map',map)
             break
+        case route.BroadcastDealerRoundEnd:
+            let end = dealer.BroadcastDealerRoundEnd
+            console.log(end)
+            store.commit('dealer/end',end)
     }
 }

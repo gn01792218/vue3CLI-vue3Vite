@@ -1,22 +1,25 @@
 <template>
       <!-- BeadPlateGrid -->
     <div class="beadPlate d-flex">
-      <div class="beadPlate-column d-flex" :class="[{'beadPlateboundary':index===7}]" v-for="(mc,index) in beadPlateColumn" :key="index">
+      <div class="beadPlateGrid-column d-flex" :class="[{'beadPlateboundary':index===7}]" v-for="(mc,index) in beadPlateColumn" :key="index">
       </div>
     </div>
     <div class="main-row position-absolute">
-      <div class="beadPlate-row d-flex" v-for="(mr,index) in beadPlateRow" :key="index">
+      <div class="beadPlateGrid-row d-flex" v-for="(mr,index) in beadPlateRow" :key="index">
       </div>
     </div>
 
     <!-- BeadPlate -->
-    <div class="beadPlatRoadPlace d-flex position-absolute">
-      <div class="beadPlate-column d-flex" :class="[`beadPlate-column${index}`]" v-for="(mc,index) in beadPlateColumn" :key="index">
-        <div class='beadPlate-item d-flex' v-for="(mr,index) in beadPlateRow" :key="index" :class="[`beadPlate-item${index}`]">
-          <div></div>
+    <div class="beadPlate-container position-absolute">
+      <div class="beadPlatRoadPlace d-flex ">
+        <div class="beadPlate-column d-flex" :class="[`beadPlate-column${index}`]" v-for="(mc,index) in beadPlateColumn" :key="index">
+          <div class='beadPlate-item d-flex' v-for="(mr,index) in beadPlateRow" :key="index" :class="[`beadPlate-item${index}`]">
+            <div></div>
+          </div>
         </div>
       </div>
     </div>
+    
     <!-- <button class="position-absolute" @click="put">放路圖</button> -->
 </template>
 
@@ -37,6 +40,12 @@ export default defineComponent({
         const store = useStore()
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
+        })
+        const gameEnd = computed(()=>{
+            return store.state.dealer.end
+        })
+        watch(gameEnd,()=>{  //換薛時要重置
+          resetRoad()
         })
         watch(beadPlateResult,()=>{
           if(beadPlateResult.value){
@@ -99,8 +108,8 @@ export default defineComponent({
           beadPlateColumnCount.value++
           roadIndex.value = 0
           let beadPlate = document.querySelector('.beadPlatRoadPlace') as HTMLElement  
-          let firstChild = beadPlate.firstElementChild as HTMLElement //抓取第一個元素
-          beadPlate.removeChild(firstChild) //刪除第一行
+          // let firstChild = beadPlate.firstElementChild as HTMLElement //抓取第一個元素
+          // beadPlate.removeChild(firstChild) //刪除第一行
           let newCol = document.createElement('div')
           newCol.classList.add('beadPlate-column')
           newCol.classList.add('d-flex')
@@ -116,6 +125,7 @@ export default defineComponent({
           }
           //貼上去
           beadPlate.appendChild(newCol)
+          // beadPlate.style.translate = "-12.5%"
           overflowCount.value++
         }
         function resetRoad(){ //路圖全部清空，換靴時呼叫
@@ -150,9 +160,29 @@ export default defineComponent({
   background-color: white;
   /* overflow: hidden; */
 }
-.beadPlatRoadPlace{
+.beadPlate-container{
   width:40%;
   height:100%;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+ 
+  /* border:5px solid hotpink; */
+}
+ .beadPlate-container::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+.beadPlatRoadPlace{
+  /* width:auto; */
+  height:100%;
+}
+.beadPlateGrid-column{
+  /* border: 1px solid rgba(128, 128, 128, 0.219); */
+  width:12.5%;
+  height: 100%;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
 }
 .beadPlate-column{
   border: 1px solid rgba(128, 128, 128, 0.219);
@@ -162,7 +192,7 @@ export default defineComponent({
   /* justify-content: space-around; */
   align-items: center;
 }
-.beadPlate-row{
+.beadPlateGrid-row{
    border: 1px solid rgba(128, 128, 128, 0.219);
    width:100%;
    height:16.6666666%;

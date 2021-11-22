@@ -1,6 +1,6 @@
 <template>
-<button class="test position-absolute" @click="put(2)">莊贏</button>
-<button class="position-absolute" @click="put(1)">閒贏</button>
+<!-- <button class="test position-absolute" @click="put(2)">莊贏</button>
+<button class="position-absolute" @click="put(1)">閒贏</button> -->
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
@@ -20,7 +20,7 @@
     <section class="centerRoad d-flex sideWidth position-absolute">
       <div class="centerRoad-colum" :class="[`centerRoad-column${index}`]" v-for="(cc,index) in centerRoadWidth" :key="index">
         <div class="centerRoad-item" :class="[`centerRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
-          <div class="playerRoadIcon3-1"></div>
+          <!-- <div class="playerRoadIcon3-1"></div> -->
         </div>
       </div>
     </section>
@@ -29,7 +29,7 @@
       <div class="bottomRoad1 d-flex w-50">
         <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===21}]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <div class="playerRoadIcon7"></div>
+            <!-- <div class="playerRoadIcon7"></div> -->
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
       <div class="bottomRoad2 d-flex w-50">
         <div class="bottomRoad1-column" :class="[`bottomRoad2-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <div class="bankerRoadIcon8"></div>
+            <!-- <div class="bankerRoadIcon8"></div> -->
           </div>
         </div>
       </div>
@@ -61,6 +61,9 @@ export default defineComponent({
         const bigRoadResult = computed(()=>{
           return store.state.roadmap.map.bigRoad
         })
+        const gameEnd = computed(()=>{
+            return store.state.dealer.end
+        })
         const gameResult = ref([1])
         const gameResult2 = ref([2])
         //表格
@@ -81,17 +84,10 @@ export default defineComponent({
         for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
           bigRoadColArr.push([0,0,0,0,0,0])
         }
-        //新想法
-        // const BigRoadColArr = reactive<colObject[]>([])
-        // for(let i = 0 ; i <secWidth.length ;i++){ //初始化col物件
-        //   BigRoadColArr.push({
-        //     limit:5,
-        //     putIndex:0,
-        //   })
-        // }
-        // watch(gameResult,()=>{
-        //   showBigRoad()
-        // })
+        watch(gameEnd,()=>{
+          //換薛時要重置遊戲
+        })
+
         function put(num:number) {
           switch(num){
             case 1:
@@ -166,7 +162,6 @@ export default defineComponent({
               }else{
                 bigRoadColumn.value++
               }
-              
                bigRoadItemIndex.value = 0
                console.log("格",bigRoadItemIndex.value)
             }
@@ -177,7 +172,7 @@ export default defineComponent({
               if(bigRoadColumn.value>=secWidth.length){
                 console.log("滿了+行")
                 addBBigRoadColumn()
-                }  //溢出極限格子的時候要增加行數
+              }  //溢出極限格子的時候要增加行數
               if(bigRoadItemIndex.value>0){  //只剩下一格時，就不要減了，否則會超出去
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
               }
