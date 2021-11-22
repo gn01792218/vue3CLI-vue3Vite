@@ -53,12 +53,16 @@ img {
 }
 
 .font .font-total {
-  color: #fff;
+  color: gray;
   float: left;
   width: 100%;
   background-color: rgba(2, 29, 35, 0.5);
   line-height: 2.5em;
   text-align: center;
+}
+
+.font-total {
+  color: gray;
 }
 
 /*-------------------------------------------
@@ -799,7 +803,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .gameResultLoading {
   top: 35%;
-  background-color: #523e25ab;
+  background-color: #523e25;
+  z-index: 9;
 }
 
 .gameResultLoading p {
@@ -835,9 +840,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
           animation-duration: 0.5s;
   -webkit-animation-timing-function: ease-in;
           animation-timing-function: ease-in;
-  -webkit-box-shadow: 5px 5px #654d31;
-          box-shadow: 5px 5px #654d31;
   border-radius: 10px;
+  padding-bottom: 15px;
 }
 
 @-webkit-keyframes winpoker {
@@ -856,6 +860,21 @@ a.btn.disabled, fieldset[disabled] a.btn {
   to {
     background-color: rgba(206, 156, 94, 0.822);
   }
+}
+
+.playerNum, .bankerNum {
+  position: absolute;
+  font-size: 1.5rem;
+}
+
+.playerNum {
+  left: 10%;
+  top: 50%;
+}
+
+.bankerNum {
+  right: 10%;
+  top: 50%;
 }
 
 .counter {
@@ -1265,6 +1284,17 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-box {
     margin-top: -20px;
   }
+  .playerNum, .bankerNum {
+    font-size: 2.5rem;
+  }
+  .playerNum {
+    left: 20%;
+    top: 50%;
+  }
+  .bankerNum {
+    right: 20%;
+    top: 50%;
+  }
   .bankerRoadIcon0 {
     width: 35px;
     height: 35px;
@@ -1437,6 +1467,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .card-container {
     margin-top: -35px;
+  }
+  .playerNum {
+    left: 10%;
+    top: 50%;
+  }
+  .bankerNum {
+    right: 10%;
+    top: 50%;
   }
   .bankerRoadIcon0 {
     width: 30px;
@@ -1853,6 +1891,17 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-container {
     margin-top: -25px;
   }
+  .playerNum, .bankerNum {
+    font-size: 1.5rem;
+  }
+  .playerNum {
+    left: 5%;
+    top: 50%;
+  }
+  .bankerNum {
+    right: 5%;
+    top: 50%;
+  }
   .caritem {
     margin-right: 10px;
   }
@@ -1892,6 +1941,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .gameResult {
     top: 20%;
+  }
+  .playerNum {
+    left: 3%;
+    top: 50%;
   }
 }
 
@@ -2002,6 +2055,17 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .card-container {
     margin-top: -35px;
+  }
+  .bankerNum, .playerNum {
+    font-size: 1rem;
+  }
+  .playerNum {
+    left: 0%;
+    top: 50%;
+  }
+  .bankerNum {
+    right: 0%;
+    top: 50%;
   }
 }
 /*# sourceMappingURL=all.css.map */

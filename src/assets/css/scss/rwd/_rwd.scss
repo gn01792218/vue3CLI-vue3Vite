@@ -255,6 +255,17 @@
 	.card-box{
 		margin-top: -20px;
 	}
+	.playerNum,.bankerNum{
+		font-size:2.5rem;
+	  }
+	  .playerNum{
+		left:20%;
+		top:50%;
+	  }
+	  .bankerNum{
+		right:20%;
+		top:50%;
+	  }
 	.bankerRoadIcon0{
 		@include hisRoadSpritePosition(0,0,0.35);
 	}
@@ -364,6 +375,14 @@
 	.card-container{
 		margin-top: -35px;
 	}
+	  .playerNum{
+		left:10%;
+		top:50%;
+	  }
+	  .bankerNum{
+		right:10%;
+		top:50%;
+	  }
 	.bankerRoadIcon0{
 		@include hisRoadSpritePosition(0,0,0.3);
 	}
@@ -606,6 +625,17 @@
 		.card-container{
 			margin-top: -25px;
 		}
+		.playerNum,.bankerNum{
+			font-size: 1.5rem;
+		}
+		.playerNum{
+			left:5%;
+			top:50%;
+		}
+		.bankerNum{
+			right:5%;
+			top:50%;
+		}
 		.caritem{
 			margin-right: 10px;
 		}
@@ -644,6 +674,10 @@
 		}
 		.gameResult{
 			top:20%;
+		}
+		.playerNum{
+			left:3%;
+			top:50%;
 		}
 }	
 @media screen and (max-width: 320px) {
@@ -723,5 +757,16 @@
 	}
 	.card-container{
 		margin-top: -35px;
+	}
+	.bankerNum,.playerNum{
+		font-size: 1rem;
+	}
+	.playerNum{
+		left:0%;
+		top:50%;
+	}
+	.bankerNum{
+		right:0%;
+		top:50%;
 	}
 }	

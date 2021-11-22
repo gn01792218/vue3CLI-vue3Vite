@@ -3,14 +3,13 @@
     	<section class="card-container d-flex justify-content-center">
         
       	<div class="player card-box row justify-content-center">
+          <span class="playerNum">{{playerPoint}}</span>
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
-          <span class="playerNum">{{playerPoint}}</span>
       	</div>
         
       	<div class="banker card-box row justify-content-center">
-          
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>
         	</div>
@@ -180,6 +179,7 @@ export default defineComponent({
           scale.value = 0.25
         }
         else if(viewportWidth<=540){
+          console.log("監聽540以下的畫卡牌")
           scale.value = 0.14
         }else{
           scale.value = 0.19

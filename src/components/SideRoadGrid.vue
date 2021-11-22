@@ -193,8 +193,8 @@ export default defineComponent({
         }
         function showBigRoad () {
           gameResult.value.forEach(i=>{
-            recordBigRoad(i)  //紀錄陣營
-            if(bigRoadColumn.value>=secWidth.length && bigRoadItemIndex.value>5){
+            recordBigRoad(i)  //1.紀錄陣營
+            if(bigRoadColumn.value>=secWidth.length && bigRoadItemIndex.value>5){  //正常的滿格+行情況
               addBBigRoadColumn()
             }
             //換行一:不同陣營
@@ -221,12 +221,12 @@ export default defineComponent({
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
               bigRoadColumn.value++ //換行
               if(bigRoadColumn.value>=secWidth.length){addBBigRoadColumn()}  //溢出極限格子的時候要增加行數
-              if(bigRoadItemIndex.value>0){
+              if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
-               for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做
+              // console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+               for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                 bigRoadColArr[bigRoadColumn.value][i] = 1
                 console.log(i)
               }

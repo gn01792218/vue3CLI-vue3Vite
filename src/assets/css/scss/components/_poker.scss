@@ -11,8 +11,8 @@
   animation-name: winpoker;
   animation-duration: 0.5s;
   animation-timing-function: ease-in;
-  box-shadow: 5px 5px #654d31;
   border-radius: 10px;
+  padding-bottom: 15px;
 }
 @keyframes winpoker {
   from{
@@ -20,4 +20,16 @@
   }to{
     background-color: rgba(206, 156, 94, 0.822);
   }
+}
+.playerNum,.bankerNum{
+  position: absolute;
+  font-size:1.5rem;
+}
+.playerNum{
+  left:10%;
+  top:50%;
+}
+.bankerNum{
+  right:10%;
+  top:50%;
 }
