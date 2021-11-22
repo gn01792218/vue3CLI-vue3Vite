@@ -7,6 +7,7 @@ export const actions = {}
 export const mutations = {
     map(state:any,payload:any){
         state.map= payload
+        console.log("vuex",state.map)
     }
 
 };

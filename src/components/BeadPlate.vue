@@ -35,9 +35,6 @@ export default defineComponent({
         const roadIndex = ref(0)
         const overflowCount = ref(0)
         const store = useStore()
-        const gameResult = computed(()=>{ //回傳的是陣列
-            return store.state.dealer.BroadcastGameResult.results
-        })
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
         })
@@ -45,12 +42,8 @@ export default defineComponent({
           if(beadPlateResult.value){
             showRoad ()
           }
-          console.log(beadPlateResult.value)
+          console.log("有豬仔路",beadPlateResult.value)
         })
-        watch(gameResult,()=>{
-          showRoad ()
-        })
-       
         // function put (){
         //   showRoadByGameResult  ()
         // }
@@ -126,7 +119,7 @@ export default defineComponent({
           overflowCount.value++
         }
         function resetRoad(){ //路圖全部清空，換靴時呼叫
-          //還要清除所有col原本的class 
+          //還要重置所有col原本的class 
           //使用document.setAttribute("class","")
           for(let i = 0 ; i <beadPlateColumn.length ; i++){
             let beadPlateCol = document.querySelector(`.beadPlate-column${i+overflowCount.value}`) as HTMLElement
