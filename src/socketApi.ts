@@ -124,7 +124,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('Draw',Draw)
+            console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
             break
         case route.BroadcastGameResult:
