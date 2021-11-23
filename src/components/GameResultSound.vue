@@ -2,12 +2,12 @@
     <audio id="gameresultSound">
         <source  src="../assets/audio/bankerWin.mp3" type="audio/mpeg">
     </audio>
-    <!-- <button class="position-absolute" @click="playGameResult">播放不同聲音</button> -->
 </template>
 
 <script lang="ts">
 import {defineComponent,computed,watch} from 'vue'
 import {useStore} from 'vuex'
+import proto  from '../assets/js/bundle'
 export default defineComponent({
    setup(){
         const store = useStore();
@@ -52,23 +52,15 @@ export default defineComponent({
         }
         function switchSound (audioElement:HTMLAudioElement,soundNumber:number) {
             switch(soundNumber){
-                case 4:
+                case proto.dealer.Result.Tie:
                     audioElement.src = require('../assets/audio/tie.mp3')
                     break
-                case 1:
+                case proto.dealer.Result.Banker:
                     audioElement.src = require('../assets/audio/bankerWin.mp3')
                     break
-                case 2:
+                case proto.dealer.Result.Player:
                     audioElement.src = require('../assets/audio/playerWin.mp3')
                     break
-                // case 5:
-                //     audioElement.src = require('../assets/audio/playerWin.mp3')  //暫時測試
-                //     // gameresultSound.src = require('../assets/audio/bankerPair.mp3')
-                //     break
-                // case 3:
-                //     audioElement.src = require('../assets/audio/bankerWin.mp3')  //暫時測試
-                //     // gameresultSound.src = require('../assets/audio/playerPair.mp3')
-                //     break
             }
         }
         return {

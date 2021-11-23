@@ -388,6 +388,7 @@ export default defineComponent({
         const betArray = reactive<Array<any>>([]) //紀錄下注元素和區域
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
             //發送下注請求
+            //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
             sendBetCall({
             gameUuid:roundUuid.value,
             betIndex:currentCoint.num,

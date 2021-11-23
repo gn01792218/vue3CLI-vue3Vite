@@ -147,8 +147,8 @@ export default defineComponent({
        bankerPoint.value = 0
      }
      function showCardTotalPoint () {
-       playerPoint.value = playerPoint.value
-       bankerPoint.value = bankerPoint.value
+       playerPoint.value = playerPoint.value%10
+       bankerPoint.value = bankerPoint.value%10
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit

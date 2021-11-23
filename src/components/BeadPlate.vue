@@ -37,6 +37,7 @@ export default defineComponent({
         const beadPlateColumnCount = ref(0)
         const roadIndex = ref(0)
         const overflowCount = ref(0)
+        const beadPlateRoadCount = ref(0)
         const store = useStore()
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
@@ -47,9 +48,13 @@ export default defineComponent({
         watch(gameEnd,()=>{  //換薛時要重置
           resetRoad()
         })
-        watch(beadPlateResult,()=>{
+        watch(beadPlateResult,()=>{    //每次都全部重畫
           if(beadPlateResult.value){
-            showRoad ()
+            if(beadPlateRoadCount.value == 0){
+              showRoadInit ()
+            }else{
+              showRoad ()
+            }
           }
           console.log("有豬仔路",beadPlateResult.value)
         })
@@ -78,11 +83,9 @@ export default defineComponent({
           }
           roadIndex.value++
         }
-        function showRoad () {
-          //問題:要接著畫，不能直接畫
-            beadPlateResult.value.blocks.forEach((i:any)=>{
-            if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
-              // resetRoad()
+        function showRoadInit () {
+            beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
+              if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
               addColumn()
             }
             if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
@@ -91,6 +94,36 @@ export default defineComponent({
             }
             putRoad(beadPlateColumnCount.value,roadIndex.value,i)
           })
+          beadPlateRoadCount.value = beadPlateResult.value.blocks.length
+        }
+        function showRoad () {
+            let draw = beadPlateResult.value.blocks.filter((i:any,index:number)=>{
+              return index==beadPlateResult.value.blocks.length-1   //返回最後一個
+            })
+            draw.forEach((i:any)=>{
+              if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
+              // resetRoad()
+              addColumn()
+            }
+            if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
+              beadPlateColumnCount.value++
+              roadIndex.value = 0
+            }
+            putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+            })
+          //   beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
+          //   if(beadPlateResult.value.blocks.length-1==index){
+          //     if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
+          //     // resetRoad()
+          //     addColumn()
+          //   }
+          //   if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
+          //     beadPlateColumnCount.value++
+          //     roadIndex.value = 0
+          //   }
+          //   putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+          //   }
+          // })
         }
         // function showRoadByGameResult () {
         //   gameResult.value.forEach((i:any)=>{
@@ -109,8 +142,8 @@ export default defineComponent({
           beadPlateColumnCount.value++
           roadIndex.value = 0
           let beadPlate = document.querySelector('.beadPlatRoadPlace') as HTMLElement  
-          // let firstChild = beadPlate.firstElementChild as HTMLElement //抓取第一個元素
-          // beadPlate.removeChild(firstChild) //刪除第一行
+          let firstChild = beadPlate.firstElementChild as HTMLElement //抓取第一個元素
+          beadPlate.removeChild(firstChild) //刪除第一行
           let newCol = document.createElement('div')
           newCol.classList.add('beadPlate-column')
           newCol.classList.add('d-flex')
@@ -126,7 +159,6 @@ export default defineComponent({
           }
           //貼上去
           beadPlate.appendChild(newCol)
-          // beadPlate.style.translate = "-12.5%"
           overflowCount.value++
         }
         function resetRoad(){ //路圖全部清空，換靴時呼叫
@@ -134,15 +166,38 @@ export default defineComponent({
           //使用document.setAttribute("class","")
           //萬全版本:
           //1.直接刪除beadPlatRoadPlace下所有的beadPlate-column
-          //2.建立新的八條beadPlate-column，記得包beadPlate-item下要再增加一個空div
-          for(let i = 0 ; i <beadPlateColumn.length ; i++){  //目前版本只要跑固定8行就好；之後若可以滑動需要跑原本的長度+overflowCount的col
-            let beadPlateCol = document.querySelector(`.beadPlate-column${i}`) as HTMLElement
-            beadPlateCol.setAttribute("class",`beadPlate-column${i}`)
-            for(let i = 0 ; i<beadPlateRow.length ;i++){  //清空col下所有item的class
-              let checkerboardRoadColItem = beadPlateCol.children[i].firstChild as HTMLElement
-              checkerboardRoadColItem.setAttribute("class","")
-            }
+          
+          let beadPlatePlace = document.querySelector('.beadPlatRoadPlace') as HTMLElement
+          let firstChild = beadPlatePlace.lastElementChild
+          while(firstChild){
+            beadPlatePlace.removeChild(firstChild); //移除行數
+            firstChild = beadPlatePlace.lastElementChild //抓下一個child
           }
+          //2.建立新的八條beadPlate-column，記得包beadPlate-item下要再增加一個空div
+          for(let i = 0 ;i < beadPlateColumn.length ;i++){
+            let col = document.createElement('div')
+            col.classList.add('beadPlate-column')
+            col.classList.add('d-flex')
+            col.classList.add(`beadPlate-column${i}`)
+            for(let i = 0 ; i< beadPlateRow.length ; i++){
+              let colItem = document.createElement('div')
+              let itemDiv = document.createElement('div') 
+              colItem.classList.add('beadPlate-item')
+              colItem.classList.add('d-flex')
+              colItem.classList.add(`beadPlate-item${i}`)
+              colItem.appendChild(itemDiv)
+              col.appendChild(colItem)
+            }
+            beadPlatePlace.appendChild(col)
+          }
+          // for(let i = 0 ; i <beadPlateColumn.length ; i++){  //目前版本只要跑固定8行就好；之後若可以滑動需要跑原本的長度+overflowCount的col
+          //   let beadPlateCol = document.querySelector(`.beadPlate-column${i}`) as HTMLElement
+          //   beadPlateCol.setAttribute("class",`beadPlate-column${i}`)
+          //   for(let i = 0 ; i<beadPlateRow.length ;i++){  //清空col下所有item的class
+          //     let checkerboardRoadColItem = beadPlateCol.children[i].firstChild as HTMLElement
+          //     checkerboardRoadColItem.setAttribute("class","")
+          //   }
+          // }
           beadPlateColumnCount.value = 0
           roadIndex.value = 0
         }
