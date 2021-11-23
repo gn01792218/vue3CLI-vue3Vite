@@ -96,17 +96,25 @@ export default defineComponent({
         }
         function recordBigRoad (gameResult:number){
           switch(gameResult){
-              case 1:
-                currentBigRoadResult.value = 1   //閒贏
+              case proto.roadmap.Block.Banker:
+              case proto.roadmap.Block.BankerAndBankerPair:
+              case proto.roadmap.Block.BankerAndPlayerPair:
+              case proto.roadmap.Block.BankerAndBothPair:
+              case proto.roadmap.Block.BankerAndTie:
+              case proto.roadmap.Block.BankerAndBankerPairAndTie:
+              case proto.roadmap.Block.BankerAndPlayerPairAndTie:
+              case proto.roadmap.Block.BankerAndBothPairAndTie:
+                currentBigRoadResult.value = 1   
                 break
-              case 2:
-                currentBigRoadResult.value = 2   //莊贏
-                break
-              case 3:
-                currentBigRoadResult.value = 1   //等同於閒贏
-                break
-              case 5:
-                currentBigRoadResult.value = 2   //等同於莊贏
+              case proto.roadmap.Block.Player:
+              case proto.roadmap.Block.PlayerAndBankerPair:
+              case proto.roadmap.Block.PlayerAndPlayerPair:
+              case proto.roadmap.Block.PlayerAndBothPair:
+              case proto.roadmap.Block.PlayerAndTie:
+              case proto.roadmap.Block.PlayerAndBankerPairAndTie:
+              case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
+              case proto.roadmap.Block.PlayerAndBothPairAndTie:
+                currentBigRoadResult.value = 2   
                 break
             }
         }
