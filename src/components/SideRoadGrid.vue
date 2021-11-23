@@ -47,10 +47,7 @@
 <script lang="ts">
 import {defineComponent,computed,ref, watch, reactive} from 'vue'
 import { useStore } from 'vuex'
-// interface colObject{
-//   limit:number,  //還剩下幾格可以放
-//   putIndex:number, //目前放到第幾格
-// }
+import proto from '../assets/js/bundle'
 export default defineComponent({
     setup(){
         //vuex
@@ -118,17 +115,53 @@ export default defineComponent({
             let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
-            case 1:
-              bigRoadColItem.classList.add('playerRoadIcon3')
+            case proto.roadmap.Block.Banker:
+              bigRoadColItem.classList.add('big-B')
               break
-            case 2:
-              bigRoadColItem.classList.add('bankerRoadIcon3')
+            case proto.roadmap.Block.Player:
+              bigRoadColItem.classList.add('big-P')
               break
-            case 3:
-              bigRoadColItem.classList.add('playerRoadIcon5')
+            case proto.roadmap.Block.BankerAndBankerPair:
+              bigRoadColItem.classList.add('big-B-BPair')
               break
-            case 5:
-              bigRoadColItem.classList.add('bankerRoadIcon4')
+            case proto.roadmap.Block.BankerAndPlayerPair:
+              bigRoadColItem.classList.add('big-B-PPair')
+              break
+            case proto.roadmap.Block.BankerAndBothPair:
+              bigRoadColItem.classList.add('big-B-BothPair')
+              break
+            case proto.roadmap.Block.PlayerAndBankerPair:
+              bigRoadColItem.classList.add('big-P-BPair')
+              break
+            case proto.roadmap.Block.PlayerAndPlayerPair:
+              bigRoadColItem.classList.add('big-P-PPair')
+              break
+            case proto.roadmap.Block.PlayerAndBothPair:
+              bigRoadColItem.classList.add('big-P-BothPair')
+              break
+            case proto.roadmap.Block.BankerAndTie:
+              bigRoadColItem.classList.add('big-BT')
+              break
+            case proto.roadmap.Block.BankerAndBankerPairAndTie:
+              bigRoadColItem.classList.add('big-BT-BPair')
+              break
+            case proto.roadmap.Block.BankerAndPlayerPairAndTie:
+              bigRoadColItem.classList.add('big-BT-PPair')
+              break
+            case proto.roadmap.Block.BankerAndBothPairAndTie:
+              bigRoadColItem.classList.add('big-BT-BothPair')
+              break
+            case proto.roadmap.Block.PlayerAndTie:
+              bigRoadColItem.classList.add('big-PT')
+              break
+            case proto.roadmap.Block.PlayerAndBankerPairAndTie:
+              bigRoadColItem.classList.add('big-PT-BPair')
+              break
+            case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
+              bigRoadColItem.classList.add('big-PT-PPair')
+              break
+            case proto.roadmap.Block.PlayerAndBothPairAndTie:
+              bigRoadColItem.classList.add('big-PT-BothPair')
               break
             }
             bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value] = 1  //代表那一格已經畫過了
