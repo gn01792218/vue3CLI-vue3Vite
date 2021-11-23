@@ -513,11 +513,6 @@ export default defineComponent({
                         })
                         break
                 }
-                // let betArea = document.querySelectorAll(`.betArea-item${i}`) as NodeListOf<HTMLElement>
-                // betArea.forEach((i:HTMLElement)=>{
-                //     i.classList.add('winAnimation')
-                //     i.children[1].classList.add('winCoin')  //取得注區數字
-                // })
             })
             let betAreaMoney = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
             betAreaMoney.forEach((i:HTMLElement)=>{

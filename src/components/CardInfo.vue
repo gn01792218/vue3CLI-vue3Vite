@@ -132,12 +132,14 @@ export default defineComponent({
           if(point!==10 && point!==11 && point!==12 && point!==13){
             bankerPoint.value+=point
             bankerPoint.value = bankerPoint.value%10
+            console.log("莊家的point",bankerPoint.value)
           }
            break
         case proto.dealer.Side.Player:
           if(point!==10 && point!==11 && point!==12 && point!==13){
             playerPoint.value+=point
-            bankerPoint.value = bankerPoint.value%10
+            playerPoint.value = playerPoint.value%10
+            console.log("v家的point",playerPoint.value)
           }
            break
        }
