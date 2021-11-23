@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.roadImg-preLoad, .bankerRoadIcon0, .bankerRoadIcon1, .bankerRoadIcon2, .bankerRoadIcon3, .bankerRoadIcon3-1, .bankerRoadIcon4, .bankerRoadIcon5, .bankerRoadIcon6, .bankerRoadIcon7, .bankerRoadIcon8, .playerRoadIcon0, .playerRoadIcon1, .playerRoadIcon2, .playerRoadIcon3, .playerRoadIcon3-1, .playerRoadIcon4, .playerRoadIcon5, .playerRoadIcon6, .playerRoadIcon7, .playerRoadIcon8, .tieRoadIcon {
+.roadImg-preLoad, .BeadPlate-B, .BeadPlate-B-BPair, .BeadPlate-B-PPair, .BeadPlate-B-BothPair, .BeadPlate-P, .BeadPlate-P-BPair, .BeadPlate-P-PPair, .BeadPlate-P-BothPair, .BeadPlate-T, .BeadPlate-T-BPair, .BeadPlate-T-PPair, .BeadPlate-T-BothPair, .big-B, .big-B-BPair, .big-B-PPair, .big-B-BothPair, .big-BT, .big-BT-BPair, .big-BT-PPair, .big-BT-BothPair, .big-P, .big-P-BPair, .big-P-PPair, .big-P-BothPair, .big-PT, .big-PT-BPair, .big-PT-PPair, .big-PT-BothPair, .small-red, .small-blue, .bigEye-red, .bigEye-blue, cockroach-red, cockroach-blue {
   cursor: pointer;
   background-image: url("../../images/road-sprite.png");
 }
@@ -63,6 +63,10 @@ img {
 
 .font-total {
   color: gray;
+}
+
+.alertFont {
+  font-size: 2.5rem !important;
 }
 
 /*-------------------------------------------
@@ -648,151 +652,242 @@ a.btn.disabled, fieldset[disabled] a.btn {
   height: 80%;
 }
 
-.bankerRoadIcon0 {
+.BeadPlate-B {
   width: 35px;
   height: 35px;
   background-position: 0px 0px;
-  background-size: 665px auto;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon1 {
+.BeadPlate-B-BPair {
   width: 35px;
   height: 35px;
   background-position: -35px 0px;
-  background-size: 665px auto;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon2 {
+.BeadPlate-B-PPair {
   width: 35px;
   height: 35px;
   background-position: -70px 0px;
-  background-size: 665px auto;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon3 {
-  width: 19px;
-  height: 19px;
-  background-position: -57px 0px;
-  background-size: 361px auto;
+.BeadPlate-B-BothPair {
+  width: 35px;
+  height: 35px;
+  background-position: -105px 0px;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon3-1 {
-  width: 11px;
-  height: 11px;
-  background-position: -33px 0px;
-  background-size: 209px auto;
+.BeadPlate-P {
+  width: 35px;
+  height: 35px;
+  background-position: -140px 0px;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon4 {
-  width: 19px;
-  height: 19px;
-  background-position: -76px 0px;
-  background-size: 361px auto;
+.BeadPlate-P-BPair {
+  width: 35px;
+  height: 35px;
+  background-position: -175px 0px;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon5 {
-  width: 19px;
-  height: 19px;
-  background-position: -95px 0px;
-  background-size: 361px auto;
+.BeadPlate-P-PPair {
+  width: 35px;
+  height: 35px;
+  background-position: -210px 0px;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon6 {
-  width: 19px;
-  height: 19px;
-  background-position: -114px 0px;
-  background-size: 361px auto;
+.BeadPlate-P-BothPair {
+  width: 35px;
+  height: 35px;
+  background-position: -245px 0px;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon7 {
-  width: 10px;
-  height: 10px;
-  background-position: -70px 0px;
-  background-size: 190px auto;
+.BeadPlate-T {
+  width: 35px;
+  height: 35px;
+  background-position: -280px 0px;
+  background-size: 560px auto;
 }
 
-.bankerRoadIcon8 {
-  width: 10px;
-  height: 10px;
-  background-position: -80px 0px;
-  background-size: 190px auto;
-}
-
-.playerRoadIcon0 {
+.BeadPlate-T-BPair {
   width: 35px;
   height: 35px;
   background-position: -315px 0px;
-  background-size: 665px auto;
+  background-size: 560px auto;
 }
 
-.playerRoadIcon1 {
+.BeadPlate-T-PPair {
   width: 35px;
   height: 35px;
   background-position: -350px 0px;
-  background-size: 665px auto;
+  background-size: 560px auto;
 }
 
-.playerRoadIcon2 {
+.BeadPlate-T-BothPair {
   width: 35px;
   height: 35px;
   background-position: -385px 0px;
-  background-size: 665px auto;
+  background-size: 560px auto;
 }
 
-.playerRoadIcon3 {
+.big-B {
   width: 19px;
   height: 19px;
-  background-position: -228px 0px;
-  background-size: 361px auto;
+  background-position: 0px 19px;
+  background-size: 304px auto;
 }
 
-.playerRoadIcon3-1 {
+.big-B-BPair {
+  width: 19px;
+  height: 19px;
+  background-position: -19px 19px;
+  background-size: 304px auto;
+}
+
+.big-B-PPair {
+  width: 19px;
+  height: 19px;
+  background-position: -38px 19px;
+  background-size: 304px auto;
+}
+
+.big-B-BothPair {
+  width: 19px;
+  height: 19px;
+  background-position: -57px 19px;
+  background-size: 304px auto;
+}
+
+.big-BT {
+  width: 19px;
+  height: 19px;
+  background-position: -76px 19px;
+  background-size: 304px auto;
+}
+
+.big-BT-BPair {
+  width: 19px;
+  height: 19px;
+  background-position: -95px 19px;
+  background-size: 304px auto;
+}
+
+.big-BT-PPair {
+  width: 19px;
+  height: 19px;
+  background-position: -114px 19px;
+  background-size: 304px auto;
+}
+
+.big-BT-BothPair {
+  width: 19px;
+  height: 19px;
+  background-position: -133px 19px;
+  background-size: 304px auto;
+}
+
+.big-P {
+  width: 19px;
+  height: 19px;
+  background-position: -152px 19px;
+  background-size: 304px auto;
+}
+
+.big-P-BPair {
+  width: 19px;
+  height: 19px;
+  background-position: -171px 19px;
+  background-size: 304px auto;
+}
+
+.big-P-PPair {
+  width: 19px;
+  height: 19px;
+  background-position: -190px 19px;
+  background-size: 304px auto;
+}
+
+.big-P-BothPair {
+  width: 19px;
+  height: 19px;
+  background-position: -209px 19px;
+  background-size: 304px auto;
+}
+
+.big-PT {
+  width: 19px;
+  height: 19px;
+  background-position: -228px 19px;
+  background-size: 304px auto;
+}
+
+.big-PT-BPair {
+  width: 19px;
+  height: 19px;
+  background-position: -247px 19px;
+  background-size: 304px auto;
+}
+
+.big-PT-PPair {
+  width: 19px;
+  height: 19px;
+  background-position: -266px 19px;
+  background-size: 304px auto;
+}
+
+.big-PT-BothPair {
+  width: 19px;
+  height: 19px;
+  background-position: -285px 19px;
+  background-size: 304px auto;
+}
+
+.small-red {
   width: 11px;
   height: 11px;
-  background-position: -132px 0px;
-  background-size: 209px auto;
+  background-position: 0px 11px;
+  background-size: 176px auto;
 }
 
-.playerRoadIcon4 {
-  width: 19px;
-  height: 19px;
-  background-position: -247px 0px;
-  background-size: 361px auto;
+.small-blue {
+  width: 11px;
+  height: 11px;
+  background-position: -88px 11px;
+  background-size: 176px auto;
 }
 
-.playerRoadIcon5 {
-  width: 19px;
-  height: 19px;
-  background-position: -266px 0px;
-  background-size: 361px auto;
-}
-
-.playerRoadIcon6 {
-  width: 19px;
-  height: 19px;
-  background-position: -285px 0px;
-  background-size: 361px auto;
-}
-
-.playerRoadIcon7 {
+.bigEye-red {
   width: 10px;
   height: 10px;
-  background-position: -160px 0px;
-  background-size: 190px auto;
+  background-position: -120px 0px;
+  background-size: 160px auto;
 }
 
-.playerRoadIcon8 {
+.bigEye-blue {
   width: 10px;
   height: 10px;
-  background-position: -170px 0px;
-  background-size: 190px auto;
+  background-position: -140px 0px;
+  background-size: 160px auto;
 }
 
-.tieRoadIcon {
-  width: 35px;
-  height: 35px;
-  background-position: -630px 0px;
-  background-size: 665px auto;
+cockroach-red {
+  width: 10px;
+  height: 10px;
+  background-position: -130px 0px;
+  background-size: 160px auto;
+}
+
+cockroach-blue {
+  width: 10px;
+  height: 10px;
+  background-position: -150px 0px;
+  background-size: 160px auto;
 }
 
 .LoadingPage {
@@ -1015,131 +1110,209 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -252.8px -52px;
     background-size: 316px 156px;
   }
-  .bankerRoadIcon0 {
+  .BeadPlate-B {
     width: 29px;
     height: 29px;
     background-position: 0px 0px;
-    background-size: 551px auto;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon1 {
+  .BeadPlate-B-BPair {
     width: 29px;
     height: 29px;
     background-position: -29px 0px;
-    background-size: 551px auto;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon2 {
+  .BeadPlate-B-PPair {
     width: 29px;
     height: 29px;
     background-position: -58px 0px;
-    background-size: 551px auto;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon3 {
-    width: 15px;
-    height: 15px;
-    background-position: -45px 0px;
-    background-size: 285px auto;
+  .BeadPlate-B-BothPair {
+    width: 29px;
+    height: 29px;
+    background-position: -87px 0px;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon3-1 {
-    width: 9px;
-    height: 9px;
-    background-position: -27px 0px;
-    background-size: 171px auto;
+  .BeadPlate-P {
+    width: 29px;
+    height: 29px;
+    background-position: -116px 0px;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon4 {
-    width: 15px;
-    height: 15px;
-    background-position: -60px 0px;
-    background-size: 285px auto;
+  .BeadPlate-P-BPair {
+    width: 29px;
+    height: 29px;
+    background-position: -145px 0px;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon5 {
-    width: 15px;
-    height: 15px;
-    background-position: -75px 0px;
-    background-size: 285px auto;
+  .BeadPlate-P-PPair {
+    width: 29px;
+    height: 29px;
+    background-position: -174px 0px;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon6 {
-    width: 15px;
-    height: 15px;
-    background-position: -90px 0px;
-    background-size: 285px auto;
+  .BeadPlate-P-BothPair {
+    width: 29px;
+    height: 29px;
+    background-position: -203px 0px;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon7 {
-    width: 8px;
-    height: 8px;
-    background-position: -56px 0px;
-    background-size: 152px auto;
+  .BeadPlate-T {
+    width: 29px;
+    height: 29px;
+    background-position: -232px 0px;
+    background-size: 464px auto;
   }
-  .bankerRoadIcon8 {
-    width: 8px;
-    height: 8px;
-    background-position: -64px 0px;
-    background-size: 152px auto;
-  }
-  .playerRoadIcon0 {
+  .BeadPlate-T-BPair {
     width: 29px;
     height: 29px;
     background-position: -261px 0px;
-    background-size: 551px auto;
+    background-size: 464px auto;
   }
-  .playerRoadIcon1 {
+  .BeadPlate-T-PPair {
     width: 29px;
     height: 29px;
     background-position: -290px 0px;
-    background-size: 551px auto;
+    background-size: 464px auto;
   }
-  .playerRoadIcon2 {
+  .BeadPlate-T-BothPair {
     width: 29px;
     height: 29px;
     background-position: -319px 0px;
-    background-size: 551px auto;
+    background-size: 464px auto;
   }
-  .playerRoadIcon3 {
+  .big-B {
     width: 15px;
     height: 15px;
-    background-position: -180px 0px;
-    background-size: 285px auto;
+    background-position: 0px 15px;
+    background-size: 240px auto;
   }
-  .playerRoadIcon3-1 {
+  .big-B-BPair {
+    width: 15px;
+    height: 15px;
+    background-position: -15px 15px;
+    background-size: 240px auto;
+  }
+  .big-B-PPair {
+    width: 15px;
+    height: 15px;
+    background-position: -30px 15px;
+    background-size: 240px auto;
+  }
+  .big-B-BothPair {
+    width: 15px;
+    height: 15px;
+    background-position: -45px 15px;
+    background-size: 240px auto;
+  }
+  .big-BT {
+    width: 15px;
+    height: 15px;
+    background-position: -60px 15px;
+    background-size: 240px auto;
+  }
+  .big-BT-BPair {
+    width: 15px;
+    height: 15px;
+    background-position: -75px 15px;
+    background-size: 240px auto;
+  }
+  .big-BT-PPair {
+    width: 15px;
+    height: 15px;
+    background-position: -90px 15px;
+    background-size: 240px auto;
+  }
+  .big-BT-BothPair {
+    width: 15px;
+    height: 15px;
+    background-position: -105px 15px;
+    background-size: 240px auto;
+  }
+  .big-P {
+    width: 15px;
+    height: 15px;
+    background-position: -120px 15px;
+    background-size: 240px auto;
+  }
+  .big-P-BPair {
+    width: 15px;
+    height: 15px;
+    background-position: -135px 15px;
+    background-size: 240px auto;
+  }
+  .big-P-PPair {
+    width: 15px;
+    height: 15px;
+    background-position: -150px 15px;
+    background-size: 240px auto;
+  }
+  .big-P-BothPair {
+    width: 15px;
+    height: 15px;
+    background-position: -165px 15px;
+    background-size: 240px auto;
+  }
+  .big-PT {
+    width: 15px;
+    height: 15px;
+    background-position: -180px 15px;
+    background-size: 240px auto;
+  }
+  .big-PT-BPair {
+    width: 15px;
+    height: 15px;
+    background-position: -195px 15px;
+    background-size: 240px auto;
+  }
+  .big-PT-PPair {
+    width: 15px;
+    height: 15px;
+    background-position: -210px 15px;
+    background-size: 240px auto;
+  }
+  .big-PT-BothPair {
+    width: 15px;
+    height: 15px;
+    background-position: -225px 15px;
+    background-size: 240px auto;
+  }
+  .small-red {
     width: 9px;
     height: 9px;
-    background-position: -108px 0px;
-    background-size: 171px auto;
+    background-position: 0px 9px;
+    background-size: 144px auto;
   }
-  .playerRoadIcon4 {
-    width: 15px;
-    height: 15px;
-    background-position: -195px 0px;
-    background-size: 285px auto;
+  .small-blue {
+    width: 9px;
+    height: 9px;
+    background-position: -72px 9px;
+    background-size: 144px auto;
   }
-  .playerRoadIcon5 {
-    width: 15px;
-    height: 15px;
-    background-position: -210px 0px;
-    background-size: 285px auto;
-  }
-  .playerRoadIcon6 {
-    width: 15px;
-    height: 15px;
-    background-position: -225px 0px;
-    background-size: 285px auto;
-  }
-  .playerRoadIcon7 {
+  .bigEye-red {
     width: 8px;
     height: 8px;
-    background-position: -128px 0px;
-    background-size: 152px auto;
+    background-position: -96px 0px;
+    background-size: 128px auto;
   }
-  .playerRoadIcon8 {
+  .bigEye-blue {
     width: 8px;
     height: 8px;
-    background-position: -136px 0px;
-    background-size: 152px auto;
+    background-position: -112px 0px;
+    background-size: 128px auto;
   }
-  .tieRoadIcon {
-    width: 29px;
-    height: 29px;
-    background-position: -522px 0px;
-    background-size: 551px auto;
+  cockroach-red {
+    width: 8px;
+    height: 8px;
+    background-position: -104px 0px;
+    background-size: 128px auto;
+  }
+  cockroach-blue {
+    width: 8px;
+    height: 8px;
+    background-position: -120px 0px;
+    background-size: 128px auto;
   }
 }
 
@@ -1295,131 +1468,209 @@ a.btn.disabled, fieldset[disabled] a.btn {
     right: 20%;
     top: 50%;
   }
-  .bankerRoadIcon0 {
+  .BeadPlate-B {
     width: 35px;
     height: 35px;
     background-position: 0px 0px;
-    background-size: 665px auto;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon1 {
+  .BeadPlate-B-BPair {
     width: 35px;
     height: 35px;
     background-position: -35px 0px;
-    background-size: 665px auto;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon2 {
+  .BeadPlate-B-PPair {
     width: 35px;
     height: 35px;
     background-position: -70px 0px;
-    background-size: 665px auto;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon3 {
-    width: 20px;
-    height: 20px;
-    background-position: -60px 0px;
-    background-size: 380px auto;
+  .BeadPlate-B-BothPair {
+    width: 35px;
+    height: 35px;
+    background-position: -105px 0px;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon3-1 {
-    width: 9px;
-    height: 9px;
-    background-position: -27px 0px;
-    background-size: 171px auto;
+  .BeadPlate-P {
+    width: 35px;
+    height: 35px;
+    background-position: -140px 0px;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon4 {
-    width: 20px;
-    height: 20px;
-    background-position: -80px 0px;
-    background-size: 380px auto;
+  .BeadPlate-P-BPair {
+    width: 35px;
+    height: 35px;
+    background-position: -175px 0px;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon5 {
-    width: 20px;
-    height: 20px;
-    background-position: -100px 0px;
-    background-size: 380px auto;
+  .BeadPlate-P-PPair {
+    width: 35px;
+    height: 35px;
+    background-position: -210px 0px;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon6 {
-    width: 20px;
-    height: 20px;
-    background-position: -120px 0px;
-    background-size: 380px auto;
+  .BeadPlate-P-BothPair {
+    width: 35px;
+    height: 35px;
+    background-position: -245px 0px;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon7 {
-    width: 9px;
-    height: 9px;
-    background-position: -63px 0px;
-    background-size: 171px auto;
+  .BeadPlate-T {
+    width: 35px;
+    height: 35px;
+    background-position: -280px 0px;
+    background-size: 560px auto;
   }
-  .bankerRoadIcon8 {
-    width: 9px;
-    height: 9px;
-    background-position: -72px 0px;
-    background-size: 171px auto;
-  }
-  .playerRoadIcon0 {
+  .BeadPlate-T-BPair {
     width: 35px;
     height: 35px;
     background-position: -315px 0px;
-    background-size: 665px auto;
+    background-size: 560px auto;
   }
-  .playerRoadIcon1 {
+  .BeadPlate-T-PPair {
     width: 35px;
     height: 35px;
     background-position: -350px 0px;
-    background-size: 665px auto;
+    background-size: 560px auto;
   }
-  .playerRoadIcon2 {
+  .BeadPlate-T-BothPair {
     width: 35px;
     height: 35px;
     background-position: -385px 0px;
-    background-size: 665px auto;
+    background-size: 560px auto;
   }
-  .playerRoadIcon3 {
+  .big-B {
     width: 20px;
     height: 20px;
-    background-position: -240px 0px;
-    background-size: 380px auto;
+    background-position: 0px 20px;
+    background-size: 320px auto;
   }
-  .playerRoadIcon3-1 {
+  .big-B-BPair {
+    width: 20px;
+    height: 20px;
+    background-position: -20px 20px;
+    background-size: 320px auto;
+  }
+  .big-B-PPair {
+    width: 20px;
+    height: 20px;
+    background-position: -40px 20px;
+    background-size: 320px auto;
+  }
+  .big-B-BothPair {
+    width: 20px;
+    height: 20px;
+    background-position: -60px 20px;
+    background-size: 320px auto;
+  }
+  .big-BT {
+    width: 20px;
+    height: 20px;
+    background-position: -80px 20px;
+    background-size: 320px auto;
+  }
+  .big-BT-BPair {
+    width: 20px;
+    height: 20px;
+    background-position: -100px 20px;
+    background-size: 320px auto;
+  }
+  .big-BT-PPair {
+    width: 20px;
+    height: 20px;
+    background-position: -120px 20px;
+    background-size: 320px auto;
+  }
+  .big-BT-BothPair {
+    width: 20px;
+    height: 20px;
+    background-position: -140px 20px;
+    background-size: 320px auto;
+  }
+  .big-P {
+    width: 20px;
+    height: 20px;
+    background-position: -160px 20px;
+    background-size: 320px auto;
+  }
+  .big-P-BPair {
+    width: 20px;
+    height: 20px;
+    background-position: -180px 20px;
+    background-size: 320px auto;
+  }
+  .big-P-PPair {
+    width: 20px;
+    height: 20px;
+    background-position: -200px 20px;
+    background-size: 320px auto;
+  }
+  .big-P-BothPair {
+    width: 20px;
+    height: 20px;
+    background-position: -220px 20px;
+    background-size: 320px auto;
+  }
+  .big-PT {
+    width: 20px;
+    height: 20px;
+    background-position: -240px 20px;
+    background-size: 320px auto;
+  }
+  .big-PT-BPair {
+    width: 20px;
+    height: 20px;
+    background-position: -260px 20px;
+    background-size: 320px auto;
+  }
+  .big-PT-PPair {
+    width: 20px;
+    height: 20px;
+    background-position: -280px 20px;
+    background-size: 320px auto;
+  }
+  .big-PT-BothPair {
+    width: 20px;
+    height: 20px;
+    background-position: -300px 20px;
+    background-size: 320px auto;
+  }
+  .small-red {
+    width: 9px;
+    height: 9px;
+    background-position: 0px 9px;
+    background-size: 144px auto;
+  }
+  .small-blue {
+    width: 9px;
+    height: 9px;
+    background-position: -72px 9px;
+    background-size: 144px auto;
+  }
+  .bigEye-red {
     width: 9px;
     height: 9px;
     background-position: -108px 0px;
-    background-size: 171px auto;
+    background-size: 144px auto;
   }
-  .playerRoadIcon4 {
-    width: 20px;
-    height: 20px;
-    background-position: -260px 0px;
-    background-size: 380px auto;
-  }
-  .playerRoadIcon5 {
-    width: 20px;
-    height: 20px;
-    background-position: -280px 0px;
-    background-size: 380px auto;
-  }
-  .playerRoadIcon6 {
-    width: 20px;
-    height: 20px;
-    background-position: -300px 0px;
-    background-size: 380px auto;
-  }
-  .playerRoadIcon7 {
+  .bigEye-blue {
     width: 9px;
     height: 9px;
-    background-position: -144px 0px;
-    background-size: 171px auto;
+    background-position: -126px 0px;
+    background-size: 144px auto;
   }
-  .playerRoadIcon8 {
+  cockroach-red {
     width: 9px;
     height: 9px;
-    background-position: -153px 0px;
-    background-size: 171px auto;
+    background-position: -117px 0px;
+    background-size: 144px auto;
   }
-  .tieRoadIcon {
-    width: 35px;
-    height: 35px;
-    background-position: -630px 0px;
-    background-size: 665px auto;
+  cockroach-blue {
+    width: 9px;
+    height: 9px;
+    background-position: -135px 0px;
+    background-size: 144px auto;
   }
 }
 
@@ -1465,6 +1716,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item {
     font-size: 1.6rem;
   }
+  .alertFont {
+    font-size: 1.6rem !important;
+  }
   .card-container {
     margin-top: -35px;
   }
@@ -1476,95 +1730,173 @@ a.btn.disabled, fieldset[disabled] a.btn {
     right: 10%;
     top: 50%;
   }
-  .bankerRoadIcon0 {
+  .BeadPlate-B {
     width: 30px;
     height: 30px;
     background-position: 0px 0px;
-    background-size: 570px auto;
+    background-size: 480px auto;
   }
-  .bankerRoadIcon1 {
+  .BeadPlate-B-BPair {
     width: 30px;
     height: 30px;
     background-position: -30px 0px;
-    background-size: 570px auto;
+    background-size: 480px auto;
   }
-  .bankerRoadIcon2 {
+  .BeadPlate-B-PPair {
     width: 30px;
     height: 30px;
     background-position: -60px 0px;
-    background-size: 570px auto;
+    background-size: 480px auto;
   }
-  .bankerRoadIcon3 {
-    width: 17px;
-    height: 17px;
-    background-position: -51px 0px;
-    background-size: 323px auto;
+  .BeadPlate-B-BothPair {
+    width: 30px;
+    height: 30px;
+    background-position: -90px 0px;
+    background-size: 480px auto;
   }
-  .bankerRoadIcon4 {
-    width: 17px;
-    height: 17px;
-    background-position: -68px 0px;
-    background-size: 323px auto;
+  .BeadPlate-P {
+    width: 30px;
+    height: 30px;
+    background-position: -120px 0px;
+    background-size: 480px auto;
   }
-  .bankerRoadIcon5 {
-    width: 17px;
-    height: 17px;
-    background-position: -85px 0px;
-    background-size: 323px auto;
+  .BeadPlate-P-BPair {
+    width: 30px;
+    height: 30px;
+    background-position: -150px 0px;
+    background-size: 480px auto;
   }
-  .bankerRoadIcon6 {
-    width: 17px;
-    height: 17px;
-    background-position: -102px 0px;
-    background-size: 323px auto;
+  .BeadPlate-P-PPair {
+    width: 30px;
+    height: 30px;
+    background-position: -180px 0px;
+    background-size: 480px auto;
   }
-  .playerRoadIcon0 {
+  .BeadPlate-P-BothPair {
+    width: 30px;
+    height: 30px;
+    background-position: -210px 0px;
+    background-size: 480px auto;
+  }
+  .BeadPlate-T {
+    width: 30px;
+    height: 30px;
+    background-position: -240px 0px;
+    background-size: 480px auto;
+  }
+  .BeadPlate-T-BPair {
     width: 30px;
     height: 30px;
     background-position: -270px 0px;
-    background-size: 570px auto;
+    background-size: 480px auto;
   }
-  .playerRoadIcon1 {
+  .BeadPlate-T-PPair {
     width: 30px;
     height: 30px;
     background-position: -300px 0px;
-    background-size: 570px auto;
+    background-size: 480px auto;
   }
-  .playerRoadIcon2 {
+  .BeadPlate-T-BothPair {
     width: 30px;
     height: 30px;
     background-position: -330px 0px;
-    background-size: 570px auto;
+    background-size: 480px auto;
   }
-  .playerRoadIcon3 {
+  .big-B {
     width: 17px;
     height: 17px;
-    background-position: -204px 0px;
-    background-size: 323px auto;
+    background-position: 0px 17px;
+    background-size: 272px auto;
   }
-  .playerRoadIcon4 {
+  .big-B-BPair {
     width: 17px;
     height: 17px;
-    background-position: -221px 0px;
-    background-size: 323px auto;
+    background-position: -17px 17px;
+    background-size: 272px auto;
   }
-  .playerRoadIcon5 {
+  .big-B-PPair {
     width: 17px;
     height: 17px;
-    background-position: -238px 0px;
-    background-size: 323px auto;
+    background-position: -34px 17px;
+    background-size: 272px auto;
   }
-  .playerRoadIcon6 {
+  .big-B-BothPair {
     width: 17px;
     height: 17px;
-    background-position: -255px 0px;
-    background-size: 323px auto;
+    background-position: -51px 17px;
+    background-size: 272px auto;
   }
-  .tieRoadIcon {
-    width: 30px;
-    height: 30px;
-    background-position: -540px 0px;
-    background-size: 570px auto;
+  .big-BT {
+    width: 17px;
+    height: 17px;
+    background-position: -68px 17px;
+    background-size: 272px auto;
+  }
+  .big-BT-BPair {
+    width: 17px;
+    height: 17px;
+    background-position: -85px 17px;
+    background-size: 272px auto;
+  }
+  .big-BT-PPair {
+    width: 17px;
+    height: 17px;
+    background-position: -102px 17px;
+    background-size: 272px auto;
+  }
+  .big-BT-BothPair {
+    width: 17px;
+    height: 17px;
+    background-position: -119px 17px;
+    background-size: 272px auto;
+  }
+  .big-P {
+    width: 17px;
+    height: 17px;
+    background-position: -136px 17px;
+    background-size: 272px auto;
+  }
+  .big-P-BPair {
+    width: 17px;
+    height: 17px;
+    background-position: -153px 17px;
+    background-size: 272px auto;
+  }
+  .big-P-PPair {
+    width: 17px;
+    height: 17px;
+    background-position: -170px 17px;
+    background-size: 272px auto;
+  }
+  .big-P-BothPair {
+    width: 17px;
+    height: 17px;
+    background-position: -187px 17px;
+    background-size: 272px auto;
+  }
+  .big-PT {
+    width: 17px;
+    height: 17px;
+    background-position: -204px 17px;
+    background-size: 272px auto;
+  }
+  .big-PT-BPair {
+    width: 17px;
+    height: 17px;
+    background-position: -221px 17px;
+    background-size: 272px auto;
+  }
+  .big-PT-PPair {
+    width: 17px;
+    height: 17px;
+    background-position: -238px 17px;
+    background-size: 272px auto;
+  }
+  .big-PT-BothPair {
+    width: 17px;
+    height: 17px;
+    background-position: -255px 17px;
+    background-size: 272px auto;
   }
 }
 
@@ -1584,6 +1916,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item, .betStatus {
     font-size: 1.5rem;
+  }
+  .alertFont {
+    font-size: 1.5rem !important;
   }
   .betArea-mobile, .betArea-mobile-container {
     height: 130px;
@@ -1651,131 +1986,209 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .gameHistory {
     height: 130px;
   }
-  .bankerRoadIcon0 {
+  .BeadPlate-B {
     width: 15px;
     height: 15px;
     background-position: 0px 0px;
-    background-size: 285px auto;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon1 {
+  .BeadPlate-B-BPair {
     width: 15px;
     height: 15px;
     background-position: -15px 0px;
-    background-size: 285px auto;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon2 {
+  .BeadPlate-B-PPair {
     width: 15px;
     height: 15px;
     background-position: -30px 0px;
-    background-size: 285px auto;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon3 {
-    width: 8px;
-    height: 8px;
-    background-position: -24px 0px;
-    background-size: 152px auto;
+  .BeadPlate-B-BothPair {
+    width: 15px;
+    height: 15px;
+    background-position: -45px 0px;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon3-1 {
-    width: 4px;
-    height: 4px;
-    background-position: -12px 0px;
-    background-size: 76px auto;
+  .BeadPlate-P {
+    width: 15px;
+    height: 15px;
+    background-position: -60px 0px;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon4 {
-    width: 8px;
-    height: 8px;
-    background-position: -32px 0px;
-    background-size: 152px auto;
+  .BeadPlate-P-BPair {
+    width: 15px;
+    height: 15px;
+    background-position: -75px 0px;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon5 {
-    width: 8px;
-    height: 8px;
-    background-position: -40px 0px;
-    background-size: 152px auto;
+  .BeadPlate-P-PPair {
+    width: 15px;
+    height: 15px;
+    background-position: -90px 0px;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon6 {
-    width: 8px;
-    height: 8px;
-    background-position: -48px 0px;
-    background-size: 152px auto;
+  .BeadPlate-P-BothPair {
+    width: 15px;
+    height: 15px;
+    background-position: -105px 0px;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon7 {
-    width: 4px;
-    height: 4px;
-    background-position: -28px 0px;
-    background-size: 76px auto;
+  .BeadPlate-T {
+    width: 15px;
+    height: 15px;
+    background-position: -120px 0px;
+    background-size: 240px auto;
   }
-  .bankerRoadIcon8 {
-    width: 4px;
-    height: 4px;
-    background-position: -32px 0px;
-    background-size: 76px auto;
-  }
-  .playerRoadIcon0 {
+  .BeadPlate-T-BPair {
     width: 15px;
     height: 15px;
     background-position: -135px 0px;
-    background-size: 285px auto;
+    background-size: 240px auto;
   }
-  .playerRoadIcon1 {
+  .BeadPlate-T-PPair {
     width: 15px;
     height: 15px;
     background-position: -150px 0px;
-    background-size: 285px auto;
+    background-size: 240px auto;
   }
-  .playerRoadIcon2 {
+  .BeadPlate-T-BothPair {
     width: 15px;
     height: 15px;
     background-position: -165px 0px;
-    background-size: 285px auto;
+    background-size: 240px auto;
   }
-  .playerRoadIcon3 {
+  .big-B {
     width: 8px;
     height: 8px;
-    background-position: -96px 0px;
-    background-size: 152px auto;
+    background-position: 0px 8px;
+    background-size: 128px auto;
   }
-  .playerRoadIcon3-1 {
+  .big-B-BPair {
+    width: 8px;
+    height: 8px;
+    background-position: -8px 8px;
+    background-size: 128px auto;
+  }
+  .big-B-PPair {
+    width: 8px;
+    height: 8px;
+    background-position: -16px 8px;
+    background-size: 128px auto;
+  }
+  .big-B-BothPair {
+    width: 8px;
+    height: 8px;
+    background-position: -24px 8px;
+    background-size: 128px auto;
+  }
+  .big-BT {
+    width: 8px;
+    height: 8px;
+    background-position: -32px 8px;
+    background-size: 128px auto;
+  }
+  .big-BT-BPair {
+    width: 8px;
+    height: 8px;
+    background-position: -40px 8px;
+    background-size: 128px auto;
+  }
+  .big-BT-PPair {
+    width: 8px;
+    height: 8px;
+    background-position: -48px 8px;
+    background-size: 128px auto;
+  }
+  .big-BT-BothPair {
+    width: 8px;
+    height: 8px;
+    background-position: -56px 8px;
+    background-size: 128px auto;
+  }
+  .big-P {
+    width: 8px;
+    height: 8px;
+    background-position: -64px 8px;
+    background-size: 128px auto;
+  }
+  .big-P-BPair {
+    width: 8px;
+    height: 8px;
+    background-position: -72px 8px;
+    background-size: 128px auto;
+  }
+  .big-P-PPair {
+    width: 8px;
+    height: 8px;
+    background-position: -80px 8px;
+    background-size: 128px auto;
+  }
+  .big-P-BothPair {
+    width: 8px;
+    height: 8px;
+    background-position: -88px 8px;
+    background-size: 128px auto;
+  }
+  .big-PT {
+    width: 8px;
+    height: 8px;
+    background-position: -96px 8px;
+    background-size: 128px auto;
+  }
+  .big-PT-BPair {
+    width: 8px;
+    height: 8px;
+    background-position: -104px 8px;
+    background-size: 128px auto;
+  }
+  .big-PT-PPair {
+    width: 8px;
+    height: 8px;
+    background-position: -112px 8px;
+    background-size: 128px auto;
+  }
+  .big-PT-BothPair {
+    width: 8px;
+    height: 8px;
+    background-position: -120px 8px;
+    background-size: 128px auto;
+  }
+  .small-red {
+    width: 4px;
+    height: 4px;
+    background-position: 0px 4px;
+    background-size: 64px auto;
+  }
+  .small-blue {
+    width: 4px;
+    height: 4px;
+    background-position: -32px 4px;
+    background-size: 64px auto;
+  }
+  .bigEye-red {
     width: 4px;
     height: 4px;
     background-position: -48px 0px;
-    background-size: 76px auto;
+    background-size: 64px auto;
   }
-  .playerRoadIcon4 {
-    width: 8px;
-    height: 8px;
-    background-position: -104px 0px;
-    background-size: 152px auto;
-  }
-  .playerRoadIcon5 {
-    width: 8px;
-    height: 8px;
-    background-position: -112px 0px;
-    background-size: 152px auto;
-  }
-  .playerRoadIcon6 {
-    width: 8px;
-    height: 8px;
-    background-position: -120px 0px;
-    background-size: 152px auto;
-  }
-  .playerRoadIcon7 {
+  .bigEye-blue {
     width: 4px;
     height: 4px;
-    background-position: -64px 0px;
-    background-size: 76px auto;
+    background-position: -56px 0px;
+    background-size: 64px auto;
   }
-  .playerRoadIcon8 {
+  cockroach-red {
     width: 4px;
     height: 4px;
-    background-position: -68px 0px;
-    background-size: 76px auto;
+    background-position: -52px 0px;
+    background-size: 64px auto;
   }
-  .tieRoadIcon {
-    width: 15px;
-    height: 15px;
-    background-position: -270px 0px;
-    background-size: 285px auto;
+  cockroach-blue {
+    width: 4px;
+    height: 4px;
+    background-position: -60px 0px;
+    background-size: 64px auto;
   }
   .card-container {
     margin-top: -10px;
@@ -1933,6 +2346,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betStatus {
     font-size: 1.1rem;
   }
+  .alertFont {
+    font-size: 1.3rem !important;
+  }
   .betArea-mobile {
     height: 179px;
   }
@@ -1983,6 +2399,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item {
     font-size: 1rem;
+  }
+  .alertFont {
+    font-size: 1.2rem !important;
   }
   .betStatus {
     font-size: 1rem;

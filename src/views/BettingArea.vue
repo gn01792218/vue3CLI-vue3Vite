@@ -224,7 +224,7 @@ export default defineComponent({
                 coinArray:[],
                 odds:"1:1",
                 host:"閒家",
-                configClass:"betArea-item red",
+                configClass:"betArea-item red alertFont",
                 betStatus:0 //目前這一回合的下注狀況
             },
             {
@@ -232,7 +232,7 @@ export default defineComponent({
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
                 host:"莊家",
-                configClass:"betArea-item yellow",
+                configClass:"betArea-item yellow alertFont",
                 betStatus:0 //目前這一回合的下注狀況
             },
              {

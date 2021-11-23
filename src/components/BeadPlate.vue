@@ -65,20 +65,41 @@ export default defineComponent({
           let beadPlateCol = document.querySelector(`.beadPlate-column${columnNum}`) as HTMLElement
           let beadPlateColItem = beadPlateCol.children[roadnum].firstChild as HTMLElement
           switch(gameResult){
-            case 1:
-              beadPlateColItem.classList.add('bankerRoadIcon0')
+            case proto.roadmap.Block.Banker:
+              beadPlateColItem.classList.add('BeadPlate-B')
               break
-            case 2:
-              beadPlateColItem.classList.add('playerRoadIcon0')
+            case proto.roadmap.Block.Player:
+              beadPlateColItem.classList.add('BeadPlate-P')
               break
-            case 3:
-              beadPlateColItem.classList.add('bankerRoadIcon1')
+            case proto.roadmap.Block.Tie:
+              beadPlateColItem.classList.add('BeadPlate-T')
               break
-            case 4:
-              beadPlateColItem.classList.add('tieRoadIcon')
+            case proto.roadmap.Block.BankerAndBankerPair:
+              beadPlateColItem.classList.add('BeadPlate-B-BPair')
               break
-            case 5:
-              beadPlateColItem.classList.add('playerRoadIcon2')
+            case proto.roadmap.Block.BankerAndPlayerPair:
+              beadPlateColItem.classList.add('BeadPlate-B-PPair')
+              break
+            case proto.roadmap.Block.BankerAndBothPair:
+              beadPlateColItem.classList.add('BeadPlate-B-BothPair')
+              break
+            case proto.roadmap.Block.PlayerAndBankerPair:
+              beadPlateColItem.classList.add('BeadPlate-P-BPair')
+              break
+            case proto.roadmap.Block.PlayerAndPlayerPair:
+              beadPlateColItem.classList.add('BeadPlate-P-PPair')
+              break
+            case proto.roadmap.Block.PlayerAndBothPair:
+              beadPlateColItem.classList.add('BeadPlate-P-BothPair')
+              break
+            case proto.roadmap.Block.TieAndBankerPair:
+              beadPlateColItem.classList.add('BeadPlate-T-BPair')
+              break
+            case proto.roadmap.Block.TieAndPlayerPair:
+              beadPlateColItem.classList.add('BeadPlate-T-PPair')
+              break
+            case proto.roadmap.Block.TieAndBothPair:
+              beadPlateColItem.classList.add('BeadPlate-T-BothPair')
               break
           }
           roadIndex.value++
