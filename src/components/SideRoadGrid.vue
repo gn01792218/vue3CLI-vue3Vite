@@ -1,6 +1,6 @@
 <template>
-<button class="test position-absolute" @click="put(2)">莊贏</button>
-<button class="position-absolute" @click="put(1)">閒贏</button>
+<button class="test position-absolute" @click="put(1)">莊贏</button>
+<button class="test3 position-absolute" @click="put(2)">閒贏</button>
 <button class="test2 position-absolute" @click="resetBigRoad">重置大路</button>
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
@@ -89,10 +89,12 @@ export default defineComponent({
 
         function put(num:number) {
           switch(num){
-            case 1:
+            case 1:  //閒
+            console.log("閒")
               showBigRoad()
               break
             case 2:
+              console.log("莊")
               showBigRoad2()
           }
         }
@@ -185,9 +187,6 @@ export default defineComponent({
         function showBigRoad2 () {
           gameResult2.value.forEach(i=>{
             recordBigRoad(i)  //紀錄陣營
-            if(bigRoadColumn.value>=secWidth.length && bigRoadItemIndex.value>5){  //加格子情況一:col滿且item滿
-              addBBigRoadColumn()
-            }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
               // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -204,14 +203,19 @@ export default defineComponent({
               }else{
                 bigRoadColumn.value++
               }
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
+                console.log("滿了+行")
+                addBBigRoadColumn()
+              }  
                bigRoadItemIndex.value = 0
                console.log("格",bigRoadItemIndex.value)
             }
             //換行二:溢出換行
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]==1 || bigRoadItemIndex.value>5){
+              console.log("連贏溢出")
               bigRoadColumn.value++ //換行
-              if(bigRoadColumn.value>=secWidth.length){
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){
                 console.log("滿了+行")
                 addBBigRoadColumn()
               }  //溢出極限格子的時候要增加行數
@@ -231,16 +235,13 @@ export default defineComponent({
         function showBigRoad () {
           gameResult.value.forEach(i=>{
             recordBigRoad(i)  //1.紀錄陣營
-            if(bigRoadColumn.value>=secWidth.length && bigRoadItemIndex.value>5){  //正常的滿格+行情況
-              addBBigRoadColumn()
-            }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
               // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
                 if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
                   bigRoadColumn.value++
-                   console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
+                  console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
                   roadOverFlowerTimes.value = 0
                 }else{
                   bigRoadColumn.value = bigRoadColumn.value-roadOverFlowerTimes.value+1
@@ -250,31 +251,37 @@ export default defineComponent({
               }else{
                 bigRoadColumn.value++
               }
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
+                console.log("滿了+行")
+                addBBigRoadColumn()
+              }  
                bigRoadItemIndex.value = 0
                console.log("格",bigRoadItemIndex.value)
             }
             //換行二:溢出換行
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
+              console.log("連贏溢出")
               bigRoadColumn.value++ //換行
-              if(bigRoadColumn.value>=secWidth.length){addBBigRoadColumn()}  //溢出極限格子的時候要增加行數
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                console.log("滿了+行")
+                addBBigRoadColumn()
+              }  //溢出極限格子的時候要增加行數
               if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              // console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                 bigRoadColArr[bigRoadColumn.value][i] = 1
-                console.log(i)
               }
-              
             }
             putBigRoad(i)
           })
         }
         function addBBigRoadColumn () {  //滿格時一次增加一格的方法
-          bigRoadColumn.value++
-          bigRoadItemIndex.value = 0
+          // bigRoadColumn.value++
+          // bigRoadItemIndex.value = 0
           let bigRoad = document.querySelector('.bigRoad') as HTMLElement  
           let firstChild = bigRoad.firstElementChild as HTMLElement //抓取第一個元素
           bigRoad.removeChild(firstChild) //刪除第一行
@@ -293,7 +300,10 @@ export default defineComponent({
           }
           //貼上去
           bigRoad.appendChild(newCol)
-          roadOverFlowerTimes.value++
+          //記得也要增加bigRoadArr
+          bigRoadColArr.push([0,0,0,0,0,0])
+          console.log("加了一行","行",bigRoadColumn.value)
+          // roadOverFlowerTimes.value++
         }
         function resetBigRoad(){
           //1.直接刪除beadPlatRoadPlace下所有的beadPlate-column
@@ -344,11 +354,14 @@ export default defineComponent({
 
 <style lang="scss">
 .test{
-  left:10%;
+  left:-5%;
   bottom: 100%;
 }
 .test2{
   top:50%;
+}
+.test3{
+  bottom:0;
 }
 /* 背景格子 */
 .secRoad{
