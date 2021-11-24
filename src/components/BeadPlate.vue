@@ -20,7 +20,7 @@
       </div>
     </div>
     
-    <!-- <button class="position-absolute" @click="put">放路圖</button> -->
+    <!-- <button class="position-absolute" @click="resetRoad">重置路圖</button> -->
 </template>
 
 <script lang="ts">
@@ -227,6 +227,7 @@ export default defineComponent({
           beadPlateRow,beadPlateColumn,
           //methods
         //  put,
+        resetRoad,
         }
     },
 
