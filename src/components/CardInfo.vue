@@ -186,7 +186,6 @@ export default defineComponent({
           scale.value = 0.25
         }
         else if(viewportWidth<=540){
-          console.log("監聽540以下的畫卡牌")
           scale.value = 0.14
         }else{
           scale.value = 0.19
