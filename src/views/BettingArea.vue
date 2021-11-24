@@ -142,7 +142,7 @@ export default defineComponent({
             return store.state.dealer.end
         })
         //基本資料
-        const canBet = ref(false)
+        const canBet = ref(true)
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1){ 
