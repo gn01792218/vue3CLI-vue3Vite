@@ -141,6 +141,8 @@ export default defineComponent({
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
+        //基本資料
+        const canBet = ref(false)
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1){ 
@@ -155,14 +157,19 @@ export default defineComponent({
                 // coinPosition[4].betStatus = betStatus.value.PlayerPair
             }   
         })
-        watch(gameEnd,()=>{ //換薛時也要重置
+        watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
             reSetBetAreaAnimation()
             resetGame()
+            canBet.value = false
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
             console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
+            canBet.value = true
+        })
+        watch(gameEndUuid,()=>{
+            canBet.value = false
         })
         watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
             if(betResult.value!==0){
@@ -387,17 +394,23 @@ export default defineComponent({
         }
         const betArray = reactive<Array<any>>([]) //紀錄下注元素和區域
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
-            //發送下注請求
-            //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
-            sendBetCall({
-            gameUuid:roundUuid.value,
-            betIndex:currentCoint.num,
-            betArea:index+1,
-            })
-            betArray.push({
-                'betAreaElement':e.target,
-                'betAreaIndex':index,
-            })
+            if(canBet.value){
+                //發送下注請求
+                console.log("可否下注",canBet.value)
+                sendBetCall({
+                    gameUuid:roundUuid.value,
+                    betIndex:currentCoint.num,
+                    betArea:index+1,
+                })
+                betArray.push({
+                    'betAreaElement':e.target,
+                    'betAreaIndex':index,
+                })
+            }else{ //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
+                betErrorArray.value?.push('下注失敗')
+                console.log("可否下注",canBet.value)
+            }
+            
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
             if(betResult.value==1){   
