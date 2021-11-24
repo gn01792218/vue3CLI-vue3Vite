@@ -1,6 +1,7 @@
 <template>
-<!-- <button class="test position-absolute" @click="put(2)">莊贏</button>
-<button class="position-absolute" @click="put(1)">閒贏</button> -->
+<button class="test position-absolute" @click="put(2)">莊贏</button>
+<button class="position-absolute" @click="put(1)">閒贏</button>
+<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button>
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
@@ -83,6 +84,7 @@ export default defineComponent({
         }
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
+          resetBigRoad()
         })
 
         function put(num:number) {
@@ -174,9 +176,8 @@ export default defineComponent({
             }
             bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value] = 1  //代表那一格已經畫過了
             bigRoadItemIndex.value ++  //增加當前的index
-            
             lastBigRoadResult.value = currentBigRoadResult.value //將這次陣營記錄到下一次的陣營中
-            console.log("現在的格子",bigRoadItemIndex.value)
+            console.log("現在是第",bigRoadColumn.value,"行；","下一格格子",bigRoadItemIndex.value)
           }
         }
         //問題:
@@ -294,11 +295,48 @@ export default defineComponent({
           bigRoad.appendChild(newCol)
           roadOverFlowerTimes.value++
         }
+        function resetBigRoad(){
+          //1.直接刪除beadPlatRoadPlace下所有的beadPlate-column
+          let bigRoadColContainer = document.querySelector('.bigRoad') as HTMLElement
+          let lastChild = bigRoadColContainer.lastElementChild
+          while(lastChild ){
+            bigRoadColContainer.removeChild(lastChild); //移除行數
+            lastChild  = bigRoadColContainer.lastElementChild //抓下一個child
+          }
+          //2.建立新的二十二條col
+          for(let i = 0 ;i < secWidth.length ;i++){
+            let col = document.createElement('div')
+            col.classList.add('bigRoad-column')
+            col.classList.add('d-flex')
+            col.classList.add(`bigRoad-column${i}`)
+            for(let i = 0 ; i< topHeight.length ; i++){
+              let colItem = document.createElement('div')
+              let itemDiv = document.createElement('div') 
+              colItem.classList.add('bigRoad-item')
+              colItem.classList.add('d-flex')
+              colItem.classList.add(`bigRoad-item${i}`)
+              colItem.appendChild(itemDiv)
+              col.appendChild(colItem)
+            }
+            bigRoadColContainer.appendChild(col)
+          }
+          //3.計數器規0
+          bigRoadColumn.value = 0
+          bigRoadItemIndex.value = 0
+          currentBigRoadResult.value = 0
+          lastBigRoadResult.value = 0
+          roadOverFlowerTimes.value = 0
+          console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value)
+          //大路陣列也要規0
+          for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
+            bigRoadColArr[i] = [0,0,0,0,0,0]
+          }
+        }
         return {
           //data
           topHeight,centerRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
           //methods
-          put,
+          put,resetBigRoad,
         }
     },
 })
@@ -308,6 +346,9 @@ export default defineComponent({
 .test{
   left:10%;
   bottom: 100%;
+}
+.test2{
+  top:50%;
 }
 /* 背景格子 */
 .secRoad{
@@ -339,6 +380,7 @@ export default defineComponent({
   /* border: 2px solid yellow; */
   width:4.54545454%;  /*調整欄寬 */
   height:100%;
+  flex-direction: column;
 }
 .bigRoad-item{
   /* border: blue solid 1px; */

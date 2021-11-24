@@ -104,7 +104,7 @@ export default defineComponent({
           }
           roadIndex.value++
         }
-        function showRoadInit () {
+        function showRoadInit () {  //進場前補畫前面的路圖
             beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
               if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
               addColumn()
@@ -117,7 +117,7 @@ export default defineComponent({
           })
           beadPlateRoadCount.value = beadPlateResult.value.blocks.length
         }
-        function showRoad () {
+        function showRoad () { //進場後都是畫陣列的最後一顆
             let draw = beadPlateResult.value.blocks.filter((i:any,index:number)=>{
               return index==beadPlateResult.value.blocks.length-1   //返回最後一個
             })

@@ -88,7 +88,6 @@ export default defineComponent({
             gainMoney:0,
             totalBet:0
         })
-        console.log(userInfo)
         watch(gameUuid,()=>{
             userInfo.value.gameUuid = gameUuid.value
             userInfoArray.push({
