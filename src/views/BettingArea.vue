@@ -158,6 +158,7 @@ export default defineComponent({
             }   
         })
         watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
+            console.log("換靴重置BettingArear")
             reSetBetAreaAnimation()
             resetGame()
             canBet.value = false
@@ -303,7 +304,26 @@ export default defineComponent({
             //啟動時機:得到betResult之後；並且在reset之前!
             if(gameResult.value){
                 gameResult.value.forEach((betAreaIndex:number)=>{
-                let betArea = document.querySelectorAll(`.betArea-item${betAreaIndex}`) as NodeListOf<Element>
+                    console.log(betAreaIndex)
+                    let betArea  = {} as NodeListOf<Element>
+                    switch(betAreaIndex){
+                        case proto.dealer.Result.Banker:
+                            betArea = document.querySelectorAll(`.betArea-item2`) as NodeListOf<Element>
+                            break
+                        case proto.dealer.Result.Player:
+                            betArea = document.querySelectorAll(`.betArea-item1`) as NodeListOf<Element>
+                            break
+                        case proto.dealer.Result.BankerPair:
+                            betArea = document.querySelectorAll(`.betArea-item5`) as NodeListOf<Element>
+                            break
+                        case proto.dealer.Result.Tie:
+                            betArea = document.querySelectorAll(`.betArea-item4`) as NodeListOf<Element>
+                            break
+                        case proto.dealer.Result.PlayerPair:
+                            betArea = document.querySelectorAll(`.betArea-item3`) as NodeListOf<Element>
+                            break
+                    }
+                 
                 betArea.forEach((i)=>{
                     let ul = i.children[2]   //這裡假如沒有下注的時候，會是1
                     if(ul){
@@ -454,9 +474,44 @@ export default defineComponent({
             })
         }
         function clearLoseArea (winAreaArray:Array<number>) {
-            let winArea1 = winAreaArray[0]-1
-            let winArea2 = winAreaArray[1]-1  //若沒有，就是undefined
+            let winArea1 = winAreaArray[0]
+            let winArea2 = winAreaArray[1]  //若沒有，就是undefined
              //清空注區籌碼，除了贏的
+            switch(winArea1){
+                case proto.dealer.Result.Banker:
+                    winArea1 = 1
+                    break
+                case proto.dealer.Result.Player:
+                    winArea1 = 0
+                    break
+                case proto.dealer.Result.Tie:
+                    winArea1 = 3
+                    break
+                case proto.dealer.Result.BankerPair:
+                    winArea1 = 4
+                    break
+                case proto.dealer.Result.PlayerPair:
+                    winArea1 = 2
+                    break
+            }
+            switch(winArea2){
+                case proto.dealer.Result.Banker:
+                    winArea2 = 1
+                    break
+                case proto.dealer.Result.Player:
+                    winArea2 = 0
+                    break
+                case proto.dealer.Result.Tie:
+                    winArea2 = 3
+                    break
+                case proto.dealer.Result.BankerPair:
+                    winArea2 = 4
+                    break
+                case proto.dealer.Result.PlayerPair:
+                    winArea2 = 2
+                    break
+            }
+            
             coinPosition.forEach((i,index) => {
                 if(index!==winArea1 && index!==winArea2){
                     i.coinArray = []

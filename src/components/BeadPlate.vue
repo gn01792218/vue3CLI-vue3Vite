@@ -46,6 +46,7 @@ export default defineComponent({
             return store.state.dealer.end
         })
         watch(gameEnd,()=>{  //換薛時要重置
+        console.log("換靴重置諸朱盤路")
           resetRoad()
         })
         watch(beadPlateResult,()=>{    //每次都全部重畫

@@ -1,9 +1,8 @@
 <template>
     <div class="card-wrap">
     	<section class="card-container d-flex justify-content-center">
-        
       	<div class="player card-box row justify-content-center">
-          <span class="playerNum">{{playerPoint}}</span>
+          <!-- <span class="playerNum">{{playerPoint}}</span> -->
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
@@ -13,7 +12,7 @@
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>
         	</div>
-          <span class="bankerNum">{{bankerPoint}}</span>
+          <!-- <span class="bankerNum">{{bankerPoint}}</span> -->
       	</div>
     	</section>
     </div>
@@ -38,26 +37,28 @@ export default defineComponent({
         player:new Array(3),
      })
     //vuex
-     const store = useStore()
-     const roundUuid = computed(()=>{
+    const store = useStore()
+    const roundUuid = computed(()=>{
        return store.state.game.gameUuid
      })
-     const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
+    const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
       return store.state.game.GameStatus.draws
      })
-     const DrawCard = computed(()=>{  //每次都傳一張
+    
+    const DrawCard = computed(()=>{  //每次都傳一張
        return store.state.dealer.Draw
      })
     const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
     })
     const gameEnd = computed(()=>{
-            return store.state.dealer.end
+          return store.state.dealer.end
     })
     const playerPoint = ref(0)
     const bankerPoint = ref(0)
      //watch
     watch(gameEnd,()=>{ //換薛時也要重置
+      console.log("換靴重置Card")
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
     })
