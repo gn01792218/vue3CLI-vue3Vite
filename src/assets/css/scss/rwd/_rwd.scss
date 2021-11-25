@@ -169,20 +169,19 @@
 	.big-PT-BothPair{  //閒和 莊閒對
 		@include hisRoadSpritePosition(-1500,100,0.15);
 	}
-
-	//小路(中間的)
+	//小路(左下角)
 	.small-red{
-		@include hisRoadSpritePosition(0,100,0.09);
-	}
-	.small-blue{
-		@include hisRoadSpritePosition(-800,100,0.09);
-	}
-	//大眼仔路
-	.bigEye-red{
 		@include hisRoadSpritePosition(-1200,0,0.08);
 	}
-	.bigEye-blue{
+	.small-blue{
 		@include hisRoadSpritePosition(-1400,0,0.08);
+	}
+	//大眼仔路(中間)
+	.bigEye-red{
+		@include hisRoadSpritePosition(0,100,0.09);
+	}
+	.bigEye-blue{
+		@include hisRoadSpritePosition(-800,100,0.09);
 	}
 	//蟑螂路
 	cockroach-red{
@@ -398,19 +397,11 @@
 	.big-PT-BothPair{  //閒和 莊閒對
 		@include hisRoadSpritePosition(-1500,100,0.2);
 	}
-
-	//小路(中間的)
+	//小路(左下角)
 	.small-red{
-		@include hisRoadSpritePosition(0,100,0.09);
-	}
-	.small-blue{
-		@include hisRoadSpritePosition(-800,100,0.09);
-	}
-	//大眼仔路
-	.bigEye-red{
 		@include hisRoadSpritePosition(-1200,0,0.09);
 	}
-	.bigEye-blue{
+	.small-blue{
 		@include hisRoadSpritePosition(-1400,0,0.09);
 	}
 	//蟑螂路
@@ -707,19 +698,19 @@
 			@include hisRoadSpritePosition(-1500,100,0.08);
 		}
 	
-		//小路(中間的)
+		//小路(左下角)
 		.small-red{
-			@include hisRoadSpritePosition(0,100,0.04);
-		}
-		.small-blue{
-			@include hisRoadSpritePosition(-800,100,0.04);
-		}
-		//大眼仔路
-		.bigEye-red{
 			@include hisRoadSpritePosition(-1200,0,0.04);
 		}
-		.bigEye-blue{
+		.small-blue{
 			@include hisRoadSpritePosition(-1400,0,0.04);
+		}
+		//大眼仔路(中間)
+		.bigEye-red{
+			@include hisRoadSpritePosition(0,100,0.04);
+		}
+		.bigEye-blue{
+			@include hisRoadSpritePosition(-800,100,0.04);
 		}
 		//蟑螂路
 		cockroach-red{

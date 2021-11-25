@@ -1,9 +1,9 @@
 <template>
-<button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
+<!-- <button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
 <button class="test3 position-absolute" @click="testshowBigRoad(2)">閒贏</button>
 <button class="test4 position-absolute" @click="testshowBigRoad(13)">莊和</button>
 <button class="test5 position-absolute" @click="testshowBigRoad(20)">閒和</button>
-<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button>
+<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button> -->
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
@@ -19,27 +19,27 @@
         </div>
       </div>
     </section>
-    <!-- centerRoad -->
-    <section class="centerRoad d-flex sideWidth position-absolute">
-      <div class="centerRoad-colum" :class="[`centerRoad-column${index}`]" v-for="(cc,index) in centerRoadWidth" :key="index">
-        <div class="centerRoad-item" :class="[`centerRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
+    <!-- BigEyesRoad -->
+    <section class="BigEyesRoad d-flex sideWidth position-absolute">
+      <div class="BigEyesRoad-colum" :class="[`BigEyesRoad-column${index}`]" v-for="(cc,index) in BigEyesRoadWidth" :key="index">
+        <div class="BigEyesRoad-item" :class="[`BigEyesRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
           <!-- <div class="playerRoadIcon3-1"></div> -->
         </div>
       </div>
     </section>
     <section class="bottomRoad d-flex sideWidth position-absolute">
-    <!-- bottom1Grid -->
-      <div class="bottomRoad1 d-flex w-50">
-        <div class="bottomRoad1-column" :class="[`bottomRoad1-column${index}`,{'boundary-right':index===21}]" v-for="(b1,index) in bottom1width" :key="index">
-          <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
+    <!-- smallRoadGrid -->
+      <div class="smallRoad d-flex w-50">
+        <div class="smallRoad-column" :class="[`smallRoad-column${index}`,{'boundary-right':index===21}]" v-for="(b1,index) in bottom1width" :key="index">
+          <div class="smallRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <!-- <div class="playerRoadIcon7"></div> -->
           </div>
         </div>
       </div>
-      <!-- bottom2Grid -->
-      <div class="bottomRoad2 d-flex w-50">
-        <div class="bottomRoad1-column" :class="[`bottomRoad2-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
-          <div class="bottomRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
+      <!-- cockroachRoad -->
+      <div class="cockroachRoad d-flex w-50">
+        <div class="cockroachRoad-column" :class="[`cockroachRoad-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
+          <div class="cockroachRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
             <!-- <div class="bankerRoadIcon8"></div> -->
           </div>
         </div>
@@ -70,7 +70,7 @@ export default defineComponent({
         const secWidth = new Array(22)
         const secHeight = new Array(12)
         const topHeight = new Array(6)
-        const centerRoadWidth =new Array(44)
+        const BigEyesRoadWidth =new Array(44)
         const bottomHeight = new Array(6)
         const bottom1width = new Array(22)
         //基本資料
@@ -424,7 +424,7 @@ export default defineComponent({
         }
         return {
           //data
-          topHeight,centerRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
+          topHeight,BigEyesRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
           //methods
           resetBigRoad,testshowBigRoad,
         }
@@ -489,19 +489,19 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
 }
-.centerRoad{
+.BigEyesRoad{
   width:100%;
   // border:solid red 2px;
   height:25%;
   right:0;
   top:50%;
 }
-.centerRoad-colum{
+.BigEyesRoad-colum{
   // border:solid peru 1px;
   width:2.272727272727%;
   height:100%;
 }
-.centerRoad-item{
+.BigEyesRoad-item{
   width:100%;
   height:16.666666666%;
   // border:rebeccapurple 2px solid;
@@ -512,7 +512,7 @@ export default defineComponent({
   right:0;
   bottom:0;
 }
-.bottomRoad1,.bottomRoad2{
+.smallRoad,.cockroachRoad{
   height:100%;
   // border: solid 2px yellow;
   /* right:30%; */
@@ -522,12 +522,12 @@ export default defineComponent({
   height:100%;
   /* border: solid 2px brown; */
 }
-.bottomRoad1-column{
+.smallRoad-column,.cockroachRoad-column{
   width:5%;
   height:100%;
   // border:red solid 2px;
 }
-.bottomRoad-item{
+.smallRoad-item,.cockroachRoad-item{
   width:100%;
   height:16.6666666666%;
   // border:springgreen solid 2px;

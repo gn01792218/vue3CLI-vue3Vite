@@ -849,31 +849,31 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .small-red {
-  width: 11px;
-  height: 11px;
-  background-position: 0px 11px;
-  background-size: 176px auto;
-}
-
-.small-blue {
-  width: 11px;
-  height: 11px;
-  background-position: -88px 11px;
-  background-size: 176px auto;
-}
-
-.bigEye-red {
   width: 10px;
   height: 10px;
   background-position: -120px 0px;
   background-size: 160px auto;
 }
 
-.bigEye-blue {
+.small-blue {
   width: 10px;
   height: 10px;
   background-position: -140px 0px;
   background-size: 160px auto;
+}
+
+.bigEye-red {
+  width: 11px;
+  height: 11px;
+  background-position: 0px 11px;
+  background-size: 176px auto;
+}
+
+.bigEye-blue {
+  width: 11px;
+  height: 11px;
+  background-position: -88px 11px;
+  background-size: 176px auto;
 }
 
 cockroach-red {
@@ -1279,28 +1279,28 @@ cockroach-blue {
     background-size: 240px auto;
   }
   .small-red {
-    width: 9px;
-    height: 9px;
-    background-position: 0px 9px;
-    background-size: 144px auto;
-  }
-  .small-blue {
-    width: 9px;
-    height: 9px;
-    background-position: -72px 9px;
-    background-size: 144px auto;
-  }
-  .bigEye-red {
     width: 8px;
     height: 8px;
     background-position: -96px 0px;
     background-size: 128px auto;
   }
-  .bigEye-blue {
+  .small-blue {
     width: 8px;
     height: 8px;
     background-position: -112px 0px;
     background-size: 128px auto;
+  }
+  .bigEye-red {
+    width: 9px;
+    height: 9px;
+    background-position: 0px 9px;
+    background-size: 144px auto;
+  }
+  .bigEye-blue {
+    width: 9px;
+    height: 9px;
+    background-position: -72px 9px;
+    background-size: 144px auto;
   }
   cockroach-red {
     width: 8px;
@@ -1639,22 +1639,10 @@ cockroach-blue {
   .small-red {
     width: 9px;
     height: 9px;
-    background-position: 0px 9px;
-    background-size: 144px auto;
-  }
-  .small-blue {
-    width: 9px;
-    height: 9px;
-    background-position: -72px 9px;
-    background-size: 144px auto;
-  }
-  .bigEye-red {
-    width: 9px;
-    height: 9px;
     background-position: -108px 0px;
     background-size: 144px auto;
   }
-  .bigEye-blue {
+  .small-blue {
     width: 9px;
     height: 9px;
     background-position: -126px 0px;
@@ -2157,25 +2145,25 @@ cockroach-blue {
   .small-red {
     width: 4px;
     height: 4px;
-    background-position: 0px 4px;
+    background-position: -48px 0px;
     background-size: 64px auto;
   }
   .small-blue {
     width: 4px;
     height: 4px;
-    background-position: -32px 4px;
+    background-position: -56px 0px;
     background-size: 64px auto;
   }
   .bigEye-red {
     width: 4px;
     height: 4px;
-    background-position: -48px 0px;
+    background-position: 0px 4px;
     background-size: 64px auto;
   }
   .bigEye-blue {
     width: 4px;
     height: 4px;
-    background-position: -56px 0px;
+    background-position: -32px 4px;
     background-size: 64px auto;
   }
   cockroach-red {

@@ -116,24 +116,23 @@
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1500,100,0.19);
 }
-
-//小路(中間的)
+//小路(左下角)
 .small-red{
-    @extend %hisRoad;
-    @include hisRoadSpritePosition(0,100,0.11);
-}
-.small-blue{
-    @extend %hisRoad;
-    @include hisRoadSpritePosition(-800,100,0.11);
-}
-//大眼仔路
-.bigEye-red{
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1200,0,0.1);
 }
-.bigEye-blue{
+.small-blue{
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1400,0,0.1);
+}
+//大眼仔路(中間)
+.bigEye-red{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(0,100,0.11);
+}
+.bigEye-blue{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-800,100,0.11);
 }
 //蟑螂路
 cockroach-red{
