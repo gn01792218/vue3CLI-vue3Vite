@@ -26,6 +26,10 @@
   padding: 0px;
 }
 .betArea-item {
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+	-ms-user-select:none;
 	position: relative;
 	cursor: pointer;
 	margin: 0px;

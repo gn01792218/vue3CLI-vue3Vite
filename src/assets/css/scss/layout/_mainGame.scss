@@ -65,6 +65,10 @@
 
 //選單區
 .tabsArea{
+	-webkit-user-select:none;
+-moz-user-select:none;
+-o-user-select:none;
+-ms-user-select:none;
 	float: left;
 	width: 35%;
 	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+1,000000+100&0.65+3,0+9 */
