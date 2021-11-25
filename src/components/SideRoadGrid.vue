@@ -194,8 +194,6 @@ export default defineComponent({
             lastBigRoadResult.value = currentBigRoadResult.value //將這次陣營記錄到下一次的陣營中
             console.log("現在是第",bigRoadColumn.value,"行；","下一格格子",bigRoadItemIndex.value)
         }
-        //問題:
-        //勢必要讓路圖可以左右移動，否則遇到溢出+上行數極限增加欄位時後；又換陣營時，將會看不到前面的顯示結果
         function testshowBigRoad (winner:number) {
           // gameResult.value.forEach(i=>{
             recordBigRoad(winner)  //1.紀錄陣營
@@ -203,7 +201,7 @@ export default defineComponent({
                 winner == 18 || winner == 19 || winner == 20){
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
-                }
+            }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
               // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -222,7 +220,7 @@ export default defineComponent({
               }
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
                 console.log("滿了+行")
-                addBBigRoadColumn()
+                addBigRoadColumn()
               }  
                bigRoadItemIndex.value = 0
                console.log("格",bigRoadItemIndex.value)
@@ -232,39 +230,36 @@ export default defineComponent({
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
               console.log("連贏溢出")
-              bigRoadColumn.value++ //換行
+              if(!bigRoadTie.value){  //不是和局時，才要+行
+                bigRoadColumn.value++ //換行
+              }
+              //和局時不會進下面的addBigRoad
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
-                console.log("滿了+行否")
-                if(!bigRoadTie.value){
-                  console.log("是否和局",bigRoadTie.value+"要+行")
-                  addBBigRoadColumn()
-                }else{
-                  bigRoadColumn.value--
-                  console.log("是否和局",bigRoadTie.value+"不+行","現在行",bigRoadColumn.value)
-                }
+                  addBigRoadColumn()
               }  //溢出極限格子的時候要增加行數
               if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
               console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
-               for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
-                bigRoadColArr[bigRoadColumn.value][i] = 1
-              }
+                  for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                    bigRoadColArr[bigRoadColumn.value][i] = 1
+                  }
             }
-            if(bigRoadTie.value && bigRoadItemIndex.value>=0){  //假如是和局狀態
-            console.log('偵測到和局')
+             if(bigRoadTie.value && bigRoadItemIndex.value>=0){  //假如是和局狀態
+              console.log('偵測到和局')
               if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){ //連贏的時候必須要--col和index
-                bigRoadColumn.value-- //不要往下加一行
+                // bigRoadColumn.value-- //不要往下加一行
                 roadOverFlowerTimes.value-- //不要算溢出
                 bigRoadTie.value = false
                 console.log("和局溢出狀態","畫行",bigRoadColumn.value,"畫格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
               }else{
-                bigRoadItemIndex.value--
+                if(bigRoadItemIndex.value>0){
+                  bigRoadItemIndex.value--
+                }
                 console.log("和局狀態","畫行",bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
                 bigRoadTie.value = false
               }
-              
             }
             putBigRoad(winner)
           // })
@@ -291,7 +286,7 @@ export default defineComponent({
               }
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
                 console.log("滿了+行")
-                addBBigRoadColumn()
+                addBigRoadColumn()
               }  
                bigRoadItemIndex.value = 0
                console.log("格",bigRoadItemIndex.value)
@@ -303,7 +298,7 @@ export default defineComponent({
               bigRoadColumn.value++ //換行
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                 console.log("滿了+行")
-                addBBigRoadColumn()
+                addBigRoadColumn()
               }  //溢出極限格子的時候要增加行數
               if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
@@ -339,7 +334,7 @@ export default defineComponent({
               }
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
                 console.log("滿了+行")
-                addBBigRoadColumn()
+                addBigRoadColumn()
               }  
                bigRoadItemIndex.value = 0
                console.log("格",bigRoadItemIndex.value)
@@ -351,7 +346,7 @@ export default defineComponent({
               bigRoadColumn.value++ //換行
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                 console.log("滿了+行")
-                addBBigRoadColumn()
+                addBigRoadColumn()
               }  //溢出極限格子的時候要增加行數
               if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
@@ -364,7 +359,7 @@ export default defineComponent({
             }
             putBigRoad(i)
         }
-        function addBBigRoadColumn () {  //滿格時一次增加一格的方法
+        function addBigRoadColumn () {  //滿格時一次增加一格的方法
           // bigRoadColumn.value++
           // bigRoadItemIndex.value = 0
           let bigRoad = document.querySelector('.bigRoad') as HTMLElement  
