@@ -304,7 +304,6 @@ export default defineComponent({
             //啟動時機:得到betResult之後；並且在reset之前!
             if(gameResult.value){
                 gameResult.value.forEach((betAreaIndex:number)=>{
-                    console.log(betAreaIndex)
                     let betArea  = {} as NodeListOf<Element>
                     switch(betAreaIndex){
                         case proto.dealer.Result.Banker:
@@ -416,7 +415,6 @@ export default defineComponent({
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
             if(canBet.value){
                 //發送下注請求
-                console.log("可否下注",canBet.value)
                 sendBetCall({
                     gameUuid:roundUuid.value,
                     betIndex:currentCoint.num,
@@ -428,7 +426,6 @@ export default defineComponent({
                 })
             }else{ //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
                 betErrorArray.value?.push('下注失敗')
-                console.log("可否下注",canBet.value)
             }
             
         }
