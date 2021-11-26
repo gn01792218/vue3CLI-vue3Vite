@@ -1,9 +1,9 @@
 <template>
   <div class="video-box position-relative">
     <canvas class="video"  id="video" width="640" height="360" /><br/>
-    <!-- <VideoLoading
+    <VideoLoading
       v-show="loadingVideo"
-    /> -->
+    />
   </div>
   <!-- <div class="video-box"> -->
       <!-- <video class="video"
@@ -66,11 +66,11 @@ export default defineComponent({
         np.setScaleMode(2)
         np.setBufferTime(300)
         np.on('videoInfo',(w)=>{
-          // console.log("開始撥放Video",w)
+          console.log("開始撥放Video",w)
            loadingVideo.value = false
         })
         np.on('stop',()=>{
-        //  console.log("結束播放Video")
+         console.log("結束播放Video")
          loadingVideo.value = true
         })
         // createFlv()

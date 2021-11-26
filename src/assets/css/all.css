@@ -917,11 +917,11 @@ cockroach-blue {
   color: red;
 }
 
-.v-loading {
+.video-loading {
   top: 0;
   left: 0;
   background-color: #523e2533;
-  background-image: url("../../images/loading.svg");
+  background-image: url("../../images/videoLoading.svg");
   background-repeat: no-repeat;
   background-position: center center;
 }
