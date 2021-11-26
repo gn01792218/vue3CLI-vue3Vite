@@ -30,7 +30,7 @@ export default defineComponent({
         })
         watch(gameEnd,()=>{
             isWait.value = true
-            stateMsg.value = "等待中..."
+            stateMsg.value = "中場休息..."
         })
         //之後要監聽一個wait狀態，當有這個狀態的時候打開loading顯示等待中。
         watch(gameState,()=>{   //上桌時，接到遊戲狀態時要顯示文字
@@ -51,7 +51,7 @@ export default defineComponent({
                     break
                 case 3:
                     isWait.value = true
-                    stateMsg.value = "等待中..."
+                    stateMsg.value = "中場休息..."
                     // setTimeout(()=>{
                     // isWait.value = false
                     // },500)

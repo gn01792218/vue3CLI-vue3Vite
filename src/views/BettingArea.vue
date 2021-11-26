@@ -83,7 +83,7 @@ import proto from '../assets/js/bundle'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
-    point:number | null,
+    point:number,
     x:number, //起飛的x
     y:number, //起飛的y
 }
@@ -422,19 +422,21 @@ export default defineComponent({
                     betIndex:currentCoint.num,
                     betArea:index+1,
                 })
-                betArray.push({
+                if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
+                    betArray.push({   //當玩家餘額不足時不要推
                     'betAreaElement':e.target,
                     'betAreaIndex':index,
                 })
+                }
             }else{ //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
                 betErrorArray.value?.push('下注失敗')
             }
             
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
+            console.log("飛向",betAreaElement)
             if(betResult.value==1){   
                 //裝子彈，就會啟動籌碼飛的動畫
-                //問題:第一次下注時，得到的betResult是
                 loadCoin()   
                 let rect = betAreaElement.getBoundingClientRect();  //固定飛到點擊區域的左下方
                 target.x = rect.left;
@@ -587,7 +589,7 @@ export default defineComponent({
                      i.style.color = "grey"
             })
         }
-        function reSetBetAreaAnimation(){
+        function reSetBetAreaAnimation(){ //移除贏的注區的 高亮顯示動畫
             if(gameResult.value){
                 gameResult.value.forEach((i:number)=>{
                     switch(i){
