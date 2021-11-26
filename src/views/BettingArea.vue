@@ -56,7 +56,7 @@
         <!-- coin -->
         <div class="coinArea">
             <!-- coin list -->
-            <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index" :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
+            <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index"  :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coinList" :key="index">
@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, reactive, ref, watch} from 'vue'
+import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
@@ -108,6 +108,13 @@ export default defineComponent({
         GameResult,GameresultSound,GameResultLoading,
     },
     setup(){
+        onMounted(()=>{
+            let defaultCoin = document.querySelector('#defaultCoin1') as HTMLElement
+            let rect = defaultCoin.getBoundingClientRect()
+            currentCoint.coinElement = defaultCoin
+            currentCoint.x = rect.left;  //設置籌碼起始座標點
+            currentCoint.y = rect.top;
+        })
         //vuex
         const store = useStore();
         const user = computed(()=>{
@@ -117,7 +124,6 @@ export default defineComponent({
             return store.state.bet.BetRecall.betStatus
         })
         const betResult = computed(()=>{ //下注成功否的狀態
-
             return store.state.bet.BetRecall.result
         })
         const betResetresult = computed(()=>{
@@ -147,14 +153,10 @@ export default defineComponent({
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1){ 
                 coinPosition[0].betStatus = betStatus.value.Player
-                // coinPosition[0].betStatus = betStatus.value.Banker
                 coinPosition[1].betStatus = betStatus.value.Banker
-                // coinPosition[1].betStatus = betStatus.value.Player
                 coinPosition[2].betStatus = betStatus.value.PlayerPair
-                // coinPosition[2].betStatus = betStatus.value.BankerPair
                 coinPosition[3].betStatus = betStatus.value.Tie
                 coinPosition[4].betStatus = betStatus.value.BankerPair
-                // coinPosition[4].betStatus = betStatus.value.PlayerPair
             }   
         })
         watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
@@ -212,9 +214,9 @@ export default defineComponent({
                     }
                 ])
         const currentCoint = reactive<currentCoint>({ 
-            coinElement:null, //選擇的籌碼元素
-            num:null,  //儲存點到的是第幾個
-            point:null,
+            coinElement:document.querySelector('#defaultCoin1'), //選擇的籌碼元素
+            num:0,  //儲存點到的是第幾個
+            point:5, //預設是五點ㄉ
             x:0, //起飛的x
             y:0, //起飛的y
         });  
