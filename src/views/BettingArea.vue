@@ -434,7 +434,6 @@ export default defineComponent({
             
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
-            console.log("飛向",betAreaElement)
             if(betResult.value==1){   
                 //裝子彈，就會啟動籌碼飛的動畫
                 loadCoin()   

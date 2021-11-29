@@ -111,6 +111,7 @@ export default defineComponent({
         startPlay()
         // reloadVideo(flvPlayer.value)
       })
+      //直播畫面拉伸
       // watch(gameUuid,()=>{  //改用子母畫面，暫時不需要。新回合開始時，將螢幕縮回去
       // console.log('恢復螢幕')
       //   resetZoon()
@@ -171,49 +172,43 @@ export default defineComponent({
           stopPlay()
           startPlay()
         }
-        // if(flvPlayer.value.toString!=="{}"){
-        //   reloadVideo(flvPlayer.value).then(r=>{
-        //     console.log("重新加載")
-        //   }
-        //   )
-        // }
       })
       //偵測使用者裝置作業系統
 
-      //影片播放設置
-      function createFlv () {
-        if (flvjs.isSupported()) {
-          let videoElement = document.getElementById("videoElement");
-          flvPlayer.value = flvjs.createPlayer({
-            type: "flv",
-            isLive: true,
-            hasAudio: false, //直播流中没有包含音频流就要設置false
-            url:flvStream.value,
-          },{
-            enableWorker:true,
-            enableStashBuffer:false,
-            stashInitialSize:128,
-          });
-          flvPlayer.value.attachMediaElement(videoElement);
-          flvPlayer.value.load();
-          flvPlayer.value.play();
-        } 
-      }
-      async function destoryVideo (flvPlayer:any) {
-        flvPlayer.pause()
-        flvPlayer.unload()
-        flvPlayer.detachMediaElement()
-        flvPlayer = null
-      }
-      async function reloadVideo (flvPlayer:any) {
-        await destoryVideo(flvPlayer)
-        createFlv()
-      }
-      function play () { //防止玩家再次點擊直播畫面
-        flvPlayer.value.pause();
-        flvPlayer.value.load();
-        flvPlayer.value.play();
-      }
+      // //影片播放設置
+      // function createFlv () {
+      //   if (flvjs.isSupported()) {
+      //     let videoElement = document.getElementById("videoElement");
+      //     flvPlayer.value = flvjs.createPlayer({
+      //       type: "flv",
+      //       isLive: true,
+      //       hasAudio: false, //直播流中没有包含音频流就要設置false
+      //       url:flvStream.value,
+      //     },{
+      //       enableWorker:true,
+      //       enableStashBuffer:false,
+      //       stashInitialSize:128,
+      //     });
+      //     flvPlayer.value.attachMediaElement(videoElement);
+      //     flvPlayer.value.load();
+      //     flvPlayer.value.play();
+      //   } 
+      // }
+      // async function destoryVideo (flvPlayer:any) {
+      //   flvPlayer.pause()
+      //   flvPlayer.unload()
+      //   flvPlayer.detachMediaElement()
+      //   flvPlayer = null
+      // }
+      // async function reloadVideo (flvPlayer:any) {
+      //   await destoryVideo(flvPlayer)
+      //   createFlv()
+      // }
+      // function play () { //防止玩家再次點擊直播畫面
+      //   flvPlayer.value.pause();
+      //   flvPlayer.value.load();
+      //   flvPlayer.value.play();
+      // }
       function zoonIn () {
         if(zoonScale.value !== 1.5){
           zoonScale.value = 1.5
@@ -239,7 +234,7 @@ export default defineComponent({
         //data
         flvPlayer,isIOS,loadingVideo,
         //methods
-        createFlv,play,destoryVideo,reloadVideo,zoonIn,
+        zoonIn,
       }
     },
 })
@@ -256,34 +251,34 @@ export default defineComponent({
   }
 }
 //以下是用來控制撥放器按鈕顯示的CSS，可以依據需求關閉
-video::-webkit-media-controls-fullscreen-button {
-    display: none;
-}
-video::-webkit-media-controls-play-button {
-    display: none;
-}
-video::-webkit-media-controls-timeline {
-    display: none;
-}
-video::-webkit-media-controls-current-time-display{
-    display: none;            
-}
-video::-webkit-media-controls-time-remaining-display {
-    display: none;            
-}
-video::-webkit-media-controls-mute-button {
-    display: none;            
-}
-video::-webkit-media-controls-toggle-closed-captions-button {
-    display: none;            
-}
-video::-webkit-media-controls-volume-slider {
-    display: none;            
-}
-video::-webkit-media-controls-enclosure{
-    display: none;
-}
-.ssBtnDefault{
-  display: none;
-}
+// video::-webkit-media-controls-fullscreen-button {
+//     display: none;
+// }
+// video::-webkit-media-controls-play-button {
+//     display: none;
+// }
+// video::-webkit-media-controls-timeline {
+//     display: none;
+// }
+// video::-webkit-media-controls-current-time-display{
+//     display: none;            
+// }
+// video::-webkit-media-controls-time-remaining-display {
+//     display: none;            
+// }
+// video::-webkit-media-controls-mute-button {
+//     display: none;            
+// }
+// video::-webkit-media-controls-toggle-closed-captions-button {
+//     display: none;            
+// }
+// video::-webkit-media-controls-volume-slider {
+//     display: none;            
+// }
+// video::-webkit-media-controls-enclosure{
+//     display: none;
+// }
+// .ssBtnDefault{
+//   display: none;
+// }
 </style>

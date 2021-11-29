@@ -25,19 +25,23 @@
 
 <script lang="ts">
 import {defineComponent, watch,ref,computed} from 'vue'
+import { useRoute } from 'vue-router'
 import {useStore} from 'vuex'
 import proto from '../assets/js/bundle'
 export default defineComponent({
     setup(){
-        //抓取元素要在onmounted或是function中，因為setup在mounted之前，DOM還沒長出來
-        //表格
+        //桌號
+        const route = useRoute()
+        const tableNum = computed(()=>{
+          return route.params.tableId
+        })
         const beadPlateRow = new Array(6)
         const beadPlateColumn = new Array(8)
         // const gameResult = ref([1])
         const beadPlateColumnCount = ref(0)
         const roadIndex = ref(0)
         const overflowCount = ref(0)
-        const beadPlateRoadCount = ref(0)
+        const isInit = ref(false)
         const store = useStore()
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
@@ -49,15 +53,18 @@ export default defineComponent({
         console.log("換靴重置諸朱盤路")
           resetRoad()
         })
+        watch(tableNum,()=>{
+          console.log("換桌豬盤路重置")
+          resetRoad()
+        })
         watch(beadPlateResult,()=>{    //每次都全部重畫
           if(beadPlateResult.value){
-            if(beadPlateRoadCount.value == 0){
+            if(!isInit.value){
               showRoadInit ()
             }else{
               showRoad ()
             }
           }
-          console.log("有豬仔路",beadPlateResult.value)
         })
         // function put (){
         //   showRoadByGameResult  ()
@@ -116,7 +123,7 @@ export default defineComponent({
             }
             putRoad(beadPlateColumnCount.value,roadIndex.value,i)
           })
-          beadPlateRoadCount.value = beadPlateResult.value.blocks.length
+          isInit.value = true
         }
         function showRoad () { //進場後都是畫陣列的最後一顆
             let draw = beadPlateResult.value.blocks.filter((i:any,index:number)=>{
@@ -222,6 +229,7 @@ export default defineComponent({
           // }
           beadPlateColumnCount.value = 0
           roadIndex.value = 0
+          isInit.value = false
         }
         return {
           //data

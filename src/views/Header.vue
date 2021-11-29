@@ -4,7 +4,7 @@
         <div class="header-btnList">
             <a class="header-btn" @click="toGametable('A')" >A桌</a>
             <a class="header-btn disabled">B桌</a>
-            <!-- <a class="header-btn disabled" @click="toGametable('B')">B桌</a> -->
+            <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
             <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
             <!-- <router-link to="/practice">測試頁面</router-link> -->
         </div>

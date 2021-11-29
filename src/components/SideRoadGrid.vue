@@ -50,6 +50,7 @@
 <script lang="ts">
 import {defineComponent,computed,ref, watch, reactive, onMounted} from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
 export default defineComponent({
     setup(){
@@ -57,6 +58,11 @@ export default defineComponent({
       //   showBigRoadInit()
       //   bigRoadInit.value = true
       // })
+      //桌號
+        const route = useRoute()
+        const tableNum = computed(()=>{
+          return route.params.tableId
+        })
         //vuex
         const store = useStore()
         // const gameResult = computed(()=>{ //回傳的是陣列
@@ -94,12 +100,15 @@ export default defineComponent({
           console.log("偵測到換靴資訊重置路圖-大路")
           resetBigRoad()
         })
+        watch(tableNum,()=>{
+          console.log("換桌側邊路圖重置")
+          resetBigRoad()
+        })
         watch(bigRoadResult,()=>{
           if(bigRoadInit.value){
             showBigRoad()
           }else{  //沒有初始化過先畫
             showBigRoadInit()
-            bigRoadInit.value = true
           }
         })
         function recordBigRoad (gameResult:number){
@@ -255,7 +264,7 @@ export default defineComponent({
           // })
         }
         function showBigRoadInit () {
-          console.log("畫大路初始化",bigRoadResult.value.columns)
+          // console.log("畫大路初始化",bigRoadResult.value.columns)
           bigRoadResult.value.columns.forEach((i:any)=>{ 
             console.log(i.blocks) //初始化時所有都畫
             i.blocks.forEach((item:any)=>{
@@ -327,6 +336,7 @@ export default defineComponent({
             putBigRoad(item)
             })
           })
+          bigRoadInit.value = true
         }
         function showBigRoad () {
           let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
@@ -456,6 +466,7 @@ export default defineComponent({
           for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
             bigRoadColArr[i] = [0,0,0,0,0,0]
           }
+          bigRoadInit.value = false
         }
         return {
           //data
