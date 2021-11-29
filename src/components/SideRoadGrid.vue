@@ -78,19 +78,20 @@ export default defineComponent({
         const bottomHeight = new Array(6)
         const bottom1width = new Array(22)
         //基本資料
-        const bigRoadColumn = ref(0)  //這裡還是要記錄現在要到第幾欄
-        const bigRoadItemIndex = ref(0)
-        const currentBigRoadResult = ref(0)
-        const lastBigRoadResult = ref(0)
-        const roadOverFlowerTimes = ref(0)
-        const bigRoadTie = ref(false)
-        const bigRoadInit = ref(false)
-        const bigRoadColArr = reactive<any[]>([])
+        const bigRoadColumn = ref(0)  //畫到第幾欄
+        const bigRoadItemIndex = ref(0) //畫到第幾格
+        const currentBigRoadResult = ref(0) //現在是哪個陣營
+        const lastBigRoadResult = ref(0) //上次是哪個陣營
+        const roadOverFlowerTimes = ref(0) //超出格子幾次
+        const bigRoadTie = ref(false) //是否有和局狀態
+        const bigRoadInit = ref(false) //大路是否初始化過(上桌時)
+        const bigRoadColArr = reactive<any[]>([]) //大路的Array
         for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
           bigRoadColArr.push([0,0,0,0,0,0])
         }
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
+          console.log("偵測到換靴資訊重置路圖-大路")
           resetBigRoad()
         })
         watch(bigRoadResult,()=>{
@@ -130,67 +131,51 @@ export default defineComponent({
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
             case proto.roadmap.Block.Banker:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-B')
               break
             case proto.roadmap.Block.Player:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-P')
               break
             case proto.roadmap.Block.BankerAndBankerPair:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-B-BPair')
               break
             case proto.roadmap.Block.BankerAndPlayerPair:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-B-PPair')
               break
             case proto.roadmap.Block.BankerAndBothPair:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-B-BothPair')
               break
             case proto.roadmap.Block.PlayerAndBankerPair:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-P-BPair')
               break
             case proto.roadmap.Block.PlayerAndPlayerPair:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-P-PPair')
               break
             case proto.roadmap.Block.PlayerAndBothPair:
-              // bigRoadTie.value = false
               bigRoadColItem.classList.add('big-P-BothPair')
               break
             case proto.roadmap.Block.BankerAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-BT')
               break
             case proto.roadmap.Block.BankerAndBankerPairAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-BT-BPair')
               break
             case proto.roadmap.Block.BankerAndPlayerPairAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-BT-PPair')
               break
             case proto.roadmap.Block.BankerAndBothPairAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-BT-BothPair')
               break
             case proto.roadmap.Block.PlayerAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-PT')
               break
             case proto.roadmap.Block.PlayerAndBankerPairAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-PT-BPair')
               break
             case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-PT-PPair')
               break
             case proto.roadmap.Block.PlayerAndBothPairAndTie:
-              // bigRoadTie.value = true
               bigRoadColItem.classList.add('big-PT-BothPair')
               break
             }
@@ -413,14 +398,11 @@ export default defineComponent({
             putBigRoad(item)
         }
         function addBigRoadColumn () {  //滿格時一次增加一格的方法
-          // bigRoadColumn.value++
-          // bigRoadItemIndex.value = 0
           let bigRoad = document.querySelector('.bigRoad') as HTMLElement  
           let firstChild = bigRoad.firstElementChild as HTMLElement //抓取第一個元素
           bigRoad.removeChild(firstChild) //刪除第一行
           let newCol = document.createElement('div')
           newCol.classList.add('bigRoad-column')
-          // newCol.classList.add('d-flex')
           newCol.classList.add(`bigRoad-column${bigRoadColumn.value}`)
           for(let i = 0 ;i <6 ;i++){
             let newColItem = document.createElement('div')

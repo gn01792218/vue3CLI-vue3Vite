@@ -50,6 +50,7 @@ export default defineComponent({
       const userSystem = navigator.userAgent //使用者作業系統
       const isAndroid = userSystem.indexOf('Android') > -1 || userSystem.indexOf('Adr') >-1
       const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/)
+      const testPlayUrl = 'http://flv.bdplay.nodemedia.cn/live/bbb.flv'
       if(isIOS){
         console.log("蘋果系統")
       }
@@ -65,8 +66,15 @@ export default defineComponent({
         np.setView("video");
         np.setScaleMode(2)
         np.setBufferTime(300)
+        np.on('start',()=>{
+          console.log("監聽到開始撥放")
+          loadingVideo.value = false
+        })
+        np.on('error',(e)=>{
+          console.log('直播發生錯誤',e)
+        })
         np.on('videoInfo',(w)=>{
-          console.log("開始撥放Video",w)
+          console.log("顯示Video",w)
            loadingVideo.value = false
         })
         np.on('stop',()=>{
@@ -80,6 +88,7 @@ export default defineComponent({
         console.log("LiveVideo開始撥放",flvStream.value)
         np.setKeepScreenOn()
         np.start(flvStream.value)
+        // np.start(testPlayUrl)   //測試時使用
       }
       function stopPlay () {
         np.stop()

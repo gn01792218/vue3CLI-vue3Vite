@@ -158,8 +158,8 @@ export const getMsgReCall = (e:any) =>{
             store.commit('roadmap/map',map)
             break
         case route.BroadcastDealerRoundEnd:
-            let end = dealer.BroadcastDealerRoundEnd
-            console.log(end)
+            let end = dealer.BroadcastDealerRoundEnd.decode(new Uint8Array(e.detail.msg.data))
+            console.log('換靴',end)
             store.commit('dealer/end',end)
     }
 }

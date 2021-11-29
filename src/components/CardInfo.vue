@@ -44,7 +44,6 @@ export default defineComponent({
     const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
       return store.state.game.GameStatus.draws
      })
-    
     const DrawCard = computed(()=>{  //每次都傳一張
        return store.state.dealer.Draw
      })
@@ -56,6 +55,11 @@ export default defineComponent({
     })
     const playerPoint = ref(0)
     const bankerPoint = ref(0)
+    //響應式卡牌監聽 應付電腦解析度切換、行動裝置直橫切換
+    const mqlMax1280 = window.matchMedia("(max-width :1280px)")
+     mqlMax1280.addEventListener('change',()=>{
+       cardPositionInit()
+     })
      //watch
     watch(gameEnd,()=>{ //換薛時也要重置
       console.log("換靴重置Card")
@@ -174,10 +178,6 @@ export default defineComponent({
         })
       }
      }
-     const mqlMax1280 = window.matchMedia("(max-width :1280px)")
-     mqlMax1280.addEventListener('change',()=>{
-       cardPositionInit()
-     })
      function cardPositionInit () { //響應式初始化卡牌出現的位置
       let cardItem = document.querySelectorAll('.caritem') as NodeListOf<HTMLElement>
       const viewportWidth = window.innerWidth
