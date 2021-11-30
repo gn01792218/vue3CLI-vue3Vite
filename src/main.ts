@@ -4,10 +4,10 @@ import router from './router'
 import store from './store'
 import Cookies from 'js-cookie'
 import { getMsgReCall } from './socketApi'
-// import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import "../src/assets/css/bootstrap.min.css"
 import './assets/css/all.css';  //最後引入主要CSS
+
 NodePlayer.load(()=>{
     createApp(App).use(store).use(router).mount('#app')
 })

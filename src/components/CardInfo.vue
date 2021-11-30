@@ -61,7 +61,7 @@ export default defineComponent({
        cardPositionInit()
      })
      //watch
-    watch(gameEnd,()=>{ //換薛時也要重置
+     watch(gameEnd,()=>{ //換薛時也要重置
       console.log("換靴重置Card")
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
@@ -186,9 +186,13 @@ export default defineComponent({
         }else if(viewportWidth<=1024 && viewportWidth>540){
           scale.value = 0.25
         }
-        else if(viewportWidth<=540){
+        else if(viewportWidth<=540 && viewportWidth>280){
           scale.value = 0.14
-        }else{
+        }else if(viewportWidth<=280){
+          console.log("偵測到最小尺寸280")
+          scale.value = 0.12
+        }
+        else{
           scale.value = 0.19
         }
         cardItem.forEach(i=>{

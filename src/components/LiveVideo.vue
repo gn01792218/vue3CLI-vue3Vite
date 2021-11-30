@@ -66,10 +66,6 @@ export default defineComponent({
         np.setView("video");
         np.setScaleMode(2)
         np.setBufferTime(300)
-        // np.on('start',()=>{
-        //   console.log("監聽到開始撥放")
-        //   loadingVideo.value = false
-        // })
         np.on('error',(e)=>{
           console.log('直播發生錯誤',e)
         })

@@ -207,8 +207,10 @@
 		height: 100px;
 	}
 	.header-logo{
-		width: 15%;
+		float: left;
+		width: auto !important;
 		height:100%;
+		margin-left: 1.25rem;
 		padding-top: 5px;
 		padding-bottom: 0px;
 		img{
@@ -216,12 +218,14 @@
 		}
 	}
 	.header-btnList{
-		width: 85%;
+		width: 70%;
+		display: flex;
+		justify-content: space-around;
 	}
 	.header-btn{
 		width:30%;
 		line-height: 4.75rem;
-		font-size:205%;
+		font-size:250%;
 	}
 	.header-bottom{  
 		display: none;
@@ -560,8 +564,11 @@
 		height:50px;
 	}
 	.header-btn{
+		
+	}
+	.header-btn{
+		font-size:205%;
 		line-height: 1.5rem;
-		width:28%;
 	}
 	.video-box{
 		height:288px;
@@ -731,8 +738,10 @@
 		.header{
 			height:50px;
 		}
+		.header-btnList{
+			width: 60%;
+		}
 		.header-btn{
-			width:26%;
 			line-height: 1.75rem;
 			font-size: 130%;;
 		}
@@ -834,6 +843,9 @@
 		.video-box{
 			height:195px;
 		}
+		.header-btnList{
+			width: 57%;
+		}
 		.betArea{
 			height:260px;
 		}
@@ -861,8 +873,8 @@
 	.header{
 		height:40px;
 	}
+
 	.header-btn{
-		width:24%;
 		line-height:1rem;
 		font-size:100%;
 	}
@@ -949,4 +961,228 @@
 		right:0%;
 		top:50%;
 	}
+	//珠仔路
+	.BeadPlate-B{  //莊
+		@include hisRoadSpritePosition(0,0,0.12);
+	}
+	.BeadPlate-B-BPair{  //莊對
+		@include hisRoadSpritePosition(-100,0,0.12);
+	}
+	.BeadPlate-B-PPair{  //莊、閒對
+		@include hisRoadSpritePosition(-200,0,0.12);
+	}
+	.BeadPlate-B-BothPair{  //莊對、閒對
+		@include hisRoadSpritePosition(-300,0,0.12);
+	}
+	.BeadPlate-P{  //閒
+		@include hisRoadSpritePosition(-400,0,0.12);
+	}
+	.BeadPlate-P-BPair{  //閒、莊對
+		@include hisRoadSpritePosition(-500,0,0.12);
+	}
+	.BeadPlate-P-PPair{  //閒、閒對
+		@include hisRoadSpritePosition(-600,0,0.12);
+	}
+	.BeadPlate-P-BothPair{  //閒對、莊對
+		@include hisRoadSpritePosition(-700,0,0.12);
+	}
+	.BeadPlate-T{  //和
+		@include hisRoadSpritePosition(-800,0,0.12);
+	}
+	.BeadPlate-T-BPair{  //和、莊對
+		@include hisRoadSpritePosition(-900,0,0.12);
+	}
+	.BeadPlate-T-PPair{  //和、閒對
+		@include hisRoadSpritePosition(-1000,0,0.12);
+	}
+	.BeadPlate-T-BothPair{  //和、閒對、莊對
+		@include hisRoadSpritePosition(-1100,0,0.12);
+	}
 }	
+@media screen and (max-width: 280px) {
+	.header{
+		height:50px;
+	}
+	.header-logo{
+		margin-left: 0;
+	}
+	.header-btn{
+		width:100%;
+		line-height:1.75rem;
+		font-size:100%;
+	}
+	.header-btnList{
+		width: 49%;
+	}
+	.video-box{
+		height:190px;
+	}
+	.gameHistory{
+		height:100px;
+	}
+	.gainMoney{
+		font-size:80%;
+	}
+	.result-text{
+		font-size:130%;
+	}
+	.betArea{
+		height:280px;
+	}
+	.betArea-item{
+		font-size: 1rem;
+	}
+	.alertFont{
+		font-size: 1.2rem !important;
+	}
+	.betStatus{
+		font-size: 1rem;
+	}
+	.betArea-mobile{
+		height:192px;
+	}
+	.betArea-mobile-container{
+		height:192px;
+	}
+	.coin-menu1{
+		@include coinSpritePosition(0,0,0.6)
+	}
+	.coin-menu1:hover,.coin-menu1-current{
+		@include coinSpritePosition(0,-65,0.6)
+	}
+	.coin-menu2{
+		@include coinSpritePosition(-79,0,0.6)
+	}
+	.coin-menu2:hover,.coin-menu2-current{
+		@include coinSpritePosition(-79,-65,0.6)
+	}
+	.coin-menu3{
+		@include coinSpritePosition(-158,0,0.6)
+	}
+	.coin-menu3:hover,.coin-menu3-current{
+		@include coinSpritePosition(-158,-65,0.6)
+	}
+	.coin-menu4{
+		@include coinSpritePosition(-237,0,0.6)
+	}
+	.coin-menu4:hover,.coin-menu4-current{
+		@include coinSpritePosition(-237,-65,0.6)
+	}
+	.coin-menu5{
+		@include coinSpritePosition(-316,0,0.6)
+	}
+	.coin-menu5:hover,.coin-menu5-current{
+		@include coinSpritePosition(-316,-65,0.6)
+	}
+	.card-container{
+		margin-top: -35px;
+	}
+	//珠仔路
+	.BeadPlate-B{  //莊
+		@include hisRoadSpritePosition(0,0,0.1);
+	}
+	.BeadPlate-B-BPair{  //莊對
+		@include hisRoadSpritePosition(-100,0,0.1);
+	}
+	.BeadPlate-B-PPair{  //莊、閒對
+		@include hisRoadSpritePosition(-200,0,0.1);
+	}
+	.BeadPlate-B-BothPair{  //莊對、閒對
+		@include hisRoadSpritePosition(-300,0,0.1);
+	}
+	.BeadPlate-P{  //閒
+		@include hisRoadSpritePosition(-400,0,0.1);
+	}
+	.BeadPlate-P-BPair{  //閒、莊對
+		@include hisRoadSpritePosition(-500,0,0.1);
+	}
+	.BeadPlate-P-PPair{  //閒、閒對
+		@include hisRoadSpritePosition(-600,0,0.1);
+	}
+	.BeadPlate-P-BothPair{  //閒對、莊對
+		@include hisRoadSpritePosition(-700,0,0.1);
+	}
+	.BeadPlate-T{  //和
+		@include hisRoadSpritePosition(-800,0,0.1);
+	}
+	.BeadPlate-T-BPair{  //和、莊對
+		@include hisRoadSpritePosition(-900,0,0.1);
+	}
+	.BeadPlate-T-PPair{  //和、閒對
+		@include hisRoadSpritePosition(-1000,0,0.1);
+	}
+	.BeadPlate-T-BothPair{  //和、閒對、莊對
+		@include hisRoadSpritePosition(-1100,0,0.1);
+	}
+	//大路
+	.big-B{ //莊
+		@include hisRoadSpritePosition(0,100,0.06);
+	}
+	.big-B-BPair{ //莊對
+		@include hisRoadSpritePosition(-100,100,0.06);
+	}
+	.big-B-PPair{ //莊、閒對
+		@include hisRoadSpritePosition(-200,100,0.06);
+	}
+	.big-B-BothPair{ // 莊對、閒對
+		@include hisRoadSpritePosition(-300,100,0.06);
+	}
+	.big-BT{  //莊和
+		@include hisRoadSpritePosition(-400,100,0.06);
+	}
+	.big-BT-BPair{  //莊和 莊對
+		@include hisRoadSpritePosition(-500,100,0.06);
+	}
+	.big-BT-PPair{  //莊和 閒對
+		@include hisRoadSpritePosition(-600,100,0.06);
+	}
+	.big-BT-BothPair{  //莊和 莊閒對
+		@include hisRoadSpritePosition(-700,100,0.06);
+	}
+	.big-P{ //閒
+		@include hisRoadSpritePosition(-800,100,0.06);
+	}
+	.big-P-BPair{ //閒、莊對
+		@include hisRoadSpritePosition(-900,100,0.06);
+	}
+	.big-P-PPair{ //閒、閒對
+		@include hisRoadSpritePosition(-1000,100,0.06);
+	}
+	.big-P-BothPair{ // 閒對、莊對
+		@include hisRoadSpritePosition(-1100,100,0.06);
+	}
+	.big-PT{  //閒和
+		@include hisRoadSpritePosition(-1200,100,0.06);
+	}
+	.big-PT-BPair{  //閒和 閒對
+		@include hisRoadSpritePosition(-1300,100,0.06);
+	}
+	.big-PT-PPair{  //閒和 閒對
+		@include hisRoadSpritePosition(-1400,100,0.06);
+	}
+	.big-PT-BothPair{  //閒和 莊閒對
+		@include hisRoadSpritePosition(-1500,100,0.06);
+	}
+	//小路(左下角)
+	.small-red{
+		@include hisRoadSpritePosition(-1200,0,0.02);
+	}
+	.small-blue{
+		@include hisRoadSpritePosition(-1400,0,0.02);
+	}
+	//大眼仔路(中間)
+	.bigEye-red{
+		@include hisRoadSpritePosition(0,100,0.02);
+	}
+	.bigEye-blue{
+		@include hisRoadSpritePosition(-800,100,0.02);
+	}
+	//蟑螂路
+	cockroach-red{
+		@include hisRoadSpritePosition(-1300,0,0.02);
+	}
+	cockroach-blue{
+		@include hisRoadSpritePosition(-1500,0,0.02);
+	}
+
+}
