@@ -193,30 +193,30 @@ export default defineComponent({
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
                     {
-                    point:5,
-                    ammo:[], //子彈陣列
-                    },
-                    {
-                    point:10,
-                    ammo:[], //子彈陣列
-                    },
-                    {
-                    point:50,
-                    ammo:[], //子彈陣列
-                    },
-                    {
                     point:100,
                     ammo:[], //子彈陣列
                     },
                     {
                     point:500,
                     ammo:[], //子彈陣列
+                    },
+                    {
+                    point:1000,
+                    ammo:[], //子彈陣列
+                    },
+                    {
+                    point:5000,
+                    ammo:[], //子彈陣列
+                    },
+                    {
+                    point:10000,
+                    ammo:[], //子彈陣列
                     }
                 ])
         const currentCoint = reactive<currentCoint>({ 
             coinElement:document.querySelector('#defaultCoin1'), //選擇的籌碼元素
             num:0,  //儲存點到的是第幾個
-            point:5, //預設是五點ㄉ
+            point:100, //預設是100點ㄉ
             x:0, //起飛的x
             y:0, //起飛的y
         });  

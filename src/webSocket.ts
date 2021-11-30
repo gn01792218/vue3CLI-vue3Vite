@@ -1,16 +1,11 @@
 
-// const url = "ws://139.162.102.189:8199/ws";  //後端網址
-const url = process.env.VUE_APP_API_HOST;
-//8199 由keypir控制
-//8200 可以自由測的
+const url = process.env.VUE_APP_API_HOST;  //後端網址寫在.env檔案中；分為線上環境和測試環境//8199 由keypir控制//8200 可以自由測的
 //建立webSocket實例
 let Socket:WebSocket | null
 let setIntervalWesocketPush:number
 //websocket方法區
 //連接上後會發送心跳
 const onopenWs = ()=>{
-    //正式啟動時記得sendPing
-    // sendPing()
     console.log("連線建立成功")
 }
 //連接失敗會重新連線
