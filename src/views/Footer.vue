@@ -6,7 +6,7 @@
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-eye-fill "></i></span>
-                <span class="footer-item" v-if="user">{{user.wallet}}</span>
+                <span class="footer-item" v-if="user">{{userWallet}}</span>
                 <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
                 >
                     <i class="bi bi-person-circle" ></i>
@@ -38,7 +38,12 @@ export default defineComponent({
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
-        
+        const userWallet = computed(()=>{
+            return store.state.auth.userWalletFomate
+        })
+        // function formatNumber(num:number){
+        //     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
+        // }
         //全螢幕
         function fullScreen () {
             if(screenfull.isEnabled){
@@ -47,7 +52,7 @@ export default defineComponent({
         }
         return {
             //data
-            user,
+            user,userWallet,
             //methods
             fullScreen
         }
