@@ -5,38 +5,12 @@
       v-show="loadingVideo"
     />
   </div>
-  <!-- <div class="video-box"> -->
-      <!-- <video class="video"
-      id="videoElement"
-      ref="videoElement"
-      muted
-      @click="play"
-      ></video> -->
-     <!-- <video class="video"
-      id="videoElement"
-      ref="videoElement"
-      muted
-      autoplay
-      autobuffer
-      preload="auto"
-      webkit-playsinline
-      playsinline="true"
-      @click="play"
-    ></video> -->
-      <!-- <video class="video" v-else
-      id="videoElement"
-      ref="videoElement"
-      muted
-      @click="play"
-    ></video> -->
-  <!-- </div> -->
 </template>
 
 <script lang="ts">
 import {computed, defineComponent,onMounted,ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import VideoLoading from '@/components/VideoLoading.vue'
-import flvjs from 'flv.js'
 import gsap from 'gsap'
 export default defineComponent({
   components:{
@@ -105,7 +79,6 @@ export default defineComponent({
       watch(flvStream,()=>{
         stopPlay()
         startPlay()
-        // reloadVideo(flvPlayer.value)
       })
       //直播畫面拉伸
       // watch(gameUuid,()=>{  //改用子母畫面，暫時不需要。新回合開始時，將螢幕縮回去
