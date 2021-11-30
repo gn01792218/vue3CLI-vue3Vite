@@ -54,7 +54,8 @@
             Total Bet {{total}}
         </div>
         <!-- coin -->
-        <div class="coinArea">
+        <div class="coinArea position-relative">
+            <LightBox/>
             <!-- coin list -->
             <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index"  :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
@@ -79,6 +80,7 @@ import {useStore} from 'vuex'
 import GameResult from '@/components/GameResult.vue'
 import GameresultSound from '@/components/GameResultSound.vue'
 import GameResultLoading from '@/components/GameResultLoading.vue'
+import LightBox from '@/components/LightBox.vue'
 import proto from '../assets/js/bundle'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
@@ -105,10 +107,11 @@ interface coinPosition {
 }
 export default defineComponent({
     components:{
-        GameResult,GameresultSound,GameResultLoading,
+        GameResult,GameresultSound,GameResultLoading,LightBox,
     },
     setup(){
         onMounted(()=>{
+            //初始化籌碼
             let defaultCoin = document.querySelector('#defaultCoin1') as HTMLElement
             let rect = defaultCoin.getBoundingClientRect()
             currentCoint.coinElement = defaultCoin

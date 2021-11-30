@@ -3,82 +3,29 @@
      <BeadPlate/>
      <SideRoadGrid/>
       <!--for mobil verson show poker -->
-      <!-- v-if gameState is show Poker -->
-      <!-- 手機版本的卡牌zoom2.24就可以了 -->
-      <div class="lightBox position-absolute" v-show="showCardInfo">
+      <LightBox>
         <CardInfo class="mobilePoker"/>
-      </div>
+      </LightBox>
+      
     </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted, ref, watch} from 'vue'
-import {useStore} from 'vuex'
+import {defineComponent} from 'vue'
 import BeadPlate from './BeadPlate.vue'
 import SideRoadGrid from './SideRoadGrid.vue'
 import CardInfo from './CardInfo.vue'
+import LightBox from '@/components/LightBox.vue'
 export default defineComponent({
   components:{
     BeadPlate,
     SideRoadGrid,
     CardInfo,
+    LightBox,
   },
     setup(){
-        //Vuex資料
-        const store = useStore()
-        const showCardInfo = ref(false)
-        const Draw = computed(()=>{
-          return store.state.dealer.Draw
-        })
-        const roundUuid = computed<string>(()=>{
-          return store.state.game.gameUuid
-        })
-        //初始化
-        onMounted(() => {
-          if(screen.width>1024){
-            let lightElement = document.querySelector('.lightBox') as HTMLElement
-            lightElement.style.display = 'none'
-          }else{
-            console.log("要監聽1024以下歷史圖的開牌")
-            watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
-              showCardInfo.value = true
-              console.log("監聽畫牌")
-            })
-            watch(roundUuid,()=>{
-              showCardInfo.value = false
-            })
-          }
-        })
-        // const mqlMax1280 = window.matchMedia("(max-width :1280px)")
-        // mqlMax1280.addEventListener('change',()=>{
-        //   console.log("1280",mqlMax1280)
-        // })
-        // const mqltest = window.matchMedia("(max-height:1280px)")
-        // mqltest.addEventListener('change',()=>{
-        //   console.log("偵測到螢幕高度")
-        // })
-        const mqlMax1024 = window.matchMedia("(max-width :1024px)")
-        mqlMax1024.addEventListener('change',()=>{
-          if(mqlMax1024.matches){
-            console.log("要監聽1024以下歷史圖的開牌")
-            watch(Draw,()=>{  //之後監聽game狀態來判定是否顯示卡牌
-              if(mqlMax1024.matches){
-                showCardInfo.value = true
-                console.log("監聽畫牌")
-              }
-            })
-            watch(roundUuid,()=>{
-              if(mqlMax1024.matches){
-                showCardInfo.value = false
-              }
-            })
-          }else{
-            showCardInfo.value = false
-          }
-        })
         return {
           //data
-          showCardInfo,
           //methods
           
         }
