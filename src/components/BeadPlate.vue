@@ -57,7 +57,7 @@ export default defineComponent({
           console.log("換桌豬盤路重置")
           resetRoad()
         })
-        watch(beadPlateResult,()=>{    //每次都全部重畫
+        watch(beadPlateResult,()=>{    
           if(beadPlateResult.value){
             if(!isInit.value){
               showRoadInit ()

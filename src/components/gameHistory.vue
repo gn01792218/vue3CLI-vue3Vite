@@ -6,7 +6,6 @@
       <LightBox>
         <CardInfo class="mobilePoker"/>
       </LightBox>
-      
     </div>
 </template>
 

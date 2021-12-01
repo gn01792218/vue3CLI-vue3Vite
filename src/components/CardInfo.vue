@@ -2,7 +2,7 @@
     <div class="card-wrap">
     	<section class="card-container d-flex justify-content-center">
       	<div class="player card-box row justify-content-center">
-          <!-- <span class="playerNum">{{playerPoint}}</span> -->
+          <span v-show="pointAddCount==6" class="playerNum">{{playerPoint}}</span>
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
@@ -12,7 +12,7 @@
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>
         	</div>
-          <!-- <span class="bankerNum">{{bankerPoint}}</span> -->
+          <span v-show="pointAddCount==6" class="bankerNum">{{bankerPoint}}</span>
       	</div>
     	</section>
     </div>
@@ -55,6 +55,7 @@ export default defineComponent({
     })
     const playerPoint = ref(0)
     const bankerPoint = ref(0)
+    const pointAddCount = ref(0)
     //響應式卡牌監聽 應付電腦解析度切換、行動裝置直橫切換
     const mqlMax1280 = window.matchMedia("(max-width :1280px)")
      mqlMax1280.addEventListener('change',()=>{
@@ -69,12 +70,14 @@ export default defineComponent({
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
+      pointAddCount.value = 0
      })
      watch(gameResult,()=>{
        setWinCardBoxLight()
        showCardTotalPoint()
      })
      watch(DrawCard,()=>{  //開牌
+     console.log("開牌")
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
        addCardPoint(card.side,card.card.point)
@@ -146,6 +149,7 @@ export default defineComponent({
           }
            break
        }
+       pointAddCount.value++
      }
      function resetCardPoint(){
        playerPoint.value = 0
@@ -202,7 +206,7 @@ export default defineComponent({
      }
     return {
       //data
-      cards,DrawCard,playerPoint,bankerPoint,
+      cards,DrawCard,playerPoint,bankerPoint,pointAddCount,
       //methods
       showCards,
     }

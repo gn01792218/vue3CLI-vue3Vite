@@ -1,8 +1,11 @@
 <template>
 <!-- <button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
 <button class="test3 position-absolute" @click="testshowBigRoad(2)">閒贏</button>
-<button class="test4 position-absolute" @click="testshowBigRoad(13)">莊和</button>
-<button class="test5 position-absolute" @click="testshowBigRoad(20)">閒和</button>
+<button class="test4 position-absolute" @click="testshowBigRoad(14)">莊和</button>
+<button class="test7 position-absolute" @click="testshowBigRoad(13)">莊和2</button>
+<button class="test8 position-absolute" @click="testshowBigRoad(15)">莊和3</button>
+<button class="test5 position-absolute" @click="testshowBigRoad(19)">閒和</button>
+<button class="test6 position-absolute" @click="testshowBigRoad(18)">閒和2</button>
 <button class="test2 position-absolute" @click="resetBigRoad">重置大路</button> -->
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
@@ -48,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent,computed,ref, watch, reactive, onMounted} from 'vue'
+import {defineComponent,computed,ref, watch, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
@@ -68,6 +71,9 @@ export default defineComponent({
         // const gameResult = computed(()=>{ //回傳的是陣列
         //     return store.state.dealer.BroadcastGameResult.results
         // })
+        const beadPlateResult = computed(()=>{
+          return store.state.roadmap.map.beadPlate
+        })
         const bigRoadResult = computed(()=>{
           return store.state.roadmap.map.bigRoad
         })
@@ -104,13 +110,86 @@ export default defineComponent({
           console.log("換桌側邊路圖重置")
           resetBigRoad()
         })
+        // watch(beadPlateResult,()=>{
+        //   console.log("偵測到朱朱陸")
+        //   if(bigRoadInit.value){
+        //     showBigRoadTest ()
+        //   }else{  //沒有初始化過先畫
+        //     showBigRoadInitTest ()
+        //   }
+        // })
         watch(bigRoadResult,()=>{
           if(bigRoadInit.value){
-            showBigRoad()
+            // showBigRoad()
+            showBigRoadAll()
           }else{  //沒有初始化過先畫
             showBigRoadInit()
           }
         })
+        function transfromTie (currentSide:number,gameResult:number){
+            if(currentSide==1){
+              switch(gameResult){
+                case proto.roadmap.Block.Tie:
+                  return proto.roadmap.Block.BankerAndTie
+                case proto.roadmap.Block.TieAndBankerPair:
+                  return proto.roadmap.Block.BankerAndBankerPairAndTie
+                case proto.roadmap.Block.TieAndPlayerPair:
+                  return proto.roadmap.Block.BankerAndPlayerPairAndTie
+                case proto.roadmap.Block.TieAndBothPair:
+                  return proto.roadmap.Block.BankerAndBothPairAndTie
+              }
+            }else if(currentSide==2){
+              switch(gameResult){
+                case proto.roadmap.Block.Tie:
+                  return proto.roadmap.Block.PlayerAndTie
+                case proto.roadmap.Block.TieAndPlayerPair:
+                  return proto.roadmap.Block.PlayerAndPlayerPairAndTie
+                case proto.roadmap.Block.TieAndBankerPair:
+                  return proto.roadmap.Block.PlayerAndBankerPairAndTie
+                case proto.roadmap.Block.TieAndBothPair:
+                  return proto.roadmap.Block.PlayerAndBothPairAndTie
+              }
+            }else if(currentSide==0){ //只針對第一顆是和局時的狀態
+            console.log("一開始是和局的狀態")
+                  switch(gameResult){  
+                    case proto.roadmap.Block.BankerAndTie:
+                    case proto.roadmap.Block.Banker:
+                      return proto.roadmap.Block.BankerAndTie
+
+                    case proto.roadmap.Block.TieAndBankerPair:
+                    case proto.roadmap.Block.BankerAndBankerPairAndTie:
+                    case proto.roadmap.Block.BankerAndBankerPair:
+                      return proto.roadmap.Block.BankerAndBankerPairAndTie
+
+                    case proto.roadmap.Block.BankerAndPlayerPairAndTie:
+                    case proto.roadmap.Block.BankerAndPlayerPair:
+                      return proto.roadmap.Block.BankerAndPlayerPairAndTie
+
+                    case proto.roadmap.Block.TieAndBothPair:
+                    case proto.roadmap.Block.BankerAndBothPairAndTie:
+                    case proto.roadmap.Block.BankerAndBothPair:
+                      return proto.roadmap.Block.BankerAndBothPairAndTie
+
+                    case proto.roadmap.Block.PlayerAndTie:
+                    case proto.roadmap.Block.Player:
+                      return proto.roadmap.Block.PlayerAndTie
+                    
+                    case proto.roadmap.Block.PlayerAndBankerPairAndTie:
+                    case proto.roadmap.Block.PlayerAndBankerPair:
+                      return proto.roadmap.Block.PlayerAndBankerPairAndTie
+
+                    case proto.roadmap.Block.TieAndPlayerPair:
+                    case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
+                    case proto.roadmap.Block.PlayerAndPlayerPair:
+                      return proto.roadmap.Block.PlayerAndPlayerPairAndTie
+
+                    case proto.roadmap.Block.TieAndBothPair:
+                    case proto.roadmap.Block.PlayerAndBothPairAndTie:
+                    case proto.roadmap.Block.PlayerAndBothPair:
+                      return proto.roadmap.Block.PlayerAndBothPairAndTie
+                  }
+            }
+        }
         function recordBigRoad (gameResult:number){
           switch(gameResult){
               case proto.roadmap.Block.Banker:
@@ -164,28 +243,61 @@ export default defineComponent({
               bigRoadColItem.classList.add('big-P-BothPair')
               break
             case proto.roadmap.Block.BankerAndTie:
-              bigRoadColItem.classList.add('big-BT')
+              if(bigRoadColItem.classList[0]){
+                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT')
+              }else{
+                bigRoadColItem.classList.add('big-BT')
+              }
               break
             case proto.roadmap.Block.BankerAndBankerPairAndTie:
-              bigRoadColItem.classList.add('big-BT-BPair')
+              if(bigRoadColItem.classList[0]){
+                 bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-BPair')
+              }else{
+                bigRoadColItem.classList.add('big-BT-BPair')
+              }
               break
             case proto.roadmap.Block.BankerAndPlayerPairAndTie:
-              bigRoadColItem.classList.add('big-BT-PPair')
+              if(bigRoadColItem.classList[0]){
+                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-PPair')
+              }else{
+                bigRoadColItem.classList.add('big-BT-PPair')
+              }
               break
             case proto.roadmap.Block.BankerAndBothPairAndTie:
-              bigRoadColItem.classList.add('big-BT-BothPair')
+              if(bigRoadColItem.classList[0]){
+                 bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-BothPair')
+              }else{
+                bigRoadColItem.classList.add('big-BT-BothPair')
+              }
               break
             case proto.roadmap.Block.PlayerAndTie:
-              bigRoadColItem.classList.add('big-PT')
+              if(bigRoadColItem.classList[0]){
+                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT')
+              }else{
+                bigRoadColItem.classList.add('big-PT')
+              }
               break
             case proto.roadmap.Block.PlayerAndBankerPairAndTie:
-              bigRoadColItem.classList.add('big-PT-BPair')
+              if(bigRoadColItem.classList[0]){
+                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-BPair')
+              }else{
+                bigRoadColItem.classList.add('big-PT-BPair')
+              }
               break
             case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
-              bigRoadColItem.classList.add('big-PT-PPair')
+              if(bigRoadColItem.classList[0]){
+                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-PPair')
+              }else{
+                bigRoadColItem.classList.add('big-PT-PPair')
+              }
+              
               break
             case proto.roadmap.Block.PlayerAndBothPairAndTie:
-              bigRoadColItem.classList.add('big-PT-BothPair')
+              if(bigRoadColItem.classList[0]){
+                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-BothPair')
+              }else{
+                bigRoadColItem.classList.add('big-PT-BothPair')
+              }
               break
             }
             bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value] = 1  //代表那一格已經畫過了
@@ -263,20 +375,28 @@ export default defineComponent({
             putBigRoad(winner)
           // })
         }
-        function showBigRoadInit () {
+        function showBigRoadInitTest () {
           // console.log("畫大路初始化",bigRoadResult.value.columns)
-          bigRoadResult.value.columns.forEach((i:any)=>{ 
-            console.log(i.blocks) //初始化時所有都畫
-            i.blocks.forEach((item:any)=>{
-              recordBigRoad(item)  //1.紀錄陣營
-            if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
-                item == 18 || item == 19 || item == 20){
+          beadPlateResult.value.blocks.forEach((i:any)=>{ 
+            console.log(i) //初始化時所有都畫
+            recordBigRoad(i)  //1.紀錄陣營
+            if(i==3 || i==10 || i==11 || i==12){
+              console.log('原本',i)
+              i = transfromTie(currentBigRoadResult.value,i)
+              console.log("轉換畫",i)
+            }
+            if(i == 13 || i == 14 || i ==15 || i == 16 || i ==17 ||
+                i == 18 || i == 19 || i == 20){
                   bigRoadTie.value = true
                   // console.log("是否和局",bigRoadTie.value)
             }
+            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && currentBigRoadResult.value==0){
+              console.log("陣營",currentBigRoadResult.value)
+              bigRoadItemIndex.value--
+            }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
-              // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+              console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
                 if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
                   bigRoadColumn.value++
@@ -301,7 +421,7 @@ export default defineComponent({
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
-              // console.log("連贏溢出")
+              console.log("連贏溢出",bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value],bigRoadColumn.value,bigRoadItemIndex.value)
               if(!bigRoadTie.value){  //不是和局時，才要+行
                 bigRoadColumn.value++ //換行
               }
@@ -333,18 +453,28 @@ export default defineComponent({
                 bigRoadTie.value = false
               }
             }
-            putBigRoad(item)
-            })
+            putBigRoad(i)
           })
           bigRoadInit.value = true
         }
-        function showBigRoad () {
-          let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
+        function showBigRoadTest () {
+          console.log(beadPlateResult.value.blocks[beadPlateResult.value.blocks.length-1])
+          let item = beadPlateResult.value.blocks[beadPlateResult.value.blocks.length-1]
+          // let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
+            console.log("畫最後一個item",item)
             recordBigRoad(item)  //1.紀錄陣營
+            if(item==3 || item==10 || item==11 || item==12){
+             console.log('原本',item)
+              item = transfromTie(currentBigRoadResult.value,item)
+              console.log("轉換畫",item)
+            }
             if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
                 item == 18 || item == 19 || item == 20){
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
+            }
+            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && currentBigRoadResult.value==0){
+              bigRoadItemIndex.value--
             }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
@@ -406,6 +536,234 @@ export default defineComponent({
               }
             }
             putBigRoad(item)
+        }
+        function showBigRoadInit() {
+          // console.log("畫大路初始化",bigRoadResult.value.columns)
+          bigRoadResult.value.columns.forEach((i:any)=>{ 
+            console.log(i.blocks) //初始化時所有都畫
+            i.blocks.forEach((item:any)=>{
+              recordBigRoad(item)  //1.紀錄陣營
+            // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
+            //     item == 18 || item == 19 || item == 20){
+            //       bigRoadTie.value = true
+            //       // console.log("是否和局",bigRoadTie.value)
+            // }
+            //換行一:不同陣營
+            if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
+              // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+              if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
+                if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
+                  bigRoadColumn.value++
+                  // console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
+                  roadOverFlowerTimes.value = 0
+                }else{
+                  bigRoadColumn.value = bigRoadColumn.value-roadOverFlowerTimes.value+1
+                  roadOverFlowerTimes.value = 0
+                }
+                // console.log("溢出後恢復","行",bigRoadColumn.value)
+              }else{
+                bigRoadColumn.value++
+              }
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
+                // console.log("滿了+行")
+                addBigRoadColumn()
+              }  
+               bigRoadItemIndex.value = 0
+              //  console.log("格",bigRoadItemIndex.value)
+            }
+            //換行二:溢出換行
+            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
+            //溢出時如果遇到和局，其實不需要+行?!
+            if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
+              // console.log("連贏溢出")
+              if(!bigRoadTie.value){  //不是和局時，才要+行
+                bigRoadColumn.value++ //換行
+              }
+              //和局時不會進下面的addBigRoad
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                  addBigRoadColumn()
+              }  //溢出極限格子的時候要增加行數
+              if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
+                bigRoadItemIndex.value = bigRoadItemIndex.value-1
+              }
+              roadOverFlowerTimes.value++ 
+              // console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                  for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                    bigRoadColArr[bigRoadColumn.value][i] = 1
+                  }
+            }
+            //  if(bigRoadTie.value && bigRoadItemIndex.value>=0){  //假如是和局狀態
+            //   // console.log('偵測到和局')
+            //   if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){ //連贏的時候必須要--col和index
+            //     // bigRoadColumn.value-- //不要往下加一行
+            //     roadOverFlowerTimes.value-- //不要算溢出
+            //     bigRoadTie.value = false
+            //     // console.log("和局溢出狀態","畫行",bigRoadColumn.value,"畫格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+            //   }else{
+            //     if(bigRoadItemIndex.value>0){
+            //       bigRoadItemIndex.value--
+            //     }
+            //     // console.log("和局狀態","畫行",bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
+            //     bigRoadTie.value = false
+            //   }
+            // }
+            putBigRoad(item)
+            })
+          })
+          bigRoadInit.value = true
+        }
+        function showBigRoad () {
+          let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
+            console.log("畫最後一個item",item)
+            recordBigRoad(item)  //1.紀錄陣營
+            // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
+            //     item == 18 || item == 19 || item == 20){
+            //       bigRoadTie.value = true
+            //       console.log("是否和局",bigRoadTie.value)
+            // }
+            //換行一:不同陣營
+            if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
+              // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+              if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
+                if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
+                  bigRoadColumn.value++
+                  console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
+                  roadOverFlowerTimes.value = 0
+                }else{
+                  bigRoadColumn.value = bigRoadColumn.value-roadOverFlowerTimes.value+1
+                  roadOverFlowerTimes.value = 0
+                }
+                console.log("溢出後恢復","行",bigRoadColumn.value)
+              }else{
+                bigRoadColumn.value++
+              }
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
+                console.log("滿了+行")
+                addBigRoadColumn()
+              }  
+               bigRoadItemIndex.value = 0
+               console.log("格",bigRoadItemIndex.value)
+            }
+            //換行二:溢出換行
+            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
+            //溢出時如果遇到和局，其實不需要+行?!
+            if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
+              console.log("連贏溢出")
+              if(!bigRoadTie.value){  //不是和局時，才要+行
+                bigRoadColumn.value++ //換行
+              }
+              //和局時不會進下面的addBigRoad
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                  addBigRoadColumn()
+              }  //溢出極限格子的時候要增加行數
+              if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
+                bigRoadItemIndex.value = bigRoadItemIndex.value-1
+              }
+              roadOverFlowerTimes.value++ 
+              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                  for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                    bigRoadColArr[bigRoadColumn.value][i] = 1
+                  }
+            }
+            //  if(bigRoadTie.value && bigRoadItemIndex.value>=0){  //假如是和局狀態
+            //   console.log('偵測到和局')
+            //   if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){ //連贏的時候必須要--col和index
+            //     // bigRoadColumn.value-- //不要往下加一行
+            //     roadOverFlowerTimes.value-- //不要算溢出
+            //     bigRoadTie.value = false
+            //     console.log("和局溢出狀態","畫行",bigRoadColumn.value,"畫格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+            //   }else{
+            //     if(bigRoadItemIndex.value>0){
+            //       bigRoadItemIndex.value--
+            //     }
+            //     console.log("和局狀態","畫行",bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
+            //     bigRoadTie.value = false
+            //   }
+            // }
+            putBigRoad(item)
+        }
+        function showBigRoadAll () { //每次都重畫的版本
+          console.log("重畫大路")
+          bigRoadColumn.value = 0
+          bigRoadItemIndex.value = 0
+          currentBigRoadResult.value = 0
+          lastBigRoadResult.value = 0
+          roadOverFlowerTimes.value = 0
+          console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value)
+          //大路陣列也要規0
+          for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
+            bigRoadColArr[i] = [0,0,0,0,0,0]
+          }
+          bigRoadResult.value.columns.forEach((i:any)=>{
+            i.blocks.forEach((item:any)=>{
+               recordBigRoad(item)  //1.紀錄陣營
+              // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
+              //   item == 18 || item == 19 || item == 20){
+              //     bigRoadTie.value = true
+              //     console.log("是否和局",bigRoadTie.value)
+              // }
+            //換行一:不同陣營
+            if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
+              // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+              if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
+                if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
+                  bigRoadColumn.value++
+                  console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
+                  roadOverFlowerTimes.value = 0
+                }else{
+                  bigRoadColumn.value = bigRoadColumn.value-roadOverFlowerTimes.value+1
+                  roadOverFlowerTimes.value = 0
+                }
+                console.log("溢出後恢復","行",bigRoadColumn.value)
+              }else{
+                bigRoadColumn.value++
+              }
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
+                console.log("滿了+行")
+                addBigRoadColumn()
+              }  
+               bigRoadItemIndex.value = 0
+               console.log("格",bigRoadItemIndex.value)
+            }
+            //換行二:溢出換行
+            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
+            //溢出時如果遇到和局，其實不需要+行?!
+            if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
+              console.log("連贏溢出")
+              if(!bigRoadTie.value){  //不是和局時，才要+行
+                bigRoadColumn.value++ //換行
+              }
+              //和局時不會進下面的addBigRoad
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                  addBigRoadColumn()
+              }  //溢出極限格子的時候要增加行數
+              if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
+                bigRoadItemIndex.value = bigRoadItemIndex.value-1
+              }
+              roadOverFlowerTimes.value++ 
+              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                  for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                    bigRoadColArr[bigRoadColumn.value][i] = 1
+                  }
+            }
+            //  if(bigRoadTie.value && bigRoadItemIndex.value>=0){  //假如是和局狀態
+            //   console.log('偵測到和局')
+            //   if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){ //連贏的時候必須要--col和index
+            //     // bigRoadColumn.value-- //不要往下加一行
+            //     roadOverFlowerTimes.value-- //不要算溢出
+            //     bigRoadTie.value = false
+            //     console.log("和局溢出狀態","畫行",bigRoadColumn.value,"畫格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+            //   }else{
+            //     if(bigRoadItemIndex.value>0){
+            //       bigRoadItemIndex.value--
+            //     }
+            //     console.log("和局狀態","畫行",bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
+            //     bigRoadTie.value = false
+            //   }
+            // }
+            putBigRoad(item)
+            })
+           })
         }
         function addBigRoadColumn () {  //滿格時一次增加一格的方法
           let bigRoad = document.querySelector('.bigRoad') as HTMLElement  
@@ -496,6 +854,18 @@ export default defineComponent({
 .test5{
   bottom:0;
   left:10%;
+}
+.test6{
+  bottom:0;
+  left:15%;
+}
+.test7{
+  bottom:0;
+  left:20%;
+}
+.test8{
+  bottom:0;
+  left:25%;
 }
 /* 背景格子 */
 .secRoad{
