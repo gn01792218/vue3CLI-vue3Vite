@@ -25,9 +25,9 @@ export default defineComponent({
       const isAndroid = userSystem.indexOf('Android') > -1 || userSystem.indexOf('Adr') >-1
       const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/)
       const testPlayUrl = 'http://flv.bdplay.nodemedia.cn/live/bbb.flv'
-      if(isIOS){
-        console.log("蘋果系統")
-      }
+      // if(isIOS){
+      //   console.log("蘋果系統")
+      // }
       // document.addEventListener('WeixinJSBridgeReady',function () {
       //     flvPlayer?.play()
       //     console.log("自動撥放")
