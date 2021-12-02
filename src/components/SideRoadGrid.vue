@@ -110,22 +110,22 @@ export default defineComponent({
           console.log("換桌側邊路圖重置")
           resetBigRoad()
         })
-        watch(beadPlateResult,()=>{
-          console.log("偵測到朱朱陸")
-          if(bigRoadInit.value){
-            showBigRoadTest ()
-          }else{  //沒有初始化過先畫
-            showBigRoadInitTest ()
-          }
-        })
-        // watch(bigRoadResult,()=>{
+        // watch(beadPlateResult,()=>{
+        //   console.log("偵測到朱朱陸")
         //   if(bigRoadInit.value){
-        //     // showBigRoad()
-        //     showBigRoadAll()
+        //     showBigRoadTest ()
         //   }else{  //沒有初始化過先畫
-        //     showBigRoadInit()
+        //     showBigRoadInitTest ()
         //   }
         // })
+        watch(bigRoadResult,()=>{
+          if(bigRoadInit.value){
+            // showBigRoad()
+            showBigRoadAll()
+          }else{  //沒有初始化過先畫
+            showBigRoadInit()
+          }
+        })
         function transfromTie (currentSide:number,gameResult:number){
             if(currentSide==1){
               switch(gameResult){

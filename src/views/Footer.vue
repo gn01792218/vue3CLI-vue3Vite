@@ -3,9 +3,9 @@
     <footer class="footer">
         <div class="pl-1 pr-1 d-flex">
             <div class="col-sm text-md-left d-flex">
-                <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span>
-                <span v-if="isAudioMuted" class="footer-item d-none d-md-flex" @click="mutedSound"><i class="bi bi-volume-off"></i></span>
-                <span v-if="!isAudioMuted" class="footer-item d-none d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
+                <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span> -->
+                <span v-if="isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-off"></i></span>
+                <span v-if="!isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
                 <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span>
                 <span class="footer-item" v-if="user">{{userWallet}}</span>
