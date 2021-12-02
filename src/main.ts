@@ -13,18 +13,18 @@ NodePlayer.load(()=>{
 })
 window.addEventListener('onmessageWs',getMsgReCall)  //全局註冊wbSocket的訊息監聽
 
-router.beforeEach((to,from,next)=>{
-    const VerifiedSuccessfully = Cookies.get('userToken') == 'ImLogin'
-    if(VerifiedSuccessfully){
-        next();
-    }else{
-        if(to.path.indexOf('Home')==-1){  //要去的地方不含Home
-            console.log(to.path)
-            alert("登入失敗，請重新登入")
-            next('/Home')
-        }else{
-            next()
-        }
-    }
-})
+// router.beforeEach((to,from,next)=>{
+//     const VerifiedSuccessfully = Cookies.get('userToken') == 'ImLogin'
+//     if(VerifiedSuccessfully){
+//         next();
+//     }else{
+//         if(to.path.indexOf('Home')==-1){  //要去的地方不含Home
+//             console.log(to.path)
+//             alert("登入失敗，請重新登入")
+//             next('/Home')
+//         }else{
+//             next()
+//         }
+//     }
+// })
 

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,reactive,watch} from 'vue'
+import {computed, defineComponent,onMounted,reactive,watch} from 'vue'
 import LiveVideo from '@/components/LiveVideo.vue'
 import BettingArea from '@/views/BettingArea.vue'
 import TableInfo from '@/views/TableInfo.vue'
@@ -19,6 +19,7 @@ import Counter from '@/components/Counter.vue'
 import {useRoute } from 'vue-router'
 import {useStore} from 'vuex'
 import {sendTableJoinCall} from '../socketApi'
+import table from '@/store/table'
 export default defineComponent({
   components:{
     LiveVideo,
@@ -35,9 +36,9 @@ export default defineComponent({
     })
     //vuex資料
     const store = useStore()
-    const tables = reactive(computed(()=>{  //桌號uuid
-      return store.state.lobby.LobbyInfo
-    }))
+    const tables = computed(()=>{  //桌號uuid
+      return store.state.lobby.LobbyInfo.tables
+    })
     //測試資料
     const tableRecall = reactive(computed(()=>{  //桌號uuid
       return store.state.table.TableJoinRecall
@@ -46,53 +47,52 @@ export default defineComponent({
       console.log("回應上桌資料:",tableRecall.value)
     })
     //先送一次tableJoinCall
-    tableJoin()
+    onMounted(async()=>{
+      console.log("創建遊戲桌",tables.value)
+      let table = await tables
+      //  if(tables.value){
+        tableJoin()
+      // }
+    })
+    // if(tables.value){
+    //   tableJoin()
+    // }
     //監聽
-    //2.發送換桌請求
+    // 2.發送換桌請求
+    watch(tables,()=>{
+      console.log("有tables")
+      tableJoin()
+    })
     watch([tableNum],()=>{
+      store.commit('table/setCurrentTable',tableNum.value)
       tableJoin()
     })
     function tableJoin (){
        switch(tableNum.value){
         case 'A':
-          for(let i = 0 ; i<tables.value.tables.length ; i++){
-            if(tables.value.tables[i].name=="A桌"){
+          for(let i = 0 ; i<tables.value.length ; i++){
+            if(tables.value[i].name=="A桌"){
               sendTableJoinCall({
                 uri:"TableJoinCall",
-                uuid:tables.value.tables[i].uuid
+                uuid:tables.value[i].uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value.tables[i].name,"uuid:"+tables.value.tables[i].uuid,"Loby資訊:",tables.value)
+              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
               break
             }
           }
           break
         case 'B':
-           for(let i = 0 ; i<tables.value.tables.length ; i++){
-            if(tables.value.tables[i].name=="B桌"){
+           for(let i = 0 ; i<tables.value.length  ; i++){
+            if(tables.value[i].name=="B桌"){
               sendTableJoinCall({
                 uri:"TableJoinCall",
-                uuid:tables.value.tables[i].uuid
+                uuid:tables.value[i].uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value.tables[i].name,"uuid:"+tables.value.tables[i].uuid,"Loby資訊:",tables.value)
+              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
               break
             }
           }
       }
-      // switch(tableNum.value){
-      //   case 'A':
-      //     sendTableJoinCall({
-      //       uri:"TableJoinCall",
-      //       uuid:tables.value.tables[0].uuid
-      //     })
-      //     console.log("請求A桌","桌號:"+tableNum.value,"uuid:"+tables.value.tables[0].uuid,"Loby資訊:",tables.value)
-      //     break
-      //   case 'B':
-      //     sendTableJoinCall({
-      //       uri:"TableJoinCall",
-      //       uuid:tables.value.tables[1].uuid
-      //     })
-      //     console.log("請求B桌","桌號:"+tableNum.value,"uuid:"+tables.value.tables[0].uuid,"Loby資訊:"+tables.value)
-      // }
     }
     
     return{

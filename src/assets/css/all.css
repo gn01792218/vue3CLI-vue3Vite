@@ -902,6 +902,7 @@ cockroach-blue {
   background-image: url("../../images/loading.svg");
   background-color: #644d31;
   text-align: center;
+  z-index: 10;
 }
 
 .gameResultLoading {
@@ -1351,7 +1352,7 @@ cockroach-blue {
     height: 100%;
   }
   .header-btnList {
-    width: 70%;
+    width: 60%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1908,7 +1909,7 @@ cockroach-blue {
     height: 50px;
   }
   .header-btn {
-    font-size: 205%;
+    font-size: 150%;
     line-height: 1.5rem;
   }
   .video-box {
@@ -2207,7 +2208,7 @@ cockroach-blue {
     height: 50px;
   }
   .header-btnList {
-    width: 60%;
+    width: 57%;
   }
   .header-btn {
     line-height: 1.75rem;
@@ -2346,7 +2347,7 @@ cockroach-blue {
     height: 195px;
   }
   .header-btnList {
-    width: 55%;
+    width: 49%;
   }
   .betArea {
     height: 260px;

@@ -88,12 +88,12 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.LoginRecall:
             let loginRecall = auth.LoginRecall.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('LoginRecall',loginRecall)
+            console.log('LoginRecall',loginRecall)
             store.commit('auth/LoginRecall',loginRecall)
             break
         case route.LobbyInfo:
             let lobbyInfo = lobby.LobbyInfo.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('lobbyInfo',lobbyInfo)
+            console.log('lobbyInfo',lobbyInfo)
             store.commit('lobby/LobbyInfo',lobbyInfo)
             break
         case route.UserInfo:
@@ -103,7 +103,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.TableJoinRecall:
             let TableJoinRecall = table.TableJoinRecall.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('TableJoinRecall',TableJoinRecall)
+            console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
             break
         case route.BetRecall:

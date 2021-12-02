@@ -5,6 +5,7 @@ export const state = {
       streamingUrl:"",
     }
   },
+  currentTable:"",
 };
 export const actions = {}
 
@@ -13,6 +14,9 @@ export const mutations = {
     state.TableJoinRecall=payload
     // console.log("vuex-tableInfo資料更新",state.TableJoinRecall)
   },
+  setCurrentTable(state:any,tableNum:string){
+    state.currentTable = tableNum
+  }
 };
 export const getters = {
  

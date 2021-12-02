@@ -1,6 +1,6 @@
 <template>
   <div class="video-box position-relative">
-    <canvas class="video"  id="video" width="640" height="360" /><br/>
+    <canvas class="video"  id="video" width="980" height="588" /><br/>
     <VideoLoading
       v-show="loadingVideo"
     />

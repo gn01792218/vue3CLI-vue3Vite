@@ -35,6 +35,7 @@ export default defineComponent({
         const router = useRouter()
         //換桌
         function toGametable (tableNum:string) {
+            store.commit('table/setCurrentTable',tableNum)
             router.push({
                 path:`/BaccaratGame/${tableNum}`
             })
