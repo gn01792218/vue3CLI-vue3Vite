@@ -110,22 +110,22 @@ export default defineComponent({
           console.log("換桌側邊路圖重置")
           resetBigRoad()
         })
-        // watch(beadPlateResult,()=>{
-        //   console.log("偵測到朱朱陸")
-        //   if(bigRoadInit.value){
-        //     showBigRoadTest ()
-        //   }else{  //沒有初始化過先畫
-        //     showBigRoadInitTest ()
-        //   }
-        // })
-        watch(bigRoadResult,()=>{
+        watch(beadPlateResult,()=>{
+          console.log("偵測到朱朱陸")
           if(bigRoadInit.value){
-            // showBigRoad()
-            showBigRoadAll()
+            showBigRoadTest ()
           }else{  //沒有初始化過先畫
-            showBigRoadInit()
+            showBigRoadInitTest ()
           }
         })
+        // watch(bigRoadResult,()=>{
+        //   if(bigRoadInit.value){
+        //     // showBigRoad()
+        //     showBigRoadAll()
+        //   }else{  //沒有初始化過先畫
+        //     showBigRoadInit()
+        //   }
+        // })
         function transfromTie (currentSide:number,gameResult:number){
             if(currentSide==1){
               switch(gameResult){
@@ -379,18 +379,17 @@ export default defineComponent({
           // console.log("畫大路初始化",bigRoadResult.value.columns)
           beadPlateResult.value.blocks.forEach((i:any)=>{ 
             console.log(i) //初始化時所有都畫
-            recordBigRoad(i)  //1.紀錄陣營
             if(i==3 || i==10 || i==11 || i==12){
-              console.log('原本',i)
               i = transfromTie(currentBigRoadResult.value,i)
-              console.log("轉換畫",i)
             }
+            recordBigRoad(i)  //1.紀錄陣營-->可能要移到轉化陣營之後再紀錄!!!!
             if(i == 13 || i == 14 || i ==15 || i == 16 || i ==17 ||
                 i == 18 || i == 19 || i == 20){
                   bigRoadTie.value = true
                   // console.log("是否和局",bigRoadTie.value)
             }
-            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && currentBigRoadResult.value==0){
+            console.log("陣營",currentBigRoadResult.value)
+            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && lastBigRoadResult.value==0){
               console.log("陣營",currentBigRoadResult.value)
               bigRoadItemIndex.value--
             }
@@ -462,18 +461,19 @@ export default defineComponent({
           let item = beadPlateResult.value.blocks[beadPlateResult.value.blocks.length-1]
           // let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
             console.log("畫最後一個item",item)
-            recordBigRoad(item)  //1.紀錄陣營
+            
             if(item==3 || item==10 || item==11 || item==12){
              console.log('原本',item)
               item = transfromTie(currentBigRoadResult.value,item)
               console.log("轉換畫",item)
             }
+            recordBigRoad(item)  //1.紀錄陣營
             if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
                 item == 18 || item == 19 || item == 20){
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
             }
-            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && currentBigRoadResult.value==0){
+            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && lastBigRoadResult.value==0){
               bigRoadItemIndex.value--
             }
             //換行一:不同陣營

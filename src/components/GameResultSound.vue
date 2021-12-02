@@ -2,6 +2,7 @@
     <audio id="gameresultSound">
         <source  src="../assets/audio/bankerWin.mp3" type="audio/mpeg">
     </audio>
+    <!-- <button class="muted position-absolute" @click="mutedSound">靜音</button> -->
 </template>
 
 <script lang="ts">
@@ -70,3 +71,8 @@ export default defineComponent({
     }
 })
 </script>
+<style scoped>
+    .muted{
+        z-index: 9;
+    }
+</style>

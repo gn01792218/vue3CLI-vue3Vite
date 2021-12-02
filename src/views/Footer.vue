@@ -4,8 +4,10 @@
         <div class="pl-1 pr-1 d-flex">
             <div class="col-sm text-md-left d-flex">
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span>
+                <span v-if="isAudioMuted" class="footer-item d-none d-md-flex" @click="mutedSound"><i class="bi bi-volume-off"></i></span>
+                <span v-if="!isAudioMuted" class="footer-item d-none d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
-                <span class="footer-item d-none d-md-flex"><i class="bi bi-eye-fill "></i></span>
+                <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span>
                 <span class="footer-item" v-if="user">{{userWallet}}</span>
                 <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
                 >
@@ -22,7 +24,7 @@
     </footer>
 </template>
 <script lang="ts">
-import {computed, defineComponent} from 'vue'
+import {computed, defineComponent,ref} from 'vue'
 import {useStore} from 'vuex'
 import screenfull from 'screenfull'
 import UserBetInfo from '@/components/UserBetInfo.vue'
@@ -41,20 +43,30 @@ export default defineComponent({
         const userWallet = computed(()=>{
             return store.state.auth.userWalletFomate
         })
-        // function formatNumber(num:number){
-        //     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
-        // }
+        const audio = computed<HTMLAudioElement>(()=>{
+            return document.querySelector('#gameresultSound') as HTMLAudioElement
+        })
+        const isAudioMuted = ref(false)
         //全螢幕
         function fullScreen () {
             if(screenfull.isEnabled){
                 screenfull.toggle()
             }
         }
+        //靜音
+        function mutedSound () {
+            audio.value.muted = !audio.value.muted
+            isAudioMuted.value = !isAudioMuted.value
+        }
         return {
             //data
-            user,userWallet,
+            user,
+            userWallet,
+            audio,
+            isAudioMuted,
             //methods
-            fullScreen
+            fullScreen,
+            mutedSound,
         }
     }
 })
