@@ -836,6 +836,9 @@
 		.result-text{
 			font-size:150%;
 		}
+		.userBetInfo-title{
+			font-size: 1.1rem;
+		}
 }
 @media screen and (max-width: 375px) {
 		.video-box{
@@ -865,6 +868,9 @@
 		.playerNum{
 			left:3%;
 			top:50%;
+		}
+		.userBetInfo-title{
+			font-size: 1rem;
 		}
 }	
 @media screen and (max-width: 320px) {
@@ -995,6 +1001,10 @@
 	}
 	.BeadPlate-T-BothPair{  //和、閒對、莊對
 		@include hisRoadSpritePosition(-1100,0,0.12);
+	}
+	.userBetInfo-title{
+		// width:30%;
+		font-size: 0.5rem;
 	}
 }	
 @media screen and (max-width: 280px) {

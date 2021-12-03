@@ -1,0 +1,27 @@
+.userBetInfo-title{
+    text-align: center;
+    width:25%;
+}
+.userBetInfo-content{
+    width: 75%;
+}
+.userBetInfo-footer{
+    justify-content: center;
+}
+.page-link:focus{
+    box-shadow: none;
+}
+.userBetInfoTitle{
+    color:yellow;
+    text-align: center;
+}
+.userBetInfo-footer{
+    .page-link{
+        color:black
+    }
+    .page-item.active .page-link{
+        background-color:$mainColor;
+        border-color:olive;
+        color: yellow;
+    }
+}

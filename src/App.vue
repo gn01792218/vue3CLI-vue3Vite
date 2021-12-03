@@ -25,10 +25,13 @@ export default defineComponent({
   },
   setup() {
     createSocket()
-    sendLogin({
-        uri: "LoginCall",
-        token: Cookies.get('userToken'),
-      })
+    if(Cookies.get('userToken')){
+      console.log("有cookie，抓cookie")
+      sendLogin({
+          uri: "LoginCall",
+          token: Cookies.get('userToken'),
+    })
+    }
   },
 })
 </script>

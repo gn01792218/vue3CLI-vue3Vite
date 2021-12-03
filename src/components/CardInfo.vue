@@ -44,6 +44,9 @@ export default defineComponent({
     const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
       return store.state.game.GameStatus.draws
      })
+    const gameStatus = computed(()=>{
+      return store.state.game.GameStatus.status
+    })
     const DrawCard = computed(()=>{  //每次都傳一張
        return store.state.dealer.Draw
      })
@@ -77,16 +80,18 @@ export default defineComponent({
        showCardTotalPoint()
      })
      watch(DrawCard,()=>{  //開牌
-     console.log("開牌")
+       console.log("開牌")
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
        addCardPoint(card.side,card.card.point)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
-       lastDrawCard.value.forEach((i:any)=>{
+      if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
+        lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
          addCardPoint(i.side,i.card.point)
        })
+      }
      })
      //撲克牌業務代碼
      function resetCards () {

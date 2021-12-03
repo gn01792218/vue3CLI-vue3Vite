@@ -30,6 +30,10 @@ export default defineComponent({
       })
       //創建連線(再次返回大廳時使用者token已經存在，就不會再創server)
         // createSocket()
+          sendLogin({
+            uri: "LoginCall",
+            token: route.params.userToken,
+          })
         // sendLogin({
         //   uri: "LoginCall",
         //   token: Cookies.get('userToken'),
