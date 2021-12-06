@@ -2,7 +2,7 @@
     <div class="card-wrap">
     	<section class="card-container d-flex justify-content-center">
       	<div class="player card-box row justify-content-center">
-          <span v-show="pointAddCount==6" class="playerNum">{{playerPoint}}</span>
+          <span v-show="showCardResult" class="playerNum">{{playerPoint}}</span>
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.banker" :key="index">
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
@@ -12,7 +12,7 @@
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>
         	</div>
-          <span v-show="pointAddCount==6" class="bankerNum">{{bankerPoint}}</span>
+          <span v-show="showCardResult" class="bankerNum">{{bankerPoint}}</span>
       	</div>
     	</section>
     </div>
@@ -51,14 +51,16 @@ export default defineComponent({
        return store.state.dealer.Draw
      })
     const gameResult = computed(()=>{ //回傳的是陣列
-            return store.state.dealer.BroadcastGameResult.results
+      return store.state.dealer.BroadcastGameResult.results
     })
     const gameEnd = computed(()=>{
           return store.state.dealer.end
     })
+    const bankCardArray = ref([0,0,0])
+    const playerCardArray = ref([0,0,0])
     const playerPoint = ref(0)
     const bankerPoint = ref(0)
-    const pointAddCount = ref(0)
+    const showCardResult =ref(false)
     //響應式卡牌監聽 應付電腦解析度切換、行動裝置直橫切換
     const mqlMax1280 = window.matchMedia("(max-width :1280px)")
      mqlMax1280.addEventListener('change',()=>{
@@ -73,23 +75,27 @@ export default defineComponent({
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
-      pointAddCount.value = 0
+      showCardResult.value = false  //不顯示卡牌
+      console.log('不顯示卡牌點數',showCardResult.value)
      })
      watch(gameResult,()=>{
+       console.log(gameResult.value.length)
        setWinCardBoxLight()
-       showCardTotalPoint()
+       if(gameResult.value.length>0){
+         showCardTotalPoint()
+       }
      })
      watch(DrawCard,()=>{  //開牌
        console.log("開牌")
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
-       addCardPoint(card.side,card.card.point)
+      //  addCardPoint(card.side,card.card.point)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
       if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
-         addCardPoint(i.side,i.card.point)
+        //  addCardPoint(i.side,i.card.point)
        })
       }
      })
@@ -139,30 +145,46 @@ export default defineComponent({
          }
        })
      }
-     function addCardPoint(cardside:number,point:number){ 
-       switch(cardside){
-        case proto.dealer.Side.Banker:
-          if(point!==10 && point!==11 && point!==12 && point!==13){
-            bankerPoint.value+=point
-            bankerPoint.value = bankerPoint.value%10
-          }
-           break
-        case proto.dealer.Side.Player:
-          if(point!==10 && point!==11 && point!==12 && point!==13){
-            playerPoint.value+=point
-            playerPoint.value = playerPoint.value%10
-          }
-           break
-       }
-       pointAddCount.value++
-     }
+    //  function addCardPoint(cardside:number,point:number){ 
+    //    switch(cardside){
+    //     case proto.dealer.Side.Banker:
+    //       if(point!==10 && point!==11 && point!==12 && point!==13){
+    //         bankerPoint.value+=point
+    //         bankerPoint.value = bankerPoint.value%10
+    //       }
+    //        break
+    //     case proto.dealer.Side.Player:
+    //       if(point!==10 && point!==11 && point!==12 && point!==13){
+    //         playerPoint.value+=point
+    //         playerPoint.value = playerPoint.value%10
+    //       }
+    //        break
+    //    }
+    //   //  pointAddCount.value++
+    //  }
      function resetCardPoint(){
        playerPoint.value = 0
        bankerPoint.value = 0
+       playerCardArray.value = [0,0,0]
+       bankCardArray.value = [0,0,0]
      }
      function showCardTotalPoint () {
-       playerPoint.value = playerPoint.value%10
-       bankerPoint.value = bankerPoint.value%10
+      playerCardArray.value = playerCardArray.value.map(i=>{
+        if(i==10 || i==11 || i==12 || i==13){
+          i = 0
+        }
+          return i
+      })
+      bankCardArray.value = bankCardArray.value.map(i=>{
+        if(i==10 || i==11 || i==12 || i==13){
+          i = 0
+        }
+        return i
+      })
+      playerPoint.value = (playerCardArray.value[0]+playerCardArray.value[1]+playerCardArray.value[2])%10
+      bankerPoint.value = (bankCardArray.value[0]+bankCardArray.value[1]+bankCardArray.value[2])%10
+      showCardResult.value = true
+      console.log("計算最終卡牌點數",'閒',playerCardArray.value,'莊',bankCardArray.value,'要不要顯示卡牌',showCardResult.value)
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit
@@ -172,9 +194,11 @@ export default defineComponent({
       switch(cardSide){
         case proto.dealer.Side.Banker:
         cardElement = getCardPosition(position,'.bankPoker')
+        bankCardArray.value[position-1] = point
           break
         case proto.dealer.Side.Player:
         cardElement = getCardPosition(position,'.playerPoker')
+        playerCardArray.value[position-1] = point
           break
       }
       if(cardElement){
@@ -211,7 +235,7 @@ export default defineComponent({
      }
     return {
       //data
-      cards,DrawCard,playerPoint,bankerPoint,pointAddCount,
+      cards,DrawCard,playerPoint,bankerPoint,showCardResult,
       //methods
       showCards,
     }

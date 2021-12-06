@@ -14,6 +14,16 @@
             font-weight: bolder;
         }
     }
+    .mobilTableInfo{
+        display: none;
+    }
+    .bettingArea-betInfo{
+        display: flex;
+        justify-content: space-around;
+        p{
+            margin-bottom: 0;
+        }
+    }
     .gameresult{
         top:25%;
     }

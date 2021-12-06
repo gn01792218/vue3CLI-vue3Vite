@@ -36,19 +36,19 @@ export default defineComponent({
         return store.state.game.GameStatus
         })
         //切換TableInfo頁籤
-        const tabArray = reactive(["Table Info","Cards"]) //將來有需要可以再增加
-        const onClickTab = ref("Table Info") //預設是Table Info
+        const tabArray = reactive(["統計資訊","遊戲結果"]) //將來有需要可以再增加
+        const onClickTab = ref("統計資訊") //預設是Table Info
         function switchTab (tab:string) {
              onClickTab.value = tab
         }
         watch([DrawCard,lastDrawCard],()=>{
-            if(onClickTab.value!="Cards"){
-                onClickTab.value = "Cards"
+            if(onClickTab.value!="遊戲結果"){
+                onClickTab.value = "遊戲結果"
             }
         })
         watch(gameUuid,()=>{
-            if(onClickTab.value!="Table Info"){
-                onClickTab.value = "Table Info"
+            if(onClickTab.value!="統計資訊"){
+                onClickTab.value = "統計資訊"
             }
         })
         return{

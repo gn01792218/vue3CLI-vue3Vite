@@ -23,6 +23,42 @@
 	.gameHistory{
 		height:30%;
 	}
+	.coin-menu1{
+		@include coinSpritePosition(0,0,0.9)
+	}
+	.coin-menu1:hover,.coin-menu1-current{
+		@include coinSpritePosition(0,-65,0.9)
+	}
+	.coin-menu2{
+		@include coinSpritePosition(-79,0,0.9)
+	}
+	.coin-menu2:hover,.coin-menu2-current{
+		@include coinSpritePosition(-79,-65,0.9)
+	}
+	.coin-menu3{
+		@include coinSpritePosition(-158,0,0.9)
+	}
+	.coin-menu3:hover,.coin-menu3-current{
+		@include coinSpritePosition(-158,-65,0.9)
+	}
+	.coin-menu4{
+		@include coinSpritePosition(-237,0,0.9)
+	}
+	.coin-menu4:hover,.coin-menu4-current{
+		@include coinSpritePosition(-237,-65,0.9)
+	}
+	.coin-menu5{
+		@include coinSpritePosition(-316,0,0.9)
+	}
+	.coin-menu5:hover,.coin-menu5-current{
+		@include coinSpritePosition(-316,-65,0.9)
+	}
+	.coin-menu6{
+		@include coinSpritePosition(-316,0,0.9)
+	}
+	.coin-menu6:hover,.coin-menu6-current{
+		@include coinSpritePosition(-316,-65,0.9)
+	}
 }
 @media screen and (max-width: 1280px) {
 	.text-md-left,.text-md-right{
@@ -53,34 +89,40 @@
 		height:21%;
 	}
 	.coin-menu1{
-		@include coinSpritePosition(0,0,0.8)
+		@include coinSpritePosition(0,0,0.7)
 	}
 	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,0.8)
+		@include coinSpritePosition(0,-65,0.7)
 	}
 	.coin-menu2{
-		@include coinSpritePosition(-79,0,0.8)
+		@include coinSpritePosition(-79,0,0.7)
 	}
 	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,0.8)
+		@include coinSpritePosition(-79,-65,0.7)
 	}
 	.coin-menu3{
-		@include coinSpritePosition(-158,0,0.8)
+		@include coinSpritePosition(-158,0,0.7)
 	}
 	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,0.8)
+		@include coinSpritePosition(-158,-65,0.7)
 	}
 	.coin-menu4{
-		@include coinSpritePosition(-237,0,0.8)
+		@include coinSpritePosition(-237,0,0.7)
 	}
 	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,0.8)
+		@include coinSpritePosition(-237,-65,0.7)
 	}
 	.coin-menu5{
-		@include coinSpritePosition(-316,0,0.8)
+		@include coinSpritePosition(-316,0,0.7)
 	}
 	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,0.8)
+		@include coinSpritePosition(-316,-65,0.7)
+	}
+	.coin-menu6{
+		@include coinSpritePosition(-316,0,0.7)
+	}
+	.coin-menu6:hover,.coin-menu6-current{
+		@include coinSpritePosition(-316,-65,0.7)
 	}
 	//路圖圖示區
 	//珠仔路
@@ -198,6 +240,9 @@
 	.container-waps{
 		height:auto;
 	}
+	.mobilTableInfo{
+		display: block;
+	}
 	.flexs {
 		display: flex;
 		justify-content: space-around;
@@ -258,34 +303,40 @@
 		height:280px;
 	}
 	.coin-menu1{
-		@include coinSpritePosition(0,0,1.7)
+		@include coinSpritePosition(0,0,1.6)
 	}
 	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,1.7)
+		@include coinSpritePosition(0,-65,1.6)
 	}
 	.coin-menu2{
-		@include coinSpritePosition(-79,0,1.7)
+		@include coinSpritePosition(-79,0,1.6)
 	}
 	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,1.7)
+		@include coinSpritePosition(-79,-65,1.6)
 	}
 	.coin-menu3{
-		@include coinSpritePosition(-158,0,1.7)
+		@include coinSpritePosition(-158,0,1.6)
 	}
 	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,1.7)
+		@include coinSpritePosition(-158,-65,1.6)
 	}
 	.coin-menu4{
-		@include coinSpritePosition(-237,0,1.7)
+		@include coinSpritePosition(-237,0,1.6)
 	}
 	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,1.7)
+		@include coinSpritePosition(-237,-65,1.6)
 	}
 	.coin-menu5{
-		@include coinSpritePosition(-316,0,1.7)
+		@include coinSpritePosition(-316,0,1.6)
 	}
 	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,1.7)
+		@include coinSpritePosition(-316,-65,1.6)
+	}
+	.coin-menu6{
+		@include coinSpritePosition(-316,0,1.6)
+	}
+	.coin-menu6:hover,.coin-menu6-current{
+		@include coinSpritePosition(-316,-65,1.6)
 	}
 	.betArea-item {
 		font-size: 2.5rem;
@@ -452,6 +503,42 @@
 		padding-top: 0px;
 		padding-bottom: 0px;
 	}
+	.coin-menu1{
+		@include coinSpritePosition(0,0,1.2)
+	}
+	.coin-menu1:hover,.coin-menu1-current{
+		@include coinSpritePosition(0,-65,1.2)
+	}
+	.coin-menu2{
+		@include coinSpritePosition(-79,0,1.2)
+	}
+	.coin-menu2:hover,.coin-menu2-current{
+		@include coinSpritePosition(-79,-65,1.2)
+	}
+	.coin-menu3{
+		@include coinSpritePosition(-158,0,1.2)
+	}
+	.coin-menu3:hover,.coin-menu3-current{
+		@include coinSpritePosition(-158,-65,1.2)
+	}
+	.coin-menu4{
+		@include coinSpritePosition(-237,0,1.2)
+	}
+	.coin-menu4:hover,.coin-menu4-current{
+		@include coinSpritePosition(-237,-65,1.2)
+	}
+	.coin-menu5{
+		@include coinSpritePosition(-316,0,1.2)
+	}
+	.coin-menu5:hover,.coin-menu5-current{
+		@include coinSpritePosition(-316,-65,1.2)
+	}
+	.coin-menu6{
+		@include coinSpritePosition(-316,0,1.2)
+	}
+	.coin-menu6:hover,.coin-menu6-current{
+		@include coinSpritePosition(-316,-65,1.2)
+	}
 	.betArea-mobile,.betArea-mobile-container{
 		height:145px;
 	}
@@ -611,6 +698,12 @@
 		@include coinSpritePosition(-316,0,0.7)
 	}
 	.coin-menu5:hover,.coin-menu5-current{
+		@include coinSpritePosition(-316,-65,0.7)
+	}
+	.coin-menu6{
+		@include coinSpritePosition(-316,0,0.7)
+	}
+	.coin-menu6:hover,.coin-menu6-current{
 		@include coinSpritePosition(-316,-65,0.7)
 	}
 	.gameHistory{
@@ -773,36 +866,6 @@
 			font-size: 1.2rem;
 			flex:auto;
 		}
-		.coin-menu1{
-			@include coinSpritePosition(0,0,0.9)
-		}
-		.coin-menu1:hover,.coin-menu1-current{
-			@include coinSpritePosition(0,-65,0.9)
-		}
-		.coin-menu2{
-			@include coinSpritePosition(-79,0,0.9)
-		}
-		.coin-menu2:hover,.coin-menu2-current{
-			@include coinSpritePosition(-79,-65,0.9)
-		}
-		.coin-menu3{
-			@include coinSpritePosition(-158,0,0.9)
-		}
-		.coin-menu3:hover,.coin-menu3-current{
-			@include coinSpritePosition(-158,-65,0.9)
-		}
-		.coin-menu4{
-			@include coinSpritePosition(-237,0,0.9)
-		}
-		.coin-menu4:hover,.coin-menu4-current{
-			@include coinSpritePosition(-237,-65,0.9)
-		}
-		.coin-menu5{
-			@include coinSpritePosition(-316,0,0.9)
-		}
-		.coin-menu5:hover,.coin-menu5-current{
-			@include coinSpritePosition(-316,-65,0.9)
-		}
 		.card-container{
 			margin-top: -25px;
 		}
@@ -872,6 +935,42 @@
 		.userBetInfo-title{
 			font-size: 1rem;
 		}
+		.coin-menu1{
+			@include coinSpritePosition(0,0,0.6)
+		}
+		.coin-menu1:hover,.coin-menu1-current{
+			@include coinSpritePosition(0,-65,0.6)
+		}
+		.coin-menu2{
+			@include coinSpritePosition(-79,0,0.6)
+		}
+		.coin-menu2:hover,.coin-menu2-current{
+			@include coinSpritePosition(-79,-65,0.6)
+		}
+		.coin-menu3{
+			@include coinSpritePosition(-158,0,0.6)
+		}
+		.coin-menu3:hover,.coin-menu3-current{
+			@include coinSpritePosition(-158,-65,0.6)
+		}
+		.coin-menu4{
+			@include coinSpritePosition(-237,0,0.6)
+		}
+		.coin-menu4:hover,.coin-menu4-current{
+			@include coinSpritePosition(-237,-65,0.6)
+		}
+		.coin-menu5{
+			@include coinSpritePosition(-316,0,0.6)
+		}
+		.coin-menu5:hover,.coin-menu5-current{
+			@include coinSpritePosition(-316,-65,0.6)
+		}
+		.coin-menu6{
+			@include coinSpritePosition(-316,0,0.6)
+		}
+		.coin-menu6:hover,.coin-menu6-current{
+			@include coinSpritePosition(-316,-65,0.6)
+		}
 }	
 @media screen and (max-width: 320px) {
 	.header{
@@ -920,36 +1019,6 @@
 	}
 	.betArea-mobile-container{
 		height:160px;
-	}
-	.coin-menu1{
-		@include coinSpritePosition(0,0,0.7)
-	}
-	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,0.7)
-	}
-	.coin-menu2{
-		@include coinSpritePosition(-79,0,0.7)
-	}
-	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,0.7)
-	}
-	.coin-menu3{
-		@include coinSpritePosition(-158,0,0.7)
-	}
-	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,0.7)
-	}
-	.coin-menu4{
-		@include coinSpritePosition(-237,0,0.7)
-	}
-	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,0.7)
-	}
-	.coin-menu5{
-		@include coinSpritePosition(-316,0,0.7)
-	}
-	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,0.7)
 	}
 	.card-container{
 		margin-top: -35px;
@@ -1053,34 +1122,40 @@
 		height:192px;
 	}
 	.coin-menu1{
-		@include coinSpritePosition(0,0,0.6)
+		@include coinSpritePosition(0,0,0.5)
 	}
 	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,0.6)
+		@include coinSpritePosition(0,-65,0.5)
 	}
 	.coin-menu2{
-		@include coinSpritePosition(-79,0,0.6)
+		@include coinSpritePosition(-79,0,0.5)
 	}
 	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,0.6)
+		@include coinSpritePosition(-79,-65,0.5)
 	}
 	.coin-menu3{
-		@include coinSpritePosition(-158,0,0.6)
+		@include coinSpritePosition(-158,0,0.5)
 	}
 	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,0.6)
+		@include coinSpritePosition(-158,-65,0.5)
 	}
 	.coin-menu4{
-		@include coinSpritePosition(-237,0,0.6)
+		@include coinSpritePosition(-237,0,0.5)
 	}
 	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,0.6)
+		@include coinSpritePosition(-237,-65,0.5)
 	}
 	.coin-menu5{
-		@include coinSpritePosition(-316,0,0.6)
+		@include coinSpritePosition(-316,0,0.5)
 	}
 	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,0.6)
+		@include coinSpritePosition(-316,-65,0.5)
+	}
+	.coin-menu6{
+		@include coinSpritePosition(-316,0,0.5)
+	}
+	.coin-menu6:hover,.coin-menu6-current{
+		@include coinSpritePosition(-316,-65,0.5)
 	}
 	.card-container{
 		margin-top: -35px;

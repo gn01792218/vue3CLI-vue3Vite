@@ -18,7 +18,25 @@ export default defineComponent({
   },
   //修正蘋果手機無法撥放的問題 
     setup(){
-      //直播物件
+      //vuex
+      const store = useStore()
+      const flvStream = computed(()=>{ //直播網址
+        return store.state.table.TableJoinRecall.table.streamingUrl
+      })
+      const gameUuid = computed(()=>{ //遊戲回合的Uuid
+            return store.state.game.gameUuid
+        })
+      const gameEndUuid = computed(()=>{
+            return store.state.game.gameEndUuid
+        })
+      //監聽換桌的直播網址
+      watch(flvStream,()=>{
+        stopPlay()
+        startPlay()
+      })
+      const np = computed(()=>{
+        return store.state.video.video
+      })
       const flvPlayer = ref<any | null>({});
       const zoonScale = ref<number>(1)
       const userSystem = navigator.userAgent //使用者作業系統
@@ -35,19 +53,20 @@ export default defineComponent({
       const hasAutoPlayed = ref(false)
       const loadingVideo = ref(true)
       //初始化
-      let np = new NodePlayer()
+      store.commit('video/setVideo',new NodePlayer())
+      // let np = new NodePlayer()
       onMounted(()=>{
-        np.setView("video");
-        np.setScaleMode(2)
-        np.setBufferTime(300)
-        np.on('error',(e)=>{
+        np.value.setView("video");
+        np.value.setScaleMode(2)
+        np.value.setBufferTime(300)
+        np.value.on('error',(e:any)=>{
           console.log('直播發生錯誤',e)
         })
-        np.on('videoInfo',(w)=>{
+        np.value.on('videoInfo',(w:any)=>{
           console.log("顯示Video",w)
            loadingVideo.value = false
         })
-        np.on('stop',()=>{
+        np.value.on('stop',()=>{
          console.log("結束播放Video")
          loadingVideo.value = true
         })
@@ -56,30 +75,15 @@ export default defineComponent({
       })
       function startPlay (){
         console.log("LiveVideo開始撥放",flvStream.value)
-        np.setKeepScreenOn()
-        np.start(flvStream.value)
+        np.value.setKeepScreenOn()
+        np.value.start(flvStream.value)
         // np.start(testPlayUrl)   //測試時使用
       }
       function stopPlay () {
-        np.stop()
-        np.clearView()  //清除上一個視頻留下的東西
+        np.value.stop()
+        np.value.clearView()  //清除上一個視頻留下的東西
       }
-      //vuex
-      const store = useStore()
-      const flvStream = computed(()=>{
-        return store.state.table.TableJoinRecall.table.streamingUrl
-      })
-      const gameUuid = computed(()=>{ //遊戲回合的Uuid
-            return store.state.game.gameUuid
-        })
-      const gameEndUuid = computed(()=>{
-            return store.state.game.gameEndUuid
-        })
-      //監聽換桌的直播網址
-      watch(flvStream,()=>{
-        stopPlay()
-        startPlay()
-      })
+      
       //直播畫面拉伸
       // watch(gameUuid,()=>{  //改用子母畫面，暫時不需要。新回合開始時，將螢幕縮回去
       // console.log('恢復螢幕')

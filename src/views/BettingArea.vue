@@ -50,8 +50,13 @@
             </div>
         </div>
         <!-- total Bet -->
-        <div class="em font-total">
-            Total Bet {{total}}
+        <div class="bettingArea-betInfo em font-total">
+            <p class="mobilTableInfo yellow">莊:XX</p>
+            <p class="mobilTableInfo red">閒:XX</p>
+            <p class="mobilTableInfo green">和:XX</p>
+            <p class="mobilTableInfo yellow">莊對:XX</p>
+            <p class="mobilTableInfo red">閒對:XX</p>
+            <p class="d-none d-lg-block">本次注額{{total}}</p>
         </div>
         <!-- coin -->
         <div class="coinArea position-relative">
@@ -82,6 +87,7 @@ import GameresultSound from '@/components/GameResultSound.vue'
 import GameResultLoading from '@/components/GameResultLoading.vue'
 import LightBox from '@/components/LightBox.vue'
 import proto from '../assets/js/bundle'
+import { configure } from 'protobufjs'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
@@ -214,6 +220,10 @@ export default defineComponent({
                     {
                     point:10000,
                     ammo:[], //子彈陣列
+                    },
+                    {
+                    point:100000,
+                    ammo:[],
                     }
                 ])
         const currentCoint = reactive<currentCoint>({ 
@@ -333,7 +343,6 @@ export default defineComponent({
                     if(ul){
                         let liList = ul.children as HTMLCollection
                         for(let i = liList.length-1 ; i>=0 ; i--){  
-                            //問題:會全部解讀成最後一個li的籌碼!!!怪!!!
                             switch(liList[i].className.split(" ")[0]){
                                 case 'coin-menu1':
                                     let Coin1Rect = document.querySelector('#defaultCoin1')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
@@ -361,6 +370,11 @@ export default defineComponent({
                                     let liRect5 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin5Rect,liRect5,liList[i] as HTMLElement)
                                     break
+                                case 'coin-menu6':
+                                    let Coin6Rect = document.querySelector('#defaultCoin6')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
+                                    let liRect6 = liList[i].getBoundingClientRect() as DOMRect
+                                    goDefaultCoinPosition(Coin6Rect,liRect6,liList[i] as HTMLElement)
+
                             }
                         }
                     }

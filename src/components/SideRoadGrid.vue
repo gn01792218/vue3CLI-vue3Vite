@@ -98,6 +98,7 @@ export default defineComponent({
         const bigRoadTie = ref(false) //是否有和局狀態
         const bigRoadInit = ref(false) //大路是否初始化過(上桌時)
         const bigRoadColArr = reactive<any[]>([]) //大路的Array
+        const addBigColumnCount = ref(0)
         for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
           bigRoadColArr.push([0,0,0,0,0,0])
         }
@@ -215,6 +216,7 @@ export default defineComponent({
             }
         }
         function putBigRoad(gameResult:number){
+          console.log('畫行',bigRoadColumn.value)
             let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
@@ -290,7 +292,6 @@ export default defineComponent({
               }else{
                 bigRoadColItem.classList.add('big-PT-PPair')
               }
-              
               break
             case proto.roadmap.Block.PlayerAndBothPairAndTie:
               if(bigRoadColItem.classList[0]){
@@ -684,7 +685,7 @@ export default defineComponent({
         }
         function showBigRoadAll () { //每次都重畫的版本
           console.log("重畫大路")
-          bigRoadColumn.value = 0
+          bigRoadColumn.value = 0+addBigColumnCount.value
           bigRoadItemIndex.value = 0
           currentBigRoadResult.value = 0
           lastBigRoadResult.value = 0
@@ -695,6 +696,7 @@ export default defineComponent({
             bigRoadColArr[i] = [0,0,0,0,0,0]
           }
           bigRoadResult.value.columns.forEach((i:any)=>{
+            console.log(i)
             i.blocks.forEach((item:any)=>{
                recordBigRoad(item)  //1.紀錄陣營
               // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
@@ -786,6 +788,7 @@ export default defineComponent({
           //記得也要增加bigRoadArr
           bigRoadColArr.push([0,0,0,0,0,0])
           console.log("加了一行","行",bigRoadColumn.value)
+          addBigColumnCount.value++
           // roadOverFlowerTimes.value++
         }
         function resetBigRoad(){
@@ -819,7 +822,7 @@ export default defineComponent({
           currentBigRoadResult.value = 0
           lastBigRoadResult.value = 0
           roadOverFlowerTimes.value = 0
-          console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value)
+          addBigColumnCount.value = 0
           //大路陣列也要規0
           for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
             bigRoadColArr[i] = [0,0,0,0,0,0]

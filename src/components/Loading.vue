@@ -20,8 +20,12 @@
         <audio class="preaudio" preload muted>
             <source src="../assets/audio/stop.mp3">
         </audio>
+        <div class='progress'>
+            <div class='progress-inset'></div>
+        </div>
     </div>
     </div>
+    
     
 </template>
 
@@ -31,7 +35,6 @@ import { useStore } from 'vuex'
 export default defineComponent({
     setup(){
         onMounted(()=>{
-            console.log("預載入音效") 
             preaudio.value.muted = true
             preaudio.value.play()
         })
@@ -67,6 +70,20 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style lang='scss'>
+    .progress {
+  position: relative;
+  border: 5px solid #FFF;
+  width: 400px;
+  height: 20px;
+  overflow: hidden;
+  &.loaded { display: none;}
+  .progress-inset {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    background: #FFF;
+  }
+}
   
 </style>

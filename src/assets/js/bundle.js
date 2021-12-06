@@ -3980,6 +3980,7 @@ export const dealer = $root.dealer = (() => {
          * @memberof dealer
          * @interface IBroadcastDealerRoundEnd
          * @property {foundation.IHeader|null} [header] BroadcastDealerRoundEnd header
+         * @property {string|null} [gameUuid] BroadcastDealerRoundEnd gameUuid
          */
 
         /**
@@ -4004,6 +4005,14 @@ export const dealer = $root.dealer = (() => {
          * @instance
          */
         BroadcastDealerRoundEnd.prototype.header = null;
+
+        /**
+         * BroadcastDealerRoundEnd gameUuid.
+         * @member {string} gameUuid
+         * @memberof dealer.BroadcastDealerRoundEnd
+         * @instance
+         */
+        BroadcastDealerRoundEnd.prototype.gameUuid = "";
 
         /**
          * Creates a new BroadcastDealerRoundEnd instance using the specified properties.
@@ -4031,6 +4040,8 @@ export const dealer = $root.dealer = (() => {
                 writer = $Writer.create();
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
                 $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameUuid);
             return writer;
         };
 
@@ -4067,6 +4078,9 @@ export const dealer = $root.dealer = (() => {
                 switch (tag >>> 3) {
                 case 1:
                     message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.gameUuid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -4108,6 +4122,9 @@ export const dealer = $root.dealer = (() => {
                 if (error)
                     return "header." + error;
             }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
             return null;
         };
 
@@ -4128,6 +4145,8 @@ export const dealer = $root.dealer = (() => {
                     throw TypeError(".dealer.BroadcastDealerRoundEnd.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
             return message;
         };
 
@@ -4144,10 +4163,14 @@ export const dealer = $root.dealer = (() => {
             if (!options)
                 options = {};
             let object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.header = null;
+                object.gameUuid = "";
+            }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
             return object;
         };
 
@@ -4163,6 +4186,198 @@ export const dealer = $root.dealer = (() => {
         };
 
         return BroadcastDealerRoundEnd;
+    })();
+
+    dealer.WhiteCardCall = (function() {
+
+        /**
+         * Properties of a WhiteCardCall.
+         * @memberof dealer
+         * @interface IWhiteCardCall
+         * @property {foundation.IHeader|null} [header] WhiteCardCall header
+         */
+
+        /**
+         * Constructs a new WhiteCardCall.
+         * @memberof dealer
+         * @classdesc Represents a WhiteCardCall.
+         * @implements IWhiteCardCall
+         * @constructor
+         * @param {dealer.IWhiteCardCall=} [properties] Properties to set
+         */
+        function WhiteCardCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WhiteCardCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.WhiteCardCall
+         * @instance
+         */
+        WhiteCardCall.prototype.header = null;
+
+        /**
+         * Creates a new WhiteCardCall instance using the specified properties.
+         * @function create
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {dealer.IWhiteCardCall=} [properties] Properties to set
+         * @returns {dealer.WhiteCardCall} WhiteCardCall instance
+         */
+        WhiteCardCall.create = function create(properties) {
+            return new WhiteCardCall(properties);
+        };
+
+        /**
+         * Encodes the specified WhiteCardCall message. Does not implicitly {@link dealer.WhiteCardCall.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {dealer.IWhiteCardCall} message WhiteCardCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WhiteCardCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WhiteCardCall message, length delimited. Does not implicitly {@link dealer.WhiteCardCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {dealer.IWhiteCardCall} message WhiteCardCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WhiteCardCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WhiteCardCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.WhiteCardCall} WhiteCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WhiteCardCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.WhiteCardCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WhiteCardCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.WhiteCardCall} WhiteCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WhiteCardCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WhiteCardCall message.
+         * @function verify
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WhiteCardCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a WhiteCardCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.WhiteCardCall} WhiteCardCall
+         */
+        WhiteCardCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.WhiteCardCall)
+                return object;
+            let message = new $root.dealer.WhiteCardCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.WhiteCardCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WhiteCardCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.WhiteCardCall
+         * @static
+         * @param {dealer.WhiteCardCall} message WhiteCardCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WhiteCardCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this WhiteCardCall to JSON.
+         * @function toJSON
+         * @memberof dealer.WhiteCardCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WhiteCardCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return WhiteCardCall;
     })();
 
     /**
@@ -4873,6 +5088,7 @@ export const foundation = $root.foundation = (() => {
                 case 24:
                 case 25:
                 case 26:
+                case 27:
                     break;
                 }
             return null;
@@ -5002,6 +5218,10 @@ export const foundation = $root.foundation = (() => {
             case "Roadmap":
             case 26:
                 message.uri = 26;
+                break;
+            case "WhiteCard":
+            case 27:
+                message.uri = 27;
                 break;
             }
             return message;
@@ -5656,6 +5876,8 @@ export const game = $root.game = (() => {
          * @property {foundation.IHeader|null} [header] BetRoundStart header
          * @property {string|null} [gameUuid] BetRoundStart gameUuid
          * @property {number|null} [timeRemain] BetRoundStart timeRemain
+         * @property {number|null} [numOfShoe] BetRoundStart numOfShoe
+         * @property {number|null} [numOfRound] BetRoundStart numOfRound
          */
 
         /**
@@ -5698,6 +5920,22 @@ export const game = $root.game = (() => {
         BetRoundStart.prototype.timeRemain = 0;
 
         /**
+         * BetRoundStart numOfShoe.
+         * @member {number} numOfShoe
+         * @memberof game.BetRoundStart
+         * @instance
+         */
+        BetRoundStart.prototype.numOfShoe = 0;
+
+        /**
+         * BetRoundStart numOfRound.
+         * @member {number} numOfRound
+         * @memberof game.BetRoundStart
+         * @instance
+         */
+        BetRoundStart.prototype.numOfRound = 0;
+
+        /**
          * Creates a new BetRoundStart instance using the specified properties.
          * @function create
          * @memberof game.BetRoundStart
@@ -5727,6 +5965,10 @@ export const game = $root.game = (() => {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameUuid);
             if (message.timeRemain != null && Object.hasOwnProperty.call(message, "timeRemain"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.timeRemain);
+            if (message.numOfShoe != null && Object.hasOwnProperty.call(message, "numOfShoe"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfShoe);
+            if (message.numOfRound != null && Object.hasOwnProperty.call(message, "numOfRound"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfRound);
             return writer;
         };
 
@@ -5769,6 +6011,12 @@ export const game = $root.game = (() => {
                     break;
                 case 3:
                     message.timeRemain = reader.int32();
+                    break;
+                case 5:
+                    message.numOfShoe = reader.int32();
+                    break;
+                case 6:
+                    message.numOfRound = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -5816,6 +6064,12 @@ export const game = $root.game = (() => {
             if (message.timeRemain != null && message.hasOwnProperty("timeRemain"))
                 if (!$util.isInteger(message.timeRemain))
                     return "timeRemain: integer expected";
+            if (message.numOfShoe != null && message.hasOwnProperty("numOfShoe"))
+                if (!$util.isInteger(message.numOfShoe))
+                    return "numOfShoe: integer expected";
+            if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
+                if (!$util.isInteger(message.numOfRound))
+                    return "numOfRound: integer expected";
             return null;
         };
 
@@ -5840,6 +6094,10 @@ export const game = $root.game = (() => {
                 message.gameUuid = String(object.gameUuid);
             if (object.timeRemain != null)
                 message.timeRemain = object.timeRemain | 0;
+            if (object.numOfShoe != null)
+                message.numOfShoe = object.numOfShoe | 0;
+            if (object.numOfRound != null)
+                message.numOfRound = object.numOfRound | 0;
             return message;
         };
 
@@ -5860,6 +6118,8 @@ export const game = $root.game = (() => {
                 object.header = null;
                 object.gameUuid = "";
                 object.timeRemain = 0;
+                object.numOfShoe = 0;
+                object.numOfRound = 0;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -5867,6 +6127,10 @@ export const game = $root.game = (() => {
                 object.gameUuid = message.gameUuid;
             if (message.timeRemain != null && message.hasOwnProperty("timeRemain"))
                 object.timeRemain = message.timeRemain;
+            if (message.numOfShoe != null && message.hasOwnProperty("numOfShoe"))
+                object.numOfShoe = message.numOfShoe;
+            if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
+                object.numOfRound = message.numOfRound;
             return object;
         };
 
@@ -6324,6 +6588,8 @@ export const game = $root.game = (() => {
          * @property {game.Status|null} [status] GameStatus status
          * @property {number|null} [timeRemain] GameStatus timeRemain
          * @property {Array.<dealer.IDraw>|null} [draws] GameStatus draws
+         * @property {number|null} [numOfShoe] GameStatus numOfShoe
+         * @property {number|null} [numOfRound] GameStatus numOfRound
          */
 
         /**
@@ -6375,6 +6641,22 @@ export const game = $root.game = (() => {
         GameStatus.prototype.draws = $util.emptyArray;
 
         /**
+         * GameStatus numOfShoe.
+         * @member {number} numOfShoe
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.numOfShoe = 0;
+
+        /**
+         * GameStatus numOfRound.
+         * @member {number} numOfRound
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.numOfRound = 0;
+
+        /**
          * Creates a new GameStatus instance using the specified properties.
          * @function create
          * @memberof game.GameStatus
@@ -6407,6 +6689,10 @@ export const game = $root.game = (() => {
             if (message.draws != null && message.draws.length)
                 for (let i = 0; i < message.draws.length; ++i)
                     $root.dealer.Draw.encode(message.draws[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.numOfShoe != null && Object.hasOwnProperty.call(message, "numOfShoe"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfShoe);
+            if (message.numOfRound != null && Object.hasOwnProperty.call(message, "numOfRound"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfRound);
             return writer;
         };
 
@@ -6454,6 +6740,12 @@ export const game = $root.game = (() => {
                     if (!(message.draws && message.draws.length))
                         message.draws = [];
                     message.draws.push($root.dealer.Draw.decode(reader, reader.uint32()));
+                    break;
+                case 5:
+                    message.numOfShoe = reader.int32();
+                    break;
+                case 6:
+                    message.numOfRound = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6517,6 +6809,12 @@ export const game = $root.game = (() => {
                         return "draws." + error;
                 }
             }
+            if (message.numOfShoe != null && message.hasOwnProperty("numOfShoe"))
+                if (!$util.isInteger(message.numOfShoe))
+                    return "numOfShoe: integer expected";
+            if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
+                if (!$util.isInteger(message.numOfRound))
+                    return "numOfRound: integer expected";
             return null;
         };
 
@@ -6567,6 +6865,10 @@ export const game = $root.game = (() => {
                     message.draws[i] = $root.dealer.Draw.fromObject(object.draws[i]);
                 }
             }
+            if (object.numOfShoe != null)
+                message.numOfShoe = object.numOfShoe | 0;
+            if (object.numOfRound != null)
+                message.numOfRound = object.numOfRound | 0;
             return message;
         };
 
@@ -6589,6 +6891,8 @@ export const game = $root.game = (() => {
                 object.header = null;
                 object.status = options.enums === String ? "default" : 0;
                 object.timeRemain = 0;
+                object.numOfShoe = 0;
+                object.numOfRound = 0;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -6601,6 +6905,10 @@ export const game = $root.game = (() => {
                 for (let j = 0; j < message.draws.length; ++j)
                     object.draws[j] = $root.dealer.Draw.toObject(message.draws[j], options);
             }
+            if (message.numOfShoe != null && message.hasOwnProperty("numOfShoe"))
+                object.numOfShoe = message.numOfShoe;
+            if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
+                object.numOfRound = message.numOfRound;
             return object;
         };
 
@@ -8281,6 +8589,7 @@ export const route = $root.route = (() => {
      * @property {number} GameStatus=24 GameStatus value
      * @property {number} DealerGameStatus=25 DealerGameStatus value
      * @property {number} Roadmap=26 Roadmap value
+     * @property {number} WhiteCard=27 WhiteCard value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -8312,6 +8621,7 @@ export const route = $root.route = (() => {
         values[valuesById[24] = "GameStatus"] = 24;
         values[valuesById[25] = "DealerGameStatus"] = 25;
         values[valuesById[26] = "Roadmap"] = 26;
+        values[valuesById[27] = "WhiteCard"] = 27;
         return values;
     })();
 

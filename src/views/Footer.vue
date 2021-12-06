@@ -6,9 +6,11 @@
                 <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span> -->
                 <span v-if="isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-off"></i></span>
                 <span v-if="!isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
-                <span class="footer-item d-none d-md-flex"><i class="bi bi-camera-video-fill"></i></span>
+                <span v-if="isVideoPlayed" class="footer-item d-none d-md-flex" @click="playVideo"><i class="bi bi-camera-video-fill"></i></span>
+                <span v-if="!isVideoPlayed" class="footer-item d-none d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
+                
                 <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span>
-                <span class="footer-item" v-if="user">{{userWallet}}</span>
+                <span class="footer-item" v-if="user">₱{{userWallet}}</span>
                 <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
                 >
                     <i class="bi bi-person-circle" ></i>
@@ -46,7 +48,14 @@ export default defineComponent({
         const audio = computed<HTMLAudioElement>(()=>{
             return document.querySelector('#gameresultSound') as HTMLAudioElement
         })
+        const npvideo = computed(()=>{
+            return store.state.video.video
+        })
+        const flvStream = computed(()=>{ //直播網址
+        return store.state.table.TableJoinRecall.table.streamingUrl
+        })
         const isAudioMuted = ref(false)
+        const isVideoPlayed = ref(true)
         //全螢幕
         function fullScreen () {
             if(screenfull.isEnabled){
@@ -58,15 +67,26 @@ export default defineComponent({
             audio.value.muted = !audio.value.muted
             isAudioMuted.value = !isAudioMuted.value
         }
+        function playVideo(){
+            isVideoPlayed.value = !isVideoPlayed.value
+            if(isVideoPlayed.value){ //播放直播
+                npvideo.value.start(flvStream.value)
+            }else{ //暫停直播
+                npvideo.value.stop()
+                npvideo.value.clearView()  //清除上一個視頻留下的東西
+            }
+        }
         return {
             //data
             user,
             userWallet,
             audio,
             isAudioMuted,
+            isVideoPlayed,
             //methods
             fullScreen,
             mutedSound,
+            playVideo,
         }
     }
 })

@@ -1666,6 +1666,9 @@ export namespace dealer {
 
         /** BroadcastDealerRoundEnd header */
         header?: (foundation.IHeader|null);
+
+        /** BroadcastDealerRoundEnd gameUuid */
+        gameUuid?: (string|null);
     }
 
     /** Represents a BroadcastDealerRoundEnd. */
@@ -1679,6 +1682,9 @@ export namespace dealer {
 
         /** BroadcastDealerRoundEnd header. */
         public header?: (foundation.IHeader|null);
+
+        /** BroadcastDealerRoundEnd gameUuid. */
+        public gameUuid: string;
 
         /**
          * Creates a new BroadcastDealerRoundEnd instance using the specified properties.
@@ -1746,6 +1752,96 @@ export namespace dealer {
 
         /**
          * Converts this BroadcastDealerRoundEnd to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a WhiteCardCall. */
+    interface IWhiteCardCall {
+
+        /** WhiteCardCall header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a WhiteCardCall. */
+    class WhiteCardCall implements IWhiteCardCall {
+
+        /**
+         * Constructs a new WhiteCardCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.IWhiteCardCall);
+
+        /** WhiteCardCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new WhiteCardCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WhiteCardCall instance
+         */
+        public static create(properties?: dealer.IWhiteCardCall): dealer.WhiteCardCall;
+
+        /**
+         * Encodes the specified WhiteCardCall message. Does not implicitly {@link dealer.WhiteCardCall.verify|verify} messages.
+         * @param message WhiteCardCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.IWhiteCardCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WhiteCardCall message, length delimited. Does not implicitly {@link dealer.WhiteCardCall.verify|verify} messages.
+         * @param message WhiteCardCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.IWhiteCardCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WhiteCardCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WhiteCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.WhiteCardCall;
+
+        /**
+         * Decodes a WhiteCardCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WhiteCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.WhiteCardCall;
+
+        /**
+         * Verifies a WhiteCardCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WhiteCardCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WhiteCardCall
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.WhiteCardCall;
+
+        /**
+         * Creates a plain object from a WhiteCardCall message. Also converts values to other types if specified.
+         * @param message WhiteCardCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.WhiteCardCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WhiteCardCall to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -2346,6 +2442,12 @@ export namespace game {
 
         /** BetRoundStart timeRemain */
         timeRemain?: (number|null);
+
+        /** BetRoundStart numOfShoe */
+        numOfShoe?: (number|null);
+
+        /** BetRoundStart numOfRound */
+        numOfRound?: (number|null);
     }
 
     /** Represents a BetRoundStart. */
@@ -2365,6 +2467,12 @@ export namespace game {
 
         /** BetRoundStart timeRemain. */
         public timeRemain: number;
+
+        /** BetRoundStart numOfShoe. */
+        public numOfShoe: number;
+
+        /** BetRoundStart numOfRound. */
+        public numOfRound: number;
 
         /**
          * Creates a new BetRoundStart instance using the specified properties.
@@ -2643,6 +2751,12 @@ export namespace game {
 
         /** GameStatus draws */
         draws?: (dealer.IDraw[]|null);
+
+        /** GameStatus numOfShoe */
+        numOfShoe?: (number|null);
+
+        /** GameStatus numOfRound */
+        numOfRound?: (number|null);
     }
 
     /** Represents a GameStatus. */
@@ -2665,6 +2779,12 @@ export namespace game {
 
         /** GameStatus draws. */
         public draws: dealer.IDraw[];
+
+        /** GameStatus numOfShoe. */
+        public numOfShoe: number;
+
+        /** GameStatus numOfRound. */
+        public numOfRound: number;
 
         /**
          * Creates a new GameStatus instance using the specified properties.
@@ -3367,7 +3487,8 @@ export namespace route {
         BetError = 23,
         GameStatus = 24,
         DealerGameStatus = 25,
-        Roadmap = 26
+        Roadmap = 26,
+        WhiteCard = 27
     }
 }
 
