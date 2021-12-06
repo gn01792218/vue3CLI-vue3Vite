@@ -12,8 +12,8 @@
         </div>
         <div class="header-bottom">
             <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
-            <div class="d-none d-xl-block col font_yellows"><i class="fa fa-users" aria-hidden="true"></i> 15.378</div>
-            <div class="d-none d-xl-block col font_yellows"><i class="fa fa-bell" aria-hidden="true"></i> R5.12.6</div>
+            <div class="header-userName col font_yellows">₱{{userWallet}}</div>
+            <div class="header-userName col font_yellows"><i class="fa fa-bell" aria-hidden="true"></i>靴:{{shoe}} 局:{{roundNum}}</div>
         </div>
     </div>
 </template>
@@ -35,6 +35,15 @@ export default defineComponent({
         })
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
+        })
+        const userWallet = computed(()=>{
+            return store.state.auth.userWalletFomate
+        })
+        const shoe = computed(()=>{
+            return store.state.game.numOfShoe
+        })
+        const roundNum = computed(()=>{
+            return store.state.game.numOfRound
         })
         //路由處理
         const router = useRouter()
@@ -58,8 +67,12 @@ export default defineComponent({
         return{
             //data
             user,
+            userWallet,
+            roundNum,
+            shoe,
             //methods
-            toGametable,backToHome
+            toGametable,
+            backToHome
         }
     }
 }) 

@@ -6,6 +6,7 @@ export const state = {
     BetRoundEnd:{},
     gameEndUuid:"",
     numOfRound:'',
+    numOfShoe:'',
   };
   export const actions = {}
   
@@ -14,6 +15,7 @@ export const state = {
       state.BetRoundStart = payload
       state.gameUuid = payload.gameUuid
       state.numOfRound = payload.numOfRound
+      state.numOfShoe = payload.numOfShoe
       // console.log("vuex-BetRoundStart資料更新",state.BetRoundStart)
     },
     BetRoundCountdown(state:any, payload:any){
@@ -22,6 +24,9 @@ export const state = {
     },
     GameStatus(state:any, payload:any){
       state.GameStatus = payload
+      state.gameUuid = payload.gameUuid
+      state.numOfRound = payload.numOfRound
+      state.numOfShoe = payload.numOfShoe
     },
     BetRoundEnd(state:any, payload:any){
       state.BetRoundEnd = payload

@@ -20,7 +20,7 @@
                     </ul> -->
                     <!-- 日期 時間 靴號 局號 下注 輸贏 牌局結果 -->
                     <ul class="userBetInfo-ul list-group list-group-horizontal">
-                        <li class="userBetInfo-title list-group-item">場次</li>
+                        <li class="userBetInfo-title list-group-item">靴號</li>
                         <li class="userBetInfo-content list-group-item">{{userInfo.gameUuid}}</li>
                     </ul>
                     <ul class="userBetInfo-ul list-group list-group-horizontal">
@@ -109,6 +109,9 @@ export default defineComponent({
         })
         const numOfround = computed(()=>{
             return store.state.game.numOfRound
+        })
+        const numOfShoe = computed(()=>{
+            return store.state.game.numOfShoe
         })
         const gameResultText = ref()
         const userWinMoney = ref()

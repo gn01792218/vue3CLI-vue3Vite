@@ -219,6 +219,7 @@
 	}
 	.header-userName{
 		border:none;
+		line-height:1rem;
 	}
 	.header-logo{
 		float: left;
@@ -247,7 +248,11 @@
 	.header-bottom{  
 		// display: none;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.header-userName{
+		flex-grow: 0;
 	}
 	.font-total{
 		line-height: 1.5em;

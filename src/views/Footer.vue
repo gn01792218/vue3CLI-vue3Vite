@@ -6,11 +6,10 @@
                 <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span> -->
                 <span v-if="isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-off"></i></span>
                 <span v-if="!isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
-                <span v-if="isVideoPlayed" class="footer-item d-none d-md-flex" @click="playVideo"><i class="bi bi-camera-video-fill"></i></span>
-                <span v-if="!isVideoPlayed" class="footer-item d-none d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
-                
-                <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span>
-                <span class="footer-item" v-if="user">₱{{userWallet}}</span>
+                <span v-if="isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-fill"></i></span>
+                <span v-if="!isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
+                <!-- <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span> -->
+                <!-- <span class="footer-item" v-if="user">₱{{userWallet}}</span> -->
                 <!-- <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
                 >
                     <i class="bi bi-person-circle" ></i>
@@ -18,7 +17,7 @@
                 </div> -->
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">
-                <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span>
+                <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span> -->
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-alarm"></i><Date/></span>
                 <span class="footer-item d-md-flex"><i class="bi bi-arrows-fullscreen" @click="fullScreen"></i></span>
             </div>
