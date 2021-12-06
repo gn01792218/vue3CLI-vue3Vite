@@ -134,7 +134,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.BetRoundStart:
             let BetRoundStart = game.BetRoundStart.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('BetRoundStart',BetRoundStart)
+            console.log('BetRoundStart',BetRoundStart)
             store.commit('game/BetRoundStart',BetRoundStart)
             break
         case route.BetRoundEnd:

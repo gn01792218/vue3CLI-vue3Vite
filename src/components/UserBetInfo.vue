@@ -18,13 +18,14 @@
                         <li>下注:{{userInfoArray[0].totalBet}}</li>
                         ----------------------------------------------
                     </ul> -->
+                    <!-- 日期 時間 靴號 局號 下注 輸贏 牌局結果 -->
                     <ul class="userBetInfo-ul list-group list-group-horizontal">
                         <li class="userBetInfo-title list-group-item">場次</li>
                         <li class="userBetInfo-content list-group-item">{{userInfo.gameUuid}}</li>
                     </ul>
                     <ul class="userBetInfo-ul list-group list-group-horizontal">
-                        <li class="userBetInfo-title list-group-item">遊戲單號</li>
-                        <li class="userBetInfo-content list-group-item"></li>
+                        <li class="userBetInfo-title list-group-item">遊戲局號</li>
+                        <li class="userBetInfo-content list-group-item">{{numOfround}}</li>
                     </ul>
                     <ul class="userBetInfo-ul list-group list-group-horizontal">
                         <li class="userBetInfo-title list-group-item">時間</li>
@@ -105,6 +106,9 @@ export default defineComponent({
         const store = useStore()
         const gameUuid = computed(()=>{
             return store.state.game.gameUuid
+        })
+        const numOfround = computed(()=>{
+            return store.state.game.numOfRound
         })
         const gameResultText = ref()
         const userWinMoney = ref()
@@ -192,7 +196,8 @@ export default defineComponent({
             totalBet,
             userInfoArray,
             userInfo,
-            currentPagination
+            currentPagination,
+            numOfround,
             //methods
         }
     }

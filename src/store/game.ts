@@ -5,6 +5,7 @@ export const state = {
     GameStatus:{},
     BetRoundEnd:{},
     gameEndUuid:"",
+    numOfRound:'',
   };
   export const actions = {}
   
@@ -12,6 +13,7 @@ export const state = {
     BetRoundStart(state:any, payload:any) { //接收wbSocket的訊息
       state.BetRoundStart = payload
       state.gameUuid = payload.gameUuid
+      state.numOfRound = payload.numOfRound
       // console.log("vuex-BetRoundStart資料更新",state.BetRoundStart)
     },
     BetRoundCountdown(state:any, payload:any){
