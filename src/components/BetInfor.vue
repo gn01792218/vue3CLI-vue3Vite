@@ -1,13 +1,13 @@
 <template>
-	<div class="row">
+	<div class="row betInfo-container">
     	<ul class="col-6 text-md-left">
-        	<li class="font_red">Banker 52%</li>    
-          	<li class="font_yellow">Player 46%</li> 
-          	<li class="font_green">Tie 2%</li> 
-          	<li class="font_red">Banker Pair</li> 
-          	<li class="font_yellow">Player Pair</li> 
-         	  <li class="font_red">Banker Natural</li> 
-          	<li class="font_yellow">Player Natural</li>
+        	<li class="font_red">莊家 52%</li>    
+          	<li class="font_yellow">閒家 46%</li> 
+          	<li class="font_green">和局 2%</li> 
+          	<li class="font_red">莊對</li> 
+          	<li class="font_yellow">閒對</li> 
+         	  <!-- <li class="font_red">Banker Natural</li> 
+          	<li class="font_yellow">Player Natural</li> -->
         </ul>
         <ul class="col-6 text-md-right" v-if="betInfo">
           <li v-for="(i,index) in betInfo" :key="index">{{i}}</li>
