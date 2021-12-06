@@ -1,17 +1,19 @@
 <template>
     <!-- <ProgressBar/> -->
     <div class="header">
-        <div class="header-logo w-75"><a href="#"><img src="../images/logo.png"></a></div>
-        <div class="header-btnList mt-xl-5">
-            <a class="header-btn" @click="toGametable('A')" >A桌</a>
-            <a class="header-btn disabled">B桌</a>
-            <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
-            <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
+        <div class="header-top">
+            <div class="header-logo"><a href="#"><img src="../images/logo.png"></a></div>
+            <div class="header-btnList mt-xl-5">
+                <a class="header-btn" @click="toGametable('A')" >A桌</a>
+                <a class="header-btn disabled">B桌</a>
+                <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
+                <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
+            </div>
         </div>
-        <div class="header-bottom align-items-end">
-            <div class="col font_yellows"><i class="fa fa-envelope-o" aria-hidden="true"></i> Feed Back</div>
-            <div class="col font_yellows"><i class="fa fa-users" aria-hidden="true"></i> 15.378</div>
-            <div class="col font_yellows"><i class="fa fa-bell" aria-hidden="true"></i> R5.12.6</div>
+        <div class="header-bottom">
+            <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
+            <div class="d-none d-xl-block col font_yellows"><i class="fa fa-users" aria-hidden="true"></i> 15.378</div>
+            <div class="d-none d-xl-block col font_yellows"><i class="fa fa-bell" aria-hidden="true"></i> R5.12.6</div>
         </div>
     </div>
 </template>
@@ -30,6 +32,9 @@ export default defineComponent({
         const store = useStore()
         const userToken = computed(()=>{
             return store.state.auth.userToken
+        })
+        const user = computed(()=>{
+            return store.state.auth.UserInfo.user
         })
         //路由處理
         const router = useRouter()
@@ -52,7 +57,7 @@ export default defineComponent({
         }
         return{
             //data
-            
+            user,
             //methods
             toGametable,backToHome
         }

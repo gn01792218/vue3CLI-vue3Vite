@@ -1,4 +1,9 @@
 //header
+.header{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
 .header-logo{
 	margin-left: auto;
 	margin-right: auto;
@@ -8,4 +13,10 @@
 .header-btnList{
 	float: left;
 	width: 100%;
+}
+.header-userName{
+	cursor: pointer;
+}
+.header-top{
+	width:100%;
 }

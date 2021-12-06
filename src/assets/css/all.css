@@ -170,6 +170,19 @@ img {
   color: #093;
 }
 
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .header-logo {
   margin-left: auto;
   margin-right: auto;
@@ -179,6 +192,14 @@ img {
 
 .header-btnList {
   float: left;
+  width: 100%;
+}
+
+.header-userName {
+  cursor: pointer;
+}
+
+.header-top {
   width: 100%;
 }
 
@@ -402,87 +423,87 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .coin-menu1 {
-  width: 79px;
-  height: 65px;
+  width: 71.1px;
+  height: 58.5px;
   background-position: 0px 0px;
-  background-size: 395px 130px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu1:hover, .coin-menu1-current {
-  width: 79px;
-  height: 65px;
-  background-position: 0px -65px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: 0px -58.5px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu2 {
-  width: 79px;
-  height: 65px;
-  background-position: -79px 0px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -71.1px 0px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu2:hover, .coin-menu2-current {
-  width: 79px;
-  height: 65px;
-  background-position: -79px -65px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -71.1px -58.5px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu3 {
-  width: 79px;
-  height: 65px;
-  background-position: -158px 0px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -142.2px 0px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu3:hover, .coin-menu3-current {
-  width: 79px;
-  height: 65px;
-  background-position: -158px -65px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -142.2px -58.5px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu4 {
-  width: 79px;
-  height: 65px;
-  background-position: -237px 0px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -213.3px 0px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu4:hover, .coin-menu4-current {
-  width: 79px;
-  height: 65px;
-  background-position: -237px -65px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -213.3px -58.5px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu5 {
-  width: 79px;
-  height: 65px;
-  background-position: -316px 0px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -284.4px 0px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu5:hover, .coin-menu5-current {
-  width: 79px;
-  height: 65px;
-  background-position: -316px -65px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -284.4px -58.5px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu6 {
-  width: 79px;
-  height: 65px;
-  background-position: -316px 0px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -355.5px 0px;
+  background-size: 426.6px 117px;
 }
 
 .coin-menu6:hover, .coin-menu6-current {
-  width: 79px;
-  height: 65px;
-  background-position: -316px -65px;
-  background-size: 395px 130px;
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -355.5px -58.5px;
+  background-size: 426.6px 117px;
 }
 
 .ammo100 {
@@ -1098,78 +1119,6 @@ cockroach-blue {
   .gameHistory {
     height: 30%;
   }
-  .coin-menu1 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: 0px 0px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu1:hover, .coin-menu1-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: 0px -58.5px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu2 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -71.1px 0px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu2:hover, .coin-menu2-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -71.1px -58.5px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu3 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -142.2px 0px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu3:hover, .coin-menu3-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -142.2px -58.5px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu4 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -213.3px 0px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu4:hover, .coin-menu4-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -213.3px -58.5px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu5 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -284.4px 0px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu5:hover, .coin-menu5-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -284.4px -58.5px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu6 {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -284.4px 0px;
-    background-size: 355.5px 117px;
-  }
-  .coin-menu6:hover, .coin-menu6-current {
-    width: 71.1px;
-    height: 58.5px;
-    background-position: -284.4px -58.5px;
-    background-size: 355.5px 117px;
-  }
 }
 
 @media screen and (max-width: 1280px) {
@@ -1204,73 +1153,73 @@ cockroach-blue {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu1:hover, .coin-menu1-current {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu2 {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu2:hover, .coin-menu2-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu3 {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu3:hover, .coin-menu3-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu4 {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu4:hover, .coin-menu4-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu5 {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu5:hover, .coin-menu5-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu6 {
     width: 55.3px;
     height: 45.5px;
-    background-position: -221.2px 0px;
-    background-size: 276.5px 91px;
+    background-position: -276.5px 0px;
+    background-size: 331.8px 91px;
   }
   .coin-menu6:hover, .coin-menu6-current {
     width: 55.3px;
     height: 45.5px;
-    background-position: -221.2px -45.5px;
-    background-size: 276.5px 91px;
+    background-position: -276.5px -45.5px;
+    background-size: 331.8px 91px;
   }
   .BeadPlate-B {
     width: 29px;
@@ -1495,6 +1444,15 @@ cockroach-blue {
   .header {
     width: 100%;
     height: 100px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .header-userName {
+    border: none;
   }
   .header-logo {
     float: left;
@@ -1508,7 +1466,7 @@ cockroach-blue {
     height: 100%;
   }
   .header-btnList {
-    width: 60%;
+    width: auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1516,12 +1474,22 @@ cockroach-blue {
         justify-content: space-around;
   }
   .header-btn {
-    width: 30%;
+    width: auto;
     line-height: 4.75rem;
     font-size: 250%;
   }
+  .header-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
   .header-bottom {
-    display: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .font-total {
     line-height: 1.5em;
@@ -1554,73 +1522,73 @@ cockroach-blue {
     width: 126.4px;
     height: 104px;
     background-position: 0px 0px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu1:hover, .coin-menu1-current {
     width: 126.4px;
     height: 104px;
     background-position: 0px -104px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu2 {
     width: 126.4px;
     height: 104px;
     background-position: -126.4px 0px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu2:hover, .coin-menu2-current {
     width: 126.4px;
     height: 104px;
     background-position: -126.4px -104px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu3 {
     width: 126.4px;
     height: 104px;
     background-position: -252.8px 0px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu3:hover, .coin-menu3-current {
     width: 126.4px;
     height: 104px;
     background-position: -252.8px -104px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu4 {
     width: 126.4px;
     height: 104px;
     background-position: -379.2px 0px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu4:hover, .coin-menu4-current {
     width: 126.4px;
     height: 104px;
     background-position: -379.2px -104px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu5 {
     width: 126.4px;
     height: 104px;
     background-position: -505.6px 0px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu5:hover, .coin-menu5-current {
     width: 126.4px;
     height: 104px;
     background-position: -505.6px -104px;
-    background-size: 632px 208px;
+    background-size: 758.4px 208px;
   }
   .coin-menu6 {
     width: 126.4px;
     height: 104px;
-    background-position: -505.6px 0px;
-    background-size: 632px 208px;
+    background-position: -632px 0px;
+    background-size: 758.4px 208px;
   }
   .coin-menu6:hover, .coin-menu6-current {
     width: 126.4px;
     height: 104px;
-    background-position: -505.6px -104px;
-    background-size: 632px 208px;
+    background-position: -632px -104px;
+    background-size: 758.4px 208px;
   }
   .betArea-item {
     font-size: 2.5rem;
@@ -1886,73 +1854,73 @@ cockroach-blue {
     width: 94.8px;
     height: 78px;
     background-position: 0px 0px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu1:hover, .coin-menu1-current {
     width: 94.8px;
     height: 78px;
     background-position: 0px -78px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu2 {
     width: 94.8px;
     height: 78px;
     background-position: -94.8px 0px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu2:hover, .coin-menu2-current {
     width: 94.8px;
     height: 78px;
     background-position: -94.8px -78px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu3 {
     width: 94.8px;
     height: 78px;
     background-position: -189.6px 0px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu3:hover, .coin-menu3-current {
     width: 94.8px;
     height: 78px;
     background-position: -189.6px -78px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu4 {
     width: 94.8px;
     height: 78px;
     background-position: -284.4px 0px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu4:hover, .coin-menu4-current {
     width: 94.8px;
     height: 78px;
     background-position: -284.4px -78px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu5 {
     width: 94.8px;
     height: 78px;
     background-position: -379.2px 0px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu5:hover, .coin-menu5-current {
     width: 94.8px;
     height: 78px;
     background-position: -379.2px -78px;
-    background-size: 474px 156px;
+    background-size: 568.8px 156px;
   }
   .coin-menu6 {
     width: 94.8px;
     height: 78px;
-    background-position: -379.2px 0px;
-    background-size: 474px 156px;
+    background-position: -474px 0px;
+    background-size: 568.8px 156px;
   }
   .coin-menu6:hover, .coin-menu6-current {
     width: 94.8px;
     height: 78px;
-    background-position: -379.2px -78px;
-    background-size: 474px 156px;
+    background-position: -474px -78px;
+    background-size: 568.8px 156px;
   }
   .betArea-mobile, .betArea-mobile-container {
     height: 145px;
@@ -2171,73 +2139,73 @@ cockroach-blue {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu1:hover, .coin-menu1-current {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu2 {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu2:hover, .coin-menu2-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu3 {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu3:hover, .coin-menu3-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu4 {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu4:hover, .coin-menu4-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu5 {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px 0px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu5:hover, .coin-menu5-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px -45.5px;
-    background-size: 276.5px 91px;
+    background-size: 331.8px 91px;
   }
   .coin-menu6 {
     width: 55.3px;
     height: 45.5px;
-    background-position: -221.2px 0px;
-    background-size: 276.5px 91px;
+    background-position: -276.5px 0px;
+    background-size: 331.8px 91px;
   }
   .coin-menu6:hover, .coin-menu6-current {
     width: 55.3px;
     height: 45.5px;
-    background-position: -221.2px -45.5px;
-    background-size: 276.5px 91px;
+    background-position: -276.5px -45.5px;
+    background-size: 331.8px 91px;
   }
   .gameHistory {
     height: 130px;
@@ -2466,6 +2434,9 @@ cockroach-blue {
     line-height: 1.75rem;
     font-size: 130%;
   }
+  .header-userName {
+    font-size: 0.5rem;
+  }
   .video-box {
     height: 220px;
   }
@@ -2573,73 +2544,73 @@ cockroach-blue {
     width: 47.4px;
     height: 39px;
     background-position: 0px 0px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu1:hover, .coin-menu1-current {
     width: 47.4px;
     height: 39px;
     background-position: 0px -39px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu2 {
     width: 47.4px;
     height: 39px;
     background-position: -47.4px 0px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu2:hover, .coin-menu2-current {
     width: 47.4px;
     height: 39px;
     background-position: -47.4px -39px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu3 {
     width: 47.4px;
     height: 39px;
     background-position: -94.8px 0px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu3:hover, .coin-menu3-current {
     width: 47.4px;
     height: 39px;
     background-position: -94.8px -39px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu4 {
     width: 47.4px;
     height: 39px;
     background-position: -142.2px 0px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu4:hover, .coin-menu4-current {
     width: 47.4px;
     height: 39px;
     background-position: -142.2px -39px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu5 {
     width: 47.4px;
     height: 39px;
     background-position: -189.6px 0px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu5:hover, .coin-menu5-current {
     width: 47.4px;
     height: 39px;
     background-position: -189.6px -39px;
-    background-size: 237px 78px;
+    background-size: 284.4px 78px;
   }
   .coin-menu6 {
     width: 47.4px;
     height: 39px;
-    background-position: -189.6px 0px;
-    background-size: 237px 78px;
+    background-position: -237px 0px;
+    background-size: 284.4px 78px;
   }
   .coin-menu6:hover, .coin-menu6-current {
     width: 47.4px;
     height: 39px;
-    background-position: -189.6px -39px;
-    background-size: 237px 78px;
+    background-position: -237px -39px;
+    background-size: 284.4px 78px;
   }
 }
 
@@ -2830,73 +2801,73 @@ cockroach-blue {
     width: 39.5px;
     height: 32.5px;
     background-position: 0px 0px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu1:hover, .coin-menu1-current {
     width: 39.5px;
     height: 32.5px;
     background-position: 0px -32.5px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu2 {
     width: 39.5px;
     height: 32.5px;
     background-position: -39.5px 0px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu2:hover, .coin-menu2-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -39.5px -32.5px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu3 {
     width: 39.5px;
     height: 32.5px;
     background-position: -79px 0px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu3:hover, .coin-menu3-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -79px -32.5px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu4 {
     width: 39.5px;
     height: 32.5px;
     background-position: -118.5px 0px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu4:hover, .coin-menu4-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -118.5px -32.5px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu5 {
     width: 39.5px;
     height: 32.5px;
     background-position: -158px 0px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu5:hover, .coin-menu5-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -158px -32.5px;
-    background-size: 197.5px 65px;
+    background-size: 237px 65px;
   }
   .coin-menu6 {
     width: 39.5px;
     height: 32.5px;
-    background-position: -158px 0px;
-    background-size: 197.5px 65px;
+    background-position: -197.5px 0px;
+    background-size: 237px 65px;
   }
   .coin-menu6:hover, .coin-menu6-current {
     width: 39.5px;
     height: 32.5px;
-    background-position: -158px -32.5px;
-    background-size: 197.5px 65px;
+    background-position: -197.5px -32.5px;
+    background-size: 237px 65px;
   }
   .card-container {
     margin-top: -35px;

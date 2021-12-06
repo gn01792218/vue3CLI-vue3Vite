@@ -1,53 +1,53 @@
 .coin-preLoad {
-	@extend %coin
+	@extend %coin;
 }
 .coin-menu1{
 	@extend %coin;
-	@include coinSpritePosition(0,0,1)
+	@include coinSpritePosition(0,0,0.9)
 }
 .coin-menu1:hover,.coin-menu1-current{
 	@extend %coin;
-	@include coinSpritePosition(0,-65,1)
+	@include coinSpritePosition(0,-65,0.9)
 }
 .coin-menu2{
 	@extend %coin;
-	@include coinSpritePosition(-79,0,1)
+	@include coinSpritePosition(-79,0,0.9)
 }
 .coin-menu2:hover,.coin-menu2-current{
 	@extend %coin;
-	@include coinSpritePosition(-79,-65,1)
+	@include coinSpritePosition(-79,-65,0.9)
 }
 .coin-menu3{
 	@extend %coin;
-	@include coinSpritePosition(-158,0,1)
+	@include coinSpritePosition(-158,0,0.9)
 }
 .coin-menu3:hover,.coin-menu3-current{
 	@extend %coin;
-	@include coinSpritePosition(-158,-65,1)
+	@include coinSpritePosition(-158,-65,0.9)
 }
 .coin-menu4{
 	@extend %coin;
-	@include coinSpritePosition(-237,0,1)
+	@include coinSpritePosition(-237,0,0.9)
 }
 .coin-menu4:hover,.coin-menu4-current{
 	@extend %coin;
-	@include coinSpritePosition(-237,-65,1)
+	@include coinSpritePosition(-237,-65,0.9)
 }
 .coin-menu5{
 	@extend %coin;
-	@include coinSpritePosition(-316,0,1)
+	@include coinSpritePosition(-316,0,0.9)
 }
 .coin-menu5:hover,.coin-menu5-current{
 	@extend %coin;
-	@include coinSpritePosition(-316,-65,1)
+	@include coinSpritePosition(-316,-65,0.9)
 }
 .coin-menu6{
 	@extend %coin;
-	@include coinSpritePosition(-316,0,1)
+	@include coinSpritePosition(-395,0,0.9)
 }
 .coin-menu6:hover,.coin-menu6-current{
 	@extend %coin;
-	@include coinSpritePosition(-316,-65,1)
+	@include coinSpritePosition(-395,-65,0.9)
 }
 
 //籌碼子彈

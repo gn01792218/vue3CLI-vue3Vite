@@ -11,11 +11,11 @@
                 
                 <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span>
                 <span class="footer-item" v-if="user">₱{{userWallet}}</span>
-                <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
+                <!-- <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
                 >
                     <i class="bi bi-person-circle" ></i>
                     <i v-if="user">{{user.name}}</i>
-                </div>
+                </div> -->
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">
                 <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span>
