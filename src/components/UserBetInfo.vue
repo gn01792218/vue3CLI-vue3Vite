@@ -156,7 +156,8 @@ export default defineComponent({
             displayGameResult()
         })
         watch(winMoney,()=>{
-            userInfoArray[0].gainMoney = winMoney.value
+           if(winMoney.value)
+            userInfoArray[0].gainMoney = winMoney.value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
         })
         function displayGameResult () {
             gameResultRecall.value.forEach((i:any)=>{
