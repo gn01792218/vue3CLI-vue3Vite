@@ -105,6 +105,7 @@ interface coint {
 }
 interface coinPosition {
     initBottom:number,  //初始化的bottom值
+    initX:number, //水平初始位置
     coinArray:string[],//生籌碼的地方
     odds:string,
     host:string,
@@ -244,6 +245,7 @@ export default defineComponent({
         const coinPosition = reactive<coinPosition[]>([//注區
             {
                 initBottom:0,
+                initX:0,
                 coinArray:[],
                 odds:"1:1",
                 host:"閒家",
@@ -252,6 +254,7 @@ export default defineComponent({
             },
             {
                 initBottom:0,  //初始化的bottom值
+                initX:0,
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
                 host:"莊家",
@@ -260,6 +263,7 @@ export default defineComponent({
             },
              {
                 initBottom:0,
+                initX:0,
                 coinArray:[],
                 odds:"1:11",
                 host:"閒對",
@@ -268,6 +272,7 @@ export default defineComponent({
             },
             {
                 initBottom:0,
+                initX:0,
                 coinArray:[],
                 odds:"1:8",
                 host:"和局",
@@ -276,6 +281,7 @@ export default defineComponent({
             },
             {
                 initBottom:0,
+                initX:0,
                 coinArray:[],
                 odds:"1:11",
                 host:"莊對",
@@ -410,13 +416,13 @@ export default defineComponent({
                 keyframes:[
                     {display:"none"},
                     {delay:0.75,
-                duration:0.5,
-                // x:-10,
-                y:-coinPosition[currentBetPosition.betAreaIndex].initBottom,
-                opacity:1,
-                display:"block"}
-                ]
-                
+                    duration:0.5,
+                    x:coinPosition[currentBetPosition.betAreaIndex].initX,
+                    y:-coinPosition[currentBetPosition.betAreaIndex].initBottom,
+                    opacity:1,
+                    display:"block"}
+                    ]
+                    
             })
         }
         function loadCoin () {
@@ -426,8 +432,15 @@ export default defineComponent({
         }
         function setCoinPosition (cp:coinPosition) {
             if(currentCoint.coinElement){  //有選擇籌碼時，才會生籌碼
-                cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
+             cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
+             console.log(cp.coinArray.length%10)
+                if((cp.coinArray.length%10)==0){ //每10個橫移一次
+                    cp.initX +=10;
+                    cp.initBottom = 0
+                }else{
                     cp.initBottom += 5;  //修改樣式
+                }
+                console.log(cp.initBottom,cp.initX)
             }
         }
         const betArray = reactive<Array<any>>([]) //紀錄下注元素和區域
@@ -550,6 +563,7 @@ export default defineComponent({
                     i.coinArray = []
                     i.initBottom = 0
                     i.betStatus = 0 
+                    i.initX = 0
                 // }
             })
             //清空籌碼飛彈槍管
