@@ -2431,6 +2431,120 @@ export namespace game {
         waiting = 3
     }
 
+    /** Properties of a GameResultCounter. */
+    interface IGameResultCounter {
+
+        /** GameResultCounter player */
+        player?: (number|null);
+
+        /** GameResultCounter banker */
+        banker?: (number|null);
+
+        /** GameResultCounter tie */
+        tie?: (number|null);
+
+        /** GameResultCounter playerPair */
+        playerPair?: (number|null);
+
+        /** GameResultCounter bankerPair */
+        bankerPair?: (number|null);
+    }
+
+    /** Represents a GameResultCounter. */
+    class GameResultCounter implements IGameResultCounter {
+
+        /**
+         * Constructs a new GameResultCounter.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IGameResultCounter);
+
+        /** GameResultCounter player. */
+        public player: number;
+
+        /** GameResultCounter banker. */
+        public banker: number;
+
+        /** GameResultCounter tie. */
+        public tie: number;
+
+        /** GameResultCounter playerPair. */
+        public playerPair: number;
+
+        /** GameResultCounter bankerPair. */
+        public bankerPair: number;
+
+        /**
+         * Creates a new GameResultCounter instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GameResultCounter instance
+         */
+        public static create(properties?: game.IGameResultCounter): game.GameResultCounter;
+
+        /**
+         * Encodes the specified GameResultCounter message. Does not implicitly {@link game.GameResultCounter.verify|verify} messages.
+         * @param message GameResultCounter message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IGameResultCounter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GameResultCounter message, length delimited. Does not implicitly {@link game.GameResultCounter.verify|verify} messages.
+         * @param message GameResultCounter message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IGameResultCounter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GameResultCounter message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GameResultCounter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.GameResultCounter;
+
+        /**
+         * Decodes a GameResultCounter message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GameResultCounter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.GameResultCounter;
+
+        /**
+         * Verifies a GameResultCounter message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GameResultCounter message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GameResultCounter
+         */
+        public static fromObject(object: { [k: string]: any }): game.GameResultCounter;
+
+        /**
+         * Creates a plain object from a GameResultCounter message. Also converts values to other types if specified.
+         * @param message GameResultCounter
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.GameResultCounter, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GameResultCounter to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a BetRoundStart. */
     interface IBetRoundStart {
 
@@ -2448,6 +2562,9 @@ export namespace game {
 
         /** BetRoundStart numOfRound */
         numOfRound?: (number|null);
+
+        /** BetRoundStart gameResultCounter */
+        gameResultCounter?: (game.IGameResultCounter|null);
     }
 
     /** Represents a BetRoundStart. */
@@ -2473,6 +2590,9 @@ export namespace game {
 
         /** BetRoundStart numOfRound. */
         public numOfRound: number;
+
+        /** BetRoundStart gameResultCounter. */
+        public gameResultCounter?: (game.IGameResultCounter|null);
 
         /**
          * Creates a new BetRoundStart instance using the specified properties.
@@ -2757,6 +2877,9 @@ export namespace game {
 
         /** GameStatus numOfRound */
         numOfRound?: (number|null);
+
+        /** GameStatus gameResultCounter */
+        gameResultCounter?: (game.IGameResultCounter|null);
     }
 
     /** Represents a GameStatus. */
@@ -2785,6 +2908,9 @@ export namespace game {
 
         /** GameStatus numOfRound. */
         public numOfRound: number;
+
+        /** GameStatus gameResultCounter. */
+        public gameResultCounter?: (game.IGameResultCounter|null);
 
         /**
          * Creates a new GameStatus instance using the specified properties.

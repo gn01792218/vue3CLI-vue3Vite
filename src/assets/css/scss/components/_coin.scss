@@ -9,6 +9,10 @@
 	@extend %coin;
 	@include coinSpritePosition(0,-65,0.9);
 }
+.coin-menu1-disable{
+	@extend %coin;
+	@include coinSpritePosition(0,-130,0.9);
+}
 .coin-menu2{
 	@extend %coin;
 	@include coinSpritePosition(-79,0,0.9);
@@ -16,6 +20,10 @@
 .coin-menu2:hover,.coin-menu2-current{
 	@extend %coin;
 	@include coinSpritePosition(-79,-65,0.9);
+}
+.coin-menu2-disable{
+	@extend %coin;
+	@include coinSpritePosition(-79,-130,0.9);
 }
 .coin-menu3{
 	@extend %coin;
@@ -25,6 +33,10 @@
 	@extend %coin;
 	@include coinSpritePosition(-158,-65,0.9);
 }
+.coin-menu3-disable{
+	@extend %coin;
+	@include coinSpritePosition(-158,-130,0.9);
+}
 .coin-menu4{
 	@extend %coin;
 	@include coinSpritePosition(-237,0,0.9);
@@ -32,6 +44,10 @@
 .coin-menu4:hover,.coin-menu4-current{
 	@extend %coin;
 	@include coinSpritePosition(-237,-65,0.9);
+}
+.coin-menu4-disable{
+	@extend %coin;
+	@include coinSpritePosition(-237,-130,0.9);
 }
 .coin-menu5{
 	@extend %coin;
@@ -41,6 +57,10 @@
 	@extend %coin;
 	@include coinSpritePosition(-316,-65,0.9);
 }
+.coin-menu5-disable{
+	@extend %coin;
+	@include coinSpritePosition(-316,-130,0.9);
+}
 .coin-menu6{
 	@extend %coin;
 	@include coinSpritePosition(-395,0,0.9);
@@ -49,23 +69,45 @@
 	@extend %coin;
 	@include coinSpritePosition(-395,-65,0.9);
 }
+.coin-menu6-disable{
+	@extend %coin;
+	@include coinSpritePosition(-395,-130,0.9);
+}
 
 //籌碼子彈
-.ammo100{
+.ammo1{
 	left:3%;
 }
-.ammo500{
+.ammo2{
 	left:20%;
 }
-.ammo1000{
+.ammo3{
 	left:35%;
 }
-.ammo5000{
+.ammo4{
 	left:50%;
 }
-.ammo10000{
+.ammo5{
    left:70%;
 }
-.ammo100000{
+.ammo6{
 	left:85%;
  }
+// .ammo100{
+// 	left:3%;
+// }
+// .ammo500{
+// 	left:20%;
+// }
+// .ammo1000{
+// 	left:35%;
+// }
+// .ammo5000{
+// 	left:50%;
+// }
+// .ammo10000{
+//    left:70%;
+// }
+// .ammo100000{
+// 	left:85%;
+//  }

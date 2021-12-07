@@ -1,18 +1,21 @@
 <template>
 	<div class="row betInfo-container">
     	<ul class="col-6 text-md-left">
-        	<li class="font_red">莊家 52%</li>    
-          	<li class="font_yellow">閒家 46%</li> 
-          	<li class="font_green">和局 2%</li> 
-          	<li class="font_red">莊對</li> 
-          	<li class="font_yellow">閒對</li> 
-         	  <!-- <li class="font_red">Banker Natural</li> 
-          	<li class="font_yellow">Player Natural</li> -->
-        </ul>
-        <ul class="col-6 text-md-right" v-if="betInfo">
-          <li v-for="(i,index) in betInfo" :key="index">{{i}}</li>
-        </ul>
-      </div>
+        <li class="font_red">莊家 : {{betInfo.banker}}</li>    
+        <li class="font_yellow">閒家 : {{betInfo.player}}</li> 
+        <li class="font_green">和局 : {{betInfo.tie}}</li> 
+        <li class="font_red">莊對 : {{betInfo.bankerPair}}</li> 
+        <li class="font_yellow">閒對 : {{betInfo.playerPair}}</li> 
+        <li>總局數 : {{totalRound}}</li>
+      </ul>
+      <ul class="col-6 text-md-right" v-if="betInfo">
+        <li class="font_red">{{Math.floor((betInfo.banker/totalRound)*100)}}%</li>    
+        <li class="font_yellow">{{Math.floor((betInfo.player/totalRound)*100)}}%</li> 
+        <li class="font_green">{{Math.floor((betInfo.tie/totalRound)*100)}}%</li> 
+        <li class="font_red">{{Math.floor((betInfo.bankerPair/totalRound)*100)}}%</li> 
+        <li class="font_yellow">{{Math.floor((betInfo.playerPair/totalRound)*100)}}%</li> 
+      </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,14 +26,19 @@ export default defineComponent({
     //vuex
     const store = useStore()
     const betInfo = computed(()=>{
-        return store.state.table.TableJoinRecall.table.betStatus
-      })
-    watch(betInfo,()=>{
-      console.log(betInfo.value)
+      return store.state.game.gameResultCount
     })
+    const totalRound = computed(()=>{
+      return store.state.game.numOfRound-1
+    })
+    // watch(betInfo,()=>{
+    //   console.log(betInfo.value)
+    //   console.log(totalRound.value)
+    // })
     return {
       //data
       betInfo,
+      totalRound,
       //methods
 
     }

@@ -151,7 +151,7 @@ export default defineComponent({
                   return proto.roadmap.Block.PlayerAndBothPairAndTie
               }
             }else if(currentSide==0){ //只針對第一顆是和局時的狀態
-            console.log("一開始是和局的狀態")
+            // console.log("一開始是和局的狀態")
                   switch(gameResult){  
                     case proto.roadmap.Block.BankerAndTie:
                     case proto.roadmap.Block.Banker:
@@ -743,7 +743,7 @@ export default defineComponent({
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+              // console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                   for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                     bigRoadColArr[bigRoadColumn.value][i] = 1
                   }

@@ -68,7 +68,7 @@ export default defineComponent({
      })
      //watch
      watch(gameEnd,()=>{ //換薛時也要重置
-      console.log("換靴重置Card")
+      // console.log("換靴重置Card")
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
     })
@@ -76,7 +76,7 @@ export default defineComponent({
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
       showCardResult.value = false  //不顯示卡牌
-      console.log('不顯示卡牌點數',showCardResult.value)
+      // console.log('不顯示卡牌點數',showCardResult.value)
      })
      watch(gameResult,()=>{
        console.log(gameResult.value.length)
@@ -86,16 +86,14 @@ export default defineComponent({
        }
      })
      watch(DrawCard,()=>{  //開牌
-       console.log("開牌")
+      //  console.log("開牌")
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
-      //  addCardPoint(card.side,card.card.point)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
       if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
-        //  addCardPoint(i.side,i.card.point)
        })
       }
      })
@@ -145,23 +143,6 @@ export default defineComponent({
          }
        })
      }
-    //  function addCardPoint(cardside:number,point:number){ 
-    //    switch(cardside){
-    //     case proto.dealer.Side.Banker:
-    //       if(point!==10 && point!==11 && point!==12 && point!==13){
-    //         bankerPoint.value+=point
-    //         bankerPoint.value = bankerPoint.value%10
-    //       }
-    //        break
-    //     case proto.dealer.Side.Player:
-    //       if(point!==10 && point!==11 && point!==12 && point!==13){
-    //         playerPoint.value+=point
-    //         playerPoint.value = playerPoint.value%10
-    //       }
-    //        break
-    //    }
-    //   //  pointAddCount.value++
-    //  }
      function resetCardPoint(){
        playerPoint.value = 0
        bankerPoint.value = 0

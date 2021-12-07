@@ -62,12 +62,15 @@
         <div class="coinArea position-relative">
             <LightBox/>
             <!-- coin list -->
-            <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index"  :class="[`coin-menu${index+1}`,coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'']" @click="chooseCoint(index,$event)"></div>
+            <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index"  
+            :class="[coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'',index<3 ? `coin-menu${index+1}-disable`:`coin-menu${index+1}`]" 
+            @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coinList" :key="index">
                     <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
-                        <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index"></div>
+                        <!-- <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index"></div> -->
+                        <div :class="[ammo,'shotCoinPice',`ammo${coin.num}`]" v-for="(ammo,index) in coin.ammo" :key="index"></div>
                     </transition-group>
                 </div>
             </ul>
@@ -102,6 +105,7 @@ interface target {
 interface coint {
     point:number,
     ammo:string[],
+    num:number,
 }
 interface coinPosition {
     initBottom:number,  //初始化的bottom值
@@ -119,7 +123,7 @@ export default defineComponent({
     setup(){
         onMounted(()=>{
             //初始化籌碼
-            let defaultCoin = document.querySelector('#defaultCoin1') as HTMLElement
+            let defaultCoin = document.querySelector('#defaultCoin4') as HTMLElement
             let rect = defaultCoin.getBoundingClientRect()
             currentCoint.coinElement = defaultCoin
             currentCoint.x = rect.left;  //設置籌碼起始座標點
@@ -170,13 +174,13 @@ export default defineComponent({
             }   
         })
         watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
-            console.log("換靴重置BettingArear")
+            // console.log("換靴重置BettingArear")
             reSetBetAreaAnimation()
             resetGame()
             canBet.value = false
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
-            console.log("開始下注")
+            // console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
             canBet.value = true
@@ -200,37 +204,51 @@ export default defineComponent({
             showResult()
             winCoinAnimation()
         })
+        watch(total,()=>{
+            let temp = Number(total.value) as number
+            console.log('下注總額',total.value,'是否大於五千',Number(total.value)>=(coinList[3].point),typeof(total.value),typeof(coinList[3].point))
+            if(1000<5000){
+                console.log('可以打開前三個籌碼')
+                setMinBetCoinUsable()
+            }
+        })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
                     {
                     point:100,
                     ammo:[], //子彈陣列
+                    num:1,
                     },
                     {
                     point:500,
                     ammo:[], //子彈陣列
+                    num:2,
                     },
                     {
                     point:1000,
                     ammo:[], //子彈陣列
+                    num:3,
                     },
                     {
                     point:5000,
                     ammo:[], //子彈陣列
+                    num:4,
                     },
                     {
                     point:10000,
                     ammo:[], //子彈陣列
+                    num:5,
                     },
                     {
                     point:100000,
                     ammo:[],
+                    num:6,
                     }
                 ])
         const currentCoint = reactive<currentCoint>({ 
-            coinElement:document.querySelector('#defaultCoin1'), //選擇的籌碼元素
-            num:0,  //儲存點到的是第幾個
-            point:100, //預設是100點ㄉ
+            coinElement:document.querySelector('#defaultCoin4'), //選擇的籌碼元素
+            num:3,  //儲存點到的是第幾個
+            point:coinList[3].point, //預設是100點ㄉ
             x:0, //起飛的x
             y:0, //起飛的y
         });  
@@ -291,12 +309,40 @@ export default defineComponent({
            
         ]) 
         const betErrorArray = ref<Array<string>>([])
+        function setMinBetCoinUsable(){
+            //抓取前三個coin元素改變其外觀
+            let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
+            let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
+            let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
+            defaultCoin1.classList.replace('coin-menu1-disable','coin-menu1')
+            defaultCoin2.classList.replace('coin-menu2-disable','coin-menu2')
+            defaultCoin3.classList.replace('coin-menu3-disable','coin-menu3')
+            console.log('更換外觀成功',defaultCoin1,defaultCoin2,defaultCoin3)
+        }
         function chooseCoint (index:number,e:MouseEvent) {
-            currentCoint.coinElement = e.target; //得到該元素
-            currentCoint.x = e.x;  //設置籌碼起始座標點
-            currentCoint.y = e.y;
-            currentCoint.num = index;
-            currentCoint.point = coinList[index].point
+            console.log('下注額',total.value,'最小限注籌碼',coinList[3].point,'是否超過最小限注',total.value>=coinList[3].point)
+            //超過最小下注額才可以使用前三個籌碼
+            if(total.value>=coinList[3].point){
+                console.log("可以選取前三個了",total.value)
+                currentCoint.coinElement = e.target; //得到該元素
+                currentCoint.x = e.x;  //設置籌碼起始座標點
+                currentCoint.y = e.y;
+                currentCoint.num = index;
+                currentCoint.point = coinList[index].point
+                console.log(currentCoint)
+            }else{
+                //0 1 2不能選，只能選後面的籌碼
+                if(index!==0 && index!==1 && index!==2){
+                    console.log("不能選前三個")
+                    currentCoint.coinElement = e.target; //得到該元素
+                    currentCoint.x = e.x;  //設置籌碼起始座標點
+                    currentCoint.y = e.y;
+                    currentCoint.num = index;
+                    currentCoint.point = coinList[index].point
+                    console.log(currentCoint)
+                }
+            }
+            
         }
         function betErrorAnimation (e:HTMLElement) {
             gsap
@@ -433,14 +479,14 @@ export default defineComponent({
         function setCoinPosition (cp:coinPosition) {
             if(currentCoint.coinElement){  //有選擇籌碼時，才會生籌碼
              cp.coinArray.push(currentCoint.coinElement.className)  //添加class名稱到注區
-             console.log(cp.coinArray.length%10)
+            //  console.log(cp.coinArray.length%10)
                 if((cp.coinArray.length%10)==0){ //每10個橫移一次
                     cp.initX +=10;
                     cp.initBottom = 0
                 }else{
                     cp.initBottom += 5;  //修改樣式
                 }
-                console.log(cp.initBottom,cp.initX)
+                // console.log(cp.initBottom,cp.initX)
             }
         }
         const betArray = reactive<Array<any>>([]) //紀錄下注元素和區域

@@ -5867,6 +5867,282 @@ export const game = $root.game = (() => {
         return values;
     })();
 
+    game.GameResultCounter = (function() {
+
+        /**
+         * Properties of a GameResultCounter.
+         * @memberof game
+         * @interface IGameResultCounter
+         * @property {number|null} [player] GameResultCounter player
+         * @property {number|null} [banker] GameResultCounter banker
+         * @property {number|null} [tie] GameResultCounter tie
+         * @property {number|null} [playerPair] GameResultCounter playerPair
+         * @property {number|null} [bankerPair] GameResultCounter bankerPair
+         */
+
+        /**
+         * Constructs a new GameResultCounter.
+         * @memberof game
+         * @classdesc Represents a GameResultCounter.
+         * @implements IGameResultCounter
+         * @constructor
+         * @param {game.IGameResultCounter=} [properties] Properties to set
+         */
+        function GameResultCounter(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GameResultCounter player.
+         * @member {number} player
+         * @memberof game.GameResultCounter
+         * @instance
+         */
+        GameResultCounter.prototype.player = 0;
+
+        /**
+         * GameResultCounter banker.
+         * @member {number} banker
+         * @memberof game.GameResultCounter
+         * @instance
+         */
+        GameResultCounter.prototype.banker = 0;
+
+        /**
+         * GameResultCounter tie.
+         * @member {number} tie
+         * @memberof game.GameResultCounter
+         * @instance
+         */
+        GameResultCounter.prototype.tie = 0;
+
+        /**
+         * GameResultCounter playerPair.
+         * @member {number} playerPair
+         * @memberof game.GameResultCounter
+         * @instance
+         */
+        GameResultCounter.prototype.playerPair = 0;
+
+        /**
+         * GameResultCounter bankerPair.
+         * @member {number} bankerPair
+         * @memberof game.GameResultCounter
+         * @instance
+         */
+        GameResultCounter.prototype.bankerPair = 0;
+
+        /**
+         * Creates a new GameResultCounter instance using the specified properties.
+         * @function create
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {game.IGameResultCounter=} [properties] Properties to set
+         * @returns {game.GameResultCounter} GameResultCounter instance
+         */
+        GameResultCounter.create = function create(properties) {
+            return new GameResultCounter(properties);
+        };
+
+        /**
+         * Encodes the specified GameResultCounter message. Does not implicitly {@link game.GameResultCounter.verify|verify} messages.
+         * @function encode
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {game.IGameResultCounter} message GameResultCounter message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameResultCounter.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.player);
+            if (message.banker != null && Object.hasOwnProperty.call(message, "banker"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.banker);
+            if (message.tie != null && Object.hasOwnProperty.call(message, "tie"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.tie);
+            if (message.playerPair != null && Object.hasOwnProperty.call(message, "playerPair"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.playerPair);
+            if (message.bankerPair != null && Object.hasOwnProperty.call(message, "bankerPair"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.bankerPair);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GameResultCounter message, length delimited. Does not implicitly {@link game.GameResultCounter.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {game.IGameResultCounter} message GameResultCounter message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GameResultCounter.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GameResultCounter message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.GameResultCounter} GameResultCounter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameResultCounter.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.GameResultCounter();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.player = reader.int32();
+                    break;
+                case 2:
+                    message.banker = reader.int32();
+                    break;
+                case 3:
+                    message.tie = reader.int32();
+                    break;
+                case 4:
+                    message.playerPair = reader.int32();
+                    break;
+                case 5:
+                    message.bankerPair = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GameResultCounter message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.GameResultCounter} GameResultCounter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GameResultCounter.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GameResultCounter message.
+         * @function verify
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GameResultCounter.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.player != null && message.hasOwnProperty("player"))
+                if (!$util.isInteger(message.player))
+                    return "player: integer expected";
+            if (message.banker != null && message.hasOwnProperty("banker"))
+                if (!$util.isInteger(message.banker))
+                    return "banker: integer expected";
+            if (message.tie != null && message.hasOwnProperty("tie"))
+                if (!$util.isInteger(message.tie))
+                    return "tie: integer expected";
+            if (message.playerPair != null && message.hasOwnProperty("playerPair"))
+                if (!$util.isInteger(message.playerPair))
+                    return "playerPair: integer expected";
+            if (message.bankerPair != null && message.hasOwnProperty("bankerPair"))
+                if (!$util.isInteger(message.bankerPair))
+                    return "bankerPair: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GameResultCounter message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.GameResultCounter} GameResultCounter
+         */
+        GameResultCounter.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.GameResultCounter)
+                return object;
+            let message = new $root.game.GameResultCounter();
+            if (object.player != null)
+                message.player = object.player | 0;
+            if (object.banker != null)
+                message.banker = object.banker | 0;
+            if (object.tie != null)
+                message.tie = object.tie | 0;
+            if (object.playerPair != null)
+                message.playerPair = object.playerPair | 0;
+            if (object.bankerPair != null)
+                message.bankerPair = object.bankerPair | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GameResultCounter message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.GameResultCounter
+         * @static
+         * @param {game.GameResultCounter} message GameResultCounter
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GameResultCounter.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.player = 0;
+                object.banker = 0;
+                object.tie = 0;
+                object.playerPair = 0;
+                object.bankerPair = 0;
+            }
+            if (message.player != null && message.hasOwnProperty("player"))
+                object.player = message.player;
+            if (message.banker != null && message.hasOwnProperty("banker"))
+                object.banker = message.banker;
+            if (message.tie != null && message.hasOwnProperty("tie"))
+                object.tie = message.tie;
+            if (message.playerPair != null && message.hasOwnProperty("playerPair"))
+                object.playerPair = message.playerPair;
+            if (message.bankerPair != null && message.hasOwnProperty("bankerPair"))
+                object.bankerPair = message.bankerPair;
+            return object;
+        };
+
+        /**
+         * Converts this GameResultCounter to JSON.
+         * @function toJSON
+         * @memberof game.GameResultCounter
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GameResultCounter.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return GameResultCounter;
+    })();
+
     game.BetRoundStart = (function() {
 
         /**
@@ -5878,6 +6154,7 @@ export const game = $root.game = (() => {
          * @property {number|null} [timeRemain] BetRoundStart timeRemain
          * @property {number|null} [numOfShoe] BetRoundStart numOfShoe
          * @property {number|null} [numOfRound] BetRoundStart numOfRound
+         * @property {game.IGameResultCounter|null} [gameResultCounter] BetRoundStart gameResultCounter
          */
 
         /**
@@ -5936,6 +6213,14 @@ export const game = $root.game = (() => {
         BetRoundStart.prototype.numOfRound = 0;
 
         /**
+         * BetRoundStart gameResultCounter.
+         * @member {game.IGameResultCounter|null|undefined} gameResultCounter
+         * @memberof game.BetRoundStart
+         * @instance
+         */
+        BetRoundStart.prototype.gameResultCounter = null;
+
+        /**
          * Creates a new BetRoundStart instance using the specified properties.
          * @function create
          * @memberof game.BetRoundStart
@@ -5966,9 +6251,11 @@ export const game = $root.game = (() => {
             if (message.timeRemain != null && Object.hasOwnProperty.call(message, "timeRemain"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.timeRemain);
             if (message.numOfShoe != null && Object.hasOwnProperty.call(message, "numOfShoe"))
-                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfShoe);
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.numOfShoe);
             if (message.numOfRound != null && Object.hasOwnProperty.call(message, "numOfRound"))
-                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfRound);
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfRound);
+            if (message.gameResultCounter != null && Object.hasOwnProperty.call(message, "gameResultCounter"))
+                $root.game.GameResultCounter.encode(message.gameResultCounter, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             return writer;
         };
 
@@ -6012,11 +6299,14 @@ export const game = $root.game = (() => {
                 case 3:
                     message.timeRemain = reader.int32();
                     break;
-                case 5:
+                case 4:
                     message.numOfShoe = reader.int32();
                     break;
-                case 6:
+                case 5:
                     message.numOfRound = reader.int32();
+                    break;
+                case 6:
+                    message.gameResultCounter = $root.game.GameResultCounter.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6070,6 +6360,11 @@ export const game = $root.game = (() => {
             if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
                 if (!$util.isInteger(message.numOfRound))
                     return "numOfRound: integer expected";
+            if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter")) {
+                let error = $root.game.GameResultCounter.verify(message.gameResultCounter);
+                if (error)
+                    return "gameResultCounter." + error;
+            }
             return null;
         };
 
@@ -6098,6 +6393,11 @@ export const game = $root.game = (() => {
                 message.numOfShoe = object.numOfShoe | 0;
             if (object.numOfRound != null)
                 message.numOfRound = object.numOfRound | 0;
+            if (object.gameResultCounter != null) {
+                if (typeof object.gameResultCounter !== "object")
+                    throw TypeError(".game.BetRoundStart.gameResultCounter: object expected");
+                message.gameResultCounter = $root.game.GameResultCounter.fromObject(object.gameResultCounter);
+            }
             return message;
         };
 
@@ -6120,6 +6420,7 @@ export const game = $root.game = (() => {
                 object.timeRemain = 0;
                 object.numOfShoe = 0;
                 object.numOfRound = 0;
+                object.gameResultCounter = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -6131,6 +6432,8 @@ export const game = $root.game = (() => {
                 object.numOfShoe = message.numOfShoe;
             if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
                 object.numOfRound = message.numOfRound;
+            if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter"))
+                object.gameResultCounter = $root.game.GameResultCounter.toObject(message.gameResultCounter, options);
             return object;
         };
 
@@ -6590,6 +6893,7 @@ export const game = $root.game = (() => {
          * @property {Array.<dealer.IDraw>|null} [draws] GameStatus draws
          * @property {number|null} [numOfShoe] GameStatus numOfShoe
          * @property {number|null} [numOfRound] GameStatus numOfRound
+         * @property {game.IGameResultCounter|null} [gameResultCounter] GameStatus gameResultCounter
          */
 
         /**
@@ -6657,6 +6961,14 @@ export const game = $root.game = (() => {
         GameStatus.prototype.numOfRound = 0;
 
         /**
+         * GameStatus gameResultCounter.
+         * @member {game.IGameResultCounter|null|undefined} gameResultCounter
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.gameResultCounter = null;
+
+        /**
          * Creates a new GameStatus instance using the specified properties.
          * @function create
          * @memberof game.GameStatus
@@ -6693,6 +7005,8 @@ export const game = $root.game = (() => {
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfShoe);
             if (message.numOfRound != null && Object.hasOwnProperty.call(message, "numOfRound"))
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfRound);
+            if (message.gameResultCounter != null && Object.hasOwnProperty.call(message, "gameResultCounter"))
+                $root.game.GameResultCounter.encode(message.gameResultCounter, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             return writer;
         };
 
@@ -6746,6 +7060,9 @@ export const game = $root.game = (() => {
                     break;
                 case 6:
                     message.numOfRound = reader.int32();
+                    break;
+                case 7:
+                    message.gameResultCounter = $root.game.GameResultCounter.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6815,6 +7132,11 @@ export const game = $root.game = (() => {
             if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
                 if (!$util.isInteger(message.numOfRound))
                     return "numOfRound: integer expected";
+            if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter")) {
+                let error = $root.game.GameResultCounter.verify(message.gameResultCounter);
+                if (error)
+                    return "gameResultCounter." + error;
+            }
             return null;
         };
 
@@ -6869,6 +7191,11 @@ export const game = $root.game = (() => {
                 message.numOfShoe = object.numOfShoe | 0;
             if (object.numOfRound != null)
                 message.numOfRound = object.numOfRound | 0;
+            if (object.gameResultCounter != null) {
+                if (typeof object.gameResultCounter !== "object")
+                    throw TypeError(".game.GameStatus.gameResultCounter: object expected");
+                message.gameResultCounter = $root.game.GameResultCounter.fromObject(object.gameResultCounter);
+            }
             return message;
         };
 
@@ -6893,6 +7220,7 @@ export const game = $root.game = (() => {
                 object.timeRemain = 0;
                 object.numOfShoe = 0;
                 object.numOfRound = 0;
+                object.gameResultCounter = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -6909,6 +7237,8 @@ export const game = $root.game = (() => {
                 object.numOfShoe = message.numOfShoe;
             if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
                 object.numOfRound = message.numOfRound;
+            if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter"))
+                object.gameResultCounter = $root.game.GameResultCounter.toObject(message.gameResultCounter, options);
             return object;
         };
 

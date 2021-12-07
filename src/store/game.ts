@@ -7,6 +7,7 @@ export const state = {
     gameEndUuid:"",
     numOfRound:'',
     numOfShoe:'',
+    gameResultCount:{},// 統計資訊
   };
   export const actions = {}
   
@@ -16,6 +17,7 @@ export const state = {
       state.gameUuid = payload.gameUuid
       state.numOfRound = payload.numOfRound
       state.numOfShoe = payload.numOfShoe
+      state.gameResultCount = payload.gameResultCounter
       // console.log("vuex-BetRoundStart資料更新",state.BetRoundStart)
     },
     BetRoundCountdown(state:any, payload:any){
@@ -27,6 +29,7 @@ export const state = {
       state.gameUuid = payload.gameUuid
       state.numOfRound = payload.numOfRound
       state.numOfShoe = payload.numOfShoe
+      state.gameResultCount = payload.gameResultCounter
     },
     BetRoundEnd(state:any, payload:any){
       state.BetRoundEnd = payload
