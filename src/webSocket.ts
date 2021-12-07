@@ -1,7 +1,7 @@
 
 const url = process.env.VUE_APP_API_HOST;  //後端網址寫在.env檔案中；分為線上環境和測試環境//8199 由keypir控制//8200 可以自由測的
 //建立webSocket實例
-let Socket:WebSocket | null
+export let Socket:WebSocket | null
 let setIntervalWesocketPush:number
 //websocket方法區
 //連接上後會發送心跳
@@ -25,6 +25,7 @@ const oncloseWs = () => {
     if (Socket?.readyState !== 2) {  //readyState 2 = 連接正在關閉
       Socket = null
       createSocket()
+      window.dispatchEvent(new CustomEvent('reConnect'))
     }
   }
 

@@ -165,7 +165,7 @@ export default defineComponent({
       playerPoint.value = (playerCardArray.value[0]+playerCardArray.value[1]+playerCardArray.value[2])%10
       bankerPoint.value = (bankCardArray.value[0]+bankCardArray.value[1]+bankCardArray.value[2])%10
       showCardResult.value = true
-      console.log("計算最終卡牌點數",'閒',playerCardArray.value,'莊',bankCardArray.value,'要不要顯示卡牌',showCardResult.value)
+      // console.log("計算最終卡牌點數",'閒',playerCardArray.value,'莊',bankCardArray.value,'要不要顯示卡牌',showCardResult.value)
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit
@@ -203,7 +203,7 @@ export default defineComponent({
         else if(viewportWidth<=540 && viewportWidth>280){
           scale.value = 0.14
         }else if(viewportWidth<=280){
-          console.log("偵測到最小尺寸280")
+          // console.log("偵測到最小尺寸280")
           scale.value = 0.12
         }
         else{

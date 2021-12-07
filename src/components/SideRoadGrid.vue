@@ -61,6 +61,20 @@ export default defineComponent({
       //   showBigRoadInit()
       //   bigRoadInit.value = true
       // })
+      window.addEventListener('reConnect',()=>{
+        console.log('偵測崇廉')
+        if(bigRoadInit.value){
+            // showBigRoad()
+            showBigRoadAll()
+          }else{  //沒有初始化過先畫
+            showBigRoadInit()
+          }
+          // if(bigRoadInit.value){
+          //   showBigRoadTest ()
+          // }else{  //沒有初始化過先畫
+          //   showBigRoadInitTest ()
+          // }
+      }) 
       //桌號
         const route = useRoute()
         const tableNum = computed(()=>{
@@ -97,7 +111,7 @@ export default defineComponent({
         const roadOverFlowerTimes = ref(0) //超出格子幾次
         const bigRoadTie = ref(false) //是否有和局狀態
         const bigRoadInit = ref(false) //大路是否初始化過(上桌時)
-        const bigRoadColArr = reactive<any[]>([]) //大路的Array
+        let bigRoadColArr = reactive<any[]>([]) //大路的Array
         const addBigColumnCount = ref(0)
         for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
           bigRoadColArr.push([0,0,0,0,0,0])
@@ -685,18 +699,20 @@ export default defineComponent({
         }
         function showBigRoadAll () { //每次都重畫的版本
           // console.log("重畫大路")
+          // console.log('大路增加的欄數',addBigColumnCount.value)
           bigRoadColumn.value = 0+addBigColumnCount.value
+          // bigRoadColumn.value = 0
           bigRoadItemIndex.value = 0
           currentBigRoadResult.value = 0
           lastBigRoadResult.value = 0
           roadOverFlowerTimes.value = 0
-          console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value)
+          console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value,bigRoadColArr)
           //大路陣列也要規0
-          for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
+         for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
             bigRoadColArr[i] = [0,0,0,0,0,0]
           }
           bigRoadResult.value.columns.forEach((i:any)=>{
-            // console.log(i)
+            console.log(i)
             i.blocks.forEach((item:any)=>{
                recordBigRoad(item)  //1.紀錄陣營
               // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
@@ -763,6 +779,7 @@ export default defineComponent({
             //     bigRoadTie.value = false
             //   }
             // }
+            console.log(bigRoadColumn.value,bigRoadItemIndex.value,bigRoadColArr)
             putBigRoad(item)
             })
            })

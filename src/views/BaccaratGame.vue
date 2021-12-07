@@ -18,6 +18,7 @@ import GameHistory from '@/components/GameHistory.vue'
 import Counter from '@/components/Counter.vue'
 import {useRoute } from 'vue-router'
 import {useStore} from 'vuex'
+import {Socket} from '../webSocket'
 import {sendTableJoinCall} from '../socketApi'
 import table from '@/store/table'
 export default defineComponent({
@@ -67,6 +68,9 @@ export default defineComponent({
       store.commit('table/setCurrentTable',tableNum.value)
       tableJoin()
     })
+    window.addEventListener('reConnect',()=>{
+      tableJoin ()
+    }) 
     function tableJoin (){
        switch(tableNum.value){
         case 'A':

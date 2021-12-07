@@ -6,14 +6,25 @@
         <li class="font_green">和局 : {{betInfo.tie}}</li> 
         <li class="font_red">莊對 : {{betInfo.bankerPair}}</li> 
         <li class="font_yellow">閒對 : {{betInfo.playerPair}}</li> 
-        <li>總局數 : {{totalRound}}</li>
+        <li v-if="totalRound>0">總局數 : {{totalRound}}</li>
+        <li v-else>總局數 : 0</li>
       </ul>
       <ul class="col-6 text-md-right" v-if="betInfo">
-        <li class="font_red">{{Math.floor((betInfo.banker/totalRound)*100)}}%</li>    
-        <li class="font_yellow">{{Math.floor((betInfo.player/totalRound)*100)}}%</li> 
-        <li class="font_green">{{Math.floor((betInfo.tie/totalRound)*100)}}%</li> 
-        <li class="font_red">{{Math.floor((betInfo.bankerPair/totalRound)*100)}}%</li> 
-        <li class="font_yellow">{{Math.floor((betInfo.playerPair/totalRound)*100)}}%</li> 
+        <section v-if="totalRound>0">
+          <li class="font_red">{{Math.floor((betInfo.banker/totalRound)*100)}}%</li>    
+          <li class="font_yellow">{{Math.floor((betInfo.player/totalRound)*100)}}%</li> 
+          <li class="font_green">{{Math.floor((betInfo.tie/totalRound)*100)}}%</li> 
+          <li class="font_red">{{Math.floor((betInfo.bankerPair/totalRound)*100)}}%</li> 
+          <li class="font_yellow">{{Math.floor((betInfo.playerPair/totalRound)*100)}}%</li> 
+        </section>
+        <section v-else>
+          <li class="font_red">0%</li>    
+          <li class="font_yellow">0%</li> 
+          <li class="font_green">0%</li> 
+          <li class="font_red">0%</li> 
+          <li class="font_yellow">0%</li> 
+        </section>
+        
       </ul>
   </div>
 </template>
