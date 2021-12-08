@@ -36,7 +36,6 @@
           <li class="font_red">0%</li> 
           <li class="font_yellow">0%</li> 
         </section>
-        
       </ul>
   </div>
 </template>

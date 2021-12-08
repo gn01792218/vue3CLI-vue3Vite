@@ -712,7 +712,7 @@ export default defineComponent({
             bigRoadColArr[i] = [0,0,0,0,0,0]
           }
           bigRoadResult.value.columns.forEach((i:any)=>{
-            console.log(i)
+            // console.log(i)
             i.blocks.forEach((item:any)=>{
                recordBigRoad(item)  //1.紀錄陣營
               // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||

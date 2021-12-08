@@ -45,7 +45,7 @@ export default defineComponent({
       return store.state.table.TableJoinRecall
     }))
     watch(tableRecall,()=>{
-      console.log("回應上桌資料:",tableRecall.value)
+      // console.log("回應上桌資料:",tableRecall.value)
     })
     //先送一次tableJoinCall
     onMounted(async()=>{
@@ -61,7 +61,7 @@ export default defineComponent({
     //監聽
     // 2.發送換桌請求
     watch(tables,()=>{
-      console.log("有tables")
+      // console.log("有tables")
       tableJoin()
     })
     watch([tableNum],()=>{

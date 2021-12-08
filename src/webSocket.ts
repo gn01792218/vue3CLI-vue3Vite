@@ -56,7 +56,7 @@ const oncloseWs = () => {
       Socket.send(message)
     } else if (Socket?.readyState === 0) { //正在連接中
       connecting(message)
-      console.log("readyState:"+Socket.readyState,"準備傳送:"+message);
+      // console.log("readyState:"+Socket.readyState,"準備傳送:"+message);
     }
   }
 

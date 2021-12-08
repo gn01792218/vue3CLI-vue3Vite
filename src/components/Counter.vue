@@ -86,22 +86,25 @@ export default defineComponent({
                 }
             },1000)
         }
-        // watch(timer,()=>{  //測試計時器是否有被清除
-        //     if(timer.value){
-        //         console.log("計時中")
-        //     }else{
-        //         console.log('計時器被清除')
-        //     }
-        // })
+        watch(timer,()=>{  //測試計時器是否有被清除
+            if(timer.value){
+                console.log("計時中")
+            }else{
+                console.log('計時器被清除')
+            }
+        })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
-                // console.log("新局開始",count.value)
-                timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
-                setCount()
+                console.log("新局開始",count.value,'回合uuid',roundUuid.value)
+                if(roundUuid.value){
+                    console.log('有UUid才要倒數')
+                    timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
+                    setCount()
+                }
         })
         watch(lastCount,()=>{ //換桌時候會偵測現在的秒數
             if(gameStatus.value==1){
-                console.log(lastCount.value)
+                console.log('倒數剩下幾秒',lastCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 count.value = lastCount.value
                 setCount()
@@ -109,9 +112,10 @@ export default defineComponent({
         })
         return{
             //data
-            count,displayNum,
+            count,
+            displayNum,
             //methods
-            setCount
+            setCount,
         }
     },
 })

@@ -230,7 +230,7 @@ export default defineComponent({
                     num:3,
                     },
                     {
-                    point:5000,
+                    point:2000,
                     ammo:[], //子彈陣列
                     num:4,
                     },
@@ -327,7 +327,7 @@ export default defineComponent({
             defaultCoin2.classList.replace('coin-menu2-disable','coin-menu2')
             defaultCoin3.classList.replace('coin-menu3-disable','coin-menu3')
             canUseSmallCoin.value = true
-            console.log('可否使用小籌碼',canUseSmallCoin.value)
+            // console.log('可否使用小籌碼',canUseSmallCoin.value)
         }
         function setMinBetCoinUnusable(){
             let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
@@ -343,8 +343,8 @@ export default defineComponent({
             defaultCoin2.classList.add('coin-menu2-disable')
             defaultCoin3.classList.add('coin-menu3-disable')
             canUseSmallCoin.value = false
-            console.log(defaultCoin1.classList,defaultCoin2.classList,defaultCoin3.classList)
-            console.log('可否使用小籌碼',canUseSmallCoin.value)
+            // console.log(defaultCoin1.classList,defaultCoin2.classList,defaultCoin3.classList)
+            // console.log('可否使用小籌碼',canUseSmallCoin.value)
         }
         function chooseCoint (index:number,e:MouseEvent) {
             //超過最小下注額才可以使用前三個籌碼
