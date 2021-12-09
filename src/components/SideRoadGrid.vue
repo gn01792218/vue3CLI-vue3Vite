@@ -706,7 +706,7 @@ export default defineComponent({
           currentBigRoadResult.value = 0
           lastBigRoadResult.value = 0
           roadOverFlowerTimes.value = 0
-          console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value,bigRoadColArr)
+          // console.log(bigRoadColumn.value,bigRoadItemIndex.value,currentBigRoadResult.value,lastBigRoadResult.value,roadOverFlowerTimes.value,bigRoadColArr)
           //大路陣列也要規0
          for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
             bigRoadColArr[i] = [0,0,0,0,0,0]
@@ -779,7 +779,7 @@ export default defineComponent({
             //     bigRoadTie.value = false
             //   }
             // }
-            console.log(bigRoadColumn.value,bigRoadItemIndex.value,bigRoadColArr)
+            // console.log(bigRoadColumn.value,bigRoadItemIndex.value,bigRoadColArr)
             putBigRoad(item)
             })
            })

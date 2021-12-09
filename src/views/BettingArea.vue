@@ -124,7 +124,7 @@ export default defineComponent({
         onMounted(()=>{
             //初始化籌碼
             setDefaultCoin()
-            setMinBetCoinUnusable()
+            // setMinBetCoinUnusable()
         })
         //vuex
         const store = useStore();
@@ -181,11 +181,11 @@ export default defineComponent({
             // console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
-            canBet.value = true
-            setDefaultCoin()
-            nextTick(()=>{
-                setMinBetCoinUnusable()
-            })
+            
+            // setDefaultCoin()
+            // nextTick(()=>{
+            //     setMinBetCoinUnusable()
+            // })
         })
         watch(gameEndUuid,()=>{
             canBet.value = false
@@ -207,10 +207,15 @@ export default defineComponent({
             winCoinAnimation()
         })
         watch(total,()=>{
-            if(parseInt(total.value)*1000>=coinList[3].point && !canUseSmallCoin.value){
-                console.log('可以打開前三個籌碼')
-                setMinBetCoinUsable()
-            }
+            console.log('下注總額變化提示:','所選注區',currentBetPosition.betAreaIndex)
+            // if(currentBetPosition.betAreaIndex==0 || currentBetPosition.betAreaIndex==1){
+            //     console.log('判斷莊閒區')
+            //     if(parseInt(total.value)*1000>=coinList[3].point && !canUseSmallCoin.value){
+            //         console.log('可以打開前三個籌碼')
+            //         // setMinBetCoinUsable()
+            //         canUseSmallCoin.value = true
+            //     }
+            // }
         })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
@@ -310,13 +315,14 @@ export default defineComponent({
         ]) 
         const betErrorArray = ref<Array<string>>([])
         function setDefaultCoin(){
-            let defaultCoin = document.querySelector('#defaultCoin4') as HTMLElement
+            let defaultCoin = document.querySelector('#defaultCoin1') as HTMLElement
             let rect = defaultCoin.getBoundingClientRect()
             currentCoint.coinElement = defaultCoin
             currentCoint.x = rect.left;  //設置籌碼起始座標點
             currentCoint.y = rect.top;
-            currentCoint.point = coinList[3].point
-            currentCoint.num = 3
+            currentCoint.point = coinList[0].point
+            currentCoint.num = 0
+            console.log()
         }
         function setMinBetCoinUsable(){
             //抓取前三個coin元素改變其外觀
@@ -347,26 +353,31 @@ export default defineComponent({
             // console.log('可否使用小籌碼',canUseSmallCoin.value)
         }
         function chooseCoint (index:number,e:MouseEvent) {
+            currentCoint.coinElement = e.target; //得到該元素
+            currentCoint.x = e.x;  //設置籌碼起始座標點
+            currentCoint.y = e.y;
+            currentCoint.num = index;
+            currentCoint.point = coinList[index].point
             //超過最小下注額才可以使用前三個籌碼
-            if(canUseSmallCoin.value){
-                console.log("可以選取前三個了",total.value)
-                currentCoint.coinElement = e.target; //得到該元素
-                currentCoint.x = e.x;  //設置籌碼起始座標點
-                currentCoint.y = e.y;
-                currentCoint.num = index;
-                currentCoint.point = coinList[index].point
-            }else{
-                //0 1 2不能選，只能選後面的籌碼
-                 console.log("不能選前三個")
-                if(index!==0 && index!==1 && index!==2){
-                   console.log('可以選後面的')
-                    currentCoint.coinElement = e.target; //得到該元素
-                    currentCoint.x = e.x;  //設置籌碼起始座標點
-                    currentCoint.y = e.y;
-                    currentCoint.num = index;
-                    currentCoint.point = coinList[index].point
-                }
-            }
+            // if(canUseSmallCoin.value){
+            //     console.log("可以選取前三個了",total.value)
+            //     currentCoint.coinElement = e.target; //得到該元素
+            //     currentCoint.x = e.x;  //設置籌碼起始座標點
+            //     currentCoint.y = e.y;
+            //     currentCoint.num = index;
+            //     currentCoint.point = coinList[index].point
+            // }else{
+            //     //0 1 2不能選，只能選後面的籌碼
+            //      console.log("不能選前三個")
+            //     if(index!==0 && index!==1 && index!==2){
+            //        console.log('可以選後面的')
+            //         currentCoint.coinElement = e.target; //得到該元素
+            //         currentCoint.x = e.x;  //設置籌碼起始座標點
+            //         currentCoint.y = e.y;
+            //         currentCoint.num = index;
+            //         currentCoint.point = coinList[index].point
+            //     }
+            // }
         }
         function betErrorAnimation (e:HTMLElement) {
             gsap
@@ -517,17 +528,42 @@ export default defineComponent({
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
             if(canBet.value){
                 //發送下注請求
-                sendBetCall({
-                    gameUuid:roundUuid.value,
-                    betIndex:currentCoint.num,
-                    betArea:index+1,
-                })
-                if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
-                    betArray.push({   //當玩家餘額不足時不要推
-                    'betAreaElement':e.target,
-                    'betAreaIndex':index,
-                })
+                if(index==0 || index==1){
+                    // console.log(parseInt(total.value),parseInt(total.value)*1000)
+                    nextTick(()=>{
+                        // console.log('閒家目前下注',,'莊家目前下注',coinPosition[1].betStatus+currentCoint.point)
+                    })
+                    
+                        if((coinPosition[0].betStatus+currentCoint.point)>=coinList[3].point ||(coinPosition[1].betStatus+currentCoint.point)>=coinList[3].point){
+                        sendBetCall({
+                            gameUuid:roundUuid.value,
+                            betIndex:currentCoint.num,
+                            betArea:index+1,
+                        })
+                        if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
+                            betArray.push({   //當玩家餘額不足時不要推
+                                'betAreaElement':e.target,
+                                'betAreaIndex':index,
+                            })
+                        }
+                        }else{
+                        betErrorArray.value?.push('下注失敗')
+                        betErrorArray.value?.push(`莊閒注區最小下注額為${coinList[3].point}`)
+                        }
+                }else{
+                    sendBetCall({
+                        gameUuid:roundUuid.value,
+                        betIndex:currentCoint.num,
+                        betArea:index+1,
+                    })
+                    if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
+                        betArray.push({   //當玩家餘額不足時不要推
+                        'betAreaElement':e.target,
+                        'betAreaIndex':index,
+                    })
+                    }
                 }
+                
             }else{ //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
                 betErrorArray.value?.push('下注失敗')
             }
@@ -641,6 +677,8 @@ export default defineComponent({
                 i.ammo = []
             })
             store.commit('bet/setBetResultRest')
+            canBet.value = true
+            canUseSmallCoin.value = false
         }
         function showResult () { 
             //為贏的注區套上閃爍動畫
