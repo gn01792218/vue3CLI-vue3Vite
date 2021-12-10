@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onUnmounted } from 'vue'
 import Header from './views/Header.vue'
 import Footer from './views/Footer.vue'
 import BaccaratGame from './views/BaccaratGame.vue'
@@ -25,13 +25,20 @@ export default defineComponent({
   },
   setup() {
     createSocket()
+    // window.onbeforeunload = (e: any) => {
+    //   alert()
+    // };
     if(Cookies.get('userToken')){
       console.log("有cookie，抓cookie")
-      sendLogin({
-          uri: "LoginCall",
-          token: Cookies.get('userToken'),
-    })
+      // sendLogin({
+      //     uri: "LoginCall",
+      //     token: Cookies.get('userToken'),
+      // })
     }
+    // onUnmounted(()=>{
+    //   console.log('刪除cookies')
+    //   Cookies.remove('userToken')
+    // })
   },
 })
 </script>

@@ -50,6 +50,9 @@ export default defineComponent({
     //先送一次tableJoinCall
     onMounted(async()=>{
       console.log("創建遊戲桌",tables.value)
+      if(tables.value==undefined){
+        alert('請關閉遊戲，重新登入遊戲')
+      }
       let table = await tables
       //  if(tables.value){
         tableJoin()

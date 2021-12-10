@@ -18,10 +18,13 @@
         display: none;
     }
     .bettingArea-betInfo{
-        display: flex;
-        justify-content: space-around;
         p{
             margin-bottom: 0;
+        }
+        ul{
+            section{
+                justify-content: space-around;
+            }
         }
     }
     .gameresult{

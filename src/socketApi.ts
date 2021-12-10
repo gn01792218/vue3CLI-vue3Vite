@@ -34,7 +34,7 @@ export const sendLogin =(data:any) => {
         token:data.token,
     })
     let bytes = auth.LoginCall.encode(proto).finish()
-    // console.log("sendLogin",proto)
+    console.log("sendLogin",proto)
     sendWSPush(bytes);
 }
 //發送選桌訊息

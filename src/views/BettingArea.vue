@@ -51,12 +51,31 @@
         </div>
         <!-- total Bet -->
         <div class="bettingArea-betInfo em font-total">
-            <p class="mobilTableInfo yellow">莊:XX</p>
+            <p class="d-none d-lg-block">本次注額{{total}}</p>
+            <ul class="d-block d-lg-none">
+                <section class="d-flex" v-if="betInfo">
+                    <li class="mobilTableInfo font_yellow">莊家 : {{betInfo.banker}}</li>    
+                    <li class="mobilTableInfo font_red">閒家 : {{betInfo.player}}</li> 
+                    <li class="mobilTableInfo font_green">和局 : {{betInfo.tie}}</li> 
+                    <li class="mobilTableInfo font_yellow">莊對 : {{betInfo.bankerPair}}</li> 
+                    <li class="mobilTableInfo font_red">閒對 : {{betInfo.playerPair}}</li> 
+                    <!-- <li v-if="totalRound>0">總局數 : {{totalRound}}</li> -->
+                </section>
+                <section class="d-flex" v-else>
+                    <li class="mobilTableInfo font_yellow">莊家 : 0</li>    
+                    <li class="mobilTableInfo font_red">閒家 : 0</li> 
+                    <li class="mobilTableInfo font_green">和局 : 0</li> 
+                    <li class="mobilTableInfo font_yellow">莊對 : 0</li> 
+                    <li class="mobilTableInfo font_red">閒對 : 0</li> 
+                    <!-- <li v-if="totalRound>0">總局數 : 0</li> -->
+                </section>
+            </ul>
+            
+            <!-- <p class="mobilTableInfo yellow">莊:XX</p>
             <p class="mobilTableInfo red">閒:XX</p>
             <p class="mobilTableInfo green">和:XX</p>
             <p class="mobilTableInfo yellow">莊對:XX</p>
-            <p class="mobilTableInfo red">閒對:XX</p>
-            <p class="d-none d-lg-block">本次注額{{total}}</p>
+            <p class="mobilTableInfo red">閒對:XX</p> -->
         </div>
         <!-- coin -->
         <div class="coinArea position-relative">
@@ -76,7 +95,7 @@
             </ul>
         </div>
         <GameResult/>
-        <!-- <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button> -->
+        <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
     </div>
 </template>
 
@@ -153,6 +172,9 @@ export default defineComponent({
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
+        const betInfo = computed(()=>{
+            return store.state.game.gameResultCount
+        })
         const total = computed(()=>{
             return store.state.bet.totalBets
         })
@@ -164,6 +186,7 @@ export default defineComponent({
         const canUseSmallCoin = ref(false)
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
+        
             if(betResult.value!==-1){ 
                 coinPosition[0].betStatus = betStatus.value.Player
                 coinPosition[1].betStatus = betStatus.value.Banker
@@ -295,7 +318,7 @@ export default defineComponent({
                 host:"閒對",
                 configClass:"betArea-item red",
                 betStatus:0, //目前這一回合的下注狀況
-                maxBet:10000,
+                maxBet:9000,
             },
             {
                 initBottom:0,
@@ -305,7 +328,7 @@ export default defineComponent({
                 host:"和局",
                 configClass:"betArea-item green",
                 betStatus:0, //目前這一回合的下注狀況
-                maxBet:20000,
+                maxBet:12500,
             },
             {
                 initBottom:0,
@@ -315,7 +338,7 @@ export default defineComponent({
                 host:"莊對",
                 configClass:"betArea-item yellow",
                 betStatus:0, //目前這一回合的下注狀況
-                maxBet:10000,
+                maxBet:9000,
             },
            
         ]) 
@@ -837,9 +860,22 @@ export default defineComponent({
         }
         return{
             //data
-            coinList,currentCoint,coinPosition,betStatus,total,betErrorArray,
+            coinList,
+            currentCoint,
+            coinPosition,
+            betStatus,
+            total,
+            betErrorArray,
+            betInfo,
             //methods
-            chooseCoint,cointAnimate,generateCoinAnimate,resetGame,showResult,getAllBetBack,betErrorAnimation,sendBetData,
+            chooseCoint,
+            cointAnimate,
+            generateCoinAnimate,
+            resetGame,
+            showResult,
+            getAllBetBack,
+            betErrorAnimation,
+            sendBetData,
         }
     }
 })

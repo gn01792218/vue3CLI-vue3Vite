@@ -8,6 +8,7 @@
                 <a class="header-btn disabled">B桌</a>
                 <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
                 <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
+                <a href="#" class="header-btn" @click="closeWindow">關閉視窗</a> 
             </div>
         </div>
         <div class="header-bottom">
@@ -61,8 +62,12 @@ export default defineComponent({
         }
         //關閉視窗
         function closeWindow () {
-            window.opener = null;
-            window.open("about:blank","_self")?.close();
+            console.log('關閉視窗')
+            // window.opener = null;
+            // window.open("about:blank","_self")?.close();
+            var op = window.open('about:blank','_self') as Window
+            // op.opener = null
+            op.close()
         }
         return{
             //data
@@ -72,7 +77,8 @@ export default defineComponent({
             shoe,
             //methods
             toGametable,
-            backToHome
+            backToHome,
+            closeWindow,
         }
     }
 }) 

@@ -20,6 +20,8 @@ export default defineComponent({
       const route = useRoute()
       const router = useRouter()
       Cookies.set('userToken',route.params.userToken,{expires:0.1})
+      console.log('設置cookies',Cookies.get('userToken'))
+      console.log('傳送路由參數',route.params.userToken)
       const store = useStore()
       const vuexUserToken = computed(()=>{
         return store.state.auth.userToken

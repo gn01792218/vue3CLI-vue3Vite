@@ -608,16 +608,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   display: none;
 }
 
-.bettingArea-betInfo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
 .bettingArea-betInfo p {
   margin-bottom: 0;
+}
+
+.bettingArea-betInfo ul section {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .gameresult {
@@ -1010,7 +1007,7 @@ cockroach-blue {
 
 .gameResultLoading {
   top: 35%;
-  background-color: #523e25;
+  background-color: #523e2575;
   z-index: 9;
 }
 

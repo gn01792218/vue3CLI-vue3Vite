@@ -26,8 +26,8 @@ export default defineComponent({
         const gameStatus = computed(()=>{
             return store.state.game.GameStatus.status
         })
-        const defaultCount = ref(15) //倒數預設預設30。
-        const count = ref(15)  //倒數數字
+        const defaultCount = ref(30) //倒數預設預設30。
+        const count = ref(30)  //倒數數字
         const timer = ref<any | null>(null) //計時器
         const displayNum=ref<number | string>()  //顯示的文字
         //計時器動畫
