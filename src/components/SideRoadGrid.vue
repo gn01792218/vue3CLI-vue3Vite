@@ -25,13 +25,14 @@
       </div>
     </section>
     <!-- BigEyesRoad -->
-    <section class="BigEyesRoad d-flex sideWidth position-absolute">
+    <BigEyesRoad/>
+    <!-- <section class="BigEyesRoad d-flex sideWidth position-absolute">
       <div class="BigEyesRoad-colum" :class="[`BigEyesRoad-column${index}`]" v-for="(cc,index) in BigEyesRoadWidth" :key="index">
         <div class="BigEyesRoad-item" :class="[`BigEyesRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
-          <!-- <div class="playerRoadIcon3-1"></div> -->
+          <div></div>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="bottomRoad d-flex sideWidth position-absolute">
     <!-- smallRoadGrid -->
       <div class="smallRoad d-flex w-50">
@@ -57,7 +58,11 @@ import {defineComponent,computed,ref, watch, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
+import BigEyesRoad from '@/components/BigEyesRoad.vue'
 export default defineComponent({
+  components:{
+    BigEyesRoad,
+  },
     setup(){
       // onMounted(()=>{
       //   showBigRoadInit()
@@ -240,7 +245,7 @@ export default defineComponent({
             }
         }
         function putBigRoad(gameResult:number){
-          console.log('畫行',bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
+          // console.log('畫行',bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
             let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
@@ -424,17 +429,17 @@ export default defineComponent({
             if(i==3 || i==10 || i==11 || i==12){
               i = transfromTie(currentBigRoadResult.value,i)
             }
-            console.log('轉換後',i)
+            // console.log('轉換後',i)
             recordBigRoad(i)  //1.紀錄陣營-->可能要移到轉化陣營之後再紀錄!!!!
             if(i == 13 || i == 14 || i ==15 || i == 16 || i ==17 ||
                 i == 18 || i == 19 || i == 20 ){
                   bigRoadTie.value = true
                   // console.log("是否和局",bigRoadTie.value)
             }
-            console.log("陣營",currentBigRoadResult.value)
+            // console.log("陣營",currentBigRoadResult.value)
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
-              console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+              // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
                 if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
                   bigRoadColumn.value++
@@ -459,7 +464,7 @@ export default defineComponent({
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
-              console.log("連贏溢出",bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value],bigRoadColumn.value,bigRoadItemIndex.value)
+              // console.log("連贏溢出",bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value],bigRoadColumn.value,bigRoadItemIndex.value)
               if(!bigRoadTie.value){  //不是和局時，才要+行
                 bigRoadColumn.value++ //換行
               }
@@ -849,7 +854,6 @@ export default defineComponent({
           // console.log("加了一行","行",bigRoadColumn.value)
           addBigColumnCount.value++
           // roadOverFlowerTimes.value++
-          console.log('+欄位')
         }
         function resetBigRoad(){
           //1.直接刪除beadPlatRoadPlace下所有的beadPlate-column
@@ -980,23 +984,23 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
 }
-.BigEyesRoad{
-  width:100%;
-  // border:solid red 2px;
-  height:25%;
-  right:0;
-  top:50%;
-}
-.BigEyesRoad-colum{
-  // border:solid peru 1px;
-  width:2.272727272727%;
-  height:100%;
-}
-.BigEyesRoad-item{
-  width:100%;
-  height:16.666666666%;
-  // border:rebeccapurple 2px solid;
-}
+// .BigEyesRoad{
+//   width:100%;
+//   // border:solid red 2px;
+//   height:25%;
+//   right:0;
+//   top:50%;
+// }
+// .BigEyesRoad-colum{
+//   // border:solid peru 1px;
+//   width:2.272727272727%;
+//   height:100%;
+// }
+// .BigEyesRoad-item{
+//   width:100%;
+//   height:16.666666666%;
+//   // border:rebeccapurple 2px solid;
+// }
 .bottomRoad{
   height:25%;
   /* border: blue solid 2px; */
