@@ -79,7 +79,7 @@ export default defineComponent({
       // console.log('不顯示卡牌點數',showCardResult.value)
      })
      watch(gameResult,()=>{
-       console.log(gameResult.value.length)
+      //  console.log(gameResult.value.length)
        setWinCardBoxLight()
        if(gameResult.value.length>0){
          showCardTotalPoint()
@@ -150,6 +150,7 @@ export default defineComponent({
        bankCardArray.value = [0,0,0]
      }
      function showCardTotalPoint () {
+      console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value,)
       playerCardArray.value = playerCardArray.value.map(i=>{
         if(i==10 || i==11 || i==12 || i==13){
           i = 0
@@ -165,7 +166,7 @@ export default defineComponent({
       playerPoint.value = (playerCardArray.value[0]+playerCardArray.value[1]+playerCardArray.value[2])%10
       bankerPoint.value = (bankCardArray.value[0]+bankCardArray.value[1]+bankCardArray.value[2])%10
       showCardResult.value = true
-      // console.log("計算最終卡牌點數",'閒',playerCardArray.value,'莊',bankCardArray.value,'要不要顯示卡牌',showCardResult.value)
+      console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit

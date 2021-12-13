@@ -3478,6 +3478,96 @@ export namespace roadmap {
         public toJSON(): { [k: string]: any };
     }
 
+    /** Properties of a BigEyeRoad. */
+    interface IBigEyeRoad {
+
+        /** BigEyeRoad columns */
+        columns?: (roadmap.IColumn[]|null);
+    }
+
+    /** Represents a BigEyeRoad. */
+    class BigEyeRoad implements IBigEyeRoad {
+
+        /**
+         * Constructs a new BigEyeRoad.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IBigEyeRoad);
+
+        /** BigEyeRoad columns. */
+        public columns: roadmap.IColumn[];
+
+        /**
+         * Creates a new BigEyeRoad instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BigEyeRoad instance
+         */
+        public static create(properties?: roadmap.IBigEyeRoad): roadmap.BigEyeRoad;
+
+        /**
+         * Encodes the specified BigEyeRoad message. Does not implicitly {@link roadmap.BigEyeRoad.verify|verify} messages.
+         * @param message BigEyeRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IBigEyeRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BigEyeRoad message, length delimited. Does not implicitly {@link roadmap.BigEyeRoad.verify|verify} messages.
+         * @param message BigEyeRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IBigEyeRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BigEyeRoad message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BigEyeRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.BigEyeRoad;
+
+        /**
+         * Decodes a BigEyeRoad message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BigEyeRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.BigEyeRoad;
+
+        /**
+         * Verifies a BigEyeRoad message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BigEyeRoad message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BigEyeRoad
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.BigEyeRoad;
+
+        /**
+         * Creates a plain object from a BigEyeRoad message. Also converts values to other types if specified.
+         * @param message BigEyeRoad
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.BigEyeRoad, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BigEyeRoad to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a Roadmap. */
     interface IRoadmap {
 
@@ -3489,6 +3579,9 @@ export namespace roadmap {
 
         /** Roadmap bigRoad */
         bigRoad?: (roadmap.IBigRoad|null);
+
+        /** Roadmap bigEyeRoad */
+        bigEyeRoad?: (roadmap.IBigEyeRoad|null);
     }
 
     /** Represents a Roadmap. */
@@ -3508,6 +3601,9 @@ export namespace roadmap {
 
         /** Roadmap bigRoad. */
         public bigRoad?: (roadmap.IBigRoad|null);
+
+        /** Roadmap bigEyeRoad. */
+        public bigEyeRoad?: (roadmap.IBigEyeRoad|null);
 
         /**
          * Creates a new Roadmap instance using the specified properties.

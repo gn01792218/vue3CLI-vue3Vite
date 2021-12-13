@@ -29,7 +29,7 @@ export default defineComponent({
     //   alert()
     // };
     if(Cookies.get('userToken')){
-      console.log("有cookie，抓cookie")
+      // console.log("有cookie，抓cookie")
       // sendLogin({
       //     uri: "LoginCall",
       //     token: Cookies.get('userToken'),

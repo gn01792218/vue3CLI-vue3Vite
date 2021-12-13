@@ -60,21 +60,21 @@ export default defineComponent({
         np.value.setScaleMode(2)
         np.value.setBufferTime(300)
         np.value.on('error',(e:any)=>{
-          console.log('直播發生錯誤',e)
+          // console.log('直播發生錯誤',e)
         })
         np.value.on('videoInfo',(w:any)=>{
-          console.log("顯示Video",w)
+          // console.log("顯示Video",w)
            loadingVideo.value = false
         })
         np.value.on('stop',()=>{
-         console.log("結束播放Video")
+        //  console.log("結束播放Video")
          loadingVideo.value = true
         })
         // createFlv()
         startPlay()
       })
       function startPlay (){
-        console.log("LiveVideo開始撥放",flvStream.value)
+        // console.log("LiveVideo開始撥放",flvStream.value)
         np.value.setKeepScreenOn()
         np.value.start(flvStream.value)
         // np.start(testPlayUrl)   //測試時使用

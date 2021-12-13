@@ -1,6 +1,8 @@
 <template>
 <!-- <button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
 <button class="test3 position-absolute" @click="testshowBigRoad(2)">閒贏</button>
+<button class="test9 position-absolute" @click="testshowBigRoad(3)">和</button>
+<button class="test10 position-absolute" @click="testshowBigRoad(10)">和莊對</button>
 <button class="test4 position-absolute" @click="testshowBigRoad(14)">莊和</button>
 <button class="test7 position-absolute" @click="testshowBigRoad(13)">莊和2</button>
 <button class="test8 position-absolute" @click="testshowBigRoad(15)">莊和3</button>
@@ -63,12 +65,15 @@ export default defineComponent({
       // })
       window.addEventListener('reConnect',()=>{
         console.log('偵測崇廉')
-        if(bigRoadInit.value){
-            // showBigRoad()
-            showBigRoadAll()
-          }else{  //沒有初始化過先畫
-            showBigRoadInit()
-          }
+        resetBigRoad()
+        console.log('大路陣列長度',bigRoadColArr.length)
+        showBigRoadInitTest ()
+        // if(bigRoadInit.value){
+        //     // showBigRoad()
+        //     showBigRoadAll()
+        //   }else{  //沒有初始化過先畫
+        //     showBigRoadInit()
+        //   }
           // if(bigRoadInit.value){
           //   showBigRoadTest ()
           // }else{  //沒有初始化過先畫
@@ -125,22 +130,24 @@ export default defineComponent({
           console.log("換桌側邊路圖重置")
           resetBigRoad()
         })
-        // watch(beadPlateResult,()=>{
-        //   console.log("偵測到朱朱陸")
-        //   if(bigRoadInit.value){
-        //     showBigRoadTest ()
-        //   }else{  //沒有初始化過先畫
-        //     showBigRoadInitTest ()
-        //   }
-        // })
-        watch(bigRoadResult,()=>{
+        watch(beadPlateResult,()=>{
+          console.log("偵測到朱朱陸")
           if(bigRoadInit.value){
-            // showBigRoad()
-            showBigRoadAll()
+            showBigRoadTest ()
           }else{  //沒有初始化過先畫
-            showBigRoadInit()
+            showBigRoadInitTest ()
           }
         })
+        // watch(bigRoadResult,()=>{
+        //   resetBigRoad()
+        //   showBigRoadInit()
+        //   // if(bigRoadInit.value){
+        //   //   // showBigRoad()
+        //   //   showBigRoadAll()
+        //   // }else{  //沒有初始化過先畫
+        //   //   showBigRoadInit()
+        //   // }
+        // })
         function transfromTie (currentSide:number,gameResult:number){
             if(currentSide==1){
               switch(gameResult){
@@ -167,6 +174,9 @@ export default defineComponent({
             }else if(currentSide==0){ //只針對第一顆是和局時的狀態
             // console.log("一開始是和局的狀態")
                   switch(gameResult){  
+                    case proto.roadmap.Block.Tie:
+                      return proto.roadmap.Block.Tie
+
                     case proto.roadmap.Block.BankerAndTie:
                     case proto.roadmap.Block.Banker:
                       return proto.roadmap.Block.BankerAndTie
@@ -230,7 +240,7 @@ export default defineComponent({
             }
         }
         function putBigRoad(gameResult:number){
-          // console.log('畫行',bigRoadColumn.value)
+          console.log('畫行',bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
             let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
@@ -321,6 +331,12 @@ export default defineComponent({
             // console.log("現在是第",bigRoadColumn.value,"行；","下一格格子",bigRoadItemIndex.value)
         }
         function testshowBigRoad (winner:number) {
+          console.log('畫新的之前的行格',bigRoadColumn.value,bigRoadItemIndex.value)
+          if(winner==3 || winner==10 || winner==11 || winner==12){
+              winner = transfromTie(currentBigRoadResult.value,winner) as number
+            }
+            console.log('轉換後',winner)
+            
           // gameResult.value.forEach(i=>{
             recordBigRoad(winner)  //1.紀錄陣營
             if(winner == 13 || winner == 14 || winner ==15 || winner == 16 || winner ==17 ||
@@ -328,6 +344,7 @@ export default defineComponent({
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
             }
+
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
               // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -387,27 +404,34 @@ export default defineComponent({
                 bigRoadTie.value = false
               }
             }
+            if(lastBigRoadResult.value==0 && bigRoadItemIndex.value==1 && bigRoadColumn.value==0){ //應付一開始是和局3的狀態
+              bigRoadItemIndex.value--
+               switch(winner){
+                case 1:
+                  winner = proto.roadmap.Block.BankerAndTie
+                  break
+                case 2:
+                  winner = proto.roadmap.Block.PlayerAndTie
+                  break
+              }
+            } 
             putBigRoad(winner)
           // })
         }
         function showBigRoadInitTest () {
           // console.log("畫大路初始化",bigRoadResult.value.columns)
           beadPlateResult.value.blocks.forEach((i:any)=>{ 
-            console.log(i) //初始化時所有都畫
             if(i==3 || i==10 || i==11 || i==12){
               i = transfromTie(currentBigRoadResult.value,i)
             }
+            console.log('轉換後',i)
             recordBigRoad(i)  //1.紀錄陣營-->可能要移到轉化陣營之後再紀錄!!!!
             if(i == 13 || i == 14 || i ==15 || i == 16 || i ==17 ||
-                i == 18 || i == 19 || i == 20){
+                i == 18 || i == 19 || i == 20 ){
                   bigRoadTie.value = true
                   // console.log("是否和局",bigRoadTie.value)
             }
             console.log("陣營",currentBigRoadResult.value)
-            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && lastBigRoadResult.value==0){
-              console.log("陣營",currentBigRoadResult.value)
-              bigRoadItemIndex.value--
-            }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
               console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -467,6 +491,17 @@ export default defineComponent({
                 bigRoadTie.value = false
               }
             }
+            if(lastBigRoadResult.value==0 && bigRoadItemIndex.value==1 && bigRoadColumn.value==0){ //應付一開始是和局3的狀態
+              bigRoadItemIndex.value--
+              switch(i){
+                case 1:
+                  i = proto.roadmap.Block.BankerAndTie
+                  break
+                case 2:
+                  i = proto.roadmap.Block.PlayerAndTie
+                  break
+              }
+            } 
             putBigRoad(i)
           })
           bigRoadInit.value = true
@@ -475,10 +510,7 @@ export default defineComponent({
           console.log(beadPlateResult.value.blocks[beadPlateResult.value.blocks.length-1])
           let item = beadPlateResult.value.blocks[beadPlateResult.value.blocks.length-1]
           // let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
-            console.log("畫最後一個item",item)
-            
             if(item==3 || item==10 || item==11 || item==12){
-             console.log('原本',item)
               item = transfromTie(currentBigRoadResult.value,item)
               console.log("轉換畫",item)
             }
@@ -487,9 +519,6 @@ export default defineComponent({
                 item == 18 || item == 19 || item == 20){
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
-            }
-            if(bigRoadColumn.value==0 && bigRoadItemIndex.value==1 && lastBigRoadResult.value==0){
-              bigRoadItemIndex.value--
             }
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
@@ -550,6 +579,18 @@ export default defineComponent({
                 bigRoadTie.value = false
               }
             }
+            if(lastBigRoadResult.value==0 && bigRoadItemIndex.value==1 && bigRoadColumn.value==0){ //應付開局為和局3的狀態
+              
+              bigRoadItemIndex.value--
+               switch(item){
+                case 1:
+                  item = proto.roadmap.Block.BankerAndTie
+                  break
+                case 2:
+                  item = proto.roadmap.Block.PlayerAndTie
+                  break
+              }
+            } 
             putBigRoad(item)
         }
         function showBigRoadInit() {
@@ -626,6 +667,7 @@ export default defineComponent({
             })
           })
           bigRoadInit.value = true
+           console.log('大路增加的欄數',addBigColumnCount.value)
         }
         function showBigRoad () {
           let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
@@ -698,10 +740,9 @@ export default defineComponent({
             putBigRoad(item)
         }
         function showBigRoadAll () { //每次都重畫的版本
-          // console.log("重畫大路")
-          // console.log('大路增加的欄數',addBigColumnCount.value)
+          // resetBigRoad()
+          console.log('大路增加的欄數',addBigColumnCount.value)
           bigRoadColumn.value = 0+addBigColumnCount.value
-          // bigRoadColumn.value = 0
           bigRoadItemIndex.value = 0
           currentBigRoadResult.value = 0
           lastBigRoadResult.value = 0
@@ -783,6 +824,7 @@ export default defineComponent({
             putBigRoad(item)
             })
            })
+            console.log('最後大路增加的欄數',addBigColumnCount.value)
         }
         function addBigRoadColumn () {  //滿格時一次增加一格的方法
           let bigRoad = document.querySelector('.bigRoad') as HTMLElement  
@@ -807,6 +849,7 @@ export default defineComponent({
           // console.log("加了一行","行",bigRoadColumn.value)
           addBigColumnCount.value++
           // roadOverFlowerTimes.value++
+          console.log('+欄位')
         }
         function resetBigRoad(){
           //1.直接刪除beadPlatRoadPlace下所有的beadPlate-column
@@ -841,9 +884,13 @@ export default defineComponent({
           roadOverFlowerTimes.value = 0
           addBigColumnCount.value = 0
           //大路陣列也要規0
+          let newbigRoadArr = []
+          
           for(let i = 0 ; i < secWidth.length ; i++){  //初始化大路陣列
-            bigRoadColArr[i] = [0,0,0,0,0,0]
+            newbigRoadArr [i] = [0,0,0,0,0,0]
           }
+          bigRoadColArr = newbigRoadArr
+          bigRoadTie.value = false
           bigRoadInit.value = false
         }
         return {
@@ -885,6 +932,14 @@ export default defineComponent({
 }
 .test8{
   bottom:0;
+  left:25%;
+}
+.test9{
+  bottom:30%;
+  left:25%;
+}
+.test10{
+  bottom:45%;
   left:25%;
 }
 /* 背景格子 */

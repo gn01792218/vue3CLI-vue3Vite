@@ -95,7 +95,7 @@
             </ul>
         </div>
         <GameResult/>
-        <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button>
+        <!-- <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button> -->
     </div>
 </template>
 
@@ -186,7 +186,6 @@ export default defineComponent({
         const canUseSmallCoin = ref(false)
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
-        
             if(betResult.value!==-1){ 
                 coinPosition[0].betStatus = betStatus.value.Player
                 coinPosition[1].betStatus = betStatus.value.Banker

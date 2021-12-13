@@ -26,8 +26,8 @@ export default defineComponent({
         const gameStatus = computed(()=>{
             return store.state.game.GameStatus.status
         })
-        const defaultCount = ref(30) //倒數預設預設30。
-        const count = ref(30)  //倒數數字
+        const defaultCount = ref(process.env.VUE_APP_GAME_COUNT) //倒數預設預設30。
+        const count = ref(process.env.VUE_APP_GAME_COUNT)  //倒數數字
         const timer = ref<any | null>(null) //計時器
         const displayNum=ref<number | string>()  //顯示的文字
         //計時器動畫
@@ -86,25 +86,25 @@ export default defineComponent({
                 }
             },1000)
         }
-        watch(timer,()=>{  //測試計時器是否有被清除
-            if(timer.value){
-                console.log("計時中")
-            }else{
-                console.log('計時器被清除')
-            }
-        })
+        // watch(timer,()=>{  //測試計時器是否有被清除
+        //     if(timer.value){
+        //         console.log("計時中")
+        //     }else{
+        //         console.log('計時器被清除')
+        //     }
+        // })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
                 console.log("新局開始",count.value,'回合uuid',roundUuid.value)
                 if(roundUuid.value){
-                    console.log('有UUid才要倒數')
+                    // console.log('有UUid才要倒數')
                     timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                     setCount()
                 }
         })
         watch(lastCount,()=>{ //換桌時候會偵測現在的秒數
             if(gameStatus.value==1){
-                console.log('倒數剩下幾秒',lastCount.value)
+                // console.log('倒數剩下幾秒',lastCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 count.value = lastCount.value
                 setCount()

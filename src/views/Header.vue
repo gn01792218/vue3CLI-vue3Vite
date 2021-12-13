@@ -8,7 +8,7 @@
                 <a class="header-btn disabled">B桌</a>
                 <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
                 <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
-                <a href="#" class="header-btn" @click="closeWindow">關閉視窗</a> 
+                <!-- <a href="#" class="header-btn" @click="closeWindow">關閉視窗</a>  -->
             </div>
         </div>
         <div class="header-bottom">

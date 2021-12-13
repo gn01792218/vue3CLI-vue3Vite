@@ -8628,6 +8628,214 @@ export const roadmap = $root.roadmap = (() => {
         return BigRoad;
     })();
 
+    roadmap.BigEyeRoad = (function() {
+
+        /**
+         * Properties of a BigEyeRoad.
+         * @memberof roadmap
+         * @interface IBigEyeRoad
+         * @property {Array.<roadmap.IColumn>|null} [columns] BigEyeRoad columns
+         */
+
+        /**
+         * Constructs a new BigEyeRoad.
+         * @memberof roadmap
+         * @classdesc Represents a BigEyeRoad.
+         * @implements IBigEyeRoad
+         * @constructor
+         * @param {roadmap.IBigEyeRoad=} [properties] Properties to set
+         */
+        function BigEyeRoad(properties) {
+            this.columns = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BigEyeRoad columns.
+         * @member {Array.<roadmap.IColumn>} columns
+         * @memberof roadmap.BigEyeRoad
+         * @instance
+         */
+        BigEyeRoad.prototype.columns = $util.emptyArray;
+
+        /**
+         * Creates a new BigEyeRoad instance using the specified properties.
+         * @function create
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {roadmap.IBigEyeRoad=} [properties] Properties to set
+         * @returns {roadmap.BigEyeRoad} BigEyeRoad instance
+         */
+        BigEyeRoad.create = function create(properties) {
+            return new BigEyeRoad(properties);
+        };
+
+        /**
+         * Encodes the specified BigEyeRoad message. Does not implicitly {@link roadmap.BigEyeRoad.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {roadmap.IBigEyeRoad} message BigEyeRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BigEyeRoad.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.columns != null && message.columns.length)
+                for (let i = 0; i < message.columns.length; ++i)
+                    $root.roadmap.Column.encode(message.columns[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BigEyeRoad message, length delimited. Does not implicitly {@link roadmap.BigEyeRoad.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {roadmap.IBigEyeRoad} message BigEyeRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BigEyeRoad.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BigEyeRoad message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.BigEyeRoad} BigEyeRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BigEyeRoad.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.BigEyeRoad();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.columns && message.columns.length))
+                        message.columns = [];
+                    message.columns.push($root.roadmap.Column.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BigEyeRoad message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.BigEyeRoad} BigEyeRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BigEyeRoad.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BigEyeRoad message.
+         * @function verify
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BigEyeRoad.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.columns != null && message.hasOwnProperty("columns")) {
+                if (!Array.isArray(message.columns))
+                    return "columns: array expected";
+                for (let i = 0; i < message.columns.length; ++i) {
+                    let error = $root.roadmap.Column.verify(message.columns[i]);
+                    if (error)
+                        return "columns." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BigEyeRoad message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.BigEyeRoad} BigEyeRoad
+         */
+        BigEyeRoad.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.BigEyeRoad)
+                return object;
+            let message = new $root.roadmap.BigEyeRoad();
+            if (object.columns) {
+                if (!Array.isArray(object.columns))
+                    throw TypeError(".roadmap.BigEyeRoad.columns: array expected");
+                message.columns = [];
+                for (let i = 0; i < object.columns.length; ++i) {
+                    if (typeof object.columns[i] !== "object")
+                        throw TypeError(".roadmap.BigEyeRoad.columns: object expected");
+                    message.columns[i] = $root.roadmap.Column.fromObject(object.columns[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BigEyeRoad message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.BigEyeRoad
+         * @static
+         * @param {roadmap.BigEyeRoad} message BigEyeRoad
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BigEyeRoad.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.columns = [];
+            if (message.columns && message.columns.length) {
+                object.columns = [];
+                for (let j = 0; j < message.columns.length; ++j)
+                    object.columns[j] = $root.roadmap.Column.toObject(message.columns[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BigEyeRoad to JSON.
+         * @function toJSON
+         * @memberof roadmap.BigEyeRoad
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BigEyeRoad.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BigEyeRoad;
+    })();
+
     roadmap.Roadmap = (function() {
 
         /**
@@ -8637,6 +8845,7 @@ export const roadmap = $root.roadmap = (() => {
          * @property {foundation.IHeader|null} [header] Roadmap header
          * @property {roadmap.IBeadPlate|null} [beadPlate] Roadmap beadPlate
          * @property {roadmap.IBigRoad|null} [bigRoad] Roadmap bigRoad
+         * @property {roadmap.IBigEyeRoad|null} [bigEyeRoad] Roadmap bigEyeRoad
          */
 
         /**
@@ -8679,6 +8888,14 @@ export const roadmap = $root.roadmap = (() => {
         Roadmap.prototype.bigRoad = null;
 
         /**
+         * Roadmap bigEyeRoad.
+         * @member {roadmap.IBigEyeRoad|null|undefined} bigEyeRoad
+         * @memberof roadmap.Roadmap
+         * @instance
+         */
+        Roadmap.prototype.bigEyeRoad = null;
+
+        /**
          * Creates a new Roadmap instance using the specified properties.
          * @function create
          * @memberof roadmap.Roadmap
@@ -8708,6 +8925,8 @@ export const roadmap = $root.roadmap = (() => {
                 $root.roadmap.BeadPlate.encode(message.beadPlate, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.bigRoad != null && Object.hasOwnProperty.call(message, "bigRoad"))
                 $root.roadmap.BigRoad.encode(message.bigRoad, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.bigEyeRoad != null && Object.hasOwnProperty.call(message, "bigEyeRoad"))
+                $root.roadmap.BigEyeRoad.encode(message.bigEyeRoad, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -8750,6 +8969,9 @@ export const roadmap = $root.roadmap = (() => {
                     break;
                 case 3:
                     message.bigRoad = $root.roadmap.BigRoad.decode(reader, reader.uint32());
+                    break;
+                case 4:
+                    message.bigEyeRoad = $root.roadmap.BigEyeRoad.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8801,6 +9023,11 @@ export const roadmap = $root.roadmap = (() => {
                 if (error)
                     return "bigRoad." + error;
             }
+            if (message.bigEyeRoad != null && message.hasOwnProperty("bigEyeRoad")) {
+                let error = $root.roadmap.BigEyeRoad.verify(message.bigEyeRoad);
+                if (error)
+                    return "bigEyeRoad." + error;
+            }
             return null;
         };
 
@@ -8831,6 +9058,11 @@ export const roadmap = $root.roadmap = (() => {
                     throw TypeError(".roadmap.Roadmap.bigRoad: object expected");
                 message.bigRoad = $root.roadmap.BigRoad.fromObject(object.bigRoad);
             }
+            if (object.bigEyeRoad != null) {
+                if (typeof object.bigEyeRoad !== "object")
+                    throw TypeError(".roadmap.Roadmap.bigEyeRoad: object expected");
+                message.bigEyeRoad = $root.roadmap.BigEyeRoad.fromObject(object.bigEyeRoad);
+            }
             return message;
         };
 
@@ -8851,6 +9083,7 @@ export const roadmap = $root.roadmap = (() => {
                 object.header = null;
                 object.beadPlate = null;
                 object.bigRoad = null;
+                object.bigEyeRoad = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -8858,6 +9091,8 @@ export const roadmap = $root.roadmap = (() => {
                 object.beadPlate = $root.roadmap.BeadPlate.toObject(message.beadPlate, options);
             if (message.bigRoad != null && message.hasOwnProperty("bigRoad"))
                 object.bigRoad = $root.roadmap.BigRoad.toObject(message.bigRoad, options);
+            if (message.bigEyeRoad != null && message.hasOwnProperty("bigEyeRoad"))
+                object.bigEyeRoad = $root.roadmap.BigEyeRoad.toObject(message.bigEyeRoad, options);
             return object;
         };
 
