@@ -192,11 +192,11 @@ export default defineComponent({
       }
       function resetBigEyesRoad(){
         //1.直接刪除所有column
-          let bigEyesRoadColContainer = document.querySelector('.BigEyesRoad') as HTMLElement
-          let lastChild = bigEyesRoadColContainer.lastElementChild
+          let RoadColContainer = document.querySelector('.BigEyesRoad') as HTMLElement
+          let lastChild = RoadColContainer.lastElementChild
           while(lastChild ){
-            bigEyesRoadColContainer.removeChild(lastChild); //移除行數
-            lastChild  = bigEyesRoadColContainer.lastElementChild //抓下一個child
+            RoadColContainer.removeChild(lastChild); //移除行數
+            lastChild  = RoadColContainer.lastElementChild //抓下一個child
           }
           //2.建立新的四十四條col
           for(let i = 0 ;i < BigEyesRoadWidth.length ;i++){
@@ -213,7 +213,7 @@ export default defineComponent({
               colItem.appendChild(itemDiv)
               col.appendChild(colItem)
             }
-            bigEyesRoadColContainer.appendChild(col)
+            RoadColContainer.appendChild(col)
           }
           //3.計數器規0
           bigEyesRoadColumn.value = 0
