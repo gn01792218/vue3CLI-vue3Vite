@@ -998,6 +998,208 @@ cockroach-blue {
   background-size: 160px auto;
 }
 
+.beadPlate {
+  width: 40%;
+  /*調整欄寬 */
+  height: 100%;
+  background-color: white;
+  /* overflow: hidden; */
+}
+
+.beadPlate-container {
+  width: 40%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* border:5px solid hotpink; */
+}
+
+.beadPlate-container::-webkit-scrollbar {
+  display: none;
+  /* Chrome Safari */
+}
+
+.beadPlatRoadPlace {
+  /* width:auto; */
+  height: 100%;
+}
+
+.beadPlateGrid-column {
+  width: 12.5%;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /* justify-content: space-around; */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.beadPlate-column {
+  border: 1px solid rgba(128, 128, 128, 0.219);
+  width: 12.5%;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /* justify-content: space-around; */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.beadPlateGrid-row {
+  border: 1px solid rgba(128, 128, 128, 0.219);
+  width: 100%;
+  height: 16.6666666%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-right: 0px;
+}
+
+.main-row {
+  width: 40%;
+  /*調整欄寬 */
+  left: 0;
+  height: 100%;
+}
+
+.beadPlate-item {
+  width: 100%;
+  height: 16.666666%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.beadPlateboundary {
+  border-right: solid 1px rgba(0, 0, 0, 0.719);
+}
+
+/* 背景格子 */
+.secRoad {
+  height: 100%;
+  background-color: white;
+}
+
+.secRoad-column {
+  border: 1px solid rgba(128, 128, 128, 0.219);
+  width: 4.54545454%;
+  /*調整欄寬 */
+  height: 100%;
+}
+
+.sec-column {
+  right: 0;
+  height: 100%;
+}
+
+.secRoad-row {
+  height: 8.33333333333333333%;
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.219);
+}
+
+/* 共用區 */
+.sideWidth {
+  /*用來統一調整sideRode佔寬比 */
+  width: 60%;
+}
+
+.boundary-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.719);
+}
+
+.boundary-right {
+  border-right: 1px solid rgba(0, 0, 0, 0.719);
+}
+
+.bigRoad {
+  top: 0;
+  right: 0;
+  height: 50%;
+}
+
+.bigRoad-column {
+  /* border: 2px solid yellow; */
+  width: 4.54545454%;
+  /*調整欄寬 */
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.bigRoad-item {
+  /* border: blue solid 1px; */
+  height: 16.6666666%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.BigEyesRoad {
+  width: 100%;
+  height: 25%;
+  right: 0;
+  top: 50%;
+}
+
+.BigEyesRoad-colum {
+  width: 2.272727272727%;
+  height: 100%;
+}
+
+.BigEyesRoad-item {
+  width: 100%;
+  height: 16.666666666%;
+}
+
+.sideWidth {
+  /*用來統一調整sideRode佔寬比 */
+  width: 60%;
+}
+
+.bottomRoad {
+  height: 25%;
+  /* border: blue solid 2px; */
+  right: 0;
+  bottom: 0;
+}
+
+.smallRoad, .cockroachRoad {
+  height: 100%;
+  /* right:30%; */
+}
+
+.bottomRoad-w10 {
+  width: 9%;
+  height: 100%;
+  /* border: solid 2px brown; */
+}
+
+.smallRoad-column, .cockroachRoad-column {
+  width: 5%;
+  height: 100%;
+}
+
+.smallRoad-item, .cockroachRoad-item {
+  width: 100%;
+  height: 16.6666666666%;
+}
+
 .LoadingPage {
   background-image: url("../../images/loading.svg");
   background-color: #644d31;

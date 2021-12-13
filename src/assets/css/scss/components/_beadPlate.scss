@@ -1,0 +1,59 @@
+//豬盤路
+.beadPlate{
+    width:40%;  /*調整欄寬 */
+    height:100%;
+    background-color: white;
+    /* overflow: hidden; */
+  }
+  .beadPlate-container{
+    width:40%;
+    height:100%;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+   
+    /* border:5px solid hotpink; */
+  }
+   .beadPlate-container::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+  .beadPlatRoadPlace{
+    /* width:auto; */
+    height:100%;
+  }
+  .beadPlateGrid-column{
+    width:12.5%;
+    height: 100%;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+  }
+  .beadPlate-column{
+    border: 1px solid rgba(128, 128, 128, 0.219);
+    width:12.5%;
+    height: 100%;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+  }
+  .beadPlateGrid-row{
+     border: 1px solid rgba(128, 128, 128, 0.219);
+     width:100%;
+     height:16.6666666%;
+     justify-content: space-around;
+     border-right: 0px;
+  }
+  .main-row{
+    width:40%; /*調整欄寬 */
+    left:0;
+    height:100%;
+  }
+  .beadPlate-item{  
+    width:100%;
+    height:16.666666%;
+    align-items: center;
+    justify-content: center;
+  }
+  .beadPlateboundary{
+    border-right: solid 1px rgba(0, 0, 0, 0.719);
+  }

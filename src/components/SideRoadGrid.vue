@@ -26,30 +26,25 @@
     </section>
     <!-- BigEyesRoad -->
     <BigEyesRoad/>
-    <!-- <section class="BigEyesRoad d-flex sideWidth position-absolute">
-      <div class="BigEyesRoad-colum" :class="[`BigEyesRoad-column${index}`]" v-for="(cc,index) in BigEyesRoadWidth" :key="index">
-        <div class="BigEyesRoad-item" :class="[`BigEyesRoad-item${index}`]" v-for="(cci,index) in bottomHeight" :key="index">
-          <div></div>
-        </div>
-      </div>
-    </section> -->
     <section class="bottomRoad d-flex sideWidth position-absolute">
     <!-- smallRoadGrid -->
-      <div class="smallRoad d-flex w-50">
+    <SmallRoad/>
+      <!-- <div class="smallRoad d-flex w-50">
         <div class="smallRoad-column" :class="[`smallRoad-column${index}`,{'boundary-right':index===21}]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="smallRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <!-- <div class="playerRoadIcon7"></div> -->
+            <div></div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- cockroachRoad -->
-      <div class="cockroachRoad d-flex w-50">
+      <Cockroach/>
+      <!-- <div class="cockroachRoad d-flex w-50">
         <div class="cockroachRoad-column" :class="[`cockroachRoad-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
           <div class="cockroachRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <!-- <div class="bankerRoadIcon8"></div> -->
+            <div></div>
           </div>
         </div>
-      </div>
+      </div> -->
     </section>
 </template>
 
@@ -59,9 +54,13 @@ import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
 import BigEyesRoad from '@/components/BigEyesRoad.vue'
+import Cockroach from '@/components/Cockroach.vue'
+import SmallRoad from '@/components/SmallRoad.vue'
 export default defineComponent({
   components:{
     BigEyesRoad,
+    Cockroach,
+    SmallRoad,
   },
     setup(){
       // onMounted(()=>{
@@ -111,8 +110,8 @@ export default defineComponent({
         const secHeight = new Array(12)
         const topHeight = new Array(6)
         const BigEyesRoadWidth =new Array(44)
-        const bottomHeight = new Array(6)
-        const bottom1width = new Array(22)
+        // const bottomHeight = new Array(6)
+        // const bottom1width = new Array(22)
         //基本資料
         const bigRoadColumn = ref(0)  //畫到第幾欄
         const bigRoadItemIndex = ref(0) //畫到第幾格
@@ -899,7 +898,7 @@ export default defineComponent({
         }
         return {
           //data
-          topHeight,BigEyesRoadWidth ,secWidth,bottomHeight,secHeight,bottom1width,
+          topHeight,BigEyesRoadWidth ,secWidth,secHeight,
           //methods
           resetBigRoad,testshowBigRoad,
         }
@@ -946,96 +945,4 @@ export default defineComponent({
   bottom:45%;
   left:25%;
 }
-/* 背景格子 */
-.secRoad{
-  height:100%;
-  background-color: white;
-}
-.secRoad-column{
-  border: 1px solid rgba(128, 128, 128, 0.219);
-  width:4.54545454%; /*調整欄寬 */
-  height: 100%;
-}
-.sec-column{
-  right:0;
-  height:100%;
-}
-.secRoad-row{
-  height:8.33333333333333333%;
-  width:100%;
-  border: 1px solid rgba(128, 128, 128, 0.219);
-}
-
-/* 放置四種路圖的格子 */
-.bigRoad{
-  top:0;
-  right:0;
-  height:50%;
-}
-.bigRoad-column{
-  /* border: 2px solid yellow; */
-  width:4.54545454%;  /*調整欄寬 */
-  height:100%;
-  flex-direction: column;
-}
-.bigRoad-item{
-  /* border: blue solid 1px; */
-  height:16.6666666%;
-  flex-direction: column;
-  align-items: center;
-}
-// .BigEyesRoad{
-//   width:100%;
-//   // border:solid red 2px;
-//   height:25%;
-//   right:0;
-//   top:50%;
-// }
-// .BigEyesRoad-colum{
-//   // border:solid peru 1px;
-//   width:2.272727272727%;
-//   height:100%;
-// }
-// .BigEyesRoad-item{
-//   width:100%;
-//   height:16.666666666%;
-//   // border:rebeccapurple 2px solid;
-// }
-.bottomRoad{
-  height:25%;
-  /* border: blue solid 2px; */
-  right:0;
-  bottom:0;
-}
-.smallRoad,.cockroachRoad{
-  height:100%;
-  // border: solid 2px yellow;
-  /* right:30%; */
-} 
-.bottomRoad-w10{
-  width:9%;
-  height:100%;
-  /* border: solid 2px brown; */
-}
-.smallRoad-column,.cockroachRoad-column{
-  width:5%;
-  height:100%;
-  // border:red solid 2px;
-}
-.smallRoad-item,.cockroachRoad-item{
-  width:100%;
-  height:16.6666666666%;
-  // border:springgreen solid 2px;
-}
-/* 共用區 */
-.sideWidth{   /*用來統一調整sideRode佔寬比 */
-  width:60%;
-}
-.boundary-bottom{
-  border-bottom:1px solid rgba(0, 0, 0, 0.719);
-}
-.boundary-right{
-  border-right:1px solid rgba(0, 0, 0, 0.719);
-}
-
 </style>

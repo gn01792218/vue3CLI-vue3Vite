@@ -262,25 +262,3 @@ export default defineComponent({
     }
 })
 </script>
-<style lang="scss">
-    .BigEyesRoad{
-        width:100%;
-        // border:solid red 2px;
-        height:25%;
-        right:0;
-        top:50%;
-    }
-    .BigEyesRoad-colum{
-        // border:solid peru 1px;
-        width:2.272727272727%;
-        height:100%;
-    }
-    .BigEyesRoad-item{
-        width:100%;
-        height:16.666666666%;
-        // border:rebeccapurple 2px solid;
-    }
-    .sideWidth{   /*用來統一調整sideRode佔寬比 */
-        width:60%;
-    }
-</style>
