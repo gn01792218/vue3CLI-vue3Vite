@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.roadImg-preLoad, .BeadPlate-B, .BeadPlate-B-BPair, .BeadPlate-B-PPair, .BeadPlate-B-BothPair, .BeadPlate-P, .BeadPlate-P-BPair, .BeadPlate-P-PPair, .BeadPlate-P-BothPair, .BeadPlate-T, .BeadPlate-T-BPair, .BeadPlate-T-PPair, .BeadPlate-T-BothPair, .big-B, .big-B-BPair, .big-B-PPair, .big-B-BothPair, .big-BT, .big-BT-BPair, .big-BT-PPair, .big-BT-BothPair, .big-P, .big-P-BPair, .big-P-PPair, .big-P-BothPair, .big-PT, .big-PT-BPair, .big-PT-PPair, .big-PT-BothPair, .small-red, .small-blue, .bigEye-red, .bigEye-blue, cockroach-red, cockroach-blue {
+.roadImg-preLoad, .BeadPlate-B, .BeadPlate-B-BPair, .BeadPlate-B-PPair, .BeadPlate-B-BothPair, .BeadPlate-P, .BeadPlate-P-BPair, .BeadPlate-P-PPair, .BeadPlate-P-BothPair, .BeadPlate-T, .BeadPlate-T-BPair, .BeadPlate-T-PPair, .BeadPlate-T-BothPair, .big-B, .big-B-BPair, .big-B-PPair, .big-B-BothPair, .big-BT, .big-BT-BPair, .big-BT-PPair, .big-BT-BothPair, .big-P, .big-P-BPair, .big-P-PPair, .big-P-BothPair, .big-PT, .big-PT-BPair, .big-PT-PPair, .big-PT-BothPair, .small-red, .small-blue, .bigEye-red, .bigEye-blue, .cockroach-red, .cockroach-blue {
   cursor: pointer;
   background-image: url("../../images/road-sprite.png");
 }
@@ -984,14 +984,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-size: 176px auto;
 }
 
-cockroach-red {
+.cockroach-red {
   width: 10px;
   height: 10px;
   background-position: -130px 0px;
   background-size: 160px auto;
 }
 
-cockroach-blue {
+.cockroach-blue {
   width: 10px;
   height: 10px;
   background-position: -150px 0px;

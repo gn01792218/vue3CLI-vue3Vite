@@ -65,11 +65,11 @@ export default defineComponent({
                 currentsmallRoadResult.value = 1   
                 break
               case 2:
-                lastsmallRoadResult.value = 2   
+                currentsmallRoadResult.value = 2   
                 break
             }
         }
-        function putBigEyesRoad(gameResult:number){
+        function putRoad(gameResult:number){
          let RoadCol = document.querySelector(`.smallRoad-column${smallRoadColumn.value}`) as HTMLElement
          console.log(RoadCol)
             let bigRoadColItem = RoadCol.children[smallRoadItemIndex.value].firstChild as HTMLElement
@@ -194,7 +194,7 @@ export default defineComponent({
                         smallRoadColArr[smallRoadColumn.value][i] = 1
                     }
                 }
-                putBigEyesRoad(item)
+                putRoad(item)
         }
         function showSmallRoadInit(){
             smallRoadResult.value.columns.forEach((item:any)=>{
@@ -241,7 +241,7 @@ export default defineComponent({
                                 smallRoadColArr[smallRoadColumn.value][i] = 1
                             }
                         }
-                        putBigEyesRoad(i)
+                        putRoad(i)
                     })
                 })
             smallRoadInit.value = true

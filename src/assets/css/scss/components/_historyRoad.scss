@@ -135,11 +135,11 @@
     @include hisRoadSpritePosition(-800,100,0.11);
 }
 //蟑螂路
-cockroach-red{
+.cockroach-red{
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1300,0,0.1);
 }
-cockroach-blue{
+.cockroach-blue{
     @extend %hisRoad;
     @include hisRoadSpritePosition(-1500,0,0.1);
 }
