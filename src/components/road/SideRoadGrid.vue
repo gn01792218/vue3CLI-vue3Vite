@@ -52,10 +52,10 @@
 import {defineComponent,computed,ref, watch, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
-import proto from '../assets/js/bundle'
-import BigEyesRoad from '@/components/BigEyesRoad.vue'
-import Cockroach from '@/components/Cockroach.vue'
-import SmallRoad from '@/components/SmallRoad.vue'
+import proto from '../../assets/js/bundle'
+import BigEyesRoad from '@/components/road/BigEyesRoad.vue'
+import Cockroach from '@/components/road/Cockroach.vue'
+import SmallRoad from '@/components/road/SmallRoad.vue'
 export default defineComponent({
   components:{
     BigEyesRoad,

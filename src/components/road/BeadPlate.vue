@@ -27,7 +27,7 @@
 import {defineComponent, watch,ref,computed} from 'vue'
 import { useRoute } from 'vue-router'
 import {useStore} from 'vuex'
-import proto from '../assets/js/bundle'
+import proto from '../../assets/js/bundle'
 export default defineComponent({
     setup(){
         //桌號

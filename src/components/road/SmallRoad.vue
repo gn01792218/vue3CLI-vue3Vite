@@ -199,35 +199,35 @@ export default defineComponent({
         function showSmallRoadInit(){
             smallRoadResult.value.columns.forEach((item:any)=>{
                 item.blocks.forEach((i:any)=>{
-                    console.log(i)
+                    // console.log(i)
                     recordRoad(i)
                     if(currentsmallRoadResult.value!==lastsmallRoadResult.value && currentsmallRoadResult.value!==0 && lastsmallRoadResult.value!==0){
-                        // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+                        // console.log("換陣營前","行",smallRoadColumn.value,"格",smallRoadItemIndex.value)
                         if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
                             if(smallRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
                             smallRoadColumn.value++
-                            console.log("在第0格滿出，直接+行數","行",smallRoadColumn.value)
+                            // console.log("在第0格滿出，直接+行數","行",smallRoadColumn.value)
                             roadOverFlowerTimes.value = 0
                             }else{
                             smallRoadColumn.value = smallRoadColumn.value-roadOverFlowerTimes.value+1
                             roadOverFlowerTimes.value = 0
                             }
-                            console.log("溢出後恢復","行",smallRoadColumn.value)
+                            // console.log("溢出後恢復","行",smallRoadColumn.value)
                         }else{
                             smallRoadColumn.value++
                         }
                         if(smallRoadColumn.value>=bottom1width.length+(smallRoadColArr.length-bottom1width.length)){ //溢出極限格子的時候要增加行數
-                            console.log("滿了+行")
+                            // console.log("滿了+行")
                             addSmallRoadColumn()
                         }  
                         smallRoadItemIndex.value = 0
-                        console.log("格",smallRoadItemIndex.value)
+                        // console.log("格",smallRoadItemIndex.value)
                         }
                         //換行二:溢出換行
                         //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
                         //溢出時如果遇到和局，其實不需要+行?!
                         if(smallRoadColArr[smallRoadColumn.value][smallRoadItemIndex.value]!==0 || smallRoadItemIndex.value>5){
-                        console.log("連贏溢出")
+                        // console.log("連贏溢出")
                         //和局時不會進下面的addBigRoad
                         if(smallRoadColumn.value>=bottom1width.length+(smallRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                             addSmallRoadColumn()
@@ -236,7 +236,7 @@ export default defineComponent({
                             smallRoadItemIndex.value = smallRoadItemIndex.value-1
                         }
                         roadOverFlowerTimes.value++ 
-                        console.log("連贏溢出","行",smallRoadColumn.value,"格",smallRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                        // console.log("連贏溢出","行",smallRoadColumn.value,"格",smallRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                             for(let i = smallRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                                 smallRoadColArr[smallRoadColumn.value][i] = 1
                             }

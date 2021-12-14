@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import BeadPlate from './BeadPlate.vue'
-import SideRoadGrid from './SideRoadGrid.vue'
+import BeadPlate from './road/BeadPlate.vue'
+import SideRoadGrid from './road/SideRoadGrid.vue'
 import CardInfo from './CardInfo.vue'
 import LightBox from '@/components/LightBox.vue'
 export default defineComponent({
