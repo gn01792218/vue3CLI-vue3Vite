@@ -184,6 +184,7 @@ export default defineComponent({
                 //溢出時如果遇到和局，其實不需要+行?!
                 if(smallRoadColArr[smallRoadColumn.value][smallRoadItemIndex.value]!==0 || smallRoadItemIndex.value>5){
                 console.log("連贏溢出")
+                 smallRoadColumn.value++ //換行
                 //和局時不會進下面的addBigRoad
                 if(smallRoadColumn.value>=bottom1width.length+(smallRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                     addSmallRoadColumn()
@@ -231,6 +232,7 @@ export default defineComponent({
                         //溢出時如果遇到和局，其實不需要+行?!
                         if(smallRoadColArr[smallRoadColumn.value][smallRoadItemIndex.value]!==0 || smallRoadItemIndex.value>5){
                         // console.log("連贏溢出")
+                        smallRoadColumn.value++ //換行
                         //和局時不會進下面的addBigRoad
                         if(smallRoadColumn.value>=bottom1width.length+(smallRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                             addSmallRoadColumn()

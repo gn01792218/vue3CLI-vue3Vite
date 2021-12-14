@@ -183,6 +183,7 @@ export default defineComponent({
                 //溢出時如果遇到和局，其實不需要+行?!
                 if(cockroachRoadColArr[cockroachRoadColumn.value][cockroachRoadItemIndex.value]!==0 || cockroachRoadItemIndex.value>5){
                 // console.log("連贏溢出")
+                 cockroachRoadColumn.value++ //換行
                 //和局時不會進下面的addBigRoad
                 if(cockroachRoadColumn.value>=bottom1width.length+(cockroachRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                     addCokroachRoadCoulmn()
@@ -203,7 +204,7 @@ export default defineComponent({
                 item.blocks.forEach((i:any)=>{
                     // console.log('蟑螂路列表',i)
                     recordRoad(i)
-                    console.log(cockroachRoadColumn.value,cockroachRoadItemIndex.value)
+                    // console.log(cockroachRoadColumn.value,cockroachRoadItemIndex.value)
                     if(currentcockroachRoadResult.value!==lastcockroachRoadResult.value && currentcockroachRoadResult.value!==0 && lastcockroachRoadResult.value!==0){
                         // console.log("換陣營前","行",cockroachRoadColumn.value,"格",cockroachRoadItemIndex.value)
                         if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
@@ -231,6 +232,7 @@ export default defineComponent({
                         //溢出時如果遇到和局，其實不需要+行?!
                         if(cockroachRoadColArr[cockroachRoadColumn.value][cockroachRoadItemIndex.value]!==0 || cockroachRoadItemIndex.value>5){
                         // console.log("連贏溢出")
+                        cockroachRoadColumn.value++ //換行
                         //和局時不會進下面的addBigRoad
                         if(cockroachRoadColumn.value>=bottom1width.length+(cockroachRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
                             addCokroachRoadCoulmn()
@@ -248,7 +250,7 @@ export default defineComponent({
                     })
                 })
             cockroachRoadInit.value = true
-            console.log(cockroachRoadColArr)
+            // console.log(cockroachRoadColArr)
         }
         return {
             //data
