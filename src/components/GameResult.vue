@@ -35,21 +35,18 @@ export default defineComponent({
         const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
         })
+        const gameEnd = computed(()=>{
+          return store.state.dealer.end
+    })
         const gameState = computed(()=>{  //上桌時會得到遊戲狀態，要播放現在是什麼狀態
             //1.下注狀態 2.開牌狀態 3.等待狀態
            return store.state.game.GameStatus
         })
-    //     const gameState = computed(()=>{  //上桌時會得到遊戲狀態，要播放現在是什麼狀態
-    //         //1.下注狀態 2.開牌狀態 3.等待狀態
-    //        return store.state.game.GameStatus
-    //    })
         //基本資料
         const hasGameResult = ref(false)
-        watch(gameState,()=>{
-            if(gameState.value.status==3){
+        watch(gameEnd,()=>{
                 console.log('換薛時候要取消顯示輸贏')
                 hasGameResult.value = false
-            }
         })
         watch(gameUuid,()=>{
             resetGameResult()
