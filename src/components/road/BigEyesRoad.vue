@@ -62,10 +62,12 @@ export default defineComponent({
         })
         watch(bigEyesRoadResult,()=>{
           console.log("偵測到大眼路")
-          if(bigEyesRoadInit.value){
-            showBigEyesRoad()
-          }else{
-            showBigEyesRoadInit()
+          if(bigEyesRoadResult.value.columns[0].blocks.length>0){
+            if(bigEyesRoadInit.value){
+              showBigEyesRoad()
+            }else{
+              showBigEyesRoadInit()
+            }
           }
         })
       //function

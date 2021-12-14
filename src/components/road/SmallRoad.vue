@@ -5,7 +5,8 @@
             <div></div>
           </div>
         </div>
-      </div>
+    </div>
+    <button class='position-absolute' @click="resetSmallRoad">重置小路</button>
 </template>
 
 <script lang="ts">
@@ -52,11 +53,13 @@ export default defineComponent({
           resetSmallRoad()
         })
         watch(smallRoadResult,()=>{
-          console.log("偵測到小路")
-          if(smallRoadInit.value){
-            showSmallRoad()
-          }else{
-            showSmallRoadInit()
+          console.log("偵測到小路",smallRoadResult.value)
+          if(smallRoadResult.value.columns[0].blocks.length>0){
+            if(smallRoadInit.value){
+              showSmallRoad()
+            }else{
+              showSmallRoadInit()
+            }
           }
         })
         function recordRoad (gameResult:number){
@@ -121,18 +124,22 @@ export default defineComponent({
             RoadColContainer.removeChild(lastChild); //移除行數
             lastChild  = RoadColContainer.lastElementChild //抓下一個child
           }
-          //2.建立新的四十四條col
+          //2.建立新的二十二條col
           for(let i = 0 ;i < bottom1width.length ;i++){
             let col = document.createElement('div')
             col.classList.add('smallRoad-column')
             col.classList.add('d-flex')
             col.classList.add(`smallRoad-column${i}`)
+            if(i==21){
+                col.classList.add('boundary-right')
+              }
             for(let i = 0 ; i< bottomHeight.length ; i++){
               let colItem = document.createElement('div')
               let itemDiv = document.createElement('div') 
               colItem.classList.add('smallRoad-item')
               colItem.classList.add('d-flex')
               colItem.classList.add(`smallRoad-item${i}`)
+              
               colItem.appendChild(itemDiv)
               col.appendChild(colItem)
             }
@@ -255,6 +262,8 @@ export default defineComponent({
             //data
             bottomHeight,
             bottom1width,
+            //methods
+            resetSmallRoad,
         }
     }
 })
