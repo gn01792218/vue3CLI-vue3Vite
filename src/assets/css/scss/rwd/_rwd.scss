@@ -862,15 +862,15 @@
 			@include hisRoadSpritePosition(-800,100,0.04);
 		}
 		//蟑螂路
-		cockroach-red{
+		.cockroach-red{
 			@include hisRoadSpritePosition(-1300,0,0.04);
 		}
-		cockroach-blue{
+		.cockroach-blue{
 			@include hisRoadSpritePosition(-1500,0,0.04);
 		}
-	.card-container{
-		margin-top: -10px;
-	}
+		.card-container{
+			margin-top: -10px;
+		}
 }
 @media screen and (max-width: 414px) {
 	.gameResultLoading{
@@ -1351,10 +1351,10 @@
 		@include hisRoadSpritePosition(-800,100,0.02);
 	}
 	//蟑螂路
-	cockroach-red{
+	.cockroach-red{
 		@include hisRoadSpritePosition(-1300,0,0.02);
 	}
-	cockroach-blue{
+	.cockroach-blue{
 		@include hisRoadSpritePosition(-1500,0,0.02);
 	}
 
