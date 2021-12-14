@@ -20,9 +20,9 @@
         <audio class="preaudio" preload muted>
             <source src="../assets/audio/stop.mp3">
         </audio>
-        <div class='progress'>
+        <!-- <div class='progress'>
             <div class='progress-inset'></div>
-        </div>
+        </div> -->
     </div>
     </div>
     

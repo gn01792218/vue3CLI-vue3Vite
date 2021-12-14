@@ -1,5 +1,7 @@
 .LoadingPage{
     background-image: $loading-img;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-color: #644d31;
     text-align: center;
     z-index: 10;
