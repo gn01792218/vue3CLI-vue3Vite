@@ -71,7 +71,7 @@ export default defineComponent({
         }
         function putRoad(gameResult:number){
          let RoadCol = document.querySelector(`.smallRoad-column${smallRoadColumn.value}`) as HTMLElement
-         console.log(RoadCol)
+        //  console.log(RoadCol)
             let bigRoadColItem = RoadCol.children[smallRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
             case 1:
@@ -87,12 +87,15 @@ export default defineComponent({
             // console.log("現在是第",bigRoadColumn.value,"行；","下一格格子",bigRoadItemIndex.value)
         }
         function addSmallRoadColumn(){
-            let Road = document.querySelector('.smallRoad') as HTMLElement  
+          let Road = document.querySelector('.smallRoad') as HTMLElement  
+          let preRoad = document.querySelector(`.smallRoad-column${smallRoadColumn.value-1}`) as HTMLElement
           let firstChild = Road.firstElementChild as HTMLElement //抓取第一個元素
           Road.removeChild(firstChild) //刪除第一行
           let newCol = document.createElement('div')
           newCol.classList.add('smallRoad-column')
           newCol.classList.add(`smallRoad-column${smallRoadColumn.value}`)
+          newCol.classList.add('boundary-right')
+          preRoad?.classList.remove('boundary-right')
           for(let i = 0 ;i <bottomHeight.length ;i++){
             let newColItem = document.createElement('div')
             let itemDiv = document.createElement('div')

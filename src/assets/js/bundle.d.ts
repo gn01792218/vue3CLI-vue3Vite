@@ -3568,6 +3568,186 @@ export namespace roadmap {
         public toJSON(): { [k: string]: any };
     }
 
+    /** Properties of a SmallRoad. */
+    interface ISmallRoad {
+
+        /** SmallRoad columns */
+        columns?: (roadmap.IColumn[]|null);
+    }
+
+    /** Represents a SmallRoad. */
+    class SmallRoad implements ISmallRoad {
+
+        /**
+         * Constructs a new SmallRoad.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.ISmallRoad);
+
+        /** SmallRoad columns. */
+        public columns: roadmap.IColumn[];
+
+        /**
+         * Creates a new SmallRoad instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SmallRoad instance
+         */
+        public static create(properties?: roadmap.ISmallRoad): roadmap.SmallRoad;
+
+        /**
+         * Encodes the specified SmallRoad message. Does not implicitly {@link roadmap.SmallRoad.verify|verify} messages.
+         * @param message SmallRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.ISmallRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SmallRoad message, length delimited. Does not implicitly {@link roadmap.SmallRoad.verify|verify} messages.
+         * @param message SmallRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.ISmallRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SmallRoad message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SmallRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.SmallRoad;
+
+        /**
+         * Decodes a SmallRoad message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SmallRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.SmallRoad;
+
+        /**
+         * Verifies a SmallRoad message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SmallRoad message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SmallRoad
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.SmallRoad;
+
+        /**
+         * Creates a plain object from a SmallRoad message. Also converts values to other types if specified.
+         * @param message SmallRoad
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.SmallRoad, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SmallRoad to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a CockroachRoad. */
+    interface ICockroachRoad {
+
+        /** CockroachRoad columns */
+        columns?: (roadmap.IColumn[]|null);
+    }
+
+    /** Represents a CockroachRoad. */
+    class CockroachRoad implements ICockroachRoad {
+
+        /**
+         * Constructs a new CockroachRoad.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.ICockroachRoad);
+
+        /** CockroachRoad columns. */
+        public columns: roadmap.IColumn[];
+
+        /**
+         * Creates a new CockroachRoad instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CockroachRoad instance
+         */
+        public static create(properties?: roadmap.ICockroachRoad): roadmap.CockroachRoad;
+
+        /**
+         * Encodes the specified CockroachRoad message. Does not implicitly {@link roadmap.CockroachRoad.verify|verify} messages.
+         * @param message CockroachRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.ICockroachRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CockroachRoad message, length delimited. Does not implicitly {@link roadmap.CockroachRoad.verify|verify} messages.
+         * @param message CockroachRoad message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.ICockroachRoad, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CockroachRoad message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CockroachRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.CockroachRoad;
+
+        /**
+         * Decodes a CockroachRoad message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CockroachRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.CockroachRoad;
+
+        /**
+         * Verifies a CockroachRoad message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CockroachRoad message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CockroachRoad
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.CockroachRoad;
+
+        /**
+         * Creates a plain object from a CockroachRoad message. Also converts values to other types if specified.
+         * @param message CockroachRoad
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.CockroachRoad, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CockroachRoad to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a Roadmap. */
     interface IRoadmap {
 
@@ -3582,6 +3762,12 @@ export namespace roadmap {
 
         /** Roadmap bigEyeRoad */
         bigEyeRoad?: (roadmap.IBigEyeRoad|null);
+
+        /** Roadmap smallRoad */
+        smallRoad?: (roadmap.ISmallRoad|null);
+
+        /** Roadmap cockroachRoad */
+        cockroachRoad?: (roadmap.ICockroachRoad|null);
     }
 
     /** Represents a Roadmap. */
@@ -3604,6 +3790,12 @@ export namespace roadmap {
 
         /** Roadmap bigEyeRoad. */
         public bigEyeRoad?: (roadmap.IBigEyeRoad|null);
+
+        /** Roadmap smallRoad. */
+        public smallRoad?: (roadmap.ISmallRoad|null);
+
+        /** Roadmap cockroachRoad. */
+        public cockroachRoad?: (roadmap.ICockroachRoad|null);
 
         /**
          * Creates a new Roadmap instance using the specified properties.

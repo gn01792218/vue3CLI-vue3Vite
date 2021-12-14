@@ -8836,6 +8836,422 @@ export const roadmap = $root.roadmap = (() => {
         return BigEyeRoad;
     })();
 
+    roadmap.SmallRoad = (function() {
+
+        /**
+         * Properties of a SmallRoad.
+         * @memberof roadmap
+         * @interface ISmallRoad
+         * @property {Array.<roadmap.IColumn>|null} [columns] SmallRoad columns
+         */
+
+        /**
+         * Constructs a new SmallRoad.
+         * @memberof roadmap
+         * @classdesc Represents a SmallRoad.
+         * @implements ISmallRoad
+         * @constructor
+         * @param {roadmap.ISmallRoad=} [properties] Properties to set
+         */
+        function SmallRoad(properties) {
+            this.columns = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SmallRoad columns.
+         * @member {Array.<roadmap.IColumn>} columns
+         * @memberof roadmap.SmallRoad
+         * @instance
+         */
+        SmallRoad.prototype.columns = $util.emptyArray;
+
+        /**
+         * Creates a new SmallRoad instance using the specified properties.
+         * @function create
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {roadmap.ISmallRoad=} [properties] Properties to set
+         * @returns {roadmap.SmallRoad} SmallRoad instance
+         */
+        SmallRoad.create = function create(properties) {
+            return new SmallRoad(properties);
+        };
+
+        /**
+         * Encodes the specified SmallRoad message. Does not implicitly {@link roadmap.SmallRoad.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {roadmap.ISmallRoad} message SmallRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SmallRoad.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.columns != null && message.columns.length)
+                for (let i = 0; i < message.columns.length; ++i)
+                    $root.roadmap.Column.encode(message.columns[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SmallRoad message, length delimited. Does not implicitly {@link roadmap.SmallRoad.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {roadmap.ISmallRoad} message SmallRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SmallRoad.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SmallRoad message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.SmallRoad} SmallRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SmallRoad.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.SmallRoad();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.columns && message.columns.length))
+                        message.columns = [];
+                    message.columns.push($root.roadmap.Column.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SmallRoad message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.SmallRoad} SmallRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SmallRoad.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SmallRoad message.
+         * @function verify
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SmallRoad.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.columns != null && message.hasOwnProperty("columns")) {
+                if (!Array.isArray(message.columns))
+                    return "columns: array expected";
+                for (let i = 0; i < message.columns.length; ++i) {
+                    let error = $root.roadmap.Column.verify(message.columns[i]);
+                    if (error)
+                        return "columns." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a SmallRoad message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.SmallRoad} SmallRoad
+         */
+        SmallRoad.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.SmallRoad)
+                return object;
+            let message = new $root.roadmap.SmallRoad();
+            if (object.columns) {
+                if (!Array.isArray(object.columns))
+                    throw TypeError(".roadmap.SmallRoad.columns: array expected");
+                message.columns = [];
+                for (let i = 0; i < object.columns.length; ++i) {
+                    if (typeof object.columns[i] !== "object")
+                        throw TypeError(".roadmap.SmallRoad.columns: object expected");
+                    message.columns[i] = $root.roadmap.Column.fromObject(object.columns[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SmallRoad message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.SmallRoad
+         * @static
+         * @param {roadmap.SmallRoad} message SmallRoad
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SmallRoad.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.columns = [];
+            if (message.columns && message.columns.length) {
+                object.columns = [];
+                for (let j = 0; j < message.columns.length; ++j)
+                    object.columns[j] = $root.roadmap.Column.toObject(message.columns[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this SmallRoad to JSON.
+         * @function toJSON
+         * @memberof roadmap.SmallRoad
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SmallRoad.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return SmallRoad;
+    })();
+
+    roadmap.CockroachRoad = (function() {
+
+        /**
+         * Properties of a CockroachRoad.
+         * @memberof roadmap
+         * @interface ICockroachRoad
+         * @property {Array.<roadmap.IColumn>|null} [columns] CockroachRoad columns
+         */
+
+        /**
+         * Constructs a new CockroachRoad.
+         * @memberof roadmap
+         * @classdesc Represents a CockroachRoad.
+         * @implements ICockroachRoad
+         * @constructor
+         * @param {roadmap.ICockroachRoad=} [properties] Properties to set
+         */
+        function CockroachRoad(properties) {
+            this.columns = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CockroachRoad columns.
+         * @member {Array.<roadmap.IColumn>} columns
+         * @memberof roadmap.CockroachRoad
+         * @instance
+         */
+        CockroachRoad.prototype.columns = $util.emptyArray;
+
+        /**
+         * Creates a new CockroachRoad instance using the specified properties.
+         * @function create
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {roadmap.ICockroachRoad=} [properties] Properties to set
+         * @returns {roadmap.CockroachRoad} CockroachRoad instance
+         */
+        CockroachRoad.create = function create(properties) {
+            return new CockroachRoad(properties);
+        };
+
+        /**
+         * Encodes the specified CockroachRoad message. Does not implicitly {@link roadmap.CockroachRoad.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {roadmap.ICockroachRoad} message CockroachRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CockroachRoad.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.columns != null && message.columns.length)
+                for (let i = 0; i < message.columns.length; ++i)
+                    $root.roadmap.Column.encode(message.columns[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CockroachRoad message, length delimited. Does not implicitly {@link roadmap.CockroachRoad.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {roadmap.ICockroachRoad} message CockroachRoad message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CockroachRoad.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CockroachRoad message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.CockroachRoad} CockroachRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CockroachRoad.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.CockroachRoad();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.columns && message.columns.length))
+                        message.columns = [];
+                    message.columns.push($root.roadmap.Column.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CockroachRoad message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.CockroachRoad} CockroachRoad
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CockroachRoad.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CockroachRoad message.
+         * @function verify
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CockroachRoad.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.columns != null && message.hasOwnProperty("columns")) {
+                if (!Array.isArray(message.columns))
+                    return "columns: array expected";
+                for (let i = 0; i < message.columns.length; ++i) {
+                    let error = $root.roadmap.Column.verify(message.columns[i]);
+                    if (error)
+                        return "columns." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a CockroachRoad message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.CockroachRoad} CockroachRoad
+         */
+        CockroachRoad.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.CockroachRoad)
+                return object;
+            let message = new $root.roadmap.CockroachRoad();
+            if (object.columns) {
+                if (!Array.isArray(object.columns))
+                    throw TypeError(".roadmap.CockroachRoad.columns: array expected");
+                message.columns = [];
+                for (let i = 0; i < object.columns.length; ++i) {
+                    if (typeof object.columns[i] !== "object")
+                        throw TypeError(".roadmap.CockroachRoad.columns: object expected");
+                    message.columns[i] = $root.roadmap.Column.fromObject(object.columns[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CockroachRoad message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.CockroachRoad
+         * @static
+         * @param {roadmap.CockroachRoad} message CockroachRoad
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CockroachRoad.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.columns = [];
+            if (message.columns && message.columns.length) {
+                object.columns = [];
+                for (let j = 0; j < message.columns.length; ++j)
+                    object.columns[j] = $root.roadmap.Column.toObject(message.columns[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this CockroachRoad to JSON.
+         * @function toJSON
+         * @memberof roadmap.CockroachRoad
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CockroachRoad.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return CockroachRoad;
+    })();
+
     roadmap.Roadmap = (function() {
 
         /**
@@ -8846,6 +9262,8 @@ export const roadmap = $root.roadmap = (() => {
          * @property {roadmap.IBeadPlate|null} [beadPlate] Roadmap beadPlate
          * @property {roadmap.IBigRoad|null} [bigRoad] Roadmap bigRoad
          * @property {roadmap.IBigEyeRoad|null} [bigEyeRoad] Roadmap bigEyeRoad
+         * @property {roadmap.ISmallRoad|null} [smallRoad] Roadmap smallRoad
+         * @property {roadmap.ICockroachRoad|null} [cockroachRoad] Roadmap cockroachRoad
          */
 
         /**
@@ -8896,6 +9314,22 @@ export const roadmap = $root.roadmap = (() => {
         Roadmap.prototype.bigEyeRoad = null;
 
         /**
+         * Roadmap smallRoad.
+         * @member {roadmap.ISmallRoad|null|undefined} smallRoad
+         * @memberof roadmap.Roadmap
+         * @instance
+         */
+        Roadmap.prototype.smallRoad = null;
+
+        /**
+         * Roadmap cockroachRoad.
+         * @member {roadmap.ICockroachRoad|null|undefined} cockroachRoad
+         * @memberof roadmap.Roadmap
+         * @instance
+         */
+        Roadmap.prototype.cockroachRoad = null;
+
+        /**
          * Creates a new Roadmap instance using the specified properties.
          * @function create
          * @memberof roadmap.Roadmap
@@ -8927,6 +9361,10 @@ export const roadmap = $root.roadmap = (() => {
                 $root.roadmap.BigRoad.encode(message.bigRoad, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.bigEyeRoad != null && Object.hasOwnProperty.call(message, "bigEyeRoad"))
                 $root.roadmap.BigEyeRoad.encode(message.bigEyeRoad, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.smallRoad != null && Object.hasOwnProperty.call(message, "smallRoad"))
+                $root.roadmap.SmallRoad.encode(message.smallRoad, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.cockroachRoad != null && Object.hasOwnProperty.call(message, "cockroachRoad"))
+                $root.roadmap.CockroachRoad.encode(message.cockroachRoad, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             return writer;
         };
 
@@ -8972,6 +9410,12 @@ export const roadmap = $root.roadmap = (() => {
                     break;
                 case 4:
                     message.bigEyeRoad = $root.roadmap.BigEyeRoad.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.smallRoad = $root.roadmap.SmallRoad.decode(reader, reader.uint32());
+                    break;
+                case 6:
+                    message.cockroachRoad = $root.roadmap.CockroachRoad.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -9028,6 +9472,16 @@ export const roadmap = $root.roadmap = (() => {
                 if (error)
                     return "bigEyeRoad." + error;
             }
+            if (message.smallRoad != null && message.hasOwnProperty("smallRoad")) {
+                let error = $root.roadmap.SmallRoad.verify(message.smallRoad);
+                if (error)
+                    return "smallRoad." + error;
+            }
+            if (message.cockroachRoad != null && message.hasOwnProperty("cockroachRoad")) {
+                let error = $root.roadmap.CockroachRoad.verify(message.cockroachRoad);
+                if (error)
+                    return "cockroachRoad." + error;
+            }
             return null;
         };
 
@@ -9063,6 +9517,16 @@ export const roadmap = $root.roadmap = (() => {
                     throw TypeError(".roadmap.Roadmap.bigEyeRoad: object expected");
                 message.bigEyeRoad = $root.roadmap.BigEyeRoad.fromObject(object.bigEyeRoad);
             }
+            if (object.smallRoad != null) {
+                if (typeof object.smallRoad !== "object")
+                    throw TypeError(".roadmap.Roadmap.smallRoad: object expected");
+                message.smallRoad = $root.roadmap.SmallRoad.fromObject(object.smallRoad);
+            }
+            if (object.cockroachRoad != null) {
+                if (typeof object.cockroachRoad !== "object")
+                    throw TypeError(".roadmap.Roadmap.cockroachRoad: object expected");
+                message.cockroachRoad = $root.roadmap.CockroachRoad.fromObject(object.cockroachRoad);
+            }
             return message;
         };
 
@@ -9084,6 +9548,8 @@ export const roadmap = $root.roadmap = (() => {
                 object.beadPlate = null;
                 object.bigRoad = null;
                 object.bigEyeRoad = null;
+                object.smallRoad = null;
+                object.cockroachRoad = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -9093,6 +9559,10 @@ export const roadmap = $root.roadmap = (() => {
                 object.bigRoad = $root.roadmap.BigRoad.toObject(message.bigRoad, options);
             if (message.bigEyeRoad != null && message.hasOwnProperty("bigEyeRoad"))
                 object.bigEyeRoad = $root.roadmap.BigEyeRoad.toObject(message.bigEyeRoad, options);
+            if (message.smallRoad != null && message.hasOwnProperty("smallRoad"))
+                object.smallRoad = $root.roadmap.SmallRoad.toObject(message.smallRoad, options);
+            if (message.cockroachRoad != null && message.hasOwnProperty("cockroachRoad"))
+                object.cockroachRoad = $root.roadmap.CockroachRoad.toObject(message.cockroachRoad, options);
             return object;
         };
 
