@@ -37,7 +37,7 @@ export default defineComponent({
         })
         const gameEnd = computed(()=>{
           return store.state.dealer.end
-    })
+        })
         const gameState = computed(()=>{  //上桌時會得到遊戲狀態，要播放現在是什麼狀態
             //1.下注狀態 2.開牌狀態 3.等待狀態
            return store.state.game.GameStatus
@@ -45,8 +45,8 @@ export default defineComponent({
         //基本資料
         const hasGameResult = ref(false)
         watch(gameEnd,()=>{
-                console.log('換薛時候要取消顯示輸贏')
-                hasGameResult.value = false
+            console.log('換薛時候要取消顯示輸贏')
+            hasGameResult.value = false
         })
         watch(gameUuid,()=>{
             resetGameResult()

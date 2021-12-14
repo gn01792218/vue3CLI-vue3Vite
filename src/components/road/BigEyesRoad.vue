@@ -7,7 +7,8 @@
       </div>
     </section>
     <!-- <button class="position-absolute" @click="testBigEyes(2)">藍圈</button>
-    <button class="position-absolute test" @click="testBigEyes(1)">紅圈</button> -->
+    <button class="position-absolute test" @click="testBigEyes(1)">紅圈</button>
+    <button class="position-absolute test2" @click="resetBigEyesRoad">重置大眼路</button> -->
 </template>
 
 <script lang="ts">
@@ -197,9 +198,11 @@ export default defineComponent({
         //1.直接刪除所有column
           let RoadColContainer = document.querySelector('.BigEyesRoad') as HTMLElement
           let lastChild = RoadColContainer.lastElementChild
-          while(lastChild ){
+          console.log('富元素',RoadColContainer,'子元素',lastChild)
+          while(lastChild){
             RoadColContainer.removeChild(lastChild); //移除行數
             lastChild  = RoadColContainer.lastElementChild //抓下一個child
+            console.log('刪除子元素')
           }
           //2.建立新的四十四條col
           for(let i = 0 ;i < BigEyesRoadWidth.length ;i++){
@@ -308,6 +311,7 @@ export default defineComponent({
             bottomHeight,
             //methods
             testBigEyes,
+            resetBigEyesRoad,
         }
     }
 })
@@ -315,5 +319,8 @@ export default defineComponent({
 <style scoped>
   .test{
     left:0%;
+  }
+  .test2{
+    left:20%;
   }
 </style>
