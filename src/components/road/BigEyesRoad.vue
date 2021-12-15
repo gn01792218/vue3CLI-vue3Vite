@@ -34,6 +34,8 @@ export default defineComponent({
         const lastbigEyesRoadResult = ref(0) //上次是哪個陣營
         const roadOverFlowerTimes = ref(0) //超出格子幾次
         const bigEyesRoadInit = ref(false) //大路是否初始化過(上桌時)
+        const lastbigEyesRoadDataLength = ref(0)
+        const lastBigEyesRoadColumnLength = ref(0)
         let bigEyesRoadColArr = reactive<any[]>([]) //大路的Array
         const addBigEyesRoadColumnCount = ref(0)
         for(let i = 0 ; i < BigEyesRoadWidth.length ; i++){  //初始化大路陣列
@@ -98,11 +100,18 @@ export default defineComponent({
             bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value] = 1  //代表那一格已經畫過了
             bigEyesRoadItemIndex.value ++  //增加當前的index
             lastbigEyesRoadResult.value = currentbigEyesRoadResult.value //將這次陣營記錄到下一次的陣營中
+            lastbigEyesRoadDataLength.value = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length  //將這次的最後一個columns的blocks的長度紀錄起來
+            lastBigEyesRoadColumnLength.value = bigEyesRoadResult.value.columns.length
             // console.log("現在是第",bigEyesRoadColumn.value,"行；","下一格格子",bigEyesRoadItemIndex.value)
       }
       function showBigEyesRoad(){
         //每次都畫最後一顆
-        let item = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks[bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length-1]
+        console.log('大眼露','上一次的長度',lastbigEyesRoadDataLength.value,'當前的長度',bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length)
+        if(lastBigEyesRoadColumnLength.value==bigEyesRoadResult.value.columns.length && lastbigEyesRoadDataLength.value==bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length){
+          return
+        }else{
+          console.log('畫大眼露')
+          let item = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks[bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length-1]
         recordRoad(item)
         if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
               // console.log("換陣營前","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value)
@@ -146,6 +155,7 @@ export default defineComponent({
                   }
             }
             putBigEyesRoad(item)
+        }
       }
       function showBigEyesRoadInit(){
         //第一次全畫

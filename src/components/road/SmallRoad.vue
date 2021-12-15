@@ -24,6 +24,8 @@ export default defineComponent({
         const lastsmallRoadResult = ref(0) //上次是哪個陣營
         const roadOverFlowerTimes = ref(0) //超出格子幾次
         const smallRoadInit = ref(false) //大路是否初始化過(上桌時)
+        const lastSmallRoadDataLength = ref(0)
+        const lastSmallDataColumnLength = ref(0)
         let smallRoadColArr = reactive<any[]>([]) //大路的Array
         const addsmallRoadColumnCount = ref(0)
         for(let i = 0 ; i < bottom1width.length ; i++){  //初始化大路陣列
@@ -91,6 +93,8 @@ export default defineComponent({
             smallRoadColArr[smallRoadColumn.value][smallRoadItemIndex.value] = 1  //代表那一格已經畫過了
             smallRoadItemIndex.value ++  //增加當前的index
             lastsmallRoadResult.value = currentsmallRoadResult.value //將這次陣營記錄到下一次的陣營中
+            lastSmallRoadDataLength.value = smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length
+            lastSmallDataColumnLength.value = smallRoadResult.value.columns.length
             // console.log("現在是第",bigRoadColumn.value,"行；","下一格格子",bigRoadItemIndex.value)
         }
         function addSmallRoadColumn(){
@@ -166,7 +170,12 @@ export default defineComponent({
         }
         function showSmallRoad(){
             //每次都畫最後一顆
-            let item = smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks[smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length-1]
+            console.log('小路','上次長度',lastSmallRoadDataLength.value,'當前長度',smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length)
+            if(lastSmallDataColumnLength.value==smallRoadResult.value.columns.length && lastSmallRoadDataLength.value==smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length){
+              return
+            }else{
+              console.log('畫小路')
+              let item = smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks[smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length-1]
             recordRoad(item)
             if(currentsmallRoadResult.value!==lastsmallRoadResult.value && currentsmallRoadResult.value!==0 && lastsmallRoadResult.value!==0){
                 // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -210,6 +219,8 @@ export default defineComponent({
                     }
                 }
                 putRoad(item)
+            }
+            
         }
         function showSmallRoadInit(){
             smallRoadResult.value.columns.forEach((item:any)=>{

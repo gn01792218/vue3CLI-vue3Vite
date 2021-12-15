@@ -23,6 +23,8 @@ export default defineComponent({
         const lastcockroachRoadResult = ref(0) //上次是哪個陣營
         const roadOverFlowerTimes = ref(0) //超出格子幾次
         const cockroachRoadInit = ref(false) //大路是否初始化過(上桌時)
+        const lastcockroachRoadDataLength = ref(0)
+        const lastcockroachDataColumnLength = ref(0)
         let cockroachRoadColArr = reactive<any[]>([]) //大路的Array
         const addCockroachRoadColumnCount = ref(0)
         for(let i = 0 ; i < bottom1width.length ; i++){  //初始化大路陣列
@@ -90,6 +92,8 @@ export default defineComponent({
             cockroachRoadColArr[cockroachRoadColumn.value][cockroachRoadItemIndex .value] = 1  //代表那一格已經畫過了
             cockroachRoadItemIndex.value++  //增加當前的index
             lastcockroachRoadResult.value = currentcockroachRoadResult.value //將這次陣營記錄到下一次的陣營中
+            lastcockroachRoadDataLength.value = cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length
+            lastcockroachDataColumnLength.value = cockroachRoadResult.value.columns.length
             // console.log("現在是第",cockroachRoadColumn.value,"行；","下一格格子",cockroachRoadItemIndex.value)
         }
         function resetcockroachRoad(){
@@ -157,7 +161,12 @@ export default defineComponent({
           // roadOverFlowerTimes.value++
         }
         function showCockroachRoad(){
-          //每次都畫最後一顆
+          console.log('蟑螂路上次長度',lastcockroachRoadDataLength.value,'當前長度',cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length)
+          if(lastcockroachDataColumnLength.value==cockroachRoadResult.value.columns.length && lastcockroachRoadDataLength.value==cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length){
+            return
+          }else{
+             //每次都畫最後一顆
+             console.log('畫蟑螂路')
             let item = cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks[cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length-1]
             // console.log('最後一顆蟑螂',item)
             recordRoad(item)
@@ -203,6 +212,8 @@ export default defineComponent({
                     }
                 }
                 putRoad(item)
+          }
+         
         }
         function showCockroachRoadInit(){
           cockroachRoadResult.value.columns.forEach((item:any)=>{

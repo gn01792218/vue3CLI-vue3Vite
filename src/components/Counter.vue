@@ -18,6 +18,13 @@ export default defineComponent({
         const tableNum = computed(()=>{
             return route.params.tableId
         })
+        watch(tableNum,()=>{
+            if(tableNum.value=="B"){
+                timer ?  clearInterval(timer.value) : null
+                let temp = document.querySelector('.counter') as HTMLElement
+                temp.style.display = 'none'
+            }
+        })
         //vuex
         const store = useStore()
         const roundUuid = computed(()=>{ //每個回合獨特的uuid
@@ -103,6 +110,8 @@ export default defineComponent({
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
             //最外面的if是暫時的
             if(tableNum.value=="A"){
+                let temp = document.querySelector('.counter') as HTMLElement
+                temp.style.display = 'block'
                 console.log("新局開始",count.value,'回合uuid',roundUuid.value)
                 if(roundUuid.value){
                     // console.log('有UUid才要倒數')
@@ -114,6 +123,8 @@ export default defineComponent({
         })
         watch(lastCount,()=>{ //換桌時候會偵測現在的秒數
         if(tableNum.value=="A"){
+            let temp = document.querySelector('.counter') as HTMLElement
+                temp.style.display = 'block'
             if(gameStatus.value==1){
                 // console.log('倒數剩下幾秒',lastCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
