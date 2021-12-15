@@ -5,16 +5,17 @@
             <div class="header-logo"><a href="#"><img src="../images/logo.png"></a></div>
             <div class="header-btnList mt-xl-5">
                 <a class="header-btn" @click="toGametable('A')" >A桌</a>
-                <a class="header-btn disabled">B桌</a>
+                <!-- <a class="header-btn disabled">B桌</a> -->
                 <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
                 <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
-                <!-- <a href="#" class="header-btn" @click="closeWindow">關閉視窗</a>  -->
+                <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow">離開遊戲</a> 
+                <a href="#" class="header-btn d-block d-xl-none" @click="closeWindow">離開</a> 
             </div>
         </div>
         <div class="header-bottom">
             <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
             <div class="header-userName col font_yellows">₱{{userWallet}}</div>
-            <div class="header-userName col font_yellows"><i class="fa fa-bell" aria-hidden="true"></i>靴:{{shoe}} 局:{{roundNum}}</div>
+            <div class="header-userName col font_yellows"><i>靴:{{shoe}}局:{{roundNum}}</i></div>
         </div>
     </div>
 </template>
@@ -62,11 +63,9 @@ export default defineComponent({
         }
         //關閉視窗
         function closeWindow () {
-            console.log('關閉視窗')
-            // window.opener = null;
-            // window.open("about:blank","_self")?.close();
-            var op = window.open('about:blank','_self') as Window
-            // op.opener = null
+            var op = window.open('/leave','_self') as Window
+            op.alert('您已離開遊戲，請關閉網頁')
+            op.opener = null
             op.close()
         }
         return{

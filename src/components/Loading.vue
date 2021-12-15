@@ -31,6 +31,7 @@
 
 <script lang="ts">
 import {defineComponent,ref,computed,watch, onMounted} from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 export default defineComponent({
     setup(){
@@ -42,6 +43,7 @@ export default defineComponent({
             return document.querySelector('.preaudio') as HTMLAudioElement
         })
         const store = useStore()
+        const router = useRouter()
         const loading = ref(true)
         const preLoad = ref(true)
         const vuexUserToken = computed(()=>{
@@ -53,6 +55,22 @@ export default defineComponent({
         if(vuexUserToken.value!==""){  //已經有人登入的話，就不執行
              loading.value = false 
         }
+        router.beforeEach((to,from,next)=>{
+            if(to.path.indexOf('leave')==1){  //要去的地方不含leave
+                loading.value = false 
+                let header = document.querySelector('.header') as HTMLElement
+                let footer = document.querySelector('.footer') as HTMLElement
+                let containerWaps = document.querySelector('.container-waps') as HTMLElement
+                
+                header.style.display = 'none'
+                footer.style.display = 'none'
+                containerWaps.style.backgroundColor = 'transparent'
+                containerWaps.style.border = 'none'
+                next()
+            }else{
+                next()
+            }
+        })
         onMounted(()=>{  //此時資源已經載入完畢
             //且登入狀態是1就給登入
             watch(loginState,()=>{

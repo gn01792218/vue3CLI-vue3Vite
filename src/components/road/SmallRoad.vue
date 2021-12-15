@@ -6,7 +6,7 @@
           </div>
         </div>
     </div>
-    <button class='position-absolute' @click="resetSmallRoad">重置小路</button>
+    <!-- <button class='position-absolute' @click="resetSmallRoad">重置小路</button> -->
 </template>
 
 <script lang="ts">

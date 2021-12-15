@@ -58,6 +58,7 @@ export default defineComponent({
       onMounted(()=>{
         np.value.setView("video");
         np.value.setScaleMode(2)
+        np.value.onResize(0)
         np.value.setBufferTime(300)
         np.value.on('error',(e:any)=>{
           // console.log('直播發生錯誤',e)

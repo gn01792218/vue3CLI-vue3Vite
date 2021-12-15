@@ -346,6 +346,10 @@ img {
   margin-left: 5px;
 }
 
+.leave {
+  top: 20%;
+}
+
 /*-------------------------------------------
      按鈕設定區
 -------------------------------------------*/
@@ -1292,13 +1296,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .playerNum {
-  left: 10%;
-  top: 50%;
+  left: 18%;
+  top: 20%;
 }
 
 .bankerNum {
-  right: 10%;
-  top: 50%;
+  right: 20%;
+  top: 20%;
 }
 
 .counter {
@@ -1796,6 +1800,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    min-width: 150px;
   }
   .header-userName {
     -webkit-box-flex: 0;
@@ -1961,11 +1966,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .playerNum {
     left: 20%;
-    top: 50%;
+    top: 10%;
   }
   .bankerNum {
     right: 20%;
-    top: 50%;
+    top: 10%;
   }
   .BeadPlate-B {
     width: 35px;
@@ -2319,11 +2324,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .playerNum {
     left: 10%;
-    top: 50%;
+    top: 10%;
   }
   .bankerNum {
     right: 10%;
-    top: 50%;
+    top: 10%;
   }
   .BeadPlate-B {
     width: 30px;
@@ -2856,6 +2861,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-userName {
     font-size: 0.5rem;
   }
+  .header-bottom {
+    min-width: 100px;
+  }
   .video-box {
     height: 220px;
   }
@@ -2897,11 +2905,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .playerNum {
     left: 5%;
-    top: 50%;
+    top: 10%;
   }
   .bankerNum {
     right: 5%;
-    top: 50%;
+    top: 10%;
   }
   .caritem {
     margin-right: 10px;
@@ -2949,12 +2957,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-mobile-container {
     height: 179px;
   }
-  .gameResult {
-    top: 20%;
-  }
   .playerNum {
     left: 3%;
-    top: 50%;
   }
   .userBetInfo-title {
     font-size: 1rem;

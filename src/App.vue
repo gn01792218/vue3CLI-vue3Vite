@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onUnmounted } from 'vue'
+import { defineComponent } from 'vue'
 import Header from './views/Header.vue'
 import Footer from './views/Footer.vue'
 import BaccaratGame from './views/BaccaratGame.vue'
