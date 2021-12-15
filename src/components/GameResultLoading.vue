@@ -7,8 +7,20 @@
 <script lang="ts">
 import {defineComponent,computed,ref,watch} from 'vue'
 import { useStore } from 'vuex'
+import {useRoute } from 'vue-router'
 export default defineComponent({
    setup(){
+       //暫時性的
+        const route = useRoute()
+        const tableNum = computed(()=>{
+        return route.params.tableId
+        })
+        watch(tableNum,()=>{
+            if(tableNum.value=="B"){
+                isWait.value = false
+            }
+        })
+        //vuex
         const store = useStore()
         const isWait = ref(true)
         const stateMsg = ref("停止下注")
@@ -29,45 +41,58 @@ export default defineComponent({
             return store.state.dealer.end
         })
         watch(gameEnd,()=>{
-            isWait.value = true
-            stateMsg.value = "中場休息..."
+            //最外層的if是暫時的
+            if(tableNum.value=="A"){
+                isWait.value = true
+                stateMsg.value = "中場休息..."
+            }
         })
         //之後要監聽一個wait狀態，當有這個狀態的時候打開loading顯示等待中。
         watch(gameState,()=>{   //上桌時，接到遊戲狀態時要顯示文字
-            switch(gameState.value.status){
-                case 1:
-                    isWait.value = true
-                    stateMsg.value = "下注中..."
-                    setTimeout(()=>{
-                    isWait.value = false
-                    },500)
-                    break
-                case 2:
-                    isWait.value = true
-                    stateMsg.value = "開牌中..."
-                    setTimeout(()=>{
-                    isWait.value = false
-                    },500)
-                    break
-                case 3:
-                    isWait.value = true
-                    stateMsg.value = "中場休息..."
-                    // setTimeout(()=>{
-                    // isWait.value = false
-                    // },500)
-                    break
+        //最外層的if是暫時的
+            if(tableNum.value=="A"){
+                switch(gameState.value.status){
+                    case 1:
+                        isWait.value = true
+                        stateMsg.value = "下注中..."
+                        setTimeout(()=>{
+                        isWait.value = false
+                        },500)
+                        break
+                    case 2:
+                        isWait.value = true
+                        stateMsg.value = "開牌中..."
+                        setTimeout(()=>{
+                        isWait.value = false
+                        },500)
+                        break
+                    case 3:
+                        isWait.value = true
+                        stateMsg.value = "中場休息..."
+                        // setTimeout(()=>{
+                        // isWait.value = false
+                        // },500)
+                        break
+                }
             }
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
+        //最外層的if是暫時的
+        if(tableNum.value=="A"){
             isWait.value = true
             stateMsg.value = "開始下注"
             setTimeout(()=>{
                 isWait.value = false
             },1000)
+        }
+            
         })
         watch(gameEndUuid,()=>{ //倒數結束時
+        //最外層的if是暫時的
+        if(tableNum.value=="A"){
             isWait.value = true
             stateMsg.value = "停止下注"
+        }
         })
          watch(gameResult,()=>{  //公布結果時，關閉顯示
            //關閉loading效果 

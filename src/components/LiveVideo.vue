@@ -6,12 +6,12 @@
     />
   </div>
 </template>
-
 <script lang="ts">
 import {computed, defineComponent,onMounted,ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import VideoLoading from '@/components/VideoLoading.vue'
 import gsap from 'gsap'
+import { useRoute } from 'vue-router'
 export default defineComponent({
   components:{
     VideoLoading,
@@ -20,6 +20,20 @@ export default defineComponent({
     setup(){
       //vuex
       const store = useStore()
+      //暫時增加
+      const route = useRoute()
+      const tableNum = computed(()=>{
+        return route.params.tableId
+      })
+      watch(tableNum,()=>{
+        if(tableNum.value=="A"){
+          console.log('進A桌',flvStream.value)
+          np.value.start(flvStream.value)
+        }else if(tableNum.value=="B"){
+          console.log('進B桌',testB)
+          np.value.start(testB)
+        }
+      })
       const flvStream = computed(()=>{ //直播網址
         return store.state.table.TableJoinRecall.table.streamingUrl
       })
@@ -43,6 +57,7 @@ export default defineComponent({
       const isAndroid = userSystem.indexOf('Android') > -1 || userSystem.indexOf('Adr') >-1
       const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/)
       const testPlayUrl = 'http://flv.bdplay.nodemedia.cn/live/bbb.flv'
+      const testB = 'http://35.201.183.73/live?app=KH89&stream=tt1'
       // if(isIOS){
       //   console.log("蘋果系統")
       // }

@@ -9,9 +9,15 @@
 import {computed, defineComponent,ref,watch} from 'vue'
 import {gsap,Power1,Power4} from 'gsap'
 import {useStore} from 'vuex'
+import {useRoute } from 'vue-router'
 export default defineComponent({
     inheritAttrs: false, //防止出現Vue warn
     setup(props){
+        //暫時性的
+        const route = useRoute()
+        const tableNum = computed(()=>{
+            return route.params.tableId
+        })
         //vuex
         const store = useStore()
         const roundUuid = computed(()=>{ //每個回合獨特的uuid
@@ -95,20 +101,27 @@ export default defineComponent({
         // })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
+            //最外面的if是暫時的
+            if(tableNum.value=="A"){
                 console.log("新局開始",count.value,'回合uuid',roundUuid.value)
                 if(roundUuid.value){
                     // console.log('有UUid才要倒數')
                     timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                     setCount()
                 }
+            }
+                
         })
         watch(lastCount,()=>{ //換桌時候會偵測現在的秒數
+        if(tableNum.value=="A"){
             if(gameStatus.value==1){
                 // console.log('倒數剩下幾秒',lastCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 count.value = lastCount.value
                 setCount()
             }
+        }
+            
         })
         return{
             //data

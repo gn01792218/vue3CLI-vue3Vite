@@ -104,6 +104,7 @@ import {computed, defineComponent, nextTick, onMounted, reactive, ref, watch} fr
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
+import {useRoute } from 'vue-router'
 import GameResult from '@/components/GameResult.vue'
 import GameresultSound from '@/components/GameResultSound.vue'
 import GameResultLoading from '@/components/GameResultLoading.vue'
@@ -146,6 +147,11 @@ export default defineComponent({
             setDefaultCoin()
             // setMinBetCoinUnusable()
         })
+        //暫時的
+            const route = useRoute()
+            const tableNum = computed(()=>{
+                return route.params.tableId
+            })
         //vuex
         const store = useStore();
         const user = computed(()=>{
@@ -204,7 +210,6 @@ export default defineComponent({
             // console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
-            
             // setDefaultCoin()
             // nextTick(()=>{
             //     setMinBetCoinUnusable()
@@ -226,7 +231,11 @@ export default defineComponent({
         })
         watch(gameResult,()=>{
             clearLoseArea(gameResult.value)
-            showResult()
+            //外面的if是暫時性的
+            if(tableNum.value=="A"){
+                showResult()
+            }
+            
             winCoinAnimation()
         })
         watch(total,()=>{

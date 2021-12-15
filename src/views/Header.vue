@@ -4,9 +4,9 @@
         <div class="header-top">
             <div class="header-logo"><a href="#"><img src="../images/logo.png"></a></div>
             <div class="header-btnList mt-xl-5">
-                <a class="header-btn" @click="toGametable('A')" >A桌</a>
+                <a class="header-btn" :class="{active:tableNum=='A'}" @click="toGametable('A')" >A桌</a>
                 <!-- <a class="header-btn disabled">B桌</a> -->
-                <!-- <a class="header-btn" @click="toGametable('B')">B桌</a> -->
+                <a class="header-btn" :class="{active:tableNum=='B'}" @click="toGametable('B')">B桌</a>
                 <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
                 <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow">離開遊戲</a> 
                 <a href="#" class="header-btn d-block d-xl-none" @click="closeWindow">離開</a> 
@@ -15,7 +15,7 @@
         <div class="header-bottom">
             <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
             <div class="header-userName col font_yellows">₱{{userWallet}}</div>
-            <div class="header-userName col font_yellows"><i>靴:{{shoe}}局:{{roundNum}}</i></div>
+            <div class="header-userName col font_yellows"><i>{{tableNum}}桌 靴:{{shoe}}局:{{roundNum}}</i></div>
         </div>
     </div>
 </template>
@@ -23,6 +23,7 @@
 <script lang="ts">
 import {computed, defineComponent} from 'vue'
 import { useRouter} from 'vue-router'
+import { useRoute } from 'vue-router'
 import {useStore} from 'vuex'
 import ProgressBar from '@/components/ProgressBar.vue'
 export default defineComponent({
@@ -30,6 +31,11 @@ export default defineComponent({
         ProgressBar,
     },
     setup(){
+        //route
+        const route = useRoute()
+        const tableNum = computed(()=>{
+            return route.params.tableId
+        })
         //vuex
         const store = useStore()
         const userToken = computed(()=>{
@@ -74,6 +80,7 @@ export default defineComponent({
             userWallet,
             roundNum,
             shoe,
+            tableNum,
             //methods
             toGametable,
             backToHome,

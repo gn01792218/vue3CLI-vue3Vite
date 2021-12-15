@@ -15,6 +15,7 @@
 <script lang="ts">
 import {computed, defineComponent, ref, watch} from 'vue'
 import {useStore} from 'vuex'
+import {useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
 // import GameResultLoading from '@/components/GameResultLoading.vue'
 export default defineComponent({
@@ -22,6 +23,17 @@ export default defineComponent({
         // GameResultLoading,
     },
     setup(){
+        //暫時性的
+        const route = useRoute()
+        const tableNum = computed(()=>{
+        return route.params.tableId
+        })
+        watch(tableNum,()=>{
+            if(tableNum.value=="B"){
+                hasGameResult.value = false
+            }
+        })
+        //vuex
         const store = useStore()
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
@@ -54,13 +66,18 @@ export default defineComponent({
         })
         watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
             console.log("停止下注")
-            hasGameResult.value = true
-            // isWait.value = true
+            //最外層的if是暫時的
+            if(tableNum.value=="A"){
+                hasGameResult.value = true
+            }
         })
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
             // if(gameResult.value){
-              showGameResult()
+            //最外層的是暫時的
+            if(tableNum.value=="A"){
+                showGameResult()
+            }
             // }
         })
         function showGameResult () {

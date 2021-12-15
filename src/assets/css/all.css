@@ -386,6 +386,11 @@ img {
           box-shadow: 0px 0px 0px #9e9e9e;
 }
 
+.header-btn.active, header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
+  background-color: brown;
+  border: black 2px solid;
+}
+
 .header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
@@ -2862,7 +2867,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 0.5rem;
   }
   .header-bottom {
-    min-width: 100px;
+    min-width: 115px;
   }
   .video-box {
     height: 220px;
@@ -2936,6 +2941,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 375px) {
+  .header-logo {
+    width: 25% !important;
+  }
+  .header-btnList {
+    width: 60% !important;
+  }
   .video-box {
     height: 195px;
   }
@@ -3077,9 +3088,18 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header {
     height: 40px;
   }
+  .header-userName {
+    line-height: 0.7rem;
+  }
   .header-btn {
     line-height: 1rem;
     font-size: 100%;
+  }
+  .header-btnList {
+    width: 100% !important;
+  }
+  .header-logo {
+    display: none;
   }
   #countNumber {
     top: 3%;
@@ -3222,9 +3242,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 100%;
     line-height: 1.75rem;
     font-size: 100%;
-  }
-  .header-btnList {
-    width: 49%;
   }
   .video-box {
     height: 190px;

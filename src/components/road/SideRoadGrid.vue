@@ -136,11 +136,15 @@ export default defineComponent({
         })
         watch(beadPlateResult,()=>{
           console.log("偵測到朱朱陸")
-          if(bigRoadInit.value){
+          //最外層是暫時性的
+          if(tableNum.value=="A"){
+            if(bigRoadInit.value){
             showBigRoadTest ()
-          }else{  //沒有初始化過先畫
+            }else{  //沒有初始化過先畫
             showBigRoadInitTest ()
           }
+          }
+          
         })
         // watch(bigRoadResult,()=>{
         //   resetBigRoad()

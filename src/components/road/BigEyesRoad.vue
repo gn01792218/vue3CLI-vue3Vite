@@ -62,12 +62,15 @@ export default defineComponent({
         })
         watch(bigEyesRoadResult,()=>{
           console.log("偵測到大眼路")
-          if(bigEyesRoadResult.value.columns[0].blocks.length>0){
+          //最外層的if是暫時性的
+          if(tableNum.value=="A"){
+            if(bigEyesRoadResult.value.columns[0].blocks.length>0){
             if(bigEyesRoadInit.value){
               showBigEyesRoad()
             }else{
               showBigEyesRoadInit()
             }
+          }
           }
         })
       //function

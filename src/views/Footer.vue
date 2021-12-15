@@ -27,6 +27,7 @@
 <script lang="ts">
 import {computed, defineComponent,ref} from 'vue'
 import {useStore} from 'vuex'
+
 import screenfull from 'screenfull'
 import UserBetInfo from '@/components/UserBetInfo.vue'
 import Date from '@/components/Date.vue'
@@ -35,6 +36,7 @@ export default defineComponent({
         UserBetInfo,Date
     },
     setup(){
+        
         //vuex
         const store = useStore()
         //computed

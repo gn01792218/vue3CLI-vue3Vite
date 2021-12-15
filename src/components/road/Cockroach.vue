@@ -52,7 +52,9 @@ export default defineComponent({
           resetcockroachRoad()
         })
         watch(cockroachRoadResult,()=>{
-          if(cockroachRoadResult.value.columns[0].blocks.length>0){
+          //最外層是暫時性的
+          if(tableNum.value=="A"){
+            if(cockroachRoadResult.value.columns[0].blocks.length>0){
             if(cockroachRoadInit.value){
               console.log('蟑螂陸樺一顆顆顆')
               showCockroachRoad()
@@ -60,6 +62,7 @@ export default defineComponent({
               console.log("偵測到蟑螂路初始化")
               showCockroachRoadInit()
             }
+          }
           }
         })
         function recordRoad (gameResult:number){

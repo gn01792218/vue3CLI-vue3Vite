@@ -54,13 +54,17 @@ export default defineComponent({
         })
         watch(smallRoadResult,()=>{
           console.log("偵測到小路",smallRoadResult.value)
-          if(smallRoadResult.value.columns[0].blocks.length>0){
+          //最外層是暫時性的
+          if(tableNum.value=="A"){
+            if(smallRoadResult.value.columns[0].blocks.length>0){
             if(smallRoadInit.value){
               showSmallRoad()
             }else{
               showSmallRoadInit()
             }
           }
+          }
+          
         })
         function recordRoad (gameResult:number){
           switch(gameResult){

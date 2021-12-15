@@ -892,7 +892,7 @@
 			font-size: 0.5rem;
 		}
 		.header-bottom{  
-			min-width: 100px;
+			min-width: 115px;
 		}
 		.video-box{
 			height:220px;
@@ -962,6 +962,12 @@
 		}
 }
 @media screen and (max-width: 375px) {
+	.header-logo{  //暫時性的，之後得拿掉!!!!!
+		width:25% !important;
+	}
+	.header-btnList{
+		width:60% !important;
+	}
 		.video-box{
 			height:195px;
 		}
@@ -1048,10 +1054,18 @@
 	.header{
 		height:40px;
 	}
-
+	.header-userName{
+		line-height:0.7rem;
+	}
 	.header-btn{
 		line-height:1rem;
 		font-size:100%;
+	}
+	.header-btnList{
+		width: 100% !important;
+	}
+	.header-logo{
+		display: none;
 	}
 	#countNumber{
 		top:3%;
@@ -1160,9 +1174,9 @@
 		line-height:1.75rem;
 		font-size:100%;
 	}
-	.header-btnList{
-		width: 49%;
-	}
+	// .header-btnList{
+	// 	width: 100%;
+	// }
 	.video-box{
 		height:190px;
 	}

@@ -21,6 +21,7 @@
 <script lang="ts">
 import {computed, defineComponent,onMounted,reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
+import {useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
 export default defineComponent({
   setup(){
@@ -36,6 +37,17 @@ export default defineComponent({
         banker:new Array(3),
         player:new Array(3),
      })
+     //暫時性的
+     const route = useRoute()
+    const tableNum = computed(()=>{
+      return route.params.tableId
+    })
+    watch(tableNum,()=>{
+      if(tableNum.value=="B"){
+        showCardResult.value = false
+        resetCards ()
+      }
+    })
     //vuex
     const store = useStore()
     const roundUuid = computed(()=>{
@@ -82,22 +94,32 @@ export default defineComponent({
      })
      watch(gameResult,()=>{
       //  console.log(gameResult.value.length)
-       setWinCardBoxLight()
+      //最外層的if是暫時的
+      if(tableNum.value=="A"){
+        setWinCardBoxLight()
        if(gameResult.value.length>0){
          showCardTotalPoint()
        }
+      }
+       
      })
      watch(DrawCard,()=>{  //開牌
       //  console.log("開牌")
-       let card = DrawCard.value
+      //if判斷是暫時性的
+      if(tableNum.value=="A"){
+        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
+      }
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
-      if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
+     //最外層的if是暫時的
+     if(tableNum.value=="A"){
+       if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
        })
       }
+     }
      })
      //撲克牌業務代碼
      function resetCards () {
