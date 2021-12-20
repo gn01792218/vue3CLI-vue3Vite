@@ -144,6 +144,33 @@
     @include hisRoadSpritePosition(-1500,0,0.1);
 }
 
-//路圖網格
+//問路
+//小路(左下角)
+.small-red-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1200,0,0.1);
+}
+.small-blue-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1400,0,0.1);
+}
+//大眼仔路(中間)
+.bigEye-red-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(0,100,0.11);
+}
+.bigEye-blue-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-800,100,0.11);
+}
+//蟑螂路
+.cockroach-red-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1300,0,0.1);
+}
+.cockroach-blue-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1500,0,0.1);
+}
 
 //大路

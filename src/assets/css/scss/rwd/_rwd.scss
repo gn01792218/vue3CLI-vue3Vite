@@ -325,7 +325,7 @@
   }
   .video-box {
     width: 100%;
-    height: 545px;
+    height: 575px;
   }
   .mainGame {
     width: 100%;
@@ -342,10 +342,10 @@
   }
   .betArea-mobile {
     display: block;
-    height: 280px;
+    height: 250px;
   }
   .betArea-mobile-container {
-    height: 280px;
+    height: 250px;
   }
   .coin-menu1 {
     @include coinSpritePosition(0, 0, 1.6);
@@ -566,11 +566,14 @@
   }
 }
 @media screen and (max-width: 768px) {
+  .header{
+    height:40px;
+  }
   .header-btn {
     line-height: 2.75rem;
   }
   .video-box {
-    height: 385px;
+    height: 430px;
   }
   .lightBox {
     display: block;
@@ -578,11 +581,8 @@
   #countNumber {
     top: 2%;
   }
-  .betArea-mobile {
-    height: 180px;
-  }
-  .betArea-mobile-container {
-    height: 180px;
+  .bettingArea-btn{
+    height:55px;
   }
   .tabsArea {
     display: none;
@@ -660,7 +660,7 @@
   }
   .betArea-mobile,
   .betArea-mobile-container {
-    height: 145px;
+    height: 120px;
   }
   .betArea-item {
     font-size: 1.6rem;
@@ -795,12 +795,15 @@
   }
 }
 @media screen and (max-width: 540px) {
+  .header{
+    height:30px;
+  }
   .header-btn {
     font-size: 150%;
     line-height: 1.5rem;
   }
   .video-box {
-    height: 238px;
+    height: 290px;
   }
   #countNumber {
     top: 3%;
@@ -814,7 +817,7 @@
   }
   .betArea-mobile,
   .betArea-mobile-container {
-    height: 130px;
+    height: 100px;
   }
   .coin-menu1 {
     @include coinSpritePosition(0, 0, 0.7);
@@ -1035,13 +1038,13 @@
   }
   .header-btn {
     line-height: 1.75rem;
-    font-size: 130%;
+    font-size: 100%;
   }
   .header-userName {
     font-size: 0.5rem;
   }
   .video-box {
-    height: 170px;
+    height: 230px;
   }
   #countNumber {
     top: 2%;
@@ -1057,20 +1060,26 @@
     height: 15%;
   }
   .betArea {
-    height: 355px;
+    height: 310px;
   }
   .betStatus {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .betArea-mobile {
-    height: 211px;
+    height: 180px;
   }
   .betArea-mobile-container {
-    height: 211px;
+    height: 180px;
     flex-wrap: wrap;
   }
+  .navbar-toggler{ //漢堡
+    padding: 0;
+  }
+  .bettingArea-btn-gitbackAllCoin{
+    width:55px;
+  }
   .betArea-item {
-    font-size: 1.2rem;
+    font-size: 1rem;
     flex: auto;
   }
   .card-container {
@@ -1112,36 +1121,32 @@
   }
 }
 @media screen and (max-width: 375px) {
-  .header-logo {
-    //暫時性的，之後得拿掉!!!!!
-    width: 10% !important;
-  }
-  .header {
-    height: 40px;
-  }
   .header-btnList {
     width: 90% !important;
   }
   .video-box {
-    height: 155px;
+    height: 210px;
   }
   .header-btnList {
     width: 49%;
   }
   .betArea {
-    height: 315px;
+    height: 265px;
   }
   .betStatus {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
   }
   .alertFont {
-    font-size: 1.3rem !important;
+    font-size: 1rem !important;
+  }
+  .betArea-item{
+    font-size: 0.8rem;
   }
   .betArea-mobile {
-    height: 179px;
+    height: 141px;
   }
   .betArea-mobile-container {
-    height: 179px;
+    height: 141px;
   }
   .playerNum {
     left: 3%;
@@ -1237,7 +1242,7 @@
     padding-bottom: 0px;
   }
   .video-box {
-    height: 140px;
+    height: 180px;
   }
   .gameHistory {
     height: 100px;
@@ -1249,7 +1254,7 @@
     font-size: 130%;
   }
   .betArea {
-    height: 270px;
+    height: 230px;
   }
   .bettingArea-btn{
 	  height:50px;
@@ -1264,10 +1269,10 @@
     font-size: 1rem;
   }
   .betArea-mobile {
-    height: 150px;
+    height: 117px;
   }
   .betArea-mobile-container {
-    height: 150px;
+    height: 117px;
   }
   .card-container {
     margin-top: -35px;
@@ -1340,6 +1345,27 @@
     // width:30%;
     font-size: 0.5rem;
   }
+  //小路(左下角)
+.small-red-ask{
+  @include hisRoadSpritePosition(-1200,0,0.08);
+}
+.small-blue-ask{
+  @include hisRoadSpritePosition(-1400,0,0.08);
+}
+//大眼仔路(中間)
+.bigEye-red-ask{
+  @include hisRoadSpritePosition(0,100,0.08);
+}
+.bigEye-blue-ask{
+  @include hisRoadSpritePosition(-800,100,0.08);
+}
+//蟑螂路
+.cockroach-red-ask{
+  @include hisRoadSpritePosition(-1300,0,0.08);
+}
+.cockroach-blue-ask{
+  @include hisRoadSpritePosition(-1500,0,0.08);
+}
 }
 @media screen and (max-width: 280px) {
   .header {

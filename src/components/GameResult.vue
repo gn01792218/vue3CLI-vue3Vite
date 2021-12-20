@@ -76,6 +76,7 @@ export default defineComponent({
             // if(gameResult.value){
             //最外層的是暫時的
             if(tableNum.value=="A"){
+                console.log('伺服器遊戲結果',gameResult.value)
                 showGameResult()
             }
             // }

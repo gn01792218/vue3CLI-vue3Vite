@@ -100,17 +100,17 @@
                 <div class="askRoad-player p-1 mr-2">
                     <p>閒問路</p>
                     <div class="d-flex justify-content-around p-1">
-                        <div class="small-blue"></div>
-                        <div class="bigEye-red"></div>
-                        <div class="cockroach-red"></div>
+                        <div class="small-blue-ask"></div>
+                        <div class="bigEye-red-ask"></div>
+                        <div class="cockroach-red-ask"></div>
                     </div>
                 </div>
                 <div class="askRoad-banker p-1">
                     <p>莊問路</p>
                     <div class="d-flex justify-content-around p-1">
-                        <div class="small-red"></div>
-                        <div class="bigEye-blue"></div>
-                        <div class="cockroach-blue"></div>
+                        <div class="small-red-ask"></div>
+                        <div class="bigEye-blue-ask"></div>
+                        <div class="cockroach-blue-ask"></div>
                     </div>
                 </div>
             </div>
@@ -241,7 +241,7 @@ export default defineComponent({
         })
         watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
         console.log(betResult.value)
-            if(betResult.value!==0 &&betResult.value!=-1){
+            if(betResult.value!==0 && betResult.value!=-1){
                 let betArrayShift = betArray.shift()
                 betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
             }
