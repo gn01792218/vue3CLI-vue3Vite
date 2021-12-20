@@ -70,7 +70,6 @@
                     <!-- <li v-if="totalRound>0">總局數 : 0</li> -->
                 </section>
             </ul>
-            
             <!-- <p class="mobilTableInfo yellow">莊:XX</p>
             <p class="mobilTableInfo red">閒:XX</p>
             <p class="mobilTableInfo green">和:XX</p>
@@ -94,13 +93,35 @@
                 </div>
             </ul>
         </div>
+        <div class="bettingArea-btn d-flex justify-content-between align-items-center p-2 position-relative">
+            <LightBox/>
+            <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
+            <div class="askRoad d-flex">
+                <div class="askRoad-player p-1 mr-2">
+                    <p>閒問路</p>
+                    <div class="d-flex justify-content-around p-1">
+                        <div class="small-blue"></div>
+                        <div class="bigEye-red"></div>
+                        <div class="cockroach-red"></div>
+                    </div>
+                </div>
+                <div class="askRoad-banker p-1">
+                    <p>莊問路</p>
+                    <div class="d-flex justify-content-around p-1">
+                        <div class="small-red"></div>
+                        <div class="bigEye-blue"></div>
+                        <div class="cockroach-blue"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <GameResult/>
-        <!-- <button class="test position-absolute" @click="getAllBetBack">還我$$$$$$$$$</button> -->
+        
     </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, nextTick, onMounted, reactive, ref, watch} from 'vue'
+import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
 import {sendBetCall,sendBetResetCall} from '../socketApi'
 import {useStore} from 'vuex'
@@ -219,14 +240,15 @@ export default defineComponent({
             canBet.value = false
         })
         watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
-            if(betResult.value!==0){
+        console.log(betResult.value)
+            if(betResult.value!==0 &&betResult.value!=-1){
                 let betArrayShift = betArray.shift()
                 betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
             }
         })
         watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
             if(betResetresult.value===1){
-                 resetGame()
+                resetGame()
             }
         })
         watch(gameResult,()=>{

@@ -628,6 +628,41 @@ a.btn.disabled, fieldset[disabled] a.btn {
   top: 25%;
 }
 
+.bettingArea-btn {
+  height: 65px;
+  width: 100%;
+  background-color: #1e1e1e;
+  border-top: gray 1px solid;
+}
+
+.bettingArea-btn-gitbackAllCoin {
+  width: 100px;
+  border-radius: 5px;
+  background-color: grey;
+  cursor: pointer;
+}
+
+.askRoad-player, .askRoad-banker {
+  background-color: black;
+}
+
+.askRoad-player p, .askRoad-banker p {
+  margin-bottom: 0;
+}
+
+.askRoad-player div, .askRoad-banker div {
+  background-color: gray;
+  border-radius: 10px;
+}
+
+.askRoad-player {
+  color: red;
+}
+
+.askRoad-banker {
+  color: yellow;
+}
+
 .shotCoinUl {
   width: 100%;
 }
@@ -1374,13 +1409,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 70%;
   }
   .betArea {
-    height: 70%;
+    height: 65%;
   }
   .betArea-pc {
     height: 79%;
   }
   .coinArea {
-    height: 18%;
+    height: 15%;
   }
   .betArea-pc-container {
     height: 50%;
@@ -1394,7 +1429,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 1280px) {
-  .text-md-left, .text-md-right {
+  .text-md-left,
+  .text-md-right {
     font-size: smaller;
   }
   .card-container {
@@ -1825,7 +1861,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .video-box {
     width: 100%;
-    height: 560px;
+    height: 545px;
   }
   .mainGame {
     width: 100%;
@@ -2184,7 +2220,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     line-height: 2.75rem;
   }
   .video-box {
-    height: 400px;
+    height: 385px;
   }
   .lightBox {
     display: block;
@@ -2320,7 +2356,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -474px -156px;
     background-size: 568.8px 234px;
   }
-  .betArea-mobile, .betArea-mobile-container {
+  .betArea-mobile,
+  .betArea-mobile-container {
     height: 145px;
   }
   .betArea-item {
@@ -2521,13 +2558,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
   #countNumber {
     top: 3%;
   }
-  .betArea-item, .betStatus {
+  .betArea-item,
+  .betStatus {
     font-size: 1.5rem;
   }
   .alertFont {
     font-size: 1.5rem !important;
   }
-  .betArea-mobile, .betArea-mobile-container {
+  .betArea-mobile,
+  .betArea-mobile-container {
     height: 130px;
   }
   .coin-menu1 {
@@ -2884,8 +2923,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 60px;
     left: 10px;
   }
+  .coinArea {
+    height: 15%;
+  }
   .betArea {
-    height: 300px;
+    height: 355px;
   }
   .betStatus {
     font-size: 1.2rem;
@@ -2959,7 +3001,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 49%;
   }
   .betArea {
-    height: 260px;
+    height: 315px;
   }
   .betStatus {
     font-size: 1.1rem;
@@ -3116,7 +3158,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     padding-bottom: 0px;
   }
   .video-box {
-    height: 125px;
+    height: 140px;
   }
   .gameHistory {
     height: 100px;
@@ -3128,7 +3170,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 130%;
   }
   .betArea {
-    height: 235px;
+    height: 270px;
+  }
+  .bettingArea-btn {
+    height: 50px;
   }
   .betArea-item {
     font-size: 1rem;
@@ -3140,15 +3185,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   .betArea-mobile {
-    height: 160px;
+    height: 150px;
   }
   .betArea-mobile-container {
-    height: 160px;
+    height: 150px;
   }
   .card-container {
     margin-top: -35px;
   }
-  .bankerNum, .playerNum {
+  .bankerNum,
+  .playerNum {
     font-size: 1rem;
   }
   .playerNum {
@@ -3158,6 +3204,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bankerNum {
     right: 0%;
     top: 50%;
+  }
+  .mobilTableInfo {
+    font-size: small;
   }
   .BeadPlate-B {
     width: 12px;

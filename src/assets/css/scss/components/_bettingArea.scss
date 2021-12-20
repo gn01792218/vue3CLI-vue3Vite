@@ -30,6 +30,34 @@
     .gameresult{
         top:25%;
     }
+    .bettingArea-btn{
+        height:65px;
+        width:100%;
+        background-color: #1e1e1e;
+        border-top:gray 1px solid;
+    }
+    .bettingArea-btn-gitbackAllCoin{
+        width:100px;
+        border-radius: 5px;
+        background-color: grey;
+        cursor: pointer;
+    }
+    .askRoad-player,.askRoad-banker{
+        background-color: black;
+        p{
+            margin-bottom: 0;
+        }
+        div{
+            background-color: gray;
+            border-radius: 10px;
+        }
+    }
+    .askRoad-player{
+        color:red;
+    }
+    .askRoad-banker{
+        color:yellow;
+    }
     .shotCoinUl{  
         width:100%;
         .shotCoinPice{

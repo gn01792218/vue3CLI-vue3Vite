@@ -2,1386 +2,1586 @@
      自適應設定區
 -------------------------------------------*/
 @media screen and (min-width: 1281px) {
-	.video-box{
-		height:70%;
-	}
-	.betArea{
-		height:70%;
-	}
-	.betArea-pc{
-		height:79%;
-	}
-	.coinArea{
-		height:18%;
-	}
-	.betArea-pc-container{
-		height:50%;
-	}
-	.betArea-item{
-		font-size:2rem;
-	}
-	.gameHistory{
-		height:30%;
-	}
+  .video-box {
+    height: 70%;
+  }
+  .betArea {
+    height: 65%;
+  }
+  .betArea-pc {
+    height: 79%;
+  }
+  .coinArea {
+    height: 15%;
+  }
+  .betArea-pc-container {
+    height: 50%;
+  }
+  .betArea-item {
+    font-size: 2rem;
+  }
+  .gameHistory {
+    height: 30%;
+  }
 }
 @media screen and (max-width: 1280px) {
-	.text-md-left,.text-md-right{
-		font-size: smaller;
-	}
-	.card-container{
-		margin-top:-20px;
-	}
-	.video-box{
-		height:75%;
-	}
-	.betArea{
-		height:75%;
-	}
-	.betArea-pc{
-		height:75%;
-	}
-	.betArea-pc-container{
-		height:50%;
-	}
-	.betArea-item{
-		font-size:1.5rem;
-	}
-	.gameHistory{
-		height:25%;
-	}
-	.coinArea{
-		height:21%;
-	}
-	.coin-menu1{
-		@include coinSpritePosition(0,0,0.7)
-	}
-	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,0.7)
-	}
-	.coin-menu1-disable{
-		@include coinSpritePosition(0,-130,0.7);
-	}
-	.coin-menu2{
-		@include coinSpritePosition(-79,0,0.7)
-	}
-	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,0.7)
-	}
-	.coin-menu2-disable{
-		@include coinSpritePosition(-79,-130,0.7);
-	}
-	.coin-menu3{
-		@include coinSpritePosition(-158,0,0.7)
-	}
-	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,0.7)
-	}
-	.coin-menu3-disable{
-		@include coinSpritePosition(-158,-130,0.7);
-	}
-	.coin-menu4{
-		@include coinSpritePosition(-237,0,0.7)
-	}
-	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,0.7)
-	}
-	.coin-menu4-disable{
-		@include coinSpritePosition(-237,-130,0.7);
-	}
-	.coin-menu5{
-		@include coinSpritePosition(-316,0,0.7)
-	}
-	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,0.7)
-	}
-	.coin-menu5-disable{
-		@include coinSpritePosition(-316,-130,0.7);
-	}
-	.coin-menu6{
-		@include coinSpritePosition(-395,0,0.7)
-	}
-	.coin-menu6:hover,.coin-menu6-current{
-		@include coinSpritePosition(-395,-65,0.7)
-	}
-	.coin-menu6-disable{
-		@include coinSpritePosition(-395,-130,0.7);
-	}
-	//路圖圖示區
-	//珠仔路
-	.BeadPlate-B{  //莊
-		@include hisRoadSpritePosition(0,0,0.29);
-	}
-	.BeadPlate-B-BPair{  //莊對
-		@include hisRoadSpritePosition(-100,0,0.29);
-	}
-	.BeadPlate-B-PPair{  //莊、閒對
-		@include hisRoadSpritePosition(-200,0,0.29);
-	}
-	.BeadPlate-B-BothPair{  //莊對、閒對
-		@include hisRoadSpritePosition(-300,0,0.29);
-	}
-	.BeadPlate-P{  //閒
-		@include hisRoadSpritePosition(-400,0,0.29);
-	}
-	.BeadPlate-P-BPair{  //閒、莊對
-		@include hisRoadSpritePosition(-500,0,0.29);
-	}
-	.BeadPlate-P-PPair{  //閒、閒對
-		@include hisRoadSpritePosition(-600,0,0.29);
-	}
-	.BeadPlate-P-BothPair{  //閒對、莊對
-		@include hisRoadSpritePosition(-700,0,0.29);
-	}
-	.BeadPlate-T{  //和
-		@include hisRoadSpritePosition(-800,0,0.29);
-	}
-	.BeadPlate-T-BPair{  //和、莊對
-		@include hisRoadSpritePosition(-900,0,0.29);
-	}
-	.BeadPlate-T-PPair{  //和、閒對
-		@include hisRoadSpritePosition(-1000,0,0.29);
-	}
-	.BeadPlate-T-BothPair{  //和、閒對、莊對
-		@include hisRoadSpritePosition(-1100,0,0.29);
-	}
-	//大路
-	.big-B{ //莊
-		@include hisRoadSpritePosition(0,100,0.15);
-	}
-	.big-B-BPair{ //莊對
-		@include hisRoadSpritePosition(-100,100,0.15);
-	}
-	.big-B-PPair{ //莊、閒對
-		@include hisRoadSpritePosition(-200,100,0.15);
-	}
-	.big-B-BothPair{ // 莊對、閒對
-		@include hisRoadSpritePosition(-300,100,0.15);
-	}
-	.big-BT{  //莊和
-		@include hisRoadSpritePosition(-400,100,0.15);
-	}
-	.big-BT-BPair{  //莊和 莊對
-		@include hisRoadSpritePosition(-500,100,0.15);
-	}
-	.big-BT-PPair{  //莊和 閒對
-		@include hisRoadSpritePosition(-600,100,0.15);
-	}
-	.big-BT-BothPair{  //莊和 莊閒對
-		@include hisRoadSpritePosition(-700,100,0.15);
-	}
-	.big-P{ //閒
-		@include hisRoadSpritePosition(-800,100,0.15);
-	}
-	.big-P-BPair{ //閒、莊對
-		@include hisRoadSpritePosition(-900,100,0.15);
-	}
-	.big-P-PPair{ //閒、閒對
-		@include hisRoadSpritePosition(-1000,100,0.15);
-	}
-	.big-P-BothPair{ // 閒對、莊對
-		@include hisRoadSpritePosition(-1100,100,0.15);
-	}
-	.big-PT{  //閒和
-		@include hisRoadSpritePosition(-1200,100,0.15);
-	}
-	.big-PT-BPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1300,100,0.15);
-	}
-	.big-PT-PPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1400,100,0.15);
-	}
-	.big-PT-BothPair{  //閒和 莊閒對
-		@include hisRoadSpritePosition(-1500,100,0.15);
-	}
-	//小路(左下角)
-	.small-red{
-		@include hisRoadSpritePosition(-1200,0,0.08);
-	}
-	.small-blue{
-		@include hisRoadSpritePosition(-1400,0,0.08);
-	}
-	//大眼仔路(中間)
-	.bigEye-red{
-		@include hisRoadSpritePosition(0,100,0.09);
-	}
-	.bigEye-blue{
-		@include hisRoadSpritePosition(-800,100,0.09);
-	}
-	//蟑螂路
-	cockroach-red{
-		@include hisRoadSpritePosition(-1300,0,0.08);
-	}
-	cockroach-blue{
-		@include hisRoadSpritePosition(-1500,0,0.08);
-	}
+  .text-md-left,
+  .text-md-right {
+    font-size: smaller;
+  }
+  .card-container {
+    margin-top: -20px;
+  }
+  .video-box {
+    height: 75%;
+  }
+  .betArea {
+    height: 75%;
+  }
+  .betArea-pc {
+    height: 75%;
+  }
+  .betArea-pc-container {
+    height: 50%;
+  }
+  .betArea-item {
+    font-size: 1.5rem;
+  }
+  .gameHistory {
+    height: 25%;
+  }
+  .coinArea {
+    height: 21%;
+  }
+  .coin-menu1 {
+    @include coinSpritePosition(0, 0, 0.7);
+  }
+  .coin-menu1:hover,
+  .coin-menu1-current {
+    @include coinSpritePosition(0, -65, 0.7);
+  }
+  .coin-menu1-disable {
+    @include coinSpritePosition(0, -130, 0.7);
+  }
+  .coin-menu2 {
+    @include coinSpritePosition(-79, 0, 0.7);
+  }
+  .coin-menu2:hover,
+  .coin-menu2-current {
+    @include coinSpritePosition(-79, -65, 0.7);
+  }
+  .coin-menu2-disable {
+    @include coinSpritePosition(-79, -130, 0.7);
+  }
+  .coin-menu3 {
+    @include coinSpritePosition(-158, 0, 0.7);
+  }
+  .coin-menu3:hover,
+  .coin-menu3-current {
+    @include coinSpritePosition(-158, -65, 0.7);
+  }
+  .coin-menu3-disable {
+    @include coinSpritePosition(-158, -130, 0.7);
+  }
+  .coin-menu4 {
+    @include coinSpritePosition(-237, 0, 0.7);
+  }
+  .coin-menu4:hover,
+  .coin-menu4-current {
+    @include coinSpritePosition(-237, -65, 0.7);
+  }
+  .coin-menu4-disable {
+    @include coinSpritePosition(-237, -130, 0.7);
+  }
+  .coin-menu5 {
+    @include coinSpritePosition(-316, 0, 0.7);
+  }
+  .coin-menu5:hover,
+  .coin-menu5-current {
+    @include coinSpritePosition(-316, -65, 0.7);
+  }
+  .coin-menu5-disable {
+    @include coinSpritePosition(-316, -130, 0.7);
+  }
+  .coin-menu6 {
+    @include coinSpritePosition(-395, 0, 0.7);
+  }
+  .coin-menu6:hover,
+  .coin-menu6-current {
+    @include coinSpritePosition(-395, -65, 0.7);
+  }
+  .coin-menu6-disable {
+    @include coinSpritePosition(-395, -130, 0.7);
+  }
+  //路圖圖示區
+  //珠仔路
+  .BeadPlate-B {
+    //莊
+    @include hisRoadSpritePosition(0, 0, 0.29);
+  }
+  .BeadPlate-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 0, 0.29);
+  }
+  .BeadPlate-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 0, 0.29);
+  }
+  .BeadPlate-B-BothPair {
+    //莊對、閒對
+    @include hisRoadSpritePosition(-300, 0, 0.29);
+  }
+  .BeadPlate-P {
+    //閒
+    @include hisRoadSpritePosition(-400, 0, 0.29);
+  }
+  .BeadPlate-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-500, 0, 0.29);
+  }
+  .BeadPlate-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-600, 0, 0.29);
+  }
+  .BeadPlate-P-BothPair {
+    //閒對、莊對
+    @include hisRoadSpritePosition(-700, 0, 0.29);
+  }
+  .BeadPlate-T {
+    //和
+    @include hisRoadSpritePosition(-800, 0, 0.29);
+  }
+  .BeadPlate-T-BPair {
+    //和、莊對
+    @include hisRoadSpritePosition(-900, 0, 0.29);
+  }
+  .BeadPlate-T-PPair {
+    //和、閒對
+    @include hisRoadSpritePosition(-1000, 0, 0.29);
+  }
+  .BeadPlate-T-BothPair {
+    //和、閒對、莊對
+    @include hisRoadSpritePosition(-1100, 0, 0.29);
+  }
+  //大路
+  .big-B {
+    //莊
+    @include hisRoadSpritePosition(0, 100, 0.15);
+  }
+  .big-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 100, 0.15);
+  }
+  .big-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 100, 0.15);
+  }
+  .big-B-BothPair {
+    // 莊對、閒對
+    @include hisRoadSpritePosition(-300, 100, 0.15);
+  }
+  .big-BT {
+    //莊和
+    @include hisRoadSpritePosition(-400, 100, 0.15);
+  }
+  .big-BT-BPair {
+    //莊和 莊對
+    @include hisRoadSpritePosition(-500, 100, 0.15);
+  }
+  .big-BT-PPair {
+    //莊和 閒對
+    @include hisRoadSpritePosition(-600, 100, 0.15);
+  }
+  .big-BT-BothPair {
+    //莊和 莊閒對
+    @include hisRoadSpritePosition(-700, 100, 0.15);
+  }
+  .big-P {
+    //閒
+    @include hisRoadSpritePosition(-800, 100, 0.15);
+  }
+  .big-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-900, 100, 0.15);
+  }
+  .big-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-1000, 100, 0.15);
+  }
+  .big-P-BothPair {
+    // 閒對、莊對
+    @include hisRoadSpritePosition(-1100, 100, 0.15);
+  }
+  .big-PT {
+    //閒和
+    @include hisRoadSpritePosition(-1200, 100, 0.15);
+  }
+  .big-PT-BPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1300, 100, 0.15);
+  }
+  .big-PT-PPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1400, 100, 0.15);
+  }
+  .big-PT-BothPair {
+    //閒和 莊閒對
+    @include hisRoadSpritePosition(-1500, 100, 0.15);
+  }
+  //小路(左下角)
+  .small-red {
+    @include hisRoadSpritePosition(-1200, 0, 0.08);
+  }
+  .small-blue {
+    @include hisRoadSpritePosition(-1400, 0, 0.08);
+  }
+  //大眼仔路(中間)
+  .bigEye-red {
+    @include hisRoadSpritePosition(0, 100, 0.09);
+  }
+  .bigEye-blue {
+    @include hisRoadSpritePosition(-800, 100, 0.09);
+  }
+  //蟑螂路
+  cockroach-red {
+    @include hisRoadSpritePosition(-1300, 0, 0.08);
+  }
+  cockroach-blue {
+    @include hisRoadSpritePosition(-1500, 0, 0.08);
+  }
 }
 @media screen and (max-width: 1140px) {
-	
 }
 @media screen and (min-width: 1025px) {
-	.header-bottom-mobil{
-		display: none !important;
-	}
-	.header-logo{
-		max-width: 187px;
-		margin-left: auto;
-		margin-right: auto;
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
+  .header-bottom-mobil {
+    display: none !important;
+  }
+  .header-logo {
+    max-width: 187px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 @media screen and (max-width: 1024px) {
-	.container-waps{
-		height:auto;
-	}
-	.mobilTableInfo{
-		display: block;
-	}
-	.flexs {
-		display: flex;
-		justify-content: space-around;
+  .container-waps {
+    height: auto;
   }
-	.header{
-		width: 100%;
-		height: 50px;
-		flex-direction: row;
-		justify-content: space-around;
-	}
-	.header-userName{
-		border:none;
-		line-height:1rem;
-	}
-	.header-logo{
-		float: left;
-		width: auto !important;
-		height:100%;
-		margin-right: auto;
+  .mobilTableInfo {
+    display: block;
+  }
+  .flexs {
+    display: flex;
+    justify-content: space-around;
+  }
+  .header {
+    width: 100%;
+    height: 50px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .header-userName {
+    border: none;
+    line-height: 1rem;
+  }
+  .header-logo {
+    float: left;
+    width: auto !important;
+    height: 100%;
+    margin-right: auto;
 
-		img{
-			height:100%;
-		}
-	}
-	.header-btnList{
-		width: auto;
-		display: flex;
-	}
-	.header-btn{
-		width:auto;
-		line-height: 4.75rem;
-		font-size:250%;
-	}
-	.header-top{
-		display: flex;
-	}
-	.header-bottom{  
-		display: flex;
-		justify-content: center;
-	}
-	.header-bottom-desk{
-		display: none;
-	}
-	.userWallet-mobil{
-		display: block !important;
-	}
-	.header-userName{
-		flex-grow: 0;
-	}
-	.font-total{
-		line-height: 1.5em;
-	}
-	.video-box{
-		width: 100%;
-		height:560px;
-	}
-	.mainGame{
-		width: 100%;
-	}	
-	.card-container{
-		margin-top:0px;
-	}
-	.betArea{
-		border: 2px solid #262626;
-		width: 100%;
-	}
-	.betArea-pc{
-		display: none;
-	}
-	.betArea-mobile{
-		display: block;
-		height:280px;
-	}
-	.betArea-mobile-container{
-		height:280px;
-	}
-	.coin-menu1{
-		@include coinSpritePosition(0,0,1.6)
-	}
-	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,1.6)
-	}
-	.coin-menu1-disable{
-		@include coinSpritePosition(0,-130,1.6);
-	}
-	.coin-menu2{
-		@include coinSpritePosition(-79,0,1.6)
-	}
-	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,1.6)
-	}
-	.coin-menu2-disable{
-		@include coinSpritePosition(-79,-130,1.6);
-	}
-	.coin-menu3{
-		@include coinSpritePosition(-158,0,1.6)
-	}
-	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,1.6)
-	}
-	.coin-menu3-disable{
-		@include coinSpritePosition(-158,-130,1.6);
-	}
-	.coin-menu4{
-		@include coinSpritePosition(-237,0,1.6)
-	}
-	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,1.6)
-	}
-	.coin-menu4-disable{
-		@include coinSpritePosition(-237,-130,1.6);
-	}
-	.coin-menu5{
-		@include coinSpritePosition(-316,0,1.6)
-	}
-	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,1.6)
-	}
-	.coin-menu5-disable{
-		@include coinSpritePosition(-316,-130,1.6);
-	}
-	.coin-menu6{
-		@include coinSpritePosition(-395,0,1.6)
-	}
-	.coin-menu6:hover,.coin-menu6-current{
-		@include coinSpritePosition(-395,-65,1.6)
-	}
-	.coin-menu6-disable{
-		@include coinSpritePosition(-395,-130,1.6);
-	}
-	.betArea-item {
-		font-size: 2.5rem;
-		flex:20%;
-	}
-	.gameHistory{
-		width: 100%;
-		height: 220px;
-		background-image: url(../../images/cardroad_bg_20.png);
-		background-repeat: repeat;
-		background-position: left top;
-	}
-	.tabsArea{
-		display: none;
-	}
-	.card-box{
-		margin-top: -20px;
-	}
-	.playerNum,.bankerNum{
-		font-size:2.5rem;
-	  }
-	  .playerNum{
-		left:20%;
-		top:10%;
-	  }
-	  .bankerNum{
-		right:20%;
-		top:10%;
-	  }
-	  	//珠仔路
-	.BeadPlate-B{  //莊
-		@include hisRoadSpritePosition(0,0,0.35);
-	}
-	.BeadPlate-B-BPair{  //莊對
-		@include hisRoadSpritePosition(-100,0,0.35);
-	}
-	.BeadPlate-B-PPair{  //莊、閒對
-		@include hisRoadSpritePosition(-200,0,0.35);
-	}
-	.BeadPlate-B-BothPair{  //莊對、閒對
-		@include hisRoadSpritePosition(-300,0,0.35);
-	}
-	.BeadPlate-P{  //閒
-		@include hisRoadSpritePosition(-400,0,0.35);
-	}
-	.BeadPlate-P-BPair{  //閒、莊對
-		@include hisRoadSpritePosition(-500,0,0.35);
-	}
-	.BeadPlate-P-PPair{  //閒、閒對
-		@include hisRoadSpritePosition(-600,0,0.35);
-	}
-	.BeadPlate-P-BothPair{  //閒對、莊對
-		@include hisRoadSpritePosition(-700,0,0.35);
-	}
-	.BeadPlate-T{  //和
-		@include hisRoadSpritePosition(-800,0,0.35);
-	}
-	.BeadPlate-T-BPair{  //和、莊對
-		@include hisRoadSpritePosition(-900,0,0.35);
-	}
-	.BeadPlate-T-PPair{  //和、閒對
-		@include hisRoadSpritePosition(-1000,0,0.35);
-	}
-	.BeadPlate-T-BothPair{  //和、閒對、莊對
-		@include hisRoadSpritePosition(-1100,0,0.35);
-	}
-	//大路
-	.big-B{ //莊
-		@include hisRoadSpritePosition(0,100,0.2);
-	}
-	.big-B-BPair{ //莊對
-		@include hisRoadSpritePosition(-100,100,0.2);
-	}
-	.big-B-PPair{ //莊、閒對
-		@include hisRoadSpritePosition(-200,100,0.2);
-	}
-	.big-B-BothPair{ // 莊對、閒對
-		@include hisRoadSpritePosition(-300,100,0.2);
-	}
-	.big-BT{  //莊和
-		@include hisRoadSpritePosition(-400,100,0.2);
-	}
-	.big-BT-BPair{  //莊和 莊對
-		@include hisRoadSpritePosition(-500,100,0.2);
-	}
-	.big-BT-PPair{  //莊和 閒對
-		@include hisRoadSpritePosition(-600,100,0.2);
-	}
-	.big-BT-BothPair{  //莊和 莊閒對
-		@include hisRoadSpritePosition(-700,100,0.2);
-	}
-	.big-P{ //閒
-		@include hisRoadSpritePosition(-800,100,0.2);
-	}
-	.big-P-BPair{ //閒、莊對
-		@include hisRoadSpritePosition(-900,100,0.2);
-	}
-	.big-P-PPair{ //閒、閒對
-		@include hisRoadSpritePosition(-1000,100,0.2);
-	}
-	.big-P-BothPair{ // 閒對、莊對
-		@include hisRoadSpritePosition(-1100,100,0.2);
-	}
-	.big-PT{  //閒和
-		@include hisRoadSpritePosition(-1200,100,0.2);
-	}
-	.big-PT-BPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1300,100,0.2);
-	}
-	.big-PT-PPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1400,100,0.2);
-	}
-	.big-PT-BothPair{  //閒和 莊閒對
-		@include hisRoadSpritePosition(-1500,100,0.2);
-	}
-	//小路(左下角)
-	.small-red{
-		@include hisRoadSpritePosition(-1200,0,0.09);
-	}
-	.small-blue{
-		@include hisRoadSpritePosition(-1400,0,0.09);
-	}
-	//蟑螂路
-	cockroach-red{
-		@include hisRoadSpritePosition(-1300,0,0.09);
-	}
-	cockroach-blue{
-		@include hisRoadSpritePosition(-1500,0,0.09);
-	}
+    img {
+      height: 100%;
+    }
+  }
+  .header-btnList {
+    width: auto;
+    display: flex;
+  }
+  .header-btn {
+    width: auto;
+    line-height: 4.75rem;
+    font-size: 250%;
+  }
+  .header-top {
+    display: flex;
+  }
+  .header-bottom {
+    display: flex;
+    justify-content: center;
+  }
+  .header-bottom-desk {
+    display: none;
+  }
+  .userWallet-mobil {
+    display: block !important;
+  }
+  .header-userName {
+    flex-grow: 0;
+  }
+  .font-total {
+    line-height: 1.5em;
+  }
+  .video-box {
+    width: 100%;
+    height: 545px;
+  }
+  .mainGame {
+    width: 100%;
+  }
+  .card-container {
+    margin-top: 0px;
+  }
+  .betArea {
+    border: 2px solid #262626;
+    width: 100%;
+  }
+  .betArea-pc {
+    display: none;
+  }
+  .betArea-mobile {
+    display: block;
+    height: 280px;
+  }
+  .betArea-mobile-container {
+    height: 280px;
+  }
+  .coin-menu1 {
+    @include coinSpritePosition(0, 0, 1.6);
+  }
+  .coin-menu1:hover,
+  .coin-menu1-current {
+    @include coinSpritePosition(0, -65, 1.6);
+  }
+  .coin-menu1-disable {
+    @include coinSpritePosition(0, -130, 1.6);
+  }
+  .coin-menu2 {
+    @include coinSpritePosition(-79, 0, 1.6);
+  }
+  .coin-menu2:hover,
+  .coin-menu2-current {
+    @include coinSpritePosition(-79, -65, 1.6);
+  }
+  .coin-menu2-disable {
+    @include coinSpritePosition(-79, -130, 1.6);
+  }
+  .coin-menu3 {
+    @include coinSpritePosition(-158, 0, 1.6);
+  }
+  .coin-menu3:hover,
+  .coin-menu3-current {
+    @include coinSpritePosition(-158, -65, 1.6);
+  }
+  .coin-menu3-disable {
+    @include coinSpritePosition(-158, -130, 1.6);
+  }
+  .coin-menu4 {
+    @include coinSpritePosition(-237, 0, 1.6);
+  }
+  .coin-menu4:hover,
+  .coin-menu4-current {
+    @include coinSpritePosition(-237, -65, 1.6);
+  }
+  .coin-menu4-disable {
+    @include coinSpritePosition(-237, -130, 1.6);
+  }
+  .coin-menu5 {
+    @include coinSpritePosition(-316, 0, 1.6);
+  }
+  .coin-menu5:hover,
+  .coin-menu5-current {
+    @include coinSpritePosition(-316, -65, 1.6);
+  }
+  .coin-menu5-disable {
+    @include coinSpritePosition(-316, -130, 1.6);
+  }
+  .coin-menu6 {
+    @include coinSpritePosition(-395, 0, 1.6);
+  }
+  .coin-menu6:hover,
+  .coin-menu6-current {
+    @include coinSpritePosition(-395, -65, 1.6);
+  }
+  .coin-menu6-disable {
+    @include coinSpritePosition(-395, -130, 1.6);
+  }
+  .betArea-item {
+    font-size: 2.5rem;
+    flex: 20%;
+  }
+  .gameHistory {
+    width: 100%;
+    height: 220px;
+    background-image: url(../../images/cardroad_bg_20.png);
+    background-repeat: repeat;
+    background-position: left top;
+  }
+  .tabsArea {
+    display: none;
+  }
+  .card-box {
+    margin-top: -20px;
+  }
+  .playerNum,
+  .bankerNum {
+    font-size: 2.5rem;
+  }
+  .playerNum {
+    left: 20%;
+    top: 10%;
+  }
+  .bankerNum {
+    right: 20%;
+    top: 10%;
+  }
+  //珠仔路
+  .BeadPlate-B {
+    //莊
+    @include hisRoadSpritePosition(0, 0, 0.35);
+  }
+  .BeadPlate-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 0, 0.35);
+  }
+  .BeadPlate-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 0, 0.35);
+  }
+  .BeadPlate-B-BothPair {
+    //莊對、閒對
+    @include hisRoadSpritePosition(-300, 0, 0.35);
+  }
+  .BeadPlate-P {
+    //閒
+    @include hisRoadSpritePosition(-400, 0, 0.35);
+  }
+  .BeadPlate-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-500, 0, 0.35);
+  }
+  .BeadPlate-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-600, 0, 0.35);
+  }
+  .BeadPlate-P-BothPair {
+    //閒對、莊對
+    @include hisRoadSpritePosition(-700, 0, 0.35);
+  }
+  .BeadPlate-T {
+    //和
+    @include hisRoadSpritePosition(-800, 0, 0.35);
+  }
+  .BeadPlate-T-BPair {
+    //和、莊對
+    @include hisRoadSpritePosition(-900, 0, 0.35);
+  }
+  .BeadPlate-T-PPair {
+    //和、閒對
+    @include hisRoadSpritePosition(-1000, 0, 0.35);
+  }
+  .BeadPlate-T-BothPair {
+    //和、閒對、莊對
+    @include hisRoadSpritePosition(-1100, 0, 0.35);
+  }
+  //大路
+  .big-B {
+    //莊
+    @include hisRoadSpritePosition(0, 100, 0.2);
+  }
+  .big-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 100, 0.2);
+  }
+  .big-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 100, 0.2);
+  }
+  .big-B-BothPair {
+    // 莊對、閒對
+    @include hisRoadSpritePosition(-300, 100, 0.2);
+  }
+  .big-BT {
+    //莊和
+    @include hisRoadSpritePosition(-400, 100, 0.2);
+  }
+  .big-BT-BPair {
+    //莊和 莊對
+    @include hisRoadSpritePosition(-500, 100, 0.2);
+  }
+  .big-BT-PPair {
+    //莊和 閒對
+    @include hisRoadSpritePosition(-600, 100, 0.2);
+  }
+  .big-BT-BothPair {
+    //莊和 莊閒對
+    @include hisRoadSpritePosition(-700, 100, 0.2);
+  }
+  .big-P {
+    //閒
+    @include hisRoadSpritePosition(-800, 100, 0.2);
+  }
+  .big-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-900, 100, 0.2);
+  }
+  .big-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-1000, 100, 0.2);
+  }
+  .big-P-BothPair {
+    // 閒對、莊對
+    @include hisRoadSpritePosition(-1100, 100, 0.2);
+  }
+  .big-PT {
+    //閒和
+    @include hisRoadSpritePosition(-1200, 100, 0.2);
+  }
+  .big-PT-BPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1300, 100, 0.2);
+  }
+  .big-PT-PPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1400, 100, 0.2);
+  }
+  .big-PT-BothPair {
+    //閒和 莊閒對
+    @include hisRoadSpritePosition(-1500, 100, 0.2);
+  }
+  //小路(左下角)
+  .small-red {
+    @include hisRoadSpritePosition(-1200, 0, 0.09);
+  }
+  .small-blue {
+    @include hisRoadSpritePosition(-1400, 0, 0.09);
+  }
+  //蟑螂路
+  cockroach-red {
+    @include hisRoadSpritePosition(-1300, 0, 0.09);
+  }
+  cockroach-blue {
+    @include hisRoadSpritePosition(-1500, 0, 0.09);
+  }
 }
 @media screen and (max-width: 768px) {
-	// .header{
-	// 	height:70px;
-	// }
-	.header-btn{
-		line-height:2.75rem;
-	}
-	.video-box{
-		height:400px;
-	}
-	.lightBox{
-		display: block;
-	}
-	#countNumber{
-		top:2%;
-	}
-	.betArea-mobile{
-		height:180px;
-	}
-	.betArea-mobile-container{
-		height:180px;
-	}
-	.tabsArea{
-		display: none;
-	}	
-	.gameResult{
-		top:0;
-	}
-	.container{
-		width: 760px;
-	}
-	.coinArea{
-		position: relative;
-		padding-top: 0px;
-		padding-bottom: 0px;
-	}
-	.coin-menu1{
-		@include coinSpritePosition(0,0,1.2)
-	}
-	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,1.2)
-	}
-	.coin-menu1-disable{
-		@include coinSpritePosition(0,-130,1.2);
-	}
-	.coin-menu2{
-		@include coinSpritePosition(-79,0,1.2)
-	}
-	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,1.2)
-	}
-	.coin-menu2-disable{
-		@include coinSpritePosition(-79,-130,1.2);
-	}
-	.coin-menu3{
-		@include coinSpritePosition(-158,0,1.2)
-	}
-	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,1.2)
-	}
-	.coin-menu3-disable{
-		@include coinSpritePosition(-158,-130,1.2);
-	}
-	.coin-menu4{
-		@include coinSpritePosition(-237,0,1.2)
-	}
-	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,1.2)
-	}
-	.coin-menu4-disable{
-		@include coinSpritePosition(-237,-130,1.2);
-	}
-	.coin-menu5{
-		@include coinSpritePosition(-316,0,1.2)
-	}
-	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,1.2)
-	}
-	.coin-menu5-disable{
-		@include coinSpritePosition(-316,-130,1.2);
-	}
-	.coin-menu6{
-		@include coinSpritePosition(-395,0,1.2)
-	}
-	.coin-menu6:hover,.coin-menu6-current{
-		@include coinSpritePosition(-395,-65,1.2)
-	}
-	.coin-menu6-disable{
-		@include coinSpritePosition(-395,-130,1.2);
-	}
-	.betArea-mobile,.betArea-mobile-container{
-		height:145px;
-	}
-	.betArea-item {
-		font-size: 1.6rem;
-	}
-	.alertFont{
-		font-size: 1.6rem !important;
-	}
-	.card-container{
-		margin-top: -35px;
-	}
-	  .playerNum{
-		left:10%;
-		top:10%;
-	  }
-	  .bankerNum{
-		right:10%;
-		top:10%;
-	  }
-	//珠仔路
-	.BeadPlate-B{  //莊
-		@include hisRoadSpritePosition(0,0,0.3);
-	}
-	.BeadPlate-B-BPair{  //莊對
-		@include hisRoadSpritePosition(-100,0,0.3);
-	}
-	.BeadPlate-B-PPair{  //莊、閒對
-		@include hisRoadSpritePosition(-200,0,0.3);
-	}
-	.BeadPlate-B-BothPair{  //莊對、閒對
-		@include hisRoadSpritePosition(-300,0,0.3);
-	}
-	.BeadPlate-P{  //閒
-		@include hisRoadSpritePosition(-400,0,0.3);
-	}
-	.BeadPlate-P-BPair{  //閒、莊對
-		@include hisRoadSpritePosition(-500,0,0.3);
-	}
-	.BeadPlate-P-PPair{  //閒、閒對
-		@include hisRoadSpritePosition(-600,0,0.3);
-	}
-	.BeadPlate-P-BothPair{  //閒對、莊對
-		@include hisRoadSpritePosition(-700,0,0.3);
-	}
-	.BeadPlate-T{  //和
-		@include hisRoadSpritePosition(-800,0,0.3);
-	}
-	.BeadPlate-T-BPair{  //和、莊對
-		@include hisRoadSpritePosition(-900,0,0.3);
-	}
-	.BeadPlate-T-PPair{  //和、閒對
-		@include hisRoadSpritePosition(-1000,0,0.3);
-	}
-	.BeadPlate-T-BothPair{  //和、閒對、莊對
-		@include hisRoadSpritePosition(-1100,0,0.3);
-	}
-	//大路
-	.big-B{ //莊
-		@include hisRoadSpritePosition(0,100,0.17);
-	}
-	.big-B-BPair{ //莊對
-		@include hisRoadSpritePosition(-100,100,0.17);
-	}
-	.big-B-PPair{ //莊、閒對
-		@include hisRoadSpritePosition(-200,100,0.17);
-	}
-	.big-B-BothPair{ // 莊對、閒對
-		@include hisRoadSpritePosition(-300,100,0.17);
-	}
-	.big-BT{  //莊和
-		@include hisRoadSpritePosition(-400,100,0.17);
-	}
-	.big-BT-BPair{  //莊和 莊對
-		@include hisRoadSpritePosition(-500,100,0.17);
-	}
-	.big-BT-PPair{  //莊和 閒對
-		@include hisRoadSpritePosition(-600,100,0.17);
-	}
-	.big-BT-BothPair{  //莊和 莊閒對
-		@include hisRoadSpritePosition(-700,100,0.17);
-	}
-	.big-P{ //閒
-		@include hisRoadSpritePosition(-800,100,0.17);
-	}
-	.big-P-BPair{ //閒、莊對
-		@include hisRoadSpritePosition(-900,100,0.17);
-	}
-	.big-P-PPair{ //閒、閒對
-		@include hisRoadSpritePosition(-1000,100,0.17);
-	}
-	.big-P-BothPair{ // 閒對、莊對
-		@include hisRoadSpritePosition(-1100,100,0.17);
-	}
-	.big-PT{  //閒和
-		@include hisRoadSpritePosition(-1200,100,0.17);
-	}
-	.big-PT-BPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1300,100,0.17);
-	}
-	.big-PT-PPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1400,100,0.17);
-	}
-	.big-PT-BothPair{  //閒和 莊閒對
-		@include hisRoadSpritePosition(-1500,100,0.17);
-	}
+  .header-btn {
+    line-height: 2.75rem;
+  }
+  .video-box {
+    height: 385px;
+  }
+  .lightBox {
+    display: block;
+  }
+  #countNumber {
+    top: 2%;
+  }
+  .betArea-mobile {
+    height: 180px;
+  }
+  .betArea-mobile-container {
+    height: 180px;
+  }
+  .tabsArea {
+    display: none;
+  }
+  .gameResult {
+    top: 0;
+  }
+  .container {
+    width: 760px;
+  }
+  .coinArea {
+    position: relative;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .coin-menu1 {
+    @include coinSpritePosition(0, 0, 1.2);
+  }
+  .coin-menu1:hover,
+  .coin-menu1-current {
+    @include coinSpritePosition(0, -65, 1.2);
+  }
+  .coin-menu1-disable {
+    @include coinSpritePosition(0, -130, 1.2);
+  }
+  .coin-menu2 {
+    @include coinSpritePosition(-79, 0, 1.2);
+  }
+  .coin-menu2:hover,
+  .coin-menu2-current {
+    @include coinSpritePosition(-79, -65, 1.2);
+  }
+  .coin-menu2-disable {
+    @include coinSpritePosition(-79, -130, 1.2);
+  }
+  .coin-menu3 {
+    @include coinSpritePosition(-158, 0, 1.2);
+  }
+  .coin-menu3:hover,
+  .coin-menu3-current {
+    @include coinSpritePosition(-158, -65, 1.2);
+  }
+  .coin-menu3-disable {
+    @include coinSpritePosition(-158, -130, 1.2);
+  }
+  .coin-menu4 {
+    @include coinSpritePosition(-237, 0, 1.2);
+  }
+  .coin-menu4:hover,
+  .coin-menu4-current {
+    @include coinSpritePosition(-237, -65, 1.2);
+  }
+  .coin-menu4-disable {
+    @include coinSpritePosition(-237, -130, 1.2);
+  }
+  .coin-menu5 {
+    @include coinSpritePosition(-316, 0, 1.2);
+  }
+  .coin-menu5:hover,
+  .coin-menu5-current {
+    @include coinSpritePosition(-316, -65, 1.2);
+  }
+  .coin-menu5-disable {
+    @include coinSpritePosition(-316, -130, 1.2);
+  }
+  .coin-menu6 {
+    @include coinSpritePosition(-395, 0, 1.2);
+  }
+  .coin-menu6:hover,
+  .coin-menu6-current {
+    @include coinSpritePosition(-395, -65, 1.2);
+  }
+  .coin-menu6-disable {
+    @include coinSpritePosition(-395, -130, 1.2);
+  }
+  .betArea-mobile,
+  .betArea-mobile-container {
+    height: 145px;
+  }
+  .betArea-item {
+    font-size: 1.6rem;
+  }
+  .alertFont {
+    font-size: 1.6rem !important;
+  }
+  .card-container {
+    margin-top: -35px;
+  }
+  .playerNum {
+    left: 10%;
+    top: 10%;
+  }
+  .bankerNum {
+    right: 10%;
+    top: 10%;
+  }
+  //珠仔路
+  .BeadPlate-B {
+    //莊
+    @include hisRoadSpritePosition(0, 0, 0.3);
+  }
+  .BeadPlate-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 0, 0.3);
+  }
+  .BeadPlate-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 0, 0.3);
+  }
+  .BeadPlate-B-BothPair {
+    //莊對、閒對
+    @include hisRoadSpritePosition(-300, 0, 0.3);
+  }
+  .BeadPlate-P {
+    //閒
+    @include hisRoadSpritePosition(-400, 0, 0.3);
+  }
+  .BeadPlate-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-500, 0, 0.3);
+  }
+  .BeadPlate-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-600, 0, 0.3);
+  }
+  .BeadPlate-P-BothPair {
+    //閒對、莊對
+    @include hisRoadSpritePosition(-700, 0, 0.3);
+  }
+  .BeadPlate-T {
+    //和
+    @include hisRoadSpritePosition(-800, 0, 0.3);
+  }
+  .BeadPlate-T-BPair {
+    //和、莊對
+    @include hisRoadSpritePosition(-900, 0, 0.3);
+  }
+  .BeadPlate-T-PPair {
+    //和、閒對
+    @include hisRoadSpritePosition(-1000, 0, 0.3);
+  }
+  .BeadPlate-T-BothPair {
+    //和、閒對、莊對
+    @include hisRoadSpritePosition(-1100, 0, 0.3);
+  }
+  //大路
+  .big-B {
+    //莊
+    @include hisRoadSpritePosition(0, 100, 0.17);
+  }
+  .big-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 100, 0.17);
+  }
+  .big-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 100, 0.17);
+  }
+  .big-B-BothPair {
+    // 莊對、閒對
+    @include hisRoadSpritePosition(-300, 100, 0.17);
+  }
+  .big-BT {
+    //莊和
+    @include hisRoadSpritePosition(-400, 100, 0.17);
+  }
+  .big-BT-BPair {
+    //莊和 莊對
+    @include hisRoadSpritePosition(-500, 100, 0.17);
+  }
+  .big-BT-PPair {
+    //莊和 閒對
+    @include hisRoadSpritePosition(-600, 100, 0.17);
+  }
+  .big-BT-BothPair {
+    //莊和 莊閒對
+    @include hisRoadSpritePosition(-700, 100, 0.17);
+  }
+  .big-P {
+    //閒
+    @include hisRoadSpritePosition(-800, 100, 0.17);
+  }
+  .big-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-900, 100, 0.17);
+  }
+  .big-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-1000, 100, 0.17);
+  }
+  .big-P-BothPair {
+    // 閒對、莊對
+    @include hisRoadSpritePosition(-1100, 100, 0.17);
+  }
+  .big-PT {
+    //閒和
+    @include hisRoadSpritePosition(-1200, 100, 0.17);
+  }
+  .big-PT-BPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1300, 100, 0.17);
+  }
+  .big-PT-PPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1400, 100, 0.17);
+  }
+  .big-PT-BothPair {
+    //閒和 莊閒對
+    @include hisRoadSpritePosition(-1500, 100, 0.17);
+  }
 }
 @media screen and (max-width: 540px) {
-	.header-btn{
-		font-size:150%;
-		line-height: 1.5rem;
-	}
-	.video-box{
-		height:238px;
-	}
-	#countNumber{
-		top:3%;
-	}
-	.betArea-item ,.betStatus{
-		font-size: 1.5rem;
-	}
-	.alertFont{
-		font-size: 1.5rem !important;
-	}
-	.betArea-mobile,.betArea-mobile-container{
-		height:130px;
-	}
-	.coin-menu1{
-		@include coinSpritePosition(0,0,0.7)
-	}
-	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,0.7)
-	}
-	.coin-menu1-disable{
-		@include coinSpritePosition(0,-130,0.7);
-	}
-	.coin-menu2{
-		@include coinSpritePosition(-79,0,0.7)
-	}
-	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,0.7)
-	}
-	.coin-menu2-disable{
-		@include coinSpritePosition(-79,-130,0.7);
-	}
-	.coin-menu3{
-		@include coinSpritePosition(-158,0,0.7)
-	}
-	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,0.7)
-	}
-	.coin-menu3-disable{
-		@include coinSpritePosition(-158,-130,0.7);
-	}
-	.coin-menu4{
-		@include coinSpritePosition(-237,0,0.7)
-	}
-	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,0.7)
-	}
-	.coin-menu4-disable{
-		@include coinSpritePosition(-237,-130,0.7);
-	}
-	.coin-menu5{
-		@include coinSpritePosition(-316,0,0.7)
-	}
-	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,0.7)
-	}
-	.coin-menu5-disable{
-		@include coinSpritePosition(-316,-130,0.7);
-	}
-	.coin-menu6{
-		@include coinSpritePosition(-395,0,0.7)
-	}
-	.coin-menu6:hover,.coin-menu6-current{
-		@include coinSpritePosition(-395,-65,0.7)
-	}
-	.coin-menu6-disable{
-		@include coinSpritePosition(-395,-130,0.7);
-	}
-	.gameHistory{
-		height:130px;
-	}
-		//珠仔路
-		.BeadPlate-B{  //莊
-			@include hisRoadSpritePosition(0,0,0.15);
-		}
-		.BeadPlate-B-BPair{  //莊對
-			@include hisRoadSpritePosition(-100,0,0.15);
-		}
-		.BeadPlate-B-PPair{  //莊、閒對
-			@include hisRoadSpritePosition(-200,0,0.15);
-		}
-		.BeadPlate-B-BothPair{  //莊對、閒對
-			@include hisRoadSpritePosition(-300,0,0.15);
-		}
-		.BeadPlate-P{  //閒
-			@include hisRoadSpritePosition(-400,0,0.15);
-		}
-		.BeadPlate-P-BPair{  //閒、莊對
-			@include hisRoadSpritePosition(-500,0,0.15);
-		}
-		.BeadPlate-P-PPair{  //閒、閒對
-			@include hisRoadSpritePosition(-600,0,0.15);
-		}
-		.BeadPlate-P-BothPair{  //閒對、莊對
-			@include hisRoadSpritePosition(-700,0,0.15);
-		}
-		.BeadPlate-T{  //和
-			@include hisRoadSpritePosition(-800,0,0.15);
-		}
-		.BeadPlate-T-BPair{  //和、莊對
-			@include hisRoadSpritePosition(-900,0,0.15);
-		}
-		.BeadPlate-T-PPair{  //和、閒對
-			@include hisRoadSpritePosition(-1000,0,0.15);
-		}
-		.BeadPlate-T-BothPair{  //和、閒對、莊對
-			@include hisRoadSpritePosition(-1100,0,0.15);
-		}
-		//大路
-		.big-B{ //莊
-			@include hisRoadSpritePosition(0,100,0.08);
-		}
-		.big-B-BPair{ //莊對
-			@include hisRoadSpritePosition(-100,100,0.08);
-		}
-		.big-B-PPair{ //莊、閒對
-			@include hisRoadSpritePosition(-200,100,0.08);
-		}
-		.big-B-BothPair{ // 莊對、閒對
-			@include hisRoadSpritePosition(-300,100,0.08);
-		}
-		.big-BT{  //莊和
-			@include hisRoadSpritePosition(-400,100,0.08);
-		}
-		.big-BT-BPair{  //莊和 莊對
-			@include hisRoadSpritePosition(-500,100,0.08);
-		}
-		.big-BT-PPair{  //莊和 閒對
-			@include hisRoadSpritePosition(-600,100,0.08);
-		}
-		.big-BT-BothPair{  //莊和 莊閒對
-			@include hisRoadSpritePosition(-700,100,0.08);
-		}
-		.big-P{ //閒
-			@include hisRoadSpritePosition(-800,100,0.08);
-		}
-		.big-P-BPair{ //閒、莊對
-			@include hisRoadSpritePosition(-900,100,0.08);
-		}
-		.big-P-PPair{ //閒、閒對
-			@include hisRoadSpritePosition(-1000,100,0.08);
-		}
-		.big-P-BothPair{ // 閒對、莊對
-			@include hisRoadSpritePosition(-1100,100,0.08);
-		}
-		.big-PT{  //閒和
-			@include hisRoadSpritePosition(-1200,100,0.08);
-		}
-		.big-PT-BPair{  //閒和 閒對
-			@include hisRoadSpritePosition(-1300,100,0.08);
-		}
-		.big-PT-PPair{  //閒和 閒對
-			@include hisRoadSpritePosition(-1400,100,0.08);
-		}
-		.big-PT-BothPair{  //閒和 莊閒對
-			@include hisRoadSpritePosition(-1500,100,0.08);
-		}
-	
-		//小路(左下角)
-		.small-red{
-			@include hisRoadSpritePosition(-1200,0,0.04);
-		}
-		.small-blue{
-			@include hisRoadSpritePosition(-1400,0,0.04);
-		}
-		//大眼仔路(中間)
-		.bigEye-red{
-			@include hisRoadSpritePosition(0,100,0.04);
-		}
-		.bigEye-blue{
-			@include hisRoadSpritePosition(-800,100,0.04);
-		}
-		//蟑螂路
-		.cockroach-red{
-			@include hisRoadSpritePosition(-1300,0,0.04);
-		}
-		.cockroach-blue{
-			@include hisRoadSpritePosition(-1500,0,0.04);
-		}
-		.card-container{
-			margin-top: -10px;
-		}
+  .header-btn {
+    font-size: 150%;
+    line-height: 1.5rem;
+  }
+  .video-box {
+    height: 238px;
+  }
+  #countNumber {
+    top: 3%;
+  }
+  .betArea-item,
+  .betStatus {
+    font-size: 1.5rem;
+  }
+  .alertFont {
+    font-size: 1.5rem !important;
+  }
+  .betArea-mobile,
+  .betArea-mobile-container {
+    height: 130px;
+  }
+  .coin-menu1 {
+    @include coinSpritePosition(0, 0, 0.7);
+  }
+  .coin-menu1:hover,
+  .coin-menu1-current {
+    @include coinSpritePosition(0, -65, 0.7);
+  }
+  .coin-menu1-disable {
+    @include coinSpritePosition(0, -130, 0.7);
+  }
+  .coin-menu2 {
+    @include coinSpritePosition(-79, 0, 0.7);
+  }
+  .coin-menu2:hover,
+  .coin-menu2-current {
+    @include coinSpritePosition(-79, -65, 0.7);
+  }
+  .coin-menu2-disable {
+    @include coinSpritePosition(-79, -130, 0.7);
+  }
+  .coin-menu3 {
+    @include coinSpritePosition(-158, 0, 0.7);
+  }
+  .coin-menu3:hover,
+  .coin-menu3-current {
+    @include coinSpritePosition(-158, -65, 0.7);
+  }
+  .coin-menu3-disable {
+    @include coinSpritePosition(-158, -130, 0.7);
+  }
+  .coin-menu4 {
+    @include coinSpritePosition(-237, 0, 0.7);
+  }
+  .coin-menu4:hover,
+  .coin-menu4-current {
+    @include coinSpritePosition(-237, -65, 0.7);
+  }
+  .coin-menu4-disable {
+    @include coinSpritePosition(-237, -130, 0.7);
+  }
+  .coin-menu5 {
+    @include coinSpritePosition(-316, 0, 0.7);
+  }
+  .coin-menu5:hover,
+  .coin-menu5-current {
+    @include coinSpritePosition(-316, -65, 0.7);
+  }
+  .coin-menu5-disable {
+    @include coinSpritePosition(-316, -130, 0.7);
+  }
+  .coin-menu6 {
+    @include coinSpritePosition(-395, 0, 0.7);
+  }
+  .coin-menu6:hover,
+  .coin-menu6-current {
+    @include coinSpritePosition(-395, -65, 0.7);
+  }
+  .coin-menu6-disable {
+    @include coinSpritePosition(-395, -130, 0.7);
+  }
+  .gameHistory {
+    height: 130px;
+  }
+  //珠仔路
+  .BeadPlate-B {
+    //莊
+    @include hisRoadSpritePosition(0, 0, 0.15);
+  }
+  .BeadPlate-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 0, 0.15);
+  }
+  .BeadPlate-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 0, 0.15);
+  }
+  .BeadPlate-B-BothPair {
+    //莊對、閒對
+    @include hisRoadSpritePosition(-300, 0, 0.15);
+  }
+  .BeadPlate-P {
+    //閒
+    @include hisRoadSpritePosition(-400, 0, 0.15);
+  }
+  .BeadPlate-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-500, 0, 0.15);
+  }
+  .BeadPlate-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-600, 0, 0.15);
+  }
+  .BeadPlate-P-BothPair {
+    //閒對、莊對
+    @include hisRoadSpritePosition(-700, 0, 0.15);
+  }
+  .BeadPlate-T {
+    //和
+    @include hisRoadSpritePosition(-800, 0, 0.15);
+  }
+  .BeadPlate-T-BPair {
+    //和、莊對
+    @include hisRoadSpritePosition(-900, 0, 0.15);
+  }
+  .BeadPlate-T-PPair {
+    //和、閒對
+    @include hisRoadSpritePosition(-1000, 0, 0.15);
+  }
+  .BeadPlate-T-BothPair {
+    //和、閒對、莊對
+    @include hisRoadSpritePosition(-1100, 0, 0.15);
+  }
+  //大路
+  .big-B {
+    //莊
+    @include hisRoadSpritePosition(0, 100, 0.08);
+  }
+  .big-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 100, 0.08);
+  }
+  .big-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 100, 0.08);
+  }
+  .big-B-BothPair {
+    // 莊對、閒對
+    @include hisRoadSpritePosition(-300, 100, 0.08);
+  }
+  .big-BT {
+    //莊和
+    @include hisRoadSpritePosition(-400, 100, 0.08);
+  }
+  .big-BT-BPair {
+    //莊和 莊對
+    @include hisRoadSpritePosition(-500, 100, 0.08);
+  }
+  .big-BT-PPair {
+    //莊和 閒對
+    @include hisRoadSpritePosition(-600, 100, 0.08);
+  }
+  .big-BT-BothPair {
+    //莊和 莊閒對
+    @include hisRoadSpritePosition(-700, 100, 0.08);
+  }
+  .big-P {
+    //閒
+    @include hisRoadSpritePosition(-800, 100, 0.08);
+  }
+  .big-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-900, 100, 0.08);
+  }
+  .big-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-1000, 100, 0.08);
+  }
+  .big-P-BothPair {
+    // 閒對、莊對
+    @include hisRoadSpritePosition(-1100, 100, 0.08);
+  }
+  .big-PT {
+    //閒和
+    @include hisRoadSpritePosition(-1200, 100, 0.08);
+  }
+  .big-PT-BPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1300, 100, 0.08);
+  }
+  .big-PT-PPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1400, 100, 0.08);
+  }
+  .big-PT-BothPair {
+    //閒和 莊閒對
+    @include hisRoadSpritePosition(-1500, 100, 0.08);
+  }
+
+  //小路(左下角)
+  .small-red {
+    @include hisRoadSpritePosition(-1200, 0, 0.04);
+  }
+  .small-blue {
+    @include hisRoadSpritePosition(-1400, 0, 0.04);
+  }
+  //大眼仔路(中間)
+  .bigEye-red {
+    @include hisRoadSpritePosition(0, 100, 0.04);
+  }
+  .bigEye-blue {
+    @include hisRoadSpritePosition(-800, 100, 0.04);
+  }
+  //蟑螂路
+  .cockroach-red {
+    @include hisRoadSpritePosition(-1300, 0, 0.04);
+  }
+  .cockroach-blue {
+    @include hisRoadSpritePosition(-1500, 0, 0.04);
+  }
+  .card-container {
+    margin-top: -10px;
+  }
 }
 @media screen and (max-width: 414px) {
-	.gameResultLoading{
-		top:25%;
-		font-size: 40%;
-	}
-	.header-top{
-		width:80%;
-	}
-	.header-bottom{
-		width:20%;
-	}
-	.header-btnList{
-		width: 80%;
-	}
-		.header-btn{
-			line-height: 1.75rem;
-			font-size: 130%;;
-		}
-		.header-userName{
-			font-size: 0.5rem;
-		}
-		.video-box{
-			height:170px;
-		}
-		#countNumber{
-			top:2%;
-			left:16px;
-			font-size: 2.6rem;
-		}
-		#loading{
-			width:60px;
-			height:60px;
-			left:10px;
-		}
-		.betArea{
-			height:300px;
-		}
-		.betStatus{
-			font-size: 1.2rem;
-		}
-		.betArea-mobile{
-			height:211px;
-		}
-		.betArea-mobile-container{
-			height:211px;
-			flex-wrap: wrap;
-		}
-		.betArea-item {
-			font-size: 1.2rem;
-			flex:auto;
-		}
-		.card-container{
-			margin-top: -25px;
-		}
-		.playerNum,.bankerNum{
-			font-size: 1.5rem;
-		}
-		.playerNum{
-			left:5%;
-			top:10%;
-		}
-		.bankerNum{
-			right:5%;
-			top:10%;
-		}
-		.caritem{
-			margin-right: 10px;
-		}
-		.stand-mobile-container{
-			height:187px;
-		}
-		.gameHistory{
-			height:115px;
-		}
-		.gameResult{
-			top:25%;
-		}
-		.gainMoney{
-			font-size:100%;
-			margin-bottom:0;
-		}
-		.result-text{
-			font-size:150%;
-		}
-		.userBetInfo-title{
-			font-size: 1.1rem;
-		}
+  .gameResultLoading {
+    top: 25%;
+    font-size: 40%;
+  }
+  .header-top {
+    width: 80%;
+  }
+  .header-bottom {
+    width: 20%;
+  }
+  .header-btnList {
+    width: 80%;
+  }
+  .header-btn {
+    line-height: 1.75rem;
+    font-size: 130%;
+  }
+  .header-userName {
+    font-size: 0.5rem;
+  }
+  .video-box {
+    height: 170px;
+  }
+  #countNumber {
+    top: 2%;
+    left: 16px;
+    font-size: 2.6rem;
+  }
+  #loading {
+    width: 60px;
+    height: 60px;
+    left: 10px;
+  }
+  .coinArea {
+    height: 15%;
+  }
+  .betArea {
+    height: 355px;
+  }
+  .betStatus {
+    font-size: 1.2rem;
+  }
+  .betArea-mobile {
+    height: 211px;
+  }
+  .betArea-mobile-container {
+    height: 211px;
+    flex-wrap: wrap;
+  }
+  .betArea-item {
+    font-size: 1.2rem;
+    flex: auto;
+  }
+  .card-container {
+    margin-top: -25px;
+  }
+  .playerNum,
+  .bankerNum {
+    font-size: 1.5rem;
+  }
+  .playerNum {
+    left: 5%;
+    top: 10%;
+  }
+  .bankerNum {
+    right: 5%;
+    top: 10%;
+  }
+  .caritem {
+    margin-right: 10px;
+  }
+  .stand-mobile-container {
+    height: 187px;
+  }
+  .gameHistory {
+    height: 115px;
+  }
+  .gameResult {
+    top: 25%;
+  }
+  .gainMoney {
+    font-size: 100%;
+    margin-bottom: 0;
+  }
+  .result-text {
+    font-size: 150%;
+  }
+  .userBetInfo-title {
+    font-size: 1.1rem;
+  }
 }
 @media screen and (max-width: 375px) {
-	.header-logo{  //暫時性的，之後得拿掉!!!!!
-		width:10% !important;
-	}
-	.header{
-		height:40px;
-	}
-	.header-btnList{
-		width:90% !important;
-	}
-		.video-box{
-			height:155px;
-		}
-		.header-btnList{
-			width: 49%;
-		}
-		.betArea{
-			height:260px;
-		}
-		.betStatus{
-			font-size: 1.1rem;
-		}
-		.alertFont{
-			font-size: 1.3rem !important;
-		}
-		.betArea-mobile{
-			height:179px;
-		}
-		.betArea-mobile-container{
-			height:179px;
-		}
-		.playerNum{
-			left:3%;
-		}
-		.userBetInfo-title{
-			font-size: 1rem;
-		}
-		.coin-menu1{
-			@include coinSpritePosition(0,0,0.6)
-		}
-		.coin-menu1:hover,.coin-menu1-current{
-			@include coinSpritePosition(0,-65,0.6)
-		}
-		.coin-menu1-disable{
-			@include coinSpritePosition(0,-130,0.6);
-		}
-		.coin-menu2{
-			@include coinSpritePosition(-79,0,0.6)
-		}
-		.coin-menu2:hover,.coin-menu2-current{
-			@include coinSpritePosition(-79,-65,0.6)
-		}
-		.coin-menu2-disable{
-			@include coinSpritePosition(-79,-130,0.6);
-		}
-		.coin-menu3{
-			@include coinSpritePosition(-158,0,0.6)
-		}
-		.coin-menu3:hover,.coin-menu3-current{
-			@include coinSpritePosition(-158,-65,0.6)
-		}
-		.coin-menu3-disable{
-			@include coinSpritePosition(-158,-130,0.6);
-		}
-		.coin-menu4{
-			@include coinSpritePosition(-237,0,0.6)
-		}
-		.coin-menu4:hover,.coin-menu4-current{
-			@include coinSpritePosition(-237,-65,0.6)
-		}
-		.coin-menu4-disable{
-			@include coinSpritePosition(-237,-130,0.6);
-		}
-		.coin-menu5{
-			@include coinSpritePosition(-316,0,0.6)
-		}
-		.coin-menu5:hover,.coin-menu5-current{
-			@include coinSpritePosition(-316,-65,0.6)
-		}
-		.coin-menu5-disable{
-			@include coinSpritePosition(-316,-130,0.6);
-		}
-		.coin-menu6{
-			@include coinSpritePosition(-395,0,0.6)
-		}
-		.coin-menu6:hover,.coin-menu6-current{
-			@include coinSpritePosition(-395,-65,0.6)
-		}
-		.coin-menu6-disable{
-			@include coinSpritePosition(-395,-130,0.6);
-		}
-}	
+  .header-logo {
+    //暫時性的，之後得拿掉!!!!!
+    width: 10% !important;
+  }
+  .header {
+    height: 40px;
+  }
+  .header-btnList {
+    width: 90% !important;
+  }
+  .video-box {
+    height: 155px;
+  }
+  .header-btnList {
+    width: 49%;
+  }
+  .betArea {
+    height: 315px;
+  }
+  .betStatus {
+    font-size: 1.1rem;
+  }
+  .alertFont {
+    font-size: 1.3rem !important;
+  }
+  .betArea-mobile {
+    height: 179px;
+  }
+  .betArea-mobile-container {
+    height: 179px;
+  }
+  .playerNum {
+    left: 3%;
+  }
+  .userBetInfo-title {
+    font-size: 1rem;
+  }
+  .coin-menu1 {
+    @include coinSpritePosition(0, 0, 0.6);
+  }
+  .coin-menu1:hover,
+  .coin-menu1-current {
+    @include coinSpritePosition(0, -65, 0.6);
+  }
+  .coin-menu1-disable {
+    @include coinSpritePosition(0, -130, 0.6);
+  }
+  .coin-menu2 {
+    @include coinSpritePosition(-79, 0, 0.6);
+  }
+  .coin-menu2:hover,
+  .coin-menu2-current {
+    @include coinSpritePosition(-79, -65, 0.6);
+  }
+  .coin-menu2-disable {
+    @include coinSpritePosition(-79, -130, 0.6);
+  }
+  .coin-menu3 {
+    @include coinSpritePosition(-158, 0, 0.6);
+  }
+  .coin-menu3:hover,
+  .coin-menu3-current {
+    @include coinSpritePosition(-158, -65, 0.6);
+  }
+  .coin-menu3-disable {
+    @include coinSpritePosition(-158, -130, 0.6);
+  }
+  .coin-menu4 {
+    @include coinSpritePosition(-237, 0, 0.6);
+  }
+  .coin-menu4:hover,
+  .coin-menu4-current {
+    @include coinSpritePosition(-237, -65, 0.6);
+  }
+  .coin-menu4-disable {
+    @include coinSpritePosition(-237, -130, 0.6);
+  }
+  .coin-menu5 {
+    @include coinSpritePosition(-316, 0, 0.6);
+  }
+  .coin-menu5:hover,
+  .coin-menu5-current {
+    @include coinSpritePosition(-316, -65, 0.6);
+  }
+  .coin-menu5-disable {
+    @include coinSpritePosition(-316, -130, 0.6);
+  }
+  .coin-menu6 {
+    @include coinSpritePosition(-395, 0, 0.6);
+  }
+  .coin-menu6:hover,
+  .coin-menu6-current {
+    @include coinSpritePosition(-395, -65, 0.6);
+  }
+  .coin-menu6-disable {
+    @include coinSpritePosition(-395, -130, 0.6);
+  }
+}
 @media screen and (max-width: 320px) {
-	.header{
-		height:30px;
-	}
-	.header-userName{
-		line-height:0.7rem;
-	}
-	.header-btn{
-		line-height:1rem;
-		font-size:100%;
-	}
-	.header-btnList{
-		width: 100% !important;
-	}
-	.header-logo{
-		display: none;
-	}
-	#countNumber{
-		top:3%;
-		left:18px;
-		font-size: 2.5rem;
-	}
-	.footer{
-		padding-top:0px;
-		padding-bottom: 0px;
-	}
-	.video-box{
-		height:125px;
-	}
-	.gameHistory{
-		height:100px;
-	}
-	.gainMoney{
-		font-size:80%;
-	}
-	.result-text{
-		font-size:130%;
-	}
-	.betArea{
-		height:235px;
-	}
-	.betArea-item{
-		font-size: 1rem;
-	}
-	.alertFont{
-		font-size: 1.2rem !important;
-	}
-	.betStatus{
-		font-size: 1rem;
-	}
-	.betArea-mobile{
-		height:160px;
-	}
-	.betArea-mobile-container{
-		height:160px;
-	}
-	.card-container{
-		margin-top: -35px;
-	}
-	.bankerNum,.playerNum{
-		font-size: 1rem;
-	}
-	.playerNum{
-		left:0%;
-		top:50%;
-	}
-	.bankerNum{
-		right:0%;
-		top:50%;
-	}
-	//珠仔路
-	.BeadPlate-B{  //莊
-		@include hisRoadSpritePosition(0,0,0.12);
-	}
-	.BeadPlate-B-BPair{  //莊對
-		@include hisRoadSpritePosition(-100,0,0.12);
-	}
-	.BeadPlate-B-PPair{  //莊、閒對
-		@include hisRoadSpritePosition(-200,0,0.12);
-	}
-	.BeadPlate-B-BothPair{  //莊對、閒對
-		@include hisRoadSpritePosition(-300,0,0.12);
-	}
-	.BeadPlate-P{  //閒
-		@include hisRoadSpritePosition(-400,0,0.12);
-	}
-	.BeadPlate-P-BPair{  //閒、莊對
-		@include hisRoadSpritePosition(-500,0,0.12);
-	}
-	.BeadPlate-P-PPair{  //閒、閒對
-		@include hisRoadSpritePosition(-600,0,0.12);
-	}
-	.BeadPlate-P-BothPair{  //閒對、莊對
-		@include hisRoadSpritePosition(-700,0,0.12);
-	}
-	.BeadPlate-T{  //和
-		@include hisRoadSpritePosition(-800,0,0.12);
-	}
-	.BeadPlate-T-BPair{  //和、莊對
-		@include hisRoadSpritePosition(-900,0,0.12);
-	}
-	.BeadPlate-T-PPair{  //和、閒對
-		@include hisRoadSpritePosition(-1000,0,0.12);
-	}
-	.BeadPlate-T-BothPair{  //和、閒對、莊對
-		@include hisRoadSpritePosition(-1100,0,0.12);
-	}
-	.userBetInfo-title{
-		// width:30%;
-		font-size: 0.5rem;
-	}
-}	
+  .header {
+    height: 30px;
+  }
+  .header-userName {
+    line-height: 0.7rem;
+  }
+  .header-btn {
+    line-height: 1rem;
+    font-size: 100%;
+  }
+  .header-btnList {
+    width: 100% !important;
+  }
+  .header-logo {
+    display: none;
+  }
+  #countNumber {
+    top: 3%;
+    left: 18px;
+    font-size: 2.5rem;
+  }
+  .footer {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .video-box {
+    height: 140px;
+  }
+  .gameHistory {
+    height: 100px;
+  }
+  .gainMoney {
+    font-size: 80%;
+  }
+  .result-text {
+    font-size: 130%;
+  }
+  .betArea {
+    height: 270px;
+  }
+  .bettingArea-btn{
+	  height:50px;
+  }
+  .betArea-item {
+    font-size: 1rem;
+  }
+  .alertFont {
+    font-size: 1.2rem !important;
+  }
+  .betStatus {
+    font-size: 1rem;
+  }
+  .betArea-mobile {
+    height: 150px;
+  }
+  .betArea-mobile-container {
+    height: 150px;
+  }
+  .card-container {
+    margin-top: -35px;
+  }
+  .bankerNum,
+  .playerNum {
+    font-size: 1rem;
+  }
+  .playerNum {
+    left: 0%;
+    top: 50%;
+  }
+  .bankerNum {
+    right: 0%;
+    top: 50%;
+  }
+  .mobilTableInfo{
+	  font-size: small;
+  }
+  //珠仔路
+  .BeadPlate-B {
+    //莊
+    @include hisRoadSpritePosition(0, 0, 0.12);
+  }
+  .BeadPlate-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 0, 0.12);
+  }
+  .BeadPlate-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 0, 0.12);
+  }
+  .BeadPlate-B-BothPair {
+    //莊對、閒對
+    @include hisRoadSpritePosition(-300, 0, 0.12);
+  }
+  .BeadPlate-P {
+    //閒
+    @include hisRoadSpritePosition(-400, 0, 0.12);
+  }
+  .BeadPlate-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-500, 0, 0.12);
+  }
+  .BeadPlate-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-600, 0, 0.12);
+  }
+  .BeadPlate-P-BothPair {
+    //閒對、莊對
+    @include hisRoadSpritePosition(-700, 0, 0.12);
+  }
+  .BeadPlate-T {
+    //和
+    @include hisRoadSpritePosition(-800, 0, 0.12);
+  }
+  .BeadPlate-T-BPair {
+    //和、莊對
+    @include hisRoadSpritePosition(-900, 0, 0.12);
+  }
+  .BeadPlate-T-PPair {
+    //和、閒對
+    @include hisRoadSpritePosition(-1000, 0, 0.12);
+  }
+  .BeadPlate-T-BothPair {
+    //和、閒對、莊對
+    @include hisRoadSpritePosition(-1100, 0, 0.12);
+  }
+  .userBetInfo-title {
+    // width:30%;
+    font-size: 0.5rem;
+  }
+}
 @media screen and (max-width: 280px) {
-	.header{
-		height:50px;
-	}
-	.header-logo{
-		margin-left: 0;
-	}
-	.header-btn{
-		width:100%;
-		line-height:1.75rem;
-		font-size:100%;
-	}
-	// .header-btnList{
-	// 	width: 100%;
-	// }
-	.video-box{
-		height:190px;
-	}
-	.gameHistory{
-		height:100px;
-	}
-	.gainMoney{
-		font-size:80%;
-	}
-	.result-text{
-		font-size:130%;
-	}
-	.betArea{
-		height:280px;
-	}
-	.betArea-item{
-		font-size: 1rem;
-	}
-	.alertFont{
-		font-size: 1.2rem !important;
-	}
-	.betStatus{
-		font-size: 1rem;
-	}
-	.betArea-mobile{
-		height:192px;
-	}
-	.betArea-mobile-container{
-		height:192px;
-	}
-	.coin-menu1{
-		@include coinSpritePosition(0,0,0.5)
-	}
-	.coin-menu1:hover,.coin-menu1-current{
-		@include coinSpritePosition(0,-65,0.5)
-	}
-	.coin-menu1-disable{
-		@include coinSpritePosition(0,-130,0.5);
-	}
-	.coin-menu2{
-		@include coinSpritePosition(-79,0,0.5)
-	}
-	.coin-menu2:hover,.coin-menu2-current{
-		@include coinSpritePosition(-79,-65,0.5)
-	}
-	.coin-menu2-disable{
-		@include coinSpritePosition(-79,-130,0.5);
-	}
-	.coin-menu3{
-		@include coinSpritePosition(-158,0,0.5)
-	}
-	.coin-menu3:hover,.coin-menu3-current{
-		@include coinSpritePosition(-158,-65,0.5)
-	}
-	.coin-menu3-disable{
-		@include coinSpritePosition(-158,-130,0.5);
-	}
-	.coin-menu4{
-		@include coinSpritePosition(-237,0,0.5)
-	}
-	.coin-menu4:hover,.coin-menu4-current{
-		@include coinSpritePosition(-237,-65,0.5)
-	}
-	.coin-menu4-disable{
-		@include coinSpritePosition(-237,-130,0.5);
-	}
-	.coin-menu5{
-		@include coinSpritePosition(-316,0,0.5)
-	}
-	.coin-menu5:hover,.coin-menu5-current{
-		@include coinSpritePosition(-316,-65,0.5)
-	}
-	.coin-menu5-disable{
-		@include coinSpritePosition(-316,-130,0.5);
-	}
-	.coin-menu6{
-		@include coinSpritePosition(-395,0,0.5)
-	}
-	.coin-menu6:hover,.coin-menu6-current{
-		@include coinSpritePosition(-395,-65,0.5)
-	}
-	.coin-menu6-disable{
-		@include coinSpritePosition(-395,-130,0.5);
-	}
-	.card-container{
-		margin-top: -35px;
-	}
-	//珠仔路
-	.BeadPlate-B{  //莊
-		@include hisRoadSpritePosition(0,0,0.1);
-	}
-	.BeadPlate-B-BPair{  //莊對
-		@include hisRoadSpritePosition(-100,0,0.1);
-	}
-	.BeadPlate-B-PPair{  //莊、閒對
-		@include hisRoadSpritePosition(-200,0,0.1);
-	}
-	.BeadPlate-B-BothPair{  //莊對、閒對
-		@include hisRoadSpritePosition(-300,0,0.1);
-	}
-	.BeadPlate-P{  //閒
-		@include hisRoadSpritePosition(-400,0,0.1);
-	}
-	.BeadPlate-P-BPair{  //閒、莊對
-		@include hisRoadSpritePosition(-500,0,0.1);
-	}
-	.BeadPlate-P-PPair{  //閒、閒對
-		@include hisRoadSpritePosition(-600,0,0.1);
-	}
-	.BeadPlate-P-BothPair{  //閒對、莊對
-		@include hisRoadSpritePosition(-700,0,0.1);
-	}
-	.BeadPlate-T{  //和
-		@include hisRoadSpritePosition(-800,0,0.1);
-	}
-	.BeadPlate-T-BPair{  //和、莊對
-		@include hisRoadSpritePosition(-900,0,0.1);
-	}
-	.BeadPlate-T-PPair{  //和、閒對
-		@include hisRoadSpritePosition(-1000,0,0.1);
-	}
-	.BeadPlate-T-BothPair{  //和、閒對、莊對
-		@include hisRoadSpritePosition(-1100,0,0.1);
-	}
-	//大路
-	.big-B{ //莊
-		@include hisRoadSpritePosition(0,100,0.06);
-	}
-	.big-B-BPair{ //莊對
-		@include hisRoadSpritePosition(-100,100,0.06);
-	}
-	.big-B-PPair{ //莊、閒對
-		@include hisRoadSpritePosition(-200,100,0.06);
-	}
-	.big-B-BothPair{ // 莊對、閒對
-		@include hisRoadSpritePosition(-300,100,0.06);
-	}
-	.big-BT{  //莊和
-		@include hisRoadSpritePosition(-400,100,0.06);
-	}
-	.big-BT-BPair{  //莊和 莊對
-		@include hisRoadSpritePosition(-500,100,0.06);
-	}
-	.big-BT-PPair{  //莊和 閒對
-		@include hisRoadSpritePosition(-600,100,0.06);
-	}
-	.big-BT-BothPair{  //莊和 莊閒對
-		@include hisRoadSpritePosition(-700,100,0.06);
-	}
-	.big-P{ //閒
-		@include hisRoadSpritePosition(-800,100,0.06);
-	}
-	.big-P-BPair{ //閒、莊對
-		@include hisRoadSpritePosition(-900,100,0.06);
-	}
-	.big-P-PPair{ //閒、閒對
-		@include hisRoadSpritePosition(-1000,100,0.06);
-	}
-	.big-P-BothPair{ // 閒對、莊對
-		@include hisRoadSpritePosition(-1100,100,0.06);
-	}
-	.big-PT{  //閒和
-		@include hisRoadSpritePosition(-1200,100,0.06);
-	}
-	.big-PT-BPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1300,100,0.06);
-	}
-	.big-PT-PPair{  //閒和 閒對
-		@include hisRoadSpritePosition(-1400,100,0.06);
-	}
-	.big-PT-BothPair{  //閒和 莊閒對
-		@include hisRoadSpritePosition(-1500,100,0.06);
-	}
-	//小路(左下角)
-	.small-red{
-		@include hisRoadSpritePosition(-1200,0,0.02);
-	}
-	.small-blue{
-		@include hisRoadSpritePosition(-1400,0,0.02);
-	}
-	//大眼仔路(中間)
-	.bigEye-red{
-		@include hisRoadSpritePosition(0,100,0.02);
-	}
-	.bigEye-blue{
-		@include hisRoadSpritePosition(-800,100,0.02);
-	}
-	//蟑螂路
-	.cockroach-red{
-		@include hisRoadSpritePosition(-1300,0,0.02);
-	}
-	.cockroach-blue{
-		@include hisRoadSpritePosition(-1500,0,0.02);
-	}
-
+  .header {
+    height: 50px;
+  }
+  .header-logo {
+    margin-left: 0;
+  }
+  .header-btn {
+    width: 100%;
+    line-height: 1.75rem;
+    font-size: 100%;
+  }
+  // .header-btnList{
+  // 	width: 100%;
+  // }
+  .video-box {
+    height: 190px;
+  }
+  .gameHistory {
+    height: 100px;
+  }
+  .gainMoney {
+    font-size: 80%;
+  }
+  .result-text {
+    font-size: 130%;
+  }
+  .betArea {
+    height: 280px;
+  }
+  .betArea-item {
+    font-size: 1rem;
+  }
+  .alertFont {
+    font-size: 1.2rem !important;
+  }
+  .betStatus {
+    font-size: 1rem;
+  }
+  .betArea-mobile {
+    height: 192px;
+  }
+  .betArea-mobile-container {
+    height: 192px;
+  }
+  .coin-menu1 {
+    @include coinSpritePosition(0, 0, 0.5);
+  }
+  .coin-menu1:hover,
+  .coin-menu1-current {
+    @include coinSpritePosition(0, -65, 0.5);
+  }
+  .coin-menu1-disable {
+    @include coinSpritePosition(0, -130, 0.5);
+  }
+  .coin-menu2 {
+    @include coinSpritePosition(-79, 0, 0.5);
+  }
+  .coin-menu2:hover,
+  .coin-menu2-current {
+    @include coinSpritePosition(-79, -65, 0.5);
+  }
+  .coin-menu2-disable {
+    @include coinSpritePosition(-79, -130, 0.5);
+  }
+  .coin-menu3 {
+    @include coinSpritePosition(-158, 0, 0.5);
+  }
+  .coin-menu3:hover,
+  .coin-menu3-current {
+    @include coinSpritePosition(-158, -65, 0.5);
+  }
+  .coin-menu3-disable {
+    @include coinSpritePosition(-158, -130, 0.5);
+  }
+  .coin-menu4 {
+    @include coinSpritePosition(-237, 0, 0.5);
+  }
+  .coin-menu4:hover,
+  .coin-menu4-current {
+    @include coinSpritePosition(-237, -65, 0.5);
+  }
+  .coin-menu4-disable {
+    @include coinSpritePosition(-237, -130, 0.5);
+  }
+  .coin-menu5 {
+    @include coinSpritePosition(-316, 0, 0.5);
+  }
+  .coin-menu5:hover,
+  .coin-menu5-current {
+    @include coinSpritePosition(-316, -65, 0.5);
+  }
+  .coin-menu5-disable {
+    @include coinSpritePosition(-316, -130, 0.5);
+  }
+  .coin-menu6 {
+    @include coinSpritePosition(-395, 0, 0.5);
+  }
+  .coin-menu6:hover,
+  .coin-menu6-current {
+    @include coinSpritePosition(-395, -65, 0.5);
+  }
+  .coin-menu6-disable {
+    @include coinSpritePosition(-395, -130, 0.5);
+  }
+  .card-container {
+    margin-top: -35px;
+  }
+  //珠仔路
+  .BeadPlate-B {
+    //莊
+    @include hisRoadSpritePosition(0, 0, 0.1);
+  }
+  .BeadPlate-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 0, 0.1);
+  }
+  .BeadPlate-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 0, 0.1);
+  }
+  .BeadPlate-B-BothPair {
+    //莊對、閒對
+    @include hisRoadSpritePosition(-300, 0, 0.1);
+  }
+  .BeadPlate-P {
+    //閒
+    @include hisRoadSpritePosition(-400, 0, 0.1);
+  }
+  .BeadPlate-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-500, 0, 0.1);
+  }
+  .BeadPlate-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-600, 0, 0.1);
+  }
+  .BeadPlate-P-BothPair {
+    //閒對、莊對
+    @include hisRoadSpritePosition(-700, 0, 0.1);
+  }
+  .BeadPlate-T {
+    //和
+    @include hisRoadSpritePosition(-800, 0, 0.1);
+  }
+  .BeadPlate-T-BPair {
+    //和、莊對
+    @include hisRoadSpritePosition(-900, 0, 0.1);
+  }
+  .BeadPlate-T-PPair {
+    //和、閒對
+    @include hisRoadSpritePosition(-1000, 0, 0.1);
+  }
+  .BeadPlate-T-BothPair {
+    //和、閒對、莊對
+    @include hisRoadSpritePosition(-1100, 0, 0.1);
+  }
+  //大路
+  .big-B {
+    //莊
+    @include hisRoadSpritePosition(0, 100, 0.06);
+  }
+  .big-B-BPair {
+    //莊對
+    @include hisRoadSpritePosition(-100, 100, 0.06);
+  }
+  .big-B-PPair {
+    //莊、閒對
+    @include hisRoadSpritePosition(-200, 100, 0.06);
+  }
+  .big-B-BothPair {
+    // 莊對、閒對
+    @include hisRoadSpritePosition(-300, 100, 0.06);
+  }
+  .big-BT {
+    //莊和
+    @include hisRoadSpritePosition(-400, 100, 0.06);
+  }
+  .big-BT-BPair {
+    //莊和 莊對
+    @include hisRoadSpritePosition(-500, 100, 0.06);
+  }
+  .big-BT-PPair {
+    //莊和 閒對
+    @include hisRoadSpritePosition(-600, 100, 0.06);
+  }
+  .big-BT-BothPair {
+    //莊和 莊閒對
+    @include hisRoadSpritePosition(-700, 100, 0.06);
+  }
+  .big-P {
+    //閒
+    @include hisRoadSpritePosition(-800, 100, 0.06);
+  }
+  .big-P-BPair {
+    //閒、莊對
+    @include hisRoadSpritePosition(-900, 100, 0.06);
+  }
+  .big-P-PPair {
+    //閒、閒對
+    @include hisRoadSpritePosition(-1000, 100, 0.06);
+  }
+  .big-P-BothPair {
+    // 閒對、莊對
+    @include hisRoadSpritePosition(-1100, 100, 0.06);
+  }
+  .big-PT {
+    //閒和
+    @include hisRoadSpritePosition(-1200, 100, 0.06);
+  }
+  .big-PT-BPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1300, 100, 0.06);
+  }
+  .big-PT-PPair {
+    //閒和 閒對
+    @include hisRoadSpritePosition(-1400, 100, 0.06);
+  }
+  .big-PT-BothPair {
+    //閒和 莊閒對
+    @include hisRoadSpritePosition(-1500, 100, 0.06);
+  }
+  //小路(左下角)
+  .small-red {
+    @include hisRoadSpritePosition(-1200, 0, 0.02);
+  }
+  .small-blue {
+    @include hisRoadSpritePosition(-1400, 0, 0.02);
+  }
+  //大眼仔路(中間)
+  .bigEye-red {
+    @include hisRoadSpritePosition(0, 100, 0.02);
+  }
+  .bigEye-blue {
+    @include hisRoadSpritePosition(-800, 100, 0.02);
+  }
+  //蟑螂路
+  .cockroach-red {
+    @include hisRoadSpritePosition(-1300, 0, 0.02);
+  }
+  .cockroach-blue {
+    @include hisRoadSpritePosition(-1500, 0, 0.02);
+  }
 }
