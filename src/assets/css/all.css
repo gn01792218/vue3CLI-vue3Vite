@@ -183,13 +183,6 @@ img {
           justify-content: space-between;
 }
 
-.header-logo {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
 .header-btnList {
   float: left;
   width: 100%;
@@ -201,6 +194,11 @@ img {
 
 .header-top {
   width: 100%;
+}
+
+.header-bottom-mobil-extend {
+  left: 0;
+  right: 0;
 }
 
 .video-box {
@@ -1737,6 +1735,19 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (min-width: 1025px) {
+  .header-bottom-mobil {
+    display: none !important;
+  }
+  .header-logo {
+    max-width: 187px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .container-waps {
     height: auto;
@@ -1753,7 +1764,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .header {
     width: 100%;
-    height: 100px;
+    height: 50px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -1769,9 +1780,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     float: left;
     width: auto !important;
     height: 100%;
-    margin-left: 1.25rem;
-    padding-top: 5px;
-    padding-bottom: 0px;
+    margin-right: auto;
   }
   .header-logo img {
     height: 100%;
@@ -1781,8 +1790,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
   }
   .header-btn {
     width: auto;
@@ -1798,14 +1805,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    min-width: 150px;
+  }
+  .header-bottom-desk {
+    display: none;
+  }
+  .userWallet-mobil {
+    display: block !important;
   }
   .header-userName {
     -webkit-box-flex: 0;
@@ -2172,9 +2180,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 768px) {
-  .header {
-    height: 70px;
-  }
   .header-btn {
     line-height: 2.75rem;
   }
@@ -2506,15 +2511,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 540px) {
-  .header {
-    height: 50px;
-  }
   .header-btn {
     font-size: 150%;
     line-height: 1.5rem;
   }
   .video-box {
-    height: 288px;
+    height: 238px;
   }
   #countNumber {
     top: 3%;
@@ -2853,11 +2855,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
     top: 25%;
     font-size: 40%;
   }
-  .header {
-    height: 50px;
+  .header-top {
+    width: 80%;
+  }
+  .header-bottom {
+    width: 20%;
   }
   .header-btnList {
-    width: 57%;
+    width: 80%;
   }
   .header-btn {
     line-height: 1.75rem;
@@ -2866,11 +2871,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-userName {
     font-size: 0.5rem;
   }
-  .header-bottom {
-    min-width: 115px;
-  }
   .video-box {
-    height: 220px;
+    height: 170px;
   }
   #countNumber {
     top: 2%;
@@ -2942,13 +2944,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 @media screen and (max-width: 375px) {
   .header-logo {
-    width: 25% !important;
+    width: 10% !important;
+  }
+  .header {
+    height: 40px;
   }
   .header-btnList {
-    width: 60% !important;
+    width: 90% !important;
   }
   .video-box {
-    height: 195px;
+    height: 155px;
   }
   .header-btnList {
     width: 49%;
@@ -3086,7 +3091,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 @media screen and (max-width: 320px) {
   .header {
-    height: 40px;
+    height: 30px;
   }
   .header-userName {
     line-height: 0.7rem;
@@ -3111,7 +3116,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     padding-bottom: 0px;
   }
   .video-box {
-    height: 165px;
+    height: 125px;
   }
   .gameHistory {
     height: 100px;

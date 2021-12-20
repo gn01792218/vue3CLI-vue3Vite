@@ -235,7 +235,6 @@ export default defineComponent({
             if(tableNum.value=="A"){
                 showResult()
             }
-            
             winCoinAnimation()
         })
         watch(total,()=>{
@@ -569,6 +568,7 @@ export default defineComponent({
                     case 0:
                         //可以下注的情況為:1.當前選擇的籌碼大於2000；並且當前選擇的籌碼小於最大限注
                         if(coinPosition[0].betStatus+currentCoint.point>=coinList[3].point && coinPosition[0].betStatus+currentCoint.point<=coinPosition[0].maxBet){
+                            console.log('閒區可以下注:最小限注額',coinList[3].point,'最大限注',coinPosition[0].maxBet,'此區原注額',coinPosition[0].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[0].betStatus+currentCoint.point>=coinList[3].point && coinPosition[0].betStatus+currentCoint.point<=coinPosition[0].maxBet)
                             sendBetCall({
                                 gameUuid:roundUuid.value,
                                 betIndex:currentCoint.num,
@@ -591,6 +591,7 @@ export default defineComponent({
                         break
                     case 1:
                         if(coinPosition[1].betStatus+currentCoint.point>=coinList[3].point && coinPosition[1].betStatus+currentCoint.point<=coinPosition[1].maxBet){
+                            console.log('莊區可以下注:最小限注額',coinList[3].point,'最大限注',coinPosition[1].maxBet,'此區原注額',coinPosition[1].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[1].betStatus+currentCoint.point>=coinList[3].point && coinPosition[1].betStatus+currentCoint.point<=coinPosition[1].maxBet)
                             sendBetCall({
                                 gameUuid:roundUuid.value,
                                 betIndex:currentCoint.num,
@@ -612,7 +613,9 @@ export default defineComponent({
                         }
                         break
                     case 2:
+                        console.log('閒對可以下注:','最大限注',coinPosition[2].maxBet,'此區原注額',coinPosition[2].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[2].betStatus+currentCoint.point<=coinPosition[2].maxBet)
                         if(coinPosition[2].betStatus+currentCoint.point<=coinPosition[2].maxBet){
+                           
                             sendBetCall({
                                 gameUuid:roundUuid.value,
                                 betIndex:currentCoint.num,
@@ -629,6 +632,7 @@ export default defineComponent({
                         }
                         break
                     case 3:
+                        console.log('和可以下注:','最大限注',coinPosition[3].maxBet,'此區原注額',coinPosition[3].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[3].betStatus+currentCoint.point<=coinPosition[3].maxBet)
                         if(coinPosition[3].betStatus+currentCoint.point<=coinPosition[3].maxBet){
                             sendBetCall({
                                 gameUuid:roundUuid.value,
@@ -646,6 +650,7 @@ export default defineComponent({
                         }
                         break
                     case 4:
+                         console.log('閒對可以下注:','最大限注',coinPosition[4].maxBet,'此區原注額',coinPosition[4].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[4].betStatus+currentCoint.point<=coinPosition[4].maxBet)
                         if(coinPosition[4].betStatus+currentCoint.point<=coinPosition[4].maxBet){
                             sendBetCall({
                                 gameUuid:roundUuid.value,

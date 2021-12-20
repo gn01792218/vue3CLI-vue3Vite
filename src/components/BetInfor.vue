@@ -35,11 +35,11 @@
           <li class="font_red">{{Math.floor((betInfo.playerPair/totalRound)*100)}}%</li>  -->
         </section>
         <section v-else>
-          <li class="font_yellow">0%</li>    
-          <li class="font_red">0%</li> 
-          <li class="font_green">0%</li> 
-          <li class="font_yellow">0%</li> 
-          <li class="font_red">0%</li> 
+          <li>莊家最小限注2000；最大限注十萬</li>    
+          <li>閒家最小限注2000；最大限注十萬</li> 
+          <li>和局最大限注12500</li> 
+          <li>莊對最大限注9000</li> 
+          <li>閒對最大限注9000</li>
         </section>
       </ul>
   </div>

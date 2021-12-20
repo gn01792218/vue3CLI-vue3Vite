@@ -28,9 +28,15 @@ export default defineComponent({
       watch(tableNum,()=>{
         if(tableNum.value=="A"){
           console.log('進A桌',flvStream.value)
+          np.value.stop()
+          np.value.clearView()
+          np.value.setKeepScreenOn()
           np.value.start(flvStream.value)
         }else if(tableNum.value=="B"){
           console.log('進B桌',testB)
+          np.value.stop()
+          np.value.clearView()
+          np.value.setKeepScreenOn()
           np.value.start(testB)
         }
       })
@@ -157,10 +163,25 @@ export default defineComponent({
       // })
       //解決視窗失焦掉秒數問題
       window.addEventListener('focus',()=>{
-        if(np){
-          stopPlay()
-          startPlay()
+        //暫時的
+        if(tableNum.value=="A"){
+          console.log('進A桌',flvStream.value)
+          np.value.stop()
+          np.value.clearView()
+          np.value.setKeepScreenOn()
+          np.value.start(flvStream.value)
+        }else if(tableNum.value=="B"){
+          console.log('進B桌',testB)
+          np.value.stop()
+          np.value.clearView()
+          np.value.setKeepScreenOn()
+          np.value.start(testB)
         }
+        //原本的
+        // if(np){
+        //   stopPlay()
+        //   startPlay()
+        // }
       })
       //偵測使用者裝置作業系統
 
