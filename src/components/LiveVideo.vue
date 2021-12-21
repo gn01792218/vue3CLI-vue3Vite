@@ -252,14 +252,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.video-box{
-  overflow: hidden;
-  width:100%;
-  .video{
-    width:100%;
-    height:100%;
-  }
-}
+// .video-box{
+//   overflow: hidden;
+//   width:100%;
+//   .video{
+//     width:100%;
+//     height:100%;
+//   }
+// }
 //以下是用來控制撥放器按鈕顯示的CSS，可以依據需求關閉
 // video::-webkit-media-controls-fullscreen-button {
 //     display: none;

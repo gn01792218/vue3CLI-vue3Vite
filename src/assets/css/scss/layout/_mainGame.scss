@@ -8,13 +8,12 @@
 }
 //2.路圖
 .gameHistory{
-	border: 1px solid #fff;
+	border: 1px solid #654d31;
 	float: left;
 	width: 65%;
 	height: 26.5%;
 	background-size: contain;
 }
-
 //3.下注區
 .coinArea{
 	@include flex-x-spaceEvenly-y-center ;

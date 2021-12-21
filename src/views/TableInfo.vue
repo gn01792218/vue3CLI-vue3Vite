@@ -60,15 +60,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style lang="scss">
-    .tabsArea-btn{
-        div{
-            cursor: pointer;
-            padding:10px 35px;
-        }
-    }
-    .onclickTab{
-        background-color: black;
-    }
-</style>

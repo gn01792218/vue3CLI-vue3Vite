@@ -8,12 +8,14 @@
                 <span v-if="!isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
                 <span v-if="isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-fill"></i></span>
                 <span v-if="!isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
-                <!-- <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span> -->
-                <!-- <span class="footer-item" v-if="user">₱{{userWallet}}</span> -->
-                <!-- <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
-                >
-                    <i class="bi bi-person-circle" ></i>
-                    <i v-if="user">{{user.name}}</i>
+                <span class="footer-item  d-md-flex"><i class="bi bi-gift"></i></span>
+                <span class="footer-item  d-md-flex"><i class="bi bi-chat-dots"></i></span>
+                <span class="footer-item  d-md-flex"><i class="bi bi-lightning"></i></span>
+                <!-- <div class="chat-input position-relative">
+                    <input type="text" class="" placeholder="你目前沒有發言權限" aria-label="Username" aria-describedby="basic-addon1">
+                    <div class="input-emoji position-absolute">
+                        <i class="bi bi-emoji-smile"></i>
+                    </div>
                 </div> -->
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">

@@ -107,9 +107,3 @@ export default defineComponent({
     }
 }) 
 </script>
-
-<style>
-.disabled,.disabled:hover{
-    background: gray !important;
-}
-</style>

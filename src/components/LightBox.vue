@@ -53,7 +53,6 @@ export default defineComponent({
           }
         })
         })
-       
         return {
             //data
             showCardInfo,

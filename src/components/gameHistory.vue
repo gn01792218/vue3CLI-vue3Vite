@@ -31,23 +31,3 @@ export default defineComponent({
     }
 })
 </script>
-<style lang="scss">
-.gameHistory{
-  border: 1px solid #654d31 !important;
-}
-.lightBox{
-  width:100%;
-  height:100%;
-  background-color: #654d31b7;
-  left:50%;
-  transform: translateX(-50%);
-  z-index:2;
-}
-//客製化修改
-.btn-ps{
-  vertical-align: top !important;;
-}
-.test{
-  bottom: 0;
-}
-</style>

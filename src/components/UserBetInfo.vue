@@ -207,20 +207,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style>
-.modal-header{
-    background-color:#644d31;
-}
-.modal-body{
-    color:black;
-    text-align: center;
-}
-.userBetInfo{
-    list-style: none;
-    text-align: left;
-}
-.userInfoBetResult{
-
-}
-</style>

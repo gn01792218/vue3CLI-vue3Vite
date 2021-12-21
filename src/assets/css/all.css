@@ -201,6 +201,10 @@ img {
   right: 0;
 }
 
+.disabled, .disabled:hover {
+  background: gray !important;
+}
+
 .video-box {
   border: 2px solid #644d31;
   float: left;
@@ -208,7 +212,7 @@ img {
 }
 
 .gameHistory {
-  border: 1px solid #fff;
+  border: 1px solid #654d31;
   float: left;
   width: 65%;
   height: 26.5%;
@@ -342,6 +346,64 @@ img {
   cursor: pointer;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.input-emoji {
+  right: 10px;
+  top: 0;
+}
+
+.chat-input {
+  max-width: 200px;
+  min-width: 100px;
+}
+
+.chat-input input {
+  border-radius: 44px;
+}
+
+.tabsArea-btn div {
+  cursor: pointer;
+  padding: 10px 35px;
+}
+
+.onclickTab {
+  background-color: black;
+}
+
+.video-box .video {
+  width: 100%;
+  height: 100%;
+}
+
+.progress {
+  position: relative;
+  border: 5px solid #FFF;
+  width: 400px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress.loaded {
+  display: none;
+}
+
+.progress .progress-inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #FFF;
+}
+
+.lightBox {
+  width: 100%;
+  height: 100%;
+  background-color: #654d317a;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
 }
 
 .leave {
@@ -636,6 +698,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-gitbackAllCoin {
+  height: 42px;
   width: 100px;
   border-radius: 5px;
   background-color: grey;
@@ -746,7 +809,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .gameResult {
   top: 28%;
   left: 0;
-  background-color: #523e25ab;
+  background-color: #523e2544;
   text-align: center;
 }
 
@@ -1096,7 +1159,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  /* border:5px solid hotpink; */
 }
 
 .beadPlate-container::-webkit-scrollbar {
@@ -1311,7 +1373,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .gameResultLoading {
   top: 35%;
-  background-color: #523e2575;
+  background-color: #523e2544;
   z-index: 9;
 }
 
@@ -1341,7 +1403,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .winPoker {
-  background-color: rgba(206, 156, 94, 0.822);
+  background-color: rgba(206, 156, 94, 0.438);
   -webkit-animation-name: winpoker;
           animation-name: winpoker;
   -webkit-animation-duration: 0.5s;
@@ -1441,6 +1503,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-color: #644d31;
   border-color: olive;
   color: yellow;
+}
+
+.modal-header {
+  background-color: #644d31;
+}
+
+.modal-body {
+  color: black;
+  text-align: center;
+}
+
+.userBetInfo {
+  list-style: none;
+  text-align: left;
 }
 
 /*-------------------------------------------
@@ -2614,6 +2690,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-mobile-container {
     height: 100px;
   }
+  .askRoad-player p, .askRoad-banker p {
+    font-size: 0.5rem;
+  }
   .coin-menu1 {
     width: 55.3px;
     height: 45.5px;
@@ -2940,10 +3019,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 40%;
   }
   .header-top {
-    width: 80%;
+    width: 90%;
   }
   .header-bottom {
-    width: 20%;
+    width: 10%;
   }
   .header-btnList {
     width: 80%;

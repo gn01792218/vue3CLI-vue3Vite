@@ -1,4 +1,3 @@
-
 .poker{ //顯示卡牌
     background-image:$poker-spriteImg;
 }
@@ -6,8 +5,7 @@
     transform: rotate(90deg);
 }
 .winPoker{
-  // background-color: rgba(206, 156, 94, 0.11);
-  background-color: rgba(206, 156, 94, 0.822);
+  background-color: rgba(206, 156, 94, 0.438);
   animation-name: winpoker;
   animation-duration: 0.5s;
   animation-timing-function: ease-in;

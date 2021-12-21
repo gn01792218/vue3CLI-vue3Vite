@@ -95,7 +95,7 @@
         </div>
         <div class="bettingArea-btn d-flex justify-content-between align-items-center p-2 position-relative">
             <LightBox/>
-            <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
+            <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
             <div class="askRoad d-flex">
                 <div class="askRoad-player p-1 mr-2">
                     <p>閒問路</p>
@@ -582,7 +582,7 @@ export default defineComponent({
                 // console.log(cp.initBottom,cp.initX)
             }
         }
-        const betArray = reactive<Array<any>>([]) //紀錄下注元素和區域
+        let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
             if(canBet.value){
                 //每個注區都有自己的最大限注，而0和1注區則有最小限注的限制
@@ -696,6 +696,7 @@ export default defineComponent({
             }
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
+            console.log('目標注區',index)
             if(betResult.value==1){   
                 //裝子彈，就會啟動籌碼飛的動畫
                 loadCoin()   
@@ -718,7 +719,7 @@ export default defineComponent({
                         betErrorArray.value?.push('非法的注區')
                         break
                     case 4:
-                        betErrorArray.value?.push('超過最高下注額度')
+                        betErrorArray.value?.push('不符合最高/最低限注額度')
                         break
                     case 5:
                         betErrorArray.value?.push('非法遊戲局')
@@ -805,6 +806,7 @@ export default defineComponent({
             store.commit('bet/setBetResultRest')
             canBet.value = true
             canUseSmallCoin.value = false
+            betArray = []
         }
         function showResult () { 
             //為贏的注區套上閃爍動畫

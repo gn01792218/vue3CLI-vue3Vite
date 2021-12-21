@@ -1,6 +1,6 @@
 <template>
   <div id="wap" class="app">
-    <div class="container-fluid">
+    <div class="container-fluid pr-0 pl-0">
       <div class="container-waps row">
         <Header/>
         <router-view/>

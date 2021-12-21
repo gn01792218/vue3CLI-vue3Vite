@@ -17,7 +17,6 @@
     	</section>
     </div>
 </template>
-
 <script lang="ts">
 import {computed, defineComponent,onMounted,reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
@@ -38,7 +37,7 @@ export default defineComponent({
         player:new Array(3),
      })
      //暫時性的
-     const route = useRoute()
+    const route = useRoute()
     const tableNum = computed(()=>{
       return route.params.tableId
     })
@@ -93,7 +92,7 @@ export default defineComponent({
       // console.log('不顯示卡牌點數',showCardResult.value)
      })
      watch(gameResult,()=>{
-      //  console.log(gameResult.value.length)
+       console.log(gameResult.value.length)
       //最外層的if是暫時的
       if(tableNum.value=="A"){
         setWinCardBoxLight()
