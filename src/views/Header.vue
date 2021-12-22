@@ -4,12 +4,14 @@
             <div class="header-logo"><a href="#"><img src="../images/logo.png"></a></div>
             <div class="header-btnList align-items-center justify-content-around mt-xl-5">
                 <div class="d-none userWallet-mobil header-userName col font_yellows">₱{{userWallet}}</div>
-                <a class="header-btn" :class="{active:tableNum=='A'}" @click="toGametable('A')" >A桌</a>
-                <!-- <a class="header-btn disabled">B桌</a> -->
-                <a class="header-btn" :class="{active:tableNum=='B'}" @click="toGametable('B')">B桌</a>
-                <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
-                <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow">離開遊戲</a> 
-                <a href="#" class="header-btn d-block d-xl-none" @click="closeWindow">離開</a> 
+                <div class="d-flex flex-row flex-xl-column">
+                    <a class="header-btn" :class="{active:tableNum=='A'}" @click="toGametable('A')" >A桌</a>
+                     <!-- <a class="header-btn disabled">B桌</a> -->
+                    <a class="header-btn" :class="{active:tableNum=='B'}" @click="toGametable('B')">B桌</a>
+                    <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
+                    <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow">離開遊戲</a> 
+                    <a href="#" class="header-btn d-block d-xl-none" @click="closeWindow">離開</a> 
+                </div>
             </div>
         </div>
         <div class="header-bottom">

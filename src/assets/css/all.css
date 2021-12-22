@@ -447,7 +447,7 @@ img {
 }
 
 .header-btn.active, header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
-  background-color: brown;
+  background-color: #f22e89;
   border: black 2px solid;
 }
 
@@ -1912,6 +1912,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 1024px) {
+  .header {
+    background-image: none;
+  }
   .container-waps {
     height: auto;
   }
@@ -3040,8 +3043,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 80%;
   }
   .header-btn {
-    line-height: 1.75rem;
-    font-size: 100%;
+    line-height: 0.5rem;
+    font-size: 70%;
+    width: 40px;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -3064,9 +3068,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea {
     height: 310px;
-  }
-  .betRatioText {
-    font-size: 0.8rem;
   }
   .betStatus {
     font-size: 1rem;
@@ -3287,10 +3288,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-userName {
     line-height: 0.7rem;
   }
-  .header-btn {
-    line-height: 1rem;
-    font-size: 100%;
-  }
   .header-btnList {
     width: 100% !important;
   }
@@ -3334,10 +3331,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   .betArea-mobile {
-    height: 117px;
+    height: 121px;
   }
   .betArea-mobile-container {
-    height: 117px;
+    height: 121px;
   }
   .card-container {
     margin-top: -35px;
