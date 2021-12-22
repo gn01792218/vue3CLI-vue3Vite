@@ -10,7 +10,7 @@
                 </transition-group>
             </ul>
                 <div class="betArea-pc-container">
-                    <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br>{{i.odds}}
+                    <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6 d-flex flex-column']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
                             <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
@@ -20,7 +20,7 @@
                     </div>
                 </div>  
                 <div class="betArea-pc-container">
-                    <div :class="[`betArea-item${index+3}`,i.configClass,'col-4']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="sendBetData($event,index+2)" >{{i.host}}<br>{{i.odds}}
+                    <div :class="[`betArea-item${index+3}`,i.configClass,'col-4 d-flex flex-column']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="sendBetData($event,index+2)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
                             <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
@@ -39,7 +39,7 @@
                 </transition-group>
             </ul>
             <div class="betArea-mobile-container d-flex">
-                <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1}]" v-for ="(i,index) in coinPosition" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br>{{i.odds}}
+                <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1},'d-flex flex-column']" v-for ="(i,index) in coinPosition" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
                         <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
@@ -324,7 +324,7 @@ export default defineComponent({
                 initX:0,
                 coinArray:[],
                 odds:"1:1",
-                host:"閒家",
+                host:"閒",
                 configClass:"betArea-item red alertFont",
                 betStatus:0,
                 maxBet:100000, //目前這一回合的下注狀況
@@ -334,7 +334,7 @@ export default defineComponent({
                 initX:0,
                 coinArray:[],//生籌碼的地方
                 odds:"1:0.95",
-                host:"莊家",
+                host:"莊",
                 configClass:"betArea-item yellow alertFont",
                 betStatus:0, //目前這一回合的下注狀況
                 maxBet:100000,
@@ -354,8 +354,8 @@ export default defineComponent({
                 initX:0,
                 coinArray:[],
                 odds:"1:8",
-                host:"和局",
-                configClass:"betArea-item green",
+                host:"和",
+                configClass:"betArea-item green alertFont",
                 betStatus:0, //目前這一回合的下注狀況
                 maxBet:12500,
             },
@@ -816,35 +816,45 @@ export default defineComponent({
                       let betArea2 = document.querySelectorAll('.betArea-item2') as NodeListOf<HTMLElement>
                         betArea2.forEach((i:HTMLElement)=>{
                             i.classList.add('winAnimation')
-                            i.children[1].classList.add('winCoin')  //取得注區數字
+                            if(i.children[1].className=='betStatus'){
+                                i.children[1].classList.add('winCoin')  //取得注區數字
+                            }
                         })
                         break
                     case proto.dealer.Result.Player:
                         let betArea1 = document.querySelectorAll('.betArea-item1') as NodeListOf<HTMLElement>
                         betArea1.forEach((i:HTMLElement)=>{
                             i.classList.add('winAnimation')
+                            if(i.children[1].className=='betStatus'){
                             i.children[1].classList.add('winCoin')  //取得注區數字
+                            }
                         })
                         break
                     case proto.dealer.Result.BankerPair:
                         let betArea5 = document.querySelectorAll('.betArea-item5') as NodeListOf<HTMLElement>
                         betArea5.forEach((i:HTMLElement)=>{
                             i.classList.add('winAnimation')
+                            if(i.children[1].className=='betStatus'){
                             i.children[1].classList.add('winCoin')  //取得注區數字
+                            }
                         })
                         break
                      case proto.dealer.Result.Tie:
                         let betArea4 = document.querySelectorAll('.betArea-item4') as NodeListOf<HTMLElement>
                         betArea4.forEach((i:HTMLElement)=>{
                             i.classList.add('winAnimation')
+                            if(i.children[1].className=='betStatus'){
                             i.children[1].classList.add('winCoin')  //取得注區數字
+                            }
                         })
                         break
                      case proto.dealer.Result.PlayerPair:
                         let betArea3 = document.querySelectorAll('.betArea-item3') as NodeListOf<HTMLElement>
                         betArea3.forEach((i:HTMLElement)=>{
                             i.classList.add('winAnimation')
+                            if(i.children[1].className=='betStatus'){
                             i.children[1].classList.add('winCoin')  //取得注區數字
+                            }
                         })
                         break
                 }
@@ -861,6 +871,7 @@ export default defineComponent({
                     switch(i){
                         case proto.dealer.Result.Banker:
                             let betArea2 = document.querySelectorAll('.betArea-item2') as NodeListOf<HTMLElement>
+                            // let betRaitText = betArea2.forEach((i:HTML))
                             betArea2.forEach((i:HTMLElement)=>{
                             i.classList.remove('winAnimation')
                             })

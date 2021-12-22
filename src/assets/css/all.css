@@ -66,7 +66,7 @@ img {
 }
 
 .alertFont {
-  font-size: 2.5rem !important;
+  font-size: 2.8rem !important;
 }
 
 /*-------------------------------------------
@@ -167,7 +167,7 @@ img {
 }
 
 .green {
-  color: #093;
+  color: #34be0a;
 }
 
 .header {
@@ -241,7 +241,7 @@ img {
   border: 1px solid #262626;
   float: left;
   width: 35%;
-  background-color: #0f4d79;
+  background-color: #0d679b;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -701,12 +701,21 @@ a.btn.disabled, fieldset[disabled] a.btn {
   height: 42px;
   width: 100px;
   border-radius: 5px;
-  background-color: grey;
+  background-color: #4b4949;
   cursor: pointer;
 }
 
+.betArea-item {
+  font-weight: 500;
+}
+
+.betRatioText {
+  font-size: 1.5rem;
+}
+
 .askRoad-player, .askRoad-banker {
-  background-color: black;
+  background-color: #4b4949;
+  border-radius: 5px;
 }
 
 .askRoad-player p, .askRoad-banker p {
@@ -714,7 +723,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .askRoad-player div, .askRoad-banker div {
-  background-color: gray;
+  background-color: black;
   border-radius: 10px;
 }
 
@@ -2352,6 +2361,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn {
     height: 55px;
   }
+  .betRatioText {
+    font-size: 1rem;
+  }
   .tabsArea {
     display: none;
   }
@@ -3053,6 +3065,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea {
     height: 310px;
   }
+  .betRatioText {
+    font-size: 0.8rem;
+  }
   .betStatus {
     font-size: 1rem;
   }
@@ -3063,6 +3078,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 180px;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+  }
+  .mobilTableInfo {
+    font-size: 0.8rem;
   }
   .navbar-toggler {
     padding: 0;
@@ -3135,6 +3153,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item {
     font-size: 0.8rem;
+    font-weight: bolder;
+  }
+  .betRatioText {
+    font-size: 0.3rem;
   }
   .betArea-mobile {
     height: 141px;

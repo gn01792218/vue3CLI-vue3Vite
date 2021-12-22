@@ -40,16 +40,23 @@
         height:42px;
         width:100px;
         border-radius: 5px;
-        background-color: grey;
+        background-color: rgb(75, 73, 73);
         cursor: pointer;
     }
+    .betArea-item{
+        font-weight:500;
+    }
+    .betRatioText{
+        font-size: 1.5rem;
+    }
     .askRoad-player,.askRoad-banker{
-        background-color: black;
+        background-color: rgb(75, 73, 73);
+        border-radius: 5px;
         p{
             margin-bottom: 0;
         }
         div{
-            background-color: gray;
+            background-color: black;
             border-radius: 10px;
         }
     }

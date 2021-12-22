@@ -584,6 +584,9 @@
   .bettingArea-btn{
     height:55px;
   }
+  .betRatioText{
+    font-size: 1rem;
+  }
   .tabsArea {
     display: none;
   }
@@ -1067,6 +1070,9 @@
   .betArea {
     height: 310px;
   }
+  .betRatioText{
+    font-size: 0.8rem;
+  }
   .betStatus {
     font-size: 1rem;
   }
@@ -1076,6 +1082,9 @@
   .betArea-mobile-container {
     height: 180px;
     flex-wrap: wrap;
+  }
+  .mobilTableInfo{
+    font-size: 0.8rem;
   }
   .navbar-toggler{ //漢堡
     padding: 0;
@@ -1146,6 +1155,10 @@
   }
   .betArea-item{
     font-size: 0.8rem;
+    font-weight:bolder;
+  }
+  .betRatioText{
+    font-size: 0.3rem;
   }
   .betArea-mobile {
     height: 141px;
