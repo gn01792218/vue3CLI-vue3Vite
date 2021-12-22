@@ -439,7 +439,7 @@ export default defineComponent({
         }
         function betErrorAnimation (e:HTMLElement) {
             gsap
-            .fromTo(e,{opacity:0},{opacity:1,y:-100,ease:Power4.easeOut,display:"none"})
+            .fromTo(e,{opacity:0},{duration:1.5,opacity:1,y:-100,ease:Power4.easeOut,display:"none"})
         }
         function getCenterPoint (leftOrTop:number,rightOrBottom:number):number{
             return leftOrTop+(rightOrBottom-leftOrTop)/2
