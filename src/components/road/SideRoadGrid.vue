@@ -1,5 +1,5 @@
 <template>
-<button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
+<!-- <button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
 <button class="test3 position-absolute" @click="testshowBigRoad(2)">閒贏</button>
 <button class="test9 position-absolute" @click="testshowBigRoad(3)">和</button>
 <button class="test10 position-absolute" @click="testshowBigRoad(10)">和莊對</button>
@@ -8,7 +8,7 @@
 <button class="test8 position-absolute" @click="testshowBigRoad(15)">莊和3</button>
 <button class="test5 position-absolute" @click="testshowBigRoad(19)">閒和</button>
 <button class="test6 position-absolute" @click="testshowBigRoad(18)">閒和2</button>
-<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button>
+<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button> -->
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
@@ -134,25 +134,25 @@ export default defineComponent({
           console.log("換桌側邊路圖重置")
           resetBigRoad()
         })
-        watch(beadPlateResult,()=>{
-          console.log("偵測到朱朱陸")
-          //最外層是暫時性的
-            if(bigRoadInit.value){
-            showBigRoadTest ()
-            }else{  //沒有初始化過先畫
-            showBigRoadInitTest ()
-          }
-        })
-        // watch(bigRoadResult,()=>{
-        //   resetBigRoad()
-        //   showBigRoadInit()
-        //   // if(bigRoadInit.value){
-        //   //   // showBigRoad()
-        //   //   showBigRoadAll()
-        //   // }else{  //沒有初始化過先畫
-        //   //   showBigRoadInit()
-        //   // }
+        // watch(beadPlateResult,()=>{
+        //   console.log("偵測到朱朱陸")
+        //   //最外層是暫時性的
+        //     if(bigRoadInit.value){
+        //     showBigRoadTest ()
+        //     }else{  //沒有初始化過先畫
+        //     showBigRoadInitTest ()
+        //   }
         // })
+        watch(bigRoadResult,()=>{
+          resetBigRoad()
+          showBigRoadInit()
+          // if(bigRoadInit.value){
+          //   // showBigRoad()
+          //   showBigRoadAll()
+          // }else{  //沒有初始化過先畫
+          //   showBigRoadInit()
+          // }
+        })
         function transfromTie (currentSide:number,gameResult:number){
             if(currentSide==1){
               switch(gameResult){

@@ -109,6 +109,7 @@ export default defineComponent({
             console.log("新局開始",count.value,'回合uuid',roundUuid.value)
             if(roundUuid.value){
                 // console.log('有UUid才要倒數')
+                console.log('預設的秒數',defaultCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 setCount()
             } 

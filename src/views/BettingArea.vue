@@ -169,10 +169,15 @@ export default defineComponent({
             // setMinBetCoinUnusable()
         })
         //暫時的
-            const route = useRoute()
-            const tableNum = computed(()=>{
-                return route.params.tableId
-            })
+        const route = useRoute()
+        const tableNum = computed(()=>{
+            return route.params.tableId
+        })
+        watch(tableNum,()=>{
+            //清空注區的動畫
+            reSetBetAreaAnimation()
+            resetGame ()
+        })
         //vuex
         const store = useStore();
         const user = computed(()=>{

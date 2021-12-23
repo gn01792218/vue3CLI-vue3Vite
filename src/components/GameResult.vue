@@ -25,14 +25,12 @@ export default defineComponent({
     setup(){
         //暫時性的
         const route = useRoute()
-        // const tableNum = computed(()=>{
-        // return route.params.tableId
-        // })
-        // watch(tableNum,()=>{
-        //     if(tableNum.value=="B"){
-        //         hasGameResult.value = false
-        //     }
-        // })
+        const tableNum = computed(()=>{
+        return route.params.tableId
+        })
+        watch(tableNum,()=>{
+            hasGameResult.value = false
+        })
         //vuex
         const store = useStore()
         const gameResult = computed(()=>{ //回傳的是陣列
