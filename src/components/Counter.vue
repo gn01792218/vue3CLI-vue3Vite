@@ -23,6 +23,9 @@ export default defineComponent({
         const roundUuid = computed(()=>{ //每個回合獨特的uuid
             return store.state.game.gameUuid
         })
+        const defaultCount = computed(()=>{
+            return store.state.game.BetRoundStart.timeRemain
+        })
         const roundStatus = computed(()=>{ //每回合的狀態
             return store
         })
@@ -32,7 +35,7 @@ export default defineComponent({
         const gameStatus = computed(()=>{
             return store.state.game.GameStatus.status
         })
-        const defaultCount = ref(process.env.VUE_APP_GAME_COUNT) //倒數預設預設30。
+        // const defaultCount = ref(process.env.VUE_APP_GAME_COUNT) //倒數預設預設30。
         const count = ref(process.env.VUE_APP_GAME_COUNT)  //倒數數字
         const timer = ref<any | null>(null) //計時器
         const displayNum=ref<number | string>()  //顯示的文字
@@ -101,21 +104,16 @@ export default defineComponent({
         // })
         // //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
-            //最外面的if是暫時的
-            if(tableNum.value=="A"){
-                let temp = document.querySelector('.counter') as HTMLElement
-                temp.style.display = 'block'
-                console.log("新局開始",count.value,'回合uuid',roundUuid.value)
-                if(roundUuid.value){
-                    // console.log('有UUid才要倒數')
-                    timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
-                    setCount()
-                }
-            }
-                
+            let temp = document.querySelector('.counter') as HTMLElement
+            temp.style.display = 'block'
+            console.log("新局開始",count.value,'回合uuid',roundUuid.value)
+            if(roundUuid.value){
+                // console.log('有UUid才要倒數')
+                timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
+                setCount()
+            } 
         })
         watch(lastCount,()=>{ //換桌時候會偵測現在的秒數
-        if(tableNum.value=="A"){
             let temp = document.querySelector('.counter') as HTMLElement
                 temp.style.display = 'block'
             if(gameStatus.value==1){
@@ -124,8 +122,6 @@ export default defineComponent({
                 count.value = lastCount.value
                 setCount()
             }
-        }
-            
         })
         return{
             //data
