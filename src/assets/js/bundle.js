@@ -6894,6 +6894,7 @@ export const game = $root.game = (() => {
          * @property {number|null} [numOfShoe] GameStatus numOfShoe
          * @property {number|null} [numOfRound] GameStatus numOfRound
          * @property {game.IGameResultCounter|null} [gameResultCounter] GameStatus gameResultCounter
+         * @property {string|null} [gameUuid] GameStatus gameUuid
          */
 
         /**
@@ -6969,6 +6970,14 @@ export const game = $root.game = (() => {
         GameStatus.prototype.gameResultCounter = null;
 
         /**
+         * GameStatus gameUuid.
+         * @member {string} gameUuid
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.gameUuid = "";
+
+        /**
          * Creates a new GameStatus instance using the specified properties.
          * @function create
          * @memberof game.GameStatus
@@ -7007,6 +7016,8 @@ export const game = $root.game = (() => {
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfRound);
             if (message.gameResultCounter != null && Object.hasOwnProperty.call(message, "gameResultCounter"))
                 $root.game.GameResultCounter.encode(message.gameResultCounter, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.gameUuid);
             return writer;
         };
 
@@ -7063,6 +7074,9 @@ export const game = $root.game = (() => {
                     break;
                 case 7:
                     message.gameResultCounter = $root.game.GameResultCounter.decode(reader, reader.uint32());
+                    break;
+                case 8:
+                    message.gameUuid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7137,6 +7151,9 @@ export const game = $root.game = (() => {
                 if (error)
                     return "gameResultCounter." + error;
             }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
             return null;
         };
 
@@ -7196,6 +7213,8 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.GameStatus.gameResultCounter: object expected");
                 message.gameResultCounter = $root.game.GameResultCounter.fromObject(object.gameResultCounter);
             }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
             return message;
         };
 
@@ -7221,6 +7240,7 @@ export const game = $root.game = (() => {
                 object.numOfShoe = 0;
                 object.numOfRound = 0;
                 object.gameResultCounter = null;
+                object.gameUuid = "";
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -7239,6 +7259,8 @@ export const game = $root.game = (() => {
                 object.numOfRound = message.numOfRound;
             if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter"))
                 object.gameResultCounter = $root.game.GameResultCounter.toObject(message.gameResultCounter, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
             return object;
         };
 

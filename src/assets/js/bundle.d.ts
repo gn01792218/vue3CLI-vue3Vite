@@ -2880,6 +2880,9 @@ export namespace game {
 
         /** GameStatus gameResultCounter */
         gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** GameStatus gameUuid */
+        gameUuid?: (string|null);
     }
 
     /** Represents a GameStatus. */
@@ -2911,6 +2914,9 @@ export namespace game {
 
         /** GameStatus gameResultCounter. */
         public gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** GameStatus gameUuid. */
+        public gameUuid: string;
 
         /**
          * Creates a new GameStatus instance using the specified properties.

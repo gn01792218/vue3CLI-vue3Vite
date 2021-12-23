@@ -167,7 +167,7 @@ export default defineComponent({
        bankCardArray.value = [0,0,0]
      }
      async function showCardTotalPoint () {
-      console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value)
+      // console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value)
 
       playerCardArray.value.forEach(i=>{
         if(i>=10){
@@ -175,7 +175,7 @@ export default defineComponent({
         }
           playerPoint.value+=i
           playerPoint.value = playerPoint.value%10
-          console.log('閒家牌','加點:',i,'本次值',playerPoint.value)
+          // console.log('閒家牌','加點:',i,'本次值',playerPoint.value)
       })
       bankCardArray.value.forEach(i=>{
         if(i>=10){
@@ -183,7 +183,7 @@ export default defineComponent({
         }
         bankerPoint.value+=i
         bankerPoint.value = bankerPoint.value%10
-          console.log('閒家牌','加點:',i,'本次值',bankerPoint.value)
+          // console.log('閒家牌','加點:',i,'本次值',bankerPoint.value)
       })
       // playerCardArray.value =playerCardArray.value.map(i=>{
       //   if(i>=10){
@@ -201,7 +201,7 @@ export default defineComponent({
       // playerPoint.value = (playerCardArray.value[0]+playerCardArray.value[1]+playerCardArray.value[2])%10
       // bankerPoint.value = (bankCardArray.value[0]+bankCardArray.value[1]+bankCardArray.value[2])%10
       showCardResult.value = true
-      console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
+      // console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit
