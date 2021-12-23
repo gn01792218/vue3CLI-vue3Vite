@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,ref,watch} from 'vue'
+import {computed, defineComponent,onMounted,ref,watch} from 'vue'
 import {gsap,Power1,Power4} from 'gsap'
 import {useStore} from 'vuex'
 import {useRoute } from 'vue-router'
@@ -14,6 +14,11 @@ export default defineComponent({
     inheritAttrs: false, //防止出現Vue warn
     setup(props){
         //暫時性的
+        onMounted(()=>{
+            watch(defaultCount,()=>{
+                count.value = defaultCount.value
+            })
+        })
         const route = useRoute()
         const tableNum = computed(()=>{
             return route.params.tableId
@@ -36,7 +41,8 @@ export default defineComponent({
             return store.state.game.GameStatus.status
         })
         // const defaultCount = ref(process.env.VUE_APP_GAME_COUNT) //倒數預設預設30。
-        const count = ref(process.env.VUE_APP_GAME_COUNT)  //倒數數字
+        // const count = ref(process.env.VUE_APP_GAME_COUNT)  //倒數數字
+        const count = ref(0)
         const timer = ref<any | null>(null) //計時器
         const displayNum=ref<number | string>()  //顯示的文字
         //計時器動畫
@@ -102,7 +108,7 @@ export default defineComponent({
         //         console.log('計時器被清除')
         //     }
         // })
-        // //專門for換桌時候的count；切桌時rounduuid一定會更換
+        //專門for換桌時候的count；切桌時rounduuid一定會更換
         watch(roundUuid,()=>{ //偵測到換桌時，倒數要根據剩餘的秒數來執行
             let temp = document.querySelector('.counter') as HTMLElement
             temp.style.display = 'block'
