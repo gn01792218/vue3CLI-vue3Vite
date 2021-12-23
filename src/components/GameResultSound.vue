@@ -12,16 +12,16 @@ import {useRoute } from 'vue-router'
 import proto  from '../assets/js/bundle'
 export default defineComponent({
    setup(){
-       //暫時性的
-        const route = useRoute()
-        const tableNum = computed(()=>{
-        return route.params.tableId
-        })
-        watch(tableNum,()=>{
-            if(tableNum.value=="B"){
-                audio.value.muted = true
-            }
-        })
+    //    //暫時性的
+    //     const route = useRoute()
+    //     const tableNum = computed(()=>{
+    //     return route.params.tableId
+    //     })
+    //     watch(tableNum,()=>{
+    //         if(tableNum.value=="B"){
+    //             audio.value.muted = true
+    //         }
+    //     })
         //vuex
         const store = useStore();
         const gameResult = computed(()=>{ //回傳的是陣列
@@ -37,31 +37,22 @@ export default defineComponent({
             return document.querySelector('#gameresultSound') as HTMLAudioElement
         })
         watch(gameUuid,()=>{
-            //最外層的if是暫時的
-            if(tableNum.value=="A"){
                 if(audio){
                 audio.value.src = require('../assets/audio/start.mp3')
                 audio.value.play()
                 }
-            }
         })
         watch(gameEndUuid,()=>{
-            //最外層的if是暫時的
-            if(tableNum.value=="A"){
                 if(audio){
                 audio.value.src = require('../assets/audio/stop.mp3')
                 audio.value.play()
                 }
-            }
             
         })
         watch(gameResult,()=>{
-            //最外層的if是暫時的
-            if(tableNum.value=="A"){
                 if(gameResult.value.length>0){
                 playGameResult(gameResult.value)
                 }
-            }
             
             //之後改這個
             // playGameResult(result)

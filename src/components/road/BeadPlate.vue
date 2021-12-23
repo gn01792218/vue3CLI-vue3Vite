@@ -58,16 +58,13 @@ export default defineComponent({
           resetRoad()
         })
         watch(beadPlateResult,()=>{ 
-          //最外面這曾是暫時性的
-          if(tableNum.value=="A"){
             if(beadPlateResult.value){
             if(!isInit.value){
               showRoadInit ()
             }else{
               showRoad ()
             }
-          }
-          }   
+          }  
         })
         // function put (){
         //   showRoadByGameResult  ()

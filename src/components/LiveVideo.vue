@@ -20,35 +20,35 @@ export default defineComponent({
     setup(){
       //vuex
       const store = useStore()
-      //暫時增加
-      const route = useRoute()
-      const tableNum = computed(()=>{
-        return route.params.tableId
-      })
-      watch(tableNum,()=>{
-        if(tableNum.value=="A"){
-          console.log('進A桌',flvStream.value)
-          np.value.stop()
-          np.value.clearView()
-          np.value.setKeepScreenOn()
-          np.value.start(flvStream.value)
-        }else if(tableNum.value=="B"){
-          console.log('進B桌',testB)
-          np.value.stop()
-          np.value.clearView()
-          np.value.setKeepScreenOn()
-          np.value.start(testB)
-        }
-      })
+      // //暫時增加
+      // const route = useRoute()
+      // const tableNum = computed(()=>{
+      //   return route.params.tableId
+      // })
+      // watch(tableNum,()=>{
+      //   if(tableNum.value=="A"){
+      //     console.log('進A桌',flvStream.value)
+      //     np.value.stop()
+      //     np.value.clearView()
+      //     np.value.setKeepScreenOn()
+      //     np.value.start(flvStream.value)
+      //   }else if(tableNum.value=="B"){
+      //     console.log('進B桌',testB)
+      //     np.value.stop()
+      //     np.value.clearView()
+      //     np.value.setKeepScreenOn()
+      //     np.value.start(testB)
+      //   }
+      // })
       const flvStream = computed(()=>{ //直播網址
         return store.state.table.TableJoinRecall.table.streamingUrl
       })
       const gameUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
-        })
+      })
       const gameEndUuid = computed(()=>{
             return store.state.game.gameEndUuid
-        })
+      })
       //監聽換桌的直播網址
       watch(flvStream,()=>{
         stopPlay()
@@ -163,25 +163,25 @@ export default defineComponent({
       // })
       //解決視窗失焦掉秒數問題
       window.addEventListener('focus',()=>{
-        //暫時的
-        if(tableNum.value=="A"){
-          console.log('進A桌',flvStream.value)
-          np.value.stop()
-          np.value.clearView()
-          np.value.setKeepScreenOn()
-          np.value.start(flvStream.value)
-        }else if(tableNum.value=="B"){
-          console.log('進B桌',testB)
-          np.value.stop()
-          np.value.clearView()
-          np.value.setKeepScreenOn()
-          np.value.start(testB)
-        }
-        //原本的
-        // if(np){
-        //   stopPlay()
-        //   startPlay()
+        // //暫時的
+        // if(tableNum.value=="A"){
+        //   console.log('進A桌',flvStream.value)
+        //   np.value.stop()
+        //   np.value.clearView()
+        //   np.value.setKeepScreenOn()
+        //   np.value.start(flvStream.value)
+        // }else if(tableNum.value=="B"){
+        //   console.log('進B桌',testB)
+        //   np.value.stop()
+        //   np.value.clearView()
+        //   np.value.setKeepScreenOn()
+        //   np.value.start(testB)
         // }
+        //原本的
+        if(np){
+          stopPlay()
+          startPlay()
+        }
       })
       //偵測使用者裝置作業系統
 
@@ -248,7 +248,6 @@ export default defineComponent({
       }
     },
 })
-
 </script>
 
 <style lang="scss">

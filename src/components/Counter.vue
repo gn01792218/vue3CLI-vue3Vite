@@ -18,13 +18,6 @@ export default defineComponent({
         const tableNum = computed(()=>{
             return route.params.tableId
         })
-        watch(tableNum,()=>{
-            if(tableNum.value=="B"){
-                timer ?  clearInterval(timer.value) : null
-                let temp = document.querySelector('.counter') as HTMLElement
-                temp.style.display = 'none'
-            }
-        })
         //vuex
         const store = useStore()
         const roundUuid = computed(()=>{ //每個回合獨特的uuid

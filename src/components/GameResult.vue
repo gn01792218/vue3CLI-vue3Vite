@@ -25,14 +25,14 @@ export default defineComponent({
     setup(){
         //暫時性的
         const route = useRoute()
-        const tableNum = computed(()=>{
-        return route.params.tableId
-        })
-        watch(tableNum,()=>{
-            if(tableNum.value=="B"){
-                hasGameResult.value = false
-            }
-        })
+        // const tableNum = computed(()=>{
+        // return route.params.tableId
+        // })
+        // watch(tableNum,()=>{
+        //     if(tableNum.value=="B"){
+        //         hasGameResult.value = false
+        //     }
+        // })
         //vuex
         const store = useStore()
         const gameResult = computed(()=>{ //回傳的是陣列
@@ -68,18 +68,13 @@ export default defineComponent({
         watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果
             console.log("停止下注")
             //最外層的if是暫時的
-            if(tableNum.value=="A"){
                 hasGameResult.value = true
-            }
         })
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
             // if(gameResult.value){
-            //最外層的是暫時的
-            if(tableNum.value=="A"){
                 console.log('伺服器遊戲結果',gameResult.value)
                 showGameResult()
-            }
             // }
         })
         function showGameResult () {

@@ -9,6 +9,11 @@
   cursor: pointer;
 }
 
+.big-T {
+  cursor: pointer;
+  background-image: url("../../images/T.png");
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -958,6 +963,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-size: 560px auto;
 }
 
+.big-T {
+  width: 19px;
+  height: 19px;
+  background-position: 0px 0px;
+  background-size: 19px auto;
+}
+
 .big-B {
   width: 19px;
   height: 19px;
@@ -1764,6 +1776,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -319px 0px;
     background-size: 464px auto;
   }
+  .big-T {
+    width: 15px;
+    height: 15px;
+    background-position: 0px 0px;
+    background-size: 15px auto;
+  }
   .big-B {
     width: 15px;
     height: 15px;
@@ -2223,6 +2241,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -385px 0px;
     background-size: 560px auto;
   }
+  .big-T {
+    width: 20px;
+    height: 20px;
+    background-position: 0px 0px;
+    background-size: 20px auto;
+  }
   .big-B {
     width: 20px;
     height: 20px;
@@ -2582,6 +2606,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -330px 0px;
     background-size: 480px auto;
   }
+  .big-T {
+    width: 17px;
+    height: 17px;
+    background-position: 0px 0px;
+    background-size: 17px auto;
+  }
   .big-B {
     width: 17px;
     height: 17px;
@@ -2890,6 +2920,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 15px;
     background-position: -165px 0px;
     background-size: 240px auto;
+  }
+  .big-T {
+    width: 8px;
+    height: 8px;
+    background-position: 0px 0px;
+    background-size: 8px auto;
   }
   .big-B {
     width: 8px;
@@ -3691,6 +3727,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 10px;
     background-position: -110px 0px;
     background-size: 160px auto;
+  }
+  .big-T {
+    width: 6px;
+    height: 6px;
+    background-position: 0px 0px;
+    background-size: 6px auto;
   }
   .big-B {
     width: 6px;

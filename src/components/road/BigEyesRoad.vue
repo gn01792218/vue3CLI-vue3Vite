@@ -63,16 +63,13 @@ export default defineComponent({
           resetBigEyesRoad()
         })
         watch(bigEyesRoadResult,()=>{
-          console.log("偵測到大眼路")
-          //最外層的if是暫時性的
-          if(tableNum.value=="A"){
+          // console.log("偵測到大眼路")
             if(bigEyesRoadResult.value.columns[0].blocks.length>0){
             if(bigEyesRoadInit.value){
               showBigEyesRoad()
             }else{
               showBigEyesRoadInit()
             }
-          }
           }
         })
       //function
@@ -106,11 +103,11 @@ export default defineComponent({
       }
       function showBigEyesRoad(){
         //每次都畫最後一顆
-        console.log('大眼露','上一次的長度',lastbigEyesRoadDataLength.value,'當前的長度',bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length)
+        // console.log('大眼露','上一次的長度',lastbigEyesRoadDataLength.value,'當前的長度',bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length)
         if(lastBigEyesRoadColumnLength.value==bigEyesRoadResult.value.columns.length && lastbigEyesRoadDataLength.value==bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length){
           return
         }else{
-          console.log('畫大眼露')
+          // console.log('畫大眼露')
           let item = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks[bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length-1]
         recordRoad(item)
         if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
@@ -139,7 +136,7 @@ export default defineComponent({
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value]!==0 || bigEyesRoadItemIndex.value>5){
-              console.log("連贏溢出")
+              // console.log("連贏溢出")
               bigEyesRoadColumn.value++ //換行
               //和局時不會進下面的addBigRoad
               if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
@@ -149,7 +146,7 @@ export default defineComponent({
                 bigEyesRoadItemIndex.value = bigEyesRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+              // console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                   for(let i = bigEyesRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                     bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
                   }
@@ -189,7 +186,7 @@ export default defineComponent({
             //當下一次溢出大於前一次溢出時，ItemIndex.value要再-1
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value]!==0 || bigEyesRoadItemIndex.value>5){
-              console.log("連贏溢出")
+              // console.log("連贏溢出")
               bigEyesRoadColumn.value++ //換行
               //和局時不會進下面的addBigRoad
               if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
@@ -199,7 +196,7 @@ export default defineComponent({
                 bigEyesRoadItemIndex.value = bigEyesRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+              // console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                   for(let i = bigEyesRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                     bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
                   }
@@ -303,7 +300,7 @@ export default defineComponent({
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value]!==0 || bigEyesRoadItemIndex.value>5){
-              console.log("連贏溢出")
+              // console.log("連贏溢出")
               bigEyesRoadColumn.value++ //換行
               //和局時不會進下面的addBigRoad
               if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
@@ -313,7 +310,7 @@ export default defineComponent({
                 bigEyesRoadItemIndex.value = bigEyesRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+              // console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                   for(let i = bigEyesRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                     bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
                   }

@@ -54,15 +54,12 @@ export default defineComponent({
           resetcockroachRoad()
         })
         watch(cockroachRoadResult,()=>{
-          //最外層是暫時性的
-          if(tableNum.value=="A"){
             if(cockroachRoadResult.value.columns[0].blocks.length>0){
             if(cockroachRoadInit.value){
               showCockroachRoad()
             }else{
               showCockroachRoadInit()
             }
-          }
           }
         })
         function recordRoad (gameResult:number){
@@ -159,12 +156,12 @@ export default defineComponent({
           // roadOverFlowerTimes.value++
         }
         function showCockroachRoad(){
-          console.log('蟑螂路上次長度',lastcockroachRoadDataLength.value,'當前長度',cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length)
+          // console.log('蟑螂路上次長度',lastcockroachRoadDataLength.value,'當前長度',cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length)
           if(lastcockroachDataColumnLength.value==cockroachRoadResult.value.columns.length && lastcockroachRoadDataLength.value==cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length){
             return
           }else{
              //每次都畫最後一顆
-             console.log('畫蟑螂路')
+            //  console.log('畫蟑螂路')
             let item = cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks[cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length-1]
             // console.log('最後一顆蟑螂',item)
             recordRoad(item)

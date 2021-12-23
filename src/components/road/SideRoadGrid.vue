@@ -1,5 +1,5 @@
 <template>
-<!-- <button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
+<button class="test position-absolute" @click="testshowBigRoad(1)">莊贏</button>
 <button class="test3 position-absolute" @click="testshowBigRoad(2)">閒贏</button>
 <button class="test9 position-absolute" @click="testshowBigRoad(3)">和</button>
 <button class="test10 position-absolute" @click="testshowBigRoad(10)">和莊對</button>
@@ -8,7 +8,7 @@
 <button class="test8 position-absolute" @click="testshowBigRoad(15)">莊和3</button>
 <button class="test5 position-absolute" @click="testshowBigRoad(19)">閒和</button>
 <button class="test6 position-absolute" @click="testshowBigRoad(18)">閒和2</button>
-<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button> -->
+<button class="test2 position-absolute" @click="resetBigRoad">重置大路</button>
   <!-- sideRoadBackgroundGrid -->
     <div class="secRoad d-flex sideWidth">
         <div class="secRoad-column" :class="`secRoad-column${index}`" v-for="(sc,index) in secWidth" :key="index"></div>
@@ -137,14 +137,11 @@ export default defineComponent({
         watch(beadPlateResult,()=>{
           console.log("偵測到朱朱陸")
           //最外層是暫時性的
-          if(tableNum.value=="A"){
             if(bigRoadInit.value){
             showBigRoadTest ()
             }else{  //沒有初始化過先畫
             showBigRoadInitTest ()
           }
-          }
-          
         })
         // watch(bigRoadResult,()=>{
         //   resetBigRoad()
@@ -179,7 +176,8 @@ export default defineComponent({
                 case proto.roadmap.Block.TieAndBothPair:
                   return proto.roadmap.Block.PlayerAndBothPairAndTie
               }
-            }else if(currentSide==0){ //只針對第一顆是和局時的狀態
+            }
+            else if(currentSide==0){ //只針對第一顆是純和局時的狀態
             // console.log("一開始是和局的狀態")
                   switch(gameResult){  
                     case proto.roadmap.Block.Tie:
@@ -252,6 +250,9 @@ export default defineComponent({
             let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
+            case proto.roadmap.Block.Tie:
+              bigRoadColItem.classList.add('big-T')
+              break 
             case proto.roadmap.Block.Banker:
               bigRoadColItem.classList.add('big-B')
               break
@@ -344,7 +345,6 @@ export default defineComponent({
               winner = transfromTie(currentBigRoadResult.value,winner) as number
             }
             console.log('轉換後',winner)
-            
           // gameResult.value.forEach(i=>{
             recordBigRoad(winner)  //1.紀錄陣營
             if(winner == 13 || winner == 14 || winner ==15 || winner == 16 || winner ==17 ||
@@ -352,7 +352,6 @@ export default defineComponent({
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
             }
-
             //換行一:不同陣營
             if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
               // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -369,7 +368,7 @@ export default defineComponent({
               }else{
                 bigRoadColumn.value++
               }
-              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){ //溢出極限格子的時候要增加行數
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){     //溢出極限格子的時候要增加行數
                 console.log("滿了+行")
                 addBigRoadColumn()
               }  
@@ -412,8 +411,10 @@ export default defineComponent({
                 bigRoadTie.value = false
               }
             }
+            //上一顆如果是和的  且現在第0行第1格的話
             if(lastBigRoadResult.value==0 && bigRoadItemIndex.value==1 && bigRoadColumn.value==0){ //應付一開始是和局3的狀態
               bigRoadItemIndex.value--
+              console.log('前一局是和局')
                switch(winner){
                 case 1:
                   winner = proto.roadmap.Block.BankerAndTie
@@ -421,6 +422,7 @@ export default defineComponent({
                 case 2:
                   winner = proto.roadmap.Block.PlayerAndTie
                   break
+                //還要新增所有其他狀況-->和局
               }
             } 
             putBigRoad(winner)
@@ -437,7 +439,7 @@ export default defineComponent({
             if(i == 13 || i == 14 || i ==15 || i == 16 || i ==17 ||
                 i == 18 || i == 19 || i == 20 ){
                   bigRoadTie.value = true
-                  // console.log("是否和局",bigRoadTie.value)
+                  console.log("是否和局",bigRoadTie.value)
             }
             // console.log("陣營",currentBigRoadResult.value)
             //換行一:不同陣營
@@ -588,7 +590,6 @@ export default defineComponent({
               }
             }
             if(lastBigRoadResult.value==0 && bigRoadItemIndex.value==1 && bigRoadColumn.value==0){ //應付開局為和局3的狀態
-              
               bigRoadItemIndex.value--
                switch(item){
                 case 1:

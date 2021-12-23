@@ -253,10 +253,7 @@ export default defineComponent({
         })
         watch(gameResult,()=>{
             clearLoseArea(gameResult.value)
-            //外面的if是暫時性的
-            if(tableNum.value=="A"){
-                showResult()
-            }
+            showResult()
             winCoinAnimation()
         })
         watch(total,()=>{

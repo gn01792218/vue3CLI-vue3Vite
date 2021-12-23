@@ -52,6 +52,10 @@
     @include hisRoadSpritePosition(-1100,0,0.35);
 }
 //大路
+.big-T{
+    @extend %tie;
+    @include tiePosition(0,0,0.19);
+}
 .big-B{ //莊
     @extend %hisRoad;
     @include hisRoadSpritePosition(0,100,0.19);

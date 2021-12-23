@@ -17,6 +17,18 @@
     justify-content: center;
 }
 
+@mixin tiePosition($x,$y,$scale){
+    $WIDTH:(100*$scale);
+    $HEIGHT:(100*$scale);
+    $POSITIONX:($x*$scale);
+    $POSITIONY:($y*$scale);
+    $BGSIZEX:(100*$WIDTH/100);
+    width:$WIDTH+px;
+    height:$HEIGHT+px;
+	background-position: $POSITIONX+px $POSITIONY+px;
+    background-size: $BGSIZEX+px auto;
+}
+
 @mixin hisRoadSpritePosition($x,$y,$scale){
     $WIDTH:(100*$scale);
     $HEIGHT:(100*$scale);
@@ -50,4 +62,8 @@
 %coin{
     background-image:$coin-spriteImg;
     cursor: pointer;
+}
+%tie{
+    cursor: pointer;
+    background-image: url('../../images/T.png');
 }

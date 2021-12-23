@@ -93,22 +93,16 @@ export default defineComponent({
      })
      watch(gameResult,()=>{
        console.log(gameResult.value.length)
-      //最外層的if是暫時的
-      if(tableNum.value=="A"){
         setWinCardBoxLight()
        if(gameResult.value.length>0){
          showCardTotalPoint()
        }
-      }
-       
      })
      watch(DrawCard,()=>{  //開牌
       //  console.log("開牌")
       //if判斷是暫時性的
-      if(tableNum.value=="A"){
-        let card = DrawCard.value
+       let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
-      }
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
      //最外層的if是暫時的
