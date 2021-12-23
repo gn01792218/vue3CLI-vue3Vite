@@ -4,7 +4,7 @@
     />
       <LiveVideo/>
       <BettingArea/>
-      <!-- <GameHistory/> -->
+      <GameHistory/>
       <TableInfo/>
   </div>
 </template>
@@ -14,7 +14,7 @@ import {computed, defineComponent,onMounted,reactive,watch} from 'vue'
 import LiveVideo from '@/components/LiveVideo.vue'
 import BettingArea from '@/views/BettingArea.vue'
 import TableInfo from '@/views/TableInfo.vue'
-// import GameHistory from '@/components/GameHistory.vue'
+import GameHistory from '@/components/GameHistory.vue'
 import Counter from '@/components/Counter.vue'
 import {useRoute } from 'vue-router'
 import {useStore} from 'vuex'
@@ -26,7 +26,7 @@ export default defineComponent({
     LiveVideo,
     BettingArea,
     TableInfo,
-    // GameHistory,
+    GameHistory,
     Counter,
   },
   setup(){
