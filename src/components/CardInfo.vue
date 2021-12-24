@@ -36,17 +36,15 @@ export default defineComponent({
         banker:new Array(3),
         player:new Array(3),
      })
-    //  //暫時性的
-    // const route = useRoute()
-    // const tableNum = computed(()=>{
-    //   return route.params.tableId
-    // })
-    // watch(tableNum,()=>{
-    //   if(tableNum.value=="B"){
-    //     showCardResult.value = false
-    //     resetCards ()
-    //   }
-    // })
+    //監測換桌
+    const route = useRoute()
+    const tableNum = computed(()=>{
+      return route.params.tableId
+    })
+    watch(tableNum,()=>{
+        resetCards ()  //換桌的時候卡牌要先重置
+        resetCardPoint()
+    })
     //vuex
     const store = useStore()
     const roundUuid = computed(()=>{
@@ -64,7 +62,7 @@ export default defineComponent({
     const gameResult = computed(()=>{ //回傳的是陣列
       return store.state.dealer.BroadcastGameResult.results
     })
-    const gameEnd = computed(()=>{
+    const gameEnd = computed(()=>{  //換靴
           return store.state.dealer.end
     })
     const bankCardArray = ref([0,0,0])
