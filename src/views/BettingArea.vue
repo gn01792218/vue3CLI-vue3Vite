@@ -183,8 +183,11 @@ export default defineComponent({
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
+        // const betStatus = computed(()=>{  //各注區下注狀況
+        //     return store.state.bet.BetRecall.betStatus
+        // })
         const betStatus = computed(()=>{  //各注區下注狀況
-            return store.state.bet.BetRecall.betStatus
+            return store.state.bet.betstatus
         })
         const betResult = computed(()=>{ //下注成功否的狀態
             return store.state.bet.BetRecall.result
@@ -218,6 +221,7 @@ export default defineComponent({
         const canUseSmallCoin = ref(false)
         //監聽
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
+        console.log('駐區數字',betStatus.value)
             if(betResult.value!==-1){ 
                 coinPosition[0].betStatus = betStatus.value.Player
                 coinPosition[1].betStatus = betStatus.value.Banker

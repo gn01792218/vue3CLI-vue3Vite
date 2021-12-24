@@ -29,7 +29,8 @@ export default defineComponent({
         return route.params.tableId
         })
         watch(tableNum,()=>{
-            hasGameResult.value = false
+            resetGameResult() //每次換桌都resetGameResult
+            hasGameResult.value = false  
         })
         //vuex
         const store = useStore()
@@ -60,7 +61,7 @@ export default defineComponent({
             hasGameResult.value = false
         })
         watch(gameUuid,()=>{
-            resetGameResult()
+            resetGameResult()  //換桌的時候要先resetGameResult
             hasGameResult.value = false
         })
         watch(gameEndUuid,()=>{ //倒數結束打開遊戲結果

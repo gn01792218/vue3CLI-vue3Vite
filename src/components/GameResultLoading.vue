@@ -40,7 +40,7 @@ export default defineComponent({
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
-        watch(gameEnd,()=>{
+        watch(gameEnd,()=>{ //換靴
                 isWait.value = true
                 stateMsg.value = "中場休息..."
         })
@@ -63,7 +63,7 @@ export default defineComponent({
                         break
                     case 3:
                         isWait.value = true
-                        stateMsg.value = "中場休息..."
+                        stateMsg.value = "等待新局..."
                         // setTimeout(()=>{
                         // isWait.value = false
                         // },500)

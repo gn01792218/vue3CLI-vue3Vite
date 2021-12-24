@@ -31,6 +31,7 @@ export const state = {
       state.numOfRound = payload.numOfRound
       state.numOfShoe = payload.numOfShoe
       state.gameResultCount = payload.gameResultCounter
+      // state.bet.betstatus = payload.betstatus
     },
     BetRoundEnd(state:any, payload:any){
       state.BetRoundEnd = payload

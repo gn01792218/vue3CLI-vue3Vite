@@ -36,17 +36,17 @@ export default defineComponent({
         banker:new Array(3),
         player:new Array(3),
      })
-     //暫時性的
-    const route = useRoute()
-    const tableNum = computed(()=>{
-      return route.params.tableId
-    })
-    watch(tableNum,()=>{
-      if(tableNum.value=="B"){
-        showCardResult.value = false
-        resetCards ()
-      }
-    })
+    //  //暫時性的
+    // const route = useRoute()
+    // const tableNum = computed(()=>{
+    //   return route.params.tableId
+    // })
+    // watch(tableNum,()=>{
+    //   if(tableNum.value=="B"){
+    //     showCardResult.value = false
+    //     resetCards ()
+    //   }
+    // })
     //vuex
     const store = useStore()
     const roundUuid = computed(()=>{
@@ -105,14 +105,11 @@ export default defineComponent({
        showCards(card.side,card.card.suit,card.card.point,card.position)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
-     //最外層的if是暫時的
-     if(tableNum.value=="A"){
        if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
        })
       }
-     }
      })
      //撲克牌業務代碼
      function resetCards () {
