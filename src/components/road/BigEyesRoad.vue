@@ -210,11 +210,11 @@ export default defineComponent({
         //1.直接刪除所有column
           let RoadColContainer = document.querySelector('.BigEyesRoad') as HTMLElement
           let lastChild = RoadColContainer.lastElementChild
-          console.log('富元素',RoadColContainer,'子元素',lastChild)
+          // console.log('富元素',RoadColContainer,'子元素',lastChild)
           while(lastChild){
             RoadColContainer.removeChild(lastChild); //移除行數
             lastChild  = RoadColContainer.lastElementChild //抓下一個child
-            console.log('刪除子元素')
+            // console.log('刪除子元素')
           }
           //2.建立新的四十四條col
           for(let i = 0 ;i < BigEyesRoadWidth.length ;i++){

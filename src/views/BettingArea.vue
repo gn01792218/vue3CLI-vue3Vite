@@ -196,7 +196,7 @@ export default defineComponent({
             return store.state.bet.BetResetRecall.result
         })
         const betError = computed(()=>{
-            return store.state.bet.BetRecall.betError.error
+            return store.state.bet.BetRecall.betError
         })
         const roundUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
@@ -714,7 +714,7 @@ export default defineComponent({
                 setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
                 store.commit('bet/resetBetResult') //重置result狀態
             }else{
-                switch(betError.value){
+                switch(betError.value.error){
                     case 1:
                         betErrorArray.value?.push('下注失敗')
                         break
@@ -725,7 +725,7 @@ export default defineComponent({
                         betErrorArray.value?.push('非法的注區')
                         break
                     case 4:
-                        betErrorArray.value?.push('不符合最高/最低限注額度')
+                        betErrorArray.value?.push(betError.value.errorMessage)
                         break
                     case 5:
                         betErrorArray.value?.push('非法遊戲局')

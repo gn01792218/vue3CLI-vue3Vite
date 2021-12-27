@@ -92,7 +92,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.LobbyInfo:
             let lobbyInfo = lobby.LobbyInfo.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('lobbyInfo',lobbyInfo)
+            console.log('lobbyInfo',lobbyInfo)
             store.commit('lobby/LobbyInfo',lobbyInfo)
             break
         case route.UserInfo:
