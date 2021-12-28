@@ -103,6 +103,37 @@ export default defineComponent({
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
+        const askRoadArr = computed(()=>{
+          return store.state.roadmap.askRoad
+        }) 
+        let timer = ref()
+        watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+        //1.先清除計時器
+          if(timer.value){   
+            clearTimeout(timer.value)
+          }
+          //2.重置路圖
+          resetBigRoad()
+          showBigRoadInit()
+          //3.放置問路
+          let roadNum = askRoadArr.value[askRoadArr.value.length-1]
+          askRoad(roadNum)
+          //4.添加動畫
+          let column = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(bigRoadItemIndex.value>0){
+           road = column.children[bigRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[bigRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.add('askRoadanimation')
+          //5.畫完之後等二秒就reset路圖，並重新畫
+          timer.value =  setTimeout(()=>{
+            resetBigRoad()
+            showBigRoadInit()
+            road.classList.remove('askRoadanimation')
+          },4000)
+        })
         const gameResult = ref([1])
         const gameResult2 = ref([2])
         //表格
@@ -153,6 +184,54 @@ export default defineComponent({
           //   showBigRoadInit()
           // }
         })
+        function askRoad(roadNum:number){
+          recordBigRoad(roadNum)  //1.紀錄陣營
+          //換行一:不同陣營
+            if(currentBigRoadResult.value!==lastBigRoadResult.value && currentBigRoadResult.value!==0 && lastBigRoadResult.value!==0){
+              // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+              if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
+                if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
+                  bigRoadColumn.value++
+                  console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
+                  roadOverFlowerTimes.value = 0
+                }else{
+                  bigRoadColumn.value = bigRoadColumn.value-roadOverFlowerTimes.value+1
+                  roadOverFlowerTimes.value = 0
+                }
+                console.log("溢出後恢復","行",bigRoadColumn.value)
+              }else{
+                bigRoadColumn.value++
+              }
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){     //溢出極限格子的時候要增加行數
+                console.log("滿了+行")
+                addBigRoadColumn()
+              }  
+               bigRoadItemIndex.value = 0
+               console.log("格",bigRoadItemIndex.value)
+            }
+            //換行二:溢出換行
+            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
+            //溢出時如果遇到和局，其實不需要+行?!
+            if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
+              console.log("連贏溢出")
+              if(!bigRoadTie.value){  //不是和局時，才要+行
+                bigRoadColumn.value++ //換行
+              }
+              //和局時不會進下面的addBigRoad
+              if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                  addBigRoadColumn()
+              }  //溢出極限格子的時候要增加行數
+              if(bigRoadItemIndex.value>0){ //在第0格以上才要-1
+                bigRoadItemIndex.value = bigRoadItemIndex.value-1
+              }
+              roadOverFlowerTimes.value++ 
+              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                  for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                    bigRoadColArr[bigRoadColumn.value][i] = 1
+                  }
+            }
+            putBigRoad(roadNum)
+        }
         function transfromTie (currentSide:number,gameResult:number){
             if(currentSide==1){
               switch(gameResult){
@@ -676,7 +755,7 @@ export default defineComponent({
             })
           })
           bigRoadInit.value = true
-           console.log('大路增加的欄數',addBigColumnCount.value)
+          //  console.log('大路增加的欄數',addBigColumnCount.value)
         }
         function showBigRoad () {
           let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫

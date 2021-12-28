@@ -298,6 +298,9 @@ export namespace auth {
 
         /** User wallet */
         wallet?: (number|null);
+
+        /** User totalValidBets */
+        totalValidBets?: (number|null);
     }
 
     /** Represents a User. */
@@ -314,6 +317,9 @@ export namespace auth {
 
         /** User wallet. */
         public wallet: number;
+
+        /** User totalValidBets. */
+        public totalValidBets: number;
 
         /**
          * Creates a new User instance using the specified properties.
@@ -3873,6 +3879,210 @@ export namespace roadmap {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of an AskRoadCall. */
+    interface IAskRoadCall {
+
+        /** AskRoadCall header */
+        header?: (foundation.IHeader|null);
+
+        /** AskRoadCall block */
+        block?: (roadmap.Block|null);
+    }
+
+    /** Represents an AskRoadCall. */
+    class AskRoadCall implements IAskRoadCall {
+
+        /**
+         * Constructs a new AskRoadCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IAskRoadCall);
+
+        /** AskRoadCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** AskRoadCall block. */
+        public block: roadmap.Block;
+
+        /**
+         * Creates a new AskRoadCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AskRoadCall instance
+         */
+        public static create(properties?: roadmap.IAskRoadCall): roadmap.AskRoadCall;
+
+        /**
+         * Encodes the specified AskRoadCall message. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @param message AskRoadCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IAskRoadCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AskRoadCall message, length delimited. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @param message AskRoadCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IAskRoadCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.AskRoadCall;
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.AskRoadCall;
+
+        /**
+         * Verifies an AskRoadCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AskRoadCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AskRoadCall
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.AskRoadCall;
+
+        /**
+         * Creates a plain object from an AskRoadCall message. Also converts values to other types if specified.
+         * @param message AskRoadCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.AskRoadCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AskRoadCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of an AskRoadRecall. */
+    interface IAskRoadRecall {
+
+        /** AskRoadRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** AskRoadRecall bigEyeRoadNext */
+        bigEyeRoadNext?: (roadmap.Block|null);
+
+        /** AskRoadRecall smallRoadNext */
+        smallRoadNext?: (roadmap.Block|null);
+
+        /** AskRoadRecall cockroachRoadNext */
+        cockroachRoadNext?: (roadmap.Block|null);
+    }
+
+    /** Represents an AskRoadRecall. */
+    class AskRoadRecall implements IAskRoadRecall {
+
+        /**
+         * Constructs a new AskRoadRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IAskRoadRecall);
+
+        /** AskRoadRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** AskRoadRecall bigEyeRoadNext. */
+        public bigEyeRoadNext: roadmap.Block;
+
+        /** AskRoadRecall smallRoadNext. */
+        public smallRoadNext: roadmap.Block;
+
+        /** AskRoadRecall cockroachRoadNext. */
+        public cockroachRoadNext: roadmap.Block;
+
+        /**
+         * Creates a new AskRoadRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AskRoadRecall instance
+         */
+        public static create(properties?: roadmap.IAskRoadRecall): roadmap.AskRoadRecall;
+
+        /**
+         * Encodes the specified AskRoadRecall message. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @param message AskRoadRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IAskRoadRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AskRoadRecall message, length delimited. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @param message AskRoadRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IAskRoadRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.AskRoadRecall;
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.AskRoadRecall;
+
+        /**
+         * Verifies an AskRoadRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AskRoadRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AskRoadRecall
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.AskRoadRecall;
+
+        /**
+         * Creates a plain object from an AskRoadRecall message. Also converts values to other types if specified.
+         * @param message AskRoadRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.AskRoadRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AskRoadRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace route. */
@@ -3908,7 +4118,9 @@ export namespace route {
         GameStatus = 24,
         DealerGameStatus = 25,
         Roadmap = 26,
-        WhiteCard = 27
+        WhiteCard = 27,
+        AskRoadCall = 28,
+        AskRoadRecall = 29
     }
 }
 

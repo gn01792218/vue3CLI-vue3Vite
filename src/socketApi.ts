@@ -75,6 +75,18 @@ export const sendBetResetCall = (data:any) => {
     // console.log("sendBetResetCall",proto)
     sendWSPush(bytes);
 }
+//發送問路
+export const sendAskRoadCall = (data:any) => {
+    let proto = roadmap.AskRoadCall.create({
+        header:foundation.Header.create({
+            uri:route.AskRoadCall
+        }),
+        block:data.block,
+    })
+    let bytes = roadmap.AskRoadCall.encode(proto).finish()
+    // console.log('sendAskRoadCall',proto)
+    sendWSPush(bytes);
+}
 
 
 //各種接收訊息的方法，在main.js中全局註冊監聽
@@ -160,5 +172,11 @@ export const getMsgReCall = (e:any) =>{
             let end = dealer.BroadcastDealerRoundEnd.decode(new Uint8Array(e.detail.msg.data))
             console.log('換靴',end)
             store.commit('dealer/end',end)
+            break
+        case route.AskRoadRecall:
+            let askRoadReCall = roadmap.AskRoadRecall.decode(new Uint8Array(e.detail.msg.data))
+            // console.log('問下三路',askRoadReCall)
+            store.commit('roadmap/setAskRoadRecall',askRoadReCall)
+            break
     }
 }

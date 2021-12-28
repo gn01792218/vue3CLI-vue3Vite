@@ -43,11 +43,42 @@ export default defineComponent({
         const overflowCount = ref(0)
         const isInit = ref(false)
         const store = useStore()
+        let timer = ref()
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
         })
         const gameEnd = computed(()=>{
             return store.state.dealer.end
+        })
+        const askRoadArr = computed(()=>{
+          return store.state.roadmap.askRoad
+        })
+        watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+        //1.先清除計時器
+          if(timer.value){   
+            clearTimeout(timer.value)
+          }
+          //2.重置路圖
+          resetRoad()
+          showRoadInit ()
+          //3.放置問路
+          let roadNum = askRoadArr.value[askRoadArr.value.length-1]
+          askRoad(roadNum)
+          //4.添加動畫
+          let column = document.querySelector(`.beadPlate-column${beadPlateColumnCount.value}`) as HTMLElement
+          let road:HTMLElement
+          if(roadIndex.value>0){
+           road = column.children[roadIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[roadIndex.value].firstChild as HTMLElement
+          }
+          road.classList.add('askRoadanimation')
+          //5.畫完之後等二秒就reset路圖，並重新畫
+          timer.value =  setTimeout(()=>{
+            resetRoad()
+            showRoadInit ()
+            road.classList.remove('askRoadanimation')
+          },4000)
         })
         watch(gameEnd,()=>{  //換薛時要重置
         console.log("換靴重置諸朱盤路")
@@ -66,9 +97,6 @@ export default defineComponent({
             }
           }  
         })
-        // function put (){
-        //   showRoadByGameResult  ()
-        // }
         function putRoad(columnNum:number,roadnum:number,gameResult:number){
           let beadPlateCol = document.querySelector(`.beadPlate-column${columnNum}`) as HTMLElement
           let beadPlateColItem = beadPlateCol.children[roadnum].firstChild as HTMLElement
@@ -112,6 +140,16 @@ export default defineComponent({
           }
           roadIndex.value++
         }
+        function askRoad(road:number){
+            if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
+              addColumn()
+            }
+            if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
+              beadPlateColumnCount.value++
+              roadIndex.value = 0
+            }
+            putRoad(beadPlateColumnCount.value,roadIndex.value,road)
+        }
         function showRoadInit () {  //進場前補畫前面的路圖
             beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
               if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
@@ -140,33 +178,7 @@ export default defineComponent({
             }
             putRoad(beadPlateColumnCount.value,roadIndex.value,i)
             })
-          //   beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
-          //   if(beadPlateResult.value.blocks.length-1==index){
-          //     if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
-          //     // resetRoad()
-          //     addColumn()
-          //   }
-          //   if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
-          //     beadPlateColumnCount.value++
-          //     roadIndex.value = 0
-          //   }
-          //   putRoad(beadPlateColumnCount.value,roadIndex.value,i)
-          //   }
-          // })
         }
-        // function showRoadByGameResult () {
-        //   gameResult.value.forEach((i:any)=>{
-        //     if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
-        //       // resetRoad()
-        //       addColumn()
-        //     }
-        //     if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
-        //       beadPlateColumnCount.value++
-        //       roadIndex.value = 0
-        //     }
-        //     putRoad(beadPlateColumnCount.value,roadIndex.value,i)
-        //   })
-        // }
         function addColumn () {  //滿格時一次增加一格的方法
           beadPlateColumnCount.value++
           roadIndex.value = 0

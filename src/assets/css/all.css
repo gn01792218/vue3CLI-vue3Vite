@@ -452,7 +452,7 @@ img {
 }
 
 .header-btn.active, header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
-  background-color: #f22e89;
+  background-color: #f22e89 !important;
   border: black 2px solid;
 }
 
@@ -734,10 +734,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .askRoad-player {
   color: red;
+  cursor: pointer;
 }
 
 .askRoad-banker {
   color: yellow;
+  cursor: pointer;
 }
 
 .shotCoinUl {
@@ -877,6 +879,39 @@ a.btn.disabled, fieldset[disabled] a.btn {
       -ms-flex-pack: center;
           justify-content: center;
   height: 80%;
+}
+
+.askRoadanimation {
+  -webkit-animation-name: askRoad;
+          animation-name: askRoad;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+
+@-webkit-keyframes askRoad {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
+@keyframes askRoad {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
 }
 
 .BeadPlate-B {

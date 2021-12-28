@@ -13,7 +13,7 @@
                     <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6 d-flex flex-column']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
-                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
+                            <transition-group  @enter="generateCoinAnimate">
                                 <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                             </transition-group>
                         </ul>
@@ -23,7 +23,7 @@
                     <div :class="[`betArea-item${index+3}`,i.configClass,'col-4 d-flex flex-column']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="sendBetData($event,index+2)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
                         <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                         <ul class="coinPosition">
-                            <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
+                            <transition-group @enter="generateCoinAnimate">
                                 <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                             </transition-group>
                         </ul>
@@ -42,7 +42,7 @@
                 <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1},'d-flex flex-column']" v-for ="(i,index) in coinPosition" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
                     <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
                     <ul class="coinPosition">
-                        <transition-group  v-if="i.coinArray.length>=0" @enter="generateCoinAnimate">
+                        <transition-group  @enter="generateCoinAnimate">
                             <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
                         </transition-group>
                     </ul>
@@ -70,11 +70,6 @@
                     <!-- <li v-if="totalRound>0">總局數 : 0</li> -->
                 </section>
             </ul>
-            <!-- <p class="mobilTableInfo yellow">莊:XX</p>
-            <p class="mobilTableInfo red">閒:XX</p>
-            <p class="mobilTableInfo green">和:XX</p>
-            <p class="mobilTableInfo yellow">莊對:XX</p>
-            <p class="mobilTableInfo red">閒對:XX</p> -->
         </div>
         <!-- coin -->
         <div class="coinArea position-relative">
@@ -87,7 +82,6 @@
             <ul class="shotCoinUl d-flex position-absolute">
                 <div v-for="coin,index in coinList" :key="index">
                     <transition-group  v-if="coin.ammo.length>=0" @enter="cointAnimate">
-                        <!-- <div :class="[ammo,'shotCoinPice',`ammo${coin.point}`]" v-for="(ammo,index) in coin.ammo" :key="index"></div> -->
                         <div :class="[ammo,'shotCoinPice',`ammo${coin.num}`]" v-for="(ammo,index) in coin.ammo" :key="index"></div>
                     </transition-group>
                 </div>
@@ -97,7 +91,7 @@
             <LightBox/>
             <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
             <div class="askRoad d-flex">
-                <div class="askRoad-player p-1 mr-2">
+                <div class="askRoad-player p-1 mr-2" @click="askRoad(2)">
                     <p>閒問路</p>
                     <div class="d-flex justify-content-around p-1">
                         <div class="small-blue-ask"></div>
@@ -105,7 +99,7 @@
                         <div class="cockroach-red-ask"></div>
                     </div>
                 </div>
-                <div class="askRoad-banker p-1">
+                <div class="askRoad-banker p-1" @click="askRoad(1)">
                     <p>莊問路</p>
                     <div class="d-flex justify-content-around p-1">
                         <div class="small-red-ask"></div>
@@ -116,14 +110,13 @@
             </div>
         </div>
         <GameResult/>
-        
     </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
-import {sendBetCall,sendBetResetCall} from '../socketApi'
+import {sendBetCall,sendBetResetCall,sendAskRoadCall} from '../socketApi'
 import {useStore} from 'vuex'
 import {useRoute } from 'vue-router'
 import GameResult from '@/components/GameResult.vue'
@@ -178,6 +171,27 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
+            if(tableNum.value=='A'){
+                let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
+                arr.forEach((i,index)=>{
+                    testBetCallArray(i)
+                    let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
+                    let ul = betArea.children[2]
+                    let coin = ul.children[index] as HTMLElement
+                    console.log('1.先計算位置',ul.children[index])
+                    generateCoinAnimate(coin)
+                })
+            }else if(tableNum.value=='B'){
+                let arr = [{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2}]
+                arr.forEach((i,index)=>{
+                    testBetCallArray(i)
+                    let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
+                    let ul = betArea.children[2]
+                    let coin = ul.children[index] as HTMLElement
+                    console.log('1.先計算位置',ul.children[index])
+                    generateCoinAnimate(coin)
+                })
+            }
         })
         //vuex
         const store = useStore();
@@ -288,18 +302,29 @@ export default defineComponent({
                 betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
             }
         })
-        watch(betCallArray,()=>{
-            betCallArray.value.forEach((i:any)=>{
-                let cp = i.betArea
-                cp.coinArray.push(coinList[i.betIndex].className)  //添加class名稱到注區
-                if((cp.coinArray.length%10)==0){ //每10個橫移一次
-                    cp.initX +=10;
-                    cp.initBottom = 0
-                }else{
-                    cp.initBottom += 5;  //修改樣式
-                }
-            })
-        })
+        function testBetCallArray(betObject:any){
+            let cp = coinPosition[betObject.betArea-1]  
+            cp.coinArray.push(coinList[betObject.betIndex].className)
+            currentBetPosition.betAreaIndex = betObject.betArea-1
+            if((cp.coinArray.length%10)==0){           //每10個橫移一次
+                cp.initX +=10
+                cp.initBottom = 0
+            }else{
+                cp.initBottom += 5             //修改樣式
+            }
+        }
+        // watch(betCallArray,()=>{
+        //     betCallArray.value.forEach((i:any)=>{
+        //         let cp = coinPosition[i.betArea]
+        //         cp.coinArray.push(coinList[i.betIndex].className)  //添加class名稱到注區
+        //         if((cp.coinArray.length%10)==0){ //每10個橫移一次
+        //             cp.initX +=10;
+        //             cp.initBottom = 0
+        //         }else{
+        //             cp.initBottom += 5;  //修改樣式
+        //         }
+        //     })
+        // })
         watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
             if(betResetresult.value===1){
                 resetGame()
@@ -310,17 +335,6 @@ export default defineComponent({
             showResult()
             winCoinAnimation()
         })
-        // watch(total,()=>{
-        //     console.log('下注總額變化提示:','所選注區',currentBetPosition.betAreaIndex)
-        //     // if(currentBetPosition.betAreaIndex==0 || currentBetPosition.betAreaIndex==1){
-        //     //     console.log('判斷莊閒區')
-        //     //     if(parseInt(total.value)*1000>=coinList[3].point && !canUseSmallCoin.value){
-        //     //         console.log('可以打開前三個籌碼')
-        //     //         // setMinBetCoinUsable()
-        //     //         canUseSmallCoin.value = true
-        //     //     }
-        //     // }
-        // })
         //籌碼動畫、下注邏輯
         const coinList = reactive<coint[]>([  //籌碼基本資料
                     {
@@ -375,7 +389,7 @@ export default defineComponent({
             y : 0,
         })
         //coin-menu2 coin-menu2-current index0
-        const coinPosition = reactive<coinPosition[]>([//注區
+        const coinPosition = reactive<coinPosition[]>([   //注區
             {
                 initBottom:0,
                 initX:0,
@@ -426,7 +440,6 @@ export default defineComponent({
                 betStatus:0, //目前這一回合的下注狀況
                 maxBet:9000,
             },
-           
         ]) 
         const betErrorArray = ref<Array<string>>([])
         function setDefaultCoin(){
@@ -602,10 +615,9 @@ export default defineComponent({
                 ]
             })
         }
-        function generateCoinAnimate (e:HTMLElement) {
-            //想要橫飛打開此選項，並且關閉下方y
-            // e.style.bottom = `${coinPosition[currentBetPosition.betAreaIndex].initBottom}px`
-            gsap
+        async function generateCoinAnimate (e:HTMLElement) {
+            console.log('2.再執行動畫',e,coinPosition[currentBetPosition.betAreaIndex].initBottom)
+            await gsap
             .to(e,{
                 keyframes:[
                     {display:"none"},
@@ -616,7 +628,6 @@ export default defineComponent({
                     opacity:1,
                     display:"block"}
                     ]
-                    
             })
         }
         function loadCoin () {
@@ -650,7 +661,7 @@ export default defineComponent({
                     betCallTemp.value = { //資料暫存起來，後面確定betResult為1的時候才推入籌碼動畫陣列
                      'betAreaElement':e.target,
                      'betAreaIndex':index,
-                    }
+                }
                     // betArray.push({   //當玩家餘額不足時不要推
                     //     'betAreaElement':e.target,
                     //     'betAreaIndex':index,
@@ -767,7 +778,6 @@ export default defineComponent({
             }
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
-            console.log('目標注區',index,'betResult',betResult.value)
             if(betResult.value==1){   
                 //裝子彈，就會啟動籌碼飛的動畫
                 loadCoin()   
@@ -779,30 +789,6 @@ export default defineComponent({
                 setCoinPosition(cp)  //在駐區生成籌碼並設置起始位置 
                 store.commit('bet/resetBetResult') //重置result狀態
             }
-            // else{
-            //     console.log('進到-1')
-            //     switch(betError.value.error){
-            //         case 1:
-            //             betErrorArray.value?.push('下注失敗')
-            //             break
-            //         case 2:
-            //             betErrorArray.value?.push('非法的籌碼')
-            //             break
-            //         case 3:
-            //             betErrorArray.value?.push(betError.value.errorMessage)
-            //             break
-            //         case 4:
-            //             betErrorArray.value?.push(betError.value.errorMessage)
-            //             break
-            //         case 5:
-            //             betErrorArray.value?.push('非法遊戲局')
-            //             break
-            //         case 6:
-            //             betErrorArray.value?.push('餘額不足')
-            //             break
-            //     }
-            //     store.commit('bet/resetBetResult') //重置result狀態
-            // }
         }
         function getAllBetBack(){
             sendBetResetCall({
@@ -979,6 +965,12 @@ export default defineComponent({
             })
             }
         }
+        function askRoad(roadNum:number){
+            store.commit('roadmap/setAskRoad',roadNum)
+            sendAskRoadCall({
+                block:roadNum
+            })
+        }
         return{
             //data
             coinList,
@@ -997,6 +989,7 @@ export default defineComponent({
             getAllBetBack,
             betErrorAnimation,
             sendBetData,
+            askRoad,
         }
     }
 })

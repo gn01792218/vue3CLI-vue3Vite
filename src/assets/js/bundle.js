@@ -674,6 +674,7 @@ export const auth = $root.auth = (() => {
          * @interface IUser
          * @property {string|null} [name] User name
          * @property {number|null} [wallet] User wallet
+         * @property {number|null} [totalValidBets] User totalValidBets
          */
 
         /**
@@ -708,6 +709,14 @@ export const auth = $root.auth = (() => {
         User.prototype.wallet = 0;
 
         /**
+         * User totalValidBets.
+         * @member {number} totalValidBets
+         * @memberof auth.User
+         * @instance
+         */
+        User.prototype.totalValidBets = 0;
+
+        /**
          * Creates a new User instance using the specified properties.
          * @function create
          * @memberof auth.User
@@ -735,6 +744,8 @@ export const auth = $root.auth = (() => {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
             if (message.wallet != null && Object.hasOwnProperty.call(message, "wallet"))
                 writer.uint32(/* id 2, wireType 1 =*/17).double(message.wallet);
+            if (message.totalValidBets != null && Object.hasOwnProperty.call(message, "totalValidBets"))
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.totalValidBets);
             return writer;
         };
 
@@ -774,6 +785,9 @@ export const auth = $root.auth = (() => {
                     break;
                 case 2:
                     message.wallet = reader.double();
+                    break;
+                case 3:
+                    message.totalValidBets = reader.double();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -816,6 +830,9 @@ export const auth = $root.auth = (() => {
             if (message.wallet != null && message.hasOwnProperty("wallet"))
                 if (typeof message.wallet !== "number")
                     return "wallet: number expected";
+            if (message.totalValidBets != null && message.hasOwnProperty("totalValidBets"))
+                if (typeof message.totalValidBets !== "number")
+                    return "totalValidBets: number expected";
             return null;
         };
 
@@ -835,6 +852,8 @@ export const auth = $root.auth = (() => {
                 message.name = String(object.name);
             if (object.wallet != null)
                 message.wallet = Number(object.wallet);
+            if (object.totalValidBets != null)
+                message.totalValidBets = Number(object.totalValidBets);
             return message;
         };
 
@@ -854,11 +873,14 @@ export const auth = $root.auth = (() => {
             if (options.defaults) {
                 object.name = "";
                 object.wallet = 0;
+                object.totalValidBets = 0;
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.wallet != null && message.hasOwnProperty("wallet"))
                 object.wallet = options.json && !isFinite(message.wallet) ? String(message.wallet) : message.wallet;
+            if (message.totalValidBets != null && message.hasOwnProperty("totalValidBets"))
+                object.totalValidBets = options.json && !isFinite(message.totalValidBets) ? String(message.totalValidBets) : message.totalValidBets;
             return object;
         };
 
@@ -5089,6 +5111,8 @@ export const foundation = $root.foundation = (() => {
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                case 29:
                     break;
                 }
             return null;
@@ -5222,6 +5246,14 @@ export const foundation = $root.foundation = (() => {
             case "WhiteCard":
             case 27:
                 message.uri = 27;
+                break;
+            case "AskRoadCall":
+            case 28:
+                message.uri = 28;
+                break;
+            case "AskRoadRecall":
+            case 29:
+                message.uri = 29;
                 break;
             }
             return message;
@@ -9602,6 +9634,912 @@ export const roadmap = $root.roadmap = (() => {
         return Roadmap;
     })();
 
+    roadmap.AskRoadCall = (function() {
+
+        /**
+         * Properties of an AskRoadCall.
+         * @memberof roadmap
+         * @interface IAskRoadCall
+         * @property {foundation.IHeader|null} [header] AskRoadCall header
+         * @property {roadmap.Block|null} [block] AskRoadCall block
+         */
+
+        /**
+         * Constructs a new AskRoadCall.
+         * @memberof roadmap
+         * @classdesc Represents an AskRoadCall.
+         * @implements IAskRoadCall
+         * @constructor
+         * @param {roadmap.IAskRoadCall=} [properties] Properties to set
+         */
+        function AskRoadCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AskRoadCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof roadmap.AskRoadCall
+         * @instance
+         */
+        AskRoadCall.prototype.header = null;
+
+        /**
+         * AskRoadCall block.
+         * @member {roadmap.Block} block
+         * @memberof roadmap.AskRoadCall
+         * @instance
+         */
+        AskRoadCall.prototype.block = 0;
+
+        /**
+         * Creates a new AskRoadCall instance using the specified properties.
+         * @function create
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.IAskRoadCall=} [properties] Properties to set
+         * @returns {roadmap.AskRoadCall} AskRoadCall instance
+         */
+        AskRoadCall.create = function create(properties) {
+            return new AskRoadCall(properties);
+        };
+
+        /**
+         * Encodes the specified AskRoadCall message. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.IAskRoadCall} message AskRoadCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.block != null && Object.hasOwnProperty.call(message, "block"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.block);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AskRoadCall message, length delimited. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.IAskRoadCall} message AskRoadCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.AskRoadCall} AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.AskRoadCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.block = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.AskRoadCall} AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AskRoadCall message.
+         * @function verify
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AskRoadCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.block != null && message.hasOwnProperty("block"))
+                switch (message.block) {
+                default:
+                    return "block: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates an AskRoadCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.AskRoadCall} AskRoadCall
+         */
+        AskRoadCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.AskRoadCall)
+                return object;
+            let message = new $root.roadmap.AskRoadCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".roadmap.AskRoadCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            switch (object.block) {
+            case "BlockDefault":
+            case 0:
+                message.block = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.block = 1;
+                break;
+            case "Player":
+            case 2:
+                message.block = 2;
+                break;
+            case "Tie":
+            case 3:
+                message.block = 3;
+                break;
+            case "BankerAndBankerPair":
+            case 4:
+                message.block = 4;
+                break;
+            case "BankerAndPlayerPair":
+            case 5:
+                message.block = 5;
+                break;
+            case "BankerAndBothPair":
+            case 6:
+                message.block = 6;
+                break;
+            case "PlayerAndBankerPair":
+            case 7:
+                message.block = 7;
+                break;
+            case "PlayerAndPlayerPair":
+            case 8:
+                message.block = 8;
+                break;
+            case "PlayerAndBothPair":
+            case 9:
+                message.block = 9;
+                break;
+            case "TieAndBankerPair":
+            case 10:
+                message.block = 10;
+                break;
+            case "TieAndPlayerPair":
+            case 11:
+                message.block = 11;
+                break;
+            case "TieAndBothPair":
+            case 12:
+                message.block = 12;
+                break;
+            case "BankerAndTie":
+            case 13:
+                message.block = 13;
+                break;
+            case "BankerAndBankerPairAndTie":
+            case 14:
+                message.block = 14;
+                break;
+            case "BankerAndPlayerPairAndTie":
+            case 15:
+                message.block = 15;
+                break;
+            case "BankerAndBothPairAndTie":
+            case 16:
+                message.block = 16;
+                break;
+            case "PlayerAndTie":
+            case 17:
+                message.block = 17;
+                break;
+            case "PlayerAndBankerPairAndTie":
+            case 18:
+                message.block = 18;
+                break;
+            case "PlayerAndPlayerPairAndTie":
+            case 19:
+                message.block = 19;
+                break;
+            case "PlayerAndBothPairAndTie":
+            case 20:
+                message.block = 20;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AskRoadCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.AskRoadCall} message AskRoadCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AskRoadCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.block = options.enums === String ? "BlockDefault" : 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.block != null && message.hasOwnProperty("block"))
+                object.block = options.enums === String ? $root.roadmap.Block[message.block] : message.block;
+            return object;
+        };
+
+        /**
+         * Converts this AskRoadCall to JSON.
+         * @function toJSON
+         * @memberof roadmap.AskRoadCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AskRoadCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return AskRoadCall;
+    })();
+
+    roadmap.AskRoadRecall = (function() {
+
+        /**
+         * Properties of an AskRoadRecall.
+         * @memberof roadmap
+         * @interface IAskRoadRecall
+         * @property {foundation.IHeader|null} [header] AskRoadRecall header
+         * @property {roadmap.Block|null} [bigEyeRoadNext] AskRoadRecall bigEyeRoadNext
+         * @property {roadmap.Block|null} [smallRoadNext] AskRoadRecall smallRoadNext
+         * @property {roadmap.Block|null} [cockroachRoadNext] AskRoadRecall cockroachRoadNext
+         */
+
+        /**
+         * Constructs a new AskRoadRecall.
+         * @memberof roadmap
+         * @classdesc Represents an AskRoadRecall.
+         * @implements IAskRoadRecall
+         * @constructor
+         * @param {roadmap.IAskRoadRecall=} [properties] Properties to set
+         */
+        function AskRoadRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AskRoadRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.header = null;
+
+        /**
+         * AskRoadRecall bigEyeRoadNext.
+         * @member {roadmap.Block} bigEyeRoadNext
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.bigEyeRoadNext = 0;
+
+        /**
+         * AskRoadRecall smallRoadNext.
+         * @member {roadmap.Block} smallRoadNext
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.smallRoadNext = 0;
+
+        /**
+         * AskRoadRecall cockroachRoadNext.
+         * @member {roadmap.Block} cockroachRoadNext
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.cockroachRoadNext = 0;
+
+        /**
+         * Creates a new AskRoadRecall instance using the specified properties.
+         * @function create
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.IAskRoadRecall=} [properties] Properties to set
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall instance
+         */
+        AskRoadRecall.create = function create(properties) {
+            return new AskRoadRecall(properties);
+        };
+
+        /**
+         * Encodes the specified AskRoadRecall message. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.IAskRoadRecall} message AskRoadRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.bigEyeRoadNext != null && Object.hasOwnProperty.call(message, "bigEyeRoadNext"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.bigEyeRoadNext);
+            if (message.smallRoadNext != null && Object.hasOwnProperty.call(message, "smallRoadNext"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.smallRoadNext);
+            if (message.cockroachRoadNext != null && Object.hasOwnProperty.call(message, "cockroachRoadNext"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.cockroachRoadNext);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AskRoadRecall message, length delimited. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.IAskRoadRecall} message AskRoadRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.AskRoadRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.bigEyeRoadNext = reader.int32();
+                    break;
+                case 3:
+                    message.smallRoadNext = reader.int32();
+                    break;
+                case 4:
+                    message.cockroachRoadNext = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AskRoadRecall message.
+         * @function verify
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AskRoadRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext"))
+                switch (message.bigEyeRoadNext) {
+                default:
+                    return "bigEyeRoadNext: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                    break;
+                }
+            if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext"))
+                switch (message.smallRoadNext) {
+                default:
+                    return "smallRoadNext: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                    break;
+                }
+            if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext"))
+                switch (message.cockroachRoadNext) {
+                default:
+                    return "cockroachRoadNext: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates an AskRoadRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall
+         */
+        AskRoadRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.AskRoadRecall)
+                return object;
+            let message = new $root.roadmap.AskRoadRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            switch (object.bigEyeRoadNext) {
+            case "BlockDefault":
+            case 0:
+                message.bigEyeRoadNext = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.bigEyeRoadNext = 1;
+                break;
+            case "Player":
+            case 2:
+                message.bigEyeRoadNext = 2;
+                break;
+            case "Tie":
+            case 3:
+                message.bigEyeRoadNext = 3;
+                break;
+            case "BankerAndBankerPair":
+            case 4:
+                message.bigEyeRoadNext = 4;
+                break;
+            case "BankerAndPlayerPair":
+            case 5:
+                message.bigEyeRoadNext = 5;
+                break;
+            case "BankerAndBothPair":
+            case 6:
+                message.bigEyeRoadNext = 6;
+                break;
+            case "PlayerAndBankerPair":
+            case 7:
+                message.bigEyeRoadNext = 7;
+                break;
+            case "PlayerAndPlayerPair":
+            case 8:
+                message.bigEyeRoadNext = 8;
+                break;
+            case "PlayerAndBothPair":
+            case 9:
+                message.bigEyeRoadNext = 9;
+                break;
+            case "TieAndBankerPair":
+            case 10:
+                message.bigEyeRoadNext = 10;
+                break;
+            case "TieAndPlayerPair":
+            case 11:
+                message.bigEyeRoadNext = 11;
+                break;
+            case "TieAndBothPair":
+            case 12:
+                message.bigEyeRoadNext = 12;
+                break;
+            case "BankerAndTie":
+            case 13:
+                message.bigEyeRoadNext = 13;
+                break;
+            case "BankerAndBankerPairAndTie":
+            case 14:
+                message.bigEyeRoadNext = 14;
+                break;
+            case "BankerAndPlayerPairAndTie":
+            case 15:
+                message.bigEyeRoadNext = 15;
+                break;
+            case "BankerAndBothPairAndTie":
+            case 16:
+                message.bigEyeRoadNext = 16;
+                break;
+            case "PlayerAndTie":
+            case 17:
+                message.bigEyeRoadNext = 17;
+                break;
+            case "PlayerAndBankerPairAndTie":
+            case 18:
+                message.bigEyeRoadNext = 18;
+                break;
+            case "PlayerAndPlayerPairAndTie":
+            case 19:
+                message.bigEyeRoadNext = 19;
+                break;
+            case "PlayerAndBothPairAndTie":
+            case 20:
+                message.bigEyeRoadNext = 20;
+                break;
+            }
+            switch (object.smallRoadNext) {
+            case "BlockDefault":
+            case 0:
+                message.smallRoadNext = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.smallRoadNext = 1;
+                break;
+            case "Player":
+            case 2:
+                message.smallRoadNext = 2;
+                break;
+            case "Tie":
+            case 3:
+                message.smallRoadNext = 3;
+                break;
+            case "BankerAndBankerPair":
+            case 4:
+                message.smallRoadNext = 4;
+                break;
+            case "BankerAndPlayerPair":
+            case 5:
+                message.smallRoadNext = 5;
+                break;
+            case "BankerAndBothPair":
+            case 6:
+                message.smallRoadNext = 6;
+                break;
+            case "PlayerAndBankerPair":
+            case 7:
+                message.smallRoadNext = 7;
+                break;
+            case "PlayerAndPlayerPair":
+            case 8:
+                message.smallRoadNext = 8;
+                break;
+            case "PlayerAndBothPair":
+            case 9:
+                message.smallRoadNext = 9;
+                break;
+            case "TieAndBankerPair":
+            case 10:
+                message.smallRoadNext = 10;
+                break;
+            case "TieAndPlayerPair":
+            case 11:
+                message.smallRoadNext = 11;
+                break;
+            case "TieAndBothPair":
+            case 12:
+                message.smallRoadNext = 12;
+                break;
+            case "BankerAndTie":
+            case 13:
+                message.smallRoadNext = 13;
+                break;
+            case "BankerAndBankerPairAndTie":
+            case 14:
+                message.smallRoadNext = 14;
+                break;
+            case "BankerAndPlayerPairAndTie":
+            case 15:
+                message.smallRoadNext = 15;
+                break;
+            case "BankerAndBothPairAndTie":
+            case 16:
+                message.smallRoadNext = 16;
+                break;
+            case "PlayerAndTie":
+            case 17:
+                message.smallRoadNext = 17;
+                break;
+            case "PlayerAndBankerPairAndTie":
+            case 18:
+                message.smallRoadNext = 18;
+                break;
+            case "PlayerAndPlayerPairAndTie":
+            case 19:
+                message.smallRoadNext = 19;
+                break;
+            case "PlayerAndBothPairAndTie":
+            case 20:
+                message.smallRoadNext = 20;
+                break;
+            }
+            switch (object.cockroachRoadNext) {
+            case "BlockDefault":
+            case 0:
+                message.cockroachRoadNext = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.cockroachRoadNext = 1;
+                break;
+            case "Player":
+            case 2:
+                message.cockroachRoadNext = 2;
+                break;
+            case "Tie":
+            case 3:
+                message.cockroachRoadNext = 3;
+                break;
+            case "BankerAndBankerPair":
+            case 4:
+                message.cockroachRoadNext = 4;
+                break;
+            case "BankerAndPlayerPair":
+            case 5:
+                message.cockroachRoadNext = 5;
+                break;
+            case "BankerAndBothPair":
+            case 6:
+                message.cockroachRoadNext = 6;
+                break;
+            case "PlayerAndBankerPair":
+            case 7:
+                message.cockroachRoadNext = 7;
+                break;
+            case "PlayerAndPlayerPair":
+            case 8:
+                message.cockroachRoadNext = 8;
+                break;
+            case "PlayerAndBothPair":
+            case 9:
+                message.cockroachRoadNext = 9;
+                break;
+            case "TieAndBankerPair":
+            case 10:
+                message.cockroachRoadNext = 10;
+                break;
+            case "TieAndPlayerPair":
+            case 11:
+                message.cockroachRoadNext = 11;
+                break;
+            case "TieAndBothPair":
+            case 12:
+                message.cockroachRoadNext = 12;
+                break;
+            case "BankerAndTie":
+            case 13:
+                message.cockroachRoadNext = 13;
+                break;
+            case "BankerAndBankerPairAndTie":
+            case 14:
+                message.cockroachRoadNext = 14;
+                break;
+            case "BankerAndPlayerPairAndTie":
+            case 15:
+                message.cockroachRoadNext = 15;
+                break;
+            case "BankerAndBothPairAndTie":
+            case 16:
+                message.cockroachRoadNext = 16;
+                break;
+            case "PlayerAndTie":
+            case 17:
+                message.cockroachRoadNext = 17;
+                break;
+            case "PlayerAndBankerPairAndTie":
+            case 18:
+                message.cockroachRoadNext = 18;
+                break;
+            case "PlayerAndPlayerPairAndTie":
+            case 19:
+                message.cockroachRoadNext = 19;
+                break;
+            case "PlayerAndBothPairAndTie":
+            case 20:
+                message.cockroachRoadNext = 20;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AskRoadRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.AskRoadRecall} message AskRoadRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AskRoadRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.bigEyeRoadNext = options.enums === String ? "BlockDefault" : 0;
+                object.smallRoadNext = options.enums === String ? "BlockDefault" : 0;
+                object.cockroachRoadNext = options.enums === String ? "BlockDefault" : 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext"))
+                object.bigEyeRoadNext = options.enums === String ? $root.roadmap.Block[message.bigEyeRoadNext] : message.bigEyeRoadNext;
+            if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext"))
+                object.smallRoadNext = options.enums === String ? $root.roadmap.Block[message.smallRoadNext] : message.smallRoadNext;
+            if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext"))
+                object.cockroachRoadNext = options.enums === String ? $root.roadmap.Block[message.cockroachRoadNext] : message.cockroachRoadNext;
+            return object;
+        };
+
+        /**
+         * Converts this AskRoadRecall to JSON.
+         * @function toJSON
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AskRoadRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return AskRoadRecall;
+    })();
+
     return roadmap;
 })();
 
@@ -9647,6 +10585,8 @@ export const route = $root.route = (() => {
      * @property {number} DealerGameStatus=25 DealerGameStatus value
      * @property {number} Roadmap=26 Roadmap value
      * @property {number} WhiteCard=27 WhiteCard value
+     * @property {number} AskRoadCall=28 AskRoadCall value
+     * @property {number} AskRoadRecall=29 AskRoadRecall value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -9679,6 +10619,8 @@ export const route = $root.route = (() => {
         values[valuesById[25] = "DealerGameStatus"] = 25;
         values[valuesById[26] = "Roadmap"] = 26;
         values[valuesById[27] = "WhiteCard"] = 27;
+        values[valuesById[28] = "AskRoadCall"] = 28;
+        values[valuesById[29] = "AskRoadRecall"] = 29;
         return values;
     })();
 
