@@ -27,7 +27,8 @@ export default defineComponent({
         const lastSmallRoadDataLength = ref(0)
         const lastSmallDataColumnLength = ref(0)
         let smallRoadColArr = reactive<any[]>([]) //大路的Array
-        let askRoadtimer = ref() //問路的計時器
+        const askRoadtimer = ref() //問路的計時器
+        const asking = ref(false) //是否在問路中
         const addsmallRoadColumnCount = ref(0)
         for(let i = 0 ; i < bottom1width.length ; i++){  //初始化大路陣列
           smallRoadColArr.push([0,0,0,0,0,0])
@@ -51,6 +52,7 @@ export default defineComponent({
         //監聽
         watch(askRoadRecall,()=>{
           console.log('小路改變',askRoadRecall.value.smallRoadNext)
+          asking.value = true
           //1.先清除計時器
           if(askRoadtimer.value){   
             clearTimeout(askRoadtimer.value)
@@ -75,8 +77,9 @@ export default defineComponent({
             resetSmallRoad()
             showSmallRoadInit()
             road.classList.remove('askRoadanimation')
+            asking.value = false
             // store.commit('roadmap/resetBigEyeRoadAsk')
-          },4000)
+          },2000)
         })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
@@ -89,7 +92,9 @@ export default defineComponent({
         })
         watch(smallRoadResult,()=>{
           // console.log("偵測到小路",smallRoadResult.value)
-          //最外層是暫時性的
+            if(asking.value){
+              resetSmallRoad()
+            }
             if(smallRoadResult.value.columns[0].blocks.length>0){
             if(smallRoadInit.value){
               showSmallRoad()
@@ -98,6 +103,16 @@ export default defineComponent({
             }
           }
         })
+        function removeAskRoadAnimation(){
+          let column = document.querySelector(`.smallRoad-column${smallRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(smallRoadItemIndex.value>0){
+           road = column.children[smallRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[smallRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.remove('askRoadanimation')
+        }
         function askRoad(roadNum:number){
           recordRoad(roadNum)
             if(currentsmallRoadResult.value!==lastsmallRoadResult.value && currentsmallRoadResult.value!==0 && lastsmallRoadResult.value!==0){

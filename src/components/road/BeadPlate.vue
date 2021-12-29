@@ -43,7 +43,8 @@ export default defineComponent({
         const overflowCount = ref(0)
         const isInit = ref(false)
         const store = useStore()
-        let timer = ref()
+        const timer = ref()
+        const asking = ref(false) //是否在問路中
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
         })
@@ -54,6 +55,7 @@ export default defineComponent({
           return store.state.roadmap.askRoad
         })
         watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+          asking.value = true
         //1.先清除計時器
           if(timer.value){   
             clearTimeout(timer.value)
@@ -78,7 +80,8 @@ export default defineComponent({
             resetRoad()
             showRoadInit ()
             road.classList.remove('askRoadanimation')
-          },4000)
+            asking.value = false
+          },2000)
         })
         watch(gameEnd,()=>{  //換薛時要重置
         console.log("換靴重置諸朱盤路")
@@ -89,6 +92,9 @@ export default defineComponent({
           resetRoad()
         })
         watch(beadPlateResult,()=>{ 
+          if(asking.value){
+            resetRoad()
+          }
             if(beadPlateResult.value){
             if(!isInit.value){
               showRoadInit ()
@@ -139,6 +145,16 @@ export default defineComponent({
               break
           }
           roadIndex.value++
+        }
+        function removeAskRoadAnimation(){
+          let column = document.querySelector(`.beadPlate-column${beadPlateColumnCount.value}`) as HTMLElement
+          let road:HTMLElement
+          if(roadIndex.value>0){
+           road = column.children[roadIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[roadIndex.value].firstChild as HTMLElement
+          }
+          road.classList.remove('askRoadanimation')
         }
         function askRoad(road:number){
             if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){

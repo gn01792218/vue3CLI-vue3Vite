@@ -106,8 +106,10 @@ export default defineComponent({
         const askRoadArr = computed(()=>{
           return store.state.roadmap.askRoad
         }) 
-        let timer = ref()
+        const timer = ref()
+        const asking = ref(false) //是否在問路中
         watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+          asking.value = true
         //1.先清除計時器
           if(timer.value){   
             clearTimeout(timer.value)
@@ -132,7 +134,8 @@ export default defineComponent({
             resetBigRoad()
             showBigRoadInit()
             road.classList.remove('askRoadanimation')
-          },4000)
+            asking.value = false
+          },2000)
         })
         const gameResult = ref([1])
         const gameResult2 = ref([2])
@@ -184,6 +187,16 @@ export default defineComponent({
           //   showBigRoadInit()
           // }
         })
+        function removeAskRoadAnimation(){
+          let column = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(bigRoadItemIndex.value>0){
+           road = column.children[bigRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[bigRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.remove('askRoadanimation')
+        }
         function askRoad(roadNum:number){
           recordBigRoad(roadNum)  //1.紀錄陣營
           //換行一:不同陣營

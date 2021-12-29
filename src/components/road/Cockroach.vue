@@ -26,7 +26,8 @@ export default defineComponent({
         const lastcockroachRoadDataLength = ref(0)
         const lastcockroachDataColumnLength = ref(0)
         let cockroachRoadColArr = reactive<any[]>([]) //大路的Array
-        let askRoadtimer = ref() //問路的計時器
+        const askRoadtimer = ref() //問路的計時器
+        const asking = ref(false) //是否在問路中
         const addCockroachRoadColumnCount = ref(0)
         for(let i = 0 ; i < bottom1width.length ; i++){  //初始化大路陣列
           cockroachRoadColArr.push([0,0,0,0,0,0])
@@ -50,6 +51,7 @@ export default defineComponent({
         //監聽
         watch(askRoadRecall,()=>{
           console.log('蟑螂路改變',askRoadRecall.value.cockroachRoadNext)
+          asking.value = true
           //1.先清除計時器
           if(askRoadtimer.value){   
             clearTimeout(askRoadtimer.value)
@@ -74,7 +76,8 @@ export default defineComponent({
             resetcockroachRoad()
             showCockroachRoadInit()
             road.classList.remove('askRoadanimation')
-          },4000)
+            asking.value = false
+          },2000)
         })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
@@ -86,6 +89,9 @@ export default defineComponent({
           resetcockroachRoad()
         })
         watch(cockroachRoadResult,()=>{
+          if(asking.value){
+            resetcockroachRoad()
+          }
             if(cockroachRoadResult.value.columns[0].blocks.length>0){
             if(cockroachRoadInit.value){
               showCockroachRoad()
@@ -94,6 +100,16 @@ export default defineComponent({
             }
           }
         })
+        function removeAskRoadAnimation(){
+          let column = document.querySelector(`.cockroachRoad-column${cockroachRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(cockroachRoadItemIndex.value>0){
+           road = column.children[cockroachRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[cockroachRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.remove('askRoadanimation')
+        }
         function askRoad(roadNum:number){
           //每次都畫最後一顆
             //  console.log('畫蟑螂路')

@@ -171,27 +171,27 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
-            if(tableNum.value=='A'){
-                let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
-                arr.forEach((i,index)=>{
-                    testBetCallArray(i)
-                    let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
-                    let ul = betArea.children[2]
-                    let coin = ul.children[index] as HTMLElement
-                    console.log('1.先計算位置',ul.children[index])
-                    generateCoinAnimate(coin)
-                })
-            }else if(tableNum.value=='B'){
-                let arr = [{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2}]
-                arr.forEach((i,index)=>{
-                    testBetCallArray(i)
-                    let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
-                    let ul = betArea.children[2]
-                    let coin = ul.children[index] as HTMLElement
-                    console.log('1.先計算位置',ul.children[index])
-                    generateCoinAnimate(coin)
-                })
-            }
+            // if(tableNum.value=='A'){
+            //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
+            //     arr.forEach((i,index)=>{
+            //         testBetCallArray(i)
+            //         let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
+            //         let ul = betArea.children[2]
+            //         let coin = ul.children[index] as HTMLElement
+            //         console.log('1.先計算位置',ul.children[index])
+            //         generateCoinAnimate(coin)
+            //     })
+            // }else if(tableNum.value=='B'){
+            //     let arr = [{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2}]
+            //     arr.forEach((i,index)=>{
+            //         testBetCallArray(i)
+            //         let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
+            //         let ul = betArea.children[2]
+            //         let coin = ul.children[index] as HTMLElement
+            //         console.log('1.先計算位置',ul.children[index])
+            //         generateCoinAnimate(coin)
+            //     })
+            // }
         })
         //vuex
         const store = useStore();

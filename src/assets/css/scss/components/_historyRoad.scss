@@ -3,13 +3,13 @@
 }
 .askRoadanimation{
     animation-name: askRoad;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease;
 }
 @keyframes askRoad {
     from{
-        opacity: 0.5;
+        opacity: 0;
     }to{
         opacity: 1;
         transform: scale(1.1);

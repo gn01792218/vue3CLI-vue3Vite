@@ -884,8 +884,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .askRoadanimation {
   -webkit-animation-name: askRoad;
           animation-name: askRoad;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease;
@@ -894,7 +894,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 @-webkit-keyframes askRoad {
   from {
-    opacity: 0.5;
+    opacity: 0;
   }
   to {
     opacity: 1;
@@ -905,7 +905,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 @keyframes askRoad {
   from {
-    opacity: 0.5;
+    opacity: 0;
   }
   to {
     opacity: 1;
@@ -3111,7 +3111,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 10%;
   }
   .header-btnList {
-    width: 80%;
+    width: 100%;
   }
   .header-btn {
     line-height: 0.5rem;
@@ -3205,14 +3205,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 375px) {
-  .header-btnList {
-    width: 90% !important;
-  }
   .video-box {
     height: 210px;
-  }
-  .header-btnList {
-    width: 49%;
   }
   .betArea {
     height: 265px;
@@ -3359,8 +3353,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-userName {
     line-height: 0.7rem;
   }
-  .header-btnList {
-    width: 100% !important;
+  .header-userName {
+    padding: 2.5px;
   }
   .header-logo {
     display: none;

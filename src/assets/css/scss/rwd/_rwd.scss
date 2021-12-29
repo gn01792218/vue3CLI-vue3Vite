@@ -1057,7 +1057,7 @@
     width: 10%;
   }
   .header-btnList {
-    width: 80%;
+    width: 100%;
   }
   .header-btn {
     line-height: 0.5rem;
@@ -1148,14 +1148,8 @@
   }
 }
 @media screen and (max-width: 375px) {
-  .header-btnList {
-    width: 90% !important;
-  }
   .video-box {
     height: 210px;
-  }
-  .header-btnList {
-    width: 49%;
   }
   .betArea {
     height: 265px;
@@ -1253,8 +1247,8 @@
   .header-userName {
     line-height: 0.7rem;
   }
-  .header-btnList {
-    width: 100% !important;
+  .header-userName{
+    padding:2.5px;
   }
   .header-logo {
     display: none;

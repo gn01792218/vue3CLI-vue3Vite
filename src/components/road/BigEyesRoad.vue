@@ -37,7 +37,8 @@ export default defineComponent({
         const lastbigEyesRoadDataLength = ref(0)
         const lastBigEyesRoadColumnLength = ref(0)
         let bigEyesRoadColArr = reactive<any[]>([]) //大路的Array
-        let askRoadtimer = ref() //問路的計時器
+        const askRoadtimer = ref() //問路的計時器
+        const asking = ref(false) //是否在問路中
         const addBigEyesRoadColumnCount = ref(0)
         for(let i = 0 ; i < BigEyesRoadWidth.length ; i++){  //初始化大路陣列
           bigEyesRoadColArr.push([0,0,0,0,0,0])
@@ -59,6 +60,7 @@ export default defineComponent({
         })
         watch(askRoadRecall,()=>{
           console.log('大眼路改變',askRoadRecall.value.bigEyeRoadNext)
+          asking.value = true
           //1.先清除計時器
           if(askRoadtimer.value){   
             clearTimeout(askRoadtimer.value)
@@ -83,8 +85,9 @@ export default defineComponent({
             resetBigEyesRoad()
             showBigEyesRoadInit()
             road.classList.remove('askRoadanimation')
+            asking.value = false
             // store.commit('roadmap/resetBigEyeRoadAsk')
-          },4000)
+          },2000)
         })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
@@ -97,6 +100,9 @@ export default defineComponent({
         })
         watch(bigEyesRoadResult,()=>{
           // console.log("偵測到大眼路")
+          if(asking.value){
+            resetBigEyesRoad()
+          }
             if(bigEyesRoadResult.value.columns[0].blocks.length>0){
             if(bigEyesRoadInit.value){
               showBigEyesRoad()
@@ -133,6 +139,16 @@ export default defineComponent({
             lastbigEyesRoadDataLength.value = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length  //將這次的最後一個columns的blocks的長度紀錄起來
             lastBigEyesRoadColumnLength.value = bigEyesRoadResult.value.columns.length
             // console.log("現在是第",bigEyesRoadColumn.value,"行；","下一格格子",bigEyesRoadItemIndex.value)
+      }
+      function removeAskRoadAnimation(){
+        let column = document.querySelector(`.BigEyesRoad-colum${bigEyesRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(bigEyesRoadItemIndex.value>0){
+           road = column.children[bigEyesRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[bigEyesRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.remove('askRoadanimation')
       }
       function askRoad(roadNum:number){
         //每次都畫最後一顆

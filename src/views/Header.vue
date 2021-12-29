@@ -1,9 +1,10 @@
 <template>
     <div class="header">
         <div class="header-top">
-            <div class="header-logo"><a href="#"><img src="../images/logo.png"></a></div>
+            <div class="header-logo d-none d-md-block"><a href="#"><img src="../images/logo.png"></a></div>
             <div class="header-btnList align-items-center justify-content-around mt-xl-5">
                 <div class="d-none userWallet-mobil header-userName col font_yellows">₱{{userWallet}}</div>
+                <div class="d-block d-xl-none userWallet-mobil header-userName col font_yellows" v-if="user"><i>洗:{{user.totalValidBets}}</i></div>
                 <div class="d-flex flex-row flex-xl-column">
                     <a class="header-btn" :class="{active:tableNum=='A'}" @click="toGametable('A')" >A桌</a>
                      <!-- <a class="header-btn disabled">B桌</a> -->
@@ -19,7 +20,7 @@
                 <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
                 <div class="header-userName col font_yellows">₱{{userWallet}}</div>
                 <div class="header-userName col font_yellows"><i>{{tableNum}}桌 靴:{{shoe}}局:{{roundNum}}</i></div>
-                <div class="header-userName col font_yellows"><i>洗碼值:{{validBets}}</i></div>
+                <div class="header-userName col font_yellows" v-if="user"><i>洗碼值:{{user.totalValidBets}}</i></div>
             </div>
              <!-- 手機版本漢堡 -->
             <div class="header-bottom-mobil d-flex align-items-center">
@@ -28,7 +29,6 @@
                     <div class="bg-dark p-4">
                         <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
                         <div class="header-userName col font_yellows"><i>{{tableNum}}桌 靴:{{shoe}}局:{{roundNum}}</i></div>
-                        <!-- <div class="header-userName col font_yellows"><i>洗碼值:{{user.totalValidBets}}</i></div> -->
                     </div>
                 </div>
                 </div>
