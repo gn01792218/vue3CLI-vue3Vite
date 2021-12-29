@@ -26,6 +26,7 @@ export default defineComponent({
         const lastcockroachRoadDataLength = ref(0)
         const lastcockroachDataColumnLength = ref(0)
         let cockroachRoadColArr = reactive<any[]>([]) //大路的Array
+        let askRoadtimer = ref() //問路的計時器
         const addCockroachRoadColumnCount = ref(0)
         for(let i = 0 ; i < bottom1width.length ; i++){  //初始化大路陣列
           cockroachRoadColArr.push([0,0,0,0,0,0])
@@ -43,7 +44,38 @@ export default defineComponent({
         const cockroachRoadResult = computed(()=>{
           return store.state.roadmap.map.cockroachRoad
         })
+        const askRoadRecall = computed(()=>{
+          return store.state.roadmap.askRoadReCall
+        })
         //監聽
+        watch(askRoadRecall,()=>{
+          console.log('蟑螂路改變',askRoadRecall.value.cockroachRoadNext)
+          //1.先清除計時器
+          if(askRoadtimer.value){   
+            clearTimeout(askRoadtimer.value)
+          }
+          //2.重置路圖
+          resetcockroachRoad()
+          showCockroachRoadInit()
+          //3.放置問路
+          let roadNum = askRoadRecall.value.cockroachRoadNext
+          askRoad(roadNum)
+          //4.添加動畫
+          let column = document.querySelector(`.cockroachRoad-column${cockroachRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(cockroachRoadItemIndex.value>0){
+           road = column.children[cockroachRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[cockroachRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.add('askRoadanimation')
+          //5.畫完之後等二秒就reset路圖，並重新畫
+          askRoadtimer.value =  setTimeout(()=>{
+            resetcockroachRoad()
+            showCockroachRoadInit()
+            road.classList.remove('askRoadanimation')
+          },4000)
+        })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
           console.log("偵測到換靴資訊重置路圖-蟑螂路")
@@ -62,6 +94,54 @@ export default defineComponent({
             }
           }
         })
+        function askRoad(roadNum:number){
+          //每次都畫最後一顆
+            //  console.log('畫蟑螂路')
+            // console.log('最後一顆蟑螂',item)
+            recordRoad(roadNum)
+            if(currentcockroachRoadResult.value!==lastcockroachRoadResult.value && currentcockroachRoadResult.value!==0 && lastcockroachRoadResult.value!==0){
+                // console.log("換陣營前","行",cockroachRoadColumn.value,"格",cockroachRoadItemIndex.value)
+                if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
+                    if(cockroachRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
+                    cockroachRoadColumn.value++
+                    // console.log("在第0格滿出，直接+行數","行",cockroachRoadColumn.value)
+                    roadOverFlowerTimes.value = 0
+                    }else{
+                    cockroachRoadColumn.value = cockroachRoadColumn.value-roadOverFlowerTimes.value+1
+                    roadOverFlowerTimes.value = 0
+                    }
+                    // console.log("溢出後恢復","行",cockroachRoadColumn.value)
+                }else{
+                    cockroachRoadColumn.value++
+                }
+                if(cockroachRoadColumn.value>=bottom1width.length+(cockroachRoadColArr.length-bottom1width.length)){ //溢出極限格子的時候要增加行數
+                    // console.log("滿了+行")
+                    addCokroachRoadCoulmn()
+                }  
+                cockroachRoadItemIndex.value = 0
+                // console.log("格",cockroachRoadItemIndex.value)
+                }
+                //換行二:溢出換行
+                //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
+                //溢出時如果遇到和局，其實不需要+行?!
+                if(cockroachRoadColArr[cockroachRoadColumn.value][cockroachRoadItemIndex.value]!==0 || cockroachRoadItemIndex.value>5){
+                // console.log("連贏溢出")
+                 cockroachRoadColumn.value++ //換行
+                //和局時不會進下面的addBigRoad
+                if(cockroachRoadColumn.value>=bottom1width.length+(cockroachRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                    addCokroachRoadCoulmn()
+                }  //溢出極限格子的時候要增加行數
+                if(cockroachRoadItemIndex.value>0){ //在第0格以上才要-1
+                    cockroachRoadItemIndex.value = cockroachRoadItemIndex.value-1
+                }
+                roadOverFlowerTimes.value++ 
+                // console.log("連贏溢出","行",cockroachRoadColumn.value,"格",cockroachRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                    for(let i = cockroachRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                        cockroachRoadColArr[cockroachRoadColumn.value][i] = 1
+                    }
+                }
+                putRoad(roadNum)
+        }
         function recordRoad (gameResult:number){
           switch(gameResult){
               case 1:

@@ -27,6 +27,7 @@ export default defineComponent({
         const lastSmallRoadDataLength = ref(0)
         const lastSmallDataColumnLength = ref(0)
         let smallRoadColArr = reactive<any[]>([]) //大路的Array
+        let askRoadtimer = ref() //問路的計時器
         const addsmallRoadColumnCount = ref(0)
         for(let i = 0 ; i < bottom1width.length ; i++){  //初始化大路陣列
           smallRoadColArr.push([0,0,0,0,0,0])
@@ -44,7 +45,39 @@ export default defineComponent({
         const smallRoadResult = computed(()=>{
           return store.state.roadmap.map.smallRoad
         })
+        const askRoadRecall = computed(()=>{
+          return store.state.roadmap.askRoadReCall
+        })
         //監聽
+        watch(askRoadRecall,()=>{
+          console.log('小路改變',askRoadRecall.value.smallRoadNext)
+          //1.先清除計時器
+          if(askRoadtimer.value){   
+            clearTimeout(askRoadtimer.value)
+          }
+          //2.重置路圖
+          resetSmallRoad()
+          showSmallRoadInit()
+          //3.放置問路
+          let roadNum = askRoadRecall.value.smallRoadNext
+          askRoad(roadNum)
+          //4.添加動畫
+          let column = document.querySelector(`.smallRoad-column${smallRoadColumn.value}`) as HTMLElement
+          let road:HTMLElement
+          if(smallRoadItemIndex.value>0){
+           road = column.children[smallRoadItemIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[smallRoadItemIndex.value].firstChild as HTMLElement
+          }
+          road.classList.add('askRoadanimation')
+          //5.畫完之後等二秒就reset路圖，並重新畫
+          askRoadtimer.value =  setTimeout(()=>{
+            resetSmallRoad()
+            showSmallRoadInit()
+            road.classList.remove('askRoadanimation')
+            // store.commit('roadmap/resetBigEyeRoadAsk')
+          },4000)
+        })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
           console.log("偵測到換靴資訊重置路圖-小路")
@@ -65,6 +98,51 @@ export default defineComponent({
             }
           }
         })
+        function askRoad(roadNum:number){
+          recordRoad(roadNum)
+            if(currentsmallRoadResult.value!==lastsmallRoadResult.value && currentsmallRoadResult.value!==0 && lastsmallRoadResult.value!==0){
+                // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
+                if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
+                    if(smallRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
+                    smallRoadColumn.value++
+                    // console.log("在第0格滿出，直接+行數","行",smallRoadColumn.value)
+                    roadOverFlowerTimes.value = 0
+                    }else{
+                    smallRoadColumn.value = smallRoadColumn.value-roadOverFlowerTimes.value+1
+                    roadOverFlowerTimes.value = 0
+                    }
+                    // console.log("溢出後恢復","行",smallRoadColumn.value)
+                }else{
+                    smallRoadColumn.value++
+                }
+                if(smallRoadColumn.value>=bottom1width.length+(smallRoadColArr.length-bottom1width.length)){ //溢出極限格子的時候要增加行數
+                    // console.log("滿了+行")
+                    addSmallRoadColumn()
+                }  
+                smallRoadItemIndex.value = 0
+                // console.log("格",smallRoadItemIndex.value)
+                }
+                //換行二:溢出換行
+                //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
+                //溢出時如果遇到和局，其實不需要+行?!
+                if(smallRoadColArr[smallRoadColumn.value][smallRoadItemIndex.value]!==0 || smallRoadItemIndex.value>5){
+                // console.log("連贏溢出")
+                 smallRoadColumn.value++ //換行
+                //和局時不會進下面的addBigRoad
+                if(smallRoadColumn.value>=bottom1width.length+(smallRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
+                    addSmallRoadColumn()
+                }  //溢出極限格子的時候要增加行數
+                if(smallRoadItemIndex.value>0){ //在第0格以上才要-1
+                    smallRoadItemIndex.value = smallRoadItemIndex.value-1
+                }
+                roadOverFlowerTimes.value++ 
+                // console.log("連贏溢出","行",smallRoadColumn.value,"格",smallRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+                    for(let i = smallRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
+                        smallRoadColArr[smallRoadColumn.value][i] = 1
+                    }
+                }
+                putRoad(roadNum)
+        }
         function recordRoad (gameResult:number){
           switch(gameResult){
               case 1:

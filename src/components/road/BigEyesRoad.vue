@@ -37,7 +37,7 @@ export default defineComponent({
         const lastbigEyesRoadDataLength = ref(0)
         const lastBigEyesRoadColumnLength = ref(0)
         let bigEyesRoadColArr = reactive<any[]>([]) //大路的Array
-        let timer = ref()
+        let askRoadtimer = ref() //問路的計時器
         const addBigEyesRoadColumnCount = ref(0)
         for(let i = 0 ; i < BigEyesRoadWidth.length ; i++){  //初始化大路陣列
           bigEyesRoadColArr.push([0,0,0,0,0,0])
@@ -60,8 +60,8 @@ export default defineComponent({
         watch(askRoadRecall,()=>{
           console.log('大眼路改變',askRoadRecall.value.bigEyeRoadNext)
           //1.先清除計時器
-          if(timer.value){   
-            clearTimeout(timer.value)
+          if(askRoadtimer.value){   
+            clearTimeout(askRoadtimer.value)
           }
           //2.重置路圖
           resetBigEyesRoad()
@@ -79,7 +79,7 @@ export default defineComponent({
           }
           road.classList.add('askRoadanimation')
           //5.畫完之後等二秒就reset路圖，並重新畫
-          timer.value =  setTimeout(()=>{
+          askRoadtimer.value =  setTimeout(()=>{
             resetBigEyesRoad()
             showBigEyesRoadInit()
             road.classList.remove('askRoadanimation')
@@ -136,10 +136,6 @@ export default defineComponent({
       }
       function askRoad(roadNum:number){
         //每次都畫最後一顆
-        // console.log('大眼露','上一次的長度',lastbigEyesRoadDataLength.value,'當前的長度',bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length)
-        if(lastBigEyesRoadColumnLength.value==bigEyesRoadResult.value.columns.length && lastbigEyesRoadDataLength.value==bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length){
-          return
-        }else{
           // console.log('畫大眼露')
         recordRoad(roadNum)
         if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
@@ -184,7 +180,6 @@ export default defineComponent({
                   }
             }
             putBigEyesRoad(roadNum)
-        }
       }
       function showBigEyesRoad(){
         //每次都畫最後一顆
@@ -292,6 +287,7 @@ export default defineComponent({
         bigEyesRoadInit.value = true
       }
       function resetBigEyesRoad(){
+        console.log('重置大眼路')
         //1.直接刪除所有column
           let RoadColContainer = document.querySelector('.BigEyesRoad') as HTMLElement
           let lastChild = RoadColContainer.lastElementChild

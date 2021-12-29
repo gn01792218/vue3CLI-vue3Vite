@@ -19,6 +19,7 @@
                 <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
                 <div class="header-userName col font_yellows">₱{{userWallet}}</div>
                 <div class="header-userName col font_yellows"><i>{{tableNum}}桌 靴:{{shoe}}局:{{roundNum}}</i></div>
+                <div class="header-userName col font_yellows"><i>洗碼值:{{validBets}}</i></div>
             </div>
              <!-- 手機版本漢堡 -->
             <div class="header-bottom-mobil d-flex align-items-center">
@@ -27,6 +28,7 @@
                     <div class="bg-dark p-4">
                         <div class="header-userName d-flex col font_yellows" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-person-circle" ></i><i v-if="user">{{user.name}}</i></div>
                         <div class="header-userName col font_yellows"><i>{{tableNum}}桌 靴:{{shoe}}局:{{roundNum}}</i></div>
+                        <!-- <div class="header-userName col font_yellows"><i>洗碼值:{{user.totalValidBets}}</i></div> -->
                     </div>
                 </div>
                 </div>
@@ -64,6 +66,9 @@ export default defineComponent({
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
+        // const validBets = computed(()=>{
+        //     return store.state.auth.UserInfo.user.totalValidBets
+        // })
         const userWallet = computed(()=>{
             return store.state.auth.userWalletFomate
         })
@@ -101,6 +106,7 @@ export default defineComponent({
             roundNum,
             shoe,
             tableNum,
+            // validBets,
             //methods
             toGametable,
             backToHome,
