@@ -58,9 +58,15 @@ export default defineComponent({
         const askRoadRecall = computed(()=>{
           return store.state.roadmap.askRoadReCall
         })
+        const askBySystem = computed(()=>{
+          return store.state.roadmap.askBySystem
+        })
         watch(askRoadRecall,()=>{
-          console.log('大眼路改變',askRoadRecall.value.bigEyeRoadNext)
-          asking.value = true
+          if(askBySystem.value){
+            store.commit('roadmap/setAskBySystem',false) 
+            return 
+          }else{
+            asking.value = true
           //1.先清除計時器
           if(askRoadtimer.value){   
             clearTimeout(askRoadtimer.value)
@@ -88,6 +94,7 @@ export default defineComponent({
             asking.value = false
             // store.commit('roadmap/resetBigEyeRoadAsk')
           },2000)
+          }
         })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲

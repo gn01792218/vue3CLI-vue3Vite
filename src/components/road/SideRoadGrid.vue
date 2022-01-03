@@ -20,31 +20,17 @@
     <section class="bigRoad d-flex sideWidth position-absolute">
       <div class="bigRoad-column" :class="[`bigRoad-column${index}`]" v-for="(tc,index) in secWidth" :key="index">
         <div class="bigRoad-item d-flex" :class="[`bigRoad-item${index}`]" v-for="(tci,index) in topHeight" :key="index">
-          <div></div>
+          <div>1</div>
         </div>
       </div>
     </section>
-    <!-- BigEyesRoad -->
-    <BigEyesRoad/>
+      <!-- BigEyesRoad -->
+      <BigEyesRoad/>
     <section class="bottomRoad d-flex sideWidth position-absolute">
-    <!-- smallRoadGrid -->
-    <SmallRoad/>
-      <!-- <div class="smallRoad d-flex w-50">
-        <div class="smallRoad-column" :class="[`smallRoad-column${index}`,{'boundary-right':index===21}]" v-for="(b1,index) in bottom1width" :key="index">
-          <div class="smallRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <div></div>
-          </div>
-        </div>
-      </div> -->
+      <!-- smallRoadGrid -->
+      <SmallRoad/>
       <!-- cockroachRoad -->
       <Cockroach/>
-      <!-- <div class="cockroachRoad d-flex w-50">
-        <div class="cockroachRoad-column" :class="[`cockroachRoad-column${index}`]" v-for="(b1,index) in bottom1width" :key="index">
-          <div class="cockroachRoad-item" v-for="(bi,index) in bottomHeight" :key="index">
-            <div></div>
-          </div>
-        </div>
-      </div> -->
     </section>
 </template>
 
@@ -106,9 +92,16 @@ export default defineComponent({
         const askRoadArr = computed(()=>{
           return store.state.roadmap.askRoad
         }) 
+        const askBySystem = computed(()=>{
+          return store.state.roadmap.askBySystem
+        })
         const timer = ref()
         const asking = ref(false) //是否在問路中
         watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+        if(askBySystem.value){
+          store.commit('roadmap/setAskBySystem',false) 
+          return
+        }else{
           asking.value = true
         //1.先清除計時器
           if(timer.value){   
@@ -136,6 +129,7 @@ export default defineComponent({
             road.classList.remove('askRoadanimation')
             asking.value = false
           },2000)
+        }
         })
         const gameResult = ref([1])
         const gameResult2 = ref([2])
@@ -178,8 +172,8 @@ export default defineComponent({
         //   }
         // })
         watch(bigRoadResult,()=>{
-          resetBigRoad()
-          showBigRoadInit()
+          // resetBigRoad()
+          // showBigRoadInit()
           // if(bigRoadInit.value){
           //   // showBigRoad()
           //   showBigRoadAll()

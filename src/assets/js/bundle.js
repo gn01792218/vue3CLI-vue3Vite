@@ -6187,6 +6187,7 @@ export const game = $root.game = (() => {
          * @property {number|null} [numOfShoe] BetRoundStart numOfShoe
          * @property {number|null} [numOfRound] BetRoundStart numOfRound
          * @property {game.IGameResultCounter|null} [gameResultCounter] BetRoundStart gameResultCounter
+         * @property {Array.<roadmap.IAskRoadRecall>|null} [askRoadRecalls] BetRoundStart askRoadRecalls
          */
 
         /**
@@ -6198,6 +6199,7 @@ export const game = $root.game = (() => {
          * @param {game.IBetRoundStart=} [properties] Properties to set
          */
         function BetRoundStart(properties) {
+            this.askRoadRecalls = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6253,6 +6255,14 @@ export const game = $root.game = (() => {
         BetRoundStart.prototype.gameResultCounter = null;
 
         /**
+         * BetRoundStart askRoadRecalls.
+         * @member {Array.<roadmap.IAskRoadRecall>} askRoadRecalls
+         * @memberof game.BetRoundStart
+         * @instance
+         */
+        BetRoundStart.prototype.askRoadRecalls = $util.emptyArray;
+
+        /**
          * Creates a new BetRoundStart instance using the specified properties.
          * @function create
          * @memberof game.BetRoundStart
@@ -6288,6 +6298,9 @@ export const game = $root.game = (() => {
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfRound);
             if (message.gameResultCounter != null && Object.hasOwnProperty.call(message, "gameResultCounter"))
                 $root.game.GameResultCounter.encode(message.gameResultCounter, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+            if (message.askRoadRecalls != null && message.askRoadRecalls.length)
+                for (let i = 0; i < message.askRoadRecalls.length; ++i)
+                    $root.roadmap.AskRoadRecall.encode(message.askRoadRecalls[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             return writer;
         };
 
@@ -6339,6 +6352,11 @@ export const game = $root.game = (() => {
                     break;
                 case 6:
                     message.gameResultCounter = $root.game.GameResultCounter.decode(reader, reader.uint32());
+                    break;
+                case 7:
+                    if (!(message.askRoadRecalls && message.askRoadRecalls.length))
+                        message.askRoadRecalls = [];
+                    message.askRoadRecalls.push($root.roadmap.AskRoadRecall.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6397,6 +6415,15 @@ export const game = $root.game = (() => {
                 if (error)
                     return "gameResultCounter." + error;
             }
+            if (message.askRoadRecalls != null && message.hasOwnProperty("askRoadRecalls")) {
+                if (!Array.isArray(message.askRoadRecalls))
+                    return "askRoadRecalls: array expected";
+                for (let i = 0; i < message.askRoadRecalls.length; ++i) {
+                    let error = $root.roadmap.AskRoadRecall.verify(message.askRoadRecalls[i]);
+                    if (error)
+                        return "askRoadRecalls." + error;
+                }
+            }
             return null;
         };
 
@@ -6430,6 +6457,16 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.BetRoundStart.gameResultCounter: object expected");
                 message.gameResultCounter = $root.game.GameResultCounter.fromObject(object.gameResultCounter);
             }
+            if (object.askRoadRecalls) {
+                if (!Array.isArray(object.askRoadRecalls))
+                    throw TypeError(".game.BetRoundStart.askRoadRecalls: array expected");
+                message.askRoadRecalls = [];
+                for (let i = 0; i < object.askRoadRecalls.length; ++i) {
+                    if (typeof object.askRoadRecalls[i] !== "object")
+                        throw TypeError(".game.BetRoundStart.askRoadRecalls: object expected");
+                    message.askRoadRecalls[i] = $root.roadmap.AskRoadRecall.fromObject(object.askRoadRecalls[i]);
+                }
+            }
             return message;
         };
 
@@ -6446,6 +6483,8 @@ export const game = $root.game = (() => {
             if (!options)
                 options = {};
             let object = {};
+            if (options.arrays || options.defaults)
+                object.askRoadRecalls = [];
             if (options.defaults) {
                 object.header = null;
                 object.gameUuid = "";
@@ -6466,6 +6505,11 @@ export const game = $root.game = (() => {
                 object.numOfRound = message.numOfRound;
             if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter"))
                 object.gameResultCounter = $root.game.GameResultCounter.toObject(message.gameResultCounter, options);
+            if (message.askRoadRecalls && message.askRoadRecalls.length) {
+                object.askRoadRecalls = [];
+                for (let j = 0; j < message.askRoadRecalls.length; ++j)
+                    object.askRoadRecalls[j] = $root.roadmap.AskRoadRecall.toObject(message.askRoadRecalls[j], options);
+            }
             return object;
         };
 
@@ -9967,6 +10011,7 @@ export const roadmap = $root.roadmap = (() => {
          * @property {roadmap.Block|null} [bigEyeRoadNext] AskRoadRecall bigEyeRoadNext
          * @property {roadmap.Block|null} [smallRoadNext] AskRoadRecall smallRoadNext
          * @property {roadmap.Block|null} [cockroachRoadNext] AskRoadRecall cockroachRoadNext
+         * @property {roadmap.IAskRoadCall|null} [askRoadCall] AskRoadRecall askRoadCall
          */
 
         /**
@@ -10017,6 +10062,14 @@ export const roadmap = $root.roadmap = (() => {
         AskRoadRecall.prototype.cockroachRoadNext = 0;
 
         /**
+         * AskRoadRecall askRoadCall.
+         * @member {roadmap.IAskRoadCall|null|undefined} askRoadCall
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.askRoadCall = null;
+
+        /**
          * Creates a new AskRoadRecall instance using the specified properties.
          * @function create
          * @memberof roadmap.AskRoadRecall
@@ -10048,6 +10101,8 @@ export const roadmap = $root.roadmap = (() => {
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.smallRoadNext);
             if (message.cockroachRoadNext != null && Object.hasOwnProperty.call(message, "cockroachRoadNext"))
                 writer.uint32(/* id 4, wireType 0 =*/32).int32(message.cockroachRoadNext);
+            if (message.askRoadCall != null && Object.hasOwnProperty.call(message, "askRoadCall"))
+                $root.roadmap.AskRoadCall.encode(message.askRoadCall, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
 
@@ -10093,6 +10148,9 @@ export const roadmap = $root.roadmap = (() => {
                     break;
                 case 4:
                     message.cockroachRoadNext = reader.int32();
+                    break;
+                case 5:
+                    message.askRoadCall = $root.roadmap.AskRoadCall.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -10215,6 +10273,11 @@ export const roadmap = $root.roadmap = (() => {
                 case 20:
                     break;
                 }
+            if (message.askRoadCall != null && message.hasOwnProperty("askRoadCall")) {
+                let error = $root.roadmap.AskRoadCall.verify(message.askRoadCall);
+                if (error)
+                    return "askRoadCall." + error;
+            }
             return null;
         };
 
@@ -10493,6 +10556,11 @@ export const roadmap = $root.roadmap = (() => {
                 message.cockroachRoadNext = 20;
                 break;
             }
+            if (object.askRoadCall != null) {
+                if (typeof object.askRoadCall !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.askRoadCall: object expected");
+                message.askRoadCall = $root.roadmap.AskRoadCall.fromObject(object.askRoadCall);
+            }
             return message;
         };
 
@@ -10514,6 +10582,7 @@ export const roadmap = $root.roadmap = (() => {
                 object.bigEyeRoadNext = options.enums === String ? "BlockDefault" : 0;
                 object.smallRoadNext = options.enums === String ? "BlockDefault" : 0;
                 object.cockroachRoadNext = options.enums === String ? "BlockDefault" : 0;
+                object.askRoadCall = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -10523,6 +10592,8 @@ export const roadmap = $root.roadmap = (() => {
                 object.smallRoadNext = options.enums === String ? $root.roadmap.Block[message.smallRoadNext] : message.smallRoadNext;
             if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext"))
                 object.cockroachRoadNext = options.enums === String ? $root.roadmap.Block[message.cockroachRoadNext] : message.cockroachRoadNext;
+            if (message.askRoadCall != null && message.hasOwnProperty("askRoadCall"))
+                object.askRoadCall = $root.roadmap.AskRoadCall.toObject(message.askRoadCall, options);
             return object;
         };
 

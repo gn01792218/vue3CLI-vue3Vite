@@ -19,7 +19,6 @@
         </div>
       </div>
     </div>
-    
     <!-- <button class="position-absolute" @click="resetRoad">重置路圖</button> -->
 </template>
 
@@ -45,6 +44,9 @@ export default defineComponent({
         const store = useStore()
         const timer = ref()
         const asking = ref(false) //是否在問路中
+        const askBySystem = computed(()=>{
+          return store.state.roadmap.askBySystem
+        })
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
         })
@@ -55,6 +57,10 @@ export default defineComponent({
           return store.state.roadmap.askRoad
         })
         watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+        if(askBySystem.value){  //由系統問的路，不需要顯示路圖閃動
+          store.commit('roadmap/setAskBySystem',false) 
+          return 
+        }else{
           asking.value = true
         //1.先清除計時器
           if(timer.value){   
@@ -82,6 +88,7 @@ export default defineComponent({
             road.classList.remove('askRoadanimation')
             asking.value = false
           },2000)
+        }
         })
         watch(gameEnd,()=>{  //換薛時要重置
         console.log("換靴重置諸朱盤路")

@@ -84,11 +84,9 @@ export const sendAskRoadCall = (data:any) => {
         block:data.block,
     })
     let bytes = roadmap.AskRoadCall.encode(proto).finish()
-    // console.log('sendAskRoadCall',proto)
+    console.log('sendAskRoadCall',proto)
     sendWSPush(bytes);
 }
-
-
 //各種接收訊息的方法，在main.js中全局註冊監聽
 export const getMsgReCall = (e:any) =>{
     let header = foundation.Message.decode(new Uint8Array(e.detail.msg.data)).header

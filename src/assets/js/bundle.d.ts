@@ -2571,6 +2571,9 @@ export namespace game {
 
         /** BetRoundStart gameResultCounter */
         gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** BetRoundStart askRoadRecalls */
+        askRoadRecalls?: (roadmap.IAskRoadRecall[]|null);
     }
 
     /** Represents a BetRoundStart. */
@@ -2599,6 +2602,9 @@ export namespace game {
 
         /** BetRoundStart gameResultCounter. */
         public gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** BetRoundStart askRoadRecalls. */
+        public askRoadRecalls: roadmap.IAskRoadRecall[];
 
         /**
          * Creates a new BetRoundStart instance using the specified properties.
@@ -3990,6 +3996,9 @@ export namespace roadmap {
 
         /** AskRoadRecall cockroachRoadNext */
         cockroachRoadNext?: (roadmap.Block|null);
+
+        /** AskRoadRecall askRoadCall */
+        askRoadCall?: (roadmap.IAskRoadCall|null);
     }
 
     /** Represents an AskRoadRecall. */
@@ -4012,6 +4021,9 @@ export namespace roadmap {
 
         /** AskRoadRecall cockroachRoadNext. */
         public cockroachRoadNext: roadmap.Block;
+
+        /** AskRoadRecall askRoadCall. */
+        public askRoadCall?: (roadmap.IAskRoadCall|null);
 
         /**
          * Creates a new AskRoadRecall instance using the specified properties.

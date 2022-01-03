@@ -94,17 +94,23 @@
                 <div class="askRoad-player p-1 mr-2" @click="askRoad(2)">
                     <p>閒問路</p>
                     <div class="d-flex justify-content-around p-1">
-                        <div class="small-blue-ask"></div>
-                        <div class="bigEye-red-ask"></div>
-                        <div class="cockroach-red-ask"></div>
+                        <div id="bigEyeRoad-2" ></div>
+                        <div id="smallRoad-2" ></div>
+                        <div id="cockroachRoad-2" ></div> 
+                        <!-- <div id="bigEyeRoad-2" class=" bigEye-red-ask"></div>
+                        <div id="smallRoad-2" class="small-blue-ask"></div>
+                        <div id="cockroachRoad-2" class="cockroach-red-ask"></div> -->
                     </div>
                 </div>
                 <div class="askRoad-banker p-1" @click="askRoad(1)">
                     <p>莊問路</p>
                     <div class="d-flex justify-content-around p-1">
-                        <div class="small-red-ask"></div>
-                        <div class="bigEye-blue-ask"></div>
-                        <div class="cockroach-blue-ask"></div>
+                        <div id="bigEyeRoad-1"></div>
+                        <div id="smallRoad-1"></div>
+                        <div id="cockroachRoad-1"></div>
+                        <!-- <div id="bigEyeRoad-1" class="bigEye-blue-ask"></div>
+                        <div id="smallRoad-1" class="small-red-ask"></div>
+                        <div id="cockroachRoad-1" class="cockroach-blue-ask"></div> -->
                     </div>
                 </div>
             </div>
@@ -162,7 +168,6 @@ export default defineComponent({
             setDefaultCoin()
             // setMinBetCoinUnusable()
         })
-        //暫時的
         const route = useRoute()
         const tableNum = computed(()=>{
             return route.params.tableId
@@ -171,6 +176,7 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
+            askRoadBySystem(2,1)  //換桌時也問一下路
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
@@ -234,12 +240,22 @@ export default defineComponent({
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
+        const askRoadRecall = computed(()=>{
+          return store.state.roadmap.askRoadReCall
+        })
+        const askBySystem = computed(()=>{
+          return store.state.roadmap.askBySystem
+        })
         //基本資料
         const canBet = ref(true)
         const canUseSmallCoin = ref(false)
         const betCallTemp = ref({}) //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
         let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
+        const currentAskRoadSide = ref(0)
         //監聽
+        watch(askRoadRecall,()=>{
+            changeAskRoadBtnView(currentAskRoadSide.value)
+        })
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1 && betStatus.value){ 
                 coinPosition[0].betStatus = betStatus.value.Player
@@ -259,6 +275,7 @@ export default defineComponent({
             // console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
+            askRoadBySystem(2,1)
             // setDefaultCoin()
             // nextTick(()=>{
             //     setMinBetCoinUnusable()
@@ -450,7 +467,6 @@ export default defineComponent({
             currentCoint.y = rect.top;
             currentCoint.point = coinList[0].point
             currentCoint.num = 0
-            console.log()
         }
         function setMinBetCoinUsable(){
             //抓取前三個coin元素改變其外觀
@@ -966,10 +982,50 @@ export default defineComponent({
             }
         }
         function askRoad(roadNum:number){
+            currentAskRoadSide.value = roadNum
             store.commit('roadmap/setAskRoad',roadNum)
             sendAskRoadCall({
                 block:roadNum
             })
+        }
+        function askRoadBySystem(roadNum1:number,roadNum2:number){
+            store.commit('roadmap/setAskBySystem',true)
+            askRoad(roadNum1)
+            askRoad(roadNum2)
+        }
+        function changeAskRoadBtnView(currentRoadNum:number){  //更換問路時候，按鈕上顯示的圖案
+            console.log(currentRoadNum)
+            let smallRoad = document.getElementById(`smallRoad-${currentRoadNum}`) as HTMLElement
+            let bigEyes = document.getElementById(`bigEyeRoad-${currentRoadNum}`) as HTMLElement
+            let cockroach = document.getElementById(`cockroachRoad-${currentRoadNum}`) as HTMLElement
+            smallRoad.classList.remove(smallRoad.classList[0])
+            bigEyes.classList.remove(bigEyes.classList[0])
+            cockroach.classList.remove(cockroach.classList[0])
+            switch(askRoadRecall.value.smallRoadNext){
+                case 1:
+                    smallRoad.classList.add('small-red-ask')
+                    break
+                case 2:
+                    smallRoad.classList.add('small-blue-ask')
+                    break
+            }
+            switch(askRoadRecall.value.bigEyeRoadNext){
+                case 1:
+                    bigEyes.classList.add('bigEye-red-ask') 
+                    break
+                case 2:
+                    bigEyes.classList.add('bigEye-blue-ask') 
+                    break
+            }
+            switch(askRoadRecall.value.cockroachRoadNext){
+                case 1:
+                    cockroach.classList.add('cockroach-red-ask')
+                    break
+                case 2:
+                    cockroach.classList.add('cockroach-blue-ask')
+                    break
+            }
+            console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.value.smallRoadNext,askRoadRecall.value.bigEyeRoadNext,askRoadRecall.value.cockroachRoadNext)
         }
         return{
             //data
