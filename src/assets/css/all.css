@@ -14,6 +14,10 @@
   background-image: url("../../images/T.png");
 }
 
+.tie1, .tie2, .tie3, .tie4, .tie5, .tie6, .tie7, .tie8 {
+  background-image: url("../../images/tieNumber.png");
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -1201,6 +1205,62 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-size: 160px auto;
 }
 
+.tie1 {
+  width: 19px;
+  height: 19px;
+  background-position: 0px 0px;
+  background-size: 152px auto;
+}
+
+.tie2 {
+  width: 19px;
+  height: 19px;
+  background-position: -19px 0px;
+  background-size: 152px auto;
+}
+
+.tie3 {
+  width: 19px;
+  height: 19px;
+  background-position: -38px 0px;
+  background-size: 152px auto;
+}
+
+.tie4 {
+  width: 19px;
+  height: 19px;
+  background-position: -57px 0px;
+  background-size: 152px auto;
+}
+
+.tie5 {
+  width: 19px;
+  height: 19px;
+  background-position: -76px 0px;
+  background-size: 152px auto;
+}
+
+.tie6 {
+  width: 19px;
+  height: 19px;
+  background-position: -95px 0px;
+  background-size: 152px auto;
+}
+
+.tie7 {
+  width: 19px;
+  height: 19px;
+  background-position: -114px 0px;
+  background-size: 152px auto;
+}
+
+.tie8 {
+  width: 19px;
+  height: 19px;
+  background-position: -133px 0px;
+  background-size: 152px auto;
+}
+
 .beadPlate {
   width: 40%;
   /*調整欄寬 */
@@ -1949,6 +2009,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -120px 0px;
     background-size: 128px auto;
   }
+  .tie1 {
+    width: 15px;
+    height: 15px;
+    background-position: 0px 0px;
+    background-size: 120px auto;
+  }
+  .tie2 {
+    width: 15px;
+    height: 15px;
+    background-position: -15px 0px;
+    background-size: 120px auto;
+  }
+  .tie3 {
+    width: 15px;
+    height: 15px;
+    background-position: -30px 0px;
+    background-size: 120px auto;
+  }
+  .tie4 {
+    width: 15px;
+    height: 15px;
+    background-position: -45px 0px;
+    background-size: 120px auto;
+  }
+  .tie5 {
+    width: 15px;
+    height: 15px;
+    background-position: -60px 0px;
+    background-size: 120px auto;
+  }
+  .tie6 {
+    width: 15px;
+    height: 15px;
+    background-position: -75px 0px;
+    background-size: 120px auto;
+  }
+  .tie7 {
+    width: 15px;
+    height: 15px;
+    background-position: -90px 0px;
+    background-size: 120px auto;
+  }
+  .tie8 {
+    width: 15px;
+    height: 15px;
+    background-position: -105px 0px;
+    background-size: 120px auto;
+  }
 }
 
 @media screen and (min-width: 1025px) {
@@ -2402,6 +2510,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -135px 0px;
     background-size: 144px auto;
   }
+  .tie1 {
+    width: 20px;
+    height: 20px;
+    background-position: 0px 0px;
+    background-size: 160px auto;
+  }
+  .tie2 {
+    width: 20px;
+    height: 20px;
+    background-position: -20px 0px;
+    background-size: 160px auto;
+  }
+  .tie3 {
+    width: 20px;
+    height: 20px;
+    background-position: -40px 0px;
+    background-size: 160px auto;
+  }
+  .tie4 {
+    width: 20px;
+    height: 20px;
+    background-position: -60px 0px;
+    background-size: 160px auto;
+  }
+  .tie5 {
+    width: 20px;
+    height: 20px;
+    background-position: -80px 0px;
+    background-size: 160px auto;
+  }
+  .tie6 {
+    width: 20px;
+    height: 20px;
+    background-position: -100px 0px;
+    background-size: 160px auto;
+  }
+  .tie7 {
+    width: 20px;
+    height: 20px;
+    background-position: -120px 0px;
+    background-size: 160px auto;
+  }
+  .tie8 {
+    width: 20px;
+    height: 20px;
+    background-position: -140px 0px;
+    background-size: 160px auto;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -2742,6 +2898,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 17px;
     background-position: -255px 17px;
     background-size: 272px auto;
+  }
+  .tie1 {
+    width: 17px;
+    height: 17px;
+    background-position: 0px 0px;
+    background-size: 136px auto;
+  }
+  .tie2 {
+    width: 17px;
+    height: 17px;
+    background-position: -17px 0px;
+    background-size: 136px auto;
+  }
+  .tie3 {
+    width: 17px;
+    height: 17px;
+    background-position: -34px 0px;
+    background-size: 136px auto;
+  }
+  .tie4 {
+    width: 17px;
+    height: 17px;
+    background-position: -51px 0px;
+    background-size: 136px auto;
+  }
+  .tie5 {
+    width: 17px;
+    height: 17px;
+    background-position: -68px 0px;
+    background-size: 136px auto;
+  }
+  .tie6 {
+    width: 17px;
+    height: 17px;
+    background-position: -85px 0px;
+    background-size: 136px auto;
+  }
+  .tie7 {
+    width: 17px;
+    height: 17px;
+    background-position: -102px 0px;
+    background-size: 136px auto;
+  }
+  .tie8 {
+    width: 17px;
+    height: 17px;
+    background-position: -119px 0px;
+    background-size: 136px auto;
   }
 }
 
@@ -3096,6 +3300,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .card-container {
     margin-top: -10px;
+  }
+  .tie1 {
+    width: 8px;
+    height: 8px;
+    background-position: 0px 0px;
+    background-size: 64px auto;
+  }
+  .tie2 {
+    width: 8px;
+    height: 8px;
+    background-position: -8px 0px;
+    background-size: 64px auto;
+  }
+  .tie3 {
+    width: 8px;
+    height: 8px;
+    background-position: -16px 0px;
+    background-size: 64px auto;
+  }
+  .tie4 {
+    width: 8px;
+    height: 8px;
+    background-position: -24px 0px;
+    background-size: 64px auto;
+  }
+  .tie5 {
+    width: 8px;
+    height: 8px;
+    background-position: -32px 0px;
+    background-size: 64px auto;
+  }
+  .tie6 {
+    width: 8px;
+    height: 8px;
+    background-position: -40px 0px;
+    background-size: 64px auto;
+  }
+  .tie7 {
+    width: 8px;
+    height: 8px;
+    background-position: -48px 0px;
+    background-size: 64px auto;
+  }
+  .tie8 {
+    width: 8px;
+    height: 8px;
+    background-position: -56px 0px;
+    background-size: 64px auto;
   }
 }
 
@@ -3894,6 +4146,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 2px;
     background-position: -30px 0px;
     background-size: 32px auto;
+  }
+  .tie1 {
+    width: 6px;
+    height: 6px;
+    background-position: 0px 0px;
+    background-size: 48px auto;
+  }
+  .tie2 {
+    width: 6px;
+    height: 6px;
+    background-position: -6px 0px;
+    background-size: 48px auto;
+  }
+  .tie3 {
+    width: 6px;
+    height: 6px;
+    background-position: -12px 0px;
+    background-size: 48px auto;
+  }
+  .tie4 {
+    width: 6px;
+    height: 6px;
+    background-position: -18px 0px;
+    background-size: 48px auto;
+  }
+  .tie5 {
+    width: 6px;
+    height: 6px;
+    background-position: -24px 0px;
+    background-size: 48px auto;
+  }
+  .tie6 {
+    width: 6px;
+    height: 6px;
+    background-position: -30px 0px;
+    background-size: 48px auto;
+  }
+  .tie7 {
+    width: 6px;
+    height: 6px;
+    background-position: -36px 0px;
+    background-size: 48px auto;
+  }
+  .tie8 {
+    width: 6px;
+    height: 6px;
+    background-position: -42px 0px;
+    background-size: 48px auto;
   }
 }
 /*# sourceMappingURL=all.css.map */

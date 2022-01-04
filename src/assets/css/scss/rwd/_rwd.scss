@@ -164,8 +164,8 @@
     @include hisRoadSpritePosition(-1100, 0, 0.29);
   }
   //大路
-  .big-T{
-    @include tiePosition(0,0,0.15);
+  .big-T {
+    @include tiePosition(0, 0, 0.15);
   }
   .big-B {
     //莊
@@ -252,6 +252,31 @@
   cockroach-blue {
     @include hisRoadSpritePosition(-1500, 0, 0.08);
   }
+  //和局數字
+  .tie1 {
+    @include tieNumberPosition(0, 0, 0.15);
+  }
+  .tie2 {
+    @include tieNumberPosition(-100, 0, 0.15);
+  }
+  .tie3 {
+    @include tieNumberPosition(-200, 0, 0.15);
+  }
+  .tie4 {
+    @include tieNumberPosition(-300, 0, 0.15);
+  }
+  .tie5 {
+    @include tieNumberPosition(-400, 0, 0.15);
+  }
+  .tie6 {
+    @include tieNumberPosition(-500, 0, 0.15);
+  }
+  .tie7 {
+    @include tieNumberPosition(-600, 0, 0.15);
+  }
+  .tie8 {
+    @include tieNumberPosition(-700, 0, 0.15);
+  }
 }
 @media screen and (max-width: 1140px) {
 }
@@ -268,7 +293,7 @@
   }
 }
 @media screen and (max-width: 1024px) {
-  .header{
+  .header {
     background-image: none;
   }
   .container-waps {
@@ -492,8 +517,8 @@
     @include hisRoadSpritePosition(-1100, 0, 0.35);
   }
   //大路
-  .big-T{
-    @include tiePosition(0,0,0.2);
+  .big-T {
+    @include tiePosition(0, 0, 0.2);
   }
   .big-B {
     //莊
@@ -573,10 +598,35 @@
   cockroach-blue {
     @include hisRoadSpritePosition(-1500, 0, 0.09);
   }
+  //和局數字
+  .tie1 {
+    @include tieNumberPosition(0, 0, 0.2);
+  }
+  .tie2 {
+    @include tieNumberPosition(-100, 0, 0.2);
+  }
+  .tie3 {
+    @include tieNumberPosition(-200, 0, 0.2);
+  }
+  .tie4 {
+    @include tieNumberPosition(-300, 0, 0.2);
+  }
+  .tie5 {
+    @include tieNumberPosition(-400, 0, 0.2);
+  }
+  .tie6 {
+    @include tieNumberPosition(-500, 0, 0.2);
+  }
+  .tie7 {
+    @include tieNumberPosition(-600, 0, 0.2);
+  }
+  .tie8 {
+    @include tieNumberPosition(-700, 0, 0.2);
+  }
 }
 @media screen and (max-width: 768px) {
-  .header{
-    height:40px;
+  .header {
+    height: 40px;
   }
   .header-btn {
     line-height: 2.75rem;
@@ -590,10 +640,10 @@
   #countNumber {
     top: 2%;
   }
-  .bettingArea-btn{
-    height:55px;
+  .bettingArea-btn {
+    height: 55px;
   }
-  .betRatioText{
+  .betRatioText {
     font-size: 1rem;
   }
   .tabsArea {
@@ -741,8 +791,8 @@
     @include hisRoadSpritePosition(-1100, 0, 0.3);
   }
   //大路
-  .big-T{
-    @include tiePosition(0,0,0.17);
+  .big-T {
+    @include tiePosition(0, 0, 0.17);
   }
   .big-B {
     //莊
@@ -808,10 +858,35 @@
     //閒和 莊閒對
     @include hisRoadSpritePosition(-1500, 100, 0.17);
   }
+  //和局數字
+  .tie1 {
+    @include tieNumberPosition(0, 0, 0.17);
+  }
+  .tie2 {
+    @include tieNumberPosition(-100, 0, 0.17);
+  }
+  .tie3 {
+    @include tieNumberPosition(-200, 0, 0.17);
+  }
+  .tie4 {
+    @include tieNumberPosition(-300, 0, 0.17);
+  }
+  .tie5 {
+    @include tieNumberPosition(-400, 0, 0.17);
+  }
+  .tie6 {
+    @include tieNumberPosition(-500, 0, 0.17);
+  }
+  .tie7 {
+    @include tieNumberPosition(-600, 0, 0.17);
+  }
+  .tie8 {
+    @include tieNumberPosition(-700, 0, 0.17);
+  }
 }
 @media screen and (max-width: 540px) {
-  .header{
-    height:30px;
+  .header {
+    height: 30px;
   }
   .header-btn {
     font-size: 150%;
@@ -834,11 +909,12 @@
   .betArea-mobile-container {
     height: 100px;
   }
-  .askRoad-player,.askRoad-banker{
-    p{
-        font-size: 0.5rem
+  .askRoad-player,
+  .askRoad-banker {
+    p {
+      font-size: 0.5rem;
     }
-}
+  }
   .coin-menu1 {
     @include coinSpritePosition(0, 0, 0.7);
   }
@@ -952,8 +1028,8 @@
     @include hisRoadSpritePosition(-1100, 0, 0.15);
   }
   //大路
-  .big-T{
-    @include tiePosition(0,0,0.08);
+  .big-T {
+    @include tiePosition(0, 0, 0.08);
   }
   .big-B {
     //莊
@@ -1044,6 +1120,31 @@
   .card-container {
     margin-top: -10px;
   }
+  //和局數字
+  .tie1 {
+    @include tieNumberPosition(0, 0, 0.08);
+  }
+  .tie2 {
+    @include tieNumberPosition(-100, 0, 0.08);
+  }
+  .tie3 {
+    @include tieNumberPosition(-200, 0, 0.08);
+  }
+  .tie4 {
+    @include tieNumberPosition(-300, 0, 0.08);
+  }
+  .tie5 {
+    @include tieNumberPosition(-400, 0, 0.08);
+  }
+  .tie6 {
+    @include tieNumberPosition(-500, 0, 0.08);
+  }
+  .tie7 {
+    @include tieNumberPosition(-600, 0, 0.08);
+  }
+  .tie8 {
+    @include tieNumberPosition(-700, 0, 0.08);
+  }
 }
 @media screen and (max-width: 414px) {
   .gameResultLoading {
@@ -1062,7 +1163,7 @@
   .header-btn {
     line-height: 0.5rem;
     font-size: 70%;
-    width:40px;
+    width: 40px;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -1096,14 +1197,15 @@
     height: 180px;
     flex-wrap: wrap;
   }
-  .mobilTableInfo{
+  .mobilTableInfo {
     font-size: 0.8rem;
   }
-  .navbar-toggler{ //漢堡
+  .navbar-toggler {
+    //漢堡
     padding: 0;
   }
-  .bettingArea-btn-gitbackAllCoin{
-    width:55px;
+  .bettingArea-btn-gitbackAllCoin {
+    width: 55px;
   }
   .betArea-item {
     font-size: 1rem;
@@ -1160,11 +1262,11 @@
   .alertFont {
     font-size: 1rem !important;
   }
-  .betArea-item{
+  .betArea-item {
     font-size: 0.8rem;
-    font-weight:bolder;
+    font-weight: bolder;
   }
-  .betRatioText{
+  .betRatioText {
     font-size: 0.3rem;
   }
   .betArea-mobile {
@@ -1247,8 +1349,8 @@
   .header-userName {
     line-height: 0.7rem;
   }
-  .header-userName{
-    padding:2.5px;
+  .header-userName {
+    padding: 2.5px;
   }
   .header-logo {
     display: none;
@@ -1277,8 +1379,8 @@
   .betArea {
     height: 230px;
   }
-  .bettingArea-btn{
-	  height:50px;
+  .bettingArea-btn {
+    height: 50px;
   }
   .betArea-item {
     font-size: 1rem;
@@ -1310,8 +1412,8 @@
     right: 0%;
     top: 50%;
   }
-  .mobilTableInfo{
-	  font-size: small;
+  .mobilTableInfo {
+    font-size: small;
   }
   //珠仔路
   .BeadPlate-B {
@@ -1367,26 +1469,26 @@
     font-size: 0.5rem;
   }
   //小路(左下角)
-.small-red-ask{
-  @include hisRoadSpritePosition(-1200,0,0.08);
-}
-.small-blue-ask{
-  @include hisRoadSpritePosition(-1400,0,0.08);
-}
-//大眼仔路(中間)
-.bigEye-red-ask{
-  @include hisRoadSpritePosition(0,100,0.08);
-}
-.bigEye-blue-ask{
-  @include hisRoadSpritePosition(-800,100,0.08);
-}
-//蟑螂路
-.cockroach-red-ask{
-  @include hisRoadSpritePosition(-1300,0,0.08);
-}
-.cockroach-blue-ask{
-  @include hisRoadSpritePosition(-1500,0,0.08);
-}
+  .small-red-ask {
+    @include hisRoadSpritePosition(-1200, 0, 0.08);
+  }
+  .small-blue-ask {
+    @include hisRoadSpritePosition(-1400, 0, 0.08);
+  }
+  //大眼仔路(中間)
+  .bigEye-red-ask {
+    @include hisRoadSpritePosition(0, 100, 0.08);
+  }
+  .bigEye-blue-ask {
+    @include hisRoadSpritePosition(-800, 100, 0.08);
+  }
+  //蟑螂路
+  .cockroach-red-ask {
+    @include hisRoadSpritePosition(-1300, 0, 0.08);
+  }
+  .cockroach-blue-ask {
+    @include hisRoadSpritePosition(-1500, 0, 0.08);
+  }
 }
 @media screen and (max-width: 280px) {
   .header {
@@ -1546,8 +1648,8 @@
     @include hisRoadSpritePosition(-1100, 0, 0.1);
   }
   //大路
-  .big-T{
-    @include tiePosition(0,0,0.06);
+  .big-T {
+    @include tiePosition(0, 0, 0.06);
   }
   .big-B {
     //莊
@@ -1634,4 +1736,29 @@
   .cockroach-blue {
     @include hisRoadSpritePosition(-1500, 0, 0.02);
   }
+    //和局數字
+    .tie1 {
+      @include tieNumberPosition(0, 0, 0.06);
+    }
+    .tie2 {
+      @include tieNumberPosition(-100, 0, 0.06);
+    }
+    .tie3 {
+      @include tieNumberPosition(-200, 0, 0.06);
+    }
+    .tie4 {
+      @include tieNumberPosition(-300, 0, 0.06);
+    }
+    .tie5 {
+      @include tieNumberPosition(-400, 0, 0.06);
+    }
+    .tie6 {
+      @include tieNumberPosition(-500, 0, 0.06);
+    }
+    .tie7 {
+      @include tieNumberPosition(-600, 0, 0.06);
+    }
+    .tie8 {
+      @include tieNumberPosition(-700, 0, 0.06);
+    }
 }

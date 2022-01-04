@@ -17,7 +17,7 @@
     justify-content: center;
 }
 
-@mixin tiePosition($x,$y,$scale){
+@mixin tiePosition($x,$y,$scale){ 
     $WIDTH:(100*$scale);
     $HEIGHT:(100*$scale);
     $POSITIONX:($x*$scale);
@@ -29,7 +29,7 @@
     background-size: $BGSIZEX+px auto;
 }
 
-@mixin hisRoadSpritePosition($x,$y,$scale){
+@mixin hisRoadSpritePosition($x,$y,$scale){  //路圖圖案切圖縮放
     $WIDTH:(100*$scale);
     $HEIGHT:(100*$scale);
     $POSITIONX:($x*$scale);
@@ -42,7 +42,7 @@
 }
 
 
-@mixin coinSpritePosition($x,$y,$scale){
+@mixin coinSpritePosition($x,$y,$scale){   //籌碼的切圖縮放
     $WIDTH:(79*$scale);
     $HEIGHT:(65*$scale);
     $POSITIONX:($x*$scale);
@@ -54,7 +54,17 @@
 	background-position: $POSITIONX+px $POSITIONY+px;
     background-size: $BGSIZEX+px $BGSIZEY+px;
 }
-
+@mixin tieNumberPosition($x,$y,$scale){
+    $WIDTH:(100*$scale);
+    $HEIGHT:(100*$scale);
+    $POSITIONX:($x*$scale);
+    $POSITIONY:($y*$scale);
+    $BGSIZEX:(800*$WIDTH/100);
+    width:$WIDTH+px;
+    height:$HEIGHT+px;
+	background-position: $POSITIONX+px $POSITIONY+px;
+    background-size: $BGSIZEX+px auto;
+}
 %hisRoad{
     cursor: pointer;
     background-image:$historyRoad-spriteImg;
@@ -63,7 +73,10 @@
     background-image:$coin-spriteImg;
     cursor: pointer;
 }
-%tie{
+%tie{  //路圖第一局和局狀況的圖檔
     cursor: pointer;
     background-image: url('../../images/T.png');
+}
+%tieNumber{
+    background-image: url('../../images/tieNumber.png');
 }

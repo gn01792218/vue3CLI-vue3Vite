@@ -191,4 +191,36 @@
     @include hisRoadSpritePosition(-1500,0,0.1);
 }
 
-//大路
+//和局數字
+.tie1{
+    @extend %tieNumber;
+    @include tieNumberPosition(0,0,0.19);
+}
+.tie2{
+    @extend %tieNumber;
+    @include tieNumberPosition(-100,0,0.19);
+}
+.tie3{
+    @extend %tieNumber;
+    @include tieNumberPosition(-200,0,0.19);
+}
+.tie4{
+    @extend %tieNumber;
+    @include tieNumberPosition(-300,0,0.19);
+}
+.tie5{
+    @extend %tieNumber;
+    @include tieNumberPosition(-400,0,0.19);
+}
+.tie6{
+    @extend %tieNumber;
+    @include tieNumberPosition(-500,0,0.19);
+}
+.tie7{
+    @extend %tieNumber;
+    @include tieNumberPosition(-600,0,0.19);
+}
+.tie8{
+    @extend %tieNumber;
+    @include tieNumberPosition(-700,0,0.19);
+}
