@@ -176,7 +176,6 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
-            askRoadBySystem(2,1)  //換桌時也問一下路
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
@@ -243,8 +242,11 @@ export default defineComponent({
         const askRoadRecall = computed(()=>{
           return store.state.roadmap.askRoadReCall
         })
-        const askBySystem = computed(()=>{
-          return store.state.roadmap.askBySystem
+        const roundAskBanker = computed(()=>{
+            return store.state.game.askBankByRoundStart
+        }) 
+        const roundAskPlayer = computed(()=>{
+            return store.state.game.askPlayerByRoundStart
         })
         //基本資料
         const canBet = ref(true)
@@ -253,8 +255,14 @@ export default defineComponent({
         let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
         const currentAskRoadSide = ref(0)
         //監聽
+        watch(roundAskBanker,()=>{
+            changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block,roundAskBanker.value)
+        })
+        watch(roundAskPlayer,()=>{
+            changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block,roundAskPlayer.value)
+        })
         watch(askRoadRecall,()=>{
-            changeAskRoadBtnView(currentAskRoadSide.value)
+            changeAskRoadBtnView(currentAskRoadSide.value,askRoadRecall.value)
         })
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
             if(betResult.value!==-1 && betStatus.value){ 
@@ -275,7 +283,6 @@ export default defineComponent({
             // console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
-            askRoadBySystem(2,1)
             // setDefaultCoin()
             // nextTick(()=>{
             //     setMinBetCoinUnusable()
@@ -988,20 +995,14 @@ export default defineComponent({
                 block:roadNum
             })
         }
-        function askRoadBySystem(roadNum1:number,roadNum2:number){
-            store.commit('roadmap/setAskBySystem',true)
-            askRoad(roadNum1)
-            askRoad(roadNum2)
-        }
-        function changeAskRoadBtnView(currentRoadNum:number){  //更換問路時候，按鈕上顯示的圖案
-            console.log(currentRoadNum)
+        function changeAskRoadBtnView(currentRoadNum:number,askRoadRecall:any){  //更換問路時候，按鈕上顯示的圖案
             let smallRoad = document.getElementById(`smallRoad-${currentRoadNum}`) as HTMLElement
             let bigEyes = document.getElementById(`bigEyeRoad-${currentRoadNum}`) as HTMLElement
             let cockroach = document.getElementById(`cockroachRoad-${currentRoadNum}`) as HTMLElement
             smallRoad.classList.remove(smallRoad.classList[0])
             bigEyes.classList.remove(bigEyes.classList[0])
             cockroach.classList.remove(cockroach.classList[0])
-            switch(askRoadRecall.value.smallRoadNext){
+            switch(askRoadRecall.smallRoadNext){
                 case 1:
                     smallRoad.classList.add('small-red-ask')
                     break
@@ -1009,7 +1010,7 @@ export default defineComponent({
                     smallRoad.classList.add('small-blue-ask')
                     break
             }
-            switch(askRoadRecall.value.bigEyeRoadNext){
+            switch(askRoadRecall.bigEyeRoadNext){
                 case 1:
                     bigEyes.classList.add('bigEye-red-ask') 
                     break
@@ -1017,7 +1018,7 @@ export default defineComponent({
                     bigEyes.classList.add('bigEye-blue-ask') 
                     break
             }
-            switch(askRoadRecall.value.cockroachRoadNext){
+            switch(askRoadRecall.cockroachRoadNext){
                 case 1:
                     cockroach.classList.add('cockroach-red-ask')
                     break
@@ -1025,7 +1026,7 @@ export default defineComponent({
                     cockroach.classList.add('cockroach-blue-ask')
                     break
             }
-            console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.value.smallRoadNext,askRoadRecall.value.bigEyeRoadNext,askRoadRecall.value.cockroachRoadNext)
+            console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
         }
         return{
             //data

@@ -34,7 +34,7 @@ export const sendLogin =(data:any) => {
         token:data.token,
     })
     let bytes = auth.LoginCall.encode(proto).finish()
-    console.log("sendLogin",proto)
+    // console.log("sendLogin",proto)
     sendWSPush(bytes);
 }
 //發送選桌訊息
@@ -84,7 +84,7 @@ export const sendAskRoadCall = (data:any) => {
         block:data.block,
     })
     let bytes = roadmap.AskRoadCall.encode(proto).finish()
-    console.log('sendAskRoadCall',proto)
+    // console.log('sendAskRoadCall',proto)
     sendWSPush(bytes);
 }
 //各種接收訊息的方法，在main.js中全局註冊監聽
@@ -133,7 +133,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
-            console.log('Draw',Draw)
+            // console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
             break
         case route.BroadcastGameResult:
@@ -168,7 +168,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.BroadcastDealerRoundEnd:
             let end = dealer.BroadcastDealerRoundEnd.decode(new Uint8Array(e.detail.msg.data))
-            console.log('換靴',end)
+            // console.log('換靴',end)
             store.commit('dealer/end',end)
             break
         case route.AskRoadRecall:

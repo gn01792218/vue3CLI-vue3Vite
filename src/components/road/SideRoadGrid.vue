@@ -92,16 +92,9 @@ export default defineComponent({
         const askRoadArr = computed(()=>{
           return store.state.roadmap.askRoad
         }) 
-        const askBySystem = computed(()=>{
-          return store.state.roadmap.askBySystem
-        })
         const timer = ref()
         const asking = ref(false) //是否在問路中
         watch(askRoadArr.value,()=>{ //有人問路時，就啟動
-        if(askBySystem.value){
-          store.commit('roadmap/setAskBySystem',false) 
-          return
-        }else{
           asking.value = true
         //1.先清除計時器
           if(timer.value){   
@@ -129,7 +122,6 @@ export default defineComponent({
             road.classList.remove('askRoadanimation')
             asking.value = false
           },2000)
-        }
         })
         const gameResult = ref([1])
         const gameResult2 = ref([2])
@@ -172,8 +164,8 @@ export default defineComponent({
         //   }
         // })
         watch(bigRoadResult,()=>{
-          // resetBigRoad()
-          // showBigRoadInit()
+          resetBigRoad()
+          showBigRoadInit()
           // if(bigRoadInit.value){
           //   // showBigRoad()
           //   showBigRoadAll()

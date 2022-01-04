@@ -8,6 +8,9 @@ export const state = {
     numOfRound:'',
     numOfShoe:'',
     gameResultCount:{},// 統計資訊
+    askBankByRoundStart:{}, //回合自動問路莊家
+    askPlayerByRoundStart:{}, //回合自動問路閒家
+
   };
   export const actions = {}
   
@@ -19,6 +22,18 @@ export const state = {
       state.numOfShoe = payload.numOfShoe
       state.gameResultCount = payload.gameResultCounter
       state.defaultCount = payload.timeRemain
+      payload.askRoadRecalls.forEach((i:any)=>{
+        switch(i.askRoadCall.block){
+          case 1:
+            state.askBankByRoundStart = i
+            console.log('回合問路,莊問:',state.askBankByRoundStart)
+            break
+          case 2:
+            state.askPlayerByRoundStart = i
+            console.log('閒問',state.askPlayerByRoundStart)
+            break
+        }
+      })
       // console.log("vuex-BetRoundStart資料更新",state.BetRoundStart)
     },
     BetRoundCountdown(state:any, payload:any){
