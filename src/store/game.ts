@@ -23,7 +23,7 @@ export const state = {
       state.gameResultCount = payload.gameResultCounter
       state.defaultCount = payload.timeRemain
       payload.askRoadRecalls.forEach((i:any)=>{
-        switch(i.askRoadCall.block){
+        switch(i.askRoadCall.block.symbol){
           case 1:
             state.askBankByRoundStart = i
             console.log('回合問路,莊問:',state.askBankByRoundStart)

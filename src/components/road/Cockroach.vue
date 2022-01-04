@@ -59,7 +59,7 @@ export default defineComponent({
           resetcockroachRoad()
           showCockroachRoadInit()
           //3.放置問路
-          let roadNum = askRoadRecall.value.cockroachRoadNext
+          let roadNum = askRoadRecall.value.cockroachRoadNext.symbol
           askRoad(roadNum)
           //4.添加動畫
           let column = document.querySelector(`.cockroachRoad-column${cockroachRoadColumn.value}`) as HTMLElement

@@ -60,7 +60,7 @@ export default defineComponent({
           resetSmallRoad()
           showSmallRoadInit()
           //3.放置問路
-          let roadNum = askRoadRecall.value.smallRoadNext
+          let roadNum = askRoadRecall.value.smallRoadNext.symbol
           askRoad(roadNum)
           //4.添加動畫
           let column = document.querySelector(`.smallRoad-column${smallRoadColumn.value}`) as HTMLElement

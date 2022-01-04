@@ -59,7 +59,7 @@
     $HEIGHT:(100*$scale);
     $POSITIONX:($x*$scale);
     $POSITIONY:($y*$scale);
-    $BGSIZEX:(800*$WIDTH/100);
+    $BGSIZEX:(900*$WIDTH/100);
     width:$WIDTH+px;
     height:$HEIGHT+px;
 	background-position: $POSITIONX+px $POSITIONY+px;

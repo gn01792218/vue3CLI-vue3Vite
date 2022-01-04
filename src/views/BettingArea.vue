@@ -256,10 +256,10 @@ export default defineComponent({
         const currentAskRoadSide = ref(0)
         //監聽
         watch(roundAskBanker,()=>{
-            changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block,roundAskBanker.value)
+            changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
         })
         watch(roundAskPlayer,()=>{
-            changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block,roundAskPlayer.value)
+            changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
         })
         watch(askRoadRecall,()=>{
             changeAskRoadBtnView(currentAskRoadSide.value,askRoadRecall.value)
@@ -1002,7 +1002,7 @@ export default defineComponent({
             smallRoad.classList.remove(smallRoad.classList[0])
             bigEyes.classList.remove(bigEyes.classList[0])
             cockroach.classList.remove(cockroach.classList[0])
-            switch(askRoadRecall.smallRoadNext){
+            switch(askRoadRecall.smallRoadNext.symbol){
                 case 1:
                     smallRoad.classList.add('small-red-ask')
                     break
@@ -1010,7 +1010,7 @@ export default defineComponent({
                     smallRoad.classList.add('small-blue-ask')
                     break
             }
-            switch(askRoadRecall.bigEyeRoadNext){
+            switch(askRoadRecall.bigEyeRoadNext.symbol){
                 case 1:
                     bigEyes.classList.add('bigEye-red-ask') 
                     break
@@ -1018,7 +1018,7 @@ export default defineComponent({
                     bigEyes.classList.add('bigEye-blue-ask') 
                     break
             }
-            switch(askRoadRecall.cockroachRoadNext){
+            switch(askRoadRecall.cockroachRoadNext.symbol){
                 case 1:
                     cockroach.classList.add('cockroach-red-ask')
                     break

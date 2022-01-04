@@ -68,7 +68,7 @@ export default defineComponent({
           resetBigEyesRoad()
           showBigEyesRoadInit()
           //3.放置問路
-          let roadNum = askRoadRecall.value.bigEyeRoadNext
+          let roadNum = askRoadRecall.value.bigEyeRoadNext.symbol
           askRoad(roadNum)
           //4.添加動畫
           let column = document.querySelector(`.BigEyesRoad-colum${bigEyesRoadColumn.value}`) as HTMLElement
