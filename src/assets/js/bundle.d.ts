@@ -3201,8 +3201,8 @@ export namespace lobby {
 /** Namespace roadmap. */
 export namespace roadmap {
 
-    /** Block enum. */
-    enum Block {
+    /** Symbol enum. */
+    enum Symbol {
         BlockDefault = 0,
         Banker = 1,
         Player = 2,
@@ -3226,11 +3226,107 @@ export namespace roadmap {
         PlayerAndBothPairAndTie = 20
     }
 
+    /** Properties of a Block. */
+    interface IBlock {
+
+        /** Block symbol */
+        symbol?: (roadmap.Symbol|null);
+
+        /** Block tieCount */
+        tieCount?: (number|null);
+    }
+
+    /** Represents a Block. */
+    class Block implements IBlock {
+
+        /**
+         * Constructs a new Block.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IBlock);
+
+        /** Block symbol. */
+        public symbol: roadmap.Symbol;
+
+        /** Block tieCount. */
+        public tieCount: number;
+
+        /**
+         * Creates a new Block instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Block instance
+         */
+        public static create(properties?: roadmap.IBlock): roadmap.Block;
+
+        /**
+         * Encodes the specified Block message. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @param message Block message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IBlock, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Block message, length delimited. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @param message Block message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IBlock, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Block message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.Block;
+
+        /**
+         * Decodes a Block message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.Block;
+
+        /**
+         * Verifies a Block message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Block message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Block
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.Block;
+
+        /**
+         * Creates a plain object from a Block message. Also converts values to other types if specified.
+         * @param message Block
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.Block, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Block to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a Column. */
     interface IColumn {
 
         /** Column blocks */
-        blocks?: (roadmap.Block[]|null);
+        blocks?: (roadmap.IBlock[]|null);
     }
 
     /** Represents a Column. */
@@ -3243,7 +3339,7 @@ export namespace roadmap {
         constructor(properties?: roadmap.IColumn);
 
         /** Column blocks. */
-        public blocks: roadmap.Block[];
+        public blocks: roadmap.IBlock[];
 
         /**
          * Creates a new Column instance using the specified properties.
@@ -3320,7 +3416,7 @@ export namespace roadmap {
     interface IBeadPlate {
 
         /** BeadPlate blocks */
-        blocks?: (roadmap.Block[]|null);
+        blocks?: (roadmap.IBlock[]|null);
     }
 
     /** Represents a BeadPlate. */
@@ -3333,7 +3429,7 @@ export namespace roadmap {
         constructor(properties?: roadmap.IBeadPlate);
 
         /** BeadPlate blocks. */
-        public blocks: roadmap.Block[];
+        public blocks: roadmap.IBlock[];
 
         /**
          * Creates a new BeadPlate instance using the specified properties.
@@ -3893,7 +3989,7 @@ export namespace roadmap {
         header?: (foundation.IHeader|null);
 
         /** AskRoadCall block */
-        block?: (roadmap.Block|null);
+        block?: (roadmap.IBlock|null);
     }
 
     /** Represents an AskRoadCall. */
@@ -3909,7 +4005,7 @@ export namespace roadmap {
         public header?: (foundation.IHeader|null);
 
         /** AskRoadCall block. */
-        public block: roadmap.Block;
+        public block?: (roadmap.IBlock|null);
 
         /**
          * Creates a new AskRoadCall instance using the specified properties.
@@ -3989,13 +4085,13 @@ export namespace roadmap {
         header?: (foundation.IHeader|null);
 
         /** AskRoadRecall bigEyeRoadNext */
-        bigEyeRoadNext?: (roadmap.Block|null);
+        bigEyeRoadNext?: (roadmap.IBlock|null);
 
         /** AskRoadRecall smallRoadNext */
-        smallRoadNext?: (roadmap.Block|null);
+        smallRoadNext?: (roadmap.IBlock|null);
 
         /** AskRoadRecall cockroachRoadNext */
-        cockroachRoadNext?: (roadmap.Block|null);
+        cockroachRoadNext?: (roadmap.IBlock|null);
 
         /** AskRoadRecall askRoadCall */
         askRoadCall?: (roadmap.IAskRoadCall|null);
@@ -4014,13 +4110,13 @@ export namespace roadmap {
         public header?: (foundation.IHeader|null);
 
         /** AskRoadRecall bigEyeRoadNext. */
-        public bigEyeRoadNext: roadmap.Block;
+        public bigEyeRoadNext?: (roadmap.IBlock|null);
 
         /** AskRoadRecall smallRoadNext. */
-        public smallRoadNext: roadmap.Block;
+        public smallRoadNext?: (roadmap.IBlock|null);
 
         /** AskRoadRecall cockroachRoadNext. */
-        public cockroachRoadNext: roadmap.Block;
+        public cockroachRoadNext?: (roadmap.IBlock|null);
 
         /** AskRoadRecall askRoadCall. */
         public askRoadCall?: (roadmap.IAskRoadCall|null);

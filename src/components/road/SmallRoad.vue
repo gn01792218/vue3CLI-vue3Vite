@@ -264,7 +264,7 @@ export default defineComponent({
               return
             }else{
               // console.log('畫小路')
-              let item = smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks[smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length-1]
+            let item = smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks[smallRoadResult.value.columns[smallRoadResult.value.columns.length-1].blocks.length-1].symbol
             recordRoad(item)
             if(currentsmallRoadResult.value!==lastsmallRoadResult.value && currentsmallRoadResult.value!==0 && lastsmallRoadResult.value!==0){
                 // console.log("換陣營前","行",bigRoadColumn.value,"格",bigRoadItemIndex.value)
@@ -315,7 +315,7 @@ export default defineComponent({
             smallRoadResult.value.columns.forEach((item:any)=>{
                 item.blocks.forEach((i:any)=>{
                     // console.log(i)
-                    recordRoad(i)
+                    recordRoad(i.symbol)
                     if(currentsmallRoadResult.value!==lastsmallRoadResult.value && currentsmallRoadResult.value!==0 && lastsmallRoadResult.value!==0){
                         // console.log("換陣營前","行",smallRoadColumn.value,"格",smallRoadItemIndex.value)
                         if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
@@ -357,7 +357,7 @@ export default defineComponent({
                                 smallRoadColArr[smallRoadColumn.value][i] = 1
                             }
                         }
-                        putRoad(i)
+                        putRoad(i.symbol)
                     })
                 })
             smallRoadInit.value = true

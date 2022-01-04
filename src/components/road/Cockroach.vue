@@ -257,7 +257,7 @@ export default defineComponent({
           }else{
              //每次都畫最後一顆
             //  console.log('畫蟑螂路')
-            let item = cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks[cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length-1]
+            let item = cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks[cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length-1].symbol
             // console.log('最後一顆蟑螂',item)
             recordRoad(item)
             if(currentcockroachRoadResult.value!==lastcockroachRoadResult.value && currentcockroachRoadResult.value!==0 && lastcockroachRoadResult.value!==0){
@@ -309,7 +309,7 @@ export default defineComponent({
           cockroachRoadResult.value.columns.forEach((item:any)=>{
                 item.blocks.forEach((i:any)=>{
                     // console.log('蟑螂路列表',i)
-                    recordRoad(i)
+                    recordRoad(i.symbol)
                     // console.log(cockroachRoadColumn.value,cockroachRoadItemIndex.value)
                     if(currentcockroachRoadResult.value!==lastcockroachRoadResult.value && currentcockroachRoadResult.value!==0 && lastcockroachRoadResult.value!==0){
                         // console.log("換陣營前","行",cockroachRoadColumn.value,"格",cockroachRoadItemIndex.value)
@@ -352,7 +352,7 @@ export default defineComponent({
                                 cockroachRoadColArr[cockroachRoadColumn.value][i] = 1
                             }
                         }
-                        putRoad(i)
+                        putRoad(i.symbol)
                     })
                 })
             cockroachRoadInit.value = true

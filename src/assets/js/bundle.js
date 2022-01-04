@@ -7825,8 +7825,8 @@ export const roadmap = $root.roadmap = (() => {
     const roadmap = {};
 
     /**
-     * Block enum.
-     * @name roadmap.Block
+     * Symbol enum.
+     * @name roadmap.Symbol
      * @enum {number}
      * @property {number} BlockDefault=0 BlockDefault value
      * @property {number} Banker=1 Banker value
@@ -7850,7 +7850,7 @@ export const roadmap = $root.roadmap = (() => {
      * @property {number} PlayerAndPlayerPairAndTie=19 PlayerAndPlayerPairAndTie value
      * @property {number} PlayerAndBothPairAndTie=20 PlayerAndBothPairAndTie value
      */
-    roadmap.Block = (function() {
+    roadmap.Symbol = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "BlockDefault"] = 0;
         values[valuesById[1] = "Banker"] = 1;
@@ -7876,13 +7876,331 @@ export const roadmap = $root.roadmap = (() => {
         return values;
     })();
 
+    roadmap.Block = (function() {
+
+        /**
+         * Properties of a Block.
+         * @memberof roadmap
+         * @interface IBlock
+         * @property {roadmap.Symbol|null} [symbol] Block symbol
+         * @property {number|null} [tieCount] Block tieCount
+         */
+
+        /**
+         * Constructs a new Block.
+         * @memberof roadmap
+         * @classdesc Represents a Block.
+         * @implements IBlock
+         * @constructor
+         * @param {roadmap.IBlock=} [properties] Properties to set
+         */
+        function Block(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Block symbol.
+         * @member {roadmap.Symbol} symbol
+         * @memberof roadmap.Block
+         * @instance
+         */
+        Block.prototype.symbol = 0;
+
+        /**
+         * Block tieCount.
+         * @member {number} tieCount
+         * @memberof roadmap.Block
+         * @instance
+         */
+        Block.prototype.tieCount = 0;
+
+        /**
+         * Creates a new Block instance using the specified properties.
+         * @function create
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.IBlock=} [properties] Properties to set
+         * @returns {roadmap.Block} Block instance
+         */
+        Block.create = function create(properties) {
+            return new Block(properties);
+        };
+
+        /**
+         * Encodes the specified Block message. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.IBlock} message Block message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Block.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.symbol != null && Object.hasOwnProperty.call(message, "symbol"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.symbol);
+            if (message.tieCount != null && Object.hasOwnProperty.call(message, "tieCount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.tieCount);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Block message, length delimited. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.IBlock} message Block message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Block.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Block message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.Block
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.Block} Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Block.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.Block();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.symbol = reader.int32();
+                    break;
+                case 2:
+                    message.tieCount = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Block message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.Block
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.Block} Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Block.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Block message.
+         * @function verify
+         * @memberof roadmap.Block
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Block.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.symbol != null && message.hasOwnProperty("symbol"))
+                switch (message.symbol) {
+                default:
+                    return "symbol: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                    break;
+                }
+            if (message.tieCount != null && message.hasOwnProperty("tieCount"))
+                if (!$util.isInteger(message.tieCount))
+                    return "tieCount: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a Block message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.Block
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.Block} Block
+         */
+        Block.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.Block)
+                return object;
+            let message = new $root.roadmap.Block();
+            switch (object.symbol) {
+            case "BlockDefault":
+            case 0:
+                message.symbol = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.symbol = 1;
+                break;
+            case "Player":
+            case 2:
+                message.symbol = 2;
+                break;
+            case "Tie":
+            case 3:
+                message.symbol = 3;
+                break;
+            case "BankerAndBankerPair":
+            case 4:
+                message.symbol = 4;
+                break;
+            case "BankerAndPlayerPair":
+            case 5:
+                message.symbol = 5;
+                break;
+            case "BankerAndBothPair":
+            case 6:
+                message.symbol = 6;
+                break;
+            case "PlayerAndBankerPair":
+            case 7:
+                message.symbol = 7;
+                break;
+            case "PlayerAndPlayerPair":
+            case 8:
+                message.symbol = 8;
+                break;
+            case "PlayerAndBothPair":
+            case 9:
+                message.symbol = 9;
+                break;
+            case "TieAndBankerPair":
+            case 10:
+                message.symbol = 10;
+                break;
+            case "TieAndPlayerPair":
+            case 11:
+                message.symbol = 11;
+                break;
+            case "TieAndBothPair":
+            case 12:
+                message.symbol = 12;
+                break;
+            case "BankerAndTie":
+            case 13:
+                message.symbol = 13;
+                break;
+            case "BankerAndBankerPairAndTie":
+            case 14:
+                message.symbol = 14;
+                break;
+            case "BankerAndPlayerPairAndTie":
+            case 15:
+                message.symbol = 15;
+                break;
+            case "BankerAndBothPairAndTie":
+            case 16:
+                message.symbol = 16;
+                break;
+            case "PlayerAndTie":
+            case 17:
+                message.symbol = 17;
+                break;
+            case "PlayerAndBankerPairAndTie":
+            case 18:
+                message.symbol = 18;
+                break;
+            case "PlayerAndPlayerPairAndTie":
+            case 19:
+                message.symbol = 19;
+                break;
+            case "PlayerAndBothPairAndTie":
+            case 20:
+                message.symbol = 20;
+                break;
+            }
+            if (object.tieCount != null)
+                message.tieCount = object.tieCount | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Block message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.Block} message Block
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Block.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.symbol = options.enums === String ? "BlockDefault" : 0;
+                object.tieCount = 0;
+            }
+            if (message.symbol != null && message.hasOwnProperty("symbol"))
+                object.symbol = options.enums === String ? $root.roadmap.Symbol[message.symbol] : message.symbol;
+            if (message.tieCount != null && message.hasOwnProperty("tieCount"))
+                object.tieCount = message.tieCount;
+            return object;
+        };
+
+        /**
+         * Converts this Block to JSON.
+         * @function toJSON
+         * @memberof roadmap.Block
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Block.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Block;
+    })();
+
     roadmap.Column = (function() {
 
         /**
          * Properties of a Column.
          * @memberof roadmap
          * @interface IColumn
-         * @property {Array.<roadmap.Block>|null} [blocks] Column blocks
+         * @property {Array.<roadmap.IBlock>|null} [blocks] Column blocks
          */
 
         /**
@@ -7903,7 +8221,7 @@ export const roadmap = $root.roadmap = (() => {
 
         /**
          * Column blocks.
-         * @member {Array.<roadmap.Block>} blocks
+         * @member {Array.<roadmap.IBlock>} blocks
          * @memberof roadmap.Column
          * @instance
          */
@@ -7933,12 +8251,9 @@ export const roadmap = $root.roadmap = (() => {
         Column.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.blocks != null && message.blocks.length) {
-                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+            if (message.blocks != null && message.blocks.length)
                 for (let i = 0; i < message.blocks.length; ++i)
-                    writer.int32(message.blocks[i]);
-                writer.ldelim();
-            }
+                    $root.roadmap.Block.encode(message.blocks[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
@@ -7976,12 +8291,7 @@ export const roadmap = $root.roadmap = (() => {
                 case 1:
                     if (!(message.blocks && message.blocks.length))
                         message.blocks = [];
-                    if ((tag & 7) === 2) {
-                        let end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
-                            message.blocks.push(reader.int32());
-                    } else
-                        message.blocks.push(reader.int32());
+                    message.blocks.push($root.roadmap.Block.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8021,33 +8331,11 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks != null && message.hasOwnProperty("blocks")) {
                 if (!Array.isArray(message.blocks))
                     return "blocks: array expected";
-                for (let i = 0; i < message.blocks.length; ++i)
-                    switch (message.blocks[i]) {
-                    default:
-                        return "blocks: enum value[] expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                        break;
-                    }
+                for (let i = 0; i < message.blocks.length; ++i) {
+                    let error = $root.roadmap.Block.verify(message.blocks[i]);
+                    if (error)
+                        return "blocks." + error;
+                }
             }
             return null;
         };
@@ -8068,94 +8356,11 @@ export const roadmap = $root.roadmap = (() => {
                 if (!Array.isArray(object.blocks))
                     throw TypeError(".roadmap.Column.blocks: array expected");
                 message.blocks = [];
-                for (let i = 0; i < object.blocks.length; ++i)
-                    switch (object.blocks[i]) {
-                    default:
-                    case "BlockDefault":
-                    case 0:
-                        message.blocks[i] = 0;
-                        break;
-                    case "Banker":
-                    case 1:
-                        message.blocks[i] = 1;
-                        break;
-                    case "Player":
-                    case 2:
-                        message.blocks[i] = 2;
-                        break;
-                    case "Tie":
-                    case 3:
-                        message.blocks[i] = 3;
-                        break;
-                    case "BankerAndBankerPair":
-                    case 4:
-                        message.blocks[i] = 4;
-                        break;
-                    case "BankerAndPlayerPair":
-                    case 5:
-                        message.blocks[i] = 5;
-                        break;
-                    case "BankerAndBothPair":
-                    case 6:
-                        message.blocks[i] = 6;
-                        break;
-                    case "PlayerAndBankerPair":
-                    case 7:
-                        message.blocks[i] = 7;
-                        break;
-                    case "PlayerAndPlayerPair":
-                    case 8:
-                        message.blocks[i] = 8;
-                        break;
-                    case "PlayerAndBothPair":
-                    case 9:
-                        message.blocks[i] = 9;
-                        break;
-                    case "TieAndBankerPair":
-                    case 10:
-                        message.blocks[i] = 10;
-                        break;
-                    case "TieAndPlayerPair":
-                    case 11:
-                        message.blocks[i] = 11;
-                        break;
-                    case "TieAndBothPair":
-                    case 12:
-                        message.blocks[i] = 12;
-                        break;
-                    case "BankerAndTie":
-                    case 13:
-                        message.blocks[i] = 13;
-                        break;
-                    case "BankerAndBankerPairAndTie":
-                    case 14:
-                        message.blocks[i] = 14;
-                        break;
-                    case "BankerAndPlayerPairAndTie":
-                    case 15:
-                        message.blocks[i] = 15;
-                        break;
-                    case "BankerAndBothPairAndTie":
-                    case 16:
-                        message.blocks[i] = 16;
-                        break;
-                    case "PlayerAndTie":
-                    case 17:
-                        message.blocks[i] = 17;
-                        break;
-                    case "PlayerAndBankerPairAndTie":
-                    case 18:
-                        message.blocks[i] = 18;
-                        break;
-                    case "PlayerAndPlayerPairAndTie":
-                    case 19:
-                        message.blocks[i] = 19;
-                        break;
-                    case "PlayerAndBothPairAndTie":
-                    case 20:
-                        message.blocks[i] = 20;
-                        break;
-                    }
+                for (let i = 0; i < object.blocks.length; ++i) {
+                    if (typeof object.blocks[i] !== "object")
+                        throw TypeError(".roadmap.Column.blocks: object expected");
+                    message.blocks[i] = $root.roadmap.Block.fromObject(object.blocks[i]);
+                }
             }
             return message;
         };
@@ -8178,7 +8383,7 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks && message.blocks.length) {
                 object.blocks = [];
                 for (let j = 0; j < message.blocks.length; ++j)
-                    object.blocks[j] = options.enums === String ? $root.roadmap.Block[message.blocks[j]] : message.blocks[j];
+                    object.blocks[j] = $root.roadmap.Block.toObject(message.blocks[j], options);
             }
             return object;
         };
@@ -8203,7 +8408,7 @@ export const roadmap = $root.roadmap = (() => {
          * Properties of a BeadPlate.
          * @memberof roadmap
          * @interface IBeadPlate
-         * @property {Array.<roadmap.Block>|null} [blocks] BeadPlate blocks
+         * @property {Array.<roadmap.IBlock>|null} [blocks] BeadPlate blocks
          */
 
         /**
@@ -8224,7 +8429,7 @@ export const roadmap = $root.roadmap = (() => {
 
         /**
          * BeadPlate blocks.
-         * @member {Array.<roadmap.Block>} blocks
+         * @member {Array.<roadmap.IBlock>} blocks
          * @memberof roadmap.BeadPlate
          * @instance
          */
@@ -8254,12 +8459,9 @@ export const roadmap = $root.roadmap = (() => {
         BeadPlate.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.blocks != null && message.blocks.length) {
-                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+            if (message.blocks != null && message.blocks.length)
                 for (let i = 0; i < message.blocks.length; ++i)
-                    writer.int32(message.blocks[i]);
-                writer.ldelim();
-            }
+                    $root.roadmap.Block.encode(message.blocks[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
@@ -8297,12 +8499,7 @@ export const roadmap = $root.roadmap = (() => {
                 case 1:
                     if (!(message.blocks && message.blocks.length))
                         message.blocks = [];
-                    if ((tag & 7) === 2) {
-                        let end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
-                            message.blocks.push(reader.int32());
-                    } else
-                        message.blocks.push(reader.int32());
+                    message.blocks.push($root.roadmap.Block.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8342,33 +8539,11 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks != null && message.hasOwnProperty("blocks")) {
                 if (!Array.isArray(message.blocks))
                     return "blocks: array expected";
-                for (let i = 0; i < message.blocks.length; ++i)
-                    switch (message.blocks[i]) {
-                    default:
-                        return "blocks: enum value[] expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                        break;
-                    }
+                for (let i = 0; i < message.blocks.length; ++i) {
+                    let error = $root.roadmap.Block.verify(message.blocks[i]);
+                    if (error)
+                        return "blocks." + error;
+                }
             }
             return null;
         };
@@ -8389,94 +8564,11 @@ export const roadmap = $root.roadmap = (() => {
                 if (!Array.isArray(object.blocks))
                     throw TypeError(".roadmap.BeadPlate.blocks: array expected");
                 message.blocks = [];
-                for (let i = 0; i < object.blocks.length; ++i)
-                    switch (object.blocks[i]) {
-                    default:
-                    case "BlockDefault":
-                    case 0:
-                        message.blocks[i] = 0;
-                        break;
-                    case "Banker":
-                    case 1:
-                        message.blocks[i] = 1;
-                        break;
-                    case "Player":
-                    case 2:
-                        message.blocks[i] = 2;
-                        break;
-                    case "Tie":
-                    case 3:
-                        message.blocks[i] = 3;
-                        break;
-                    case "BankerAndBankerPair":
-                    case 4:
-                        message.blocks[i] = 4;
-                        break;
-                    case "BankerAndPlayerPair":
-                    case 5:
-                        message.blocks[i] = 5;
-                        break;
-                    case "BankerAndBothPair":
-                    case 6:
-                        message.blocks[i] = 6;
-                        break;
-                    case "PlayerAndBankerPair":
-                    case 7:
-                        message.blocks[i] = 7;
-                        break;
-                    case "PlayerAndPlayerPair":
-                    case 8:
-                        message.blocks[i] = 8;
-                        break;
-                    case "PlayerAndBothPair":
-                    case 9:
-                        message.blocks[i] = 9;
-                        break;
-                    case "TieAndBankerPair":
-                    case 10:
-                        message.blocks[i] = 10;
-                        break;
-                    case "TieAndPlayerPair":
-                    case 11:
-                        message.blocks[i] = 11;
-                        break;
-                    case "TieAndBothPair":
-                    case 12:
-                        message.blocks[i] = 12;
-                        break;
-                    case "BankerAndTie":
-                    case 13:
-                        message.blocks[i] = 13;
-                        break;
-                    case "BankerAndBankerPairAndTie":
-                    case 14:
-                        message.blocks[i] = 14;
-                        break;
-                    case "BankerAndPlayerPairAndTie":
-                    case 15:
-                        message.blocks[i] = 15;
-                        break;
-                    case "BankerAndBothPairAndTie":
-                    case 16:
-                        message.blocks[i] = 16;
-                        break;
-                    case "PlayerAndTie":
-                    case 17:
-                        message.blocks[i] = 17;
-                        break;
-                    case "PlayerAndBankerPairAndTie":
-                    case 18:
-                        message.blocks[i] = 18;
-                        break;
-                    case "PlayerAndPlayerPairAndTie":
-                    case 19:
-                        message.blocks[i] = 19;
-                        break;
-                    case "PlayerAndBothPairAndTie":
-                    case 20:
-                        message.blocks[i] = 20;
-                        break;
-                    }
+                for (let i = 0; i < object.blocks.length; ++i) {
+                    if (typeof object.blocks[i] !== "object")
+                        throw TypeError(".roadmap.BeadPlate.blocks: object expected");
+                    message.blocks[i] = $root.roadmap.Block.fromObject(object.blocks[i]);
+                }
             }
             return message;
         };
@@ -8499,7 +8591,7 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks && message.blocks.length) {
                 object.blocks = [];
                 for (let j = 0; j < message.blocks.length; ++j)
-                    object.blocks[j] = options.enums === String ? $root.roadmap.Block[message.blocks[j]] : message.blocks[j];
+                    object.blocks[j] = $root.roadmap.Block.toObject(message.blocks[j], options);
             }
             return object;
         };
@@ -9685,7 +9777,7 @@ export const roadmap = $root.roadmap = (() => {
          * @memberof roadmap
          * @interface IAskRoadCall
          * @property {foundation.IHeader|null} [header] AskRoadCall header
-         * @property {roadmap.Block|null} [block] AskRoadCall block
+         * @property {roadmap.IBlock|null} [block] AskRoadCall block
          */
 
         /**
@@ -9713,11 +9805,11 @@ export const roadmap = $root.roadmap = (() => {
 
         /**
          * AskRoadCall block.
-         * @member {roadmap.Block} block
+         * @member {roadmap.IBlock|null|undefined} block
          * @memberof roadmap.AskRoadCall
          * @instance
          */
-        AskRoadCall.prototype.block = 0;
+        AskRoadCall.prototype.block = null;
 
         /**
          * Creates a new AskRoadCall instance using the specified properties.
@@ -9746,7 +9838,7 @@ export const roadmap = $root.roadmap = (() => {
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
                 $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.block != null && Object.hasOwnProperty.call(message, "block"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.block);
+                $root.roadmap.Block.encode(message.block, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -9785,7 +9877,7 @@ export const roadmap = $root.roadmap = (() => {
                     message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.block = reader.int32();
+                    message.block = $root.roadmap.Block.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -9827,33 +9919,11 @@ export const roadmap = $root.roadmap = (() => {
                 if (error)
                     return "header." + error;
             }
-            if (message.block != null && message.hasOwnProperty("block"))
-                switch (message.block) {
-                default:
-                    return "block: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15:
-                case 16:
-                case 17:
-                case 18:
-                case 19:
-                case 20:
-                    break;
-                }
+            if (message.block != null && message.hasOwnProperty("block")) {
+                let error = $root.roadmap.Block.verify(message.block);
+                if (error)
+                    return "block." + error;
+            }
             return null;
         };
 
@@ -9874,91 +9944,10 @@ export const roadmap = $root.roadmap = (() => {
                     throw TypeError(".roadmap.AskRoadCall.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
-            switch (object.block) {
-            case "BlockDefault":
-            case 0:
-                message.block = 0;
-                break;
-            case "Banker":
-            case 1:
-                message.block = 1;
-                break;
-            case "Player":
-            case 2:
-                message.block = 2;
-                break;
-            case "Tie":
-            case 3:
-                message.block = 3;
-                break;
-            case "BankerAndBankerPair":
-            case 4:
-                message.block = 4;
-                break;
-            case "BankerAndPlayerPair":
-            case 5:
-                message.block = 5;
-                break;
-            case "BankerAndBothPair":
-            case 6:
-                message.block = 6;
-                break;
-            case "PlayerAndBankerPair":
-            case 7:
-                message.block = 7;
-                break;
-            case "PlayerAndPlayerPair":
-            case 8:
-                message.block = 8;
-                break;
-            case "PlayerAndBothPair":
-            case 9:
-                message.block = 9;
-                break;
-            case "TieAndBankerPair":
-            case 10:
-                message.block = 10;
-                break;
-            case "TieAndPlayerPair":
-            case 11:
-                message.block = 11;
-                break;
-            case "TieAndBothPair":
-            case 12:
-                message.block = 12;
-                break;
-            case "BankerAndTie":
-            case 13:
-                message.block = 13;
-                break;
-            case "BankerAndBankerPairAndTie":
-            case 14:
-                message.block = 14;
-                break;
-            case "BankerAndPlayerPairAndTie":
-            case 15:
-                message.block = 15;
-                break;
-            case "BankerAndBothPairAndTie":
-            case 16:
-                message.block = 16;
-                break;
-            case "PlayerAndTie":
-            case 17:
-                message.block = 17;
-                break;
-            case "PlayerAndBankerPairAndTie":
-            case 18:
-                message.block = 18;
-                break;
-            case "PlayerAndPlayerPairAndTie":
-            case 19:
-                message.block = 19;
-                break;
-            case "PlayerAndBothPairAndTie":
-            case 20:
-                message.block = 20;
-                break;
+            if (object.block != null) {
+                if (typeof object.block !== "object")
+                    throw TypeError(".roadmap.AskRoadCall.block: object expected");
+                message.block = $root.roadmap.Block.fromObject(object.block);
             }
             return message;
         };
@@ -9978,12 +9967,12 @@ export const roadmap = $root.roadmap = (() => {
             let object = {};
             if (options.defaults) {
                 object.header = null;
-                object.block = options.enums === String ? "BlockDefault" : 0;
+                object.block = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.block != null && message.hasOwnProperty("block"))
-                object.block = options.enums === String ? $root.roadmap.Block[message.block] : message.block;
+                object.block = $root.roadmap.Block.toObject(message.block, options);
             return object;
         };
 
@@ -10008,9 +9997,9 @@ export const roadmap = $root.roadmap = (() => {
          * @memberof roadmap
          * @interface IAskRoadRecall
          * @property {foundation.IHeader|null} [header] AskRoadRecall header
-         * @property {roadmap.Block|null} [bigEyeRoadNext] AskRoadRecall bigEyeRoadNext
-         * @property {roadmap.Block|null} [smallRoadNext] AskRoadRecall smallRoadNext
-         * @property {roadmap.Block|null} [cockroachRoadNext] AskRoadRecall cockroachRoadNext
+         * @property {roadmap.IBlock|null} [bigEyeRoadNext] AskRoadRecall bigEyeRoadNext
+         * @property {roadmap.IBlock|null} [smallRoadNext] AskRoadRecall smallRoadNext
+         * @property {roadmap.IBlock|null} [cockroachRoadNext] AskRoadRecall cockroachRoadNext
          * @property {roadmap.IAskRoadCall|null} [askRoadCall] AskRoadRecall askRoadCall
          */
 
@@ -10039,27 +10028,27 @@ export const roadmap = $root.roadmap = (() => {
 
         /**
          * AskRoadRecall bigEyeRoadNext.
-         * @member {roadmap.Block} bigEyeRoadNext
+         * @member {roadmap.IBlock|null|undefined} bigEyeRoadNext
          * @memberof roadmap.AskRoadRecall
          * @instance
          */
-        AskRoadRecall.prototype.bigEyeRoadNext = 0;
+        AskRoadRecall.prototype.bigEyeRoadNext = null;
 
         /**
          * AskRoadRecall smallRoadNext.
-         * @member {roadmap.Block} smallRoadNext
+         * @member {roadmap.IBlock|null|undefined} smallRoadNext
          * @memberof roadmap.AskRoadRecall
          * @instance
          */
-        AskRoadRecall.prototype.smallRoadNext = 0;
+        AskRoadRecall.prototype.smallRoadNext = null;
 
         /**
          * AskRoadRecall cockroachRoadNext.
-         * @member {roadmap.Block} cockroachRoadNext
+         * @member {roadmap.IBlock|null|undefined} cockroachRoadNext
          * @memberof roadmap.AskRoadRecall
          * @instance
          */
-        AskRoadRecall.prototype.cockroachRoadNext = 0;
+        AskRoadRecall.prototype.cockroachRoadNext = null;
 
         /**
          * AskRoadRecall askRoadCall.
@@ -10096,11 +10085,11 @@ export const roadmap = $root.roadmap = (() => {
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
                 $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.bigEyeRoadNext != null && Object.hasOwnProperty.call(message, "bigEyeRoadNext"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.bigEyeRoadNext);
+                $root.roadmap.Block.encode(message.bigEyeRoadNext, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.smallRoadNext != null && Object.hasOwnProperty.call(message, "smallRoadNext"))
-                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.smallRoadNext);
+                $root.roadmap.Block.encode(message.smallRoadNext, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.cockroachRoadNext != null && Object.hasOwnProperty.call(message, "cockroachRoadNext"))
-                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.cockroachRoadNext);
+                $root.roadmap.Block.encode(message.cockroachRoadNext, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.askRoadCall != null && Object.hasOwnProperty.call(message, "askRoadCall"))
                 $root.roadmap.AskRoadCall.encode(message.askRoadCall, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
@@ -10141,13 +10130,13 @@ export const roadmap = $root.roadmap = (() => {
                     message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.bigEyeRoadNext = reader.int32();
+                    message.bigEyeRoadNext = $root.roadmap.Block.decode(reader, reader.uint32());
                     break;
                 case 3:
-                    message.smallRoadNext = reader.int32();
+                    message.smallRoadNext = $root.roadmap.Block.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.cockroachRoadNext = reader.int32();
+                    message.cockroachRoadNext = $root.roadmap.Block.decode(reader, reader.uint32());
                     break;
                 case 5:
                     message.askRoadCall = $root.roadmap.AskRoadCall.decode(reader, reader.uint32());
@@ -10192,87 +10181,21 @@ export const roadmap = $root.roadmap = (() => {
                 if (error)
                     return "header." + error;
             }
-            if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext"))
-                switch (message.bigEyeRoadNext) {
-                default:
-                    return "bigEyeRoadNext: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15:
-                case 16:
-                case 17:
-                case 18:
-                case 19:
-                case 20:
-                    break;
-                }
-            if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext"))
-                switch (message.smallRoadNext) {
-                default:
-                    return "smallRoadNext: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15:
-                case 16:
-                case 17:
-                case 18:
-                case 19:
-                case 20:
-                    break;
-                }
-            if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext"))
-                switch (message.cockroachRoadNext) {
-                default:
-                    return "cockroachRoadNext: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15:
-                case 16:
-                case 17:
-                case 18:
-                case 19:
-                case 20:
-                    break;
-                }
+            if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext")) {
+                let error = $root.roadmap.Block.verify(message.bigEyeRoadNext);
+                if (error)
+                    return "bigEyeRoadNext." + error;
+            }
+            if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext")) {
+                let error = $root.roadmap.Block.verify(message.smallRoadNext);
+                if (error)
+                    return "smallRoadNext." + error;
+            }
+            if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext")) {
+                let error = $root.roadmap.Block.verify(message.cockroachRoadNext);
+                if (error)
+                    return "cockroachRoadNext." + error;
+            }
             if (message.askRoadCall != null && message.hasOwnProperty("askRoadCall")) {
                 let error = $root.roadmap.AskRoadCall.verify(message.askRoadCall);
                 if (error)
@@ -10298,263 +10221,20 @@ export const roadmap = $root.roadmap = (() => {
                     throw TypeError(".roadmap.AskRoadRecall.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
-            switch (object.bigEyeRoadNext) {
-            case "BlockDefault":
-            case 0:
-                message.bigEyeRoadNext = 0;
-                break;
-            case "Banker":
-            case 1:
-                message.bigEyeRoadNext = 1;
-                break;
-            case "Player":
-            case 2:
-                message.bigEyeRoadNext = 2;
-                break;
-            case "Tie":
-            case 3:
-                message.bigEyeRoadNext = 3;
-                break;
-            case "BankerAndBankerPair":
-            case 4:
-                message.bigEyeRoadNext = 4;
-                break;
-            case "BankerAndPlayerPair":
-            case 5:
-                message.bigEyeRoadNext = 5;
-                break;
-            case "BankerAndBothPair":
-            case 6:
-                message.bigEyeRoadNext = 6;
-                break;
-            case "PlayerAndBankerPair":
-            case 7:
-                message.bigEyeRoadNext = 7;
-                break;
-            case "PlayerAndPlayerPair":
-            case 8:
-                message.bigEyeRoadNext = 8;
-                break;
-            case "PlayerAndBothPair":
-            case 9:
-                message.bigEyeRoadNext = 9;
-                break;
-            case "TieAndBankerPair":
-            case 10:
-                message.bigEyeRoadNext = 10;
-                break;
-            case "TieAndPlayerPair":
-            case 11:
-                message.bigEyeRoadNext = 11;
-                break;
-            case "TieAndBothPair":
-            case 12:
-                message.bigEyeRoadNext = 12;
-                break;
-            case "BankerAndTie":
-            case 13:
-                message.bigEyeRoadNext = 13;
-                break;
-            case "BankerAndBankerPairAndTie":
-            case 14:
-                message.bigEyeRoadNext = 14;
-                break;
-            case "BankerAndPlayerPairAndTie":
-            case 15:
-                message.bigEyeRoadNext = 15;
-                break;
-            case "BankerAndBothPairAndTie":
-            case 16:
-                message.bigEyeRoadNext = 16;
-                break;
-            case "PlayerAndTie":
-            case 17:
-                message.bigEyeRoadNext = 17;
-                break;
-            case "PlayerAndBankerPairAndTie":
-            case 18:
-                message.bigEyeRoadNext = 18;
-                break;
-            case "PlayerAndPlayerPairAndTie":
-            case 19:
-                message.bigEyeRoadNext = 19;
-                break;
-            case "PlayerAndBothPairAndTie":
-            case 20:
-                message.bigEyeRoadNext = 20;
-                break;
+            if (object.bigEyeRoadNext != null) {
+                if (typeof object.bigEyeRoadNext !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.bigEyeRoadNext: object expected");
+                message.bigEyeRoadNext = $root.roadmap.Block.fromObject(object.bigEyeRoadNext);
             }
-            switch (object.smallRoadNext) {
-            case "BlockDefault":
-            case 0:
-                message.smallRoadNext = 0;
-                break;
-            case "Banker":
-            case 1:
-                message.smallRoadNext = 1;
-                break;
-            case "Player":
-            case 2:
-                message.smallRoadNext = 2;
-                break;
-            case "Tie":
-            case 3:
-                message.smallRoadNext = 3;
-                break;
-            case "BankerAndBankerPair":
-            case 4:
-                message.smallRoadNext = 4;
-                break;
-            case "BankerAndPlayerPair":
-            case 5:
-                message.smallRoadNext = 5;
-                break;
-            case "BankerAndBothPair":
-            case 6:
-                message.smallRoadNext = 6;
-                break;
-            case "PlayerAndBankerPair":
-            case 7:
-                message.smallRoadNext = 7;
-                break;
-            case "PlayerAndPlayerPair":
-            case 8:
-                message.smallRoadNext = 8;
-                break;
-            case "PlayerAndBothPair":
-            case 9:
-                message.smallRoadNext = 9;
-                break;
-            case "TieAndBankerPair":
-            case 10:
-                message.smallRoadNext = 10;
-                break;
-            case "TieAndPlayerPair":
-            case 11:
-                message.smallRoadNext = 11;
-                break;
-            case "TieAndBothPair":
-            case 12:
-                message.smallRoadNext = 12;
-                break;
-            case "BankerAndTie":
-            case 13:
-                message.smallRoadNext = 13;
-                break;
-            case "BankerAndBankerPairAndTie":
-            case 14:
-                message.smallRoadNext = 14;
-                break;
-            case "BankerAndPlayerPairAndTie":
-            case 15:
-                message.smallRoadNext = 15;
-                break;
-            case "BankerAndBothPairAndTie":
-            case 16:
-                message.smallRoadNext = 16;
-                break;
-            case "PlayerAndTie":
-            case 17:
-                message.smallRoadNext = 17;
-                break;
-            case "PlayerAndBankerPairAndTie":
-            case 18:
-                message.smallRoadNext = 18;
-                break;
-            case "PlayerAndPlayerPairAndTie":
-            case 19:
-                message.smallRoadNext = 19;
-                break;
-            case "PlayerAndBothPairAndTie":
-            case 20:
-                message.smallRoadNext = 20;
-                break;
+            if (object.smallRoadNext != null) {
+                if (typeof object.smallRoadNext !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.smallRoadNext: object expected");
+                message.smallRoadNext = $root.roadmap.Block.fromObject(object.smallRoadNext);
             }
-            switch (object.cockroachRoadNext) {
-            case "BlockDefault":
-            case 0:
-                message.cockroachRoadNext = 0;
-                break;
-            case "Banker":
-            case 1:
-                message.cockroachRoadNext = 1;
-                break;
-            case "Player":
-            case 2:
-                message.cockroachRoadNext = 2;
-                break;
-            case "Tie":
-            case 3:
-                message.cockroachRoadNext = 3;
-                break;
-            case "BankerAndBankerPair":
-            case 4:
-                message.cockroachRoadNext = 4;
-                break;
-            case "BankerAndPlayerPair":
-            case 5:
-                message.cockroachRoadNext = 5;
-                break;
-            case "BankerAndBothPair":
-            case 6:
-                message.cockroachRoadNext = 6;
-                break;
-            case "PlayerAndBankerPair":
-            case 7:
-                message.cockroachRoadNext = 7;
-                break;
-            case "PlayerAndPlayerPair":
-            case 8:
-                message.cockroachRoadNext = 8;
-                break;
-            case "PlayerAndBothPair":
-            case 9:
-                message.cockroachRoadNext = 9;
-                break;
-            case "TieAndBankerPair":
-            case 10:
-                message.cockroachRoadNext = 10;
-                break;
-            case "TieAndPlayerPair":
-            case 11:
-                message.cockroachRoadNext = 11;
-                break;
-            case "TieAndBothPair":
-            case 12:
-                message.cockroachRoadNext = 12;
-                break;
-            case "BankerAndTie":
-            case 13:
-                message.cockroachRoadNext = 13;
-                break;
-            case "BankerAndBankerPairAndTie":
-            case 14:
-                message.cockroachRoadNext = 14;
-                break;
-            case "BankerAndPlayerPairAndTie":
-            case 15:
-                message.cockroachRoadNext = 15;
-                break;
-            case "BankerAndBothPairAndTie":
-            case 16:
-                message.cockroachRoadNext = 16;
-                break;
-            case "PlayerAndTie":
-            case 17:
-                message.cockroachRoadNext = 17;
-                break;
-            case "PlayerAndBankerPairAndTie":
-            case 18:
-                message.cockroachRoadNext = 18;
-                break;
-            case "PlayerAndPlayerPairAndTie":
-            case 19:
-                message.cockroachRoadNext = 19;
-                break;
-            case "PlayerAndBothPairAndTie":
-            case 20:
-                message.cockroachRoadNext = 20;
-                break;
+            if (object.cockroachRoadNext != null) {
+                if (typeof object.cockroachRoadNext !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.cockroachRoadNext: object expected");
+                message.cockroachRoadNext = $root.roadmap.Block.fromObject(object.cockroachRoadNext);
             }
             if (object.askRoadCall != null) {
                 if (typeof object.askRoadCall !== "object")
@@ -10579,19 +10259,19 @@ export const roadmap = $root.roadmap = (() => {
             let object = {};
             if (options.defaults) {
                 object.header = null;
-                object.bigEyeRoadNext = options.enums === String ? "BlockDefault" : 0;
-                object.smallRoadNext = options.enums === String ? "BlockDefault" : 0;
-                object.cockroachRoadNext = options.enums === String ? "BlockDefault" : 0;
+                object.bigEyeRoadNext = null;
+                object.smallRoadNext = null;
+                object.cockroachRoadNext = null;
                 object.askRoadCall = null;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext"))
-                object.bigEyeRoadNext = options.enums === String ? $root.roadmap.Block[message.bigEyeRoadNext] : message.bigEyeRoadNext;
+                object.bigEyeRoadNext = $root.roadmap.Block.toObject(message.bigEyeRoadNext, options);
             if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext"))
-                object.smallRoadNext = options.enums === String ? $root.roadmap.Block[message.smallRoadNext] : message.smallRoadNext;
+                object.smallRoadNext = $root.roadmap.Block.toObject(message.smallRoadNext, options);
             if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext"))
-                object.cockroachRoadNext = options.enums === String ? $root.roadmap.Block[message.cockroachRoadNext] : message.cockroachRoadNext;
+                object.cockroachRoadNext = $root.roadmap.Block.toObject(message.cockroachRoadNext, options);
             if (message.askRoadCall != null && message.hasOwnProperty("askRoadCall"))
                 object.askRoadCall = $root.roadmap.AskRoadCall.toObject(message.askRoadCall, options);
             return object;

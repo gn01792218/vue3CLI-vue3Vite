@@ -122,21 +122,21 @@ export default defineComponent({
             }
       }
       function putBigEyesRoad(gameResult:number){
-         let RoadCol = document.querySelector(`.BigEyesRoad-colum${bigEyesRoadColumn.value}`) as HTMLElement
-            let RoadColItem = RoadCol.children[bigEyesRoadItemIndex.value].firstChild as HTMLElement
-            switch(gameResult){
-            case 1:
-              RoadColItem.classList.add('bigEye-red')
-              break
-            case 2:
-              RoadColItem.classList.add('bigEye-blue')
-              break
-            }
-            bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value] = 1  //代表那一格已經畫過了
-            bigEyesRoadItemIndex.value ++  //增加當前的index
-            lastbigEyesRoadResult.value = currentbigEyesRoadResult.value //將這次陣營記錄到下一次的陣營中
-            lastbigEyesRoadDataLength.value = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length  //將這次的最後一個columns的blocks的長度紀錄起來
-            lastBigEyesRoadColumnLength.value = bigEyesRoadResult.value.columns.length
+        let RoadCol = document.querySelector(`.BigEyesRoad-colum${bigEyesRoadColumn.value}`) as HTMLElement
+        let RoadColItem = RoadCol.children[bigEyesRoadItemIndex.value].firstChild as HTMLElement
+        switch(gameResult){
+          case 1:
+            RoadColItem.classList.add('bigEye-red')
+            break
+          case 2:
+            RoadColItem.classList.add('bigEye-blue')
+            break
+        } 
+        bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value] = 1  //代表那一格已經畫過了
+        bigEyesRoadItemIndex.value ++  //增加當前的index
+        lastbigEyesRoadResult.value = currentbigEyesRoadResult.value //將這次陣營記錄到下一次的陣營中
+        lastbigEyesRoadDataLength.value = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length  //將這次的最後一個columns的blocks的長度紀錄起來
+        lastBigEyesRoadColumnLength.value = bigEyesRoadResult.value.columns.length
             // console.log("現在是第",bigEyesRoadColumn.value,"行；","下一格格子",bigEyesRoadItemIndex.value)
       }
       function removeAskRoadAnimation(){
@@ -204,8 +204,8 @@ export default defineComponent({
         }else{
           // console.log('畫大眼露')
           let item = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks[bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length-1]
-        recordRoad(item)
-        if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
+          recordRoad(item)
+          if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
               // console.log("換陣營前","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value)
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
                 if(bigEyesRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
@@ -246,7 +246,7 @@ export default defineComponent({
                     bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
                   }
             }
-            putBigEyesRoad(item)
+            putBigEyesRoad(item.symbol)
         }
       }
       function showBigEyesRoadInit(){
@@ -254,7 +254,7 @@ export default defineComponent({
         bigEyesRoadResult.value.columns.forEach((item:any)=>{
           item.blocks.forEach((i:any)=>{
             // console.log(i)
-          recordRoad(i)
+          recordRoad(i.symbol)
         if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
               // console.log("換陣營前","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value)
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
@@ -296,7 +296,7 @@ export default defineComponent({
                     bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
                   }
             }
-            putBigEyesRoad(i)
+            putBigEyesRoad(i.symbol)
           })
         })
         bigEyesRoadInit.value = true

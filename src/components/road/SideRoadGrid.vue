@@ -229,188 +229,194 @@ export default defineComponent({
                     bigRoadColArr[bigRoadColumn.value][i] = 1
                   }
             }
-            putBigRoad(roadNum)
+            putBigRoad(roadNum,0)  //問路只有莊閒，不需要莊的數字
         }
         function transfromTie (currentSide:number,gameResult:number){
             if(currentSide==1){
               switch(gameResult){
-                case proto.roadmap.Block.Tie:
-                  return proto.roadmap.Block.BankerAndTie
-                case proto.roadmap.Block.TieAndBankerPair:
-                  return proto.roadmap.Block.BankerAndBankerPairAndTie
-                case proto.roadmap.Block.TieAndPlayerPair:
-                  return proto.roadmap.Block.BankerAndPlayerPairAndTie
-                case proto.roadmap.Block.TieAndBothPair:
-                  return proto.roadmap.Block.BankerAndBothPairAndTie
+                case proto.roadmap.Symbol.Tie:
+                  return proto.roadmap.Symbol.BankerAndTie
+                case proto.roadmap.Symbol.TieAndBankerPair:
+                  return proto.roadmap.Symbol.BankerAndBankerPairAndTie
+                case proto.roadmap.Symbol.TieAndPlayerPair:
+                  return proto.roadmap.Symbol.BankerAndPlayerPairAndTie
+                case proto.roadmap.Symbol.TieAndBothPair:
+                  return proto.roadmap.Symbol.BankerAndBothPairAndTie
               }
             }else if(currentSide==2){
               switch(gameResult){
-                case proto.roadmap.Block.Tie:
-                  return proto.roadmap.Block.PlayerAndTie
-                case proto.roadmap.Block.TieAndPlayerPair:
-                  return proto.roadmap.Block.PlayerAndPlayerPairAndTie
-                case proto.roadmap.Block.TieAndBankerPair:
-                  return proto.roadmap.Block.PlayerAndBankerPairAndTie
-                case proto.roadmap.Block.TieAndBothPair:
-                  return proto.roadmap.Block.PlayerAndBothPairAndTie
+                case proto.roadmap.Symbol.Tie:
+                  return proto.roadmap.Symbol.PlayerAndTie
+                case proto.roadmap.Symbol.TieAndPlayerPair:
+                  return proto.roadmap.Symbol.PlayerAndPlayerPairAndTie
+                case proto.roadmap.Symbol.TieAndBankerPair:
+                  return proto.roadmap.Symbol.PlayerAndBankerPairAndTie
+                case proto.roadmap.Symbol.TieAndBothPair:
+                  return proto.roadmap.Symbol.PlayerAndBothPairAndTie
               }
             }
             else if(currentSide==0){ //只針對第一顆是純和局時的狀態
             // console.log("一開始是和局的狀態")
                   switch(gameResult){  
-                    case proto.roadmap.Block.Tie:
-                      return proto.roadmap.Block.Tie
+                    case proto.roadmap.Symbol.Tie:
+                      return proto.roadmap.Symbol.Tie
 
-                    case proto.roadmap.Block.BankerAndTie:
-                    case proto.roadmap.Block.Banker:
-                      return proto.roadmap.Block.BankerAndTie
+                    case proto.roadmap.Symbol.BankerAndTie:
+                    case proto.roadmap.Symbol.Banker:
+                      return proto.roadmap.Symbol.BankerAndTie
 
-                    case proto.roadmap.Block.TieAndBankerPair:
-                    case proto.roadmap.Block.BankerAndBankerPairAndTie:
-                    case proto.roadmap.Block.BankerAndBankerPair:
-                      return proto.roadmap.Block.BankerAndBankerPairAndTie
+                    case proto.roadmap.Symbol.TieAndBankerPair:
+                    case proto.roadmap.Symbol.BankerAndBankerPairAndTie:
+                    case proto.roadmap.Symbol.BankerAndBankerPair:
+                      return proto.roadmap.Symbol.BankerAndBankerPairAndTie
 
-                    case proto.roadmap.Block.BankerAndPlayerPairAndTie:
-                    case proto.roadmap.Block.BankerAndPlayerPair:
-                      return proto.roadmap.Block.BankerAndPlayerPairAndTie
+                    case proto.roadmap.Symbol.BankerAndPlayerPairAndTie:
+                    case proto.roadmap.Symbol.BankerAndPlayerPair:
+                      return proto.roadmap.Symbol.BankerAndPlayerPairAndTie
 
-                    case proto.roadmap.Block.TieAndBothPair:
-                    case proto.roadmap.Block.BankerAndBothPairAndTie:
-                    case proto.roadmap.Block.BankerAndBothPair:
-                      return proto.roadmap.Block.BankerAndBothPairAndTie
+                    case proto.roadmap.Symbol.TieAndBothPair:
+                    case proto.roadmap.Symbol.BankerAndBothPairAndTie:
+                    case proto.roadmap.Symbol.BankerAndBothPair:
+                      return proto.roadmap.Symbol.BankerAndBothPairAndTie
 
-                    case proto.roadmap.Block.PlayerAndTie:
-                    case proto.roadmap.Block.Player:
-                      return proto.roadmap.Block.PlayerAndTie
+                    case proto.roadmap.Symbol.PlayerAndTie:
+                    case proto.roadmap.Symbol.Player:
+                      return proto.roadmap.Symbol.PlayerAndTie
                     
-                    case proto.roadmap.Block.PlayerAndBankerPairAndTie:
-                    case proto.roadmap.Block.PlayerAndBankerPair:
-                      return proto.roadmap.Block.PlayerAndBankerPairAndTie
+                    case proto.roadmap.Symbol.PlayerAndBankerPairAndTie:
+                    case proto.roadmap.Symbol.PlayerAndBankerPair:
+                      return proto.roadmap.Symbol.PlayerAndBankerPairAndTie
 
-                    case proto.roadmap.Block.TieAndPlayerPair:
-                    case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
-                    case proto.roadmap.Block.PlayerAndPlayerPair:
-                      return proto.roadmap.Block.PlayerAndPlayerPairAndTie
+                    case proto.roadmap.Symbol.TieAndPlayerPair:
+                    case proto.roadmap.Symbol.PlayerAndPlayerPairAndTie:
+                    case proto.roadmap.Symbol.PlayerAndPlayerPair:
+                      return proto.roadmap.Symbol.PlayerAndPlayerPairAndTie
 
-                    case proto.roadmap.Block.TieAndBothPair:
-                    case proto.roadmap.Block.PlayerAndBothPairAndTie:
-                    case proto.roadmap.Block.PlayerAndBothPair:
-                      return proto.roadmap.Block.PlayerAndBothPairAndTie
+                    case proto.roadmap.Symbol.TieAndBothPair:
+                    case proto.roadmap.Symbol.PlayerAndBothPairAndTie:
+                    case proto.roadmap.Symbol.PlayerAndBothPair:
+                      return proto.roadmap.Symbol.PlayerAndBothPairAndTie
                   }
             }
         }
         function recordBigRoad (gameResult:number){
           switch(gameResult){
-              case proto.roadmap.Block.Banker:
-              case proto.roadmap.Block.BankerAndBankerPair:
-              case proto.roadmap.Block.BankerAndPlayerPair:
-              case proto.roadmap.Block.BankerAndBothPair:
-              case proto.roadmap.Block.BankerAndTie:
-              case proto.roadmap.Block.BankerAndBankerPairAndTie:
-              case proto.roadmap.Block.BankerAndPlayerPairAndTie:
-              case proto.roadmap.Block.BankerAndBothPairAndTie:
+              case proto.roadmap.Symbol.Banker:
+              case proto.roadmap.Symbol.BankerAndBankerPair:
+              case proto.roadmap.Symbol.BankerAndPlayerPair:
+              case proto.roadmap.Symbol.BankerAndBothPair:
+              case proto.roadmap.Symbol.BankerAndTie:
+              case proto.roadmap.Symbol.BankerAndBankerPairAndTie:
+              case proto.roadmap.Symbol.BankerAndPlayerPairAndTie:
+              case proto.roadmap.Symbol.BankerAndBothPairAndTie:
                 currentBigRoadResult.value = 1   
                 break
-              case proto.roadmap.Block.Player:
-              case proto.roadmap.Block.PlayerAndBankerPair:
-              case proto.roadmap.Block.PlayerAndPlayerPair:
-              case proto.roadmap.Block.PlayerAndBothPair:
-              case proto.roadmap.Block.PlayerAndTie:
-              case proto.roadmap.Block.PlayerAndBankerPairAndTie:
-              case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
-              case proto.roadmap.Block.PlayerAndBothPairAndTie:
+              case proto.roadmap.Symbol.Player:
+              case proto.roadmap.Symbol.PlayerAndBankerPair:
+              case proto.roadmap.Symbol.PlayerAndPlayerPair:
+              case proto.roadmap.Symbol.PlayerAndBothPair:
+              case proto.roadmap.Symbol.PlayerAndTie:
+              case proto.roadmap.Symbol.PlayerAndBankerPairAndTie:
+              case proto.roadmap.Symbol.PlayerAndPlayerPairAndTie:
+              case proto.roadmap.Symbol.PlayerAndBothPairAndTie:
                 currentBigRoadResult.value = 2   
                 break
             }
         }
-        function putBigRoad(gameResult:number){
+        function putBigRoad(gameResult:number,tieCount:number){
           // console.log('畫行',bigRoadColumn.value,'畫格',bigRoadItemIndex.value)
             let bigRoadCol = document.querySelector(`.bigRoad-column${bigRoadColumn.value}`) as HTMLElement
             let bigRoadColItem = bigRoadCol.children[bigRoadItemIndex.value].firstChild as HTMLElement
             switch(gameResult){
-            case proto.roadmap.Block.Tie:
-              bigRoadColItem.classList.add('big-T')
-              break 
-            case proto.roadmap.Block.Banker:
-              bigRoadColItem.classList.add('big-B')
-              break
-            case proto.roadmap.Block.Player:
-              bigRoadColItem.classList.add('big-P')
-              break
-            case proto.roadmap.Block.BankerAndBankerPair:
-              bigRoadColItem.classList.add('big-B-BPair')
-              break
-            case proto.roadmap.Block.BankerAndPlayerPair:
-              bigRoadColItem.classList.add('big-B-PPair')
-              break
-            case proto.roadmap.Block.BankerAndBothPair:
-              bigRoadColItem.classList.add('big-B-BothPair')
-              break
-            case proto.roadmap.Block.PlayerAndBankerPair:
-              bigRoadColItem.classList.add('big-P-BPair')
-              break
-            case proto.roadmap.Block.PlayerAndPlayerPair:
-              bigRoadColItem.classList.add('big-P-PPair')
-              break
-            case proto.roadmap.Block.PlayerAndBothPair:
-              bigRoadColItem.classList.add('big-P-BothPair')
-              break
-            case proto.roadmap.Block.BankerAndTie:
-              if(bigRoadColItem.classList[0]){
-                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT')
-              }else{
-                bigRoadColItem.classList.add('big-BT')
-              }
-              break
-            case proto.roadmap.Block.BankerAndBankerPairAndTie:
-              if(bigRoadColItem.classList[0]){
-                 bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-BPair')
-              }else{
-                bigRoadColItem.classList.add('big-BT-BPair')
-              }
-              break
-            case proto.roadmap.Block.BankerAndPlayerPairAndTie:
-              if(bigRoadColItem.classList[0]){
-                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-PPair')
-              }else{
-                bigRoadColItem.classList.add('big-BT-PPair')
-              }
-              break
-            case proto.roadmap.Block.BankerAndBothPairAndTie:
-              if(bigRoadColItem.classList[0]){
-                 bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-BothPair')
-              }else{
-                bigRoadColItem.classList.add('big-BT-BothPair')
-              }
-              break
-            case proto.roadmap.Block.PlayerAndTie:
-              if(bigRoadColItem.classList[0]){
-                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT')
-              }else{
-                bigRoadColItem.classList.add('big-PT')
-              }
-              break
-            case proto.roadmap.Block.PlayerAndBankerPairAndTie:
-              if(bigRoadColItem.classList[0]){
-                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-BPair')
-              }else{
-                bigRoadColItem.classList.add('big-PT-BPair')
-              }
-              break
-            case proto.roadmap.Block.PlayerAndPlayerPairAndTie:
-              if(bigRoadColItem.classList[0]){
-                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-PPair')
-              }else{
-                bigRoadColItem.classList.add('big-PT-PPair')
-              }
-              break
-            case proto.roadmap.Block.PlayerAndBothPairAndTie:
-              if(bigRoadColItem.classList[0]){
-                bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-BothPair')
-              }else{
-                bigRoadColItem.classList.add('big-PT-BothPair')
-              }
-              break
+              case proto.roadmap.Symbol.Tie:
+                bigRoadColItem.classList.add('big-T')
+                break 
+              case proto.roadmap.Symbol.Banker:
+                bigRoadColItem.classList.add('big-B')
+                break
+              case proto.roadmap.Symbol.Player:
+                bigRoadColItem.classList.add('big-P')
+                break
+              case proto.roadmap.Symbol.BankerAndBankerPair:
+                bigRoadColItem.classList.add('big-B-BPair')
+                break
+              case proto.roadmap.Symbol.BankerAndPlayerPair:
+                bigRoadColItem.classList.add('big-B-PPair')
+                break
+              case proto.roadmap.Symbol.BankerAndBothPair:
+                bigRoadColItem.classList.add('big-B-BothPair')
+                break
+              case proto.roadmap.Symbol.PlayerAndBankerPair:
+                bigRoadColItem.classList.add('big-P-BPair')
+                break
+              case proto.roadmap.Symbol.PlayerAndPlayerPair:
+                bigRoadColItem.classList.add('big-P-PPair')
+                break
+              case proto.roadmap.Symbol.PlayerAndBothPair:
+                bigRoadColItem.classList.add('big-P-BothPair')
+                break
+              case proto.roadmap.Symbol.BankerAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT')
+                }else{
+                  bigRoadColItem.classList.add('big-BT')
+                }
+                break
+              case proto.roadmap.Symbol.BankerAndBankerPairAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-BPair')
+                }else{
+                  bigRoadColItem.classList.add('big-BT-BPair')
+                }
+                break
+              case proto.roadmap.Symbol.BankerAndPlayerPairAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-PPair')
+                }else{
+                  bigRoadColItem.classList.add('big-BT-PPair')
+                }
+                break
+              case proto.roadmap.Symbol.BankerAndBothPairAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-BT-BothPair')
+                }else{
+                  bigRoadColItem.classList.add('big-BT-BothPair')
+                }
+                break
+              case proto.roadmap.Symbol.PlayerAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT')
+                }else{
+                  bigRoadColItem.classList.add('big-PT')
+                }
+                break
+              case proto.roadmap.Symbol.PlayerAndBankerPairAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-BPair')
+                }else{
+                  bigRoadColItem.classList.add('big-PT-BPair')
+                }
+                break
+              case proto.roadmap.Symbol.PlayerAndPlayerPairAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-PPair')
+                }else{
+                  bigRoadColItem.classList.add('big-PT-PPair')
+                }
+                break
+              case proto.roadmap.Symbol.PlayerAndBothPairAndTie:
+                if(bigRoadColItem.classList[0]){
+                  bigRoadColItem.classList.replace(bigRoadColItem.classList[0],'big-PT-BothPair')
+                }else{
+                  bigRoadColItem.classList.add('big-PT-BothPair')
+                }
+                break
+            }
+            if(tieCount>0){  //貼上和局的數字
+            console.log('和局的次數',tieCount)
+              let tienumber = document.createElement('div')
+              tienumber.classList.add(`tie${tieCount}`)
+              bigRoadColItem.appendChild(tienumber)
             }
             bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value] = 1  //代表那一格已經畫過了
             bigRoadItemIndex.value ++  //增加當前的index
@@ -495,27 +501,27 @@ export default defineComponent({
               console.log('前一局是和局')
                switch(winner){
                 case 1:
-                  winner = proto.roadmap.Block.BankerAndTie
+                  winner = proto.roadmap.Symbol.BankerAndTie
                   break
                 case 2:
-                  winner = proto.roadmap.Block.PlayerAndTie
+                  winner = proto.roadmap.Symbol.PlayerAndTie
                   break
                 //還要新增所有其他狀況-->和局
               }
             } 
-            putBigRoad(winner)
+            putBigRoad(winner,0)
           // })
         }
         function showBigRoadInitTest () {
           // console.log("畫大路初始化",bigRoadResult.value.columns)
           beadPlateResult.value.blocks.forEach((i:any)=>{ 
-            if(i==3 || i==10 || i==11 || i==12){
-              i = transfromTie(currentBigRoadResult.value,i)
+            if(i.symbol==3 || i.symbol==10 || i.symbol==11 || i.symbol==12){
+              i.symbol = transfromTie(currentBigRoadResult.value,i.symbol)
             }
             // console.log('轉換後',i)
-            recordBigRoad(i)  //1.紀錄陣營-->可能要移到轉化陣營之後再紀錄!!!!
-            if(i == 13 || i == 14 || i ==15 || i == 16 || i ==17 ||
-                i == 18 || i == 19 || i == 20 ){
+            recordBigRoad(i.symbol)  //1.紀錄陣營-->可能要移到轉化陣營之後再紀錄!!!!
+            if(i.symbol == 13 || i.symbol == 14 || i.symbol ==15 || i.symbol == 16 || i.symbol ==17 ||
+                i.symbol == 18 || i.symbol == 19 || i.symbol == 20 ){
                   bigRoadTie.value = true
                   console.log("是否和局",bigRoadTie.value)
             }
@@ -581,16 +587,16 @@ export default defineComponent({
             }
             if(lastBigRoadResult.value==0 && bigRoadItemIndex.value==1 && bigRoadColumn.value==0){ //應付一開始是和局3的狀態
               bigRoadItemIndex.value--
-              switch(i){
+              switch(i.symbol){
                 case 1:
-                  i = proto.roadmap.Block.BankerAndTie
+                  i.symbol = proto.roadmap.Symbol.BankerAndTie
                   break
                 case 2:
-                  i = proto.roadmap.Block.PlayerAndTie
+                  i.symbol = proto.roadmap.Symbol.PlayerAndTie
                   break
               }
             } 
-            putBigRoad(i)
+            putBigRoad(i.symbol,i.tieCount)
           })
           bigRoadInit.value = true
         }
@@ -602,7 +608,7 @@ export default defineComponent({
               item = transfromTie(currentBigRoadResult.value,item)
               console.log("轉換畫",item)
             }
-            recordBigRoad(item)  //1.紀錄陣營
+            recordBigRoad(item.symbol)  //1.紀錄陣營
             if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
                 item == 18 || item == 19 || item == 20){
                   bigRoadTie.value = true
@@ -671,21 +677,21 @@ export default defineComponent({
               bigRoadItemIndex.value--
                switch(item){
                 case 1:
-                  item = proto.roadmap.Block.BankerAndTie
+                  item = proto.roadmap.Symbol.BankerAndTie
                   break
                 case 2:
-                  item = proto.roadmap.Block.PlayerAndTie
+                  item = proto.roadmap.Symbol.PlayerAndTie
                   break
               }
             } 
-            putBigRoad(item)
+            putBigRoad(item.symbol,0)
         }
         function showBigRoadInit() {
           // console.log("畫大路初始化",bigRoadResult.value.columns)
           bigRoadResult.value.columns.forEach((i:any)=>{ 
             // console.log(i.blocks) //初始化時所有都畫
             i.blocks.forEach((item:any)=>{
-              recordBigRoad(item)  //1.紀錄陣營
+              recordBigRoad(item.symbol)  //1.紀錄陣營
             // if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
             //     item == 18 || item == 19 || item == 20){
             //       bigRoadTie.value = true
@@ -750,7 +756,7 @@ export default defineComponent({
             //     bigRoadTie.value = false
             //   }
             // }
-            putBigRoad(item)
+            putBigRoad(item.symbol,item.tieCount)
             })
           })
           bigRoadInit.value = true
@@ -824,7 +830,7 @@ export default defineComponent({
             //     bigRoadTie.value = false
             //   }
             // }
-            putBigRoad(item)
+            putBigRoad(item.symbol,0)
         }
         function showBigRoadAll () { //每次都重畫的版本
           // resetBigRoad()
@@ -908,7 +914,7 @@ export default defineComponent({
             //   }
             // }
             // console.log(bigRoadColumn.value,bigRoadItemIndex.value,bigRoadColArr)
-            putBigRoad(item)
+            putBigRoad(item,0)
             })
            })
             console.log('最後大路增加的欄數',addBigColumnCount.value)

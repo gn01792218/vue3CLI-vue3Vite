@@ -106,40 +106,40 @@ export default defineComponent({
           let beadPlateCol = document.querySelector(`.beadPlate-column${columnNum}`) as HTMLElement
           let beadPlateColItem = beadPlateCol.children[roadnum].firstChild as HTMLElement
           switch(gameResult){
-            case proto.roadmap.Block.Banker:
+            case proto.roadmap.Symbol.Banker:
               beadPlateColItem.classList.add('BeadPlate-B')
               break
-            case proto.roadmap.Block.Player:
+            case proto.roadmap.Symbol.Player:
               beadPlateColItem.classList.add('BeadPlate-P')
               break
-            case proto.roadmap.Block.Tie:
+            case proto.roadmap.Symbol.Tie:
               beadPlateColItem.classList.add('BeadPlate-T')
               break
-            case proto.roadmap.Block.BankerAndBankerPair:
+            case proto.roadmap.Symbol.BankerAndBankerPair:
               beadPlateColItem.classList.add('BeadPlate-B-BPair')
               break
-            case proto.roadmap.Block.BankerAndPlayerPair:
+            case proto.roadmap.Symbol.BankerAndPlayerPair:
               beadPlateColItem.classList.add('BeadPlate-B-PPair')
               break
-            case proto.roadmap.Block.BankerAndBothPair:
+            case proto.roadmap.Symbol.BankerAndBothPair:
               beadPlateColItem.classList.add('BeadPlate-B-BothPair')
               break
-            case proto.roadmap.Block.PlayerAndBankerPair:
+            case proto.roadmap.Symbol.PlayerAndBankerPair:
               beadPlateColItem.classList.add('BeadPlate-P-BPair')
               break
-            case proto.roadmap.Block.PlayerAndPlayerPair:
+            case proto.roadmap.Symbol.PlayerAndPlayerPair:
               beadPlateColItem.classList.add('BeadPlate-P-PPair')
               break
-            case proto.roadmap.Block.PlayerAndBothPair:
+            case proto.roadmap.Symbol.PlayerAndBothPair:
               beadPlateColItem.classList.add('BeadPlate-P-BothPair')
               break
-            case proto.roadmap.Block.TieAndBankerPair:
+            case proto.roadmap.Symbol.TieAndBankerPair:
               beadPlateColItem.classList.add('BeadPlate-T-BPair')
               break
-            case proto.roadmap.Block.TieAndPlayerPair:
+            case proto.roadmap.Symbol.TieAndPlayerPair:
               beadPlateColItem.classList.add('BeadPlate-T-PPair')
               break
-            case proto.roadmap.Block.TieAndBothPair:
+            case proto.roadmap.Symbol.TieAndBothPair:
               beadPlateColItem.classList.add('BeadPlate-T-BothPair')
               break
           }
@@ -174,7 +174,7 @@ export default defineComponent({
               beadPlateColumnCount.value++
               roadIndex.value = 0
             }
-            putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+            putRoad(beadPlateColumnCount.value,roadIndex.value,i.symbol)
           })
           isInit.value = true
         }
@@ -191,7 +191,7 @@ export default defineComponent({
               beadPlateColumnCount.value++
               roadIndex.value = 0
             }
-            putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+            putRoad(beadPlateColumnCount.value,roadIndex.value,i.symbol)
             })
         }
         function addColumn () {  //滿格時一次增加一格的方法
