@@ -56,7 +56,7 @@ export default defineComponent({
         //基本資料
         const hasGameResult = ref(false)
         watch(gameEnd,()=>{
-            console.log('換薛時候要取消顯示輸贏')
+            // console.log('換薛時候要取消顯示輸贏')
             resetGameResult()
             hasGameResult.value = false
         })
@@ -72,7 +72,7 @@ export default defineComponent({
         watch(gameResult,()=>{
             //依據不同的情況，添加不同的顏色class
             // if(gameResult.value){
-                console.log('伺服器遊戲結果',gameResult.value)
+                // console.log('伺服器遊戲結果',gameResult.value)
                 showGameResult()
             // }
         })

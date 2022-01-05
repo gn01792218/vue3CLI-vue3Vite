@@ -56,7 +56,7 @@ export default defineComponent({
       window.addEventListener('reConnect',()=>{
         console.log('偵測崇廉')
         resetBigRoad()
-        console.log('大路陣列長度',bigRoadColArr.length)
+        // console.log('大路陣列長度',bigRoadColArr.length)
         showBigRoadInitTest ()
         // if(bigRoadInit.value){
         //     // showBigRoad()
@@ -151,7 +151,7 @@ export default defineComponent({
           resetBigRoad()
         })
         watch(tableNum,()=>{
-          console.log("換桌側邊路圖重置")
+          // console.log("換桌側邊路圖重置")
           resetBigRoad()
         })
         // watch(beadPlateResult,()=>{

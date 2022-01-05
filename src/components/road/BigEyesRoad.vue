@@ -94,7 +94,7 @@ export default defineComponent({
           resetBigEyesRoad()
         })
         watch(tableNum,()=>{
-          console.log("換桌-重置大眼路")
+          // console.log("換桌-重置大眼路")
           resetBigEyesRoad()
         })
         watch(bigEyesRoadResult,()=>{
@@ -204,7 +204,7 @@ export default defineComponent({
         }else{
           // console.log('畫大眼露')
           let item = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks[bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length-1]
-          recordRoad(item)
+          recordRoad(item.symbol)
           if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
               // console.log("換陣營前","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value)
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候

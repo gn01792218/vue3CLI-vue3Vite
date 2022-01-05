@@ -26,11 +26,11 @@ export const state = {
         switch(i.askRoadCall.block.symbol){
           case 1:
             state.askBankByRoundStart = i
-            console.log('回合問路,莊問:',state.askBankByRoundStart)
+            // console.log('回合問路,莊問:',state.askBankByRoundStart)
             break
           case 2:
             state.askPlayerByRoundStart = i
-            console.log('閒問',state.askPlayerByRoundStart)
+            // console.log('閒問',state.askPlayerByRoundStart)
             break
         }
       })

@@ -87,7 +87,7 @@ export default defineComponent({
           resetRoad()
         })
         watch(tableNum,()=>{
-          console.log("換桌豬盤路重置")
+          // console.log("換桌豬盤路重置")
           resetRoad()
         })
         watch(beadPlateResult,()=>{ 

@@ -256,12 +256,15 @@ export default defineComponent({
         const currentAskRoadSide = ref(0)
         //監聽
         watch(roundAskBanker,()=>{
+            console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
             changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
         })
         watch(roundAskPlayer,()=>{
+            console.log('回合閒問路',roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
             changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
         })
         watch(askRoadRecall,()=>{
+            console.log('按鈕問路reCall','問哪一路',currentAskRoadSide.value,'問路結果',askRoadRecall.value)
             changeAskRoadBtnView(currentAskRoadSide.value,askRoadRecall.value)
         })
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字

@@ -86,7 +86,7 @@ export default defineComponent({
           resetSmallRoad()
         })
         watch(tableNum,()=>{
-          console.log("換桌-重置小路")
+          // console.log("換桌-重置小路")
           resetSmallRoad()
         })
         watch(smallRoadResult,()=>{

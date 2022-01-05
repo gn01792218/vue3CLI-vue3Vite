@@ -81,7 +81,6 @@ export default defineComponent({
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
       showCardResult.value = false
-      console.log('換薛時候，卡牌的計點數字不顯示')
     })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
@@ -90,7 +89,7 @@ export default defineComponent({
       // console.log('不顯示卡牌點數',showCardResult.value)
      })
      watch(gameResult,()=>{
-       console.log(gameResult.value.length)
+      //  console.log(gameResult.value.length)
         setWinCardBoxLight()
        if(gameResult.value.length>0){
          showCardTotalPoint()

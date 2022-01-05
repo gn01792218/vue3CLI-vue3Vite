@@ -84,7 +84,7 @@ export default defineComponent({
           resetcockroachRoad()
         })
         watch(tableNum,()=>{
-          console.log("換桌-重置蟑螂路")
+          // console.log("換桌-重置蟑螂路")
           resetcockroachRoad()
         })
         watch(cockroachRoadResult,()=>{
