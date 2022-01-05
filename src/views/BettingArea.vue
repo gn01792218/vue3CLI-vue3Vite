@@ -995,7 +995,7 @@ export default defineComponent({
             currentAskRoadSide.value = roadNum
             store.commit('roadmap/setAskRoad',roadNum)
             sendAskRoadCall({
-                block:roadNum
+                symbol:roadNum
             })
         }
         function changeAskRoadBtnView(currentRoadNum:number,askRoadRecall:any){  //更換問路時候，按鈕上顯示的圖案

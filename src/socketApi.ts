@@ -81,7 +81,9 @@ export const sendAskRoadCall = (data:any) => {
         header:foundation.Header.create({
             uri:route.AskRoadCall
         }),
-        block:data.block,
+        block:roadmap.Block.create({
+            symbol:data.symbol
+        })
     })
     let bytes = roadmap.AskRoadCall.encode(proto).finish()
     console.log('sendAskRoadCall',proto)
