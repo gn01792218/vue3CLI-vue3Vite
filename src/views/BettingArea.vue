@@ -89,7 +89,13 @@
         </div>
         <div class="bettingArea-btn d-flex justify-content-between align-items-center p-2 position-relative">
             <LightBox/>
-            <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
+            <div class="bettingArea-btn-left d-flex justify-content-around align-items-center">
+                <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
+                <div class="bettingArea-btn-betInfo d-xl-none p-1 pl-2 pr-2">
+                    <span>檯紅<br/>{{numberFormat(minBetLimit)}}-{{numberFormat(maxBetLimit)}}</span>
+                </div>
+              <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center"><i class="bi bi-arrow-counterclockwise"></i>確定</div>
+            </div>
             <div class="askRoad d-flex">
                 <div class="askRoad-player p-1 mr-2" @click="askRoad(2)">
                     <p>閒問路</p>
@@ -97,9 +103,6 @@
                         <div id="bigEyeRoad-2" ></div>
                         <div id="smallRoad-2" ></div>
                         <div id="cockroachRoad-2" ></div> 
-                        <!-- <div id="bigEyeRoad-2" class=" bigEye-red-ask"></div>
-                        <div id="smallRoad-2" class="small-blue-ask"></div>
-                        <div id="cockroachRoad-2" class="cockroach-red-ask"></div> -->
                     </div>
                 </div>
                 <div class="askRoad-banker p-1" @click="askRoad(1)">
@@ -108,9 +111,6 @@
                         <div id="bigEyeRoad-1"></div>
                         <div id="smallRoad-1"></div>
                         <div id="cockroachRoad-1"></div>
-                        <!-- <div id="bigEyeRoad-1" class="bigEye-blue-ask"></div>
-                        <div id="smallRoad-1" class="small-red-ask"></div>
-                        <div id="cockroachRoad-1" class="cockroach-blue-ask"></div> -->
                     </div>
                 </div>
             </div>
@@ -167,6 +167,14 @@ export default defineComponent({
             //初始化籌碼
             setDefaultCoin()
             // setMinBetCoinUnusable()
+             switch(tableNum.value){
+                case 'A':
+                    getBetLimit(tableInfoData.A)
+                    break
+                case 'B':
+                    getBetLimit(tableInfoData.B)
+                    break
+            }
         })
         const route = useRoute()
         const tableNum = computed(()=>{
@@ -176,6 +184,16 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
+            minBetLimit.value = 999999999
+            maxBetLimit.value = -1
+            switch(tableNum.value){
+                case 'A':
+                    getBetLimit(tableInfoData.A)
+                    break
+                case 'B':
+                    getBetLimit(tableInfoData.B)
+                    break
+            }
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
@@ -256,15 +274,15 @@ export default defineComponent({
         const currentAskRoadSide = ref(0)
         //監聽
         watch(roundAskBanker,()=>{
-            console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
+            // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
             changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
         })
         watch(roundAskPlayer,()=>{
-            console.log('回合閒問路',roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
+            // console.log('回合閒問路',roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
             changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
         })
         watch(askRoadRecall,()=>{
-            console.log('按鈕問路reCall','問哪一路',currentAskRoadSide.value,'問路結果',askRoadRecall.value)
+            // console.log('按鈕問路reCall','問哪一路',currentAskRoadSide.value,'問路結果',askRoadRecall.value)
             changeAskRoadBtnView(currentAskRoadSide.value,askRoadRecall.value)
         })
         watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
@@ -469,6 +487,44 @@ export default defineComponent({
             },
         ]) 
         const betErrorArray = ref<Array<string>>([])
+        const tableInfoData = reactive<any>({
+        'A':{
+          playerMin:2000,
+          playerMax:100000,
+          bankerMin:2000,
+          bankerMax:100000,
+          tieMin:0,
+          tieMax:12500,
+          pairMin:0,
+          pairMax:9000,
+        },
+        'B':{
+          playerMin:5000,
+          playerMax:300000,
+          bankerMin:5000,
+          bankerMax:300000,
+          tieMin:500,
+          tieMax:37500,
+          pairMin:500,
+          pairMax:27000,
+        }
+    })
+        const minBetLimit = ref(999999999)
+        const maxBetLimit = ref(-1)
+        function getBetLimit (tableBetIndoData:any){
+            Object.keys(tableBetIndoData).forEach((i:any)=>{
+                if(tableBetIndoData[i]<minBetLimit.value){
+                    minBetLimit.value = tableBetIndoData[i]
+                }
+                if(tableBetIndoData[i]>maxBetLimit.value){
+                    maxBetLimit.value = tableBetIndoData[i]
+                }
+            })
+            console.log(minBetLimit.value,maxBetLimit.value)
+        }
+        function numberFormat(number:number):string{
+            return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
+        }
         function setDefaultCoin(){
             let defaultCoin = document.querySelector('#defaultCoin1') as HTMLElement
             let rect = defaultCoin.getBoundingClientRect()
@@ -1005,23 +1061,28 @@ export default defineComponent({
             smallRoad.classList.remove(smallRoad.classList[0])
             bigEyes.classList.remove(bigEyes.classList[0])
             cockroach.classList.remove(cockroach.classList[0])
-            switch(askRoadRecall.smallRoadNext.symbol){
+            if(askRoadRecall.smallRoadNext){
+                switch(askRoadRecall.smallRoadNext.symbol){
                 case 1:
                     smallRoad.classList.add('small-red-ask')
                     break
                 case 2:
                     smallRoad.classList.add('small-blue-ask')
                     break
+                }
             }
-            switch(askRoadRecall.bigEyeRoadNext.symbol){
+            if(askRoadRecall.bigEyeRoadNext){
+                switch(askRoadRecall.bigEyeRoadNext.symbol){
                 case 1:
                     bigEyes.classList.add('bigEye-red-ask') 
                     break
                 case 2:
                     bigEyes.classList.add('bigEye-blue-ask') 
                     break
+                }
             }
-            switch(askRoadRecall.cockroachRoadNext.symbol){
+            if(askRoadRecall.cockroachRoadNext){
+                switch(askRoadRecall.cockroachRoadNext.symbol){
                 case 1:
                     cockroach.classList.add('cockroach-red-ask')
                     break
@@ -1029,7 +1090,8 @@ export default defineComponent({
                     cockroach.classList.add('cockroach-blue-ask')
                     break
             }
-            console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
+            }
+            // console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
         }
         return{
             //data
@@ -1040,6 +1102,8 @@ export default defineComponent({
             total,
             betErrorArray,
             betInfo,
+            minBetLimit,
+            maxBetLimit,
             //methods
             chooseCoint,
             cointAnimate,
@@ -1050,6 +1114,7 @@ export default defineComponent({
             betErrorAnimation,
             sendBetData,
             askRoad,
+            numberFormat,
         }
     }
 })

@@ -706,12 +706,24 @@ a.btn.disabled, fieldset[disabled] a.btn {
   border-top: gray 1px solid;
 }
 
+.bettingArea-btn-left {
+  width: 65%;
+}
+
 .bettingArea-btn-gitbackAllCoin {
   height: 42px;
   width: 100px;
   border-radius: 5px;
   background-color: #4b4949;
   cursor: pointer;
+}
+
+.bettingArea-btn-betInfo {
+  height: 60px;
+  border-radius: 5px;
+  background-color: #4b4949;
+  font-size: 18px;
+  text-align: center;
 }
 
 .betArea-item {
@@ -2164,6 +2176,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     border: 2px solid #262626;
     width: 100%;
   }
+  .bettingArea-btn-left {
+    width: 80%;
+  }
   .betArea-pc {
     display: none;
   }
@@ -2578,6 +2593,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .bettingArea-btn {
     height: 55px;
+  }
+  .bettingArea-btn-betInfo {
+    height: 50px;
+    font-size: 16px;
   }
   .betRatioText {
     font-size: 1rem;
@@ -3635,8 +3654,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea {
     height: 230px;
   }
+  .bettingArea-btn-left {
+    width: 65%;
+  }
+  .bettingArea-btn-gitbackAllCoin {
+    width: auto;
+    font-size: 12px;
+    padding: 2px;
+  }
   .bettingArea-btn {
     height: 50px;
+  }
+  .bettingArea-btn-betInfo {
+    font-size: 12px;
+    height: 40px;
   }
   .betArea-item {
     font-size: 1rem;

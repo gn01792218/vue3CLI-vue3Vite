@@ -36,12 +36,22 @@
         background-color: #1e1e1e;
         border-top:gray 1px solid;
     }
+    .bettingArea-btn-left{
+        width: 65%;
+    }
     .bettingArea-btn-gitbackAllCoin{
         height:42px;
         width:100px;
         border-radius: 5px;
         background-color: rgb(75, 73, 73);
         cursor: pointer;
+    }
+    .bettingArea-btn-betInfo{
+        height:60px;
+        border-radius: 5px;
+        background-color: rgb(75, 73, 73);
+        font-size: 18px;
+        text-align: center;
     }
     .betArea-item{
         font-weight:500;

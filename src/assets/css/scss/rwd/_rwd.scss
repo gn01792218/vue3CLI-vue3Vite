@@ -321,7 +321,6 @@
     width: auto !important;
     height: 100%;
     margin-right: auto;
-
     img {
       height: 100%;
     }
@@ -368,6 +367,9 @@
     border: 2px solid #262626;
     width: 100%;
   }
+  .bettingArea-btn-left{
+    width: 80%;
+}
   .betArea-pc {
     display: none;
   }
@@ -642,6 +644,10 @@
   }
   .bettingArea-btn {
     height: 55px;
+  }
+  .bettingArea-btn-betInfo{
+    height:50px;
+    font-size: 16px;
   }
   .betRatioText {
     font-size: 1rem;
@@ -1379,8 +1385,20 @@
   .betArea {
     height: 230px;
   }
+  .bettingArea-btn-left{
+    width:65%;
+  }
+  .bettingArea-btn-gitbackAllCoin{
+    width: auto;
+    font-size: 12px;
+    padding: 2px;
+  }
   .bettingArea-btn {
     height: 50px;
+  }
+  .bettingArea-btn-betInfo{
+    font-size: 12px;
+    height:40px;
   }
   .betArea-item {
     font-size: 1rem;
