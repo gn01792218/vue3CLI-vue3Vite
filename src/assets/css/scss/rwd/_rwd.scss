@@ -367,9 +367,9 @@
     border: 2px solid #262626;
     width: 100%;
   }
-  .bettingArea-btn-left{
+  .bettingArea-btn-left {
     width: 80%;
-}
+  }
   .betArea-pc {
     display: none;
   }
@@ -642,8 +642,13 @@
   .bettingArea-btn {
     height: 55px;
   }
-  .bettingArea-btn-betInfo{
-    height:50px;
+  .betArea-item-top {
+    top: 2%;
+  }
+  .betArea-item-bottom {
+    bottom: 5%;
+  }
+  .bettingArea-btn-betInfo {
     font-size: 16px;
   }
   .betRatioText {
@@ -901,13 +906,16 @@
   #countNumber {
     top: 3%;
   }
-  .table-img{
-    width:150px;
-    height:150px;
+  .table-img {
+    width: 150px;
+    height: 150px;
   }
-  .betArea-item,
-  .betStatus {
-    font-size: 1.5rem;
+  .betArea-item {
+    font-size: 1rem;
+  }
+  .betStatus,
+  .table-total-betStatus {
+    font-size: 0.5rem;
   }
   .alertFont {
     font-size: 1.5rem !important;
@@ -1158,11 +1166,11 @@
     top: 25%;
     font-size: 40%;
   }
-  .table-img{
-    width:100px;
-    height:100px;
+  .table-img {
+    width: 100px;
+    height: 100px;
   }
-  .tableItem{
+  .tableItem {
     font-size: 12px;
   }
   .header-top {
@@ -1179,8 +1187,17 @@
     font-size: 70%;
     width: 40px;
   }
-  .bettingArea-btn-left{
-    width:70%;
+  .alertFont{
+    font-size: 1.3rem !important;
+  }
+  .betArea-item-top {
+    top: 0%;
+  }
+  .betArea-item-bottom {
+    bottom: 0%;
+  }
+  .bettingArea-btn-left {
+    width: 70%;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -1221,8 +1238,12 @@
     //漢堡
     padding: 0;
   }
-  .bettingArea-btn-gitbackAllCoin {
+  .bettingArea-btn-gitbackAllCoin,
+  .bettingArea-btn-check {
     width: 55px;
+  }
+  .bettingArea-btn-betInfo {
+    font-size: 10px;
   }
   .betArea-item {
     font-size: 1rem;
@@ -1270,8 +1291,8 @@
   .video-box {
     height: 210px;
   }
-  .tableItem{
-    padding:5px !important;
+  .tableItem {
+    padding: 5px !important;
   }
   .betArea {
     height: 265px;
@@ -1280,11 +1301,14 @@
     font-size: 0.8rem;
   }
   .alertFont {
-    font-size: 1rem !important;
+    font-size: 0.9rem !important;
   }
   .betArea-item {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     font-weight: bolder;
+  }
+  .betStatus,.table-total-betStatus{
+    font-size: 0.3rem;
   }
   .betRatioText {
     font-size: 0.3rem;
@@ -1366,7 +1390,7 @@
   .header {
     height: 30px;
   }
-  .tableItem{
+  .tableItem {
     flex-direction: column;
   }
   .header-userName {
@@ -1402,10 +1426,10 @@
   .betArea {
     height: 230px;
   }
-  .bettingArea-btn-left{
-    width:65%;
+  .bettingArea-btn-left {
+    width: 65%;
   }
-  .bettingArea-btn-gitbackAllCoin{
+  .bettingArea-btn-gitbackAllCoin {
     width: auto;
     font-size: 12px;
     padding: 2px;
@@ -1413,18 +1437,22 @@
   .bettingArea-btn {
     height: 50px;
   }
-  .bettingArea-btn-betInfo{
+  .bettingArea-btn-betInfo {
     font-size: 12px;
-    height:40px;
+    height: 40px;
+  }
+  .betArea-item-top{
+    flex-direction: row !important;
+    align-items: center;
+    span{
+      margin-right: 5px;
+    }
   }
   .betArea-item {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
   .alertFont {
     font-size: 1.2rem !important;
-  }
-  .betStatus {
-    font-size: 1rem;
   }
   .betArea-mobile {
     height: 121px;
@@ -1537,9 +1565,6 @@
     line-height: 1.75rem;
     font-size: 100%;
   }
-  // .header-btnList{
-  // 	width: 100%;
-  // }
   .video-box {
     height: 190px;
   }
@@ -1565,10 +1590,17 @@
     font-size: 1rem;
   }
   .betArea-mobile {
-    height: 192px;
+    height: 160px;
   }
   .betArea-mobile-container {
-    height: 192px;
+    height: 160px;
+  }
+  .bettingArea-btn-left{
+    width:62%;
+  }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check{
+    font-size: 10px;
+    width:55px;
   }
   .coin-menu1 {
     @include coinSpritePosition(0, 0, 0.5);
@@ -1771,29 +1803,29 @@
   .cockroach-blue {
     @include hisRoadSpritePosition(-1500, 0, 0.02);
   }
-    //和局數字
-    .tie1 {
-      @include tieNumberPosition(0, 0, 0.06);
-    }
-    .tie2 {
-      @include tieNumberPosition(-100, 0, 0.06);
-    }
-    .tie3 {
-      @include tieNumberPosition(-200, 0, 0.06);
-    }
-    .tie4 {
-      @include tieNumberPosition(-300, 0, 0.06);
-    }
-    .tie5 {
-      @include tieNumberPosition(-400, 0, 0.06);
-    }
-    .tie6 {
-      @include tieNumberPosition(-500, 0, 0.06);
-    }
-    .tie7 {
-      @include tieNumberPosition(-600, 0, 0.06);
-    }
-    .tie8 {
-      @include tieNumberPosition(-700, 0, 0.06);
-    }
+  //和局數字
+  .tie1 {
+    @include tieNumberPosition(0, 0, 0.06);
+  }
+  .tie2 {
+    @include tieNumberPosition(-100, 0, 0.06);
+  }
+  .tie3 {
+    @include tieNumberPosition(-200, 0, 0.06);
+  }
+  .tie4 {
+    @include tieNumberPosition(-300, 0, 0.06);
+  }
+  .tie5 {
+    @include tieNumberPosition(-400, 0, 0.06);
+  }
+  .tie6 {
+    @include tieNumberPosition(-500, 0, 0.06);
+  }
+  .tie7 {
+    @include tieNumberPosition(-600, 0, 0.06);
+  }
+  .tie8 {
+    @include tieNumberPosition(-700, 0, 0.06);
+  }
 }

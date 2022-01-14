@@ -176,10 +176,8 @@ img {
       -ms-flex-align: center;
           align-items: center;
   color: white;
-  font-size: 2rem;
   border: 1px solid gray;
   text-align: center;
-  line-height: 1.55em;
 }
 
 .red {
@@ -725,16 +723,23 @@ a.btn.disabled, fieldset[disabled] a.btn {
   width: 65%;
 }
 
-.bettingArea-btn-gitbackAllCoin {
+.bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
   height: 42px;
   width: 100px;
   border-radius: 5px;
-  background-color: #4b4949;
   cursor: pointer;
 }
 
+.bettingArea-btn-gitbackAllCoin {
+  background-color: rgba(0, 0, 255, 0.692);
+}
+
+.bettingArea-btn-check {
+  background-color: rgba(128, 0, 128, 0.829);
+}
+
 .bettingArea-btn-betInfo {
-  height: 60px;
+  height: 42px;
   border-radius: 5px;
   background-color: #4b4949;
   font-size: 18px;
@@ -798,13 +803,27 @@ a.btn.disabled, fieldset[disabled] a.btn {
           box-shadow: 0px 0px 25px #ffffb2;
 }
 
+.betArea-item-top {
+  top: 25%;
+}
+
+.betArea-item-bottom {
+  bottom: 10%;
+}
+
 .betStatus {
   pointer-events: none;
   color: white;
-  position: absolute;
-  bottom: 0;
-  font-size: 2rem;
+  font-size: 1rem;
   z-index: 1;
+  margin-bottom: 0;
+}
+
+.table-total-betStatus {
+  pointer-events: none;
+  coclor: gray;
+  font-size: 1rem;
+  margin-bottom: 0;
 }
 
 .winAnimation {
@@ -2606,8 +2625,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn {
     height: 55px;
   }
+  .betArea-item-top {
+    top: 2%;
+  }
+  .betArea-item-bottom {
+    bottom: 5%;
+  }
   .bettingArea-btn-betInfo {
-    height: 50px;
     font-size: 16px;
   }
   .betRatioText {
@@ -2998,9 +3022,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 150px;
     height: 150px;
   }
-  .betArea-item,
-  .betStatus {
-    font-size: 1.5rem;
+  .betArea-item {
+    font-size: 1rem;
+  }
+  .betStatus,
+  .table-total-betStatus {
+    font-size: 0.5rem;
   }
   .alertFont {
     font-size: 1.5rem !important;
@@ -3412,6 +3439,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 70%;
     width: 40px;
   }
+  .alertFont {
+    font-size: 1.3rem !important;
+  }
+  .betArea-item-top {
+    top: 0%;
+  }
+  .betArea-item-bottom {
+    bottom: 0%;
+  }
   .bettingArea-btn-left {
     width: 70%;
   }
@@ -3454,8 +3490,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .navbar-toggler {
     padding: 0;
   }
-  .bettingArea-btn-gitbackAllCoin {
+  .bettingArea-btn-gitbackAllCoin,
+  .bettingArea-btn-check {
     width: 55px;
+  }
+  .bettingArea-btn-betInfo {
+    font-size: 10px;
   }
   .betArea-item {
     font-size: 1rem;
@@ -3515,11 +3555,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 0.8rem;
   }
   .alertFont {
-    font-size: 1rem !important;
+    font-size: 0.9rem !important;
   }
   .betArea-item {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     font-weight: bolder;
+  }
+  .betStatus,
+  .table-total-betStatus {
+    font-size: 0.3rem;
   }
   .betRatioText {
     font-size: 0.3rem;
@@ -3704,14 +3748,23 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 12px;
     height: 40px;
   }
+  .betArea-item-top {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .betArea-item-top span {
+    margin-right: 5px;
+  }
   .betArea-item {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
   .alertFont {
     font-size: 1.2rem !important;
-  }
-  .betStatus {
-    font-size: 1rem;
   }
   .betArea-mobile {
     height: 121px;
@@ -3887,10 +3940,18 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   .betArea-mobile {
-    height: 192px;
+    height: 160px;
   }
   .betArea-mobile-container {
-    height: 192px;
+    height: 160px;
+  }
+  .bettingArea-btn-left {
+    width: 62%;
+  }
+  .bettingArea-btn-gitbackAllCoin,
+  .bettingArea-btn-check {
+    font-size: 10px;
+    width: 55px;
   }
   .coin-menu1 {
     width: 39.5px;

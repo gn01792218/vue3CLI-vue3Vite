@@ -10,8 +10,15 @@
                 </transition-group>
             </ul>
                 <div class="betArea-pc-container">
-                    <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6 d-flex flex-column']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
-                        <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
+                    <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6 d-flex flex-column justify-content-around']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="sendBetData($event,index)" >
+                        <div class="betArea-item-top position-absolute d-flex flex-column">
+                            <span>{{i.host}}</span>
+                            <span class="betRatioText">{{i.odds}}</span>
+                        </div>
+                        <div class="betArea-item-bottom position-absolute">
+                            <p class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</p>
+                            <p class="table-total-betStatus">總注額:{{i.betStatus}}</p>
+                        </div>
                         <ul class="coinPosition">
                             <transition-group  @enter="generateCoinAnimate">
                                 <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
@@ -20,8 +27,15 @@
                     </div>
                 </div>  
                 <div class="betArea-pc-container">
-                    <div :class="[`betArea-item${index+3}`,i.configClass,'col-4 d-flex flex-column']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="sendBetData($event,index+2)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
-                        <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
+                    <div :class="[`betArea-item${index+3}`,i.configClass,'col-4 d-flex flex-column justify-content-center']" v-for="(i,index) in coinPosition.slice(2,coinPosition.length)" :key="index" @click="sendBetData($event,index+2)" >
+                        <div class="betArea-item-top position-absolute d-flex flex-column">
+                            <span>{{i.host}}</span>
+                            <span class="betRatioText">{{i.odds}}</span>
+                        </div>
+                        <div class="betArea-item-bottom position-absolute">
+                            <p class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</p>
+                            <p class="table-total-betStatus">總注額:{{i.betStatus}}</p>
+                        </div>
                         <ul class="coinPosition">
                             <transition-group @enter="generateCoinAnimate">
                                 <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
@@ -39,8 +53,15 @@
                 </transition-group>
             </ul>
             <div class="betArea-mobile-container d-flex">
-                <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1},'d-flex flex-column']" v-for ="(i,index) in coinPosition" :key ="index" @click ="sendBetData($event,index)" >{{i.host}}<br><span class="betRatioText">{{i.odds}}</span>
-                    <span class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</span>
+                <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1},'d-flex flex-column justify-content-center']" v-for ="(i,index) in coinPosition" :key ="index" @click ="sendBetData($event,index)" >
+                    <div class="betArea-item-top position-absolute d-flex flex-column">
+                        <span>{{i.host}}</span>
+                        <span class="betRatioText">{{i.odds}}</span>
+                    </div>
+                    <div class="betArea-item-bottom position-absolute">
+                        <p class="betStatus" v-if="i.betStatus>0">{{i.betStatus}}</p>
+                        <p class="table-total-betStatus">總注額:{{i.betStatus}}</p>
+                    </div>
                     <ul class="coinPosition">
                         <transition-group  @enter="generateCoinAnimate">
                             <li v-for="(coin,index)  in i.coinArray" :key="index" :class="[coin,`index${index}`]"></li>
@@ -91,10 +112,10 @@
             <LightBox/>
             <div class="bettingArea-btn-left d-flex justify-content-around align-items-center">
                 <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
-                <div class="bettingArea-btn-betInfo d-xl-none p-1 pl-2 pr-2">
-                    <span>檯紅<br/>{{numberFormat(minBetLimit)}}-{{numberFormat(maxBetLimit)}}</span>
+                <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
+                    <span>{{numberFormat(minBetLimit)}}-{{numberFormat(maxBetLimit)}}</span>
                 </div>
-              <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center"><i class="bi bi-arrow-counterclockwise"></i>確定</div>
+              <div class="bettingArea-btn-check d-flex justify-content-center align-items-center"><i class="bi bi-check-circle"></i>確定</div>
             </div>
             <div class="askRoad d-flex">
                 <div class="askRoad-player p-1 mr-2" @click="askRoad(2)">
@@ -488,27 +509,27 @@ export default defineComponent({
         ]) 
         const betErrorArray = ref<Array<string>>([])
         const tableInfoData = reactive<any>({
-        'A':{
-          playerMin:2000,
-          playerMax:100000,
-          bankerMin:2000,
-          bankerMax:100000,
-          tieMin:0,
-          tieMax:12500,
-          pairMin:0,
-          pairMax:9000,
-        },
-        'B':{
-          playerMin:5000,
-          playerMax:300000,
-          bankerMin:5000,
-          bankerMax:300000,
-          tieMin:500,
-          tieMax:37500,
-          pairMin:500,
-          pairMax:27000,
-        }
-    })
+            'A':{
+            playerMin:2000,
+            playerMax:100000,
+            bankerMin:2000,
+            bankerMax:100000,
+            tieMin:0,
+            tieMax:12500,
+            pairMin:0,
+            pairMax:9000,
+            },
+            'B':{
+            playerMin:5000,
+            playerMax:300000,
+            bankerMin:5000,
+            bankerMax:300000,
+            tieMin:500,
+            tieMax:37500,
+            pairMin:500,
+            pairMax:27000,
+            }
+        })
         const minBetLimit = ref(999999999)
         const maxBetLimit = ref(-1)
         function getBetLimit (tableBetIndoData:any){

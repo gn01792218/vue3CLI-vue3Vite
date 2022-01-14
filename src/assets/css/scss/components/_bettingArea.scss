@@ -1,5 +1,4 @@
     .betError{ //下注錯誤訊息顯示器
-        // background-color: gray;
         width:200px;
         height:100px;
         top:50%;
@@ -39,15 +38,22 @@
     .bettingArea-btn-left{
         width: 65%;
     }
-    .bettingArea-btn-gitbackAllCoin{
+    %bettingArea-btn-base{
         height:42px;
         width:100px;
         border-radius: 5px;
-        background-color: rgb(75, 73, 73);
         cursor: pointer;
     }
+    .bettingArea-btn-gitbackAllCoin{
+        @extend %bettingArea-btn-base;
+        background-color: rgba(0, 0, 255, 0.692);
+    }
+    .bettingArea-btn-check{
+        @extend %bettingArea-btn-base;
+        background-color:rgba(128, 0, 128, 0.829);
+    }
     .bettingArea-btn-betInfo{
-        height:60px;
+        height:42px;
         border-radius: 5px;
         background-color: rgb(75, 73, 73);
         font-size: 18px;
@@ -99,13 +105,24 @@
     .activeCoin {
         box-shadow: 0px 0px 25px rgba(255, 255, 178, 1);
     }
+    .betArea-item-top{
+        top:25%;
+    }
+    .betArea-item-bottom{
+        bottom:10%;
+    }
     .betStatus{
         pointer-events: none; //使能被穿透
         color:white;
-        position: absolute;
-        bottom:0;
-        font-size: 2rem;
+        font-size: 1rem;
         z-index:1;
+        margin-bottom: 0;
+    }
+    .table-total-betStatus{
+        pointer-events: none; //使能被穿透
+        coclor:gray;
+        font-size: 1rem;
+        margin-bottom: 0;
     }
     .winAnimation{
         animation: win 1s ease-in infinite;
