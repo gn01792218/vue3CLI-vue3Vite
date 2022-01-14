@@ -167,6 +167,7 @@ export default defineComponent({
             //初始化籌碼
             setDefaultCoin()
             // setMinBetCoinUnusable()
+            //初始化注區的最大最小檯紅(給手機顯示用的)
              switch(tableNum.value){
                 case 'A':
                     getBetLimit(tableInfoData.A)
@@ -184,8 +185,7 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
-            minBetLimit.value = 999999999
-            maxBetLimit.value = -1
+            //取得注區的最大最小檯紅(給手機顯示用的)
             switch(tableNum.value){
                 case 'A':
                     getBetLimit(tableInfoData.A)
@@ -512,7 +512,13 @@ export default defineComponent({
         const minBetLimit = ref(999999999)
         const maxBetLimit = ref(-1)
         function getBetLimit (tableBetIndoData:any){
-            Object.keys(tableBetIndoData).forEach((i:any)=>{
+            //每次都把最大最小基準值恢復，再比大小
+            minBetLimit.value = 999999999
+            maxBetLimit.value = -1
+            let keyList = Object.keys(tableBetIndoData)
+            keyList.filter((i)=>{
+                return i=='playerMin' || i=='playerMax' || i=='bankerMin' || i=='bankerMax'
+            }).forEach((i:any)=>{
                 if(tableBetIndoData[i]<minBetLimit.value){
                     minBetLimit.value = tableBetIndoData[i]
                 }
@@ -520,7 +526,7 @@ export default defineComponent({
                     maxBetLimit.value = tableBetIndoData[i]
                 }
             })
-            console.log(minBetLimit.value,maxBetLimit.value)
+            // console.log(minBetLimit.value,maxBetLimit.value)
         }
         function numberFormat(number:number):string{
             return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')

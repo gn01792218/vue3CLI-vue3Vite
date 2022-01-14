@@ -1,20 +1,31 @@
 <template>
   <div class="home">
-      <h1>點選左側選擇遊戲</h1>
+     <h1 class="text-center">選擇遊戲桌檯</h1>
+    <div class="tableList d-flex flex-column flex-xl-row justify-content-center align-items-center">
+      <div class="tableItem mb-5 mb-xl-0 mr-xl-5 p-3 d-flex d-xl-block align-items-center" v-for="i in Object.keys(tableInfoData)" :key="i" @click="toGametable(i)">
+        <div class="table-img">
+          <img class="w-100" :src="tableInfoData[i].img" :alt="i">
+        </div>
+        <div class="betLimitInfo">
+            <BetLimitInfo
+              :betLimitInfo="tableInfoData[i]"
+            />
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- <Loading/> -->
 </template>
 <script lang="ts">
 import {computed, defineComponent,ref, watch} from 'vue'
 import {useStore} from 'vuex'
 import {useRoute,useRouter } from 'vue-router'
-// import Loading from '@/components/Loading.vue'
 import {createSocket} from '../webSocket'
 import {sendLogin} from '../socketApi'
 import Cookies from 'js-cookie'
+import BetLimitInfo from '@/components/BetLimtInfo.vue'
 export default defineComponent({
   components:{
-    // Loading,
+    BetLimitInfo,
   },
     setup(){
       const route = useRoute()
@@ -30,6 +41,7 @@ export default defineComponent({
       const loginState = computed(()=>{  //取得登入狀態
         return store.state.auth.LoginRecall.status
       })
+      const tableInfoData = store.state.table.tableInfoData
       //創建連線(再次返回大廳時使用者token已經存在，就不會再創server)
         // createSocket()
           sendLogin({
@@ -49,14 +61,23 @@ export default defineComponent({
             userToken.value = "ImLogin"
             store.commit('auth/setUserToken',Cookies.get('userToken'))
             //以下是暫時性的
-            router.push('/BaccaratGame/A')
+            // router.push('/BaccaratGame/A')
             break
           case -1:
             alert("驗證失敗，請重新登入")
         }
       })
+      function toGametable (tableNum:string) {
+            store.commit('table/setCurrentTable',tableNum)
+            router.push({
+                path:`/BaccaratGame/${tableNum}`
+            })
+        }
       return{
           //data
+          tableInfoData,
+          //methods
+          toGametable,
       }
     }
 })

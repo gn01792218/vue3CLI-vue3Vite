@@ -6,6 +6,42 @@ export const state = {
     }
   },
   currentTable:"",
+  tableInfoData:{
+    'A':{
+      img:require('../images/A桌.png'),
+      playerMin:2000,
+      playerMax:100000,
+      bankerMin:2000,
+      bankerMax:100000,
+      tieMin:0,
+      tieMax:12500,
+      pairMin:0,
+      pairMax:9000,
+    },
+    'B':{
+      img:require('../images/B桌.png'),
+      playerMin:5000,
+      playerMax:300000,
+      bankerMin:5000,
+      bankerMax:300000,
+      tieMin:500,
+      tieMax:37500,
+      pairMin:500,
+      pairMax:27000,
+    },
+    'vip':{
+      img:require('../images/vip.png'),
+      playerMin:5000,
+      playerMax:300000,
+      bankerMin:5000,
+      bankerMax:300000,
+      tieMin:500,
+      tieMax:37500,
+      pairMin:500,
+      pairMax:27000,
+    }
+
+  },
 };
 export const actions = {}
 

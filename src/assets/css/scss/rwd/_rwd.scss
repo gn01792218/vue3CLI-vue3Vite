@@ -331,8 +331,8 @@
   }
   .header-btn {
     width: auto;
-    line-height: 4.75rem;
-    font-size: 250%;
+    line-height: 1.75rem;
+    font-size: 180%;
   }
   .header-top {
     display: flex;
@@ -630,9 +630,6 @@
   .header {
     height: 40px;
   }
-  .header-btn {
-    line-height: 2.75rem;
-  }
   .video-box {
     height: 430px;
   }
@@ -895,14 +892,18 @@
     height: 30px;
   }
   .header-btn {
-    font-size: 150%;
-    line-height: 1.5rem;
+    font-size: 100%;
+    line-height: 1rem;
   }
   .video-box {
     height: 290px;
   }
   #countNumber {
     top: 3%;
+  }
+  .table-img{
+    width:150px;
+    height:150px;
   }
   .betArea-item,
   .betStatus {
@@ -1157,6 +1158,13 @@
     top: 25%;
     font-size: 40%;
   }
+  .table-img{
+    width:100px;
+    height:100px;
+  }
+  .tableItem{
+    font-size: 12px;
+  }
   .header-top {
     width: 90%;
   }
@@ -1170,6 +1178,9 @@
     line-height: 0.5rem;
     font-size: 70%;
     width: 40px;
+  }
+  .bettingArea-btn-left{
+    width:70%;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -1258,6 +1269,9 @@
 @media screen and (max-width: 375px) {
   .video-box {
     height: 210px;
+  }
+  .tableItem{
+    padding:5px !important;
   }
   .betArea {
     height: 265px;
@@ -1351,6 +1365,9 @@
 @media screen and (max-width: 320px) {
   .header {
     height: 30px;
+  }
+  .tableItem{
+    flex-direction: column;
   }
   .header-userName {
     line-height: 0.7rem;
