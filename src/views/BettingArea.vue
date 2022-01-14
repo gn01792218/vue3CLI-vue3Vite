@@ -97,7 +97,7 @@
             <LightBox/>
             <!-- coin list -->
             <div :id='`defaultCoin${index+1}`' v-for="(coin,index) in coinList" :key="index"  
-            :class="[coin.point===currentCoint.point ? `coin-menu${index+1}-current` :'',`coin-menu${index+1}`]" 
+            :class="[coin.point===currentCoint.point ? `coin-${coin.point}-current` :'',`coin-${coin.point}`]" 
             @click="chooseCoint(index,$event)"></div>
             <!-- coin ammo -->
             <ul class="shotCoinUl d-flex position-absolute">
@@ -215,6 +215,7 @@ export default defineComponent({
                     getBetLimit(tableInfoData.B)
                     break
             }
+            console.log('桌子籌碼',coinList.value)
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
@@ -370,7 +371,7 @@ export default defineComponent({
         })
         function testBetCallArray(betObject:any){
             let cp = coinPosition[betObject.betArea-1]  
-            cp.coinArray.push(coinList[betObject.betIndex].className)
+            cp.coinArray.push(coinList.value[betObject.betIndex].className)
             currentBetPosition.betAreaIndex = betObject.betArea-1
             if((cp.coinArray.length%10)==0){           //每10個橫移一次
                 cp.initX +=10
@@ -402,48 +403,51 @@ export default defineComponent({
             winCoinAnimation()
         })
         //籌碼動畫、下注邏輯
-        const coinList = reactive<coint[]>([  //籌碼基本資料
-                    {
-                    point:100,
-                    ammo:[], //子彈陣列
-                    num:1,
-                    className:'coin-menu1-current',
-                    },
-                    {
-                    point:500,
-                    ammo:[], //子彈陣列
-                    num:2,
-                    className:'coin-menu2-current',
-                    },
-                    {
-                    point:1000,
-                    ammo:[], //子彈陣列
-                    num:3,
-                    className:'coin-menu3-current',
-                    },
-                    {
-                    point:2000,
-                    ammo:[], //子彈陣列
-                    num:4,
-                    className:'coin-menu4-current',
-                    },
-                    {
-                    point:10000,
-                    ammo:[], //子彈陣列
-                    num:5,
-                    className:'coin-menu5-current',
-                    },
-                    {
-                    point:100000,
-                    ammo:[],
-                    num:6,
-                    className:'coin-menu6-current',
-                    }
-                ])
+        const coinList = computed(()=>{
+            return store.state.table.tableCoinData[tableNum.value as string]
+        })
+        // reactive<coint[]>([  //籌碼基本資料
+        //             {
+        //             point:100,
+        //             ammo:[], //子彈陣列
+        //             num:1,
+        //             className:'coin-menu1-current',
+        //             },
+        //             {
+        //             point:500,
+        //             ammo:[], //子彈陣列
+        //             num:2,
+        //             className:'coin-menu2-current',
+        //             },
+        //             {
+        //             point:1000,
+        //             ammo:[], //子彈陣列
+        //             num:3,
+        //             className:'coin-menu3-current',
+        //             },
+        //             {
+        //             point:2000,
+        //             ammo:[], //子彈陣列
+        //             num:4,
+        //             className:'coin-menu4-current',
+        //             },
+        //             {
+        //             point:10000,
+        //             ammo:[], //子彈陣列
+        //             num:5,
+        //             className:'coin-menu5-current',
+        //             },
+        //             {
+        //             point:100000,
+        //             ammo:[],
+        //             num:6,
+        //             className:'coin-menu6-current',
+        //             }
+        //         ])
         const currentCoint = reactive<currentCoint>({ 
             coinElement:document.querySelector('#defaultCoin4'), //選擇的籌碼元素
             num:3,  //儲存點到的是第幾個
-            point:coinList[3].point, //預設是100點ㄉ
+            point:coinList.value[3].point, //預設是100點ㄉ
             x:0, //起飛的x
             y:0, //起飛的y
         });  
@@ -558,7 +562,7 @@ export default defineComponent({
             currentCoint.coinElement = defaultCoin
             currentCoint.x = rect.left;  //設置籌碼起始座標點
             currentCoint.y = rect.top;
-            currentCoint.point = coinList[0].point
+            currentCoint.point = coinList.value[0].point
             currentCoint.num = 0
         }
         function setMinBetCoinUsable(){
@@ -594,7 +598,8 @@ export default defineComponent({
             currentCoint.x = e.x;  //設置籌碼起始座標點
             currentCoint.y = e.y;
             currentCoint.num = index;
-            currentCoint.point = coinList[index].point
+            currentCoint.point = coinList.value[index].point
+            console.log('選擇的point',currentCoint.point)
             //超過最小下注額才可以使用前三個籌碼
             // if(canUseSmallCoin.value){
             //     console.log("可以選取前三個了",total.value)
@@ -667,36 +672,35 @@ export default defineComponent({
                         let liList = ul.children as HTMLCollection
                         for(let i = liList.length-1 ; i>=0 ; i--){  
                             switch(liList[i].className.split(" ")[1]){
-                                case 'coin-menu1':
+                                case `coin-${coinList.value[0].point}`:
                                     let Coin1Rect = document.querySelector('#defaultCoin1')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect1 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin1Rect,liRect1,liList[i] as HTMLElement)
                                     break
-                                case 'coin-menu2':
+                                case `coin-${coinList.value[1].point}`:
                                     let Coin2Rect = document.querySelector('#defaultCoin2')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect2 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin2Rect,liRect2,liList[i] as HTMLElement)
                                     break
-                                case 'coin-menu3':
+                                case `coin-${coinList.value[2].point}`:
                                     let Coin3Rect = document.querySelector('#defaultCoin3')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect3 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin3Rect,liRect3,liList[i] as HTMLElement)
                                     break
-                                case 'coin-menu4':
+                                case `coin-${coinList.value[3].point}`:
                                     let Coin4Rect = document.querySelector('#defaultCoin4')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect4 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin4Rect,liRect4,liList[i] as HTMLElement)
                                     break
-                                case 'coin-menu5':
+                                case `coin-${coinList.value[4].point}`:
                                     let Coin5Rect = document.querySelector('#defaultCoin5')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect5 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin5Rect,liRect5,liList[i] as HTMLElement)
                                     break
-                                case 'coin-menu6':
+                                case `coin-${coinList.value[5].point}`:
                                     let Coin6Rect = document.querySelector('#defaultCoin6')?.getBoundingClientRect() as DOMRect //取得籌碼的正方形
                                     let liRect6 = liList[i].getBoundingClientRect() as DOMRect
                                     goDefaultCoinPosition(Coin6Rect,liRect6,liList[i] as HTMLElement)
-
                             }
                         }
                     }
@@ -743,7 +747,7 @@ export default defineComponent({
             if(currentCoint.num!==null){
                 console.log("裝入",currentCoint.coinElement.classList[0])
                 // coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
-                coinList[currentCoint.num].ammo.push(currentCoint.coinElement.classList[0])
+                coinList.value[currentCoint.num].ammo.push(currentCoint.coinElement.classList[0])
             }
         }
         function setCoinPosition (cp:coinPosition) {
@@ -968,7 +972,7 @@ export default defineComponent({
                 // }
             })
             //清空籌碼飛彈槍管
-            coinList.forEach(i => {
+            coinList.value.forEach((i:any) => {
                 i.ammo = []
             })
             store.commit('bet/setBetResultRest')

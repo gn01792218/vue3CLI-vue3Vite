@@ -53,64 +53,73 @@
   .coinArea {
     height: 21%;
   }
-  .coin-menu1 {
+  .coin-100 {
     @include coinSpritePosition(0, 0, 0.7);
   }
-  .coin-menu1:hover,
-  .coin-menu1-current {
+  .coin-100:hover,
+  .coin-100-current {
     @include coinSpritePosition(0, -65, 0.7);
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     @include coinSpritePosition(0, -130, 0.7);
   }
-  .coin-menu2 {
+  .coin-500 {
     @include coinSpritePosition(-79, 0, 0.7);
   }
-  .coin-menu2:hover,
-  .coin-menu2-current {
+  .coin-500:hover,
+  .coin-500-current {
     @include coinSpritePosition(-79, -65, 0.7);
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     @include coinSpritePosition(-79, -130, 0.7);
   }
-  .coin-menu3 {
+  .coin-1000 {
     @include coinSpritePosition(-158, 0, 0.7);
   }
-  .coin-menu3:hover,
-  .coin-menu3-current {
+  .coin-1000:hover,
+  .coin-1000-current {
     @include coinSpritePosition(-158, -65, 0.7);
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     @include coinSpritePosition(-158, -130, 0.7);
   }
-  .coin-menu4 {
+  .coin-2000 {
     @include coinSpritePosition(-237, 0, 0.7);
   }
-  .coin-menu4:hover,
-  .coin-menu4-current {
+  .coin-2000:hover,
+  .coin-2000-current {
     @include coinSpritePosition(-237, -65, 0.7);
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     @include coinSpritePosition(-237, -130, 0.7);
   }
-  .coin-menu5 {
+  .coin-5000{
+    @include coinSpritePosition(-474,0,0.7);
+  }
+  .coin-5000:hover,.coin-5000-current{
+    @include coinSpritePosition(-474,-65,0.7);
+  }
+  .coin-5000-disable{
+    @include coinSpritePosition(-474,-130,0.7);
+  }
+  .coin-10000 {
     @include coinSpritePosition(-316, 0, 0.7);
   }
-  .coin-menu5:hover,
-  .coin-menu5-current {
+  .coin-10000:hover,
+  .coin-10000-current {
     @include coinSpritePosition(-316, -65, 0.7);
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.7);
   }
-  .coin-menu6 {
+  .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.7);
   }
-  .coin-menu6:hover,
-  .coin-menu6-current {
+  .coin-100000:hover,
+  .coin-100000-current {
     @include coinSpritePosition(-395, -65, 0.7);
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.7);
   }
   //路圖圖示區
@@ -380,64 +389,73 @@
   .betArea-mobile-container {
     height: 250px;
   }
-  .coin-menu1 {
+  .coin-100 {
     @include coinSpritePosition(0, 0, 1.6);
   }
-  .coin-menu1:hover,
-  .coin-menu1-current {
+  .coin-100:hover,
+  .coin-100-current {
     @include coinSpritePosition(0, -65, 1.6);
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     @include coinSpritePosition(0, -130, 1.6);
   }
-  .coin-menu2 {
+  .coin-500 {
     @include coinSpritePosition(-79, 0, 1.6);
   }
-  .coin-menu2:hover,
-  .coin-menu2-current {
+  .coin-500:hover,
+  .coin-500-current {
     @include coinSpritePosition(-79, -65, 1.6);
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     @include coinSpritePosition(-79, -130, 1.6);
   }
-  .coin-menu3 {
+  .coin-1000 {
     @include coinSpritePosition(-158, 0, 1.6);
   }
-  .coin-menu3:hover,
-  .coin-menu3-current {
+  .coin-1000:hover,
+  .coin-1000-current {
     @include coinSpritePosition(-158, -65, 1.6);
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     @include coinSpritePosition(-158, -130, 1.6);
   }
-  .coin-menu4 {
+  .coin-2000 {
     @include coinSpritePosition(-237, 0, 1.6);
   }
-  .coin-menu4:hover,
-  .coin-menu4-current {
+  .coin-2000:hover,
+  .coin-2000-current {
     @include coinSpritePosition(-237, -65, 1.6);
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     @include coinSpritePosition(-237, -130, 1.6);
   }
-  .coin-menu5 {
+  .coin-5000{
+    @include coinSpritePosition(-474,0,1.6);
+  }
+  .coin-5000:hover,.coin-5000-current{
+    @include coinSpritePosition(-474,-65,1.6);
+  }
+  .coin-5000-disable{
+    @include coinSpritePosition(-474,-130,1.6);
+  }
+  .coin-10000 {
     @include coinSpritePosition(-316, 0, 1.6);
   }
-  .coin-menu5:hover,
-  .coin-menu5-current {
+  .coin-10000:hover,
+  .coin-10000-current {
     @include coinSpritePosition(-316, -65, 1.6);
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 1.6);
   }
-  .coin-menu6 {
+  .coin-100000 {
     @include coinSpritePosition(-395, 0, 1.6);
   }
-  .coin-menu6:hover,
-  .coin-menu6-current {
+  .coin-100000:hover,
+  .coin-100000-current {
     @include coinSpritePosition(-395, -65, 1.6);
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 1.6);
   }
   .betArea-item {
@@ -668,64 +686,73 @@
     padding-top: 0px;
     padding-bottom: 0px;
   }
-  .coin-menu1 {
+  .coin-100 {
     @include coinSpritePosition(0, 0, 1.2);
   }
-  .coin-menu1:hover,
-  .coin-menu1-current {
+  .coin-100:hover,
+  .coin-100-current {
     @include coinSpritePosition(0, -65, 1.2);
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     @include coinSpritePosition(0, -130, 1.2);
   }
-  .coin-menu2 {
+  .coin-500 {
     @include coinSpritePosition(-79, 0, 1.2);
   }
-  .coin-menu2:hover,
-  .coin-menu2-current {
+  .coin-500:hover,
+  .coin-500-current {
     @include coinSpritePosition(-79, -65, 1.2);
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     @include coinSpritePosition(-79, -130, 1.2);
   }
-  .coin-menu3 {
+  .coin-1000 {
     @include coinSpritePosition(-158, 0, 1.2);
   }
-  .coin-menu3:hover,
-  .coin-menu3-current {
+  .coin-1000:hover,
+  .coin-1000-current {
     @include coinSpritePosition(-158, -65, 1.2);
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     @include coinSpritePosition(-158, -130, 1.2);
   }
-  .coin-menu4 {
+  .coin-2000 {
     @include coinSpritePosition(-237, 0, 1.2);
   }
-  .coin-menu4:hover,
-  .coin-menu4-current {
+  .coin-2000:hover,
+  .coin-2000-current {
     @include coinSpritePosition(-237, -65, 1.2);
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     @include coinSpritePosition(-237, -130, 1.2);
   }
-  .coin-menu5 {
+  .coin-5000{
+    @include coinSpritePosition(-474,0,1.2);
+  }
+  .coin-5000:hover,.coin-5000-current{
+    @include coinSpritePosition(-474,-65,1.2);
+  }
+  .coin-5000-disable{
+    @include coinSpritePosition(-474,-130,1.2);
+  }
+  .coin-10000 {
     @include coinSpritePosition(-316, 0, 1.2);
   }
-  .coin-menu5:hover,
-  .coin-menu5-current {
+  .coin-10000:hover,
+  .coin-10000-current {
     @include coinSpritePosition(-316, -65, 1.2);
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 1.2);
   }
-  .coin-menu6 {
+  .coin-100000 {
     @include coinSpritePosition(-395, 0, 1.2);
   }
-  .coin-menu6:hover,
-  .coin-menu6-current {
+  .coin-100000:hover,
+  .coin-100000-current {
     @include coinSpritePosition(-395, -65, 1.2);
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 1.2);
   }
   .betArea-mobile,
@@ -930,64 +957,73 @@
       font-size: 0.5rem;
     }
   }
-  .coin-menu1 {
+  .coin-100 {
     @include coinSpritePosition(0, 0, 0.7);
   }
-  .coin-menu1:hover,
-  .coin-menu1-current {
+  .coin-100:hover,
+  .coin-100-current {
     @include coinSpritePosition(0, -65, 0.7);
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     @include coinSpritePosition(0, -130, 0.7);
   }
-  .coin-menu2 {
+  .coin-500 {
     @include coinSpritePosition(-79, 0, 0.7);
   }
-  .coin-menu2:hover,
-  .coin-menu2-current {
+  .coin-500:hover,
+  .coin-500-current {
     @include coinSpritePosition(-79, -65, 0.7);
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     @include coinSpritePosition(-79, -130, 0.7);
   }
-  .coin-menu3 {
+  .coin-1000 {
     @include coinSpritePosition(-158, 0, 0.7);
   }
-  .coin-menu3:hover,
-  .coin-menu3-current {
+  .coin-1000:hover,
+  .coin-1000-current {
     @include coinSpritePosition(-158, -65, 0.7);
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     @include coinSpritePosition(-158, -130, 0.7);
   }
-  .coin-menu4 {
+  .coin-2000 {
     @include coinSpritePosition(-237, 0, 0.7);
   }
-  .coin-menu4:hover,
-  .coin-menu4-current {
+  .coin-2000:hover,
+  .coin-2000-current {
     @include coinSpritePosition(-237, -65, 0.7);
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     @include coinSpritePosition(-237, -130, 0.7);
   }
-  .coin-menu5 {
+  .coin-5000{
+    @include coinSpritePosition(-474,0,0.7);
+  }
+  .coin-5000:hover,.coin-5000-current{
+    @include coinSpritePosition(-474,-65,0.7);
+  }
+  .coin-5000-disable{
+    @include coinSpritePosition(-474,-130,0.7);
+  }
+  .coin-10000 {
     @include coinSpritePosition(-316, 0, 0.7);
   }
-  .coin-menu5:hover,
-  .coin-menu5-current {
+  .coin-10000:hover,
+  .coin-10000-current {
     @include coinSpritePosition(-316, -65, 0.7);
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.7);
   }
-  .coin-menu6 {
+  .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.7);
   }
-  .coin-menu6:hover,
-  .coin-menu6-current {
+  .coin-100000:hover,
+  .coin-100000-current {
     @include coinSpritePosition(-395, -65, 0.7);
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.7);
   }
   .gameHistory {
@@ -1325,64 +1361,73 @@
   .userBetInfo-title {
     font-size: 1rem;
   }
-  .coin-menu1 {
+  .coin-100 {
     @include coinSpritePosition(0, 0, 0.6);
   }
-  .coin-menu1:hover,
-  .coin-menu1-current {
+  .coin-100:hover,
+  .coin-100-current {
     @include coinSpritePosition(0, -65, 0.6);
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     @include coinSpritePosition(0, -130, 0.6);
   }
-  .coin-menu2 {
+  .coin-500 {
     @include coinSpritePosition(-79, 0, 0.6);
   }
-  .coin-menu2:hover,
-  .coin-menu2-current {
+  .coin-500:hover,
+  .coin-500-current {
     @include coinSpritePosition(-79, -65, 0.6);
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     @include coinSpritePosition(-79, -130, 0.6);
   }
-  .coin-menu3 {
+  .coin-1000 {
     @include coinSpritePosition(-158, 0, 0.6);
   }
-  .coin-menu3:hover,
-  .coin-menu3-current {
+  .coin-1000:hover,
+  .coin-1000-current {
     @include coinSpritePosition(-158, -65, 0.6);
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     @include coinSpritePosition(-158, -130, 0.6);
   }
-  .coin-menu4 {
+  .coin-2000 {
     @include coinSpritePosition(-237, 0, 0.6);
   }
-  .coin-menu4:hover,
-  .coin-menu4-current {
+  .coin-2000:hover,
+  .coin-2000-current {
     @include coinSpritePosition(-237, -65, 0.6);
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     @include coinSpritePosition(-237, -130, 0.6);
   }
-  .coin-menu5 {
+  .coin-5000{
+    @include coinSpritePosition(-474,0,0.6);
+  }
+  .coin-5000:hover,.coin-5000-current{
+    @include coinSpritePosition(-474,-65,0.6);
+  }
+  .coin-5000-disable{
+    @include coinSpritePosition(-474,-130,0.6);
+  }
+  .coin-10000 {
     @include coinSpritePosition(-316, 0, 0.6);
   }
-  .coin-menu5:hover,
-  .coin-menu5-current {
+  .coin-10000:hover,
+  .coin-10000-current {
     @include coinSpritePosition(-316, -65, 0.6);
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.6);
   }
-  .coin-menu6 {
+  .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.6);
   }
-  .coin-menu6:hover,
-  .coin-menu6-current {
+  .coin-100000:hover,
+  .coin-100000-current {
     @include coinSpritePosition(-395, -65, 0.6);
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.6);
   }
 }
@@ -1602,64 +1647,73 @@
     font-size: 10px;
     width:55px;
   }
-  .coin-menu1 {
+  .coin-100 {
     @include coinSpritePosition(0, 0, 0.5);
   }
-  .coin-menu1:hover,
-  .coin-menu1-current {
+  .coin-100:hover,
+  .coin-100-current {
     @include coinSpritePosition(0, -65, 0.5);
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     @include coinSpritePosition(0, -130, 0.5);
   }
-  .coin-menu2 {
+  .coin-500 {
     @include coinSpritePosition(-79, 0, 0.5);
   }
-  .coin-menu2:hover,
-  .coin-menu2-current {
+  .coin-500:hover,
+  .coin-500-current {
     @include coinSpritePosition(-79, -65, 0.5);
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     @include coinSpritePosition(-79, -130, 0.5);
   }
-  .coin-menu3 {
+  .coin-1000 {
     @include coinSpritePosition(-158, 0, 0.5);
   }
-  .coin-menu3:hover,
-  .coin-menu3-current {
+  .coin-1000:hover,
+  .coin-1000-current {
     @include coinSpritePosition(-158, -65, 0.5);
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     @include coinSpritePosition(-158, -130, 0.5);
   }
-  .coin-menu4 {
+  .coin-2000 {
     @include coinSpritePosition(-237, 0, 0.5);
   }
-  .coin-menu4:hover,
-  .coin-menu4-current {
+  .coin-2000:hover,
+  .coin-2000-current {
     @include coinSpritePosition(-237, -65, 0.5);
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     @include coinSpritePosition(-237, -130, 0.5);
   }
-  .coin-menu5 {
+  .coin-5000{
+    @include coinSpritePosition(-474,0,0.5);
+  }
+  .coin-5000:hover,.coin-5000-current{
+    @include coinSpritePosition(-474,-65,0.5);
+  }
+  .coin-5000-disable{
+    @include coinSpritePosition(-474,-130,0.5);
+  }
+  .coin-10000 {
     @include coinSpritePosition(-316, 0, 0.5);
   }
-  .coin-menu5:hover,
-  .coin-menu5-current {
+  .coin-10000:hover,
+  .coin-10000-current {
     @include coinSpritePosition(-316, -65, 0.5);
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.5);
   }
-  .coin-menu6 {
+  .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.5);
   }
-  .coin-menu6:hover,
-  .coin-menu6-current {
+  .coin-100000:hover,
+  .coin-100000-current {
     @include coinSpritePosition(-395, -65, 0.5);
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.5);
   }
   .card-container {

@@ -413,7 +413,6 @@ export default defineComponent({
                 break
             }
             if(tieCount>0){  //貼上和局的數字
-            console.log('和局的次數',tieCount)
               let tienumber = document.createElement('div')
               tienumber.classList.add(`tie${tieCount}`)
               bigRoadColItem.appendChild(tienumber)

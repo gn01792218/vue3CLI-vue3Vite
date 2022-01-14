@@ -42,6 +42,72 @@ export const state = {
     }
 
   },
+  tableCoinData:{
+    A:[
+      {
+        point:100,
+        ammo:[], //子彈陣列
+        num:1,
+        },
+        {
+        point:500,
+        ammo:[], //子彈陣列
+        num:2,
+        },
+        {
+        point:1000,
+        ammo:[], //子彈陣列
+        num:3,
+        },
+        {
+        point:2000,
+        ammo:[], //子彈陣列
+        num:4,
+        },
+        {
+        point:10000,
+        ammo:[], //子彈陣列
+        num:5,
+        },
+        {
+        point:100000,
+        ammo:[],
+        num:6,
+        }
+    ],
+    B:[
+      {
+        point:100,
+        ammo:[], //子彈陣列
+        num:1,
+        },
+        {
+        point:500,
+        ammo:[], //子彈陣列
+        num:2,
+        },
+        {
+        point:1000,
+        ammo:[], //子彈陣列
+        num:3,
+        },
+        {
+        point:5000,
+        ammo:[], //子彈陣列
+        num:4,
+        },
+        {
+        point:10000,
+        ammo:[], //子彈陣列
+        num:5,
+        },
+        {
+        point:100000,
+        ammo:[],
+        num:6,
+        }
+    ],
+  }
 };
 export const actions = {}
 
