@@ -897,6 +897,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+#betConfirm, #cancleBet {
+  opacity: 0;
+}
+
 .gameResult {
   top: 28%;
   left: 0;

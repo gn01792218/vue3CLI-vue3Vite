@@ -30,7 +30,7 @@ export const mutations = {
   },
   resetTotalBets(state:any){
     state.totalBets = 0
-  }
+  },
 };
 export const getters = {
   

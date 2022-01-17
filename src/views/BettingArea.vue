@@ -8,6 +8,8 @@
                 <transition-group @enter="betErrorAnimation">
                     <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
                 </transition-group>
+                <li id="betConfirm">確認下注!!</li>
+                <li id="cancleBet">取消下注!!</li>
             </ul>
                 <div class="betArea-pc-container">
                     <div :class ="[`betArea-item${index+1}`,i.configClass,'col-6 d-flex flex-column justify-content-around']" v-for ="(i,index) in coinPosition.slice(0,2)" :key ="index" @click ="sendBetData($event,index)" >
@@ -115,7 +117,7 @@
                 <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
                     <span>{{numberFormat(minBetLimit)}}-{{numberFormat(maxBetLimit)}}</span>
                 </div>
-              <div class="bettingArea-btn-check d-flex justify-content-center align-items-center"><i class="bi bi-check-circle"></i>確定</div>
+              <div class="bettingArea-btn-check d-flex justify-content-center align-items-center" @click="confirmBet"><i class="bi bi-check-circle"></i>確定</div>
             </div>
             <div class="askRoad d-flex">
                 <div class="askRoad-player p-1 mr-2" @click="askRoad(2)">
@@ -835,6 +837,8 @@ export default defineComponent({
                 sendBetResetCall({
                  gameUuid:roundUuid.value,
                 })
+                gsap
+                .fromTo('#cancleBet',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
             }
         }
         function clearLoseArea (winAreaArray:Array<number>) {
@@ -1053,6 +1057,13 @@ export default defineComponent({
             }
             // console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
         }
+        function confirmBet(){ //確認下注
+            if(canBet.value){
+                console.log('執行動畫')
+                 gsap
+                .fromTo('#betConfirm',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
+                }
+        }
         return{
             //data
             coinList,
@@ -1075,6 +1086,7 @@ export default defineComponent({
             sendBetData,
             askRoad,
             numberFormat,
+            confirmBet,
         }
     }
 })
