@@ -8,7 +8,6 @@
         v-for="(i, index) in tableInfoData"
         :key="index"
         :tableInfoData="i"
-        @click="toGametable(i.tableNum)"
       />
     </div>
   </div>

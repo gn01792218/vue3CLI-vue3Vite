@@ -186,16 +186,10 @@ export default defineComponent({
         onMounted(()=>{
             //初始化籌碼
             setDefaultCoin()
-            // setMinBetCoinUnusable()
             //初始化注區的最大最小檯紅(給手機顯示用的)
-             switch(tableNum.value){
-                case 'A':
-                    getBetLimit(tableInfoData.A)
-                    break
-                case 'B':
-                    getBetLimit(tableInfoData.B)
-                    break
-            }
+            getBetLimit(tableInfoData.value)
+            // setMinBetCoinUnusable()
+            
         })
         const route = useRoute()
         const tableNum = computed(()=>{
@@ -205,16 +199,10 @@ export default defineComponent({
             //清空注區的動畫
             reSetBetAreaAnimation()
             resetGame ()
-            //取得注區的最大最小檯紅(給手機顯示用的)
             setDefaultCoin()
-            switch(tableNum.value){
-                case 'A':
-                    getBetLimit(tableInfoData.A)
-                    break
-                case 'B':
-                    getBetLimit(tableInfoData.B)
-                    break
-            }
+            //取得注區的最大最小檯紅(給手機顯示用的)
+            getBetLimit(tableInfoData.value)
+
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
@@ -242,9 +230,6 @@ export default defineComponent({
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
-        // const betStatus = computed(()=>{  //各注區下注狀況
-        //     return store.state.bet.BetRecall.betStatus
-        // })
         const betStatus = computed(()=>{  //各注區下注狀況
             return store.state.bet.betstatus
         })
@@ -405,44 +390,6 @@ export default defineComponent({
         const coinList = computed(()=>{
             return store.state.table.tableCoinData[tableNum.value as string]
         })
-        // reactive<coint[]>([  //籌碼基本資料
-        //             {
-        //             point:100,
-        //             ammo:[], //子彈陣列
-        //             num:1,
-        //             className:'coin-menu1-current',
-        //             },
-        //             {
-        //             point:500,
-        //             ammo:[], //子彈陣列
-        //             num:2,
-        //             className:'coin-menu2-current',
-        //             },
-        //             {
-        //             point:1000,
-        //             ammo:[], //子彈陣列
-        //             num:3,
-        //             className:'coin-menu3-current',
-        //             },
-        //             {
-        //             point:2000,
-        //             ammo:[], //子彈陣列
-        //             num:4,
-        //             className:'coin-menu4-current',
-        //             },
-        //             {
-        //             point:10000,
-        //             ammo:[], //子彈陣列
-        //             num:5,
-        //             className:'coin-menu5-current',
-        //             },
-        //             {
-        //             point:100000,
-        //             ammo:[],
-        //             num:6,
-        //             className:'coin-menu6-current',
-        //             }
-        //         ])
         const currentCoint = reactive<currentCoint>({ 
             coinElement:document.querySelector('#defaultCoin4'), //選擇的籌碼元素
             num:3,  //儲存點到的是第幾個
@@ -511,31 +458,16 @@ export default defineComponent({
             },
         ]) 
         const betErrorArray = ref<Array<string>>([])
-        const tableInfoData = reactive<any>({
-            'A':{
-            playerMin:2000,
-            playerMax:100000,
-            bankerMin:2000,
-            bankerMax:100000,
-            tieMin:0,
-            tieMax:12500,
-            pairMin:0,
-            pairMax:9000,
-            },
-            'B':{
-            playerMin:5000,
-            playerMax:300000,
-            bankerMin:5000,
-            bankerMax:300000,
-            tieMin:500,
-            tieMax:37500,
-            pairMin:500,
-            pairMax:27000,
-            }
+        const tableInfoData = computed(()=>{
+            return store.state.table.tableInfoData[tableNum.value as string]
+            // return store.state.table.tableInfoData.filter((i:any)=>{
+            //     return i.tableNum == tableNum.value
+            // })
         })
         const minBetLimit = ref(999999999)
         const maxBetLimit = ref(-1)
         function getBetLimit (tableBetIndoData:any){
+            console.log(tableBetIndoData)
             //每次都把最大最小基準值恢復，再比大小
             minBetLimit.value = 999999999
             maxBetLimit.value = -1

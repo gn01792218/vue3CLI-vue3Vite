@@ -39,8 +39,8 @@ export default defineComponent({
         router.push({
           path: `/BaccaratGame/${tableNum}`,
         });
-      }else{
-          alert('即將開放~!盡請期待~')
+      } else {
+        alert("即將開放~!盡請期待~");
       }
     }
     return {

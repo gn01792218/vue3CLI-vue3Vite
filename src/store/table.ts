@@ -6,8 +6,8 @@ export const state = {
     }
   },
   currentTable:"",
-  tableInfoData:[
-    {
+  tableInfoData:{
+    A:{
       tableNum:'A',
       onLine:true,
       img:require('../images/A桌.png'),
@@ -20,7 +20,7 @@ export const state = {
       pairMin:0,
       pairMax:9000,
     },
-    {
+    B:{
       tableNum:'B',
       onLine:true,
       img:require('../images/B桌.png'),
@@ -33,7 +33,7 @@ export const state = {
       pairMin:500,
       pairMax:27000,
     },
-    {
+    vip:{
       tableNum:'vip',
       onLine:false,
       img:require('../images/vip.png'),
@@ -46,8 +46,7 @@ export const state = {
       pairMin:0,
       pairMax:0,
     }
-
-  ],
+  },
   tableCoinData:{
     A:[
       {
