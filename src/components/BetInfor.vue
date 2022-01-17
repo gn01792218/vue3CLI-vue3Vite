@@ -70,9 +70,6 @@ export default defineComponent({
     });
     const tableInfoData = computed(() => {
       return store.state.table.tableInfoData[tableNum.value as string]
-      // return store.state.table.tableInfoData.filter((i: any) => {
-      //   return i.tableNum == tableNum.value;
-      // });
     });
     return {
       //data

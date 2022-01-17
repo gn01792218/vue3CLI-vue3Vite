@@ -353,11 +353,11 @@
   .header-bottom-desk {
     display: none;
   }
-  .userWallet-mobil {
-    display: block !important;
-  }
   .header-userName {
     flex-grow: 0;
+  }
+  .tableItem{
+    width:565px;
   }
   .font-total {
     line-height: 1.5em;
@@ -957,6 +957,9 @@
       font-size: 0.5rem;
     }
   }
+  .tableItem{
+    width:475px;
+  }
   .coin-100 {
     @include coinSpritePosition(0, 0, 0.7);
   }
@@ -1208,6 +1211,7 @@
   }
   .tableItem {
     font-size: 12px;
+    width:360px;
   }
   .header-top {
     width: 90%;
@@ -1329,6 +1333,7 @@
   }
   .tableItem {
     padding: 5px !important;
+    width: 335px;
   }
   .betArea {
     height: 265px;
@@ -1437,6 +1442,7 @@
   }
   .tableItem {
     flex-direction: column;
+    width:260px;
   }
   .header-userName {
     line-height: 0.7rem;
@@ -1599,6 +1605,9 @@
   }
 }
 @media screen and (max-width: 280px) {
+  .tableItem{
+    width:230px;
+  }
   .header {
     height: 50px;
   }

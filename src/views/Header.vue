@@ -3,7 +3,7 @@
         <div class="header-top">
             <div class="header-logo d-none d-md-block"><a href="#"><img src="../images/logo.png"></a></div>
             <div class="header-btnList align-items-center justify-content-around mt-xl-5">
-                <div class="d-none userWallet-mobil header-userName col font_yellows">分{{userWallet}}</div>
+                <div class="d-flex d-xl-none userWallet-mobil header-userName col font_yellows"><span>分</span><span>{{userWallet}}</span></div>
                 <div class="d-block d-xl-none userWallet-mobil header-userName col font_yellows" v-if="user"><i>洗:{{user.totalValidBets}}</i></div>
                 <div class="d-flex flex-row flex-xl-column">
                     <a class="header-btn" :class="{active:tableNum=='A'}" @click="toGametable('A')" >A桌</a>

@@ -2228,13 +2228,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-bottom-desk {
     display: none;
   }
-  .userWallet-mobil {
-    display: block !important;
-  }
   .header-userName {
     -webkit-box-flex: 0;
         -ms-flex-positive: 0;
             flex-grow: 0;
+  }
+  .tableItem {
+    width: 565px;
   }
   .font-total {
     line-height: 1.5em;
@@ -3118,6 +3118,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .askRoad-player p, .askRoad-banker p {
     font-size: 0.5rem;
   }
+  .tableItem {
+    width: 475px;
+  }
   .coin-100 {
     width: 55.3px;
     height: 45.5px;
@@ -3521,6 +3524,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .tableItem {
     font-size: 12px;
+    width: 360px;
   }
   .header-top {
     width: 90%;
@@ -3644,6 +3648,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .tableItem {
     padding: 5px !important;
+    width: 335px;
   }
   .betArea {
     height: 265px;
@@ -3814,6 +3819,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 260px;
   }
   .header-userName {
     line-height: 0.7rem;
@@ -4019,6 +4025,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 280px) {
+  .tableItem {
+    width: 230px;
+  }
   .header {
     height: 50px;
   }

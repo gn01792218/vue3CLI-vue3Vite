@@ -460,9 +460,6 @@ export default defineComponent({
         const betErrorArray = ref<Array<string>>([])
         const tableInfoData = computed(()=>{
             return store.state.table.tableInfoData[tableNum.value as string]
-            // return store.state.table.tableInfoData.filter((i:any)=>{
-            //     return i.tableNum == tableNum.value
-            // })
         })
         const minBetLimit = ref(999999999)
         const maxBetLimit = ref(-1)

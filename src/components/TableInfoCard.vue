@@ -31,6 +31,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    console.log(props.tableInfoData);
     const router = useRouter();
     const store = useStore();
     function toGametable(tableNum: string) {
