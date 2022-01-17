@@ -51,7 +51,7 @@ export default defineComponent({
       return route.params.tableId;
     });
     const currentInfoData = computed(()=>{
-      return tableInfoData[tableNum.value as string]
+      return tableInfoData
     })
     const tableInfoData = store.state.table.tableInfoData
     return {

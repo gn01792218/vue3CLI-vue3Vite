@@ -6,8 +6,10 @@ export const state = {
     }
   },
   currentTable:"",
-  tableInfoData:{
-    'A':{
+  tableInfoData:[
+    {
+      tableNum:'A',
+      onLine:true,
       img:require('../images/A桌.png'),
       playerMin:2000,
       playerMax:100000,
@@ -18,7 +20,9 @@ export const state = {
       pairMin:0,
       pairMax:9000,
     },
-    'B':{
+    {
+      tableNum:'B',
+      onLine:true,
       img:require('../images/B桌.png'),
       playerMin:5000,
       playerMax:300000,
@@ -29,19 +33,21 @@ export const state = {
       pairMin:500,
       pairMax:27000,
     },
-    'vip':{
+    {
+      tableNum:'vip',
+      onLine:false,
       img:require('../images/vip.png'),
-      playerMin:5000,
-      playerMax:300000,
-      bankerMin:5000,
-      bankerMax:300000,
-      tieMin:500,
-      tieMax:37500,
-      pairMin:500,
-      pairMax:27000,
+      playerMin:0,
+      playerMax:0,
+      bankerMin:0,
+      bankerMax:0,
+      tieMin:0,
+      tieMax:0,
+      pairMin:0,
+      pairMax:0,
     }
 
-  },
+  ],
   tableCoinData:{
     A:[
       {
@@ -92,7 +98,7 @@ export const state = {
         num:3,
         },
         {
-        point:5000,
+        point:2000,
         ammo:[], //子彈陣列
         num:4,
         },

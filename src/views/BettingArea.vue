@@ -163,12 +163,11 @@ interface target {
     x : number,
     y : number,
 }
-interface coint {
-    point:number,
-    ammo:string[],
-    num:number,
-    className:string,
-}
+// interface coint {
+//   point:number,
+//   ammo:string[],
+//   num:number,
+// }
 interface coinPosition {
     initBottom:number,  //初始化的bottom值
     initX:number, //水平初始位置
@@ -207,6 +206,7 @@ export default defineComponent({
             reSetBetAreaAnimation()
             resetGame ()
             //取得注區的最大最小檯紅(給手機顯示用的)
+            setDefaultCoin()
             switch(tableNum.value){
                 case 'A':
                     getBetLimit(tableInfoData.A)
@@ -215,7 +215,6 @@ export default defineComponent({
                     getBetLimit(tableInfoData.B)
                     break
             }
-            console.log('桌子籌碼',coinList.value)
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
