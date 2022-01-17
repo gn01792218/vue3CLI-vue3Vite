@@ -189,7 +189,6 @@ export default defineComponent({
             //初始化注區的最大最小檯紅(給手機顯示用的)
             getBetLimit(tableInfoData.value)
             // setMinBetCoinUnusable()
-            
         })
         const route = useRoute()
         const tableNum = computed(()=>{
@@ -832,9 +831,11 @@ export default defineComponent({
             }
         }
         function getAllBetBack(){
-            sendBetResetCall({
+            if(canBet.value){  //可以下注時才可以反悔
+                sendBetResetCall({
                  gameUuid:roundUuid.value,
-            })
+                })
+            }
         }
         function clearLoseArea (winAreaArray:Array<number>) {
             let winArea1 = winAreaArray[0]
