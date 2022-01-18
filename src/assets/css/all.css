@@ -393,6 +393,41 @@ img {
   background-color: black;
 }
 
+.announcement-bg {
+  background-color: rgba(19, 18, 18, 0.123);
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+  top: 0;
+  left: 0;
+}
+
+.announcement-container {
+  background-color: white;
+  color: black;
+  height: 500px;
+  overflow-y: scroll;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.announcement-fotter div {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.announcement-fotter input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.announcement-fotter .form-check-label {
+  font-size: 1.5rem;
+}
+
 .betLimitInfo {
   height: 120px;
 }
@@ -694,7 +729,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   left: 85%;
 }
 
-.betError {
+.betInfortext-ul {
   width: 200px;
   height: 100px;
   top: 50%;
@@ -714,7 +749,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
           flex-direction: column;
 }
 
-.betError li {
+.betInfortext-ul li {
   color: red;
   font-size: larger;
   font-weight: bolder;
@@ -838,7 +873,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .betStatus {
   pointer-events: none;
-  color: white;
+  color: gray;
   font-size: 1rem;
   z-index: 1;
   margin-bottom: 0;

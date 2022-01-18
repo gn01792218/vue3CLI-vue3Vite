@@ -4,6 +4,7 @@ export const state = {
   },
   tableAUid:"",
   tableBuid:"",
+  showannouncement:false,
 };
 export const actions = {}
 
@@ -14,6 +15,9 @@ export const mutations = {
     state.tableAUid = payload.tables[0].uuid
     state.tableBuid = payload.tables[1].uuid
   },
+  setShowannouncement(state:any, showOrnot:boolean){
+    state.showannouncement = showOrnot
+  }
 };
 export const getters = {}
 

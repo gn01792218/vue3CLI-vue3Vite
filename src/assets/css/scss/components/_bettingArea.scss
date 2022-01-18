@@ -1,4 +1,4 @@
-    .betError{ //下注錯誤訊息顯示器
+    .betInfortext-ul{ //下注相關的動畫字樣
         width:200px;
         height:100px;
         top:50%;
@@ -113,7 +113,7 @@
     }
     .betStatus{
         pointer-events: none; //使能被穿透
-        color:white;
+        color:gray;
         font-size: 1rem;
         z-index:1;
         margin-bottom: 0;

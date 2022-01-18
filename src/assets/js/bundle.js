@@ -921,6 +921,7 @@ export const bet = $root.bet = (() => {
      * @property {number} ReachMaxLimit=4 ReachMaxLimit value
      * @property {number} RoundNotFound=5 RoundNotFound value
      * @property {number} NoEnoughWallet=6 NoEnoughWallet value
+     * @property {number} AlreadyConfirmed=7 AlreadyConfirmed value
      */
     bet.Error = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -931,6 +932,7 @@ export const bet = $root.bet = (() => {
         values[valuesById[4] = "ReachMaxLimit"] = 4;
         values[valuesById[5] = "RoundNotFound"] = 5;
         values[valuesById[6] = "NoEnoughWallet"] = 6;
+        values[valuesById[7] = "AlreadyConfirmed"] = 7;
         return values;
     })();
 
@@ -2468,6 +2470,7 @@ export const bet = $root.bet = (() => {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
                     break;
                 }
             if (message.errorMessage != null && message.hasOwnProperty("errorMessage"))
@@ -2522,6 +2525,10 @@ export const bet = $root.bet = (() => {
             case 6:
                 message.error = 6;
                 break;
+            case "AlreadyConfirmed":
+            case 7:
+                message.error = 7;
+                break;
             }
             if (object.errorMessage != null)
                 message.errorMessage = String(object.errorMessage);
@@ -2567,6 +2574,463 @@ export const bet = $root.bet = (() => {
         };
 
         return BetError;
+    })();
+
+    bet.ConfirmBetCall = (function() {
+
+        /**
+         * Properties of a ConfirmBetCall.
+         * @memberof bet
+         * @interface IConfirmBetCall
+         * @property {foundation.IHeader|null} [header] ConfirmBetCall header
+         * @property {string|null} [gameUuid] ConfirmBetCall gameUuid
+         */
+
+        /**
+         * Constructs a new ConfirmBetCall.
+         * @memberof bet
+         * @classdesc Represents a ConfirmBetCall.
+         * @implements IConfirmBetCall
+         * @constructor
+         * @param {bet.IConfirmBetCall=} [properties] Properties to set
+         */
+        function ConfirmBetCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ConfirmBetCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.ConfirmBetCall
+         * @instance
+         */
+        ConfirmBetCall.prototype.header = null;
+
+        /**
+         * ConfirmBetCall gameUuid.
+         * @member {string} gameUuid
+         * @memberof bet.ConfirmBetCall
+         * @instance
+         */
+        ConfirmBetCall.prototype.gameUuid = "";
+
+        /**
+         * Creates a new ConfirmBetCall instance using the specified properties.
+         * @function create
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.IConfirmBetCall=} [properties] Properties to set
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall instance
+         */
+        ConfirmBetCall.create = function create(properties) {
+            return new ConfirmBetCall(properties);
+        };
+
+        /**
+         * Encodes the specified ConfirmBetCall message. Does not implicitly {@link bet.ConfirmBetCall.verify|verify} messages.
+         * @function encode
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.IConfirmBetCall} message ConfirmBetCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameUuid);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ConfirmBetCall message, length delimited. Does not implicitly {@link bet.ConfirmBetCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.IConfirmBetCall} message ConfirmBetCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ConfirmBetCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.bet.ConfirmBetCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.gameUuid = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ConfirmBetCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ConfirmBetCall message.
+         * @function verify
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ConfirmBetCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a ConfirmBetCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall
+         */
+        ConfirmBetCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.bet.ConfirmBetCall)
+                return object;
+            let message = new $root.bet.ConfirmBetCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.ConfirmBetCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ConfirmBetCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.ConfirmBetCall} message ConfirmBetCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ConfirmBetCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.gameUuid = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
+            return object;
+        };
+
+        /**
+         * Converts this ConfirmBetCall to JSON.
+         * @function toJSON
+         * @memberof bet.ConfirmBetCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ConfirmBetCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return ConfirmBetCall;
+    })();
+
+    bet.ConfirmBetRecall = (function() {
+
+        /**
+         * Properties of a ConfirmBetRecall.
+         * @memberof bet
+         * @interface IConfirmBetRecall
+         * @property {foundation.IHeader|null} [header] ConfirmBetRecall header
+         * @property {number|null} [result] ConfirmBetRecall result
+         * @property {bet.IBetStatus|null} [betStatus] ConfirmBetRecall betStatus
+         */
+
+        /**
+         * Constructs a new ConfirmBetRecall.
+         * @memberof bet
+         * @classdesc Represents a ConfirmBetRecall.
+         * @implements IConfirmBetRecall
+         * @constructor
+         * @param {bet.IConfirmBetRecall=} [properties] Properties to set
+         */
+        function ConfirmBetRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ConfirmBetRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         */
+        ConfirmBetRecall.prototype.header = null;
+
+        /**
+         * ConfirmBetRecall result.
+         * @member {number} result
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         */
+        ConfirmBetRecall.prototype.result = 0;
+
+        /**
+         * ConfirmBetRecall betStatus.
+         * @member {bet.IBetStatus|null|undefined} betStatus
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         */
+        ConfirmBetRecall.prototype.betStatus = null;
+
+        /**
+         * Creates a new ConfirmBetRecall instance using the specified properties.
+         * @function create
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.IConfirmBetRecall=} [properties] Properties to set
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall instance
+         */
+        ConfirmBetRecall.create = function create(properties) {
+            return new ConfirmBetRecall(properties);
+        };
+
+        /**
+         * Encodes the specified ConfirmBetRecall message. Does not implicitly {@link bet.ConfirmBetRecall.verify|verify} messages.
+         * @function encode
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.IConfirmBetRecall} message ConfirmBetRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result);
+            if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
+                $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ConfirmBetRecall message, length delimited. Does not implicitly {@link bet.ConfirmBetRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.IConfirmBetRecall} message ConfirmBetRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ConfirmBetRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.bet.ConfirmBetRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.result = reader.int32();
+                    break;
+                case 3:
+                    message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ConfirmBetRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ConfirmBetRecall message.
+         * @function verify
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ConfirmBetRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.result != null && message.hasOwnProperty("result"))
+                if (!$util.isInteger(message.result))
+                    return "result: integer expected";
+            if (message.betStatus != null && message.hasOwnProperty("betStatus")) {
+                let error = $root.bet.BetStatus.verify(message.betStatus);
+                if (error)
+                    return "betStatus." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ConfirmBetRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall
+         */
+        ConfirmBetRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.bet.ConfirmBetRecall)
+                return object;
+            let message = new $root.bet.ConfirmBetRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.ConfirmBetRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.result != null)
+                message.result = object.result | 0;
+            if (object.betStatus != null) {
+                if (typeof object.betStatus !== "object")
+                    throw TypeError(".bet.ConfirmBetRecall.betStatus: object expected");
+                message.betStatus = $root.bet.BetStatus.fromObject(object.betStatus);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ConfirmBetRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.ConfirmBetRecall} message ConfirmBetRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ConfirmBetRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.result = 0;
+                object.betStatus = null;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.result != null && message.hasOwnProperty("result"))
+                object.result = message.result;
+            if (message.betStatus != null && message.hasOwnProperty("betStatus"))
+                object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
+            return object;
+        };
+
+        /**
+         * Converts this ConfirmBetRecall to JSON.
+         * @function toJSON
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ConfirmBetRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return ConfirmBetRecall;
     })();
 
     return bet;
@@ -5093,6 +5557,8 @@ export const foundation = $root.foundation = (() => {
                 case 8:
                 case 9:
                 case 10:
+                case 100:
+                case 101:
                 case 11:
                 case 12:
                 case 13:
@@ -5174,6 +5640,14 @@ export const foundation = $root.foundation = (() => {
             case "BetResetRecall":
             case 10:
                 message.uri = 10;
+                break;
+            case "BetConfirmCall":
+            case 100:
+                message.uri = 100;
+                break;
+            case "BetConfirmRecall":
+            case 101:
+                message.uri = 101;
                 break;
             case "Draw":
             case 11:
@@ -10318,6 +10792,8 @@ export const route = $root.route = (() => {
      * @property {number} BetRecall=8 BetRecall value
      * @property {number} BetResetCall=9 BetResetCall value
      * @property {number} BetResetRecall=10 BetResetRecall value
+     * @property {number} BetConfirmCall=100 BetConfirmCall value
+     * @property {number} BetConfirmRecall=101 BetConfirmRecall value
      * @property {number} Draw=11 Draw value
      * @property {number} DealerGameResult=12 DealerGameResult value
      * @property {number} BroadcastGameResult=13 BroadcastGameResult value
@@ -10352,6 +10828,8 @@ export const route = $root.route = (() => {
         values[valuesById[8] = "BetRecall"] = 8;
         values[valuesById[9] = "BetResetCall"] = 9;
         values[valuesById[10] = "BetResetRecall"] = 10;
+        values[valuesById[100] = "BetConfirmCall"] = 100;
+        values[valuesById[101] = "BetConfirmRecall"] = 101;
         values[valuesById[11] = "Draw"] = 11;
         values[valuesById[12] = "DealerGameResult"] = 12;
         values[valuesById[13] = "BroadcastGameResult"] = 13;
@@ -10393,7 +10871,7 @@ export const table = $root.table = (() => {
          * Properties of a Table.
          * @memberof table
          * @interface ITable
-         * @property {table.IBetStatus|null} [betStatus] Table betStatus
+         * @property {bet.IBetStatus|null} [betStatus] Table betStatus
          * @property {string|null} [streamingUrl] Table streamingUrl
          */
 
@@ -10414,7 +10892,7 @@ export const table = $root.table = (() => {
 
         /**
          * Table betStatus.
-         * @member {table.IBetStatus|null|undefined} betStatus
+         * @member {bet.IBetStatus|null|undefined} betStatus
          * @memberof table.Table
          * @instance
          */
@@ -10453,7 +10931,7 @@ export const table = $root.table = (() => {
             if (!writer)
                 writer = $Writer.create();
             if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
-                $root.table.BetStatus.encode(message.betStatus, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.streamingUrl != null && Object.hasOwnProperty.call(message, "streamingUrl"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.streamingUrl);
             return writer;
@@ -10491,7 +10969,7 @@ export const table = $root.table = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.betStatus = $root.table.BetStatus.decode(reader, reader.uint32());
+                    message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
                     break;
                 case 2:
                     message.streamingUrl = reader.string();
@@ -10532,7 +11010,7 @@ export const table = $root.table = (() => {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.betStatus != null && message.hasOwnProperty("betStatus")) {
-                let error = $root.table.BetStatus.verify(message.betStatus);
+                let error = $root.bet.BetStatus.verify(message.betStatus);
                 if (error)
                     return "betStatus." + error;
             }
@@ -10557,7 +11035,7 @@ export const table = $root.table = (() => {
             if (object.betStatus != null) {
                 if (typeof object.betStatus !== "object")
                     throw TypeError(".table.Table.betStatus: object expected");
-                message.betStatus = $root.table.BetStatus.fromObject(object.betStatus);
+                message.betStatus = $root.bet.BetStatus.fromObject(object.betStatus);
             }
             if (object.streamingUrl != null)
                 message.streamingUrl = String(object.streamingUrl);
@@ -10582,7 +11060,7 @@ export const table = $root.table = (() => {
                 object.streamingUrl = "";
             }
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
-                object.betStatus = $root.table.BetStatus.toObject(message.betStatus, options);
+                object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
                 object.streamingUrl = message.streamingUrl;
             return object;
@@ -11035,326 +11513,6 @@ export const table = $root.table = (() => {
         };
 
         return TableJoinRecall;
-    })();
-
-    table.BetStatus = (function() {
-
-        /**
-         * Properties of a BetStatus.
-         * @memberof table
-         * @interface IBetStatus
-         * @property {string|null} [Banker] BetStatus Banker
-         * @property {string|null} [Player] BetStatus Player
-         * @property {string|null} [Tie] BetStatus Tie
-         * @property {string|null} [BankerPair] BetStatus BankerPair
-         * @property {string|null} [PlayerPair] BetStatus PlayerPair
-         * @property {string|null} [BankerNatural] BetStatus BankerNatural
-         * @property {string|null} [PlayerNatural] BetStatus PlayerNatural
-         */
-
-        /**
-         * Constructs a new BetStatus.
-         * @memberof table
-         * @classdesc Represents a BetStatus.
-         * @implements IBetStatus
-         * @constructor
-         * @param {table.IBetStatus=} [properties] Properties to set
-         */
-        function BetStatus(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * BetStatus Banker.
-         * @member {string} Banker
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.Banker = "";
-
-        /**
-         * BetStatus Player.
-         * @member {string} Player
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.Player = "";
-
-        /**
-         * BetStatus Tie.
-         * @member {string} Tie
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.Tie = "";
-
-        /**
-         * BetStatus BankerPair.
-         * @member {string} BankerPair
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.BankerPair = "";
-
-        /**
-         * BetStatus PlayerPair.
-         * @member {string} PlayerPair
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.PlayerPair = "";
-
-        /**
-         * BetStatus BankerNatural.
-         * @member {string} BankerNatural
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.BankerNatural = "";
-
-        /**
-         * BetStatus PlayerNatural.
-         * @member {string} PlayerNatural
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.PlayerNatural = "";
-
-        /**
-         * Creates a new BetStatus instance using the specified properties.
-         * @function create
-         * @memberof table.BetStatus
-         * @static
-         * @param {table.IBetStatus=} [properties] Properties to set
-         * @returns {table.BetStatus} BetStatus instance
-         */
-        BetStatus.create = function create(properties) {
-            return new BetStatus(properties);
-        };
-
-        /**
-         * Encodes the specified BetStatus message. Does not implicitly {@link table.BetStatus.verify|verify} messages.
-         * @function encode
-         * @memberof table.BetStatus
-         * @static
-         * @param {table.IBetStatus} message BetStatus message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        BetStatus.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.Banker);
-            if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.Player);
-            if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.Tie);
-            if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.BankerPair);
-            if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.PlayerPair);
-            if (message.BankerNatural != null && Object.hasOwnProperty.call(message, "BankerNatural"))
-                writer.uint32(/* id 6, wireType 2 =*/50).string(message.BankerNatural);
-            if (message.PlayerNatural != null && Object.hasOwnProperty.call(message, "PlayerNatural"))
-                writer.uint32(/* id 7, wireType 2 =*/58).string(message.PlayerNatural);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified BetStatus message, length delimited. Does not implicitly {@link table.BetStatus.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof table.BetStatus
-         * @static
-         * @param {table.IBetStatus} message BetStatus message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        BetStatus.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a BetStatus message from the specified reader or buffer.
-         * @function decode
-         * @memberof table.BetStatus
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {table.BetStatus} BetStatus
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        BetStatus.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.BetStatus();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.Banker = reader.string();
-                    break;
-                case 2:
-                    message.Player = reader.string();
-                    break;
-                case 3:
-                    message.Tie = reader.string();
-                    break;
-                case 4:
-                    message.BankerPair = reader.string();
-                    break;
-                case 5:
-                    message.PlayerPair = reader.string();
-                    break;
-                case 6:
-                    message.BankerNatural = reader.string();
-                    break;
-                case 7:
-                    message.PlayerNatural = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a BetStatus message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof table.BetStatus
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {table.BetStatus} BetStatus
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        BetStatus.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a BetStatus message.
-         * @function verify
-         * @memberof table.BetStatus
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        BetStatus.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.Banker != null && message.hasOwnProperty("Banker"))
-                if (!$util.isString(message.Banker))
-                    return "Banker: string expected";
-            if (message.Player != null && message.hasOwnProperty("Player"))
-                if (!$util.isString(message.Player))
-                    return "Player: string expected";
-            if (message.Tie != null && message.hasOwnProperty("Tie"))
-                if (!$util.isString(message.Tie))
-                    return "Tie: string expected";
-            if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                if (!$util.isString(message.BankerPair))
-                    return "BankerPair: string expected";
-            if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                if (!$util.isString(message.PlayerPair))
-                    return "PlayerPair: string expected";
-            if (message.BankerNatural != null && message.hasOwnProperty("BankerNatural"))
-                if (!$util.isString(message.BankerNatural))
-                    return "BankerNatural: string expected";
-            if (message.PlayerNatural != null && message.hasOwnProperty("PlayerNatural"))
-                if (!$util.isString(message.PlayerNatural))
-                    return "PlayerNatural: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a BetStatus message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof table.BetStatus
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {table.BetStatus} BetStatus
-         */
-        BetStatus.fromObject = function fromObject(object) {
-            if (object instanceof $root.table.BetStatus)
-                return object;
-            let message = new $root.table.BetStatus();
-            if (object.Banker != null)
-                message.Banker = String(object.Banker);
-            if (object.Player != null)
-                message.Player = String(object.Player);
-            if (object.Tie != null)
-                message.Tie = String(object.Tie);
-            if (object.BankerPair != null)
-                message.BankerPair = String(object.BankerPair);
-            if (object.PlayerPair != null)
-                message.PlayerPair = String(object.PlayerPair);
-            if (object.BankerNatural != null)
-                message.BankerNatural = String(object.BankerNatural);
-            if (object.PlayerNatural != null)
-                message.PlayerNatural = String(object.PlayerNatural);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a BetStatus message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof table.BetStatus
-         * @static
-         * @param {table.BetStatus} message BetStatus
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        BetStatus.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.defaults) {
-                object.Banker = "";
-                object.Player = "";
-                object.Tie = "";
-                object.BankerPair = "";
-                object.PlayerPair = "";
-                object.BankerNatural = "";
-                object.PlayerNatural = "";
-            }
-            if (message.Banker != null && message.hasOwnProperty("Banker"))
-                object.Banker = message.Banker;
-            if (message.Player != null && message.hasOwnProperty("Player"))
-                object.Player = message.Player;
-            if (message.Tie != null && message.hasOwnProperty("Tie"))
-                object.Tie = message.Tie;
-            if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                object.BankerPair = message.BankerPair;
-            if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                object.PlayerPair = message.PlayerPair;
-            if (message.BankerNatural != null && message.hasOwnProperty("BankerNatural"))
-                object.BankerNatural = message.BankerNatural;
-            if (message.PlayerNatural != null && message.hasOwnProperty("PlayerNatural"))
-                object.PlayerNatural = message.PlayerNatural;
-            return object;
-        };
-
-        /**
-         * Converts this BetStatus to JSON.
-         * @function toJSON
-         * @memberof table.BetStatus
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        BetStatus.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return BetStatus;
     })();
 
     return table;

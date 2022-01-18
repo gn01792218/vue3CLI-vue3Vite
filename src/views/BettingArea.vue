@@ -4,7 +4,7 @@
         <!-- PC版本注區 -->
         <div class="betArea-pc position-relative">
             <GameResultLoading/>
-            <ul class="betError position-absolute">
+            <ul class="betInfortext-ul position-absolute">
                 <transition-group @enter="betErrorAnimation">
                     <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
                 </transition-group>
@@ -203,7 +203,27 @@ export default defineComponent({
             setDefaultCoin()
             //取得注區的最大最小檯紅(給手機顯示用的)
             getBetLimit(tableInfoData.value)
-
+            //如果換桌時，根據確認紐情況，改變顏色
+            let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
+            let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
+            if(canConfirmBet.value){ //尚未使用確認紐
+                console.log('尚未使用過確認紐')
+                //字變成灰色
+                betStatusText.forEach((i:HTMLElement)=>{
+                    i.style.color = 'gray'
+                })
+                //按鈕變成原本顏色
+                confirmBtn.style.background = 'rgba(128, 0, 128, 0.829)'
+            }else{ //已使用了確認紐
+             console.log('使用過確認紐')
+                //字變成白色
+                betStatusText.forEach((i:HTMLElement)=>{
+                    i.style.color = 'white'
+                    console.log(i.style.color)
+                })
+                //按鈕變成灰色
+                confirmBtn.style.background = 'rgb(80, 78, 78)'
+            }
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
             //     arr.forEach((i,index)=>{
@@ -275,11 +295,15 @@ export default defineComponent({
         })
         //基本資料
         const canBet = ref(true)
+        const canConfirmBet = ref(true) //一開始是可以按確認紐的
         const canUseSmallCoin = ref(false)
         const betCallTemp = ref({}) //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
         let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
         const currentAskRoadSide = ref(0)
         //監聽
+        watch(canConfirmBet,()=>{
+            console.log('可否按確認紐',canConfirmBet.value)
+        })
         watch(roundAskBanker,()=>{
             // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
             changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
@@ -308,13 +332,9 @@ export default defineComponent({
             canBet.value = false
         })
         watch(roundUuid,()=>{  //回合開始時重置遊戲
-            // console.log("開始下注")
             reSetBetAreaAnimation()
             resetGame()
-            // setDefaultCoin()
-            // nextTick(()=>{
-            //     setMinBetCoinUnusable()
-            // })
+            canConfirmBet.value = true //可以再次按下確認鈕
         })
         watch(gameEndUuid,()=>{
             canBet.value = false
@@ -693,7 +713,7 @@ export default defineComponent({
             }
         }
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
-            if(canBet.value){
+            if(canBet.value && canConfirmBet.value){ //下注期間，且是還沒按下確認鍵時
                 sendBetCall({
                     gameUuid:roundUuid.value,
                     betIndex:currentCoint.num,
@@ -703,120 +723,14 @@ export default defineComponent({
                     betCallTemp.value = { //資料暫存起來，後面確定betResult為1的時候才推入籌碼動畫陣列
                      'betAreaElement':e.target,
                      'betAreaIndex':index,
+                    }
                 }
-                    // betArray.push({   //當玩家餘額不足時不要推
-                    //     'betAreaElement':e.target,
-                    //     'betAreaIndex':index,
-                    // })
-                }
-                // //每個注區都有自己的最大限注，而0和1注區則有最小限注的限制
-                // switch(index){
-                //     case 0:
-                //         //可以下注的情況為:1.當前選擇的籌碼大於2000；並且當前選擇的籌碼小於最大限注
-                //         if(coinPosition[0].betStatus+currentCoint.point>=coinList[3].point && coinPosition[0].betStatus+currentCoint.point<=coinPosition[0].maxBet){
-                //             console.log('閒區可以下注:最小限注額',coinList[3].point,'最大限注',coinPosition[0].maxBet,'此區原注額',coinPosition[0].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[0].betStatus+currentCoint.point>=coinList[3].point && coinPosition[0].betStatus+currentCoint.point<=coinPosition[0].maxBet)
-                //             sendBetCall({
-                //                 gameUuid:roundUuid.value,
-                //                 betIndex:currentCoint.num,
-                //                 betArea:index+1,
-                //             })
-                //             if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
-                //                 betArray.push({   //當玩家餘額不足時不要推
-                //                     'betAreaElement':e.target,
-                //                     'betAreaIndex':index,
-                //                 })
-                //             }
-                //         }else{
-                //             betErrorArray.value?.push('下注失敗')
-                //             if(coinPosition[0].betStatus+currentCoint.point<=coinList[3].point){ //小於最小限注
-                //                 betErrorArray.value?.push(`閒注區最小下注額為${coinList[3].point}`)
-                //             }else if(coinPosition[0].betStatus+currentCoint.point>=coinPosition[0].maxBet){
-                //                 betErrorArray.value?.push(`閒注區最大下注額為${coinPosition[0].maxBet}`)
-                //             }
-                //         }
-                //         break
-                //     case 1:
-                //         if(coinPosition[1].betStatus+currentCoint.point>=coinList[3].point && coinPosition[1].betStatus+currentCoint.point<=coinPosition[1].maxBet){
-                //             console.log('莊區可以下注:最小限注額',coinList[3].point,'最大限注',coinPosition[1].maxBet,'此區原注額',coinPosition[1].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[1].betStatus+currentCoint.point>=coinList[3].point && coinPosition[1].betStatus+currentCoint.point<=coinPosition[1].maxBet)
-                //             sendBetCall({
-                //                 gameUuid:roundUuid.value,
-                //                 betIndex:currentCoint.num,
-                //                 betArea:index+1,
-                //             })
-                //             if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
-                //                 betArray.push({   //當玩家餘額不足時不要推
-                //                     'betAreaElement':e.target,
-                //                     'betAreaIndex':index,
-                //                 })
-                //             }
-                //         }else{
-                //             betErrorArray.value?.push('下注失敗')
-                //             if(coinPosition[1].betStatus+currentCoint.point<=coinList[3].point){ //小於最小限注
-                //                 betErrorArray.value?.push(`莊注區最小下注額為${coinList[3].point}`)
-                //             }else if(coinPosition[1].betStatus+currentCoint.point>=coinPosition[1].maxBet){
-                //                 betErrorArray.value?.push(`莊注區最大下注額為${coinPosition[1].maxBet}`)
-                //             }
-                //         }
-                //         break
-                //     case 2:
-                //         console.log('閒對可以下注:','最大限注',coinPosition[2].maxBet,'此區原注額',coinPosition[2].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[2].betStatus+currentCoint.point<=coinPosition[2].maxBet)
-                //         if(coinPosition[2].betStatus+currentCoint.point<=coinPosition[2].maxBet){
-                           
-                //             sendBetCall({
-                //                 gameUuid:roundUuid.value,
-                //                 betIndex:currentCoint.num,
-                //                 betArea:index+1,
-                //             })
-                //             if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
-                //                 betArray.push({   //當玩家餘額不足時不要推
-                //                     'betAreaElement':e.target,
-                //                     'betAreaIndex':index,
-                //                 })
-                //             }
-                //         }else{
-                //             betErrorArray.value?.push(`閒對區最大下注額為${coinPosition[2].maxBet}`)
-                //         }
-                //         break
-                //     case 3:
-                //         console.log('和可以下注:','最大限注',coinPosition[3].maxBet,'此區原注額',coinPosition[3].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[3].betStatus+currentCoint.point<=coinPosition[3].maxBet)
-                //         if(coinPosition[3].betStatus+currentCoint.point<=coinPosition[3].maxBet){
-                //             sendBetCall({
-                //                 gameUuid:roundUuid.value,
-                //                 betIndex:currentCoint.num,
-                //                 betArea:index+1,
-                //             })
-                //             if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
-                //                 betArray.push({   //當玩家餘額不足時不要推
-                //                     'betAreaElement':e.target,
-                //                     'betAreaIndex':index,
-                //                 })
-                //             }
-                //         }else{
-                //             betErrorArray.value?.push(`和區最大下注額為${coinPosition[3].maxBet}`)
-                //         }
-                //         break
-                //     case 4:
-                //          console.log('閒對可以下注:','最大限注',coinPosition[4].maxBet,'此區原注額',coinPosition[4].betStatus,'欲下注',currentCoint.point,'可否下注',coinPosition[4].betStatus+currentCoint.point<=coinPosition[4].maxBet)
-                //         if(coinPosition[4].betStatus+currentCoint.point<=coinPosition[4].maxBet){
-                //             sendBetCall({
-                //                 gameUuid:roundUuid.value,
-                //                 betIndex:currentCoint.num,
-                //                 betArea:index+1,
-                //             })
-                //             if(user.value.wallet>=currentCoint?.point){  //餘額大於等於當前所選籌碼才要放動畫
-                //                 betArray.push({   //當玩家餘額不足時不要推
-                //                     'betAreaElement':e.target,
-                //                     'betAreaIndex':index,
-                //                 })
-                //             }
-                //         }else{
-                //             betErrorArray.value?.push(`莊對區最大下注額為${coinPosition[4].maxBet}`)
-                //         }
-                //         break
-
-                // }
             }else{ //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
-                betErrorArray.value?.push('下注失敗')
+                if(!canConfirmBet.value){
+                    betErrorArray.value?.push('已確認過下注，若要再次下注，請按取消鈕')
+                }else{
+                    betErrorArray.value?.push('下注失敗')
+                }   
             }
         }
         function betResultAction(betAreaElement:HTMLElement,index:number){  //監聽betResult時shift從頭拿取 紀錄的注區元素和注區index
@@ -833,10 +747,14 @@ export default defineComponent({
             }
         }
         function getAllBetBack(){
-            if(canBet.value){  //可以下注時才可以反悔
+            if(canBet.value && !canConfirmBet.value){  //可以下注時才可以反悔
+                canConfirmBet.value = true  //取消的話就可以再次確認下注
                 sendBetResetCall({
                  gameUuid:roundUuid.value,
                 })
+                //按鈕變成原本顏色
+                let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
+                confirmBtn.style.background = 'rgba(128, 0, 128, 0.829)'
                 gsap
                 .fromTo('#cancleBet',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
             }
@@ -889,20 +807,13 @@ export default defineComponent({
             })
         }
         function resetGame () {
-            // total.value = 0
             store.commit('bet/resetTotalBets')
-            //清空選取的籌碼
-            // currentCoint.coinElement = null
-            // currentCoint.point = null
-            // currentCoint.num = null
             //清空注區籌碼，最後只需要清除贏
-            coinPosition.forEach((i,index) => {
-                // if(index==gameResult.value[0] || index==gameResult.value[1]){
+            coinPosition.forEach((i) => {
                     i.coinArray = []
                     i.initBottom = 0
                     i.betStatus = 0 
                     i.initX = 0
-                // }
             })
             //清空籌碼飛彈槍管
             coinList.value.forEach((i:any) => {
@@ -910,7 +821,7 @@ export default defineComponent({
             })
             store.commit('bet/setBetResultRest')
             canBet.value = true
-            canUseSmallCoin.value = false
+            // canUseSmallCoin.value = false
             betArray = []
         }
         function showResult () { 
@@ -1057,12 +968,34 @@ export default defineComponent({
             }
             // console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
         }
-        function confirmBet(){ //確認下注
-            if(canBet.value){
-                console.log('執行動畫')
+        function sendConfirmBetCall(){//發送確認下注請求
+            //可以發出確認紐的時機:
+            //1.canBet  2.玩家有下注在任一區域時  3.當局還沒按過確認鍵
+            if(canBet.value && canConfirmBet.value){
+                if(coinPosition[0].betStatus!==0 && coinPosition[1].betStatus!==0 
+                && coinPosition[2].betStatus!==0 && coinPosition[2].betStatus!==0 && coinPosition[4].betStatus!==0){
+                    
+                }
+            }
+        }
+        function confirmBet(){ //收到serve確認下注時的動作
+            if(canBet.value && canConfirmBet.value){ 
+                console.log('可以按確認紐')
+                //發送confirm請求
+                //betStatus文字變成白色，表示被計算
+                let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
+                betStatusText.forEach((i:HTMLElement)=>{
+                    i.style.color = 'white'
+                })
+                //噴出確認下注的提示文字
                  gsap
                 .fromTo('#betConfirm',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
-                }
+                //按鈕顏色變成灰色，表示不能再次按
+                let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
+                confirmBtn.style.background = 'rgb(80, 78, 78)'
+                //不能下注，除非按取消
+                canConfirmBet.value = false
+            }
         }
         return{
             //data

@@ -8,6 +8,7 @@ import "bootstrap"
 import "../src/assets/css/bootstrap.min.css"
 import './assets/css/all.css';  //最後引入主要CSS
 
+
 NodePlayer.load(()=>{
     createApp(App).use(store).use(router).mount('#app')
 })
