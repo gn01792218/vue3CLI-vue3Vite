@@ -117,7 +117,7 @@
                 <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
                     <span>{{numberFormat(minBetLimit)}}-{{numberFormat(maxBetLimit)}}</span>
                 </div>
-              <div class="bettingArea-btn-check d-flex justify-content-center align-items-center" @click="confirmBet"><i class="bi bi-check-circle"></i>確定</div>
+              <div class="bettingArea-btn-check d-flex justify-content-center align-items-center" @click="sendConfirmBetCall"><i class="bi bi-check-circle"></i>確定</div>
             </div>
             <div class="askRoad d-flex">
                 <div class="askRoad-player p-1 mr-2" @click="askRoad(2)">
@@ -145,7 +145,7 @@
 <script lang="ts">
 import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
 import {gsap,Power4} from 'gsap'
-import {sendBetCall,sendBetResetCall,sendAskRoadCall} from '../socketApi'
+import {sendBetCall,sendBetResetCall,sendAskRoadCall,sendBetConfirmCall} from '../socketApi'
 import {useStore} from 'vuex'
 import {useRoute } from 'vue-router'
 import GameResult from '@/components/GameResult.vue'
@@ -196,6 +196,12 @@ export default defineComponent({
         const tableNum = computed(()=>{
             return route.params.tableId
         })
+        const confirmBtn = computed(()=>{
+            return document.querySelector('.bettingArea-btn-check') as HTMLElement
+        })
+        const betStatusText = computed(()=>{
+            return document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
+        })
         watch(tableNum,()=>{
             //清空注區的動畫
             reSetBetAreaAnimation()
@@ -204,25 +210,26 @@ export default defineComponent({
             //取得注區的最大最小檯紅(給手機顯示用的)
             getBetLimit(tableInfoData.value)
             //如果換桌時，根據確認紐情況，改變顏色
-            let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
-            let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
-            if(canConfirmBet.value){ //尚未使用確認紐
-                console.log('尚未使用過確認紐')
+            // let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
+            if(!isConfirmed.value){ //尚未使用確認紐
+                console.log('便原本顏色')
                 //字變成灰色
-                betStatusText.forEach((i:HTMLElement)=>{
+                betStatusText.value.forEach((i:HTMLElement)=>{
                     i.style.color = 'gray'
                 })
                 //按鈕變成原本顏色
-                confirmBtn.style.background = 'rgba(128, 0, 128, 0.829)'
+                confirmBtn.value.style.background = 'rgba(128, 0, 128, 0.829)'
+                console.log('改變顏色:',confirmBtn.value.style.background)
             }else{ //已使用了確認紐
-             console.log('使用過確認紐')
+             console.log('使用過呃顏色')
                 //字變成白色
-                betStatusText.forEach((i:HTMLElement)=>{
+                betStatusText.value.forEach((i:HTMLElement)=>{
                     i.style.color = 'white'
-                    console.log(i.style.color)
+                    console.log('換白色')
                 })
                 //按鈕變成灰色
-                confirmBtn.style.background = 'rgb(80, 78, 78)'
+                confirmBtn.value.style.background = 'rgb(80, 78, 78)'
+                console.log('改變顏色:',confirmBtn.value.style.background)
             }
             // if(tableNum.value=='A'){
             //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
@@ -263,6 +270,9 @@ export default defineComponent({
         const betResetresult = computed(()=>{
             return store.state.bet.BetResetRecall.result
         })
+        const betConfirmRecall = computed(()=>{
+            return store.state.bet.BetConfirmRecall
+        })
         const betError = computed(()=>{
             return store.state.bet.BetRecall.betError
         })
@@ -295,14 +305,30 @@ export default defineComponent({
         })
         //基本資料
         const canBet = ref(true)
-        const canConfirmBet = ref(true) //一開始是可以按確認紐的
+        const isConfirmed = computed(()=>{
+            return store.state.bet.isConfirmed
+        })
+        // ref(true) //一開始是可以按確認紐的
         const canUseSmallCoin = ref(false)
         const betCallTemp = ref({}) //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
         let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
         const currentAskRoadSide = ref(0)
         //監聽
-        watch(canConfirmBet,()=>{
-            console.log('可否按確認紐',canConfirmBet.value)
+        watch(betConfirmRecall,()=>{
+             confirmBet()
+        })
+        watch(isConfirmed,()=>{
+            // let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
+            if(isConfirmed.value){ //按過了是灰色
+            console.log('按過確認了',isConfirmed.value)
+                //按鈕變成灰色
+                confirmBtn.value.style.background = 'rgb(80, 78, 78)'
+            }else{
+                console.log('沒按過確認',isConfirmed.value)
+                //按鈕變成原本顏色
+                confirmBtn.value.style.background = 'rgba(128, 0, 128, 0.829)'
+            }
+
         })
         watch(roundAskBanker,()=>{
             // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
@@ -323,6 +349,9 @@ export default defineComponent({
                 coinPosition[2].betStatus = betStatus.value.PlayerPair
                 coinPosition[3].betStatus = betStatus.value.Tie
                 coinPosition[4].betStatus = betStatus.value.BankerPair
+                for(let i = 0 ; i<5 ;i++){
+                    console.log(coinPosition[i].betStatus)
+                }
             }   
         })
         watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
@@ -331,17 +360,25 @@ export default defineComponent({
             resetGame()
             canBet.value = false
         })
-        watch(roundUuid,()=>{  //回合開始時重置遊戲
+        watch(roundUuid,()=>{  //回合開始時重置遊戲；也可能是換桌
             reSetBetAreaAnimation()
             resetGame()
-            canConfirmBet.value = true //可以再次按下確認鈕
+            confirmBtn.value.style.background = 'rgba(128, 0, 128, 0.829)'
+            // if(isConfirmed.value){
+            //     store.commit('bet/setIsConfirmed',true)
+            //     confirmBtn.value.style.background = 'rgb(80, 78, 78)'
+            // }else{
+            //     store.commit('bet/setIsConfirmed',false)
+            //     confirmBtn.value.style.background = 'rgba(128, 0, 128, 0.829)'
+            // }
         })
         watch(gameEndUuid,()=>{
             canBet.value = false
+            store.commit('bet/setIsConfirmed',false)
         })
         watch(betError,()=>{
             if(betError.value){
-                console.log('進到-1',betError.value.error)
+                // console.log('進到-1',betError.value.error)
                 switch(betError.value.error){
                     case 1:
                         betErrorArray.value?.push('下注失敗')
@@ -353,7 +390,6 @@ export default defineComponent({
                         betErrorArray.value?.push(betError.value.errorMessage)
                         break
                     case 4:
-                        console.log(betError.value.errorMessage)
                         betErrorArray.value?.push(betError.value.errorMessage)
                         break
                     case 5:
@@ -368,7 +404,6 @@ export default defineComponent({
         })
         watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
             if(betResult.value!==0 && betResult.value!=-1){
-                console.log('裝動畫')
                 betArray.push(betCallTemp.value) //確認server回傳為1才推入陣列中
                 let betArrayShift = betArray.shift()
                 betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
@@ -485,7 +520,6 @@ export default defineComponent({
         const minBetLimit = ref(999999999)
         const maxBetLimit = ref(-1)
         function getBetLimit (tableBetIndoData:any){
-            console.log(tableBetIndoData)
             //每次都把最大最小基準值恢復，再比大小
             minBetLimit.value = 999999999
             maxBetLimit.value = -1
@@ -678,7 +712,7 @@ export default defineComponent({
             })
         }
         async function generateCoinAnimate (e:HTMLElement) {
-            console.log('2.再執行動畫',e,coinPosition[currentBetPosition.betAreaIndex].initBottom)
+            // console.log('2.再執行動畫',e,coinPosition[currentBetPosition.betAreaIndex].initBottom)
             await gsap
             .to(e,{
                 keyframes:[
@@ -694,7 +728,7 @@ export default defineComponent({
         }
         function loadCoin () {
             if(currentCoint.num!==null){
-                console.log("裝入",currentCoint.coinElement.classList[0])
+                // console.log("裝入",currentCoint.coinElement.classList[0])
                 // coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
                 coinList.value[currentCoint.num].ammo.push(currentCoint.coinElement.classList[0])
             }
@@ -713,7 +747,7 @@ export default defineComponent({
             }
         }
         function sendBetData(e:MouseEvent,index:number){  //push紀錄注區元素和注區index
-            if(canBet.value && canConfirmBet.value){ //下注期間，且是還沒按下確認鍵時
+            if(canBet.value && !isConfirmed.value){ //下注期間，且是還沒按下確認鍵時
                 sendBetCall({
                     gameUuid:roundUuid.value,
                     betIndex:currentCoint.num,
@@ -726,7 +760,7 @@ export default defineComponent({
                     }
                 }
             }else{ //if 停止下注時，就不要送了，改為betErrorArray.value?.push('下注失敗')
-                if(!canConfirmBet.value){
+                if(isConfirmed.value){
                     betErrorArray.value?.push('已確認過下注，若要再次下注，請按取消鈕')
                 }else{
                     betErrorArray.value?.push('下注失敗')
@@ -747,16 +781,16 @@ export default defineComponent({
             }
         }
         function getAllBetBack(){
-            if(canBet.value && !canConfirmBet.value){  //可以下注時才可以反悔
-                canConfirmBet.value = true  //取消的話就可以再次確認下注
+            if(canBet.value && isConfirmed.value){  //可以下注時才可以反悔
+                // isConfirmed.value = true  //取消的話就可以再次確認下注
                 sendBetResetCall({
-                 gameUuid:roundUuid.value,
+                    gameUuid:roundUuid.value,
                 })
                 //按鈕變成原本顏色
-                let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
-                confirmBtn.style.background = 'rgba(128, 0, 128, 0.829)'
+                confirmBtn.value.style.background = 'rgba(128, 0, 128, 0.829)'
                 gsap
                 .fromTo('#cancleBet',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
+                store.commit('bet/setIsConfirmed',false)
             }
         }
         function clearLoseArea (winAreaArray:Array<number>) {
@@ -971,30 +1005,38 @@ export default defineComponent({
         function sendConfirmBetCall(){//發送確認下注請求
             //可以發出確認紐的時機:
             //1.canBet  2.玩家有下注在任一區域時  3.當局還沒按過確認鍵
-            if(canBet.value && canConfirmBet.value){
-                if(coinPosition[0].betStatus!==0 && coinPosition[1].betStatus!==0 
-                && coinPosition[2].betStatus!==0 && coinPosition[2].betStatus!==0 && coinPosition[4].betStatus!==0){
-                    
+            // console.log(coinPosition[0].betStatus, coinPosition[1].betStatus,coinPosition[2].betStatus, coinPosition[2].betStatus, coinPosition[4].betStatus)
+            // console.log(coinPosition[0].betStatus!=0 && coinPosition[1].betStatus!=0 &&
+            //       coinPosition[2].betStatus!=0 && coinPosition[3].betStatus!=0 && coinPosition[4].betStatus!=0)
+            if(canBet.value && !isConfirmed.value){
+                if(coinPosition[0].betStatus!=0 || coinPosition[1].betStatus!=0 ||
+                  coinPosition[2].betStatus!=0 || coinPosition[3].betStatus!=0 || coinPosition[4].betStatus!=0){
+                      sendBetConfirmCall({
+                        gameUuid:roundUuid.value
+                    })
+                }else{
+                    betErrorArray.value?.push('尚未下注')
                 }
             }
         }
         function confirmBet(){ //收到serve確認下注時的動作
-            if(canBet.value && canConfirmBet.value){ 
-                console.log('可以按確認紐')
+            if(canBet.value && !isConfirmed.value){ 
                 //發送confirm請求
                 //betStatus文字變成白色，表示被計算
-                let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
-                betStatusText.forEach((i:HTMLElement)=>{
+                // let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
+                betStatusText.value.forEach((i:HTMLElement)=>{
                     i.style.color = 'white'
+                    console.log('換白色')
                 })
                 //噴出確認下注的提示文字
                  gsap
                 .fromTo('#betConfirm',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
                 //按鈕顏色變成灰色，表示不能再次按
-                let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
-                confirmBtn.style.background = 'rgb(80, 78, 78)'
+                // let confirmBtn = document.querySelector('.bettingArea-btn-check') as HTMLElement
+                confirmBtn.value.style.background = 'rgb(80, 78, 78)'
                 //不能下注，除非按取消
-                canConfirmBet.value = false
+                store.commit('bet/setIsConfirmed',true)
+                // isConfirmed.value = false
             }
         }
         return{
@@ -1019,7 +1061,7 @@ export default defineComponent({
             sendBetData,
             askRoad,
             numberFormat,
-            confirmBet,
+            sendConfirmBetCall,
         }
     }
 })

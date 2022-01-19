@@ -11,6 +11,8 @@
                 <span class="footer-item  d-md-flex"><i class="bi bi-gift"></i></span>
                 <span class="footer-item  d-md-flex"><i class="bi bi-chat-dots"></i></span>
                 <span class="footer-item  d-md-flex"><i class="bi bi-lightning"></i></span>
+                <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span>
+                
                 <!-- <div class="chat-input position-relative">
                     <input type="text" class="" placeholder="你目前沒有發言權限" aria-label="Username" aria-describedby="basic-addon1">
                     <div class="input-emoji position-absolute">
@@ -42,6 +44,9 @@ export default defineComponent({
         //vuex
         const store = useStore()
         //computed
+        const announcementShow = computed(()=>{
+            return store.state.lobby.showannouncement
+        })
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
@@ -79,6 +84,9 @@ export default defineComponent({
                 npvideo.value.clearView()  //清除上一個視頻留下的東西
             }
         }
+        function showAnnouncement(){
+            store.commit('lobby/setShowannouncement',!announcementShow.value)
+        }
         return {
             //data
             user,
@@ -90,6 +98,7 @@ export default defineComponent({
             fullScreen,
             mutedSound,
             playVideo,
+            showAnnouncement,
         }
     }
 })

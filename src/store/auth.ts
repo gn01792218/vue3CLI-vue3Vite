@@ -1,4 +1,3 @@
-
 export const state = {
   userToken:"",
   LoginRecall: {},
@@ -18,7 +17,7 @@ export const mutations = {
   UserInfo(state:any, payload:any) { //接收wbSocket的訊息
     state.UserInfo=payload
     state.userWalletFomate = payload.user.wallet.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
-    console.log("vuex-auth資料更新",state.UserInfo)
+    // console.log("vuex-auth資料更新",state.UserInfo)
   },
 };
 export const getters = {}

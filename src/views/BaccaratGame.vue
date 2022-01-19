@@ -83,7 +83,7 @@ export default defineComponent({
                 // uri:"TableJoinCall",
                 uuid:tables.value[i].uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
+              // console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
               break
             }
           }
@@ -95,7 +95,7 @@ export default defineComponent({
                 // uri:"TableJoinCall",
                 uuid:tables.value[i].uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
+              // console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
               break
             }
           }

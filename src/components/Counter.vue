@@ -64,7 +64,7 @@ export default defineComponent({
             let temp = document.querySelector('.counter') as HTMLElement
                 temp.style.display = 'block'
             if(gameStatus.value==1){
-                console.log('倒數剩下幾秒',lastCount.value)
+                // console.log('倒數剩下幾秒',lastCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 count.value = lastCount.value
                 setCount()

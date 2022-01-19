@@ -33,7 +33,7 @@
             :key="index"
           >
             <p class="announcementTitle">{{ i.title }}</p>
-            <div :id="`announcementContent2-${index}`" class="announcementContent"></div>
+            <div :id="`announcementContent2-${index}`" class="announcementContent">{{ i.content}}</div>
         </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
@@ -160,13 +160,11 @@ export default defineComponent({
     });
     watch(announcement1Checked,()=>{
       if(announcement1Checked.value){
-        console.log('同意書一過關')
         setCurrentAnnouncement(1)
       }
     })
     watch(announcement2Checked,()=>{
       if(announcement2Checked.value){
-        console.log('同意書二過關')
         setCurrentAnnouncement(2)
       }
     })
@@ -189,7 +187,6 @@ export default defineComponent({
     }
     function setCurrentAnnouncement(num:number){
       currentAnnouncement.value = num 
-      console.log('設置同意書index',currentAnnouncement.value)
     }
     function closeAnnouncement() {
       if (

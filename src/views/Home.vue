@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <h1 class="text-center">選擇遊戲桌檯</h1>
-    
+<!--     
     <button @click="showAnnouncement">
       同意書
-    </button>
+    </button> -->
     <div
       class="tableList d-flex flex-column flex-xl-row justify-content-center align-items-center"
     >
@@ -33,9 +33,6 @@ export default defineComponent({
     const localStorage = window.localStorage
     // Cookies.set('userToken',route.params.userToken,{expires:0.1})
     const store = useStore();
-    const announcementShow = computed(()=>{
-      return store.state.lobby.showannouncement
-    })
     const vuexUserToken = computed(() => {
       return store.state.auth.userToken;
     });
@@ -61,15 +58,11 @@ export default defineComponent({
           alert("驗證失敗，請重新登入");
       }
     });
-    function showAnnouncement(){
-      store.commit('lobby/setShowannouncement',!announcementShow.value)
-    }
     return {
       //data
       tableInfoData,
-      announcementShow,
+      // announcementShow,
       //methods
-      showAnnouncement,
     };
   },
 });

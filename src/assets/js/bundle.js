@@ -1537,6 +1537,7 @@ export const bet = $root.bet = (() => {
          * @property {number|null} [totalBets] BetRecall totalBets
          * @property {bet.IBetStatus|null} [betStatus] BetRecall betStatus
          * @property {bet.IBetError|null} [betError] BetRecall betError
+         * @property {boolean|null} [isConfirmed] BetRecall isConfirmed
          */
 
         /**
@@ -1595,6 +1596,14 @@ export const bet = $root.bet = (() => {
         BetRecall.prototype.betError = null;
 
         /**
+         * BetRecall isConfirmed.
+         * @member {boolean} isConfirmed
+         * @memberof bet.BetRecall
+         * @instance
+         */
+        BetRecall.prototype.isConfirmed = false;
+
+        /**
          * Creates a new BetRecall instance using the specified properties.
          * @function create
          * @memberof bet.BetRecall
@@ -1628,6 +1637,8 @@ export const bet = $root.bet = (() => {
                 $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.betError != null && Object.hasOwnProperty.call(message, "betError"))
                 $root.bet.BetError.encode(message.betError, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.isConfirmed != null && Object.hasOwnProperty.call(message, "isConfirmed"))
+                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isConfirmed);
             return writer;
         };
 
@@ -1676,6 +1687,9 @@ export const bet = $root.bet = (() => {
                     break;
                 case 5:
                     message.betError = $root.bet.BetError.decode(reader, reader.uint32());
+                    break;
+                case 6:
+                    message.isConfirmed = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1733,6 +1747,9 @@ export const bet = $root.bet = (() => {
                 if (error)
                     return "betError." + error;
             }
+            if (message.isConfirmed != null && message.hasOwnProperty("isConfirmed"))
+                if (typeof message.isConfirmed !== "boolean")
+                    return "isConfirmed: boolean expected";
             return null;
         };
 
@@ -1767,6 +1784,8 @@ export const bet = $root.bet = (() => {
                     throw TypeError(".bet.BetRecall.betError: object expected");
                 message.betError = $root.bet.BetError.fromObject(object.betError);
             }
+            if (object.isConfirmed != null)
+                message.isConfirmed = Boolean(object.isConfirmed);
             return message;
         };
 
@@ -1789,6 +1808,7 @@ export const bet = $root.bet = (() => {
                 object.totalBets = 0;
                 object.betStatus = null;
                 object.betError = null;
+                object.isConfirmed = false;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -1800,6 +1820,8 @@ export const bet = $root.bet = (() => {
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             if (message.betError != null && message.hasOwnProperty("betError"))
                 object.betError = $root.bet.BetError.toObject(message.betError, options);
+            if (message.isConfirmed != null && message.hasOwnProperty("isConfirmed"))
+                object.isConfirmed = message.isConfirmed;
             return object;
         };
 

@@ -10,7 +10,6 @@ export const state = {
     gameResultCount:{},// 統計資訊
     askBankByRoundStart:{}, //回合自動問路莊家
     askPlayerByRoundStart:{}, //回合自動問路閒家
-
   };
   export const actions = {}
   
@@ -42,7 +41,7 @@ export const state = {
     },
     GameStatus(state:any, payload:any){
       state.GameStatus = payload
-      // state.gameUuid = payload.gameUuid
+      state.gameUuid = payload.gameUuid
       state.numOfRound = payload.numOfRound
       state.numOfShoe = payload.numOfShoe
       state.gameResultCount = payload.gameResultCounter

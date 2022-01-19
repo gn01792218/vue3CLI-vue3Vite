@@ -657,6 +657,9 @@ export namespace bet {
 
         /** BetRecall betError */
         betError?: (bet.IBetError|null);
+
+        /** BetRecall isConfirmed */
+        isConfirmed?: (boolean|null);
     }
 
     /** Represents a BetRecall. */
@@ -682,6 +685,9 @@ export namespace bet {
 
         /** BetRecall betError. */
         public betError?: (bet.IBetError|null);
+
+        /** BetRecall isConfirmed. */
+        public isConfirmed: boolean;
 
         /**
          * Creates a new BetRecall instance using the specified properties.

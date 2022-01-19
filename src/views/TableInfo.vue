@@ -43,7 +43,7 @@ export default defineComponent({
         }
         watch([DrawCard,lastDrawCard],()=>{
             if(onClickTab.value!="遊戲結果"){
-                console.log('進遊戲結果',DrawCard.value,lastDrawCard.value)
+                // console.log('進遊戲結果',DrawCard.value,lastDrawCard.value)
                 onClickTab.value = "遊戲結果"
             }
         })
