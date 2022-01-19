@@ -42,8 +42,10 @@
               我同意遊戲公告2之條文內容
             </p>
           </div>
-          <i class="bi bi-arrow-left-square" @click="setCurrentAnnouncement(0)"></i>
-          <i class="bi bi-arrow-right-square" @click="setCurrentAnnouncement(2)"></i>
+          <div class="d-flex">
+            <i class="bi bi-arrow-left-square" @click="setCurrentAnnouncement(0)"></i>
+            <i class="bi bi-arrow-right-square" @click="setCurrentAnnouncement(2)"></i>
+          </div>
         </div>
       </section>
       <section class="announcement-body mb-4" v-if="currentAnnouncement==2">
