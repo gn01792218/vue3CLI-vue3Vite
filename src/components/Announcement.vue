@@ -1,98 +1,218 @@
 <template>
-<div class="w-100 h-100" v-if="show">
-    <div class="announcement-bg w-100 h-100 psition-absolute"></div>
-    <div class="announcement-container position-absolute">
-        <button type="button" class="close" @click="closeAnnouncement">
-            <span aria-hidden="true">&times;</span>
-        </button>
-            <header class="announcement-header text-center">遊戲公告同意書</header>
-            <div class="announcement-body">
-                <div class="text-left" v-for="(i,index) in announcementData" :key="index">
-                <p class="announcementTitle">{{i.title}}</p>
-                <p class="announcementContent">{{i.content}}</p>
-                </div>
-            </div>
-        <div class="announcement-fotter">
-            <div class="form-group form-check d-flex align-items-center">
-                <input type="checkbox" v-model="checked">
-                <p class="form-check-label" for="exampleCheck1">我同意以上事項</p>
+  <div class="announcement w-100 h-100 position-absolute" v-if="show">
+    <div class="announcement-bg w-100 h-100 position-absolute"></div>
+    <div class="announcement-container position-absolute p-4">
+      <header class="announcement-header text-center mb-4">
+        <h1>遊戲公告同意書</h1>
+      </header>
+      <section class="announcement-body mb-4" v-if="currentAnnouncement==0">
+        <h3 class="text-center">遊戲公告1</h3>
+        <div
+            class="text-left"
+            v-for="(i, index) in announcementData1.content"
+            :key="index"
+          >
+            <p class="announcementTitle">{{ i.title }}</p>
+            <div :id="`announcementContent1-${index}`" class="announcementContent">{{ i.content }}</div>
+        </div>
+        <div class="d-flex align-items-center flex-column">
+          <div class="form-group form-check d-flex align-items-center">
+            <input type="checkbox" class="mr-2" v-model="announcementData1.checked"/>
+            <p class="form-check-label" for="exampleCheck1">
+              我同意遊戲公告1之條文內容
+            </p>
+          </div>
+          <i class="bi bi-arrow-right-square" @click="setCurrentAnnouncement(1)"></i>
+        </div>
+      </section>
+      <section class="announcement-body mb-4" v-if="currentAnnouncement==1">
+        <h3 class="text-center">遊戲公告2</h3>
+        <div
+            class="text-left"
+            v-for="(i, index) in announcementData2.content"
+            :key="index"
+          >
+            <p class="announcementTitle">{{ i.title }}</p>
+            <div :id="`announcementContent2-${index}`" class="announcementContent"></div>
+        </div>
+        <div class="d-flex align-items-center flex-column">
+          <div class="form-group form-check d-flex align-items-center">
+            <input type="checkbox" class="mr-2" v-model="announcementData2.checked"/>
+            <p class="form-check-label" for="exampleCheck1">
+              我同意遊戲公告2之條文內容
+            </p>
+          </div>
+          <i class="bi bi-arrow-left-square" @click="setCurrentAnnouncement(0)"></i>
+          <i class="bi bi-arrow-right-square" @click="setCurrentAnnouncement(2)"></i>
+        </div>
+      </section>
+      <section class="announcement-body mb-4" v-if="currentAnnouncement==2">
+        <h3 class="text-center">{{announcementData3.content[0].title}}</h3>
+        <div
+            class="text-left"
+            v-for="(i, index) in announcementData3.content"
+            :key="index"
+          >
+            <p class="announcementContent">{{ i.content }}</p>
+            <div>
+              <img :src="i.img" alt="">
             </div>
         </div>
+        <div class="d-flex align-items-center flex-column">
+          <div class="form-group form-check d-flex align-items-center">
+            <input type="checkbox" class="mr-2" v-model="announcementData3.checked"/>
+            <p class="form-check-label" for="exampleCheck1">
+              我同意百家樂遊戲牌例之條文內容
+            </p>
+          </div>
+          <i class="bi bi-arrow-left-square" @click="setCurrentAnnouncement(1)"></i>
+          <button type="button" class="btn btn-info" @click="closeAnnouncement">
+          進入遊戲
+        </button>
+        </div>
+      </section>
+      <!-- <div class="announcement-body mb-4">
+        <section>
+          <h3 class="text-center">遊戲公告1</h3>
+          <div
+            class="text-left"
+            v-for="(i, index) in announcementData1.content"
+            :key="index"
+          >
+            <p class="announcementTitle">{{ i.title }}</p>
+            <p class="announcementContent">{{ i.content }}</p>
+          </div>
+        </section>
+        <section>
+          <h3 class="text-center">遊戲公告2</h3>
+          <div
+            class="text-left"
+            v-for="(i, index) in announcementData2.content"
+            :key="index"
+          >
+            <p class="announcementTitle">{{ i.title }}</p>
+            <p class="announcementContent">{{ i.content }}</p>
+          </div>
+        </section>
+        <section>
+          <h3 class="text-center">遊戲公告3</h3>
+          <div
+            class="text-left"
+            v-for="(i, index) in announcementData3.content"
+            :key="index"
+          >
+            <p class="announcementTitle">{{ i.title }}</p>
+            <p class="announcementContent">{{ i.content }}</p>
+          </div>
+        </section>
+      </div> -->
+      <!-- <div class="announcement-fotter d-flex flex-column justify-content-center">
+          <div class="form-group form-check d-flex align-items-center">
+            <input type="checkbox" v-model="announcementData1.checked" />
+            <p class="form-check-label" for="exampleCheck1">
+              我同意遊戲公告1之條文內容
+            </p>
+          </div>
+          <div class="form-group form-check d-flex align-items-center">
+            <input type="checkbox" v-model="announcementData2.checked" />
+            <p class="form-check-label" for="exampleCheck1">
+              我同意遊戲公告2之條文內容
+            </p>
+          </div>
+          <div class="form-group form-check d-flex align-items-center">
+            <input type="checkbox" v-model="announcementData3.checked" />
+            <p class="form-check-label" for="exampleCheck1">
+              我同意遊戲公告3之條文內容
+            </p>
+          </div>
+        <button type="button" class="btn btn-info" @click="closeAnnouncement">
+          進入遊戲
+        </button>
+      </div> -->
     </div>
-</div>
+  </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent , ref, warn, watch} from 'vue'
-import { useStore } from 'vuex'
+import { computed, defineComponent , onMounted, ref, watch} from "vue";
+import { useStore } from "vuex";
 export default defineComponent({
-   setup(){
-       const localStorage = window.localStorage
-       const store = useStore()
-       const announcementData = [
-      {
-        title:'一、遵守會員規範及法律規定：',
-        content:'您瞭解您註冊成為會員後，即可使用本遊戲所提供之各項服務(以下稱本遊戲)。當會員使用本遊戲時，即表示除了同意遵守本遊戲條款外，還同意接受本遊戲對會員規範(包括各項遊戲規則、球賽投注規則、公告及注意事項等)及相關法令規定之拘束，本遊戲所有產品與客戶服務、軟件系統、網絡架構等相關業務事宜，使用本遊戲之會員請遵守使用者當地法令之許可，如有違反之情事恕非本遊戲之負責範圍。'
-      },
-      {
-        title:'二、服務簡介：',
-        content:'(一) 本遊戲旨在創造一個『安全可靠』、『即時便利』、『公平公正』、『專業營運』的優質娛樂服務平台，強調的是讓會員不受時空的限制，隨時上線就可以參與一個公平公正的遊戲，亦可以享受到與世界各地玩家切磋的樂趣，我們秉持以客為尊的態度，不斷開發創新及了解客戶需求是本遊戲引以為傲的經營理念，冀望能創造出嶄新的娛樂價值以及達到多方普及的目的，成為具有領導指標性的娛樂網站。'
-      },
-      {
-        title:'三、真實登錄義務：',
-        content:'基於本遊戲所提供之各項服務，您同意於註冊時依註冊申請程序所提示之項目，登錄您本人正確、真實及完整之個人資料；當您的個人資料有異動時，請立即更新，以維持您個人資料之正確、真實及完整。如因您登錄不實資料或冒用他人名義以致於侵害他人之權利或違法時，應自負法律責任；並同意您所提供之個人資料不實或個人資料有異動但沒有更新以致於與原登錄之資料不符時，本遊戲有權隨時終止您的會員資格及使用各項會員服務之權利。'
-      },
-      {
-        title:'四、服務之停止與更改：',
-        content:'1.會員登錄之資料不實。\n2.使用他人的名義申請本服務。\n3.違反遊戲公平原則。\n4.參與遊戲或比賽時，故意鑽研系統漏洞或利用遊戲弱點以影響結果。\n5. 本遊戲不允許不公平的下注方式、雙邊下注、無風險下注及任何無風險解凍之下注方式，如有發現上述問題之玩家，本遊戲 有終止玩家帳號使用之權利。如有任何爭議問題，本遊戲有最終決定權。無論任何情形，就停止或更改服務或終止會員帳戶服務所可能產生之困擾、不便或損害，本遊戲對任何會員或第三人均不負任何責任。\n6. 本遊戲會員最多可申請 1 個帳號投注，若超過 1 個以上的帳號投注同場賽事，本游戲將保留最終的注單審核及刪除權利。'
-      },
-      {
-        title:'五、服務暫停或中斷：',
-        content:'(一) 本遊戲於下列情形之一時，對於使用者不負擔任何賠償責任：\n1.對於本遊戲相關系統設備進行遷移、更換或維護時。\n2.因不可歸責於本遊戲所造成服務停止或中斷。\n3.因不可抗力所造成服務停止或中斷。\n(二)如因本遊戲對於相關系統設備進行遷移、更換或維護而必須暫停或中斷服務時，將於本遊戲公告。\n(三)對於本遊戲之暫停或中斷，可能造成您使用上的不便、資料遺失或其他經濟及時間上之損失，您平時應採取適當的防護措施，以保障您的權益。'
-      },
-      {
-        title:'六、保管義務：',
-        content:'會員有義務妥善保管在本遊戲之帳號與密碼，並為此組帳號與密碼登入系統後所進行之一切活動負責。為維護會員自身權益，請勿將帳號與密碼洩露或提供予第三人知悉，或出借或轉讓他人使用。'
-      },
-      {
-        title:'七、同意各項球賽及遊戲規則：',
-        content:'為避免使用者於本遊戲平台投注球賽或遊戲時產生爭議，各項規則於遊戲中心和球賽中心均有詳細說明，請務必詳細閱讀本遊戲所定之各項規則，會員一經開始使用本遊戲，即被視為已接受所有之規定。'
-      },
-      {
-        title:'八、會員規範之增訂及修改：',
-        content:'本遊戲條款如有增訂或修改，您同意自該修訂條款於本遊戲網站公告之時起受其拘束，本遊戲網站將不對會員個別通知。如您於公告後繼續使用本遊戲，則視為您已經同意該修訂條款。'
-      },
-      {
-        title:'九、隱私權聲明：',
-        content:'我們致力為客戶保護隱私並提供一個最安全的遊戲平臺，我們在此網站搜集的資料將會為您提供最卓越的服務，我們不會出賣或租賃您的個人資料給第三方，客戶所提供的個人資料均經過加密技術處理，並儲存在安全的、非公開的作業系統，對於有機會接觸客戶的個人資料的協助夥伴也必需遵守我們訂立的隱私保密規則。'
-      },
-      {
-        title:'十、免責聲明：',
-        content:'部份地區或國家法律尚未明定線上博彩的合法性問題，甚至某些地區或國家已明確規範線上博彩為非法行為。我們無意邀請任何人在這些地區或國家非法使用本遊戲平台。使用者必需確定在您所居住的地區或國家使用線上博彩是否合法，並負完全的責任，使用本遊戲之會員請遵守使用者當地法令之許可，如有違反之情事恕非本遊戲之負責範圍。'
-      },
-        ]
-       const show = computed(()=>{
-           return store.state.lobby.showannouncement
-       }) 
-       const checked = ref(false)
-       watch(checked,()=>{
-           if(checked.value){
-               localStorage.setItem('agreedAnnouncement',JSON.stringify(true))
-           }else{
-               localStorage.removeItem('agreedAnnouncement')
-           }
-       })
-       function closeAnnouncement(){
-           store.commit('lobby/setShowannouncement',false)
-       }
-        return {
-            //data
-            announcementData,
-            show,
-            checked,
-            //methods
-            closeAnnouncement,
+  setup() {
+    onMounted(()=>{
+      // let t = document.querySelector('.announcement') as HTMLElement
+      // console.log(t)
+      // appentContent(announcementData2.content,2)
+    })
+    //  const localStorage = window.localStorage
+    const store = useStore();
+    const announcementData1 = store.state.lobby.announcement.announcement1;
+    const announcementData2 = store.state.lobby.announcement.announcement2;
+    const announcementData3 = store.state.lobby.announcement.announcement3;
+    const announcement1Checked = computed(()=>{
+      return store.state.lobby.announcement.announcement1.checked
+    })
+    const announcement2Checked = computed(()=>{
+      return store.state.lobby.announcement.announcement2.checked
+    })
+    const currentAnnouncement = ref(0)
+    const show = computed(() => {
+      return store.state.lobby.showannouncement;
+    });
+    watch(announcement1Checked,()=>{
+      if(announcement1Checked.value){
+        console.log('同意書一過關')
+        setCurrentAnnouncement(1)
+      }
+    })
+    watch(announcement2Checked,()=>{
+      if(announcement2Checked.value){
+        console.log('同意書二過關')
+        setCurrentAnnouncement(2)
+      }
+    })
+    function appentContent(contentData:any,announcementNum:number){
+      console.log(contentData)
+      contentData.forEach((i:any,index:any)=>{
+        switch(announcementNum){
+        case 1:
+          let contentElement1 = document.getElementById(`announcementContent1-${index}`) as HTMLElement
+          contentElement1.innerHTML = i.content
+          break
+        case 2:
+          let contentElement2 = document.querySelector(`#announcementContent2-${index}`) as HTMLElement
+          console.log(contentElement2,`announcementContent2-${index}`)
+          contentElement2.innerHTML = i.content
+          break
         }
+      })
+      
     }
-})
+    function setCurrentAnnouncement(num:number){
+      currentAnnouncement.value = num 
+      console.log('設置同意書index',currentAnnouncement.value)
+    }
+    function closeAnnouncement() {
+      if (
+        announcementData1.checked &&
+        announcementData2.checked &&
+        announcementData3.checked
+      ) {
+        store.commit("lobby/setShowannouncement", false);
+      } else {
+        alert("若要進行遊戲，請先勾選同意書");
+      }
+    }
+    return {
+      //data
+      announcementData1,
+      announcementData2,
+      announcementData3,
+      show,
+      currentAnnouncement,
+      //methods
+      closeAnnouncement,
+      setCurrentAnnouncement,
+    };
+  },
+});
 </script>

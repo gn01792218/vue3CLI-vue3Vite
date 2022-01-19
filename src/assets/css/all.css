@@ -394,9 +394,7 @@ img {
 }
 
 .announcement-bg {
-  background-color: rgba(19, 18, 18, 0.123);
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
+  background-color: black;
   top: 0;
   left: 0;
 }
@@ -404,7 +402,8 @@ img {
 .announcement-container {
   background-color: white;
   color: black;
-  height: 500px;
+  width: 900px;
+  height: 650px;
   overflow-y: scroll;
   top: 50%;
   left: 50%;
@@ -413,19 +412,37 @@ img {
 }
 
 .announcement-fotter div {
-  width: 30%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .announcement-fotter input {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
 }
 
 .announcement-fotter .form-check-label {
-  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+}
+
+.announcementTitle {
+  font-weight: 600;
+}
+
+.announcementContent {
+  text-indent: 2rem;
+}
+
+.announcementContent span {
+  color: red;
+}
+
+.bi-arrow-right-square, .bi-arrow-left-square {
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .betLimitInfo {
@@ -2204,6 +2221,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header {
     background-image: none;
   }
+  .announcement-container {
+    top: 45%;
+  }
   .container-waps {
     height: auto;
   }
@@ -2709,9 +2729,19 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (max-width: 1024px) and (max-height: 600px) {
+  .announcement-container {
+    top: 54%;
+    height: 500px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header {
     height: 40px;
+  }
+  .announcement-container {
+    width: 600px;
   }
   .video-box {
     height: 430px;
@@ -3125,6 +3155,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 540px) {
   .header {
     height: 30px;
+  }
+  .announcement-container {
+    width: 500px;
+    top: 52%;
   }
   .header-btn {
     font-size: 100%;
@@ -3557,6 +3591,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     top: 25%;
     font-size: 40%;
   }
+  .announcement-container {
+    width: 390px;
+    top: 51%;
+  }
   .table-img {
     width: 100px;
     height: 100px;
@@ -3684,6 +3722,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 375px) {
   .video-box {
     height: 210px;
+  }
+  .announcement-container {
+    width: 350px;
+    top: 55%;
   }
   .tableItem {
     padding: 5px !important;
@@ -3852,6 +3894,18 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 320px) {
   .header {
     height: 30px;
+  }
+  .announcement-container {
+    width: 300px;
+    top: 65%;
+  }
+  .announcement-container h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .announcement-container h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
   }
   .tableItem {
     -webkit-box-orient: vertical;
@@ -4066,6 +4120,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 280px) {
   .tableItem {
     width: 230px;
+  }
+  .announcement-container {
+    width: 250px;
+    height: 653px;
+    top: 65%;
   }
   .header {
     height: 50px;

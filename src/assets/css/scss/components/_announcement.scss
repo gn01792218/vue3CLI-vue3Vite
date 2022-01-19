@@ -1,14 +1,14 @@
+
 .announcement-bg{
-    background-color: rgba(19, 18, 18, 0.123);
-    filter:blur(2px);
+    background-color: black;
     top:0;
     left:0;
 }
 .announcement-container{
     background-color: white;
     color:black;
-    // width:800px;
-    height:500px;
+    width: 900px;
+    height:650px;
     overflow-y: scroll;
     top:50%;
     left:50%;
@@ -16,16 +16,31 @@
 }
 .announcement-fotter{
     div{
-        width:30%;
+        width:40%;
         margin-left: auto;
         margin-right: auto;
     }
     input{
-        width:1.5rem;
-        height:1.5rem;
-        margin-right: 1.5rem;
+        width:1rem;
+        height:1rem;
+        margin-right: 1rem;
     }
     .form-check-label{
-        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.2rem;
     }
+}
+.announcementTitle{
+    font-weight: 600;
+}
+.announcementContent{
+    text-indent:2rem;
+    span{
+        color:red;
+    }
+}
+
+.bi-arrow-right-square,.bi-arrow-left-square{
+    font-size: 2rem;
+    cursor: pointer;
 }
