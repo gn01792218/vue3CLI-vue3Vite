@@ -1,11 +1,11 @@
 <template>
-  <div class="announcement w-100 h-100 position-absolute" v-if="show">
+  <div class="announcement w-100 h-100 position-absolute">
     <div class="announcement-bg w-100 h-100 position-absolute"></div>
     <div class="announcement-container position-absolute p-4">
       <header class="announcement-header text-center mb-4">
         <h1>遊戲公告同意書</h1>
       </header>
-      <section class="announcement-body mb-4" v-if="currentAnnouncement==0">
+      <section id="announcement1" class="announcement-body mb-4" v-show="currentAnnouncement==0">
         <h3 class="text-center">遊戲公告1</h3>
         <div
             class="text-left"
@@ -25,7 +25,7 @@
           <i class="bi bi-arrow-right-square" @click="setCurrentAnnouncement(1)"></i>
         </div>
       </section>
-      <section class="announcement-body mb-4" v-if="currentAnnouncement==1">
+      <section id="announcement2" class="announcement-body mb-4" v-show="currentAnnouncement==1">
         <h3 class="text-center">遊戲公告2</h3>
         <div
             class="text-left"
@@ -33,7 +33,7 @@
             :key="index"
           >
             <p class="announcementTitle">{{ i.title }}</p>
-            <div :id="`announcementContent2-${index}`" class="announcementContent">{{ i.content}}</div>
+            <div :id="`announcementContent2-${index}`" class="announcementContent"></div>
         </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
@@ -48,7 +48,7 @@
           </div>
         </div>
       </section>
-      <section class="announcement-body mb-4" v-if="currentAnnouncement==2">
+      <section class="announcement-body mb-4" v-show="currentAnnouncement==2">
         <h3 class="text-center">{{announcementData3.content[0].title}}</h3>
         <div
             class="text-left"
@@ -141,9 +141,12 @@ import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     onMounted(()=>{
-      // let t = document.querySelector('.announcement') as HTMLElement
-      // console.log(t)
-      // appentContent(announcementData2.content,2)
+      //為公告2增加紅色字體
+      let t = document.querySelector('.container-waps')?.children as HTMLCollection
+      let ann2 = t[0].children[1].children[2].children
+      announcementData2.content.forEach((i:any,index:number)=>{
+          ann2[index+1].children[1].innerHTML = i.content
+      })
     })
     //  const localStorage = window.localStorage
     const store = useStore();
@@ -156,10 +159,10 @@ export default defineComponent({
     const announcement2Checked = computed(()=>{
       return store.state.lobby.announcement.announcement2.checked
     })
-    const currentAnnouncement = ref(0)
     const show = computed(() => {
       return store.state.lobby.showannouncement;
     });
+    const currentAnnouncement = ref(0)
     watch(announcement1Checked,()=>{
       if(announcement1Checked.value){
         setCurrentAnnouncement(1)
@@ -170,23 +173,6 @@ export default defineComponent({
         setCurrentAnnouncement(2)
       }
     })
-    function appentContent(contentData:any,announcementNum:number){
-      console.log(contentData)
-      contentData.forEach((i:any,index:any)=>{
-        switch(announcementNum){
-        case 1:
-          let contentElement1 = document.getElementById(`announcementContent1-${index}`) as HTMLElement
-          contentElement1.innerHTML = i.content
-          break
-        case 2:
-          let contentElement2 = document.querySelector(`#announcementContent2-${index}`) as HTMLElement
-          console.log(contentElement2,`announcementContent2-${index}`)
-          contentElement2.innerHTML = i.content
-          break
-        }
-      })
-      
-    }
     function setCurrentAnnouncement(num:number){
       currentAnnouncement.value = num 
     }

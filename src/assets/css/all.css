@@ -437,8 +437,13 @@ img {
   text-indent: 2rem;
 }
 
-.announcementContent span {
+.announcement-body span {
   color: red;
+  font-weight: 600;
+}
+
+#announcement2 .announcementContent {
+  text-indent: 0rem;
 }
 
 .bi-arrow-right-square, .bi-arrow-left-square {

@@ -2,7 +2,7 @@
   <div id="wap" class="app">
     <div class="container-fluid pr-0 pl-0">
       <div class="container-waps row">
-        <Announcement v-show="announcementShow" />
+        <Announcement v-show="announcementShow"/>
         <Header />
         <router-view />
         <Footer />
@@ -13,6 +13,7 @@
 </template>
 <script lang="ts">
 import { defineComponent ,onMounted ,computed } from "vue";
+import Announcement from '@/components/Announcement.vue'
 import Header from "./views/Header.vue";
 import Footer from "./views/Footer.vue";
 import BaccaratGame from "./views/BaccaratGame.vue";
@@ -20,7 +21,6 @@ import Loading from "@/components/Loading.vue";
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
 import Cookies from "js-cookie";
-import Announcement from '@/components/Announcement.vue'
 export default defineComponent({
   components: {
     Header,

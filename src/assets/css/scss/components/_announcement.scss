@@ -38,8 +38,16 @@
 }
 .announcementContent{
     text-indent:2rem;
+}
+.announcement-body {
     span{
         color:red;
+        font-weight: 600;
+    }
+}
+#announcement2{
+    .announcementContent{
+        text-indent:0rem;
     }
 }
 
