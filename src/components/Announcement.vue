@@ -159,6 +159,9 @@ export default defineComponent({
     const announcement2Checked = computed(()=>{
       return store.state.lobby.announcement.announcement2.checked
     })
+    const announcement3Checked = computed(()=>{
+      return store.state.lobby.announcement.announcement3.checked
+    })
     const show = computed(() => {
       return store.state.lobby.showannouncement;
     });
@@ -173,6 +176,22 @@ export default defineComponent({
         setCurrentAnnouncement(2)
       }
     })
+    // function announcementChecked(announcementNum:number){
+    //   switch(announcementNum){
+    //     case 1:
+    //       store.commit('lobby/setAnnouncement1Checked',!announcement1Checked.value)
+    //       console.log('公告1確認',announcement1Checked.value)
+    //       break
+    //     case 2:
+    //       store.commit('lobby/setAnnouncement2Checked',!announcement2Checked.value)
+    //       console.log('公告2確認',announcement2Checked.value)
+    //       break
+    //     case 3:
+    //       store.commit('lobby/setAnnouncement3Checked',!announcement3Checked.value)
+    //       console.log('公告3確認',announcement3Checked.value)
+    //       break
+    //   }
+    // }
     function setCurrentAnnouncement(num:number){
       currentAnnouncement.value = num 
     }
@@ -197,6 +216,7 @@ export default defineComponent({
       //methods
       closeAnnouncement,
       setCurrentAnnouncement,
+      // announcementChecked,
     };
   },
 });

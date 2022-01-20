@@ -19,7 +19,7 @@
                         </div>
                         <div class="betArea-item-bottom position-absolute">
                             <p class="betStatus" v-show="i.betStatus>0">{{i.betStatus}}</p>
-                            <p class="table-total-betStatus">總注額:{{i.betStatus}}</p>
+                            <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p>
                         </div>
                         <ul class="coinPosition">
                             <transition-group  @enter="generateCoinAnimate">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="betArea-item-bottom position-absolute">
                             <p class="betStatus" v-show="i.betStatus>0">{{i.betStatus}}</p>
-                            <p class="table-total-betStatus">總注額:{{i.betStatus}}</p>
+                            <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p>
                         </div>
                         <ul class="coinPosition">
                             <transition-group @enter="generateCoinAnimate">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="betArea-item-bottom position-absolute">
                         <p class="betStatus" v-show="i.betStatus>0">{{i.betStatus}}</p>
-                        <p class="table-total-betStatus">總注額:{{i.betStatus}}</p>
+                        <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p>
                     </div>
                     <ul class="coinPosition">
                         <transition-group  @enter="generateCoinAnimate">
@@ -178,6 +178,7 @@ interface coinPosition {
     host:string,
     configClass:string,
     betStatus:number //目前這一回合的下注狀況
+    tableAllPlayerBetStatus:number,
     maxBet:number //最大限注
 }
 export default defineComponent({
@@ -233,6 +234,10 @@ export default defineComponent({
         const betStatus = computed(()=>{  //各注區下注狀況
             return store.state.bet.betstatus
         })
+        const broadcastBetstatus = computed(()=>{
+            return store.state.bet.BroadcastBetstatus
+        })
+        
         const betCallArray = computed(()=>{  //換桌時，server會回傳此桌的歷史下注資訊(哪個注區下了多少某種籌碼)
             return store.state.bet.BetRecall.betCall   //回傳陣列
         })
@@ -311,10 +316,17 @@ export default defineComponent({
                 coinPosition[2].betStatus = betStatus.value.PlayerPair
                 coinPosition[3].betStatus = betStatus.value.Tie
                 coinPosition[4].betStatus = betStatus.value.BankerPair
-                for(let i = 0 ; i<5 ;i++){
-                    console.log(coinPosition[i].betStatus)
-                }
+                // for(let i = 0 ; i<5 ;i++){
+                //     console.log(coinPosition[i].betStatus)
+                // }
             }   
+        })
+        watch(broadcastBetstatus,()=>{
+            coinPosition[0].tableAllPlayerBetStatus = broadcastBetstatus.value.Player
+            coinPosition[1].tableAllPlayerBetStatus = broadcastBetstatus.value.Banker
+            coinPosition[2].tableAllPlayerBetStatus = broadcastBetstatus.value.PlayerPair
+            coinPosition[3].tableAllPlayerBetStatus = broadcastBetstatus.value.Tie
+            coinPosition[4].tableAllPlayerBetStatus = broadcastBetstatus.value.BankerPair
         })
         watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
             // console.log("換靴重置BettingArear")
@@ -328,7 +340,6 @@ export default defineComponent({
         })
         watch(gameEndUuid,()=>{
             canBet.value = false
-            store.commit('bet/setIsConfirmed',false)
         })
         watch(betError,()=>{
             if(betError.value){
@@ -395,6 +406,7 @@ export default defineComponent({
             clearLoseArea(gameResult.value)
             showResult()
             winCoinAnimation()
+            store.commit('bet/setIsConfirmed',false) //重置按紐
         })
         //籌碼動畫、下注邏輯
         const coinList = computed(()=>{
@@ -424,6 +436,7 @@ export default defineComponent({
                 host:"閒",
                 configClass:"betArea-item red alertFont",
                 betStatus:0,
+                tableAllPlayerBetStatus:0,
                 maxBet:100000, //目前這一回合的下注狀況
             },
             {
@@ -434,6 +447,7 @@ export default defineComponent({
                 host:"莊",
                 configClass:"betArea-item yellow alertFont",
                 betStatus:0, //目前這一回合的下注狀況
+                tableAllPlayerBetStatus:0,
                 maxBet:100000,
             },
              {
@@ -444,6 +458,7 @@ export default defineComponent({
                 host:"閒對",
                 configClass:"betArea-item red",
                 betStatus:0, //目前這一回合的下注狀況
+                tableAllPlayerBetStatus:0,
                 maxBet:9000,
             },
             {
@@ -454,6 +469,7 @@ export default defineComponent({
                 host:"和",
                 configClass:"betArea-item green alertFont",
                 betStatus:0, //目前這一回合的下注狀況
+                tableAllPlayerBetStatus:0,
                 maxBet:12500,
             },
             {
@@ -464,6 +480,7 @@ export default defineComponent({
                 host:"莊對",
                 configClass:"betArea-item yellow",
                 betStatus:0, //目前這一回合的下注狀況
+                tableAllPlayerBetStatus:0,
                 maxBet:9000,
             },
         ]) 
@@ -609,8 +626,8 @@ export default defineComponent({
             }
         }
         function winCoinAnimation () {
-            //啟動時機:得到betResult之後；並且在reset之前!
-            if(gameResult.value){
+            //啟動時機:1.得到betResult之後；並且在reset之前!  2.有按確認下注
+            if(gameResult.value && isConfirmed.value){
                 gameResult.value.forEach((betAreaIndex:number)=>{
                     let betArea  = {} as NodeListOf<Element>
                     switch(betAreaIndex){
@@ -826,6 +843,7 @@ export default defineComponent({
                     i.coinArray = []
                     i.initBottom = 0
                     i.betStatus = 0 
+                    i.tableAllPlayerBetStatus = 0
                     i.initX = 0
             })
             //清空籌碼飛彈槍管

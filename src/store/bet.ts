@@ -2,6 +2,7 @@ export const state = {
   BetRecall:{},
   BetResetRecall:{},
   BetConfirmRecall:{},
+  BroadcastBetstatus:{},
   totalBets:0,
   BetError:{},
   betstatus:{},
@@ -15,7 +16,7 @@ export const mutations = {
     state.betstatus = payload.betStatus
     state.isConfirmed = payload.isConfirmed
     state.totalBets = payload.totalBets.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g,'$1,')
-    console.log("vuex-BetRecall資料更新",state.BetRecall)
+    // console.log("vuex-BetRecall資料更新",state.BetRecall)
   },
   BetResetRecall(state:any, payload:any){
     state.BetResetRecall=payload
@@ -23,7 +24,11 @@ export const mutations = {
   },
   BetConfirmRecall(state:any,payload:any){
     state.BetConfirmRecall = payload
-    console.log("vuex-BetConfirmRecall",state.BetConfirmRecall)
+    // console.log("vuex-BetConfirmRecall",state.BetConfirmRecall)
+  },
+  BroadcastBetstatus(state:any,payload:any){
+    state.BroadcastBetstatus = payload
+    console.log("vuex-BroadcastBetstatus",state.BroadcastBetstatus)
   },
   setBetResultRest(state:any){
     state.BetResetRecall.result = 0

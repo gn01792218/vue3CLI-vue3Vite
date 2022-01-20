@@ -421,6 +421,9 @@ export namespace bet {
     /** Properties of a BetStatus. */
     interface IBetStatus {
 
+        /** BetStatus header */
+        header?: (foundation.IHeader|null);
+
         /** BetStatus Banker */
         Banker?: (number|null);
 
@@ -445,6 +448,9 @@ export namespace bet {
          * @param [properties] Properties to set
          */
         constructor(properties?: bet.IBetStatus);
+
+        /** BetStatus header. */
+        public header?: (foundation.IHeader|null);
 
         /** BetStatus Banker. */
         public Banker: number;
@@ -4416,6 +4422,7 @@ export namespace route {
         BetResetRecall = 10,
         BetConfirmCall = 100,
         BetConfirmRecall = 101,
+        BroadcastBetstatus = 110,
         Draw = 11,
         DealerGameResult = 12,
         BroadcastGameResult = 13,

@@ -1,12 +1,8 @@
 <template>
   <div class="home">
-    <h1 class="text-center">選擇遊戲桌檯</h1>
-<!--     
-    <button @click="showAnnouncement">
-      同意書
-    </button> -->
+    <h1 class="chooseTable text-center">選擇遊戲桌檯</h1>
     <div
-      class="tableList d-flex flex-column flex-xl-row justify-content-center align-items-center"
+      class="tableList d-flex flex-column flex-xl-row justify-content-center align-items-center mt-5"
     >
       <TableInfoCard
         v-for="(i, index) in tableInfoData"

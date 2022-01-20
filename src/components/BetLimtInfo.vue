@@ -45,7 +45,7 @@
   <section v-if="betLimitInfo.pairMax == 0 && betLimitInfo.pairMin == 0 && betLimitInfo.tieMax == 0 && betLimitInfo.tieMin == 0 &&
        betLimitInfo.playerMax == 0 && betLimitInfo.playerMin == 0 && betLimitInfo.bankerMin == 0 && betLimitInfo.bankerMax == 0">
     <p class="commingSoon text-center">
-      即將開桌，盡請期待!
+      即將開桌，敬請期待!
     </p>
   </section>
 </template>

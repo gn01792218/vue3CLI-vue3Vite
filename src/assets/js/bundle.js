@@ -964,6 +964,7 @@ export const bet = $root.bet = (() => {
          * Properties of a BetStatus.
          * @memberof bet
          * @interface IBetStatus
+         * @property {foundation.IHeader|null} [header] BetStatus header
          * @property {number|null} [Banker] BetStatus Banker
          * @property {number|null} [Player] BetStatus Player
          * @property {number|null} [BankerPair] BetStatus BankerPair
@@ -985,6 +986,14 @@ export const bet = $root.bet = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * BetStatus header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.header = null;
 
         /**
          * BetStatus Banker.
@@ -1050,16 +1059,18 @@ export const bet = $root.bet = (() => {
         BetStatus.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
-                writer.uint32(/* id 1, wireType 1 =*/9).double(message.Banker);
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.Banker);
             if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
-                writer.uint32(/* id 2, wireType 1 =*/17).double(message.Player);
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.Player);
             if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
-                writer.uint32(/* id 3, wireType 1 =*/25).double(message.BankerPair);
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.BankerPair);
             if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
-                writer.uint32(/* id 4, wireType 1 =*/33).double(message.Tie);
+                writer.uint32(/* id 5, wireType 1 =*/41).double(message.Tie);
             if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
-                writer.uint32(/* id 5, wireType 1 =*/41).double(message.PlayerPair);
+                writer.uint32(/* id 6, wireType 1 =*/49).double(message.PlayerPair);
             return writer;
         };
 
@@ -1095,18 +1106,21 @@ export const bet = $root.bet = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.Banker = reader.double();
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.Player = reader.double();
+                    message.Banker = reader.double();
                     break;
                 case 3:
-                    message.BankerPair = reader.double();
+                    message.Player = reader.double();
                     break;
                 case 4:
-                    message.Tie = reader.double();
+                    message.BankerPair = reader.double();
                     break;
                 case 5:
+                    message.Tie = reader.double();
+                    break;
+                case 6:
                     message.PlayerPair = reader.double();
                     break;
                 default:
@@ -1144,6 +1158,11 @@ export const bet = $root.bet = (() => {
         BetStatus.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
             if (message.Banker != null && message.hasOwnProperty("Banker"))
                 if (typeof message.Banker !== "number")
                     return "Banker: number expected";
@@ -1174,6 +1193,11 @@ export const bet = $root.bet = (() => {
             if (object instanceof $root.bet.BetStatus)
                 return object;
             let message = new $root.bet.BetStatus();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.BetStatus.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
             if (object.Banker != null)
                 message.Banker = Number(object.Banker);
             if (object.Player != null)
@@ -1201,12 +1225,15 @@ export const bet = $root.bet = (() => {
                 options = {};
             let object = {};
             if (options.defaults) {
+                object.header = null;
                 object.Banker = 0;
                 object.Player = 0;
                 object.BankerPair = 0;
                 object.Tie = 0;
                 object.PlayerPair = 0;
             }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.Banker != null && message.hasOwnProperty("Banker"))
                 object.Banker = options.json && !isFinite(message.Banker) ? String(message.Banker) : message.Banker;
             if (message.Player != null && message.hasOwnProperty("Player"))
@@ -5581,6 +5608,7 @@ export const foundation = $root.foundation = (() => {
                 case 10:
                 case 100:
                 case 101:
+                case 110:
                 case 11:
                 case 12:
                 case 13:
@@ -5670,6 +5698,10 @@ export const foundation = $root.foundation = (() => {
             case "BetConfirmRecall":
             case 101:
                 message.uri = 101;
+                break;
+            case "BroadcastBetstatus":
+            case 110:
+                message.uri = 110;
                 break;
             case "Draw":
             case 11:
@@ -10816,6 +10848,7 @@ export const route = $root.route = (() => {
      * @property {number} BetResetRecall=10 BetResetRecall value
      * @property {number} BetConfirmCall=100 BetConfirmCall value
      * @property {number} BetConfirmRecall=101 BetConfirmRecall value
+     * @property {number} BroadcastBetstatus=110 BroadcastBetstatus value
      * @property {number} Draw=11 Draw value
      * @property {number} DealerGameResult=12 DealerGameResult value
      * @property {number} BroadcastGameResult=13 BroadcastGameResult value
@@ -10852,6 +10885,7 @@ export const route = $root.route = (() => {
         values[valuesById[10] = "BetResetRecall"] = 10;
         values[valuesById[100] = "BetConfirmCall"] = 100;
         values[valuesById[101] = "BetConfirmRecall"] = 101;
+        values[valuesById[110] = "BroadcastBetstatus"] = 110;
         values[valuesById[11] = "Draw"] = 11;
         values[valuesById[12] = "DealerGameResult"] = 12;
         values[valuesById[13] = "BroadcastGameResult"] = 13;

@@ -40,7 +40,7 @@ export default defineComponent({
           path: `/BaccaratGame/${tableNum}`,
         });
       } else {
-        alert("即將開放~!盡請期待~");
+        alert("即將開放~!敬請期待~");
       }
     }
     return {

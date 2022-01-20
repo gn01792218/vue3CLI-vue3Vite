@@ -84,13 +84,13 @@ img {
   border-radius: 5px;
 }
 
-.tableList {
-  height: 95%;
-}
-
 .table-img {
   width: 250px;
   height: 250px;
+}
+
+.chooseTable {
+  margin-top: 50px;
 }
 
 /*-------------------------------------------
