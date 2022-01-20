@@ -125,7 +125,7 @@ export default defineComponent({
             return store.state.bet.totalBets
         })
         const userInfoArray = reactive<userInfo[]>([{
-            gameUuid:"初始化",
+            gameUuid:"尚未開局",
             gameResult:"",
             gainMoney:0,
             totalBet:0

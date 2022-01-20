@@ -120,7 +120,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.UserInfo:
             let UserInfo = auth.UserInfo.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('UserInfo',UserInfo)
+            console.log('UserInfo',UserInfo)
             store.commit('auth/UserInfo',UserInfo)
             break
         case route.TableJoinRecall:
