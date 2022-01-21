@@ -47,6 +47,7 @@ export default defineComponent({
     }
     onMounted(()=>{
       store.commit('lobby/setShowannouncement',true)
+      // store.commit('lobby/setShowannouncement',process.env.VUE_STORE_ANNOUNCEMENT_SHOW)
     })
     return{
       //data

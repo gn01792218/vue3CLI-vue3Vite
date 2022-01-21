@@ -54,7 +54,7 @@
             class="text-left"
             v-for="(i, index) in announcementData3.content"
             :key="index"
-          >
+        >
             <p class="announcementContent">{{ i.content }}</p>
             <div>
               <img :src="i.img" alt="">

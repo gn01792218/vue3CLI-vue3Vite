@@ -53,6 +53,8 @@
                 <transition-group @enter="betErrorAnimation">
                     <li v-for="(betErr,index) in betErrorArray" :key="index">{{betErr}}</li>
                 </transition-group>
+                <li id="betConfirm">確認下注!!</li>
+                <li id="cancleBet">取消下注!!</li>
             </ul>
             <div class="betArea-mobile-container d-flex">
                 <div :class ="[`betArea-item${index+1}`,i.configClass,{'col-6':index===0 | index===1},{'col-4':index!==0 | index!==1},'d-flex flex-column justify-content-center']" v-for ="(i,index) in coinPosition" :key ="index" @click ="sendBetData($event,index)" >
@@ -779,14 +781,19 @@ export default defineComponent({
             }
         }
         function getAllBetBack(){
-            if(canBet.value && isConfirmed.value){  //可以下注時才可以反悔
+            if(canBet.value){  //可以下注時才可以反悔
                 // isConfirmed.value = true  //取消的話就可以再次確認下注
-                sendBetResetCall({
-                    gameUuid:roundUuid.value,
-                })
-                gsap
-                .fromTo('#cancleBet',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
-                store.commit('bet/setIsConfirmed',false)
+                if(coinPosition[0].betStatus!=0 || coinPosition[1].betStatus!=0 ||
+                  coinPosition[2].betStatus!=0 || coinPosition[3].betStatus!=0 || coinPosition[4].betStatus!=0){
+                      sendBetResetCall({
+                        gameUuid:roundUuid.value,
+                    })
+                    gsap
+                    .fromTo('#cancleBet',{opacity:1,y:0,scale:1,color:'yellow'},{duration:2,scale:3,opacity:0,ease:Power4.easeOut})
+                    store.commit('bet/setIsConfirmed',false)
+                  }else{
+                       betErrorArray.value?.push('尚未下注')
+                  }
             }
         }
         function clearLoseArea (winAreaArray:Array<number>) {

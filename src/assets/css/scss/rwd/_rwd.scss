@@ -305,6 +305,16 @@
   .header {
     background-image: none;
   }
+  .betError{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #betConfirm,#cancleBet{
+    position: absolute;
+    width:100px;
+    top:50%;
+    transform: translateY(-50%);
+  }
   .announcement-container{
     top:45%;
   }

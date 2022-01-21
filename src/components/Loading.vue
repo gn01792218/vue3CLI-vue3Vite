@@ -5,6 +5,7 @@
         <span class="coin-preLoad"></span>
         <span class="poker"></span>
         <span class="roadImg-preLoad"></span>
+        <img :src="announcementData3.content.img" alt="預載入公告書內容" style="opacity:0">
         <audio class="preaudio" preload muted>
             <source src="../assets/audio/bankerWin.mp3" > 
         </audio>
@@ -46,6 +47,7 @@ export default defineComponent({
         const router = useRouter()
         const loading = ref(true)
         const preLoad = ref(true)
+        const announcementData3 = store.state.lobby.announcement.announcement3;
         const vuexUserToken = computed(()=>{
             return store.state.auth.userToken
         })
@@ -82,7 +84,7 @@ export default defineComponent({
         })
         return {
             //data
-            preLoad,loading,
+            preLoad,loading,announcementData3,
         }
     }
 })

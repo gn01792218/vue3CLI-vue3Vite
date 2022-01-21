@@ -24,7 +24,6 @@ export default defineComponent({
     TableInfoCard,
   },
   setup() {
-    
     const route = useRoute();
     const localStorage = window.localStorage
     // Cookies.set('userToken',route.params.userToken,{expires:0.1})
