@@ -17,10 +17,10 @@
         </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
-            <input type="checkbox" class="mr-2" v-model="announcementData1.checked"/>
-            <p class="form-check-label" for="exampleCheck1">
+            <input type="checkbox" class="mr-2" id="announcementCheck1" v-model="announcementData1.checked"/>
+            <label class="form-check-label" for="announcementCheck1">
               我同意遊戲公告1之條文內容
-            </p>
+            </label>
           </div>
           <i class="bi bi-arrow-right-square" @click="setCurrentAnnouncement(1)"></i>
         </div>
@@ -37,10 +37,10 @@
         </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
-            <input type="checkbox" class="mr-2" v-model="announcementData2.checked"/>
-            <p class="form-check-label" for="exampleCheck1">
+            <input type="checkbox" class="mr-2" id="announcementCheck2" v-model="announcementData2.checked"/>
+            <label class="form-check-label" for="announcementCheck2">
               我同意遊戲公告2之條文內容
-            </p>
+            </label>
           </div>
           <div class="d-flex">
             <i class="bi bi-arrow-left-square" @click="setCurrentAnnouncement(0)"></i>
@@ -62,10 +62,10 @@
         </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
-            <input type="checkbox" class="mr-2" v-model="announcementData3.checked"/>
-            <p class="form-check-label" for="exampleCheck1">
+            <input type="checkbox" class="mr-2" id="announcementCheck3" v-model="announcementData3.checked"/>
+            <label class="form-check-label" for="announcementCheck13">
               我同意百家樂遊戲牌例之條文內容
-            </p>
+            </label>
           </div>
           <i class="bi bi-arrow-left-square" @click="setCurrentAnnouncement(1)"></i>
           <button type="button" class="btn btn-info" @click="closeAnnouncement">
