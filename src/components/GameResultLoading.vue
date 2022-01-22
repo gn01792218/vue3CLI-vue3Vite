@@ -72,16 +72,25 @@ export default defineComponent({
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
             isWait.value = true
-            if(gameState.value==1){
-                stateMsg.value = "開始下注"
-                setTimeout(()=>{
-                    isWait.value = false
-                },1000)
-            }else{
-                stateMsg.value = "請稍後"
-                setTimeout(()=>{
-                    isWait.value = false
-                },1000)
+            switch(gameState.value){
+                case 1:
+                    stateMsg.value = "開始下注"
+                    setTimeout(()=>{
+                        isWait.value = false
+                    },1000)
+                    break
+                case 2:
+                    stateMsg.value = "開牌中..."
+                    setTimeout(()=>{
+                        isWait.value = false
+                    },1000)
+                    break
+                case 3:
+                    stateMsg.value = "請稍後..."
+                    setTimeout(()=>{
+                        isWait.value = false
+                    },1000)
+                    break
             }
         })
         watch(gameEndUuid,()=>{ //倒數結束時

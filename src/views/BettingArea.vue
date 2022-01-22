@@ -239,7 +239,6 @@ export default defineComponent({
         const broadcastBetstatus = computed(()=>{
             return store.state.bet.BroadcastBetstatus
         })
-        
         const betCallArray = computed(()=>{  //換桌時，server會回傳此桌的歷史下注資訊(哪個注區下了多少某種籌碼)
             return store.state.bet.BetRecall.betCall   //回傳陣列
         })
@@ -263,6 +262,9 @@ export default defineComponent({
         })
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
+        })
+        const gameStatus = computed(()=>{
+            return store.state.game.GameStatus.status
         })
         const betInfo = computed(()=>{
             return store.state.game.gameResultCount
@@ -781,7 +783,7 @@ export default defineComponent({
             }
         }
         function getAllBetBack(){
-            if(canBet.value){  //可以下注時才可以反悔
+            if(canBet.value && gameStatus.value==1){  //可以下注，且遊戲狀態是下注中
                 // isConfirmed.value = true  //取消的話就可以再次確認下注
                 if(coinPosition[0].betStatus!=0 || coinPosition[1].betStatus!=0 ||
                   coinPosition[2].betStatus!=0 || coinPosition[3].betStatus!=0 || coinPosition[4].betStatus!=0){
@@ -794,6 +796,15 @@ export default defineComponent({
                   }else{
                        betErrorArray.value?.push('尚未下注')
                   }
+            }else {
+                switch(gameStatus.value){
+                    case 2:
+                        betErrorArray.value?.push('開牌中，無法取消')
+                        break
+                    case 3:
+                        betErrorArray.value?.push('等待中，無法取消')
+                        break
+                }
             }
         }
         function clearLoseArea (winAreaArray:Array<number>) {
@@ -1008,7 +1019,7 @@ export default defineComponent({
         function sendConfirmBetCall(){//發送確認下注請求
             //可以發出確認紐的時機:
             //1.canBet  2.玩家有下注在任一區域時  3.當局還沒按過確認鍵
-            if(canBet.value && !isConfirmed.value){
+            if(canBet.value && !isConfirmed.value && gameStatus.value==1){
                 if(coinPosition[0].betStatus!=0 || coinPosition[1].betStatus!=0 ||
                   coinPosition[2].betStatus!=0 || coinPosition[3].betStatus!=0 || coinPosition[4].betStatus!=0){
                       sendBetConfirmCall({
@@ -1016,6 +1027,15 @@ export default defineComponent({
                     })
                 }else{
                     betErrorArray.value?.push('尚未下注')
+                }
+            }else {
+                switch(gameStatus.value){
+                    case 2:
+                        betErrorArray.value?.push('開牌中，無法下注')
+                        break
+                    case 3:
+                        betErrorArray.value?.push('等待中，無法下注')
+                        break
                 }
             }
         }
