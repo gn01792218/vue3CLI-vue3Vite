@@ -56,14 +56,14 @@
             :key="index"
         >
             <p class="announcementContent">{{ i.content }}</p>
-            <div>
-              <img :src="i.img" alt="">
+            <div class="announcement3Img mr-auto ml-auto">
+              <img class="w-100" :src="i.img" alt="">
             </div>
         </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
             <input type="checkbox" class="mr-2" id="announcementCheck3" v-model="announcementData3.checked"/>
-            <label class="form-check-label" for="announcementCheck13">
+            <label class="form-check-label" for="announcementCheck3">
               我同意百家樂遊戲牌例之條文內容
             </label>
           </div>

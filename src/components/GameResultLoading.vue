@@ -72,10 +72,17 @@ export default defineComponent({
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示
             isWait.value = true
-            stateMsg.value = "開始下注"
-            setTimeout(()=>{
-                isWait.value = false
-            },1000)
+            if(gameState.value==1){
+                stateMsg.value = "開始下注"
+                setTimeout(()=>{
+                    isWait.value = false
+                },1000)
+            }else{
+                stateMsg.value = "請稍後"
+                setTimeout(()=>{
+                    isWait.value = false
+                },1000)
+            }
         })
         watch(gameEndUuid,()=>{ //倒數結束時
         //最外層的if是暫時的

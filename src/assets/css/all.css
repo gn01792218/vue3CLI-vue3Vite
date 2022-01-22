@@ -422,6 +422,11 @@ img {
   font-weight: 600;
   letter-spacing: 0.2rem;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.announcement3Img {
+  width: 643px;
 }
 
 .announcement-fotter div {
@@ -445,6 +450,7 @@ img {
 
 #announcement2 .announcementContent {
   text-indent: 0rem;
+  font-weight: 600;
 }
 
 .bi-arrow-right-square, .bi-arrow-left-square {
