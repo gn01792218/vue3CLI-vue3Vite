@@ -193,6 +193,7 @@ export default defineComponent({
             setDefaultCoin()
             //初始化注區的最大最小檯紅(給手機顯示用的)
             getBetLimit(tableInfoData.value)
+            setCancleBetBtnColor()
             // setMinBetCoinUnusable()
         })
         const route = useRoute()
@@ -300,6 +301,7 @@ export default defineComponent({
         watch(isConfirmed,()=>{ //根據是否按過確認鍵，更換相關顏色
             setBetStatusTextColor() 
             setConfirmBtnColor()
+            setCancleBetBtnColor()
         })
         watch(roundAskBanker,()=>{
             // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
@@ -519,6 +521,17 @@ export default defineComponent({
             }else{
                 //按鈕變成原本顏色
                 confirmBtn.style.background = 'rgba(128, 0, 128, 0.829)'
+            }
+        }
+        function setCancleBetBtnColor(){
+            let cancleBtn = document.querySelector('.bettingArea-btn-gitbackAllCoin') as HTMLElement
+            console.log('設置取消按鈕顏色',isConfirmed.value)
+            if(!isConfirmed.value){ //沒按過確認紐的時候是灰色的
+                //按鈕變成灰色
+                cancleBtn.style.background = 'rgb(80, 78, 78)'
+            }else{
+                //按鈕變成原本顏色
+                cancleBtn.style.background = 'rgba(0,0,255,.692)'
             }
         }
         function getBetLimit (tableBetIndoData:any){
