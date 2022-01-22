@@ -8,11 +8,12 @@
         <Footer />
       </div>
     </div>
+    
     <Loading />
   </div>
 </template>
 <script lang="ts">
-import { defineComponent ,onMounted ,computed } from "vue";
+import { defineComponent ,onMounted ,computed , watch } from "vue";
 import Announcement from '@/components/Announcement.vue'
 import Header from "./views/Header.vue";
 import Footer from "./views/Footer.vue";

@@ -143,6 +143,7 @@ export default defineComponent({
     onMounted(()=>{
       //為公告2增加紅色字體
       let t = document.querySelector('.container-waps')?.children as HTMLCollection
+      // console.log(t[1])
       let ann2 = t[0].children[1].children[2].children
       announcementData2.content.forEach((i:any,index:number)=>{
           ann2[index+1].children[1].innerHTML = i.content

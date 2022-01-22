@@ -2,7 +2,7 @@
   <div class="home">
     <h1 class="chooseTable text-center">選擇遊戲桌檯</h1>
     <div
-      class="tableList d-flex flex-column flex-xl-row justify-content-center align-items-center mt-5"
+      class="tableList flex-column flex-xl-row justify-content-center align-items-center mt-5 h-100"
     >
       <TableInfoCard
         v-for="(i, index) in tableInfoData"
@@ -13,7 +13,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, defineComponent, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { sendLogin } from "../socketApi";
@@ -24,6 +24,9 @@ export default defineComponent({
     TableInfoCard,
   },
   setup() {
+    onMounted(()=>{
+      setTableListVisible() 
+    })
     const route = useRoute();
     const localStorage = window.localStorage
     // Cookies.set('userToken',route.params.userToken,{expires:0.1})
@@ -31,6 +34,9 @@ export default defineComponent({
     const vuexUserToken = computed(() => {
       return store.state.auth.userToken;
     });
+    const announcementShow = computed(()=>{
+      return store.state.lobby.showannouncement
+    })
     const userToken = ref<string>(store.state.auth.userToken);
     const loginState = computed(() => {
       //取得登入狀態
@@ -41,6 +47,9 @@ export default defineComponent({
       uri: "LoginCall",
       token: route.params.userToken,
     });
+    watch(announcementShow,()=>{
+      setTableListVisible()
+    })
     watch(loginState, () => {
       switch (loginState.value) {
         case 1:
@@ -53,10 +62,19 @@ export default defineComponent({
           alert("驗證失敗，請重新登入");
       }
     });
+    function setTableListVisible(){ //為了解決平板時候，出現公告時，tableList會漏餡的Bug
+      let tableListElement = document.querySelector('.tableList') as HTMLElement
+      if(announcementShow.value){
+        tableListElement.style.display="none"
+        tableListElement.style.opacity="0"
+      }else{
+        tableListElement.style.display="flex"
+        tableListElement.style.opacity="1"
+      }
+    }
     return {
       //data
       tableInfoData,
-      // announcementShow,
       //methods
     };
   },

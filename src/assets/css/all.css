@@ -84,6 +84,12 @@ img {
   border-radius: 5px;
 }
 
+.tableList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .table-img {
   width: 250px;
   height: 250px;
@@ -392,6 +398,12 @@ img {
 
 .onclickTab {
   background-color: black;
+}
+
+.newsTicker {
+  background-color: rgba(128, 128, 128, 0.178);
+  height: 50px;
+  overflow: hidden;
 }
 
 .announcement-bg {
@@ -3769,7 +3781,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 0.5rem;
     font-weight: bolder;
   }
-  .betStatus,
   .table-total-betStatus {
     font-size: 0.3rem;
   }

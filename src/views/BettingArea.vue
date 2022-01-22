@@ -374,12 +374,11 @@ export default defineComponent({
             } 
         })
         watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
-            if(betResult.value!==0 && betResult.value!=-1 && !isConfirmed.value){ //並且還沒按下確定鈕的時候才要產生動畫
-                console.log()
-                betArray.push(betCallTemp.value) //確認server回傳為1才推入陣列中
-                let betArrayShift = betArray.shift()
-                betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
-            }
+            // if(betResult.value!==0 && betResult.value!=-1 && !isConfirmed.value){ //並且還沒按下確定鈕的時候才要產生動畫
+            //     betArray.push(betCallTemp.value) //確認server回傳為1才推入陣列中
+            //     let betArrayShift = betArray.shift()
+            //     betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
+            // }
         })
         function testBetCallArray(betObject:any){
             let cp = coinPosition[betObject.betArea-1]  
