@@ -28,7 +28,7 @@ export const mutations = {
   },
   BroadcastBetstatus(state:any,payload:any){
     state.BroadcastBetstatus = payload
-    console.log("vuex-BroadcastBetstatus",state.BroadcastBetstatus)
+    // console.log("vuex-BroadcastBetstatus",state.BroadcastBetstatus)
   },
   setBetResultRest(state:any){
     state.BetResetRecall.result = 0

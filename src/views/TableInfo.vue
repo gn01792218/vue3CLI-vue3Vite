@@ -41,14 +41,21 @@ export default defineComponent({
         function switchTab (tab:string) {
              onClickTab.value = tab
         }
-        watch([DrawCard,lastDrawCard],()=>{
+        watch(DrawCard,()=>{
             if(onClickTab.value!="遊戲結果"){
+                // console.log('進遊戲結果',DrawCard.value,lastDrawCard.value)
+                onClickTab.value = "遊戲結果"
+            }
+        })
+        watch(lastDrawCard,()=>{
+            if(onClickTab.value!="遊戲結果" && lastDrawCard.value.draws.length>0){
                 // console.log('進遊戲結果',DrawCard.value,lastDrawCard.value)
                 onClickTab.value = "遊戲結果"
             }
         })
         watch(gameUuid,()=>{
             if(onClickTab.value!="統計資訊"){
+                // console.log('進統計資訊',DrawCard.value,lastDrawCard.value)
                 onClickTab.value = "統計資訊"
             }
         })
