@@ -99,6 +99,17 @@ export default defineComponent({
               break
             }
           }
+        case 'VIP':
+          for(let i = 0 ; i<tables.value.length  ; i++){
+            if(tables.value[i].name=="VIP"){
+              sendTableJoinCall({
+                // uri:"TableJoinCall",
+                uuid:tables.value[i].uuid
+              })
+              // console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
+              break
+            }
+          }
       }
     }
     

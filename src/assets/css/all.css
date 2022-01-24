@@ -407,6 +407,11 @@ img {
   overflow: hidden;
 }
 
+.newsTicker .bi-exclamation-triangle-fill {
+  color: yellow;
+  font-size: 1.5rem;
+}
+
 .announcement-bg {
   background-color: black;
   top: 0;
