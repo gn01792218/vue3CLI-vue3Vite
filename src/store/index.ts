@@ -7,6 +7,7 @@ import game from "./game";
 import dealer from "./dealer";
 import roadmap from "./roadmap";
 import video from "./video";
+import announcement from "./announcement";
 export default createStore({
   state: {},
   mutations: {},
@@ -20,5 +21,6 @@ export default createStore({
     dealer,
     roadmap,
     video,
+    announcement,
   },
 });

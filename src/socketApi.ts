@@ -13,6 +13,7 @@ const bet = protoRoot.bet
 const dealer = protoRoot.dealer
 const game = protoRoot.game
 const roadmap = protoRoot.roadmap
+const announcement = protoRoot.announcement
 //各種send方法
 //發送心跳
 const sendPon = ()=>{
@@ -197,6 +198,11 @@ export const getMsgReCall = (e:any) =>{
             let askRoadReCall = roadmap.AskRoadRecall.decode(new Uint8Array(e.detail.msg.data))
             // console.log('問下三路',askRoadReCall)
             store.commit('roadmap/setAskRoadRecall',askRoadReCall)
+            break
+        case route.BroadcastAnnouncement:
+            let BroadcastAnnouncement = announcement.BroadcastAnnouncement.decode(new Uint8Array(e.detail.msg.data))
+            store.commit('announcement/BroadcastAnnouncement',BroadcastAnnouncement)
+            console.log(BroadcastAnnouncement)
             break
     }
 }

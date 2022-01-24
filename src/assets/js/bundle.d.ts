@@ -1,4 +1,200 @@
 import * as $protobuf from "protobufjs";
+/** Namespace announcement. */
+export namespace announcement {
+
+    /** Properties of a BroadcastAnnouncement. */
+    interface IBroadcastAnnouncement {
+
+        /** BroadcastAnnouncement header */
+        header?: (foundation.IHeader|null);
+
+        /** BroadcastAnnouncement announcements */
+        announcements?: (announcement.IAnnouncement[]|null);
+    }
+
+    /** Represents a BroadcastAnnouncement. */
+    class BroadcastAnnouncement implements IBroadcastAnnouncement {
+
+        /**
+         * Constructs a new BroadcastAnnouncement.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: announcement.IBroadcastAnnouncement);
+
+        /** BroadcastAnnouncement header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BroadcastAnnouncement announcements. */
+        public announcements: announcement.IAnnouncement[];
+
+        /**
+         * Creates a new BroadcastAnnouncement instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BroadcastAnnouncement instance
+         */
+        public static create(properties?: announcement.IBroadcastAnnouncement): announcement.BroadcastAnnouncement;
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @param message BroadcastAnnouncement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: announcement.IBroadcastAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message, length delimited. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @param message BroadcastAnnouncement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: announcement.IBroadcastAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): announcement.BroadcastAnnouncement;
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): announcement.BroadcastAnnouncement;
+
+        /**
+         * Verifies a BroadcastAnnouncement message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BroadcastAnnouncement message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BroadcastAnnouncement
+         */
+        public static fromObject(object: { [k: string]: any }): announcement.BroadcastAnnouncement;
+
+        /**
+         * Creates a plain object from a BroadcastAnnouncement message. Also converts values to other types if specified.
+         * @param message BroadcastAnnouncement
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: announcement.BroadcastAnnouncement, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BroadcastAnnouncement to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of an Announcement. */
+    interface IAnnouncement {
+
+        /** Announcement message */
+        message?: (string|null);
+
+        /** Announcement createAt */
+        createAt?: (string|null);
+    }
+
+    /** Represents an Announcement. */
+    class Announcement implements IAnnouncement {
+
+        /**
+         * Constructs a new Announcement.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: announcement.IAnnouncement);
+
+        /** Announcement message. */
+        public message: string;
+
+        /** Announcement createAt. */
+        public createAt: string;
+
+        /**
+         * Creates a new Announcement instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Announcement instance
+         */
+        public static create(properties?: announcement.IAnnouncement): announcement.Announcement;
+
+        /**
+         * Encodes the specified Announcement message. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @param message Announcement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: announcement.IAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Announcement message, length delimited. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @param message Announcement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: announcement.IAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): announcement.Announcement;
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): announcement.Announcement;
+
+        /**
+         * Verifies an Announcement message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an Announcement message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Announcement
+         */
+        public static fromObject(object: { [k: string]: any }): announcement.Announcement;
+
+        /**
+         * Creates a plain object from an Announcement message. Also converts values to other types if specified.
+         * @param message Announcement
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: announcement.Announcement, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Announcement to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace auth. */
 export namespace auth {
 
@@ -4442,7 +4638,8 @@ export namespace route {
         Roadmap = 26,
         WhiteCard = 27,
         AskRoadCall = 28,
-        AskRoadRecall = 29
+        AskRoadRecall = 29,
+        BroadcastAnnouncement = 30
     }
 }
 

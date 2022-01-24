@@ -1,12 +1,13 @@
 <template>
   <div class="newsTicker w-100 d-flex align-items-center">
-    <div class="newsTicker-text">{{ newsText }}</div>
+    <div class="newsTicker-text" v-for="(i,index) in announment" :key="index">{{i.message}}</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, computed} from "vue";
 import gsap from "gsap";
+import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     onMounted(() => {
@@ -25,7 +26,10 @@ export default defineComponent({
          console.log('偵測到跑馬燈寬度變化',width.value,'跑的秒數',speed.value)
          newsTickerAnimate() 
     })
-    const newsText = ref("測試文字字字字字~!!!!!!!")  //接收不同桌子來的測試資料
+    const store = useStore()
+    const announment = computed(()=>{ //接收桌子來的公告資料，是陣列
+      return store.state.announcement.BroadcastAnnouncement.announcements
+    })
     const runTimes = ref(-1); //想要無限播放請使用-1
     function newsTickerAnimate() {
       
@@ -49,7 +53,7 @@ export default defineComponent({
     }
     return {
         //data
-        newsText,
+        announment,
     };
   },
 });

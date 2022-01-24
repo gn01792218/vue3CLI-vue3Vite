@@ -7,6 +7,464 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+export const announcement = $root.announcement = (() => {
+
+    /**
+     * Namespace announcement.
+     * @exports announcement
+     * @namespace
+     */
+    const announcement = {};
+
+    announcement.BroadcastAnnouncement = (function() {
+
+        /**
+         * Properties of a BroadcastAnnouncement.
+         * @memberof announcement
+         * @interface IBroadcastAnnouncement
+         * @property {foundation.IHeader|null} [header] BroadcastAnnouncement header
+         * @property {Array.<announcement.IAnnouncement>|null} [announcements] BroadcastAnnouncement announcements
+         */
+
+        /**
+         * Constructs a new BroadcastAnnouncement.
+         * @memberof announcement
+         * @classdesc Represents a BroadcastAnnouncement.
+         * @implements IBroadcastAnnouncement
+         * @constructor
+         * @param {announcement.IBroadcastAnnouncement=} [properties] Properties to set
+         */
+        function BroadcastAnnouncement(properties) {
+            this.announcements = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastAnnouncement header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof announcement.BroadcastAnnouncement
+         * @instance
+         */
+        BroadcastAnnouncement.prototype.header = null;
+
+        /**
+         * BroadcastAnnouncement announcements.
+         * @member {Array.<announcement.IAnnouncement>} announcements
+         * @memberof announcement.BroadcastAnnouncement
+         * @instance
+         */
+        BroadcastAnnouncement.prototype.announcements = $util.emptyArray;
+
+        /**
+         * Creates a new BroadcastAnnouncement instance using the specified properties.
+         * @function create
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.IBroadcastAnnouncement=} [properties] Properties to set
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement instance
+         */
+        BroadcastAnnouncement.create = function create(properties) {
+            return new BroadcastAnnouncement(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @function encode
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.IBroadcastAnnouncement} message BroadcastAnnouncement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastAnnouncement.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.announcements != null && message.announcements.length)
+                for (let i = 0; i < message.announcements.length; ++i)
+                    $root.announcement.Announcement.encode(message.announcements[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message, length delimited. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.IBroadcastAnnouncement} message BroadcastAnnouncement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastAnnouncement.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer.
+         * @function decode
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastAnnouncement.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.announcement.BroadcastAnnouncement();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    if (!(message.announcements && message.announcements.length))
+                        message.announcements = [];
+                    message.announcements.push($root.announcement.Announcement.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastAnnouncement.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastAnnouncement message.
+         * @function verify
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastAnnouncement.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.announcements != null && message.hasOwnProperty("announcements")) {
+                if (!Array.isArray(message.announcements))
+                    return "announcements: array expected";
+                for (let i = 0; i < message.announcements.length; ++i) {
+                    let error = $root.announcement.Announcement.verify(message.announcements[i]);
+                    if (error)
+                        return "announcements." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastAnnouncement message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement
+         */
+        BroadcastAnnouncement.fromObject = function fromObject(object) {
+            if (object instanceof $root.announcement.BroadcastAnnouncement)
+                return object;
+            let message = new $root.announcement.BroadcastAnnouncement();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".announcement.BroadcastAnnouncement.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.announcements) {
+                if (!Array.isArray(object.announcements))
+                    throw TypeError(".announcement.BroadcastAnnouncement.announcements: array expected");
+                message.announcements = [];
+                for (let i = 0; i < object.announcements.length; ++i) {
+                    if (typeof object.announcements[i] !== "object")
+                        throw TypeError(".announcement.BroadcastAnnouncement.announcements: object expected");
+                    message.announcements[i] = $root.announcement.Announcement.fromObject(object.announcements[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastAnnouncement message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.BroadcastAnnouncement} message BroadcastAnnouncement
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastAnnouncement.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.announcements = [];
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.announcements && message.announcements.length) {
+                object.announcements = [];
+                for (let j = 0; j < message.announcements.length; ++j)
+                    object.announcements[j] = $root.announcement.Announcement.toObject(message.announcements[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastAnnouncement to JSON.
+         * @function toJSON
+         * @memberof announcement.BroadcastAnnouncement
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastAnnouncement.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastAnnouncement;
+    })();
+
+    announcement.Announcement = (function() {
+
+        /**
+         * Properties of an Announcement.
+         * @memberof announcement
+         * @interface IAnnouncement
+         * @property {string|null} [message] Announcement message
+         * @property {string|null} [createAt] Announcement createAt
+         */
+
+        /**
+         * Constructs a new Announcement.
+         * @memberof announcement
+         * @classdesc Represents an Announcement.
+         * @implements IAnnouncement
+         * @constructor
+         * @param {announcement.IAnnouncement=} [properties] Properties to set
+         */
+        function Announcement(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Announcement message.
+         * @member {string} message
+         * @memberof announcement.Announcement
+         * @instance
+         */
+        Announcement.prototype.message = "";
+
+        /**
+         * Announcement createAt.
+         * @member {string} createAt
+         * @memberof announcement.Announcement
+         * @instance
+         */
+        Announcement.prototype.createAt = "";
+
+        /**
+         * Creates a new Announcement instance using the specified properties.
+         * @function create
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.IAnnouncement=} [properties] Properties to set
+         * @returns {announcement.Announcement} Announcement instance
+         */
+        Announcement.create = function create(properties) {
+            return new Announcement(properties);
+        };
+
+        /**
+         * Encodes the specified Announcement message. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @function encode
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.IAnnouncement} message Announcement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Announcement.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.message);
+            if (message.createAt != null && Object.hasOwnProperty.call(message, "createAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createAt);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Announcement message, length delimited. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.IAnnouncement} message Announcement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Announcement.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer.
+         * @function decode
+         * @memberof announcement.Announcement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {announcement.Announcement} Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Announcement.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.announcement.Announcement();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.message = reader.string();
+                    break;
+                case 2:
+                    message.createAt = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof announcement.Announcement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {announcement.Announcement} Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Announcement.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Announcement message.
+         * @function verify
+         * @memberof announcement.Announcement
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Announcement.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            if (message.createAt != null && message.hasOwnProperty("createAt"))
+                if (!$util.isString(message.createAt))
+                    return "createAt: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an Announcement message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof announcement.Announcement
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {announcement.Announcement} Announcement
+         */
+        Announcement.fromObject = function fromObject(object) {
+            if (object instanceof $root.announcement.Announcement)
+                return object;
+            let message = new $root.announcement.Announcement();
+            if (object.message != null)
+                message.message = String(object.message);
+            if (object.createAt != null)
+                message.createAt = String(object.createAt);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an Announcement message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.Announcement} message Announcement
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Announcement.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.message = "";
+                object.createAt = "";
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            if (message.createAt != null && message.hasOwnProperty("createAt"))
+                object.createAt = message.createAt;
+            return object;
+        };
+
+        /**
+         * Converts this Announcement to JSON.
+         * @function toJSON
+         * @memberof announcement.Announcement
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Announcement.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Announcement;
+    })();
+
+    return announcement;
+})();
+
 export const auth = $root.auth = (() => {
 
     /**
@@ -5629,6 +6087,7 @@ export const foundation = $root.foundation = (() => {
                 case 27:
                 case 28:
                 case 29:
+                case 30:
                     break;
                 }
             return null;
@@ -5782,6 +6241,10 @@ export const foundation = $root.foundation = (() => {
             case "AskRoadRecall":
             case 29:
                 message.uri = 29;
+                break;
+            case "BroadcastAnnouncement":
+            case 30:
+                message.uri = 30;
                 break;
             }
             return message;
@@ -10869,6 +11332,7 @@ export const route = $root.route = (() => {
      * @property {number} WhiteCard=27 WhiteCard value
      * @property {number} AskRoadCall=28 AskRoadCall value
      * @property {number} AskRoadRecall=29 AskRoadRecall value
+     * @property {number} BroadcastAnnouncement=30 BroadcastAnnouncement value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -10906,6 +11370,7 @@ export const route = $root.route = (() => {
         values[valuesById[27] = "WhiteCard"] = 27;
         values[valuesById[28] = "AskRoadCall"] = 28;
         values[valuesById[29] = "AskRoadRecall"] = 29;
+        values[valuesById[30] = "BroadcastAnnouncement"] = 30;
         return values;
     })();
 
