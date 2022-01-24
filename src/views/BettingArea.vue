@@ -116,9 +116,16 @@
             <LightBox/>
             <div class="bettingArea-btn-left d-flex justify-content-around align-items-center">
                 <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
-                <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
-                    <span>{{numberFormat(minBetLimit)}}-{{numberFormat(maxBetLimit)}}</span>
+                <div class="d-flex">
+                    <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2 mr-1">
+                        <span>{{numberFormat(minBetLimit)}}-<br>{{numberFormat(maxBetLimit)}}</span>
+                        <!-- <span>在線10000人</span> -->
+                    </div>
+                    <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
+                        <span>在線<br>100人</span>
+                    </div>
                 </div>
+                
               <div class="bettingArea-btn-check d-flex justify-content-center align-items-center" @click="sendConfirmBetCall"><i class="bi bi-check-circle"></i>確定</div>
             </div>
             <div class="askRoad d-flex">
