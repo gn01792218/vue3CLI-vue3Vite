@@ -16,7 +16,7 @@ export default defineComponent({
     });
     const speed = computed(() => {
       //用X秒跑完這個寬度
-      return  width.value / (15);
+      return  width.value / (20);
     });
     const width = ref(0)
     const mqlMax1280 = window.matchMedia("(max-width :1280px)")
@@ -25,9 +25,10 @@ export default defineComponent({
          console.log('偵測到跑馬燈寬度變化',width.value,'跑的秒數',speed.value)
          newsTickerAnimate() 
     })
-    const newsText = ref("測試文字字字字字~!!!!!!!")
+    const newsText = ref("測試文字字字字字~!!!!!!!")  //接收不同桌子來的測試資料
     const runTimes = ref(-1); //想要無限播放請使用-1
     function newsTickerAnimate() {
+      
         // console.log("是否跑馬燈")
       //跑馬燈動畫
       if (width.value) {

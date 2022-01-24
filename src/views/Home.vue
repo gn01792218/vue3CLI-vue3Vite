@@ -65,11 +65,9 @@ export default defineComponent({
     function setTableListVisible(){ //為了解決平板時候，出現公告時，tableList會漏餡的Bug
       let tableListElement = document.querySelector('.tableList') as HTMLElement
       if(announcementShow.value){
-        tableListElement.style.display="none"
-        tableListElement.style.opacity="0"
+        tableListElement.style.visibility = "hidden"
       }else{
-        tableListElement.style.display="flex"
-        tableListElement.style.opacity="1"
+        tableListElement.style.visibility = "visible"
       }
     }
     return {

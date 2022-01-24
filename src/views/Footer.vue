@@ -12,7 +12,6 @@
                 <span class="footer-item  d-md-flex"><i class="bi bi-chat-dots"></i></span>
                 <span class="footer-item  d-md-flex"><i class="bi bi-lightning"></i></span>
                 <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
-                
                 <!-- <div class="chat-input position-relative">
                     <input type="text" class="" placeholder="你目前沒有發言權限" aria-label="Username" aria-describedby="basic-addon1">
                     <div class="input-emoji position-absolute">

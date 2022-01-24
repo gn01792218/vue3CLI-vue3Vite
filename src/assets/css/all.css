@@ -3193,6 +3193,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header {
     height: 30px;
   }
+  .newsTicker {
+    height: 25px;
+    font-size: 0.5rem;
+  }
   .announcement-container {
     width: 500px;
     top: 52%;
