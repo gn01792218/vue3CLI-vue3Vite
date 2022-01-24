@@ -2,7 +2,7 @@
   <div class="home">
     <h1 class="chooseTable text-center">選擇遊戲桌檯</h1>
     <div
-      class="tableList flex-column flex-xl-row justify-content-center align-items-center mt-5 h-100"
+      class="tableList flex-column flex-xl-row justify-content-center align-items-center mt-5 mt-xl-0 h-100"
     >
       <TableInfoCard
         v-for="(i, index) in tableInfoData"
