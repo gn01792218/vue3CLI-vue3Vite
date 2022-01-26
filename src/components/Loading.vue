@@ -5,6 +5,7 @@
         <span class="coin-preLoad"></span>
         <span class="poker"></span>
         <span class="roadImg-preLoad"></span>
+        <img :src="announcementData3.content.img" alt="預載入公告書內容" style="opacity:0">
         <audio class="preaudio" preload muted>
             <source src="../assets/audio/bankerWin.mp3" > 
         </audio>
@@ -31,6 +32,7 @@
 
 <script lang="ts">
 import {defineComponent,ref,computed,watch, onMounted} from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 export default defineComponent({
     setup(){
@@ -42,8 +44,10 @@ export default defineComponent({
             return document.querySelector('.preaudio') as HTMLAudioElement
         })
         const store = useStore()
+        const router = useRouter()
         const loading = ref(true)
         const preLoad = ref(true)
+        const announcementData3 = store.state.lobby.announcement.announcement3;
         const vuexUserToken = computed(()=>{
             return store.state.auth.userToken
         })
@@ -53,6 +57,22 @@ export default defineComponent({
         if(vuexUserToken.value!==""){  //已經有人登入的話，就不執行
              loading.value = false 
         }
+        router.beforeEach((to,from,next)=>{
+            if(to.path.indexOf('leave')==1){  //要去的地方不含leave
+                loading.value = false 
+                let header = document.querySelector('.header') as HTMLElement
+                let footer = document.querySelector('.footer') as HTMLElement
+                let containerWaps = document.querySelector('.container-waps') as HTMLElement
+                
+                header.style.display = 'none'
+                footer.style.display = 'none'
+                containerWaps.style.backgroundColor = 'transparent'
+                containerWaps.style.border = 'none'
+                next()
+            }else{
+                next()
+            }
+        })
         onMounted(()=>{  //此時資源已經載入完畢
             //且登入狀態是1就給登入
             watch(loginState,()=>{
@@ -64,26 +84,8 @@ export default defineComponent({
         })
         return {
             //data
-            preLoad,loading,
+            preLoad,loading,announcementData3,
         }
     }
 })
 </script>
-
-<style lang='scss'>
-    .progress {
-  position: relative;
-  border: 5px solid #FFF;
-  width: 400px;
-  height: 20px;
-  overflow: hidden;
-  &.loaded { display: none;}
-  .progress-inset {
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%;
-    background: #FFF;
-  }
-}
-  
-</style>

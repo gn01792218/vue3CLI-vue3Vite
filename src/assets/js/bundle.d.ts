@@ -1,4 +1,200 @@
 import * as $protobuf from "protobufjs";
+/** Namespace announcement. */
+export namespace announcement {
+
+    /** Properties of a BroadcastAnnouncement. */
+    interface IBroadcastAnnouncement {
+
+        /** BroadcastAnnouncement header */
+        header?: (foundation.IHeader|null);
+
+        /** BroadcastAnnouncement announcements */
+        announcements?: (announcement.IAnnouncement[]|null);
+    }
+
+    /** Represents a BroadcastAnnouncement. */
+    class BroadcastAnnouncement implements IBroadcastAnnouncement {
+
+        /**
+         * Constructs a new BroadcastAnnouncement.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: announcement.IBroadcastAnnouncement);
+
+        /** BroadcastAnnouncement header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BroadcastAnnouncement announcements. */
+        public announcements: announcement.IAnnouncement[];
+
+        /**
+         * Creates a new BroadcastAnnouncement instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BroadcastAnnouncement instance
+         */
+        public static create(properties?: announcement.IBroadcastAnnouncement): announcement.BroadcastAnnouncement;
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @param message BroadcastAnnouncement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: announcement.IBroadcastAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message, length delimited. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @param message BroadcastAnnouncement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: announcement.IBroadcastAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): announcement.BroadcastAnnouncement;
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): announcement.BroadcastAnnouncement;
+
+        /**
+         * Verifies a BroadcastAnnouncement message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BroadcastAnnouncement message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BroadcastAnnouncement
+         */
+        public static fromObject(object: { [k: string]: any }): announcement.BroadcastAnnouncement;
+
+        /**
+         * Creates a plain object from a BroadcastAnnouncement message. Also converts values to other types if specified.
+         * @param message BroadcastAnnouncement
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: announcement.BroadcastAnnouncement, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BroadcastAnnouncement to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of an Announcement. */
+    interface IAnnouncement {
+
+        /** Announcement message */
+        message?: (string|null);
+
+        /** Announcement createAt */
+        createAt?: (string|null);
+    }
+
+    /** Represents an Announcement. */
+    class Announcement implements IAnnouncement {
+
+        /**
+         * Constructs a new Announcement.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: announcement.IAnnouncement);
+
+        /** Announcement message. */
+        public message: string;
+
+        /** Announcement createAt. */
+        public createAt: string;
+
+        /**
+         * Creates a new Announcement instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Announcement instance
+         */
+        public static create(properties?: announcement.IAnnouncement): announcement.Announcement;
+
+        /**
+         * Encodes the specified Announcement message. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @param message Announcement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: announcement.IAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Announcement message, length delimited. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @param message Announcement message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: announcement.IAnnouncement, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): announcement.Announcement;
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): announcement.Announcement;
+
+        /**
+         * Verifies an Announcement message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an Announcement message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Announcement
+         */
+        public static fromObject(object: { [k: string]: any }): announcement.Announcement;
+
+        /**
+         * Creates a plain object from an Announcement message. Also converts values to other types if specified.
+         * @param message Announcement
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: announcement.Announcement, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Announcement to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace auth. */
 export namespace auth {
 
@@ -298,6 +494,9 @@ export namespace auth {
 
         /** User wallet */
         wallet?: (number|null);
+
+        /** User totalValidBets */
+        totalValidBets?: (number|null);
     }
 
     /** Represents a User. */
@@ -314,6 +513,9 @@ export namespace auth {
 
         /** User wallet. */
         public wallet: number;
+
+        /** User totalValidBets. */
+        public totalValidBets: number;
 
         /**
          * Creates a new User instance using the specified properties.
@@ -398,7 +600,8 @@ export namespace bet {
         BetAreaInvalid = 3,
         ReachMaxLimit = 4,
         RoundNotFound = 5,
-        NoEnoughWallet = 6
+        NoEnoughWallet = 6,
+        AlreadyConfirmed = 7
     }
 
     /** BetArea enum. */
@@ -413,6 +616,9 @@ export namespace bet {
 
     /** Properties of a BetStatus. */
     interface IBetStatus {
+
+        /** BetStatus header */
+        header?: (foundation.IHeader|null);
 
         /** BetStatus Banker */
         Banker?: (number|null);
@@ -438,6 +644,9 @@ export namespace bet {
          * @param [properties] Properties to set
          */
         constructor(properties?: bet.IBetStatus);
+
+        /** BetStatus header. */
+        public header?: (foundation.IHeader|null);
 
         /** BetStatus Banker. */
         public Banker: number;
@@ -650,6 +859,9 @@ export namespace bet {
 
         /** BetRecall betError */
         betError?: (bet.IBetError|null);
+
+        /** BetRecall isConfirmed */
+        isConfirmed?: (boolean|null);
     }
 
     /** Represents a BetRecall. */
@@ -675,6 +887,9 @@ export namespace bet {
 
         /** BetRecall betError. */
         public betError?: (bet.IBetError|null);
+
+        /** BetRecall isConfirmed. */
+        public isConfirmed: boolean;
 
         /**
          * Creates a new BetRecall instance using the specified properties.
@@ -1048,6 +1263,204 @@ export namespace bet {
 
         /**
          * Converts this BetError to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a ConfirmBetCall. */
+    interface IConfirmBetCall {
+
+        /** ConfirmBetCall header */
+        header?: (foundation.IHeader|null);
+
+        /** ConfirmBetCall gameUuid */
+        gameUuid?: (string|null);
+    }
+
+    /** Represents a ConfirmBetCall. */
+    class ConfirmBetCall implements IConfirmBetCall {
+
+        /**
+         * Constructs a new ConfirmBetCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IConfirmBetCall);
+
+        /** ConfirmBetCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** ConfirmBetCall gameUuid. */
+        public gameUuid: string;
+
+        /**
+         * Creates a new ConfirmBetCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ConfirmBetCall instance
+         */
+        public static create(properties?: bet.IConfirmBetCall): bet.ConfirmBetCall;
+
+        /**
+         * Encodes the specified ConfirmBetCall message. Does not implicitly {@link bet.ConfirmBetCall.verify|verify} messages.
+         * @param message ConfirmBetCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IConfirmBetCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ConfirmBetCall message, length delimited. Does not implicitly {@link bet.ConfirmBetCall.verify|verify} messages.
+         * @param message ConfirmBetCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IConfirmBetCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ConfirmBetCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ConfirmBetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.ConfirmBetCall;
+
+        /**
+         * Decodes a ConfirmBetCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ConfirmBetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.ConfirmBetCall;
+
+        /**
+         * Verifies a ConfirmBetCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ConfirmBetCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ConfirmBetCall
+         */
+        public static fromObject(object: { [k: string]: any }): bet.ConfirmBetCall;
+
+        /**
+         * Creates a plain object from a ConfirmBetCall message. Also converts values to other types if specified.
+         * @param message ConfirmBetCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.ConfirmBetCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ConfirmBetCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a ConfirmBetRecall. */
+    interface IConfirmBetRecall {
+
+        /** ConfirmBetRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** ConfirmBetRecall result */
+        result?: (number|null);
+
+        /** ConfirmBetRecall betStatus */
+        betStatus?: (bet.IBetStatus|null);
+    }
+
+    /** Represents a ConfirmBetRecall. */
+    class ConfirmBetRecall implements IConfirmBetRecall {
+
+        /**
+         * Constructs a new ConfirmBetRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: bet.IConfirmBetRecall);
+
+        /** ConfirmBetRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** ConfirmBetRecall result. */
+        public result: number;
+
+        /** ConfirmBetRecall betStatus. */
+        public betStatus?: (bet.IBetStatus|null);
+
+        /**
+         * Creates a new ConfirmBetRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ConfirmBetRecall instance
+         */
+        public static create(properties?: bet.IConfirmBetRecall): bet.ConfirmBetRecall;
+
+        /**
+         * Encodes the specified ConfirmBetRecall message. Does not implicitly {@link bet.ConfirmBetRecall.verify|verify} messages.
+         * @param message ConfirmBetRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: bet.IConfirmBetRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ConfirmBetRecall message, length delimited. Does not implicitly {@link bet.ConfirmBetRecall.verify|verify} messages.
+         * @param message ConfirmBetRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: bet.IConfirmBetRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ConfirmBetRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ConfirmBetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): bet.ConfirmBetRecall;
+
+        /**
+         * Decodes a ConfirmBetRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ConfirmBetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): bet.ConfirmBetRecall;
+
+        /**
+         * Verifies a ConfirmBetRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ConfirmBetRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ConfirmBetRecall
+         */
+        public static fromObject(object: { [k: string]: any }): bet.ConfirmBetRecall;
+
+        /**
+         * Creates a plain object from a ConfirmBetRecall message. Also converts values to other types if specified.
+         * @param message ConfirmBetRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: bet.ConfirmBetRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ConfirmBetRecall to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -2565,6 +2978,9 @@ export namespace game {
 
         /** BetRoundStart gameResultCounter */
         gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** BetRoundStart askRoadRecalls */
+        askRoadRecalls?: (roadmap.IAskRoadRecall[]|null);
     }
 
     /** Represents a BetRoundStart. */
@@ -2593,6 +3009,9 @@ export namespace game {
 
         /** BetRoundStart gameResultCounter. */
         public gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** BetRoundStart askRoadRecalls. */
+        public askRoadRecalls: roadmap.IAskRoadRecall[];
 
         /**
          * Creates a new BetRoundStart instance using the specified properties.
@@ -2880,6 +3299,9 @@ export namespace game {
 
         /** GameStatus gameResultCounter */
         gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** GameStatus gameUuid */
+        gameUuid?: (string|null);
     }
 
     /** Represents a GameStatus. */
@@ -2911,6 +3333,9 @@ export namespace game {
 
         /** GameStatus gameResultCounter. */
         public gameResultCounter?: (game.IGameResultCounter|null);
+
+        /** GameStatus gameUuid. */
+        public gameUuid: string;
 
         /**
          * Creates a new GameStatus instance using the specified properties.
@@ -3178,13 +3603,109 @@ export namespace lobby {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of a BroadcastTotalPlayersOnline. */
+    interface IBroadcastTotalPlayersOnline {
+
+        /** BroadcastTotalPlayersOnline header */
+        header?: (foundation.IHeader|null);
+
+        /** BroadcastTotalPlayersOnline numberOfPlayers */
+        numberOfPlayers?: (number|null);
+    }
+
+    /** Represents a BroadcastTotalPlayersOnline. */
+    class BroadcastTotalPlayersOnline implements IBroadcastTotalPlayersOnline {
+
+        /**
+         * Constructs a new BroadcastTotalPlayersOnline.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: lobby.IBroadcastTotalPlayersOnline);
+
+        /** BroadcastTotalPlayersOnline header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BroadcastTotalPlayersOnline numberOfPlayers. */
+        public numberOfPlayers: number;
+
+        /**
+         * Creates a new BroadcastTotalPlayersOnline instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BroadcastTotalPlayersOnline instance
+         */
+        public static create(properties?: lobby.IBroadcastTotalPlayersOnline): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @param message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: lobby.IBroadcastTotalPlayersOnline, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message, length delimited. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @param message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: lobby.IBroadcastTotalPlayersOnline, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Verifies a BroadcastTotalPlayersOnline message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BroadcastTotalPlayersOnline message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BroadcastTotalPlayersOnline
+         */
+        public static fromObject(object: { [k: string]: any }): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Creates a plain object from a BroadcastTotalPlayersOnline message. Also converts values to other types if specified.
+         * @param message BroadcastTotalPlayersOnline
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: lobby.BroadcastTotalPlayersOnline, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BroadcastTotalPlayersOnline to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace roadmap. */
 export namespace roadmap {
 
-    /** Block enum. */
-    enum Block {
+    /** Symbol enum. */
+    enum Symbol {
         BlockDefault = 0,
         Banker = 1,
         Player = 2,
@@ -3208,11 +3729,107 @@ export namespace roadmap {
         PlayerAndBothPairAndTie = 20
     }
 
+    /** Properties of a Block. */
+    interface IBlock {
+
+        /** Block symbol */
+        symbol?: (roadmap.Symbol|null);
+
+        /** Block tieCount */
+        tieCount?: (number|null);
+    }
+
+    /** Represents a Block. */
+    class Block implements IBlock {
+
+        /**
+         * Constructs a new Block.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IBlock);
+
+        /** Block symbol. */
+        public symbol: roadmap.Symbol;
+
+        /** Block tieCount. */
+        public tieCount: number;
+
+        /**
+         * Creates a new Block instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Block instance
+         */
+        public static create(properties?: roadmap.IBlock): roadmap.Block;
+
+        /**
+         * Encodes the specified Block message. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @param message Block message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IBlock, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Block message, length delimited. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @param message Block message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IBlock, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Block message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.Block;
+
+        /**
+         * Decodes a Block message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.Block;
+
+        /**
+         * Verifies a Block message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Block message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Block
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.Block;
+
+        /**
+         * Creates a plain object from a Block message. Also converts values to other types if specified.
+         * @param message Block
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.Block, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Block to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Properties of a Column. */
     interface IColumn {
 
         /** Column blocks */
-        blocks?: (roadmap.Block[]|null);
+        blocks?: (roadmap.IBlock[]|null);
     }
 
     /** Represents a Column. */
@@ -3225,7 +3842,7 @@ export namespace roadmap {
         constructor(properties?: roadmap.IColumn);
 
         /** Column blocks. */
-        public blocks: roadmap.Block[];
+        public blocks: roadmap.IBlock[];
 
         /**
          * Creates a new Column instance using the specified properties.
@@ -3302,7 +3919,7 @@ export namespace roadmap {
     interface IBeadPlate {
 
         /** BeadPlate blocks */
-        blocks?: (roadmap.Block[]|null);
+        blocks?: (roadmap.IBlock[]|null);
     }
 
     /** Represents a BeadPlate. */
@@ -3315,7 +3932,7 @@ export namespace roadmap {
         constructor(properties?: roadmap.IBeadPlate);
 
         /** BeadPlate blocks. */
-        public blocks: roadmap.Block[];
+        public blocks: roadmap.IBlock[];
 
         /**
          * Creates a new BeadPlate instance using the specified properties.
@@ -3867,6 +4484,216 @@ export namespace roadmap {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of an AskRoadCall. */
+    interface IAskRoadCall {
+
+        /** AskRoadCall header */
+        header?: (foundation.IHeader|null);
+
+        /** AskRoadCall block */
+        block?: (roadmap.IBlock|null);
+    }
+
+    /** Represents an AskRoadCall. */
+    class AskRoadCall implements IAskRoadCall {
+
+        /**
+         * Constructs a new AskRoadCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IAskRoadCall);
+
+        /** AskRoadCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** AskRoadCall block. */
+        public block?: (roadmap.IBlock|null);
+
+        /**
+         * Creates a new AskRoadCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AskRoadCall instance
+         */
+        public static create(properties?: roadmap.IAskRoadCall): roadmap.AskRoadCall;
+
+        /**
+         * Encodes the specified AskRoadCall message. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @param message AskRoadCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IAskRoadCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AskRoadCall message, length delimited. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @param message AskRoadCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IAskRoadCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.AskRoadCall;
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.AskRoadCall;
+
+        /**
+         * Verifies an AskRoadCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AskRoadCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AskRoadCall
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.AskRoadCall;
+
+        /**
+         * Creates a plain object from an AskRoadCall message. Also converts values to other types if specified.
+         * @param message AskRoadCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.AskRoadCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AskRoadCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of an AskRoadRecall. */
+    interface IAskRoadRecall {
+
+        /** AskRoadRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** AskRoadRecall bigEyeRoadNext */
+        bigEyeRoadNext?: (roadmap.IBlock|null);
+
+        /** AskRoadRecall smallRoadNext */
+        smallRoadNext?: (roadmap.IBlock|null);
+
+        /** AskRoadRecall cockroachRoadNext */
+        cockroachRoadNext?: (roadmap.IBlock|null);
+
+        /** AskRoadRecall askRoadCall */
+        askRoadCall?: (roadmap.IAskRoadCall|null);
+    }
+
+    /** Represents an AskRoadRecall. */
+    class AskRoadRecall implements IAskRoadRecall {
+
+        /**
+         * Constructs a new AskRoadRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: roadmap.IAskRoadRecall);
+
+        /** AskRoadRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** AskRoadRecall bigEyeRoadNext. */
+        public bigEyeRoadNext?: (roadmap.IBlock|null);
+
+        /** AskRoadRecall smallRoadNext. */
+        public smallRoadNext?: (roadmap.IBlock|null);
+
+        /** AskRoadRecall cockroachRoadNext. */
+        public cockroachRoadNext?: (roadmap.IBlock|null);
+
+        /** AskRoadRecall askRoadCall. */
+        public askRoadCall?: (roadmap.IAskRoadCall|null);
+
+        /**
+         * Creates a new AskRoadRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AskRoadRecall instance
+         */
+        public static create(properties?: roadmap.IAskRoadRecall): roadmap.AskRoadRecall;
+
+        /**
+         * Encodes the specified AskRoadRecall message. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @param message AskRoadRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: roadmap.IAskRoadRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AskRoadRecall message, length delimited. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @param message AskRoadRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: roadmap.IAskRoadRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): roadmap.AskRoadRecall;
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): roadmap.AskRoadRecall;
+
+        /**
+         * Verifies an AskRoadRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AskRoadRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AskRoadRecall
+         */
+        public static fromObject(object: { [k: string]: any }): roadmap.AskRoadRecall;
+
+        /**
+         * Creates a plain object from an AskRoadRecall message. Also converts values to other types if specified.
+         * @param message AskRoadRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: roadmap.AskRoadRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AskRoadRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace route. */
@@ -3885,6 +4712,9 @@ export namespace route {
         BetRecall = 8,
         BetResetCall = 9,
         BetResetRecall = 10,
+        BetConfirmCall = 100,
+        BetConfirmRecall = 101,
+        BroadcastBetstatus = 110,
         Draw = 11,
         DealerGameResult = 12,
         BroadcastGameResult = 13,
@@ -3902,7 +4732,11 @@ export namespace route {
         GameStatus = 24,
         DealerGameStatus = 25,
         Roadmap = 26,
-        WhiteCard = 27
+        WhiteCard = 27,
+        AskRoadCall = 28,
+        AskRoadRecall = 29,
+        BroadcastAnnouncement = 30,
+        BroadcastTotalPlayersOnline = 31
     }
 }
 
@@ -3913,10 +4747,13 @@ export namespace table {
     interface ITable {
 
         /** Table betStatus */
-        betStatus?: (table.IBetStatus|null);
+        betStatus?: (bet.IBetStatus|null);
 
         /** Table streamingUrl */
-        streamingUrl?: (string|null);
+        streamingUrl?: (table.IStreamingUrl|null);
+
+        /** Table betList */
+        betList?: (number[]|null);
     }
 
     /** Represents a Table. */
@@ -3929,10 +4766,13 @@ export namespace table {
         constructor(properties?: table.ITable);
 
         /** Table betStatus. */
-        public betStatus?: (table.IBetStatus|null);
+        public betStatus?: (bet.IBetStatus|null);
 
         /** Table streamingUrl. */
-        public streamingUrl: string;
+        public streamingUrl?: (table.IStreamingUrl|null);
+
+        /** Table betList. */
+        public betList: number[];
 
         /**
          * Creates a new Table instance using the specified properties.
@@ -4197,127 +5037,97 @@ export namespace table {
         public toJSON(): { [k: string]: any };
     }
 
-    /** Properties of a BetStatus. */
-    interface IBetStatus {
+    /** Properties of a StreamingUrl. */
+    interface IStreamingUrl {
 
-        /** BetStatus Banker */
-        Banker?: (string|null);
+        /** StreamingUrl desktop */
+        desktop?: (string|null);
 
-        /** BetStatus Player */
-        Player?: (string|null);
-
-        /** BetStatus Tie */
-        Tie?: (string|null);
-
-        /** BetStatus BankerPair */
-        BankerPair?: (string|null);
-
-        /** BetStatus PlayerPair */
-        PlayerPair?: (string|null);
-
-        /** BetStatus BankerNatural */
-        BankerNatural?: (string|null);
-
-        /** BetStatus PlayerNatural */
-        PlayerNatural?: (string|null);
+        /** StreamingUrl moblie */
+        moblie?: (string|null);
     }
 
-    /** Represents a BetStatus. */
-    class BetStatus implements IBetStatus {
+    /** Represents a StreamingUrl. */
+    class StreamingUrl implements IStreamingUrl {
 
         /**
-         * Constructs a new BetStatus.
+         * Constructs a new StreamingUrl.
          * @param [properties] Properties to set
          */
-        constructor(properties?: table.IBetStatus);
+        constructor(properties?: table.IStreamingUrl);
 
-        /** BetStatus Banker. */
-        public Banker: string;
+        /** StreamingUrl desktop. */
+        public desktop: string;
 
-        /** BetStatus Player. */
-        public Player: string;
-
-        /** BetStatus Tie. */
-        public Tie: string;
-
-        /** BetStatus BankerPair. */
-        public BankerPair: string;
-
-        /** BetStatus PlayerPair. */
-        public PlayerPair: string;
-
-        /** BetStatus BankerNatural. */
-        public BankerNatural: string;
-
-        /** BetStatus PlayerNatural. */
-        public PlayerNatural: string;
+        /** StreamingUrl moblie. */
+        public moblie: string;
 
         /**
-         * Creates a new BetStatus instance using the specified properties.
+         * Creates a new StreamingUrl instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns BetStatus instance
+         * @returns StreamingUrl instance
          */
-        public static create(properties?: table.IBetStatus): table.BetStatus;
+        public static create(properties?: table.IStreamingUrl): table.StreamingUrl;
 
         /**
-         * Encodes the specified BetStatus message. Does not implicitly {@link table.BetStatus.verify|verify} messages.
-         * @param message BetStatus message or plain object to encode
+         * Encodes the specified StreamingUrl message. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
+         * @param message StreamingUrl message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: table.IBetStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: table.IStreamingUrl, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified BetStatus message, length delimited. Does not implicitly {@link table.BetStatus.verify|verify} messages.
-         * @param message BetStatus message or plain object to encode
+         * Encodes the specified StreamingUrl message, length delimited. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
+         * @param message StreamingUrl message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: table.IBetStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: table.IStreamingUrl, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a BetStatus message from the specified reader or buffer.
+         * Decodes a StreamingUrl message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns BetStatus
+         * @returns StreamingUrl
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.BetStatus;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.StreamingUrl;
 
         /**
-         * Decodes a BetStatus message from the specified reader or buffer, length delimited.
+         * Decodes a StreamingUrl message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns BetStatus
+         * @returns StreamingUrl
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.BetStatus;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.StreamingUrl;
 
         /**
-         * Verifies a BetStatus message.
+         * Verifies a StreamingUrl message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a BetStatus message from a plain object. Also converts values to their respective internal types.
+         * Creates a StreamingUrl message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns BetStatus
+         * @returns StreamingUrl
          */
-        public static fromObject(object: { [k: string]: any }): table.BetStatus;
+        public static fromObject(object: { [k: string]: any }): table.StreamingUrl;
 
         /**
-         * Creates a plain object from a BetStatus message. Also converts values to other types if specified.
-         * @param message BetStatus
+         * Creates a plain object from a StreamingUrl message. Also converts values to other types if specified.
+         * @param message StreamingUrl
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: table.BetStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: table.StreamingUrl, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this BetStatus to JSON.
+         * Converts this StreamingUrl to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

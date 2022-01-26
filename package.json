@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "proto": "pbjs -t static-module -w es6 -o src/assets/js/bundle.js src/proto/*/*.proto",
-    "protots": "pbjs -t static-module src/proto/*/*.proto | pbts -o src/assets/js/bundle.d.ts -"
+    "protots": "pbjs -t static-module src/proto/*/*.proto | pbts -o src/assets/js/bundle.d.ts -",
+    "buildDev8199": "vue-cli-service build --mode development8199"
   },
   "dependencies": {
     "@types/js-cookie": "^3.0.0",
@@ -27,6 +28,8 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.1.9",
+    "@types/jquery": "^3.5.13",
     "@vue/cli-plugin-babel": "^4.5.15",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",

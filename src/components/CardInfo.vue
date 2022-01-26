@@ -17,10 +17,10 @@
     	</section>
     </div>
 </template>
-
 <script lang="ts">
 import {computed, defineComponent,onMounted,reactive, ref, watch} from 'vue'
 import {useStore} from 'vuex'
+import {useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
 export default defineComponent({
   setup(){
@@ -36,6 +36,15 @@ export default defineComponent({
         banker:new Array(3),
         player:new Array(3),
      })
+    //監測換桌
+    const route = useRoute()
+    const tableNum = computed(()=>{
+      return route.params.tableId
+    })
+    watch(tableNum,()=>{
+        resetCards ()  //換桌的時候卡牌要先重置
+        resetCardPoint()
+    })
     //vuex
     const store = useStore()
     const roundUuid = computed(()=>{
@@ -53,7 +62,7 @@ export default defineComponent({
     const gameResult = computed(()=>{ //回傳的是陣列
       return store.state.dealer.BroadcastGameResult.results
     })
-    const gameEnd = computed(()=>{
+    const gameEnd = computed(()=>{  //換靴
           return store.state.dealer.end
     })
     const bankCardArray = ref([0,0,0])
@@ -71,6 +80,7 @@ export default defineComponent({
       // console.log("換靴重置Card")
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
+      showCardResult.value = false
     })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
       resetCards () //不管哪個狀態都先執行一次清除卡牌
@@ -80,18 +90,19 @@ export default defineComponent({
      })
      watch(gameResult,()=>{
       //  console.log(gameResult.value.length)
-       setWinCardBoxLight()
+        setWinCardBoxLight()
        if(gameResult.value.length>0){
          showCardTotalPoint()
        }
      })
      watch(DrawCard,()=>{  //開牌
       //  console.log("開牌")
+      //if判斷是暫時性的
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
-      if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
+       if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
        })
@@ -150,7 +161,7 @@ export default defineComponent({
        bankCardArray.value = [0,0,0]
      }
      async function showCardTotalPoint () {
-      console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value)
+      // console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value)
 
       playerCardArray.value.forEach(i=>{
         if(i>=10){
@@ -158,7 +169,7 @@ export default defineComponent({
         }
           playerPoint.value+=i
           playerPoint.value = playerPoint.value%10
-          console.log('閒家牌','加點:',i,'本次值',playerPoint.value)
+          // console.log('閒家牌','加點:',i,'本次值',playerPoint.value)
       })
       bankCardArray.value.forEach(i=>{
         if(i>=10){
@@ -166,7 +177,7 @@ export default defineComponent({
         }
         bankerPoint.value+=i
         bankerPoint.value = bankerPoint.value%10
-          console.log('閒家牌','加點:',i,'本次值',bankerPoint.value)
+          // console.log('閒家牌','加點:',i,'本次值',bankerPoint.value)
       })
       // playerCardArray.value =playerCardArray.value.map(i=>{
       //   if(i>=10){
@@ -184,7 +195,7 @@ export default defineComponent({
       // playerPoint.value = (playerCardArray.value[0]+playerCardArray.value[1]+playerCardArray.value[2])%10
       // bankerPoint.value = (bankCardArray.value[0]+bankCardArray.value[1]+bankCardArray.value[2])%10
       showCardResult.value = true
-      console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
+      // console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
      }
      function showCards (cardSide:number,cardSuit:number,cardPoint:number,cardPosition:number) { 
       let suit = cardSuit

@@ -1,0 +1,20 @@
+.tableItem{
+    cursor: pointer;
+    border: 5px solid $mainColor;
+    border-radius: 5px;
+    // text-align: right;
+}
+.tableList{
+    display: flex;
+    // height:95%;
+}
+.table-img{
+    width:250px;
+    height:250px;
+}
+.chooseTable{
+    margin-top: 50px;
+    // top:10%;
+    // left:50%;
+    // transform: translateX(-50%);
+}

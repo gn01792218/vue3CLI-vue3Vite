@@ -1,6 +1,20 @@
 .roadImg-preLoad {  //預載資源
     @extend %hisRoad;
 }
+.askRoadanimation{
+    animation-name: askRoad;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+@keyframes askRoad {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
 //路圖圖示區
 //珠仔路
 .BeadPlate-B{  //莊
@@ -52,6 +66,10 @@
     @include hisRoadSpritePosition(-1100,0,0.35);
 }
 //大路
+.big-T{
+    @extend %tie;
+    @include tiePosition(0,0,0.19);
+}
 .big-B{ //莊
     @extend %hisRoad;
     @include hisRoadSpritePosition(0,100,0.19);
@@ -144,6 +162,65 @@
     @include hisRoadSpritePosition(-1500,0,0.1);
 }
 
-//路圖網格
+//問路
+//小路(左下角)
+.small-red-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1200,0,0.1);
+}
+.small-blue-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1400,0,0.1);
+}
+//大眼仔路(中間)
+.bigEye-red-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(0,100,0.11);
+}
+.bigEye-blue-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-800,100,0.11);
+}
+//蟑螂路
+.cockroach-red-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1300,0,0.1);
+}
+.cockroach-blue-ask{
+    @extend %hisRoad;
+    @include hisRoadSpritePosition(-1500,0,0.1);
+}
 
-//大路
+//和局數字
+.tie1{
+    @extend %tieNumber;
+    @include tieNumberPosition(0,0,0.19);
+}
+.tie2{
+    @extend %tieNumber;
+    @include tieNumberPosition(-100,0,0.19);
+}
+.tie3{
+    @extend %tieNumber;
+    @include tieNumberPosition(-200,0,0.19);
+}
+.tie4{
+    @extend %tieNumber;
+    @include tieNumberPosition(-300,0,0.19);
+}
+.tie5{
+    @extend %tieNumber;
+    @include tieNumberPosition(-400,0,0.19);
+}
+.tie6{
+    @extend %tieNumber;
+    @include tieNumberPosition(-500,0,0.19);
+}
+.tie7{
+    @extend %tieNumber;
+    @include tieNumberPosition(-600,0,0.19);
+}
+.tie8{
+    @extend %tieNumber;
+    @include tieNumberPosition(-700,0,0.19);
+}

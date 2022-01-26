@@ -1,12 +1,21 @@
 @charset "UTF-8";
-.roadImg-preLoad, .BeadPlate-B, .BeadPlate-B-BPair, .BeadPlate-B-PPair, .BeadPlate-B-BothPair, .BeadPlate-P, .BeadPlate-P-BPair, .BeadPlate-P-PPair, .BeadPlate-P-BothPair, .BeadPlate-T, .BeadPlate-T-BPair, .BeadPlate-T-PPair, .BeadPlate-T-BothPair, .big-B, .big-B-BPair, .big-B-PPair, .big-B-BothPair, .big-BT, .big-BT-BPair, .big-BT-PPair, .big-BT-BothPair, .big-P, .big-P-BPair, .big-P-PPair, .big-P-BothPair, .big-PT, .big-PT-BPair, .big-PT-PPair, .big-PT-BothPair, .small-red, .small-blue, .bigEye-red, .bigEye-blue, .cockroach-red, .cockroach-blue {
+.roadImg-preLoad, .BeadPlate-B, .BeadPlate-B-BPair, .BeadPlate-B-PPair, .BeadPlate-B-BothPair, .BeadPlate-P, .BeadPlate-P-BPair, .BeadPlate-P-PPair, .BeadPlate-P-BothPair, .BeadPlate-T, .BeadPlate-T-BPair, .BeadPlate-T-PPair, .BeadPlate-T-BothPair, .big-B, .big-B-BPair, .big-B-PPair, .big-B-BothPair, .big-BT, .big-BT-BPair, .big-BT-PPair, .big-BT-BothPair, .big-P, .big-P-BPair, .big-P-PPair, .big-P-BothPair, .big-PT, .big-PT-BPair, .big-PT-PPair, .big-PT-BothPair, .small-red, .small-blue, .bigEye-red, .bigEye-blue, .cockroach-red, .cockroach-blue, .small-red-ask, .small-blue-ask, .bigEye-red-ask, .bigEye-blue-ask, .cockroach-red-ask, .cockroach-blue-ask {
   cursor: pointer;
   background-image: url("../../images/road-sprite.png");
 }
 
-.coin-preLoad, .coin-menu1, .coin-menu1:hover, .coin-menu1-current, .coin-menu1-disable, .coin-menu2, .coin-menu2:hover, .coin-menu2-current, .coin-menu2-disable, .coin-menu3, .coin-menu3:hover, .coin-menu3-current, .coin-menu3-disable, .coin-menu4, .coin-menu4:hover, .coin-menu4-current, .coin-menu4-disable, .coin-menu5, .coin-menu5:hover, .coin-menu5-current, .coin-menu5-disable, .coin-menu6, .coin-menu6:hover, .coin-menu6-current, .coin-menu6-disable {
+.coin-preLoad, .coin-100, .coin-100:hover, .coin-100-current, .coin-100-disable, .coin-500, .coin-500:hover, .coin-500-current, .coin-500-disable, .coin-1000, .coin-1000:hover, .coin-1000-current, .coin-1000-disable, .coin-2000, .coin-2000:hover, .coin-2000-current, .coin-2000-disable, .coin-5000, .coin-5000:hover, .coin-5000-current, .coin-5000-disable, .coin-10000, .coin-10000:hover, .coin-10000-current, .coin-10000-disable, .coin-100000, .coin-100000:hover, .coin-100000-current, .coin-100000-disable, .coin-200000, .coin-200000:hover, .coin-200000-current, .coin-200000-disable {
   background-image: url("../../images/coin.png");
   cursor: pointer;
+}
+
+.big-T {
+  cursor: pointer;
+  background-image: url("../../images/T.png");
+}
+
+.tie1, .tie2, .tie3, .tie4, .tie5, .tie6, .tie7, .tie8 {
+  background-image: url("../../images/tieNumber.png");
 }
 
 html, body {
@@ -66,7 +75,28 @@ img {
 }
 
 .alertFont {
-  font-size: 2.5rem !important;
+  font-size: 2.8rem !important;
+}
+
+.tableItem {
+  cursor: pointer;
+  border: 5px solid #644d31;
+  border-radius: 5px;
+}
+
+.tableList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.table-img {
+  width: 250px;
+  height: 250px;
+}
+
+.chooseTable {
+  margin-top: 50px;
 }
 
 /*-------------------------------------------
@@ -75,6 +105,7 @@ img {
 #wap {
   float: left;
   width: 100%;
+  overflow: hidden;
 }
 
 .home {
@@ -152,10 +183,8 @@ img {
       -ms-flex-align: center;
           align-items: center;
   color: white;
-  font-size: 2rem;
   border: 1px solid gray;
   text-align: center;
-  line-height: 1.55em;
 }
 
 .red {
@@ -167,7 +196,7 @@ img {
 }
 
 .green {
-  color: #093;
+  color: #34be0a;
 }
 
 .header {
@@ -183,13 +212,6 @@ img {
           justify-content: space-between;
 }
 
-.header-logo {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
 .header-btnList {
   float: left;
   width: 100%;
@@ -203,6 +225,15 @@ img {
   width: 100%;
 }
 
+.header-bottom-mobil-extend {
+  left: 0;
+  right: 0;
+}
+
+.disabled, .disabled:hover {
+  background: gray !important;
+}
+
 .video-box {
   border: 2px solid #644d31;
   float: left;
@@ -210,7 +241,7 @@ img {
 }
 
 .gameHistory {
-  border: 1px solid #fff;
+  border: 1px solid #654d31;
   float: left;
   width: 65%;
   height: 26.5%;
@@ -239,7 +270,7 @@ img {
   border: 1px solid #262626;
   float: left;
   width: 35%;
-  background-color: #0f4d79;
+  background-color: #02478d;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -320,6 +351,7 @@ img {
      頁底設定區
 -------------------------------------------*/
 .footer {
+  z-index: 1;
   background: #331d02;
   /* Old browsers */
   /* FF3.6-15 */
@@ -344,6 +376,147 @@ img {
   cursor: pointer;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.input-emoji {
+  right: 10px;
+  top: 0;
+}
+
+.chat-input {
+  max-width: 200px;
+  min-width: 100px;
+}
+
+.chat-input input {
+  border-radius: 44px;
+}
+
+.tabsArea-btn div {
+  cursor: pointer;
+  padding: 10px 35px;
+}
+
+.onclickTab {
+  background-color: black;
+}
+
+.newsTicker {
+  background-color: rgba(128, 128, 128, 0.178);
+  height: 50px;
+  overflow: hidden;
+}
+
+.newsTicker .bi-exclamation-triangle-fill {
+  color: yellow;
+  font-size: 1.5rem;
+}
+
+.announcement-bg {
+  background-color: black;
+  top: 0;
+  left: 0;
+}
+
+.announcement-container {
+  background-color: white;
+  color: black;
+  width: 900px;
+  height: 650px;
+  overflow-y: scroll;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.form-group input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.form-group .form-check-label {
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.announcement3Img {
+  width: 643px;
+}
+
+.announcement-fotter div {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.announcementTitle {
+  font-weight: 600;
+}
+
+.announcementContent {
+  text-indent: 2rem;
+}
+
+.announcement-body span {
+  color: red;
+  font-weight: 600;
+}
+
+#announcement2 .announcementContent {
+  text-indent: 0rem;
+  font-weight: 600;
+}
+
+.bi-arrow-right-square, .bi-arrow-left-square {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.betLimitInfo {
+  height: 120px;
+}
+
+.video-box .video {
+  width: 100%;
+  height: 100%;
+}
+
+.progress {
+  position: relative;
+  border: 5px solid #FFF;
+  width: 400px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress.loaded {
+  display: none;
+}
+
+.progress .progress-inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #FFF;
+}
+
+.lightBox {
+  width: 100%;
+  height: 100%;
+  background-color: #654d317a;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
+}
+
+.leave {
+  top: 20%;
 }
 
 /*-------------------------------------------
@@ -380,6 +553,11 @@ img {
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 0px #9e9e9e;
           box-shadow: 0px 0px 0px #9e9e9e;
+}
+
+.header-btn.active, header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
+  background-color: #f22e89 !important;
+  border: black 2px solid;
 }
 
 .header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
@@ -428,130 +606,172 @@ a.btn.disabled, fieldset[disabled] a.btn {
   pointer-events: none;
 }
 
-.coin-menu1 {
+.coin-100 {
   width: 71.1px;
   height: 58.5px;
   background-position: 0px 0px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu1:hover, .coin-menu1-current {
+.coin-100:hover, .coin-100-current {
   width: 71.1px;
   height: 58.5px;
   background-position: 0px -58.5px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu1-disable {
+.coin-100-disable {
   width: 71.1px;
   height: 58.5px;
   background-position: 0px -117px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu2 {
+.coin-500 {
   width: 71.1px;
   height: 58.5px;
   background-position: -71.1px 0px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu2:hover, .coin-menu2-current {
+.coin-500:hover, .coin-500-current {
   width: 71.1px;
   height: 58.5px;
   background-position: -71.1px -58.5px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu2-disable {
+.coin-500-disable {
   width: 71.1px;
   height: 58.5px;
   background-position: -71.1px -117px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu3 {
+.coin-1000 {
   width: 71.1px;
   height: 58.5px;
   background-position: -142.2px 0px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu3:hover, .coin-menu3-current {
+.coin-1000:hover, .coin-1000-current {
   width: 71.1px;
   height: 58.5px;
   background-position: -142.2px -58.5px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu3-disable {
+.coin-1000-disable {
   width: 71.1px;
   height: 58.5px;
   background-position: -142.2px -117px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu4 {
+.coin-2000 {
   width: 71.1px;
   height: 58.5px;
   background-position: -213.3px 0px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu4:hover, .coin-menu4-current {
+.coin-2000:hover, .coin-2000-current {
   width: 71.1px;
   height: 58.5px;
   background-position: -213.3px -58.5px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu4-disable {
+.coin-2000-disable {
   width: 71.1px;
   height: 58.5px;
   background-position: -213.3px -117px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu5 {
+.coin-5000 {
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -426.6px 0px;
+  background-size: 568.8px 175.5px;
+}
+
+.coin-5000:hover, .coin-5000-current {
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -426.6px -58.5px;
+  background-size: 568.8px 175.5px;
+}
+
+.coin-5000-disable {
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -426.6px -117px;
+  background-size: 568.8px 175.5px;
+}
+
+.coin-10000 {
   width: 71.1px;
   height: 58.5px;
   background-position: -284.4px 0px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu5:hover, .coin-menu5-current {
+.coin-10000:hover, .coin-10000-current {
   width: 71.1px;
   height: 58.5px;
   background-position: -284.4px -58.5px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu5-disable {
+.coin-10000-disable {
   width: 71.1px;
   height: 58.5px;
   background-position: -284.4px -117px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu6 {
+.coin-100000 {
   width: 71.1px;
   height: 58.5px;
   background-position: -355.5px 0px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu6:hover, .coin-menu6-current {
+.coin-100000:hover, .coin-100000-current {
   width: 71.1px;
   height: 58.5px;
   background-position: -355.5px -58.5px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
 }
 
-.coin-menu6-disable {
+.coin-100000-disable {
   width: 71.1px;
   height: 58.5px;
   background-position: -355.5px -117px;
-  background-size: 426.6px 175.5px;
+  background-size: 568.8px 175.5px;
+}
+
+.coin-200000 {
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -497.7px 0px;
+  background-size: 568.8px 175.5px;
+}
+
+.coin-200000:hover, .coin-200000-current {
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -497.7px -58.5px;
+  background-size: 568.8px 175.5px;
+}
+
+.coin-200000-disable {
+  width: 71.1px;
+  height: 58.5px;
+  background-position: -497.7px -117px;
+  background-size: 568.8px 175.5px;
 }
 
 .ammo1 {
@@ -578,7 +798,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   left: 85%;
 }
 
-.betError {
+.betInfortext-ul {
   width: 200px;
   height: 100px;
   top: 50%;
@@ -598,7 +818,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
           flex-direction: column;
 }
 
-.betError li {
+.betInfortext-ul li {
   color: red;
   font-size: larger;
   font-weight: bolder;
@@ -619,6 +839,71 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .gameresult {
   top: 25%;
+}
+
+.bettingArea-btn {
+  height: 65px;
+  width: 100%;
+  background-color: #1e1e1e;
+  border-top: gray 1px solid;
+}
+
+.bettingArea-btn-left {
+  width: 65%;
+}
+
+.bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+  height: 42px;
+  width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bettingArea-btn-gitbackAllCoin {
+  background-color: rgba(0, 0, 255, 0.692);
+}
+
+.bettingArea-btn-check {
+  background-color: rgba(128, 0, 128, 0.829);
+}
+
+.bettingArea-btn-betInfo {
+  border-radius: 5px;
+  background-color: #644d31;
+  font-size: 18px;
+  text-align: center;
+}
+
+.betArea-item {
+  font-weight: 500;
+}
+
+.betRatioText {
+  font-size: 1.5rem;
+}
+
+.askRoad-player, .askRoad-banker {
+  background-color: #4b4949;
+  border-radius: 5px;
+}
+
+.askRoad-player p, .askRoad-banker p {
+  margin-bottom: 0;
+}
+
+.askRoad-player div, .askRoad-banker div {
+  background-color: black;
+  border-radius: 10px;
+}
+
+.askRoad-player {
+  color: red;
+  cursor: pointer;
+}
+
+.askRoad-banker {
+  color: yellow;
+  cursor: pointer;
 }
 
 .shotCoinUl {
@@ -646,13 +931,27 @@ a.btn.disabled, fieldset[disabled] a.btn {
           box-shadow: 0px 0px 25px #ffffb2;
 }
 
+.betArea-item-top {
+  top: 25%;
+}
+
+.betArea-item-bottom {
+  bottom: 10%;
+}
+
 .betStatus {
   pointer-events: none;
-  color: white;
-  position: absolute;
-  bottom: 0;
-  font-size: 2rem;
+  color: gray;
+  font-size: 1rem;
   z-index: 1;
+  margin-bottom: 0;
+}
+
+.table-total-betStatus {
+  pointer-events: none;
+  coclor: gray;
+  font-size: 1rem;
+  margin-bottom: 0;
 }
 
 .winAnimation {
@@ -701,10 +1000,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+#betConfirm, #cancleBet {
+  opacity: 0;
+}
+
 .gameResult {
   top: 28%;
   left: 0;
-  background-color: #523e25ab;
+  background-color: #523e2544;
   text-align: center;
 }
 
@@ -758,6 +1061,39 @@ a.btn.disabled, fieldset[disabled] a.btn {
       -ms-flex-pack: center;
           justify-content: center;
   height: 80%;
+}
+
+.askRoadanimation {
+  -webkit-animation-name: askRoad;
+          animation-name: askRoad;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+
+@-webkit-keyframes askRoad {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
+@keyframes askRoad {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
 }
 
 .BeadPlate-B {
@@ -842,6 +1178,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   height: 35px;
   background-position: -385px 0px;
   background-size: 560px auto;
+}
+
+.big-T {
+  width: 19px;
+  height: 19px;
+  background-position: 0px 0px;
+  background-size: 19px auto;
 }
 
 .big-B {
@@ -998,6 +1341,104 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-size: 160px auto;
 }
 
+.small-red-ask {
+  width: 10px;
+  height: 10px;
+  background-position: -120px 0px;
+  background-size: 160px auto;
+}
+
+.small-blue-ask {
+  width: 10px;
+  height: 10px;
+  background-position: -140px 0px;
+  background-size: 160px auto;
+}
+
+.bigEye-red-ask {
+  width: 11px;
+  height: 11px;
+  background-position: 0px 11px;
+  background-size: 176px auto;
+}
+
+.bigEye-blue-ask {
+  width: 11px;
+  height: 11px;
+  background-position: -88px 11px;
+  background-size: 176px auto;
+}
+
+.cockroach-red-ask {
+  width: 10px;
+  height: 10px;
+  background-position: -130px 0px;
+  background-size: 160px auto;
+}
+
+.cockroach-blue-ask {
+  width: 10px;
+  height: 10px;
+  background-position: -150px 0px;
+  background-size: 160px auto;
+}
+
+.tie1 {
+  width: 19px;
+  height: 19px;
+  background-position: 0px 0px;
+  background-size: 171px auto;
+}
+
+.tie2 {
+  width: 19px;
+  height: 19px;
+  background-position: -19px 0px;
+  background-size: 171px auto;
+}
+
+.tie3 {
+  width: 19px;
+  height: 19px;
+  background-position: -38px 0px;
+  background-size: 171px auto;
+}
+
+.tie4 {
+  width: 19px;
+  height: 19px;
+  background-position: -57px 0px;
+  background-size: 171px auto;
+}
+
+.tie5 {
+  width: 19px;
+  height: 19px;
+  background-position: -76px 0px;
+  background-size: 171px auto;
+}
+
+.tie6 {
+  width: 19px;
+  height: 19px;
+  background-position: -95px 0px;
+  background-size: 171px auto;
+}
+
+.tie7 {
+  width: 19px;
+  height: 19px;
+  background-position: -114px 0px;
+  background-size: 171px auto;
+}
+
+.tie8 {
+  width: 19px;
+  height: 19px;
+  background-position: -133px 0px;
+  background-size: 171px auto;
+}
+
 .beadPlate {
   width: 40%;
   /*調整欄寬 */
@@ -1012,7 +1453,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  /* border:5px solid hotpink; */
 }
 
 .beadPlate-container::-webkit-scrollbar {
@@ -1160,11 +1600,19 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .BigEyesRoad-colum {
   width: 2.272727272727%;
   height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .BigEyesRoad-item {
   width: 100%;
   height: 16.666666666%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .sideWidth {
@@ -1193,11 +1641,19 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .smallRoad-column, .cockroachRoad-column {
   width: 5%;
   height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .smallRoad-item, .cockroachRoad-item {
   width: 100%;
   height: 16.6666666666%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .LoadingPage {
@@ -1211,7 +1667,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .gameResultLoading {
   top: 35%;
-  background-color: #523e2575;
+  background-color: #523e2544;
   z-index: 9;
 }
 
@@ -1241,7 +1697,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .winPoker {
-  background-color: rgba(206, 156, 94, 0.822);
+  background-color: rgba(206, 156, 94, 0.438);
   -webkit-animation-name: winpoker;
           animation-name: winpoker;
   -webkit-animation-duration: 0.5s;
@@ -1276,13 +1732,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .playerNum {
-  left: 10%;
-  top: 50%;
+  left: 18%;
+  top: 20%;
 }
 
 .bankerNum {
-  right: 10%;
-  top: 50%;
+  right: 20%;
+  top: 20%;
 }
 
 .counter {
@@ -1343,6 +1799,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
   color: yellow;
 }
 
+.modal-header {
+  background-color: #644d31;
+}
+
+.modal-body {
+  color: black;
+  text-align: center;
+}
+
+.userBetInfo {
+  list-style: none;
+  text-align: left;
+}
+
 /*-------------------------------------------
      自適應設定區
 -------------------------------------------*/
@@ -1351,13 +1821,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 70%;
   }
   .betArea {
-    height: 70%;
+    height: 65%;
   }
   .betArea-pc {
     height: 79%;
   }
   .coinArea {
-    height: 18%;
+    height: 15%;
   }
   .betArea-pc-container {
     height: 50%;
@@ -1371,7 +1841,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 1280px) {
-  .text-md-left, .text-md-right {
+  .text-md-left,
+  .text-md-right {
     font-size: smaller;
   }
   .card-container {
@@ -1398,113 +1869,149 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .coinArea {
     height: 21%;
   }
-  .coin-menu1 {
+  .coin-100 {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu1:hover, .coin-menu1-current {
+  .coin-100:hover, .coin-100-current {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu2 {
+  .coin-500 {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu2:hover, .coin-menu2-current {
+  .coin-500:hover, .coin-500-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu3 {
+  .coin-1000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu3:hover, .coin-menu3-current {
+  .coin-1000:hover, .coin-1000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu4 {
+  .coin-2000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu4:hover, .coin-menu4-current {
+  .coin-2000:hover, .coin-2000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu5 {
+  .coin-5000 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px 0px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-5000:hover, .coin-5000-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -45.5px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-5000-disable {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -91px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-10000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu5:hover, .coin-menu5-current {
+  .coin-10000:hover, .coin-10000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu6 {
+  .coin-100000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -276.5px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu6:hover, .coin-menu6-current {
+  .coin-100000:hover, .coin-100000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -276.5px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -276.5px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-200000 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px 0px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-200000:hover, .coin-200000-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -45.5px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-200000-disable {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -91px;
+    background-size: 442.4px 136.5px;
   }
   .BeadPlate-B {
     width: 29px;
@@ -1577,6 +2084,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 29px;
     background-position: -319px 0px;
     background-size: 464px auto;
+  }
+  .big-T {
+    width: 15px;
+    height: 15px;
+    background-position: 0px 0px;
+    background-size: 15px auto;
   }
   .big-B {
     width: 15px;
@@ -1710,9 +2223,88 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -120px 0px;
     background-size: 128px auto;
   }
+  .tie1 {
+    width: 15px;
+    height: 15px;
+    background-position: 0px 0px;
+    background-size: 135px auto;
+  }
+  .tie2 {
+    width: 15px;
+    height: 15px;
+    background-position: -15px 0px;
+    background-size: 135px auto;
+  }
+  .tie3 {
+    width: 15px;
+    height: 15px;
+    background-position: -30px 0px;
+    background-size: 135px auto;
+  }
+  .tie4 {
+    width: 15px;
+    height: 15px;
+    background-position: -45px 0px;
+    background-size: 135px auto;
+  }
+  .tie5 {
+    width: 15px;
+    height: 15px;
+    background-position: -60px 0px;
+    background-size: 135px auto;
+  }
+  .tie6 {
+    width: 15px;
+    height: 15px;
+    background-position: -75px 0px;
+    background-size: 135px auto;
+  }
+  .tie7 {
+    width: 15px;
+    height: 15px;
+    background-position: -90px 0px;
+    background-size: 135px auto;
+  }
+  .tie8 {
+    width: 15px;
+    height: 15px;
+    background-position: -105px 0px;
+    background-size: 135px auto;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .header-bottom-mobil {
+    display: none !important;
+  }
+  .header-logo {
+    max-width: 187px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
+  .header {
+    background-image: none;
+  }
+  .betError {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  #betConfirm, #cancleBet {
+    position: absolute;
+    width: 100px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  .announcement-container {
+    top: 45%;
+  }
   .container-waps {
     height: auto;
   }
@@ -1728,7 +2320,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .header {
     width: 100%;
-    height: 100px;
+    height: 50px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -1744,9 +2336,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     float: left;
     width: auto !important;
     height: 100%;
-    margin-left: 1.25rem;
-    padding-top: 5px;
-    padding-bottom: 0px;
+    margin-right: auto;
   }
   .header-logo img {
     height: 100%;
@@ -1756,13 +2346,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
   }
   .header-btn {
     width: auto;
-    line-height: 4.75rem;
-    font-size: 250%;
+    line-height: 1.75rem;
+    font-size: 180%;
   }
   .header-top {
     display: -webkit-box;
@@ -1773,25 +2361,27 @@ a.btn.disabled, fieldset[disabled] a.btn {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .header-bottom-desk {
+    display: none;
   }
   .header-userName {
     -webkit-box-flex: 0;
         -ms-flex-positive: 0;
             flex-grow: 0;
   }
+  .tableItem {
+    width: 565px;
+  }
   .font-total {
     line-height: 1.5em;
   }
   .video-box {
     width: 100%;
-    height: 560px;
+    height: 575px;
   }
   .mainGame {
     width: 100%;
@@ -1803,123 +2393,162 @@ a.btn.disabled, fieldset[disabled] a.btn {
     border: 2px solid #262626;
     width: 100%;
   }
+  .bettingArea-btn-left {
+    width: 80%;
+  }
   .betArea-pc {
     display: none;
   }
   .betArea-mobile {
     display: block;
-    height: 280px;
+    height: 250px;
   }
   .betArea-mobile-container {
-    height: 280px;
+    height: 250px;
   }
-  .coin-menu1 {
+  .coin-100 {
     width: 126.4px;
     height: 104px;
     background-position: 0px 0px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu1:hover, .coin-menu1-current {
+  .coin-100:hover, .coin-100-current {
     width: 126.4px;
     height: 104px;
     background-position: 0px -104px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     width: 126.4px;
     height: 104px;
     background-position: 0px -208px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu2 {
+  .coin-500 {
     width: 126.4px;
     height: 104px;
     background-position: -126.4px 0px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu2:hover, .coin-menu2-current {
+  .coin-500:hover, .coin-500-current {
     width: 126.4px;
     height: 104px;
     background-position: -126.4px -104px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     width: 126.4px;
     height: 104px;
     background-position: -126.4px -208px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu3 {
+  .coin-1000 {
     width: 126.4px;
     height: 104px;
     background-position: -252.8px 0px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu3:hover, .coin-menu3-current {
+  .coin-1000:hover, .coin-1000-current {
     width: 126.4px;
     height: 104px;
     background-position: -252.8px -104px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     width: 126.4px;
     height: 104px;
     background-position: -252.8px -208px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu4 {
+  .coin-2000 {
     width: 126.4px;
     height: 104px;
     background-position: -379.2px 0px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu4:hover, .coin-menu4-current {
+  .coin-2000:hover, .coin-2000-current {
     width: 126.4px;
     height: 104px;
     background-position: -379.2px -104px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     width: 126.4px;
     height: 104px;
     background-position: -379.2px -208px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu5 {
+  .coin-5000 {
+    width: 126.4px;
+    height: 104px;
+    background-position: -758.4px 0px;
+    background-size: 1011.2px 312px;
+  }
+  .coin-5000:hover, .coin-5000-current {
+    width: 126.4px;
+    height: 104px;
+    background-position: -758.4px -104px;
+    background-size: 1011.2px 312px;
+  }
+  .coin-5000-disable {
+    width: 126.4px;
+    height: 104px;
+    background-position: -758.4px -208px;
+    background-size: 1011.2px 312px;
+  }
+  .coin-10000 {
     width: 126.4px;
     height: 104px;
     background-position: -505.6px 0px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu5:hover, .coin-menu5-current {
+  .coin-10000:hover, .coin-10000-current {
     width: 126.4px;
     height: 104px;
     background-position: -505.6px -104px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     width: 126.4px;
     height: 104px;
     background-position: -505.6px -208px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu6 {
+  .coin-100000 {
     width: 126.4px;
     height: 104px;
     background-position: -632px 0px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu6:hover, .coin-menu6-current {
+  .coin-100000:hover, .coin-100000-current {
     width: 126.4px;
     height: 104px;
     background-position: -632px -104px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     width: 126.4px;
     height: 104px;
     background-position: -632px -208px;
-    background-size: 758.4px 312px;
+    background-size: 1011.2px 312px;
+  }
+  .coin-200000 {
+    width: 126.4px;
+    height: 104px;
+    background-position: -758.4px 0px;
+    background-size: 1011.2px 312px;
+  }
+  .coin-200000:hover, .coin-200000-current {
+    width: 126.4px;
+    height: 104px;
+    background-position: -758.4px -104px;
+    background-size: 1011.2px 312px;
+  }
+  .coin-200000-disable {
+    width: 126.4px;
+    height: 104px;
+    background-position: -758.4px -208px;
+    background-size: 1011.2px 312px;
   }
   .betArea-item {
     font-size: 2.5rem;
@@ -1945,11 +2574,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .playerNum {
     left: 20%;
-    top: 50%;
+    top: 10%;
   }
   .bankerNum {
     right: 20%;
-    top: 50%;
+    top: 10%;
   }
   .BeadPlate-B {
     width: 35px;
@@ -2022,6 +2651,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 35px;
     background-position: -385px 0px;
     background-size: 560px auto;
+  }
+  .big-T {
+    width: 20px;
+    height: 20px;
+    background-position: 0px 0px;
+    background-size: 20px auto;
   }
   .big-B {
     width: 20px;
@@ -2143,17 +2778,72 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -135px 0px;
     background-size: 144px auto;
   }
+  .tie1 {
+    width: 20px;
+    height: 20px;
+    background-position: 0px 0px;
+    background-size: 180px auto;
+  }
+  .tie2 {
+    width: 20px;
+    height: 20px;
+    background-position: -20px 0px;
+    background-size: 180px auto;
+  }
+  .tie3 {
+    width: 20px;
+    height: 20px;
+    background-position: -40px 0px;
+    background-size: 180px auto;
+  }
+  .tie4 {
+    width: 20px;
+    height: 20px;
+    background-position: -60px 0px;
+    background-size: 180px auto;
+  }
+  .tie5 {
+    width: 20px;
+    height: 20px;
+    background-position: -80px 0px;
+    background-size: 180px auto;
+  }
+  .tie6 {
+    width: 20px;
+    height: 20px;
+    background-position: -100px 0px;
+    background-size: 180px auto;
+  }
+  .tie7 {
+    width: 20px;
+    height: 20px;
+    background-position: -120px 0px;
+    background-size: 180px auto;
+  }
+  .tie8 {
+    width: 20px;
+    height: 20px;
+    background-position: -140px 0px;
+    background-size: 180px auto;
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 600px) {
+  .announcement-container {
+    top: 54%;
+    height: 500px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .header {
-    height: 70px;
+    height: 40px;
   }
-  .header-btn {
-    line-height: 2.75rem;
+  .announcement-container {
+    width: 600px;
   }
   .video-box {
-    height: 400px;
+    height: 430px;
   }
   .lightBox {
     display: block;
@@ -2161,11 +2851,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
   #countNumber {
     top: 2%;
   }
-  .betArea-mobile {
-    height: 180px;
+  .bettingArea-btn {
+    height: 55px;
   }
-  .betArea-mobile-container {
-    height: 180px;
+  .betArea-item-top {
+    top: 2%;
+  }
+  .betArea-item-bottom {
+    bottom: 5%;
+  }
+  .bettingArea-btn-betInfo {
+    font-size: 16px;
+  }
+  .betRatioText {
+    font-size: 1rem;
   }
   .tabsArea {
     display: none;
@@ -2181,116 +2880,153 @@ a.btn.disabled, fieldset[disabled] a.btn {
     padding-top: 0px;
     padding-bottom: 0px;
   }
-  .coin-menu1 {
+  .coin-100 {
     width: 94.8px;
     height: 78px;
     background-position: 0px 0px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu1:hover, .coin-menu1-current {
+  .coin-100:hover, .coin-100-current {
     width: 94.8px;
     height: 78px;
     background-position: 0px -78px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     width: 94.8px;
     height: 78px;
     background-position: 0px -156px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu2 {
+  .coin-500 {
     width: 94.8px;
     height: 78px;
     background-position: -94.8px 0px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu2:hover, .coin-menu2-current {
+  .coin-500:hover, .coin-500-current {
     width: 94.8px;
     height: 78px;
     background-position: -94.8px -78px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     width: 94.8px;
     height: 78px;
     background-position: -94.8px -156px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu3 {
+  .coin-1000 {
     width: 94.8px;
     height: 78px;
     background-position: -189.6px 0px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu3:hover, .coin-menu3-current {
+  .coin-1000:hover, .coin-1000-current {
     width: 94.8px;
     height: 78px;
     background-position: -189.6px -78px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     width: 94.8px;
     height: 78px;
     background-position: -189.6px -156px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu4 {
+  .coin-2000 {
     width: 94.8px;
     height: 78px;
     background-position: -284.4px 0px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu4:hover, .coin-menu4-current {
+  .coin-2000:hover, .coin-2000-current {
     width: 94.8px;
     height: 78px;
     background-position: -284.4px -78px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     width: 94.8px;
     height: 78px;
     background-position: -284.4px -156px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu5 {
+  .coin-5000 {
+    width: 94.8px;
+    height: 78px;
+    background-position: -568.8px 0px;
+    background-size: 758.4px 234px;
+  }
+  .coin-5000:hover, .coin-5000-current {
+    width: 94.8px;
+    height: 78px;
+    background-position: -568.8px -78px;
+    background-size: 758.4px 234px;
+  }
+  .coin-5000-disable {
+    width: 94.8px;
+    height: 78px;
+    background-position: -568.8px -156px;
+    background-size: 758.4px 234px;
+  }
+  .coin-10000 {
     width: 94.8px;
     height: 78px;
     background-position: -379.2px 0px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu5:hover, .coin-menu5-current {
+  .coin-10000:hover, .coin-10000-current {
     width: 94.8px;
     height: 78px;
     background-position: -379.2px -78px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     width: 94.8px;
     height: 78px;
     background-position: -379.2px -156px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu6 {
+  .coin-100000 {
     width: 94.8px;
     height: 78px;
     background-position: -474px 0px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu6:hover, .coin-menu6-current {
+  .coin-100000:hover, .coin-100000-current {
     width: 94.8px;
     height: 78px;
     background-position: -474px -78px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     width: 94.8px;
     height: 78px;
     background-position: -474px -156px;
-    background-size: 568.8px 234px;
+    background-size: 758.4px 234px;
   }
-  .betArea-mobile, .betArea-mobile-container {
-    height: 145px;
+  .coin-200000 {
+    width: 94.8px;
+    height: 78px;
+    background-position: -568.8px 0px;
+    background-size: 758.4px 234px;
+  }
+  .coin-200000:hover, .coin-200000-current {
+    width: 94.8px;
+    height: 78px;
+    background-position: -568.8px -78px;
+    background-size: 758.4px 234px;
+  }
+  .coin-200000-disable {
+    width: 94.8px;
+    height: 78px;
+    background-position: -568.8px -156px;
+    background-size: 758.4px 234px;
+  }
+  .betArea-mobile,
+  .betArea-mobile-container {
+    height: 120px;
   }
   .betArea-item {
     font-size: 1.6rem;
@@ -2303,11 +3039,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .playerNum {
     left: 10%;
-    top: 50%;
+    top: 10%;
   }
   .bankerNum {
     right: 10%;
-    top: 50%;
+    top: 10%;
   }
   .BeadPlate-B {
     width: 30px;
@@ -2380,6 +3116,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 30px;
     background-position: -330px 0px;
     background-size: 480px auto;
+  }
+  .big-T {
+    width: 17px;
+    height: 17px;
+    background-position: 0px 0px;
+    background-size: 17px auto;
   }
   .big-B {
     width: 17px;
@@ -2477,138 +3219,245 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -255px 17px;
     background-size: 272px auto;
   }
+  .tie1 {
+    width: 17px;
+    height: 17px;
+    background-position: 0px 0px;
+    background-size: 153px auto;
+  }
+  .tie2 {
+    width: 17px;
+    height: 17px;
+    background-position: -17px 0px;
+    background-size: 153px auto;
+  }
+  .tie3 {
+    width: 17px;
+    height: 17px;
+    background-position: -34px 0px;
+    background-size: 153px auto;
+  }
+  .tie4 {
+    width: 17px;
+    height: 17px;
+    background-position: -51px 0px;
+    background-size: 153px auto;
+  }
+  .tie5 {
+    width: 17px;
+    height: 17px;
+    background-position: -68px 0px;
+    background-size: 153px auto;
+  }
+  .tie6 {
+    width: 17px;
+    height: 17px;
+    background-position: -85px 0px;
+    background-size: 153px auto;
+  }
+  .tie7 {
+    width: 17px;
+    height: 17px;
+    background-position: -102px 0px;
+    background-size: 153px auto;
+  }
+  .tie8 {
+    width: 17px;
+    height: 17px;
+    background-position: -119px 0px;
+    background-size: 153px auto;
+  }
 }
 
 @media screen and (max-width: 540px) {
   .header {
-    height: 50px;
+    height: 30px;
+  }
+  .newsTicker {
+    height: 25px;
+    font-size: 0.5rem;
+  }
+  .announcement-container {
+    width: 500px;
+    top: 52%;
   }
   .header-btn {
-    font-size: 150%;
-    line-height: 1.5rem;
+    font-size: 100%;
+    line-height: 1rem;
   }
   .video-box {
-    height: 288px;
+    height: 290px;
   }
   #countNumber {
     top: 3%;
   }
-  .betArea-item, .betStatus {
-    font-size: 1.5rem;
+  .table-img {
+    width: 150px;
+    height: 150px;
+  }
+  .betArea-item {
+    font-size: 1rem;
+  }
+  .betStatus,
+  .table-total-betStatus {
+    font-size: 0.5rem;
   }
   .alertFont {
     font-size: 1.5rem !important;
   }
-  .betArea-mobile, .betArea-mobile-container {
-    height: 130px;
+  .betArea-mobile,
+  .betArea-mobile-container {
+    height: 100px;
   }
-  .coin-menu1 {
+  .askRoad-player p, .askRoad-banker p {
+    font-size: 0.5rem;
+  }
+  .tableItem {
+    width: 475px;
+  }
+  .coin-100 {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu1:hover, .coin-menu1-current {
+  .coin-100:hover, .coin-100-current {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: 0px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu2 {
+  .coin-500 {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu2:hover, .coin-menu2-current {
+  .coin-500:hover, .coin-500-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -55.3px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu3 {
+  .coin-1000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu3:hover, .coin-menu3-current {
+  .coin-1000:hover, .coin-1000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -110.6px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu4 {
+  .coin-2000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu4:hover, .coin-menu4-current {
+  .coin-2000:hover, .coin-2000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -165.9px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu5 {
+  .coin-5000 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px 0px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-5000:hover, .coin-5000-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -45.5px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-5000-disable {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -91px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-10000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu5:hover, .coin-menu5-current {
+  .coin-10000:hover, .coin-10000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -221.2px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu6 {
+  .coin-100000 {
     width: 55.3px;
     height: 45.5px;
     background-position: -276.5px 0px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu6:hover, .coin-menu6-current {
+  .coin-100000:hover, .coin-100000-current {
     width: 55.3px;
     height: 45.5px;
     background-position: -276.5px -45.5px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     width: 55.3px;
     height: 45.5px;
     background-position: -276.5px -91px;
-    background-size: 331.8px 136.5px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-200000 {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px 0px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-200000:hover, .coin-200000-current {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -45.5px;
+    background-size: 442.4px 136.5px;
+  }
+  .coin-200000-disable {
+    width: 55.3px;
+    height: 45.5px;
+    background-position: -331.8px -91px;
+    background-size: 442.4px 136.5px;
   }
   .gameHistory {
     height: 130px;
@@ -2684,6 +3533,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 15px;
     background-position: -165px 0px;
     background-size: 240px auto;
+  }
+  .big-T {
+    width: 8px;
+    height: 8px;
+    background-position: 0px 0px;
+    background-size: 8px auto;
   }
   .big-B {
     width: 8px;
@@ -2820,6 +3675,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-container {
     margin-top: -10px;
   }
+  .tie1 {
+    width: 8px;
+    height: 8px;
+    background-position: 0px 0px;
+    background-size: 72px auto;
+  }
+  .tie2 {
+    width: 8px;
+    height: 8px;
+    background-position: -8px 0px;
+    background-size: 72px auto;
+  }
+  .tie3 {
+    width: 8px;
+    height: 8px;
+    background-position: -16px 0px;
+    background-size: 72px auto;
+  }
+  .tie4 {
+    width: 8px;
+    height: 8px;
+    background-position: -24px 0px;
+    background-size: 72px auto;
+  }
+  .tie5 {
+    width: 8px;
+    height: 8px;
+    background-position: -32px 0px;
+    background-size: 72px auto;
+  }
+  .tie6 {
+    width: 8px;
+    height: 8px;
+    background-position: -40px 0px;
+    background-size: 72px auto;
+  }
+  .tie7 {
+    width: 8px;
+    height: 8px;
+    background-position: -48px 0px;
+    background-size: 72px auto;
+  }
+  .tie8 {
+    width: 8px;
+    height: 8px;
+    background-position: -56px 0px;
+    background-size: 72px auto;
+  }
 }
 
 @media screen and (max-width: 414px) {
@@ -2827,21 +3730,52 @@ a.btn.disabled, fieldset[disabled] a.btn {
     top: 25%;
     font-size: 40%;
   }
-  .header {
-    height: 50px;
+  .announcement-container {
+    width: 390px;
+    top: 51%;
+  }
+  .newsTicker .bi-exclamation-triangle-fill {
+    font-size: 1rem;
+  }
+  .table-img {
+    width: 100px;
+    height: 100px;
+  }
+  .tableItem {
+    font-size: 12px;
+    width: 360px;
+  }
+  .header-top {
+    width: 90%;
+  }
+  .header-bottom {
+    width: 10%;
   }
   .header-btnList {
-    width: 57%;
+    width: 100%;
   }
   .header-btn {
-    line-height: 1.75rem;
-    font-size: 130%;
+    line-height: 0.5rem;
+    font-size: 70%;
+    width: 40px;
+  }
+  .alertFont {
+    font-size: 1.3rem !important;
+  }
+  .betArea-item-top {
+    top: 0%;
+  }
+  .betArea-item-bottom {
+    bottom: 0%;
+  }
+  .bettingArea-btn-left {
+    width: 70%;
   }
   .header-userName {
     font-size: 0.5rem;
   }
   .video-box {
-    height: 220px;
+    height: 230px;
   }
   #countNumber {
     top: 2%;
@@ -2853,22 +3787,38 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 60px;
     left: 10px;
   }
+  .coinArea {
+    height: 15%;
+  }
   .betArea {
-    height: 300px;
+    height: 310px;
   }
   .betStatus {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .betArea-mobile {
-    height: 211px;
+    height: 180px;
   }
   .betArea-mobile-container {
-    height: 211px;
+    height: 180px;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
+  .mobilTableInfo {
+    font-size: 0.8rem;
+  }
+  .navbar-toggler {
+    padding: 0;
+  }
+  .bettingArea-btn-gitbackAllCoin,
+  .bettingArea-btn-check {
+    width: 55px;
+  }
+  .bettingArea-btn-betInfo {
+    font-size: 10px;
+  }
   .betArea-item {
-    font-size: 1.2rem;
+    font-size: 1rem;
     -webkit-box-flex: 1;
         -ms-flex: auto;
             flex: auto;
@@ -2881,11 +3831,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .playerNum {
     left: 5%;
-    top: 50%;
+    top: 10%;
   }
   .bankerNum {
     right: 5%;
-    top: 50%;
+    top: 10%;
   }
   .caritem {
     margin-right: 10px;
@@ -2913,153 +3863,227 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 @media screen and (max-width: 375px) {
   .video-box {
-    height: 195px;
+    height: 210px;
   }
-  .header-btnList {
-    width: 49%;
+  .announcement-container {
+    width: 350px;
+    top: 55%;
+  }
+  .header-btn {
+    width: 30px;
+  }
+  .tableItem {
+    padding: 5px !important;
+    width: 335px;
   }
   .betArea {
-    height: 260px;
+    height: 265px;
   }
   .betStatus {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
   }
   .alertFont {
-    font-size: 1.3rem !important;
+    font-size: 0.9rem !important;
+  }
+  .betArea-item {
+    font-size: 0.5rem;
+    font-weight: bolder;
+  }
+  .table-total-betStatus {
+    font-size: 0.3rem;
+  }
+  .betRatioText {
+    font-size: 0.3rem;
   }
   .betArea-mobile {
-    height: 179px;
+    height: 141px;
   }
   .betArea-mobile-container {
-    height: 179px;
-  }
-  .gameResult {
-    top: 20%;
+    height: 141px;
   }
   .playerNum {
     left: 3%;
-    top: 50%;
   }
   .userBetInfo-title {
     font-size: 1rem;
   }
-  .coin-menu1 {
+  .coin-100 {
     width: 47.4px;
     height: 39px;
     background-position: 0px 0px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu1:hover, .coin-menu1-current {
+  .coin-100:hover, .coin-100-current {
     width: 47.4px;
     height: 39px;
     background-position: 0px -39px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     width: 47.4px;
     height: 39px;
     background-position: 0px -78px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu2 {
+  .coin-500 {
     width: 47.4px;
     height: 39px;
     background-position: -47.4px 0px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu2:hover, .coin-menu2-current {
+  .coin-500:hover, .coin-500-current {
     width: 47.4px;
     height: 39px;
     background-position: -47.4px -39px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     width: 47.4px;
     height: 39px;
     background-position: -47.4px -78px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu3 {
+  .coin-1000 {
     width: 47.4px;
     height: 39px;
     background-position: -94.8px 0px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu3:hover, .coin-menu3-current {
+  .coin-1000:hover, .coin-1000-current {
     width: 47.4px;
     height: 39px;
     background-position: -94.8px -39px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     width: 47.4px;
     height: 39px;
     background-position: -94.8px -78px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu4 {
+  .coin-2000 {
     width: 47.4px;
     height: 39px;
     background-position: -142.2px 0px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu4:hover, .coin-menu4-current {
+  .coin-2000:hover, .coin-2000-current {
     width: 47.4px;
     height: 39px;
     background-position: -142.2px -39px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     width: 47.4px;
     height: 39px;
     background-position: -142.2px -78px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu5 {
+  .coin-5000 {
+    width: 47.4px;
+    height: 39px;
+    background-position: -284.4px 0px;
+    background-size: 379.2px 117px;
+  }
+  .coin-5000:hover, .coin-5000-current {
+    width: 47.4px;
+    height: 39px;
+    background-position: -284.4px -39px;
+    background-size: 379.2px 117px;
+  }
+  .coin-5000-disable {
+    width: 47.4px;
+    height: 39px;
+    background-position: -284.4px -78px;
+    background-size: 379.2px 117px;
+  }
+  .coin-10000 {
     width: 47.4px;
     height: 39px;
     background-position: -189.6px 0px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu5:hover, .coin-menu5-current {
+  .coin-10000:hover, .coin-10000-current {
     width: 47.4px;
     height: 39px;
     background-position: -189.6px -39px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     width: 47.4px;
     height: 39px;
     background-position: -189.6px -78px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu6 {
+  .coin-100000 {
     width: 47.4px;
     height: 39px;
     background-position: -237px 0px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu6:hover, .coin-menu6-current {
+  .coin-100000:hover, .coin-100000-current {
     width: 47.4px;
     height: 39px;
     background-position: -237px -39px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     width: 47.4px;
     height: 39px;
     background-position: -237px -78px;
-    background-size: 284.4px 117px;
+    background-size: 379.2px 117px;
+  }
+  .coin-200000 {
+    width: 47.4px;
+    height: 39px;
+    background-position: -284.4px 0px;
+    background-size: 379.2px 117px;
+  }
+  .coin-200000:hover, .coin-200000-current {
+    width: 47.4px;
+    height: 39px;
+    background-position: -284.4px -39px;
+    background-size: 379.2px 117px;
+  }
+  .coin-200000-disable {
+    width: 47.4px;
+    height: 39px;
+    background-position: -284.4px -78px;
+    background-size: 379.2px 117px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .header {
-    height: 40px;
+    height: 30px;
   }
-  .header-btn {
-    line-height: 1rem;
-    font-size: 100%;
+  .announcement-container {
+    width: 300px;
+    top: 65%;
+  }
+  .announcement-container h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .announcement-container h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .tableItem {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 260px;
+  }
+  .header-userName {
+    line-height: 0.7rem;
+  }
+  .header-userName {
+    padding: 2.5px;
+  }
+  .header-logo {
+    display: none;
   }
   #countNumber {
     top: 3%;
@@ -3071,7 +4095,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     padding-bottom: 0px;
   }
   .video-box {
-    height: 165px;
+    height: 180px;
   }
   .gameHistory {
     height: 100px;
@@ -3083,27 +4107,52 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 130%;
   }
   .betArea {
-    height: 235px;
+    height: 230px;
+  }
+  .bettingArea-btn-left {
+    width: 65%;
+  }
+  .bettingArea-btn-gitbackAllCoin {
+    width: auto;
+    font-size: 12px;
+    padding: 2px;
+  }
+  .bettingArea-btn {
+    height: 50px;
+  }
+  .bettingArea-btn-betInfo {
+    font-size: 12px;
+    height: 40px;
+  }
+  .betArea-item-top {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .betArea-item-top span {
+    margin-right: 5px;
   }
   .betArea-item {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
   .alertFont {
     font-size: 1.2rem !important;
   }
-  .betStatus {
-    font-size: 1rem;
-  }
   .betArea-mobile {
-    height: 160px;
+    height: 121px;
   }
   .betArea-mobile-container {
-    height: 160px;
+    height: 121px;
   }
   .card-container {
     margin-top: -35px;
   }
-  .bankerNum, .playerNum {
+  .bankerNum,
+  .playerNum {
     font-size: 1rem;
   }
   .playerNum {
@@ -3113,6 +4162,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bankerNum {
     right: 0%;
     top: 50%;
+  }
+  .mobilTableInfo {
+    font-size: small;
   }
   .BeadPlate-B {
     width: 12px;
@@ -3189,9 +4241,53 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .userBetInfo-title {
     font-size: 0.5rem;
   }
+  .small-red-ask {
+    width: 8px;
+    height: 8px;
+    background-position: -96px 0px;
+    background-size: 128px auto;
+  }
+  .small-blue-ask {
+    width: 8px;
+    height: 8px;
+    background-position: -112px 0px;
+    background-size: 128px auto;
+  }
+  .bigEye-red-ask {
+    width: 8px;
+    height: 8px;
+    background-position: 0px 8px;
+    background-size: 128px auto;
+  }
+  .bigEye-blue-ask {
+    width: 8px;
+    height: 8px;
+    background-position: -64px 8px;
+    background-size: 128px auto;
+  }
+  .cockroach-red-ask {
+    width: 8px;
+    height: 8px;
+    background-position: -104px 0px;
+    background-size: 128px auto;
+  }
+  .cockroach-blue-ask {
+    width: 8px;
+    height: 8px;
+    background-position: -120px 0px;
+    background-size: 128px auto;
+  }
 }
 
 @media screen and (max-width: 280px) {
+  .tableItem {
+    width: 230px;
+  }
+  .announcement-container {
+    width: 250px;
+    height: 653px;
+    top: 65%;
+  }
   .header {
     height: 50px;
   }
@@ -3202,9 +4298,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 100%;
     line-height: 1.75rem;
     font-size: 100%;
-  }
-  .header-btnList {
-    width: 49%;
   }
   .video-box {
     height: 190px;
@@ -3231,118 +4324,162 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   .betArea-mobile {
-    height: 192px;
+    height: 160px;
   }
   .betArea-mobile-container {
-    height: 192px;
+    height: 160px;
   }
-  .coin-menu1 {
+  .bettingArea-btn-left {
+    width: 62%;
+  }
+  .bettingArea-btn-gitbackAllCoin,
+  .bettingArea-btn-check {
+    font-size: 10px;
+    width: 55px;
+  }
+  .coin-100 {
     width: 39.5px;
     height: 32.5px;
     background-position: 0px 0px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu1:hover, .coin-menu1-current {
+  .coin-100:hover, .coin-100-current {
     width: 39.5px;
     height: 32.5px;
     background-position: 0px -32.5px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu1-disable {
+  .coin-100-disable {
     width: 39.5px;
     height: 32.5px;
     background-position: 0px -65px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu2 {
+  .coin-500 {
     width: 39.5px;
     height: 32.5px;
     background-position: -39.5px 0px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu2:hover, .coin-menu2-current {
+  .coin-500:hover, .coin-500-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -39.5px -32.5px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu2-disable {
+  .coin-500-disable {
     width: 39.5px;
     height: 32.5px;
     background-position: -39.5px -65px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu3 {
+  .coin-1000 {
     width: 39.5px;
     height: 32.5px;
     background-position: -79px 0px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu3:hover, .coin-menu3-current {
+  .coin-1000:hover, .coin-1000-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -79px -32.5px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu3-disable {
+  .coin-1000-disable {
     width: 39.5px;
     height: 32.5px;
     background-position: -79px -65px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu4 {
+  .coin-2000 {
     width: 39.5px;
     height: 32.5px;
     background-position: -118.5px 0px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu4:hover, .coin-menu4-current {
+  .coin-2000:hover, .coin-2000-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -118.5px -32.5px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu4-disable {
+  .coin-2000-disable {
     width: 39.5px;
     height: 32.5px;
     background-position: -118.5px -65px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu5 {
+  .coin-5000 {
+    width: 39.5px;
+    height: 32.5px;
+    background-position: -237px 0px;
+    background-size: 316px 97.5px;
+  }
+  .coin-5000:hover, .coin-5000-current {
+    width: 39.5px;
+    height: 32.5px;
+    background-position: -237px -32.5px;
+    background-size: 316px 97.5px;
+  }
+  .coin-5000-disable {
+    width: 39.5px;
+    height: 32.5px;
+    background-position: -237px -65px;
+    background-size: 316px 97.5px;
+  }
+  .coin-10000 {
     width: 39.5px;
     height: 32.5px;
     background-position: -158px 0px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu5:hover, .coin-menu5-current {
+  .coin-10000:hover, .coin-10000-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -158px -32.5px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu5-disable {
+  .coin-10000-disable {
     width: 39.5px;
     height: 32.5px;
     background-position: -158px -65px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu6 {
+  .coin-100000 {
     width: 39.5px;
     height: 32.5px;
     background-position: -197.5px 0px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu6:hover, .coin-menu6-current {
+  .coin-100000:hover, .coin-100000-current {
     width: 39.5px;
     height: 32.5px;
     background-position: -197.5px -32.5px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
   }
-  .coin-menu6-disable {
+  .coin-100000-disable {
     width: 39.5px;
     height: 32.5px;
     background-position: -197.5px -65px;
-    background-size: 237px 97.5px;
+    background-size: 316px 97.5px;
+  }
+  .coin-200000 {
+    width: 39.5px;
+    height: 32.5px;
+    background-position: -237px 0px;
+    background-size: 316px 97.5px;
+  }
+  .coin-200000:hover, .coin-200000-current {
+    width: 39.5px;
+    height: 32.5px;
+    background-position: -237px -32.5px;
+    background-size: 316px 97.5px;
+  }
+  .coin-200000-disable {
+    width: 39.5px;
+    height: 32.5px;
+    background-position: -237px -65px;
+    background-size: 316px 97.5px;
   }
   .card-container {
     margin-top: -35px;
@@ -3418,6 +4555,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 10px;
     background-position: -110px 0px;
     background-size: 160px auto;
+  }
+  .big-T {
+    width: 6px;
+    height: 6px;
+    background-position: 0px 0px;
+    background-size: 6px auto;
   }
   .big-B {
     width: 6px;
@@ -3550,6 +4693,54 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 2px;
     background-position: -30px 0px;
     background-size: 32px auto;
+  }
+  .tie1 {
+    width: 6px;
+    height: 6px;
+    background-position: 0px 0px;
+    background-size: 54px auto;
+  }
+  .tie2 {
+    width: 6px;
+    height: 6px;
+    background-position: -6px 0px;
+    background-size: 54px auto;
+  }
+  .tie3 {
+    width: 6px;
+    height: 6px;
+    background-position: -12px 0px;
+    background-size: 54px auto;
+  }
+  .tie4 {
+    width: 6px;
+    height: 6px;
+    background-position: -18px 0px;
+    background-size: 54px auto;
+  }
+  .tie5 {
+    width: 6px;
+    height: 6px;
+    background-position: -24px 0px;
+    background-size: 54px auto;
+  }
+  .tie6 {
+    width: 6px;
+    height: 6px;
+    background-position: -30px 0px;
+    background-size: 54px auto;
+  }
+  .tie7 {
+    width: 6px;
+    height: 6px;
+    background-position: -36px 0px;
+    background-size: 54px auto;
+  }
+  .tie8 {
+    width: 6px;
+    height: 6px;
+    background-position: -42px 0px;
+    background-size: 54px auto;
   }
 }
 /*# sourceMappingURL=all.css.map */

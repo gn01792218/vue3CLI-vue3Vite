@@ -79,7 +79,6 @@
                             </li>
                         </ul>
                     </nav>
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                 </div>
             </div>
         </div>
@@ -126,7 +125,7 @@ export default defineComponent({
             return store.state.bet.totalBets
         })
         const userInfoArray = reactive<userInfo[]>([{
-            gameUuid:"初始化",
+            gameUuid:"尚未開局",
             gameResult:"",
             gainMoney:0,
             totalBet:0
@@ -207,20 +206,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style>
-.modal-header{
-    background-color:#644d31;
-}
-.modal-body{
-    color:black;
-    text-align: center;
-}
-.userBetInfo{
-    list-style: none;
-    text-align: left;
-}
-.userInfoBetResult{
-
-}
-</style>

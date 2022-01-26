@@ -57,10 +57,12 @@
     // border:solid peru 1px;
     width:2.272727272727%;
     height:100%;
+    flex-direction: column;
 }
 .BigEyesRoad-item{
     width:100%;
     height:16.666666666%;
+    flex-direction: column;
     // border:rebeccapurple 2px solid;
 }
 .sideWidth{   /*用來統一調整sideRode佔寬比 */
@@ -86,10 +88,12 @@
   .smallRoad-column,.cockroachRoad-column{
     width:5%;
     height:100%;
+    flex-direction: column;
     // border:red solid 2px;
   }
   .smallRoad-item,.cockroachRoad-item{
     width:100%;
     height:16.6666666666%;
+    flex-direction: column;
     // border:springgreen solid 2px;
   }

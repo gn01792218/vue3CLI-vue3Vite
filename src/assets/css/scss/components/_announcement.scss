@@ -1,0 +1,61 @@
+.announcement-bg{
+    background-color: black;
+    top:0;
+    left:0;
+}
+.announcement-container{
+    background-color: white;
+    color:black;
+    width: 900px;
+    height:650px;
+    overflow-y: scroll;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.form-group{
+    input{
+        width:1.5rem;
+        height:1.5rem;
+        margin-right: 1rem;
+    }
+    .form-check-label{
+        font-weight: 600;
+        letter-spacing: 0.2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+.announcement3Img{
+    width:643px;
+}
+.announcement-fotter{
+    div{
+        width:40%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.announcementTitle{
+    font-weight: 600;
+}
+.announcementContent{
+    text-indent:2rem;
+}
+.announcement-body {
+    span{
+        color:red;
+        font-weight: 600;
+    }
+}
+#announcement2{
+    .announcementContent{
+        text-indent:0rem;
+        font-weight: 600;
+    }
+}
+
+.bi-arrow-right-square,.bi-arrow-left-square{
+    font-size: 2rem;
+    cursor: pointer;
+}

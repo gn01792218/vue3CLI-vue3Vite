@@ -2,6 +2,7 @@
      頁底設定區
 -------------------------------------------*/
 .footer{
+	z-index:1;
 	background: rgb(51,29,2); /* Old browsers */
 	background: -moz-linear-gradient(top,  rgba(51,29,2,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(top,  rgba(51,29,2,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -21,4 +22,15 @@
 	cursor: pointer;
 	margin-right: 5px;
 	margin-left: 5px;
+}
+.input-emoji{
+	right:10px;
+	top:0;
+}
+.chat-input{
+	max-width: 200px;
+	min-width: 100px;
+	input{
+		border-radius: 44px;
+	}
 }

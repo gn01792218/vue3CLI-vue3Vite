@@ -21,7 +21,7 @@ const onerrorWs = ()=>{
 //監聽關閉
 const oncloseWs = () => {
     clearInterval(setIntervalWesocketPush)
-    alert('websocket已斷開....正在嘗試重連')
+    // alert('websocket已斷開....正在嘗試重連')
     if (Socket?.readyState !== 2) {  //readyState 2 = 連接正在關閉
       Socket = null
       createSocket()

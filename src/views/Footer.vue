@@ -8,12 +8,15 @@
                 <span v-if="!isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
                 <span v-if="isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-fill"></i></span>
                 <span v-if="!isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
-                <!-- <span  class="footer-item d-none d-md-flex" ><i class="bi bi-eye-fill "></i></span> -->
-                <!-- <span class="footer-item" v-if="user">₱{{userWallet}}</span> -->
-                <!-- <div class="footer-item d-flex" data-toggle="modal" data-target="#exampleModal"
-                >
-                    <i class="bi bi-person-circle" ></i>
-                    <i v-if="user">{{user.name}}</i>
+                <span class="footer-item  d-md-flex"><i class="bi bi-gift"></i></span>
+                <span class="footer-item  d-md-flex"><i class="bi bi-chat-dots"></i></span>
+                <span class="footer-item  d-md-flex"><i class="bi bi-lightning"></i></span>
+                <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
+                <!-- <div class="chat-input position-relative">
+                    <input type="text" class="" placeholder="你目前沒有發言權限" aria-label="Username" aria-describedby="basic-addon1">
+                    <div class="input-emoji position-absolute">
+                        <i class="bi bi-emoji-smile"></i>
+                    </div>
                 </div> -->
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">
@@ -26,10 +29,10 @@
 </template>
 <script lang="ts">
 import {computed, defineComponent,ref} from 'vue'
-import {useStore} from 'vuex'
-import screenfull from 'screenfull'
 import UserBetInfo from '@/components/UserBetInfo.vue'
 import Date from '@/components/Date.vue'
+import {useStore} from 'vuex'
+import screenfull from 'screenfull'
 export default defineComponent({
     components:{
         UserBetInfo,Date
@@ -38,16 +41,19 @@ export default defineComponent({
         //vuex
         const store = useStore()
         //computed
+        const announcementShow = computed(()=>{
+            return store.state.lobby.showannouncement
+        })
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
         const userWallet = computed(()=>{
             return store.state.auth.userWalletFomate
         })
-        const audio = computed<HTMLAudioElement>(()=>{
+        const audio = computed<HTMLAudioElement>(()=>{ //音效的實體
             return document.querySelector('#gameresultSound') as HTMLAudioElement
         })
-        const npvideo = computed(()=>{
+        const npvideo = computed(()=>{  //直播物件的實體
             return store.state.video.video
         })
         const flvStream = computed(()=>{ //直播網址
@@ -61,11 +67,12 @@ export default defineComponent({
                 screenfull.toggle()
             }
         }
-        //靜音
+        //靜音 / 打開 音效
         function mutedSound () {
             audio.value.muted = !audio.value.muted
             isAudioMuted.value = !isAudioMuted.value
         }
+        //播放/暫停直播
         function playVideo(){
             isVideoPlayed.value = !isVideoPlayed.value
             if(isVideoPlayed.value){ //播放直播
@@ -75,6 +82,9 @@ export default defineComponent({
                 npvideo.value.clearView()  //清除上一個視頻留下的東西
             }
         }
+        // function showAnnouncement(){ //控制公告同意書顯示與否
+        //     store.commit('lobby/setShowannouncement',!announcementShow.value)
+        // }
         return {
             //data
             user,
@@ -86,6 +96,7 @@ export default defineComponent({
             fullScreen,
             mutedSound,
             playVideo,
+            // showAnnouncement,
         }
     }
 })

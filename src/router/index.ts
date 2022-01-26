@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
     name:'/BaccaratGame',
     component:()=>import('../views/BaccaratGame.vue')
   },
+  {
+    path:'/leave',
+    name:'/leave',
+    component:()=>import('../components/leave.vue')
+  },
 ]
 
 const router = createRouter({

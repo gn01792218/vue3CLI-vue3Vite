@@ -19,7 +19,6 @@
         </div>
       </div>
     </div>
-    
     <!-- <button class="position-absolute" @click="resetRoad">重置路圖</button> -->
 </template>
 
@@ -43,74 +42,128 @@ export default defineComponent({
         const overflowCount = ref(0)
         const isInit = ref(false)
         const store = useStore()
+        const timer = ref()
+        const asking = ref(false) //是否在問路中
         const beadPlateResult = computed(()=>{
           return store.state.roadmap.map.beadPlate
         })
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
+        const askRoadArr = computed(()=>{
+          return store.state.roadmap.askRoad
+        })
+        watch(askRoadArr.value,()=>{ //有人問路時，就啟動
+          asking.value = true
+        //1.先清除計時器
+          if(timer.value){   
+            clearTimeout(timer.value)
+          }
+          //2.重置路圖
+          resetRoad()
+          showRoadInit ()
+          //3.放置問路
+          let roadNum = askRoadArr.value[askRoadArr.value.length-1]
+          askRoad(roadNum)
+          //4.添加動畫
+          let column = document.querySelector(`.beadPlate-column${beadPlateColumnCount.value}`) as HTMLElement
+          let road:HTMLElement
+          if(roadIndex.value>0){
+           road = column.children[roadIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[roadIndex.value].firstChild as HTMLElement
+          }
+          road.classList.add('askRoadanimation')
+          //5.畫完之後等二秒就reset路圖，並重新畫
+          timer.value =  setTimeout(()=>{
+            resetRoad()
+            showRoadInit ()
+            road.classList.remove('askRoadanimation')
+            asking.value = false
+          },2000)
+        })
         watch(gameEnd,()=>{  //換薛時要重置
         console.log("換靴重置諸朱盤路")
           resetRoad()
         })
         watch(tableNum,()=>{
-          console.log("換桌豬盤路重置")
+          // console.log("換桌豬盤路重置")
           resetRoad()
         })
-        watch(beadPlateResult,()=>{    
-          if(beadPlateResult.value){
+        watch(beadPlateResult,()=>{ 
+          if(asking.value){
+            resetRoad()
+          }
+            if(beadPlateResult.value){
             if(!isInit.value){
               showRoadInit ()
             }else{
               showRoad ()
             }
-          }
+          }  
         })
-        // function put (){
-        //   showRoadByGameResult  ()
-        // }
         function putRoad(columnNum:number,roadnum:number,gameResult:number){
           let beadPlateCol = document.querySelector(`.beadPlate-column${columnNum}`) as HTMLElement
           let beadPlateColItem = beadPlateCol.children[roadnum].firstChild as HTMLElement
           switch(gameResult){
-            case proto.roadmap.Block.Banker:
+            case proto.roadmap.Symbol.Banker:
               beadPlateColItem.classList.add('BeadPlate-B')
               break
-            case proto.roadmap.Block.Player:
+            case proto.roadmap.Symbol.Player:
               beadPlateColItem.classList.add('BeadPlate-P')
               break
-            case proto.roadmap.Block.Tie:
+            case proto.roadmap.Symbol.Tie:
               beadPlateColItem.classList.add('BeadPlate-T')
               break
-            case proto.roadmap.Block.BankerAndBankerPair:
+            case proto.roadmap.Symbol.BankerAndBankerPair:
               beadPlateColItem.classList.add('BeadPlate-B-BPair')
               break
-            case proto.roadmap.Block.BankerAndPlayerPair:
+            case proto.roadmap.Symbol.BankerAndPlayerPair:
               beadPlateColItem.classList.add('BeadPlate-B-PPair')
               break
-            case proto.roadmap.Block.BankerAndBothPair:
+            case proto.roadmap.Symbol.BankerAndBothPair:
               beadPlateColItem.classList.add('BeadPlate-B-BothPair')
               break
-            case proto.roadmap.Block.PlayerAndBankerPair:
+            case proto.roadmap.Symbol.PlayerAndBankerPair:
               beadPlateColItem.classList.add('BeadPlate-P-BPair')
               break
-            case proto.roadmap.Block.PlayerAndPlayerPair:
+            case proto.roadmap.Symbol.PlayerAndPlayerPair:
               beadPlateColItem.classList.add('BeadPlate-P-PPair')
               break
-            case proto.roadmap.Block.PlayerAndBothPair:
+            case proto.roadmap.Symbol.PlayerAndBothPair:
               beadPlateColItem.classList.add('BeadPlate-P-BothPair')
               break
-            case proto.roadmap.Block.TieAndBankerPair:
+            case proto.roadmap.Symbol.TieAndBankerPair:
               beadPlateColItem.classList.add('BeadPlate-T-BPair')
               break
-            case proto.roadmap.Block.TieAndPlayerPair:
+            case proto.roadmap.Symbol.TieAndPlayerPair:
               beadPlateColItem.classList.add('BeadPlate-T-PPair')
               break
-            case proto.roadmap.Block.TieAndBothPair:
+            case proto.roadmap.Symbol.TieAndBothPair:
               beadPlateColItem.classList.add('BeadPlate-T-BothPair')
               break
           }
           roadIndex.value++
+        }
+        function removeAskRoadAnimation(){
+          let column = document.querySelector(`.beadPlate-column${beadPlateColumnCount.value}`) as HTMLElement
+          let road:HTMLElement
+          if(roadIndex.value>0){
+           road = column.children[roadIndex.value-1].firstChild as HTMLElement
+          }else{
+           road = column.children[roadIndex.value].firstChild as HTMLElement
+          }
+          road.classList.remove('askRoadanimation')
+        }
+        function askRoad(road:number){
+            if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
+              addColumn()
+            }
+            if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
+              beadPlateColumnCount.value++
+              roadIndex.value = 0
+            }
+            putRoad(beadPlateColumnCount.value,roadIndex.value,road)
         }
         function showRoadInit () {  //進場前補畫前面的路圖
             beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
@@ -121,7 +174,7 @@ export default defineComponent({
               beadPlateColumnCount.value++
               roadIndex.value = 0
             }
-            putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+            putRoad(beadPlateColumnCount.value,roadIndex.value,i.symbol)
           })
           isInit.value = true
         }
@@ -138,35 +191,9 @@ export default defineComponent({
               beadPlateColumnCount.value++
               roadIndex.value = 0
             }
-            putRoad(beadPlateColumnCount.value,roadIndex.value,i)
+            putRoad(beadPlateColumnCount.value,roadIndex.value,i.symbol)
             })
-          //   beadPlateResult.value.blocks.forEach((i:any,index:number)=>{
-          //   if(beadPlateResult.value.blocks.length-1==index){
-          //     if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
-          //     // resetRoad()
-          //     addColumn()
-          //   }
-          //   if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
-          //     beadPlateColumnCount.value++
-          //     roadIndex.value = 0
-          //   }
-          //   putRoad(beadPlateColumnCount.value,roadIndex.value,i)
-          //   }
-          // })
         }
-        // function showRoadByGameResult () {
-        //   gameResult.value.forEach((i:any)=>{
-        //     if(beadPlateColumnCount.value>=beadPlateColumn.length-1 && roadIndex.value>beadPlateRow.length-1){
-        //       // resetRoad()
-        //       addColumn()
-        //     }
-        //     if(roadIndex.value>beadPlateRow.length-1){  //row放滿時
-        //       beadPlateColumnCount.value++
-        //       roadIndex.value = 0
-        //     }
-        //     putRoad(beadPlateColumnCount.value,roadIndex.value,i)
-        //   })
-        // }
         function addColumn () {  //滿格時一次增加一格的方法
           beadPlateColumnCount.value++
           roadIndex.value = 0

@@ -7,6 +7,464 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+export const announcement = $root.announcement = (() => {
+
+    /**
+     * Namespace announcement.
+     * @exports announcement
+     * @namespace
+     */
+    const announcement = {};
+
+    announcement.BroadcastAnnouncement = (function() {
+
+        /**
+         * Properties of a BroadcastAnnouncement.
+         * @memberof announcement
+         * @interface IBroadcastAnnouncement
+         * @property {foundation.IHeader|null} [header] BroadcastAnnouncement header
+         * @property {Array.<announcement.IAnnouncement>|null} [announcements] BroadcastAnnouncement announcements
+         */
+
+        /**
+         * Constructs a new BroadcastAnnouncement.
+         * @memberof announcement
+         * @classdesc Represents a BroadcastAnnouncement.
+         * @implements IBroadcastAnnouncement
+         * @constructor
+         * @param {announcement.IBroadcastAnnouncement=} [properties] Properties to set
+         */
+        function BroadcastAnnouncement(properties) {
+            this.announcements = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastAnnouncement header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof announcement.BroadcastAnnouncement
+         * @instance
+         */
+        BroadcastAnnouncement.prototype.header = null;
+
+        /**
+         * BroadcastAnnouncement announcements.
+         * @member {Array.<announcement.IAnnouncement>} announcements
+         * @memberof announcement.BroadcastAnnouncement
+         * @instance
+         */
+        BroadcastAnnouncement.prototype.announcements = $util.emptyArray;
+
+        /**
+         * Creates a new BroadcastAnnouncement instance using the specified properties.
+         * @function create
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.IBroadcastAnnouncement=} [properties] Properties to set
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement instance
+         */
+        BroadcastAnnouncement.create = function create(properties) {
+            return new BroadcastAnnouncement(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @function encode
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.IBroadcastAnnouncement} message BroadcastAnnouncement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastAnnouncement.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.announcements != null && message.announcements.length)
+                for (let i = 0; i < message.announcements.length; ++i)
+                    $root.announcement.Announcement.encode(message.announcements[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastAnnouncement message, length delimited. Does not implicitly {@link announcement.BroadcastAnnouncement.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.IBroadcastAnnouncement} message BroadcastAnnouncement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastAnnouncement.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer.
+         * @function decode
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastAnnouncement.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.announcement.BroadcastAnnouncement();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    if (!(message.announcements && message.announcements.length))
+                        message.announcements = [];
+                    message.announcements.push($root.announcement.Announcement.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastAnnouncement message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastAnnouncement.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastAnnouncement message.
+         * @function verify
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastAnnouncement.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.announcements != null && message.hasOwnProperty("announcements")) {
+                if (!Array.isArray(message.announcements))
+                    return "announcements: array expected";
+                for (let i = 0; i < message.announcements.length; ++i) {
+                    let error = $root.announcement.Announcement.verify(message.announcements[i]);
+                    if (error)
+                        return "announcements." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastAnnouncement message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {announcement.BroadcastAnnouncement} BroadcastAnnouncement
+         */
+        BroadcastAnnouncement.fromObject = function fromObject(object) {
+            if (object instanceof $root.announcement.BroadcastAnnouncement)
+                return object;
+            let message = new $root.announcement.BroadcastAnnouncement();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".announcement.BroadcastAnnouncement.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.announcements) {
+                if (!Array.isArray(object.announcements))
+                    throw TypeError(".announcement.BroadcastAnnouncement.announcements: array expected");
+                message.announcements = [];
+                for (let i = 0; i < object.announcements.length; ++i) {
+                    if (typeof object.announcements[i] !== "object")
+                        throw TypeError(".announcement.BroadcastAnnouncement.announcements: object expected");
+                    message.announcements[i] = $root.announcement.Announcement.fromObject(object.announcements[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastAnnouncement message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof announcement.BroadcastAnnouncement
+         * @static
+         * @param {announcement.BroadcastAnnouncement} message BroadcastAnnouncement
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastAnnouncement.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.announcements = [];
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.announcements && message.announcements.length) {
+                object.announcements = [];
+                for (let j = 0; j < message.announcements.length; ++j)
+                    object.announcements[j] = $root.announcement.Announcement.toObject(message.announcements[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastAnnouncement to JSON.
+         * @function toJSON
+         * @memberof announcement.BroadcastAnnouncement
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastAnnouncement.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastAnnouncement;
+    })();
+
+    announcement.Announcement = (function() {
+
+        /**
+         * Properties of an Announcement.
+         * @memberof announcement
+         * @interface IAnnouncement
+         * @property {string|null} [message] Announcement message
+         * @property {string|null} [createAt] Announcement createAt
+         */
+
+        /**
+         * Constructs a new Announcement.
+         * @memberof announcement
+         * @classdesc Represents an Announcement.
+         * @implements IAnnouncement
+         * @constructor
+         * @param {announcement.IAnnouncement=} [properties] Properties to set
+         */
+        function Announcement(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Announcement message.
+         * @member {string} message
+         * @memberof announcement.Announcement
+         * @instance
+         */
+        Announcement.prototype.message = "";
+
+        /**
+         * Announcement createAt.
+         * @member {string} createAt
+         * @memberof announcement.Announcement
+         * @instance
+         */
+        Announcement.prototype.createAt = "";
+
+        /**
+         * Creates a new Announcement instance using the specified properties.
+         * @function create
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.IAnnouncement=} [properties] Properties to set
+         * @returns {announcement.Announcement} Announcement instance
+         */
+        Announcement.create = function create(properties) {
+            return new Announcement(properties);
+        };
+
+        /**
+         * Encodes the specified Announcement message. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @function encode
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.IAnnouncement} message Announcement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Announcement.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.message);
+            if (message.createAt != null && Object.hasOwnProperty.call(message, "createAt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.createAt);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Announcement message, length delimited. Does not implicitly {@link announcement.Announcement.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.IAnnouncement} message Announcement message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Announcement.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer.
+         * @function decode
+         * @memberof announcement.Announcement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {announcement.Announcement} Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Announcement.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.announcement.Announcement();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.message = reader.string();
+                    break;
+                case 2:
+                    message.createAt = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Announcement message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof announcement.Announcement
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {announcement.Announcement} Announcement
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Announcement.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Announcement message.
+         * @function verify
+         * @memberof announcement.Announcement
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Announcement.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            if (message.createAt != null && message.hasOwnProperty("createAt"))
+                if (!$util.isString(message.createAt))
+                    return "createAt: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an Announcement message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof announcement.Announcement
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {announcement.Announcement} Announcement
+         */
+        Announcement.fromObject = function fromObject(object) {
+            if (object instanceof $root.announcement.Announcement)
+                return object;
+            let message = new $root.announcement.Announcement();
+            if (object.message != null)
+                message.message = String(object.message);
+            if (object.createAt != null)
+                message.createAt = String(object.createAt);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an Announcement message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof announcement.Announcement
+         * @static
+         * @param {announcement.Announcement} message Announcement
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Announcement.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.message = "";
+                object.createAt = "";
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            if (message.createAt != null && message.hasOwnProperty("createAt"))
+                object.createAt = message.createAt;
+            return object;
+        };
+
+        /**
+         * Converts this Announcement to JSON.
+         * @function toJSON
+         * @memberof announcement.Announcement
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Announcement.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Announcement;
+    })();
+
+    return announcement;
+})();
+
 export const auth = $root.auth = (() => {
 
     /**
@@ -674,6 +1132,7 @@ export const auth = $root.auth = (() => {
          * @interface IUser
          * @property {string|null} [name] User name
          * @property {number|null} [wallet] User wallet
+         * @property {number|null} [totalValidBets] User totalValidBets
          */
 
         /**
@@ -708,6 +1167,14 @@ export const auth = $root.auth = (() => {
         User.prototype.wallet = 0;
 
         /**
+         * User totalValidBets.
+         * @member {number} totalValidBets
+         * @memberof auth.User
+         * @instance
+         */
+        User.prototype.totalValidBets = 0;
+
+        /**
          * Creates a new User instance using the specified properties.
          * @function create
          * @memberof auth.User
@@ -735,6 +1202,8 @@ export const auth = $root.auth = (() => {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
             if (message.wallet != null && Object.hasOwnProperty.call(message, "wallet"))
                 writer.uint32(/* id 2, wireType 1 =*/17).double(message.wallet);
+            if (message.totalValidBets != null && Object.hasOwnProperty.call(message, "totalValidBets"))
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.totalValidBets);
             return writer;
         };
 
@@ -774,6 +1243,9 @@ export const auth = $root.auth = (() => {
                     break;
                 case 2:
                     message.wallet = reader.double();
+                    break;
+                case 3:
+                    message.totalValidBets = reader.double();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -816,6 +1288,9 @@ export const auth = $root.auth = (() => {
             if (message.wallet != null && message.hasOwnProperty("wallet"))
                 if (typeof message.wallet !== "number")
                     return "wallet: number expected";
+            if (message.totalValidBets != null && message.hasOwnProperty("totalValidBets"))
+                if (typeof message.totalValidBets !== "number")
+                    return "totalValidBets: number expected";
             return null;
         };
 
@@ -835,6 +1310,8 @@ export const auth = $root.auth = (() => {
                 message.name = String(object.name);
             if (object.wallet != null)
                 message.wallet = Number(object.wallet);
+            if (object.totalValidBets != null)
+                message.totalValidBets = Number(object.totalValidBets);
             return message;
         };
 
@@ -854,11 +1331,14 @@ export const auth = $root.auth = (() => {
             if (options.defaults) {
                 object.name = "";
                 object.wallet = 0;
+                object.totalValidBets = 0;
             }
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.wallet != null && message.hasOwnProperty("wallet"))
                 object.wallet = options.json && !isFinite(message.wallet) ? String(message.wallet) : message.wallet;
+            if (message.totalValidBets != null && message.hasOwnProperty("totalValidBets"))
+                object.totalValidBets = options.json && !isFinite(message.totalValidBets) ? String(message.totalValidBets) : message.totalValidBets;
             return object;
         };
 
@@ -899,6 +1379,7 @@ export const bet = $root.bet = (() => {
      * @property {number} ReachMaxLimit=4 ReachMaxLimit value
      * @property {number} RoundNotFound=5 RoundNotFound value
      * @property {number} NoEnoughWallet=6 NoEnoughWallet value
+     * @property {number} AlreadyConfirmed=7 AlreadyConfirmed value
      */
     bet.Error = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -909,6 +1390,7 @@ export const bet = $root.bet = (() => {
         values[valuesById[4] = "ReachMaxLimit"] = 4;
         values[valuesById[5] = "RoundNotFound"] = 5;
         values[valuesById[6] = "NoEnoughWallet"] = 6;
+        values[valuesById[7] = "AlreadyConfirmed"] = 7;
         return values;
     })();
 
@@ -940,6 +1422,7 @@ export const bet = $root.bet = (() => {
          * Properties of a BetStatus.
          * @memberof bet
          * @interface IBetStatus
+         * @property {foundation.IHeader|null} [header] BetStatus header
          * @property {number|null} [Banker] BetStatus Banker
          * @property {number|null} [Player] BetStatus Player
          * @property {number|null} [BankerPair] BetStatus BankerPair
@@ -961,6 +1444,14 @@ export const bet = $root.bet = (() => {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * BetStatus header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.header = null;
 
         /**
          * BetStatus Banker.
@@ -1026,16 +1517,18 @@ export const bet = $root.bet = (() => {
         BetStatus.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
-                writer.uint32(/* id 1, wireType 1 =*/9).double(message.Banker);
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.Banker);
             if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
-                writer.uint32(/* id 2, wireType 1 =*/17).double(message.Player);
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.Player);
             if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
-                writer.uint32(/* id 3, wireType 1 =*/25).double(message.BankerPair);
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.BankerPair);
             if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
-                writer.uint32(/* id 4, wireType 1 =*/33).double(message.Tie);
+                writer.uint32(/* id 5, wireType 1 =*/41).double(message.Tie);
             if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
-                writer.uint32(/* id 5, wireType 1 =*/41).double(message.PlayerPair);
+                writer.uint32(/* id 6, wireType 1 =*/49).double(message.PlayerPair);
             return writer;
         };
 
@@ -1071,18 +1564,21 @@ export const bet = $root.bet = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.Banker = reader.double();
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.Player = reader.double();
+                    message.Banker = reader.double();
                     break;
                 case 3:
-                    message.BankerPair = reader.double();
+                    message.Player = reader.double();
                     break;
                 case 4:
-                    message.Tie = reader.double();
+                    message.BankerPair = reader.double();
                     break;
                 case 5:
+                    message.Tie = reader.double();
+                    break;
+                case 6:
                     message.PlayerPair = reader.double();
                     break;
                 default:
@@ -1120,6 +1616,11 @@ export const bet = $root.bet = (() => {
         BetStatus.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
             if (message.Banker != null && message.hasOwnProperty("Banker"))
                 if (typeof message.Banker !== "number")
                     return "Banker: number expected";
@@ -1150,6 +1651,11 @@ export const bet = $root.bet = (() => {
             if (object instanceof $root.bet.BetStatus)
                 return object;
             let message = new $root.bet.BetStatus();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.BetStatus.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
             if (object.Banker != null)
                 message.Banker = Number(object.Banker);
             if (object.Player != null)
@@ -1177,12 +1683,15 @@ export const bet = $root.bet = (() => {
                 options = {};
             let object = {};
             if (options.defaults) {
+                object.header = null;
                 object.Banker = 0;
                 object.Player = 0;
                 object.BankerPair = 0;
                 object.Tie = 0;
                 object.PlayerPair = 0;
             }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
             if (message.Banker != null && message.hasOwnProperty("Banker"))
                 object.Banker = options.json && !isFinite(message.Banker) ? String(message.Banker) : message.Banker;
             if (message.Player != null && message.hasOwnProperty("Player"))
@@ -1513,6 +2022,7 @@ export const bet = $root.bet = (() => {
          * @property {number|null} [totalBets] BetRecall totalBets
          * @property {bet.IBetStatus|null} [betStatus] BetRecall betStatus
          * @property {bet.IBetError|null} [betError] BetRecall betError
+         * @property {boolean|null} [isConfirmed] BetRecall isConfirmed
          */
 
         /**
@@ -1571,6 +2081,14 @@ export const bet = $root.bet = (() => {
         BetRecall.prototype.betError = null;
 
         /**
+         * BetRecall isConfirmed.
+         * @member {boolean} isConfirmed
+         * @memberof bet.BetRecall
+         * @instance
+         */
+        BetRecall.prototype.isConfirmed = false;
+
+        /**
          * Creates a new BetRecall instance using the specified properties.
          * @function create
          * @memberof bet.BetRecall
@@ -1604,6 +2122,8 @@ export const bet = $root.bet = (() => {
                 $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.betError != null && Object.hasOwnProperty.call(message, "betError"))
                 $root.bet.BetError.encode(message.betError, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.isConfirmed != null && Object.hasOwnProperty.call(message, "isConfirmed"))
+                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isConfirmed);
             return writer;
         };
 
@@ -1652,6 +2172,9 @@ export const bet = $root.bet = (() => {
                     break;
                 case 5:
                     message.betError = $root.bet.BetError.decode(reader, reader.uint32());
+                    break;
+                case 6:
+                    message.isConfirmed = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1709,6 +2232,9 @@ export const bet = $root.bet = (() => {
                 if (error)
                     return "betError." + error;
             }
+            if (message.isConfirmed != null && message.hasOwnProperty("isConfirmed"))
+                if (typeof message.isConfirmed !== "boolean")
+                    return "isConfirmed: boolean expected";
             return null;
         };
 
@@ -1743,6 +2269,8 @@ export const bet = $root.bet = (() => {
                     throw TypeError(".bet.BetRecall.betError: object expected");
                 message.betError = $root.bet.BetError.fromObject(object.betError);
             }
+            if (object.isConfirmed != null)
+                message.isConfirmed = Boolean(object.isConfirmed);
             return message;
         };
 
@@ -1765,6 +2293,7 @@ export const bet = $root.bet = (() => {
                 object.totalBets = 0;
                 object.betStatus = null;
                 object.betError = null;
+                object.isConfirmed = false;
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -1776,6 +2305,8 @@ export const bet = $root.bet = (() => {
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             if (message.betError != null && message.hasOwnProperty("betError"))
                 object.betError = $root.bet.BetError.toObject(message.betError, options);
+            if (message.isConfirmed != null && message.hasOwnProperty("isConfirmed"))
+                object.isConfirmed = message.isConfirmed;
             return object;
         };
 
@@ -2446,6 +2977,7 @@ export const bet = $root.bet = (() => {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
                     break;
                 }
             if (message.errorMessage != null && message.hasOwnProperty("errorMessage"))
@@ -2500,6 +3032,10 @@ export const bet = $root.bet = (() => {
             case 6:
                 message.error = 6;
                 break;
+            case "AlreadyConfirmed":
+            case 7:
+                message.error = 7;
+                break;
             }
             if (object.errorMessage != null)
                 message.errorMessage = String(object.errorMessage);
@@ -2545,6 +3081,463 @@ export const bet = $root.bet = (() => {
         };
 
         return BetError;
+    })();
+
+    bet.ConfirmBetCall = (function() {
+
+        /**
+         * Properties of a ConfirmBetCall.
+         * @memberof bet
+         * @interface IConfirmBetCall
+         * @property {foundation.IHeader|null} [header] ConfirmBetCall header
+         * @property {string|null} [gameUuid] ConfirmBetCall gameUuid
+         */
+
+        /**
+         * Constructs a new ConfirmBetCall.
+         * @memberof bet
+         * @classdesc Represents a ConfirmBetCall.
+         * @implements IConfirmBetCall
+         * @constructor
+         * @param {bet.IConfirmBetCall=} [properties] Properties to set
+         */
+        function ConfirmBetCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ConfirmBetCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.ConfirmBetCall
+         * @instance
+         */
+        ConfirmBetCall.prototype.header = null;
+
+        /**
+         * ConfirmBetCall gameUuid.
+         * @member {string} gameUuid
+         * @memberof bet.ConfirmBetCall
+         * @instance
+         */
+        ConfirmBetCall.prototype.gameUuid = "";
+
+        /**
+         * Creates a new ConfirmBetCall instance using the specified properties.
+         * @function create
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.IConfirmBetCall=} [properties] Properties to set
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall instance
+         */
+        ConfirmBetCall.create = function create(properties) {
+            return new ConfirmBetCall(properties);
+        };
+
+        /**
+         * Encodes the specified ConfirmBetCall message. Does not implicitly {@link bet.ConfirmBetCall.verify|verify} messages.
+         * @function encode
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.IConfirmBetCall} message ConfirmBetCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameUuid);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ConfirmBetCall message, length delimited. Does not implicitly {@link bet.ConfirmBetCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.IConfirmBetCall} message ConfirmBetCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ConfirmBetCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.bet.ConfirmBetCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.gameUuid = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ConfirmBetCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ConfirmBetCall message.
+         * @function verify
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ConfirmBetCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a ConfirmBetCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {bet.ConfirmBetCall} ConfirmBetCall
+         */
+        ConfirmBetCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.bet.ConfirmBetCall)
+                return object;
+            let message = new $root.bet.ConfirmBetCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.ConfirmBetCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ConfirmBetCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof bet.ConfirmBetCall
+         * @static
+         * @param {bet.ConfirmBetCall} message ConfirmBetCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ConfirmBetCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.gameUuid = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
+            return object;
+        };
+
+        /**
+         * Converts this ConfirmBetCall to JSON.
+         * @function toJSON
+         * @memberof bet.ConfirmBetCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ConfirmBetCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return ConfirmBetCall;
+    })();
+
+    bet.ConfirmBetRecall = (function() {
+
+        /**
+         * Properties of a ConfirmBetRecall.
+         * @memberof bet
+         * @interface IConfirmBetRecall
+         * @property {foundation.IHeader|null} [header] ConfirmBetRecall header
+         * @property {number|null} [result] ConfirmBetRecall result
+         * @property {bet.IBetStatus|null} [betStatus] ConfirmBetRecall betStatus
+         */
+
+        /**
+         * Constructs a new ConfirmBetRecall.
+         * @memberof bet
+         * @classdesc Represents a ConfirmBetRecall.
+         * @implements IConfirmBetRecall
+         * @constructor
+         * @param {bet.IConfirmBetRecall=} [properties] Properties to set
+         */
+        function ConfirmBetRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ConfirmBetRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         */
+        ConfirmBetRecall.prototype.header = null;
+
+        /**
+         * ConfirmBetRecall result.
+         * @member {number} result
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         */
+        ConfirmBetRecall.prototype.result = 0;
+
+        /**
+         * ConfirmBetRecall betStatus.
+         * @member {bet.IBetStatus|null|undefined} betStatus
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         */
+        ConfirmBetRecall.prototype.betStatus = null;
+
+        /**
+         * Creates a new ConfirmBetRecall instance using the specified properties.
+         * @function create
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.IConfirmBetRecall=} [properties] Properties to set
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall instance
+         */
+        ConfirmBetRecall.create = function create(properties) {
+            return new ConfirmBetRecall(properties);
+        };
+
+        /**
+         * Encodes the specified ConfirmBetRecall message. Does not implicitly {@link bet.ConfirmBetRecall.verify|verify} messages.
+         * @function encode
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.IConfirmBetRecall} message ConfirmBetRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result);
+            if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
+                $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ConfirmBetRecall message, length delimited. Does not implicitly {@link bet.ConfirmBetRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.IConfirmBetRecall} message ConfirmBetRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ConfirmBetRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ConfirmBetRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.bet.ConfirmBetRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.result = reader.int32();
+                    break;
+                case 3:
+                    message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ConfirmBetRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ConfirmBetRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ConfirmBetRecall message.
+         * @function verify
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ConfirmBetRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.result != null && message.hasOwnProperty("result"))
+                if (!$util.isInteger(message.result))
+                    return "result: integer expected";
+            if (message.betStatus != null && message.hasOwnProperty("betStatus")) {
+                let error = $root.bet.BetStatus.verify(message.betStatus);
+                if (error)
+                    return "betStatus." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ConfirmBetRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {bet.ConfirmBetRecall} ConfirmBetRecall
+         */
+        ConfirmBetRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.bet.ConfirmBetRecall)
+                return object;
+            let message = new $root.bet.ConfirmBetRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".bet.ConfirmBetRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.result != null)
+                message.result = object.result | 0;
+            if (object.betStatus != null) {
+                if (typeof object.betStatus !== "object")
+                    throw TypeError(".bet.ConfirmBetRecall.betStatus: object expected");
+                message.betStatus = $root.bet.BetStatus.fromObject(object.betStatus);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ConfirmBetRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof bet.ConfirmBetRecall
+         * @static
+         * @param {bet.ConfirmBetRecall} message ConfirmBetRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ConfirmBetRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.result = 0;
+                object.betStatus = null;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.result != null && message.hasOwnProperty("result"))
+                object.result = message.result;
+            if (message.betStatus != null && message.hasOwnProperty("betStatus"))
+                object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
+            return object;
+        };
+
+        /**
+         * Converts this ConfirmBetRecall to JSON.
+         * @function toJSON
+         * @memberof bet.ConfirmBetRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ConfirmBetRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return ConfirmBetRecall;
     })();
 
     return bet;
@@ -5071,6 +6064,9 @@ export const foundation = $root.foundation = (() => {
                 case 8:
                 case 9:
                 case 10:
+                case 100:
+                case 101:
+                case 110:
                 case 11:
                 case 12:
                 case 13:
@@ -5089,6 +6085,10 @@ export const foundation = $root.foundation = (() => {
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 31:
                     break;
                 }
             return null;
@@ -5150,6 +6150,18 @@ export const foundation = $root.foundation = (() => {
             case "BetResetRecall":
             case 10:
                 message.uri = 10;
+                break;
+            case "BetConfirmCall":
+            case 100:
+                message.uri = 100;
+                break;
+            case "BetConfirmRecall":
+            case 101:
+                message.uri = 101;
+                break;
+            case "BroadcastBetstatus":
+            case 110:
+                message.uri = 110;
                 break;
             case "Draw":
             case 11:
@@ -5222,6 +6234,22 @@ export const foundation = $root.foundation = (() => {
             case "WhiteCard":
             case 27:
                 message.uri = 27;
+                break;
+            case "AskRoadCall":
+            case 28:
+                message.uri = 28;
+                break;
+            case "AskRoadRecall":
+            case 29:
+                message.uri = 29;
+                break;
+            case "BroadcastAnnouncement":
+            case 30:
+                message.uri = 30;
+                break;
+            case "BroadcastTotalPlayersOnline":
+            case 31:
+                message.uri = 31;
                 break;
             }
             return message;
@@ -6155,6 +7183,7 @@ export const game = $root.game = (() => {
          * @property {number|null} [numOfShoe] BetRoundStart numOfShoe
          * @property {number|null} [numOfRound] BetRoundStart numOfRound
          * @property {game.IGameResultCounter|null} [gameResultCounter] BetRoundStart gameResultCounter
+         * @property {Array.<roadmap.IAskRoadRecall>|null} [askRoadRecalls] BetRoundStart askRoadRecalls
          */
 
         /**
@@ -6166,6 +7195,7 @@ export const game = $root.game = (() => {
          * @param {game.IBetRoundStart=} [properties] Properties to set
          */
         function BetRoundStart(properties) {
+            this.askRoadRecalls = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6221,6 +7251,14 @@ export const game = $root.game = (() => {
         BetRoundStart.prototype.gameResultCounter = null;
 
         /**
+         * BetRoundStart askRoadRecalls.
+         * @member {Array.<roadmap.IAskRoadRecall>} askRoadRecalls
+         * @memberof game.BetRoundStart
+         * @instance
+         */
+        BetRoundStart.prototype.askRoadRecalls = $util.emptyArray;
+
+        /**
          * Creates a new BetRoundStart instance using the specified properties.
          * @function create
          * @memberof game.BetRoundStart
@@ -6256,6 +7294,9 @@ export const game = $root.game = (() => {
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.numOfRound);
             if (message.gameResultCounter != null && Object.hasOwnProperty.call(message, "gameResultCounter"))
                 $root.game.GameResultCounter.encode(message.gameResultCounter, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+            if (message.askRoadRecalls != null && message.askRoadRecalls.length)
+                for (let i = 0; i < message.askRoadRecalls.length; ++i)
+                    $root.roadmap.AskRoadRecall.encode(message.askRoadRecalls[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             return writer;
         };
 
@@ -6307,6 +7348,11 @@ export const game = $root.game = (() => {
                     break;
                 case 6:
                     message.gameResultCounter = $root.game.GameResultCounter.decode(reader, reader.uint32());
+                    break;
+                case 7:
+                    if (!(message.askRoadRecalls && message.askRoadRecalls.length))
+                        message.askRoadRecalls = [];
+                    message.askRoadRecalls.push($root.roadmap.AskRoadRecall.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -6365,6 +7411,15 @@ export const game = $root.game = (() => {
                 if (error)
                     return "gameResultCounter." + error;
             }
+            if (message.askRoadRecalls != null && message.hasOwnProperty("askRoadRecalls")) {
+                if (!Array.isArray(message.askRoadRecalls))
+                    return "askRoadRecalls: array expected";
+                for (let i = 0; i < message.askRoadRecalls.length; ++i) {
+                    let error = $root.roadmap.AskRoadRecall.verify(message.askRoadRecalls[i]);
+                    if (error)
+                        return "askRoadRecalls." + error;
+                }
+            }
             return null;
         };
 
@@ -6398,6 +7453,16 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.BetRoundStart.gameResultCounter: object expected");
                 message.gameResultCounter = $root.game.GameResultCounter.fromObject(object.gameResultCounter);
             }
+            if (object.askRoadRecalls) {
+                if (!Array.isArray(object.askRoadRecalls))
+                    throw TypeError(".game.BetRoundStart.askRoadRecalls: array expected");
+                message.askRoadRecalls = [];
+                for (let i = 0; i < object.askRoadRecalls.length; ++i) {
+                    if (typeof object.askRoadRecalls[i] !== "object")
+                        throw TypeError(".game.BetRoundStart.askRoadRecalls: object expected");
+                    message.askRoadRecalls[i] = $root.roadmap.AskRoadRecall.fromObject(object.askRoadRecalls[i]);
+                }
+            }
             return message;
         };
 
@@ -6414,6 +7479,8 @@ export const game = $root.game = (() => {
             if (!options)
                 options = {};
             let object = {};
+            if (options.arrays || options.defaults)
+                object.askRoadRecalls = [];
             if (options.defaults) {
                 object.header = null;
                 object.gameUuid = "";
@@ -6434,6 +7501,11 @@ export const game = $root.game = (() => {
                 object.numOfRound = message.numOfRound;
             if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter"))
                 object.gameResultCounter = $root.game.GameResultCounter.toObject(message.gameResultCounter, options);
+            if (message.askRoadRecalls && message.askRoadRecalls.length) {
+                object.askRoadRecalls = [];
+                for (let j = 0; j < message.askRoadRecalls.length; ++j)
+                    object.askRoadRecalls[j] = $root.roadmap.AskRoadRecall.toObject(message.askRoadRecalls[j], options);
+            }
             return object;
         };
 
@@ -6894,6 +7966,7 @@ export const game = $root.game = (() => {
          * @property {number|null} [numOfShoe] GameStatus numOfShoe
          * @property {number|null} [numOfRound] GameStatus numOfRound
          * @property {game.IGameResultCounter|null} [gameResultCounter] GameStatus gameResultCounter
+         * @property {string|null} [gameUuid] GameStatus gameUuid
          */
 
         /**
@@ -6969,6 +8042,14 @@ export const game = $root.game = (() => {
         GameStatus.prototype.gameResultCounter = null;
 
         /**
+         * GameStatus gameUuid.
+         * @member {string} gameUuid
+         * @memberof game.GameStatus
+         * @instance
+         */
+        GameStatus.prototype.gameUuid = "";
+
+        /**
          * Creates a new GameStatus instance using the specified properties.
          * @function create
          * @memberof game.GameStatus
@@ -7007,6 +8088,8 @@ export const game = $root.game = (() => {
                 writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfRound);
             if (message.gameResultCounter != null && Object.hasOwnProperty.call(message, "gameResultCounter"))
                 $root.game.GameResultCounter.encode(message.gameResultCounter, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.gameUuid);
             return writer;
         };
 
@@ -7063,6 +8146,9 @@ export const game = $root.game = (() => {
                     break;
                 case 7:
                     message.gameResultCounter = $root.game.GameResultCounter.decode(reader, reader.uint32());
+                    break;
+                case 8:
+                    message.gameUuid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7137,6 +8223,9 @@ export const game = $root.game = (() => {
                 if (error)
                     return "gameResultCounter." + error;
             }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
             return null;
         };
 
@@ -7196,6 +8285,8 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.GameStatus.gameResultCounter: object expected");
                 message.gameResultCounter = $root.game.GameResultCounter.fromObject(object.gameResultCounter);
             }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
             return message;
         };
 
@@ -7221,6 +8312,7 @@ export const game = $root.game = (() => {
                 object.numOfShoe = 0;
                 object.numOfRound = 0;
                 object.gameResultCounter = null;
+                object.gameUuid = "";
             }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
@@ -7239,6 +8331,8 @@ export const game = $root.game = (() => {
                 object.numOfRound = message.numOfRound;
             if (message.gameResultCounter != null && message.hasOwnProperty("gameResultCounter"))
                 object.gameResultCounter = $root.game.GameResultCounter.toObject(message.gameResultCounter, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
             return object;
         };
 
@@ -7714,6 +8808,221 @@ export const lobby = $root.lobby = (() => {
         return TableInfo;
     })();
 
+    lobby.BroadcastTotalPlayersOnline = (function() {
+
+        /**
+         * Properties of a BroadcastTotalPlayersOnline.
+         * @memberof lobby
+         * @interface IBroadcastTotalPlayersOnline
+         * @property {foundation.IHeader|null} [header] BroadcastTotalPlayersOnline header
+         * @property {number|null} [numberOfPlayers] BroadcastTotalPlayersOnline numberOfPlayers
+         */
+
+        /**
+         * Constructs a new BroadcastTotalPlayersOnline.
+         * @memberof lobby
+         * @classdesc Represents a BroadcastTotalPlayersOnline.
+         * @implements IBroadcastTotalPlayersOnline
+         * @constructor
+         * @param {lobby.IBroadcastTotalPlayersOnline=} [properties] Properties to set
+         */
+        function BroadcastTotalPlayersOnline(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastTotalPlayersOnline header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @instance
+         */
+        BroadcastTotalPlayersOnline.prototype.header = null;
+
+        /**
+         * BroadcastTotalPlayersOnline numberOfPlayers.
+         * @member {number} numberOfPlayers
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @instance
+         */
+        BroadcastTotalPlayersOnline.prototype.numberOfPlayers = 0;
+
+        /**
+         * Creates a new BroadcastTotalPlayersOnline instance using the specified properties.
+         * @function create
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.IBroadcastTotalPlayersOnline=} [properties] Properties to set
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline instance
+         */
+        BroadcastTotalPlayersOnline.create = function create(properties) {
+            return new BroadcastTotalPlayersOnline(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @function encode
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.IBroadcastTotalPlayersOnline} message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastTotalPlayersOnline.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.numberOfPlayers != null && Object.hasOwnProperty.call(message, "numberOfPlayers"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.numberOfPlayers);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message, length delimited. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.IBroadcastTotalPlayersOnline} message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastTotalPlayersOnline.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer.
+         * @function decode
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastTotalPlayersOnline.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.BroadcastTotalPlayersOnline();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.numberOfPlayers = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastTotalPlayersOnline.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastTotalPlayersOnline message.
+         * @function verify
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastTotalPlayersOnline.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.numberOfPlayers != null && message.hasOwnProperty("numberOfPlayers"))
+                if (!$util.isInteger(message.numberOfPlayers))
+                    return "numberOfPlayers: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastTotalPlayersOnline message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline
+         */
+        BroadcastTotalPlayersOnline.fromObject = function fromObject(object) {
+            if (object instanceof $root.lobby.BroadcastTotalPlayersOnline)
+                return object;
+            let message = new $root.lobby.BroadcastTotalPlayersOnline();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".lobby.BroadcastTotalPlayersOnline.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.numberOfPlayers != null)
+                message.numberOfPlayers = object.numberOfPlayers | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastTotalPlayersOnline message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.BroadcastTotalPlayersOnline} message BroadcastTotalPlayersOnline
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastTotalPlayersOnline.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.numberOfPlayers = 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.numberOfPlayers != null && message.hasOwnProperty("numberOfPlayers"))
+                object.numberOfPlayers = message.numberOfPlayers;
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastTotalPlayersOnline to JSON.
+         * @function toJSON
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastTotalPlayersOnline.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastTotalPlayersOnline;
+    })();
+
     return lobby;
 })();
 
@@ -7727,8 +9036,8 @@ export const roadmap = $root.roadmap = (() => {
     const roadmap = {};
 
     /**
-     * Block enum.
-     * @name roadmap.Block
+     * Symbol enum.
+     * @name roadmap.Symbol
      * @enum {number}
      * @property {number} BlockDefault=0 BlockDefault value
      * @property {number} Banker=1 Banker value
@@ -7752,7 +9061,7 @@ export const roadmap = $root.roadmap = (() => {
      * @property {number} PlayerAndPlayerPairAndTie=19 PlayerAndPlayerPairAndTie value
      * @property {number} PlayerAndBothPairAndTie=20 PlayerAndBothPairAndTie value
      */
-    roadmap.Block = (function() {
+    roadmap.Symbol = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "BlockDefault"] = 0;
         values[valuesById[1] = "Banker"] = 1;
@@ -7778,13 +9087,331 @@ export const roadmap = $root.roadmap = (() => {
         return values;
     })();
 
+    roadmap.Block = (function() {
+
+        /**
+         * Properties of a Block.
+         * @memberof roadmap
+         * @interface IBlock
+         * @property {roadmap.Symbol|null} [symbol] Block symbol
+         * @property {number|null} [tieCount] Block tieCount
+         */
+
+        /**
+         * Constructs a new Block.
+         * @memberof roadmap
+         * @classdesc Represents a Block.
+         * @implements IBlock
+         * @constructor
+         * @param {roadmap.IBlock=} [properties] Properties to set
+         */
+        function Block(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Block symbol.
+         * @member {roadmap.Symbol} symbol
+         * @memberof roadmap.Block
+         * @instance
+         */
+        Block.prototype.symbol = 0;
+
+        /**
+         * Block tieCount.
+         * @member {number} tieCount
+         * @memberof roadmap.Block
+         * @instance
+         */
+        Block.prototype.tieCount = 0;
+
+        /**
+         * Creates a new Block instance using the specified properties.
+         * @function create
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.IBlock=} [properties] Properties to set
+         * @returns {roadmap.Block} Block instance
+         */
+        Block.create = function create(properties) {
+            return new Block(properties);
+        };
+
+        /**
+         * Encodes the specified Block message. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.IBlock} message Block message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Block.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.symbol != null && Object.hasOwnProperty.call(message, "symbol"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.symbol);
+            if (message.tieCount != null && Object.hasOwnProperty.call(message, "tieCount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.tieCount);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Block message, length delimited. Does not implicitly {@link roadmap.Block.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.IBlock} message Block message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Block.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Block message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.Block
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.Block} Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Block.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.Block();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.symbol = reader.int32();
+                    break;
+                case 2:
+                    message.tieCount = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Block message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.Block
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.Block} Block
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Block.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Block message.
+         * @function verify
+         * @memberof roadmap.Block
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Block.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.symbol != null && message.hasOwnProperty("symbol"))
+                switch (message.symbol) {
+                default:
+                    return "symbol: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                    break;
+                }
+            if (message.tieCount != null && message.hasOwnProperty("tieCount"))
+                if (!$util.isInteger(message.tieCount))
+                    return "tieCount: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a Block message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.Block
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.Block} Block
+         */
+        Block.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.Block)
+                return object;
+            let message = new $root.roadmap.Block();
+            switch (object.symbol) {
+            case "BlockDefault":
+            case 0:
+                message.symbol = 0;
+                break;
+            case "Banker":
+            case 1:
+                message.symbol = 1;
+                break;
+            case "Player":
+            case 2:
+                message.symbol = 2;
+                break;
+            case "Tie":
+            case 3:
+                message.symbol = 3;
+                break;
+            case "BankerAndBankerPair":
+            case 4:
+                message.symbol = 4;
+                break;
+            case "BankerAndPlayerPair":
+            case 5:
+                message.symbol = 5;
+                break;
+            case "BankerAndBothPair":
+            case 6:
+                message.symbol = 6;
+                break;
+            case "PlayerAndBankerPair":
+            case 7:
+                message.symbol = 7;
+                break;
+            case "PlayerAndPlayerPair":
+            case 8:
+                message.symbol = 8;
+                break;
+            case "PlayerAndBothPair":
+            case 9:
+                message.symbol = 9;
+                break;
+            case "TieAndBankerPair":
+            case 10:
+                message.symbol = 10;
+                break;
+            case "TieAndPlayerPair":
+            case 11:
+                message.symbol = 11;
+                break;
+            case "TieAndBothPair":
+            case 12:
+                message.symbol = 12;
+                break;
+            case "BankerAndTie":
+            case 13:
+                message.symbol = 13;
+                break;
+            case "BankerAndBankerPairAndTie":
+            case 14:
+                message.symbol = 14;
+                break;
+            case "BankerAndPlayerPairAndTie":
+            case 15:
+                message.symbol = 15;
+                break;
+            case "BankerAndBothPairAndTie":
+            case 16:
+                message.symbol = 16;
+                break;
+            case "PlayerAndTie":
+            case 17:
+                message.symbol = 17;
+                break;
+            case "PlayerAndBankerPairAndTie":
+            case 18:
+                message.symbol = 18;
+                break;
+            case "PlayerAndPlayerPairAndTie":
+            case 19:
+                message.symbol = 19;
+                break;
+            case "PlayerAndBothPairAndTie":
+            case 20:
+                message.symbol = 20;
+                break;
+            }
+            if (object.tieCount != null)
+                message.tieCount = object.tieCount | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Block message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.Block
+         * @static
+         * @param {roadmap.Block} message Block
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Block.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.symbol = options.enums === String ? "BlockDefault" : 0;
+                object.tieCount = 0;
+            }
+            if (message.symbol != null && message.hasOwnProperty("symbol"))
+                object.symbol = options.enums === String ? $root.roadmap.Symbol[message.symbol] : message.symbol;
+            if (message.tieCount != null && message.hasOwnProperty("tieCount"))
+                object.tieCount = message.tieCount;
+            return object;
+        };
+
+        /**
+         * Converts this Block to JSON.
+         * @function toJSON
+         * @memberof roadmap.Block
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Block.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Block;
+    })();
+
     roadmap.Column = (function() {
 
         /**
          * Properties of a Column.
          * @memberof roadmap
          * @interface IColumn
-         * @property {Array.<roadmap.Block>|null} [blocks] Column blocks
+         * @property {Array.<roadmap.IBlock>|null} [blocks] Column blocks
          */
 
         /**
@@ -7805,7 +9432,7 @@ export const roadmap = $root.roadmap = (() => {
 
         /**
          * Column blocks.
-         * @member {Array.<roadmap.Block>} blocks
+         * @member {Array.<roadmap.IBlock>} blocks
          * @memberof roadmap.Column
          * @instance
          */
@@ -7835,12 +9462,9 @@ export const roadmap = $root.roadmap = (() => {
         Column.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.blocks != null && message.blocks.length) {
-                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+            if (message.blocks != null && message.blocks.length)
                 for (let i = 0; i < message.blocks.length; ++i)
-                    writer.int32(message.blocks[i]);
-                writer.ldelim();
-            }
+                    $root.roadmap.Block.encode(message.blocks[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
@@ -7878,12 +9502,7 @@ export const roadmap = $root.roadmap = (() => {
                 case 1:
                     if (!(message.blocks && message.blocks.length))
                         message.blocks = [];
-                    if ((tag & 7) === 2) {
-                        let end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
-                            message.blocks.push(reader.int32());
-                    } else
-                        message.blocks.push(reader.int32());
+                    message.blocks.push($root.roadmap.Block.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -7923,33 +9542,11 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks != null && message.hasOwnProperty("blocks")) {
                 if (!Array.isArray(message.blocks))
                     return "blocks: array expected";
-                for (let i = 0; i < message.blocks.length; ++i)
-                    switch (message.blocks[i]) {
-                    default:
-                        return "blocks: enum value[] expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                        break;
-                    }
+                for (let i = 0; i < message.blocks.length; ++i) {
+                    let error = $root.roadmap.Block.verify(message.blocks[i]);
+                    if (error)
+                        return "blocks." + error;
+                }
             }
             return null;
         };
@@ -7970,94 +9567,11 @@ export const roadmap = $root.roadmap = (() => {
                 if (!Array.isArray(object.blocks))
                     throw TypeError(".roadmap.Column.blocks: array expected");
                 message.blocks = [];
-                for (let i = 0; i < object.blocks.length; ++i)
-                    switch (object.blocks[i]) {
-                    default:
-                    case "BlockDefault":
-                    case 0:
-                        message.blocks[i] = 0;
-                        break;
-                    case "Banker":
-                    case 1:
-                        message.blocks[i] = 1;
-                        break;
-                    case "Player":
-                    case 2:
-                        message.blocks[i] = 2;
-                        break;
-                    case "Tie":
-                    case 3:
-                        message.blocks[i] = 3;
-                        break;
-                    case "BankerAndBankerPair":
-                    case 4:
-                        message.blocks[i] = 4;
-                        break;
-                    case "BankerAndPlayerPair":
-                    case 5:
-                        message.blocks[i] = 5;
-                        break;
-                    case "BankerAndBothPair":
-                    case 6:
-                        message.blocks[i] = 6;
-                        break;
-                    case "PlayerAndBankerPair":
-                    case 7:
-                        message.blocks[i] = 7;
-                        break;
-                    case "PlayerAndPlayerPair":
-                    case 8:
-                        message.blocks[i] = 8;
-                        break;
-                    case "PlayerAndBothPair":
-                    case 9:
-                        message.blocks[i] = 9;
-                        break;
-                    case "TieAndBankerPair":
-                    case 10:
-                        message.blocks[i] = 10;
-                        break;
-                    case "TieAndPlayerPair":
-                    case 11:
-                        message.blocks[i] = 11;
-                        break;
-                    case "TieAndBothPair":
-                    case 12:
-                        message.blocks[i] = 12;
-                        break;
-                    case "BankerAndTie":
-                    case 13:
-                        message.blocks[i] = 13;
-                        break;
-                    case "BankerAndBankerPairAndTie":
-                    case 14:
-                        message.blocks[i] = 14;
-                        break;
-                    case "BankerAndPlayerPairAndTie":
-                    case 15:
-                        message.blocks[i] = 15;
-                        break;
-                    case "BankerAndBothPairAndTie":
-                    case 16:
-                        message.blocks[i] = 16;
-                        break;
-                    case "PlayerAndTie":
-                    case 17:
-                        message.blocks[i] = 17;
-                        break;
-                    case "PlayerAndBankerPairAndTie":
-                    case 18:
-                        message.blocks[i] = 18;
-                        break;
-                    case "PlayerAndPlayerPairAndTie":
-                    case 19:
-                        message.blocks[i] = 19;
-                        break;
-                    case "PlayerAndBothPairAndTie":
-                    case 20:
-                        message.blocks[i] = 20;
-                        break;
-                    }
+                for (let i = 0; i < object.blocks.length; ++i) {
+                    if (typeof object.blocks[i] !== "object")
+                        throw TypeError(".roadmap.Column.blocks: object expected");
+                    message.blocks[i] = $root.roadmap.Block.fromObject(object.blocks[i]);
+                }
             }
             return message;
         };
@@ -8080,7 +9594,7 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks && message.blocks.length) {
                 object.blocks = [];
                 for (let j = 0; j < message.blocks.length; ++j)
-                    object.blocks[j] = options.enums === String ? $root.roadmap.Block[message.blocks[j]] : message.blocks[j];
+                    object.blocks[j] = $root.roadmap.Block.toObject(message.blocks[j], options);
             }
             return object;
         };
@@ -8105,7 +9619,7 @@ export const roadmap = $root.roadmap = (() => {
          * Properties of a BeadPlate.
          * @memberof roadmap
          * @interface IBeadPlate
-         * @property {Array.<roadmap.Block>|null} [blocks] BeadPlate blocks
+         * @property {Array.<roadmap.IBlock>|null} [blocks] BeadPlate blocks
          */
 
         /**
@@ -8126,7 +9640,7 @@ export const roadmap = $root.roadmap = (() => {
 
         /**
          * BeadPlate blocks.
-         * @member {Array.<roadmap.Block>} blocks
+         * @member {Array.<roadmap.IBlock>} blocks
          * @memberof roadmap.BeadPlate
          * @instance
          */
@@ -8156,12 +9670,9 @@ export const roadmap = $root.roadmap = (() => {
         BeadPlate.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.blocks != null && message.blocks.length) {
-                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+            if (message.blocks != null && message.blocks.length)
                 for (let i = 0; i < message.blocks.length; ++i)
-                    writer.int32(message.blocks[i]);
-                writer.ldelim();
-            }
+                    $root.roadmap.Block.encode(message.blocks[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
@@ -8199,12 +9710,7 @@ export const roadmap = $root.roadmap = (() => {
                 case 1:
                     if (!(message.blocks && message.blocks.length))
                         message.blocks = [];
-                    if ((tag & 7) === 2) {
-                        let end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
-                            message.blocks.push(reader.int32());
-                    } else
-                        message.blocks.push(reader.int32());
+                    message.blocks.push($root.roadmap.Block.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -8244,33 +9750,11 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks != null && message.hasOwnProperty("blocks")) {
                 if (!Array.isArray(message.blocks))
                     return "blocks: array expected";
-                for (let i = 0; i < message.blocks.length; ++i)
-                    switch (message.blocks[i]) {
-                    default:
-                        return "blocks: enum value[] expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                        break;
-                    }
+                for (let i = 0; i < message.blocks.length; ++i) {
+                    let error = $root.roadmap.Block.verify(message.blocks[i]);
+                    if (error)
+                        return "blocks." + error;
+                }
             }
             return null;
         };
@@ -8291,94 +9775,11 @@ export const roadmap = $root.roadmap = (() => {
                 if (!Array.isArray(object.blocks))
                     throw TypeError(".roadmap.BeadPlate.blocks: array expected");
                 message.blocks = [];
-                for (let i = 0; i < object.blocks.length; ++i)
-                    switch (object.blocks[i]) {
-                    default:
-                    case "BlockDefault":
-                    case 0:
-                        message.blocks[i] = 0;
-                        break;
-                    case "Banker":
-                    case 1:
-                        message.blocks[i] = 1;
-                        break;
-                    case "Player":
-                    case 2:
-                        message.blocks[i] = 2;
-                        break;
-                    case "Tie":
-                    case 3:
-                        message.blocks[i] = 3;
-                        break;
-                    case "BankerAndBankerPair":
-                    case 4:
-                        message.blocks[i] = 4;
-                        break;
-                    case "BankerAndPlayerPair":
-                    case 5:
-                        message.blocks[i] = 5;
-                        break;
-                    case "BankerAndBothPair":
-                    case 6:
-                        message.blocks[i] = 6;
-                        break;
-                    case "PlayerAndBankerPair":
-                    case 7:
-                        message.blocks[i] = 7;
-                        break;
-                    case "PlayerAndPlayerPair":
-                    case 8:
-                        message.blocks[i] = 8;
-                        break;
-                    case "PlayerAndBothPair":
-                    case 9:
-                        message.blocks[i] = 9;
-                        break;
-                    case "TieAndBankerPair":
-                    case 10:
-                        message.blocks[i] = 10;
-                        break;
-                    case "TieAndPlayerPair":
-                    case 11:
-                        message.blocks[i] = 11;
-                        break;
-                    case "TieAndBothPair":
-                    case 12:
-                        message.blocks[i] = 12;
-                        break;
-                    case "BankerAndTie":
-                    case 13:
-                        message.blocks[i] = 13;
-                        break;
-                    case "BankerAndBankerPairAndTie":
-                    case 14:
-                        message.blocks[i] = 14;
-                        break;
-                    case "BankerAndPlayerPairAndTie":
-                    case 15:
-                        message.blocks[i] = 15;
-                        break;
-                    case "BankerAndBothPairAndTie":
-                    case 16:
-                        message.blocks[i] = 16;
-                        break;
-                    case "PlayerAndTie":
-                    case 17:
-                        message.blocks[i] = 17;
-                        break;
-                    case "PlayerAndBankerPairAndTie":
-                    case 18:
-                        message.blocks[i] = 18;
-                        break;
-                    case "PlayerAndPlayerPairAndTie":
-                    case 19:
-                        message.blocks[i] = 19;
-                        break;
-                    case "PlayerAndBothPairAndTie":
-                    case 20:
-                        message.blocks[i] = 20;
-                        break;
-                    }
+                for (let i = 0; i < object.blocks.length; ++i) {
+                    if (typeof object.blocks[i] !== "object")
+                        throw TypeError(".roadmap.BeadPlate.blocks: object expected");
+                    message.blocks[i] = $root.roadmap.Block.fromObject(object.blocks[i]);
+                }
             }
             return message;
         };
@@ -8401,7 +9802,7 @@ export const roadmap = $root.roadmap = (() => {
             if (message.blocks && message.blocks.length) {
                 object.blocks = [];
                 for (let j = 0; j < message.blocks.length; ++j)
-                    object.blocks[j] = options.enums === String ? $root.roadmap.Block[message.blocks[j]] : message.blocks[j];
+                    object.blocks[j] = $root.roadmap.Block.toObject(message.blocks[j], options);
             }
             return object;
         };
@@ -9580,6 +10981,527 @@ export const roadmap = $root.roadmap = (() => {
         return Roadmap;
     })();
 
+    roadmap.AskRoadCall = (function() {
+
+        /**
+         * Properties of an AskRoadCall.
+         * @memberof roadmap
+         * @interface IAskRoadCall
+         * @property {foundation.IHeader|null} [header] AskRoadCall header
+         * @property {roadmap.IBlock|null} [block] AskRoadCall block
+         */
+
+        /**
+         * Constructs a new AskRoadCall.
+         * @memberof roadmap
+         * @classdesc Represents an AskRoadCall.
+         * @implements IAskRoadCall
+         * @constructor
+         * @param {roadmap.IAskRoadCall=} [properties] Properties to set
+         */
+        function AskRoadCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AskRoadCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof roadmap.AskRoadCall
+         * @instance
+         */
+        AskRoadCall.prototype.header = null;
+
+        /**
+         * AskRoadCall block.
+         * @member {roadmap.IBlock|null|undefined} block
+         * @memberof roadmap.AskRoadCall
+         * @instance
+         */
+        AskRoadCall.prototype.block = null;
+
+        /**
+         * Creates a new AskRoadCall instance using the specified properties.
+         * @function create
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.IAskRoadCall=} [properties] Properties to set
+         * @returns {roadmap.AskRoadCall} AskRoadCall instance
+         */
+        AskRoadCall.create = function create(properties) {
+            return new AskRoadCall(properties);
+        };
+
+        /**
+         * Encodes the specified AskRoadCall message. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.IAskRoadCall} message AskRoadCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.block != null && Object.hasOwnProperty.call(message, "block"))
+                $root.roadmap.Block.encode(message.block, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AskRoadCall message, length delimited. Does not implicitly {@link roadmap.AskRoadCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.IAskRoadCall} message AskRoadCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.AskRoadCall} AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.AskRoadCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.block = $root.roadmap.Block.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AskRoadCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.AskRoadCall} AskRoadCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AskRoadCall message.
+         * @function verify
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AskRoadCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.block != null && message.hasOwnProperty("block")) {
+                let error = $root.roadmap.Block.verify(message.block);
+                if (error)
+                    return "block." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an AskRoadCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.AskRoadCall} AskRoadCall
+         */
+        AskRoadCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.AskRoadCall)
+                return object;
+            let message = new $root.roadmap.AskRoadCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".roadmap.AskRoadCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.block != null) {
+                if (typeof object.block !== "object")
+                    throw TypeError(".roadmap.AskRoadCall.block: object expected");
+                message.block = $root.roadmap.Block.fromObject(object.block);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AskRoadCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.AskRoadCall
+         * @static
+         * @param {roadmap.AskRoadCall} message AskRoadCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AskRoadCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.block = null;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.block != null && message.hasOwnProperty("block"))
+                object.block = $root.roadmap.Block.toObject(message.block, options);
+            return object;
+        };
+
+        /**
+         * Converts this AskRoadCall to JSON.
+         * @function toJSON
+         * @memberof roadmap.AskRoadCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AskRoadCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return AskRoadCall;
+    })();
+
+    roadmap.AskRoadRecall = (function() {
+
+        /**
+         * Properties of an AskRoadRecall.
+         * @memberof roadmap
+         * @interface IAskRoadRecall
+         * @property {foundation.IHeader|null} [header] AskRoadRecall header
+         * @property {roadmap.IBlock|null} [bigEyeRoadNext] AskRoadRecall bigEyeRoadNext
+         * @property {roadmap.IBlock|null} [smallRoadNext] AskRoadRecall smallRoadNext
+         * @property {roadmap.IBlock|null} [cockroachRoadNext] AskRoadRecall cockroachRoadNext
+         * @property {roadmap.IAskRoadCall|null} [askRoadCall] AskRoadRecall askRoadCall
+         */
+
+        /**
+         * Constructs a new AskRoadRecall.
+         * @memberof roadmap
+         * @classdesc Represents an AskRoadRecall.
+         * @implements IAskRoadRecall
+         * @constructor
+         * @param {roadmap.IAskRoadRecall=} [properties] Properties to set
+         */
+        function AskRoadRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AskRoadRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.header = null;
+
+        /**
+         * AskRoadRecall bigEyeRoadNext.
+         * @member {roadmap.IBlock|null|undefined} bigEyeRoadNext
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.bigEyeRoadNext = null;
+
+        /**
+         * AskRoadRecall smallRoadNext.
+         * @member {roadmap.IBlock|null|undefined} smallRoadNext
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.smallRoadNext = null;
+
+        /**
+         * AskRoadRecall cockroachRoadNext.
+         * @member {roadmap.IBlock|null|undefined} cockroachRoadNext
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.cockroachRoadNext = null;
+
+        /**
+         * AskRoadRecall askRoadCall.
+         * @member {roadmap.IAskRoadCall|null|undefined} askRoadCall
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         */
+        AskRoadRecall.prototype.askRoadCall = null;
+
+        /**
+         * Creates a new AskRoadRecall instance using the specified properties.
+         * @function create
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.IAskRoadRecall=} [properties] Properties to set
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall instance
+         */
+        AskRoadRecall.create = function create(properties) {
+            return new AskRoadRecall(properties);
+        };
+
+        /**
+         * Encodes the specified AskRoadRecall message. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @function encode
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.IAskRoadRecall} message AskRoadRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.bigEyeRoadNext != null && Object.hasOwnProperty.call(message, "bigEyeRoadNext"))
+                $root.roadmap.Block.encode(message.bigEyeRoadNext, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.smallRoadNext != null && Object.hasOwnProperty.call(message, "smallRoadNext"))
+                $root.roadmap.Block.encode(message.smallRoadNext, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.cockroachRoadNext != null && Object.hasOwnProperty.call(message, "cockroachRoadNext"))
+                $root.roadmap.Block.encode(message.cockroachRoadNext, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.askRoadCall != null && Object.hasOwnProperty.call(message, "askRoadCall"))
+                $root.roadmap.AskRoadCall.encode(message.askRoadCall, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AskRoadRecall message, length delimited. Does not implicitly {@link roadmap.AskRoadRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.IAskRoadRecall} message AskRoadRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AskRoadRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.roadmap.AskRoadRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.bigEyeRoadNext = $root.roadmap.Block.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.smallRoadNext = $root.roadmap.Block.decode(reader, reader.uint32());
+                    break;
+                case 4:
+                    message.cockroachRoadNext = $root.roadmap.Block.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.askRoadCall = $root.roadmap.AskRoadCall.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AskRoadRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AskRoadRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AskRoadRecall message.
+         * @function verify
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AskRoadRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext")) {
+                let error = $root.roadmap.Block.verify(message.bigEyeRoadNext);
+                if (error)
+                    return "bigEyeRoadNext." + error;
+            }
+            if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext")) {
+                let error = $root.roadmap.Block.verify(message.smallRoadNext);
+                if (error)
+                    return "smallRoadNext." + error;
+            }
+            if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext")) {
+                let error = $root.roadmap.Block.verify(message.cockroachRoadNext);
+                if (error)
+                    return "cockroachRoadNext." + error;
+            }
+            if (message.askRoadCall != null && message.hasOwnProperty("askRoadCall")) {
+                let error = $root.roadmap.AskRoadCall.verify(message.askRoadCall);
+                if (error)
+                    return "askRoadCall." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an AskRoadRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {roadmap.AskRoadRecall} AskRoadRecall
+         */
+        AskRoadRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.roadmap.AskRoadRecall)
+                return object;
+            let message = new $root.roadmap.AskRoadRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.bigEyeRoadNext != null) {
+                if (typeof object.bigEyeRoadNext !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.bigEyeRoadNext: object expected");
+                message.bigEyeRoadNext = $root.roadmap.Block.fromObject(object.bigEyeRoadNext);
+            }
+            if (object.smallRoadNext != null) {
+                if (typeof object.smallRoadNext !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.smallRoadNext: object expected");
+                message.smallRoadNext = $root.roadmap.Block.fromObject(object.smallRoadNext);
+            }
+            if (object.cockroachRoadNext != null) {
+                if (typeof object.cockroachRoadNext !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.cockroachRoadNext: object expected");
+                message.cockroachRoadNext = $root.roadmap.Block.fromObject(object.cockroachRoadNext);
+            }
+            if (object.askRoadCall != null) {
+                if (typeof object.askRoadCall !== "object")
+                    throw TypeError(".roadmap.AskRoadRecall.askRoadCall: object expected");
+                message.askRoadCall = $root.roadmap.AskRoadCall.fromObject(object.askRoadCall);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AskRoadRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof roadmap.AskRoadRecall
+         * @static
+         * @param {roadmap.AskRoadRecall} message AskRoadRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AskRoadRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.bigEyeRoadNext = null;
+                object.smallRoadNext = null;
+                object.cockroachRoadNext = null;
+                object.askRoadCall = null;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.bigEyeRoadNext != null && message.hasOwnProperty("bigEyeRoadNext"))
+                object.bigEyeRoadNext = $root.roadmap.Block.toObject(message.bigEyeRoadNext, options);
+            if (message.smallRoadNext != null && message.hasOwnProperty("smallRoadNext"))
+                object.smallRoadNext = $root.roadmap.Block.toObject(message.smallRoadNext, options);
+            if (message.cockroachRoadNext != null && message.hasOwnProperty("cockroachRoadNext"))
+                object.cockroachRoadNext = $root.roadmap.Block.toObject(message.cockroachRoadNext, options);
+            if (message.askRoadCall != null && message.hasOwnProperty("askRoadCall"))
+                object.askRoadCall = $root.roadmap.AskRoadCall.toObject(message.askRoadCall, options);
+            return object;
+        };
+
+        /**
+         * Converts this AskRoadRecall to JSON.
+         * @function toJSON
+         * @memberof roadmap.AskRoadRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AskRoadRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return AskRoadRecall;
+    })();
+
     return roadmap;
 })();
 
@@ -9607,6 +11529,9 @@ export const route = $root.route = (() => {
      * @property {number} BetRecall=8 BetRecall value
      * @property {number} BetResetCall=9 BetResetCall value
      * @property {number} BetResetRecall=10 BetResetRecall value
+     * @property {number} BetConfirmCall=100 BetConfirmCall value
+     * @property {number} BetConfirmRecall=101 BetConfirmRecall value
+     * @property {number} BroadcastBetstatus=110 BroadcastBetstatus value
      * @property {number} Draw=11 Draw value
      * @property {number} DealerGameResult=12 DealerGameResult value
      * @property {number} BroadcastGameResult=13 BroadcastGameResult value
@@ -9625,6 +11550,10 @@ export const route = $root.route = (() => {
      * @property {number} DealerGameStatus=25 DealerGameStatus value
      * @property {number} Roadmap=26 Roadmap value
      * @property {number} WhiteCard=27 WhiteCard value
+     * @property {number} AskRoadCall=28 AskRoadCall value
+     * @property {number} AskRoadRecall=29 AskRoadRecall value
+     * @property {number} BroadcastAnnouncement=30 BroadcastAnnouncement value
+     * @property {number} BroadcastTotalPlayersOnline=31 BroadcastTotalPlayersOnline value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -9639,6 +11568,9 @@ export const route = $root.route = (() => {
         values[valuesById[8] = "BetRecall"] = 8;
         values[valuesById[9] = "BetResetCall"] = 9;
         values[valuesById[10] = "BetResetRecall"] = 10;
+        values[valuesById[100] = "BetConfirmCall"] = 100;
+        values[valuesById[101] = "BetConfirmRecall"] = 101;
+        values[valuesById[110] = "BroadcastBetstatus"] = 110;
         values[valuesById[11] = "Draw"] = 11;
         values[valuesById[12] = "DealerGameResult"] = 12;
         values[valuesById[13] = "BroadcastGameResult"] = 13;
@@ -9657,6 +11589,10 @@ export const route = $root.route = (() => {
         values[valuesById[25] = "DealerGameStatus"] = 25;
         values[valuesById[26] = "Roadmap"] = 26;
         values[valuesById[27] = "WhiteCard"] = 27;
+        values[valuesById[28] = "AskRoadCall"] = 28;
+        values[valuesById[29] = "AskRoadRecall"] = 29;
+        values[valuesById[30] = "BroadcastAnnouncement"] = 30;
+        values[valuesById[31] = "BroadcastTotalPlayersOnline"] = 31;
         return values;
     })();
 
@@ -9678,8 +11614,9 @@ export const table = $root.table = (() => {
          * Properties of a Table.
          * @memberof table
          * @interface ITable
-         * @property {table.IBetStatus|null} [betStatus] Table betStatus
-         * @property {string|null} [streamingUrl] Table streamingUrl
+         * @property {bet.IBetStatus|null} [betStatus] Table betStatus
+         * @property {table.IStreamingUrl|null} [streamingUrl] Table streamingUrl
+         * @property {Array.<number>|null} [betList] Table betList
          */
 
         /**
@@ -9691,6 +11628,7 @@ export const table = $root.table = (() => {
          * @param {table.ITable=} [properties] Properties to set
          */
         function Table(properties) {
+            this.betList = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -9699,7 +11637,7 @@ export const table = $root.table = (() => {
 
         /**
          * Table betStatus.
-         * @member {table.IBetStatus|null|undefined} betStatus
+         * @member {bet.IBetStatus|null|undefined} betStatus
          * @memberof table.Table
          * @instance
          */
@@ -9707,11 +11645,19 @@ export const table = $root.table = (() => {
 
         /**
          * Table streamingUrl.
-         * @member {string} streamingUrl
+         * @member {table.IStreamingUrl|null|undefined} streamingUrl
          * @memberof table.Table
          * @instance
          */
-        Table.prototype.streamingUrl = "";
+        Table.prototype.streamingUrl = null;
+
+        /**
+         * Table betList.
+         * @member {Array.<number>} betList
+         * @memberof table.Table
+         * @instance
+         */
+        Table.prototype.betList = $util.emptyArray;
 
         /**
          * Creates a new Table instance using the specified properties.
@@ -9738,9 +11684,15 @@ export const table = $root.table = (() => {
             if (!writer)
                 writer = $Writer.create();
             if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
-                $root.table.BetStatus.encode(message.betStatus, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.streamingUrl != null && Object.hasOwnProperty.call(message, "streamingUrl"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.streamingUrl);
+                $root.table.StreamingUrl.encode(message.streamingUrl, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.betList != null && message.betList.length) {
+                writer.uint32(/* id 3, wireType 2 =*/26).fork();
+                for (let i = 0; i < message.betList.length; ++i)
+                    writer.double(message.betList[i]);
+                writer.ldelim();
+            }
             return writer;
         };
 
@@ -9776,10 +11728,20 @@ export const table = $root.table = (() => {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.betStatus = $root.table.BetStatus.decode(reader, reader.uint32());
+                    message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.streamingUrl = reader.string();
+                    message.streamingUrl = $root.table.StreamingUrl.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    if (!(message.betList && message.betList.length))
+                        message.betList = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.betList.push(reader.double());
+                    } else
+                        message.betList.push(reader.double());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -9817,13 +11779,22 @@ export const table = $root.table = (() => {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.betStatus != null && message.hasOwnProperty("betStatus")) {
-                let error = $root.table.BetStatus.verify(message.betStatus);
+                let error = $root.bet.BetStatus.verify(message.betStatus);
                 if (error)
                     return "betStatus." + error;
             }
-            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
-                if (!$util.isString(message.streamingUrl))
-                    return "streamingUrl: string expected";
+            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl")) {
+                let error = $root.table.StreamingUrl.verify(message.streamingUrl);
+                if (error)
+                    return "streamingUrl." + error;
+            }
+            if (message.betList != null && message.hasOwnProperty("betList")) {
+                if (!Array.isArray(message.betList))
+                    return "betList: array expected";
+                for (let i = 0; i < message.betList.length; ++i)
+                    if (typeof message.betList[i] !== "number")
+                        return "betList: number[] expected";
+            }
             return null;
         };
 
@@ -9842,10 +11813,20 @@ export const table = $root.table = (() => {
             if (object.betStatus != null) {
                 if (typeof object.betStatus !== "object")
                     throw TypeError(".table.Table.betStatus: object expected");
-                message.betStatus = $root.table.BetStatus.fromObject(object.betStatus);
+                message.betStatus = $root.bet.BetStatus.fromObject(object.betStatus);
             }
-            if (object.streamingUrl != null)
-                message.streamingUrl = String(object.streamingUrl);
+            if (object.streamingUrl != null) {
+                if (typeof object.streamingUrl !== "object")
+                    throw TypeError(".table.Table.streamingUrl: object expected");
+                message.streamingUrl = $root.table.StreamingUrl.fromObject(object.streamingUrl);
+            }
+            if (object.betList) {
+                if (!Array.isArray(object.betList))
+                    throw TypeError(".table.Table.betList: array expected");
+                message.betList = [];
+                for (let i = 0; i < object.betList.length; ++i)
+                    message.betList[i] = Number(object.betList[i]);
+            }
             return message;
         };
 
@@ -9862,14 +11843,21 @@ export const table = $root.table = (() => {
             if (!options)
                 options = {};
             let object = {};
+            if (options.arrays || options.defaults)
+                object.betList = [];
             if (options.defaults) {
                 object.betStatus = null;
-                object.streamingUrl = "";
+                object.streamingUrl = null;
             }
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
-                object.betStatus = $root.table.BetStatus.toObject(message.betStatus, options);
+                object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
-                object.streamingUrl = message.streamingUrl;
+                object.streamingUrl = $root.table.StreamingUrl.toObject(message.streamingUrl, options);
+            if (message.betList && message.betList.length) {
+                object.betList = [];
+                for (let j = 0; j < message.betList.length; ++j)
+                    object.betList[j] = options.json && !isFinite(message.betList[j]) ? String(message.betList[j]) : message.betList[j];
+            }
             return object;
         };
 
@@ -10322,30 +12310,25 @@ export const table = $root.table = (() => {
         return TableJoinRecall;
     })();
 
-    table.BetStatus = (function() {
+    table.StreamingUrl = (function() {
 
         /**
-         * Properties of a BetStatus.
+         * Properties of a StreamingUrl.
          * @memberof table
-         * @interface IBetStatus
-         * @property {string|null} [Banker] BetStatus Banker
-         * @property {string|null} [Player] BetStatus Player
-         * @property {string|null} [Tie] BetStatus Tie
-         * @property {string|null} [BankerPair] BetStatus BankerPair
-         * @property {string|null} [PlayerPair] BetStatus PlayerPair
-         * @property {string|null} [BankerNatural] BetStatus BankerNatural
-         * @property {string|null} [PlayerNatural] BetStatus PlayerNatural
+         * @interface IStreamingUrl
+         * @property {string|null} [desktop] StreamingUrl desktop
+         * @property {string|null} [moblie] StreamingUrl moblie
          */
 
         /**
-         * Constructs a new BetStatus.
+         * Constructs a new StreamingUrl.
          * @memberof table
-         * @classdesc Represents a BetStatus.
-         * @implements IBetStatus
+         * @classdesc Represents a StreamingUrl.
+         * @implements IStreamingUrl
          * @constructor
-         * @param {table.IBetStatus=} [properties] Properties to set
+         * @param {table.IStreamingUrl=} [properties] Properties to set
          */
-        function BetStatus(properties) {
+        function StreamingUrl(properties) {
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -10353,153 +12336,88 @@ export const table = $root.table = (() => {
         }
 
         /**
-         * BetStatus Banker.
-         * @member {string} Banker
-         * @memberof table.BetStatus
+         * StreamingUrl desktop.
+         * @member {string} desktop
+         * @memberof table.StreamingUrl
          * @instance
          */
-        BetStatus.prototype.Banker = "";
+        StreamingUrl.prototype.desktop = "";
 
         /**
-         * BetStatus Player.
-         * @member {string} Player
-         * @memberof table.BetStatus
+         * StreamingUrl moblie.
+         * @member {string} moblie
+         * @memberof table.StreamingUrl
          * @instance
          */
-        BetStatus.prototype.Player = "";
+        StreamingUrl.prototype.moblie = "";
 
         /**
-         * BetStatus Tie.
-         * @member {string} Tie
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.Tie = "";
-
-        /**
-         * BetStatus BankerPair.
-         * @member {string} BankerPair
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.BankerPair = "";
-
-        /**
-         * BetStatus PlayerPair.
-         * @member {string} PlayerPair
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.PlayerPair = "";
-
-        /**
-         * BetStatus BankerNatural.
-         * @member {string} BankerNatural
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.BankerNatural = "";
-
-        /**
-         * BetStatus PlayerNatural.
-         * @member {string} PlayerNatural
-         * @memberof table.BetStatus
-         * @instance
-         */
-        BetStatus.prototype.PlayerNatural = "";
-
-        /**
-         * Creates a new BetStatus instance using the specified properties.
+         * Creates a new StreamingUrl instance using the specified properties.
          * @function create
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
-         * @param {table.IBetStatus=} [properties] Properties to set
-         * @returns {table.BetStatus} BetStatus instance
+         * @param {table.IStreamingUrl=} [properties] Properties to set
+         * @returns {table.StreamingUrl} StreamingUrl instance
          */
-        BetStatus.create = function create(properties) {
-            return new BetStatus(properties);
+        StreamingUrl.create = function create(properties) {
+            return new StreamingUrl(properties);
         };
 
         /**
-         * Encodes the specified BetStatus message. Does not implicitly {@link table.BetStatus.verify|verify} messages.
+         * Encodes the specified StreamingUrl message. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
          * @function encode
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
-         * @param {table.IBetStatus} message BetStatus message or plain object to encode
+         * @param {table.IStreamingUrl} message StreamingUrl message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        BetStatus.encode = function encode(message, writer) {
+        StreamingUrl.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.Banker);
-            if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.Player);
-            if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.Tie);
-            if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.BankerPair);
-            if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.PlayerPair);
-            if (message.BankerNatural != null && Object.hasOwnProperty.call(message, "BankerNatural"))
-                writer.uint32(/* id 6, wireType 2 =*/50).string(message.BankerNatural);
-            if (message.PlayerNatural != null && Object.hasOwnProperty.call(message, "PlayerNatural"))
-                writer.uint32(/* id 7, wireType 2 =*/58).string(message.PlayerNatural);
+            if (message.desktop != null && Object.hasOwnProperty.call(message, "desktop"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.desktop);
+            if (message.moblie != null && Object.hasOwnProperty.call(message, "moblie"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.moblie);
             return writer;
         };
 
         /**
-         * Encodes the specified BetStatus message, length delimited. Does not implicitly {@link table.BetStatus.verify|verify} messages.
+         * Encodes the specified StreamingUrl message, length delimited. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
-         * @param {table.IBetStatus} message BetStatus message or plain object to encode
+         * @param {table.IStreamingUrl} message StreamingUrl message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        BetStatus.encodeDelimited = function encodeDelimited(message, writer) {
+        StreamingUrl.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a BetStatus message from the specified reader or buffer.
+         * Decodes a StreamingUrl message from the specified reader or buffer.
          * @function decode
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {table.BetStatus} BetStatus
+         * @returns {table.StreamingUrl} StreamingUrl
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BetStatus.decode = function decode(reader, length) {
+        StreamingUrl.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.BetStatus();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.StreamingUrl();
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.Banker = reader.string();
+                    message.desktop = reader.string();
                     break;
                 case 2:
-                    message.Player = reader.string();
-                    break;
-                case 3:
-                    message.Tie = reader.string();
-                    break;
-                case 4:
-                    message.BankerPair = reader.string();
-                    break;
-                case 5:
-                    message.PlayerPair = reader.string();
-                    break;
-                case 6:
-                    message.BankerNatural = reader.string();
-                    break;
-                case 7:
-                    message.PlayerNatural = reader.string();
+                    message.moblie = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -10510,136 +12428,96 @@ export const table = $root.table = (() => {
         };
 
         /**
-         * Decodes a BetStatus message from the specified reader or buffer, length delimited.
+         * Decodes a StreamingUrl message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {table.BetStatus} BetStatus
+         * @returns {table.StreamingUrl} StreamingUrl
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BetStatus.decodeDelimited = function decodeDelimited(reader) {
+        StreamingUrl.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a BetStatus message.
+         * Verifies a StreamingUrl message.
          * @function verify
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BetStatus.verify = function verify(message) {
+        StreamingUrl.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.Banker != null && message.hasOwnProperty("Banker"))
-                if (!$util.isString(message.Banker))
-                    return "Banker: string expected";
-            if (message.Player != null && message.hasOwnProperty("Player"))
-                if (!$util.isString(message.Player))
-                    return "Player: string expected";
-            if (message.Tie != null && message.hasOwnProperty("Tie"))
-                if (!$util.isString(message.Tie))
-                    return "Tie: string expected";
-            if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                if (!$util.isString(message.BankerPair))
-                    return "BankerPair: string expected";
-            if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                if (!$util.isString(message.PlayerPair))
-                    return "PlayerPair: string expected";
-            if (message.BankerNatural != null && message.hasOwnProperty("BankerNatural"))
-                if (!$util.isString(message.BankerNatural))
-                    return "BankerNatural: string expected";
-            if (message.PlayerNatural != null && message.hasOwnProperty("PlayerNatural"))
-                if (!$util.isString(message.PlayerNatural))
-                    return "PlayerNatural: string expected";
+            if (message.desktop != null && message.hasOwnProperty("desktop"))
+                if (!$util.isString(message.desktop))
+                    return "desktop: string expected";
+            if (message.moblie != null && message.hasOwnProperty("moblie"))
+                if (!$util.isString(message.moblie))
+                    return "moblie: string expected";
             return null;
         };
 
         /**
-         * Creates a BetStatus message from a plain object. Also converts values to their respective internal types.
+         * Creates a StreamingUrl message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {table.BetStatus} BetStatus
+         * @returns {table.StreamingUrl} StreamingUrl
          */
-        BetStatus.fromObject = function fromObject(object) {
-            if (object instanceof $root.table.BetStatus)
+        StreamingUrl.fromObject = function fromObject(object) {
+            if (object instanceof $root.table.StreamingUrl)
                 return object;
-            let message = new $root.table.BetStatus();
-            if (object.Banker != null)
-                message.Banker = String(object.Banker);
-            if (object.Player != null)
-                message.Player = String(object.Player);
-            if (object.Tie != null)
-                message.Tie = String(object.Tie);
-            if (object.BankerPair != null)
-                message.BankerPair = String(object.BankerPair);
-            if (object.PlayerPair != null)
-                message.PlayerPair = String(object.PlayerPair);
-            if (object.BankerNatural != null)
-                message.BankerNatural = String(object.BankerNatural);
-            if (object.PlayerNatural != null)
-                message.PlayerNatural = String(object.PlayerNatural);
+            let message = new $root.table.StreamingUrl();
+            if (object.desktop != null)
+                message.desktop = String(object.desktop);
+            if (object.moblie != null)
+                message.moblie = String(object.moblie);
             return message;
         };
 
         /**
-         * Creates a plain object from a BetStatus message. Also converts values to other types if specified.
+         * Creates a plain object from a StreamingUrl message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @static
-         * @param {table.BetStatus} message BetStatus
+         * @param {table.StreamingUrl} message StreamingUrl
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        BetStatus.toObject = function toObject(message, options) {
+        StreamingUrl.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             let object = {};
             if (options.defaults) {
-                object.Banker = "";
-                object.Player = "";
-                object.Tie = "";
-                object.BankerPair = "";
-                object.PlayerPair = "";
-                object.BankerNatural = "";
-                object.PlayerNatural = "";
+                object.desktop = "";
+                object.moblie = "";
             }
-            if (message.Banker != null && message.hasOwnProperty("Banker"))
-                object.Banker = message.Banker;
-            if (message.Player != null && message.hasOwnProperty("Player"))
-                object.Player = message.Player;
-            if (message.Tie != null && message.hasOwnProperty("Tie"))
-                object.Tie = message.Tie;
-            if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
-                object.BankerPair = message.BankerPair;
-            if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
-                object.PlayerPair = message.PlayerPair;
-            if (message.BankerNatural != null && message.hasOwnProperty("BankerNatural"))
-                object.BankerNatural = message.BankerNatural;
-            if (message.PlayerNatural != null && message.hasOwnProperty("PlayerNatural"))
-                object.PlayerNatural = message.PlayerNatural;
+            if (message.desktop != null && message.hasOwnProperty("desktop"))
+                object.desktop = message.desktop;
+            if (message.moblie != null && message.hasOwnProperty("moblie"))
+                object.moblie = message.moblie;
             return object;
         };
 
         /**
-         * Converts this BetStatus to JSON.
+         * Converts this StreamingUrl to JSON.
          * @function toJSON
-         * @memberof table.BetStatus
+         * @memberof table.StreamingUrl
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        BetStatus.prototype.toJSON = function toJSON() {
+        StreamingUrl.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return BetStatus;
+        return StreamingUrl;
     })();
 
     return table;
