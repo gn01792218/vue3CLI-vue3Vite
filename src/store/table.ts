@@ -129,7 +129,7 @@ export const state = {
         num:3,
         },
         {
-        point:2000,
+        point:20000,
         ammo:[], //子彈陣列
         num:4,
         },
