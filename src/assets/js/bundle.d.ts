@@ -3603,6 +3603,102 @@ export namespace lobby {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of a BroadcastTotalPlayersOnline. */
+    interface IBroadcastTotalPlayersOnline {
+
+        /** BroadcastTotalPlayersOnline header */
+        header?: (foundation.IHeader|null);
+
+        /** BroadcastTotalPlayersOnline numberOfPlayers */
+        numberOfPlayers?: (number|null);
+    }
+
+    /** Represents a BroadcastTotalPlayersOnline. */
+    class BroadcastTotalPlayersOnline implements IBroadcastTotalPlayersOnline {
+
+        /**
+         * Constructs a new BroadcastTotalPlayersOnline.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: lobby.IBroadcastTotalPlayersOnline);
+
+        /** BroadcastTotalPlayersOnline header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BroadcastTotalPlayersOnline numberOfPlayers. */
+        public numberOfPlayers: number;
+
+        /**
+         * Creates a new BroadcastTotalPlayersOnline instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BroadcastTotalPlayersOnline instance
+         */
+        public static create(properties?: lobby.IBroadcastTotalPlayersOnline): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @param message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: lobby.IBroadcastTotalPlayersOnline, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message, length delimited. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @param message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: lobby.IBroadcastTotalPlayersOnline, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Verifies a BroadcastTotalPlayersOnline message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BroadcastTotalPlayersOnline message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BroadcastTotalPlayersOnline
+         */
+        public static fromObject(object: { [k: string]: any }): lobby.BroadcastTotalPlayersOnline;
+
+        /**
+         * Creates a plain object from a BroadcastTotalPlayersOnline message. Also converts values to other types if specified.
+         * @param message BroadcastTotalPlayersOnline
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: lobby.BroadcastTotalPlayersOnline, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BroadcastTotalPlayersOnline to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace roadmap. */
@@ -4639,7 +4735,8 @@ export namespace route {
         WhiteCard = 27,
         AskRoadCall = 28,
         AskRoadRecall = 29,
-        BroadcastAnnouncement = 30
+        BroadcastAnnouncement = 30,
+        BroadcastTotalPlayersOnline = 31
     }
 }
 
@@ -4653,7 +4750,10 @@ export namespace table {
         betStatus?: (bet.IBetStatus|null);
 
         /** Table streamingUrl */
-        streamingUrl?: (string|null);
+        streamingUrl?: (table.IStreamingUrl|null);
+
+        /** Table betList */
+        betList?: (number[]|null);
     }
 
     /** Represents a Table. */
@@ -4669,7 +4769,10 @@ export namespace table {
         public betStatus?: (bet.IBetStatus|null);
 
         /** Table streamingUrl. */
-        public streamingUrl: string;
+        public streamingUrl?: (table.IStreamingUrl|null);
+
+        /** Table betList. */
+        public betList: number[];
 
         /**
          * Creates a new Table instance using the specified properties.
@@ -4929,6 +5032,102 @@ export namespace table {
 
         /**
          * Converts this TableJoinRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a StreamingUrl. */
+    interface IStreamingUrl {
+
+        /** StreamingUrl desktop */
+        desktop?: (string|null);
+
+        /** StreamingUrl moblie */
+        moblie?: (string|null);
+    }
+
+    /** Represents a StreamingUrl. */
+    class StreamingUrl implements IStreamingUrl {
+
+        /**
+         * Constructs a new StreamingUrl.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: table.IStreamingUrl);
+
+        /** StreamingUrl desktop. */
+        public desktop: string;
+
+        /** StreamingUrl moblie. */
+        public moblie: string;
+
+        /**
+         * Creates a new StreamingUrl instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns StreamingUrl instance
+         */
+        public static create(properties?: table.IStreamingUrl): table.StreamingUrl;
+
+        /**
+         * Encodes the specified StreamingUrl message. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
+         * @param message StreamingUrl message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: table.IStreamingUrl, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified StreamingUrl message, length delimited. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
+         * @param message StreamingUrl message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: table.IStreamingUrl, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.StreamingUrl;
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.StreamingUrl;
+
+        /**
+         * Verifies a StreamingUrl message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a StreamingUrl message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns StreamingUrl
+         */
+        public static fromObject(object: { [k: string]: any }): table.StreamingUrl;
+
+        /**
+         * Creates a plain object from a StreamingUrl message. Also converts values to other types if specified.
+         * @param message StreamingUrl
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: table.StreamingUrl, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this StreamingUrl to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

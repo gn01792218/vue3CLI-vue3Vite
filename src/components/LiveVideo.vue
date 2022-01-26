@@ -42,7 +42,7 @@ export default defineComponent({
     // })
     const flvStream = computed(() => {
       //直播網址
-      return store.state.table.TableJoinRecall.table.streamingUrl;
+      return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
     });
     const gameUuid = computed(() => {
       //遊戲回合的Uuid

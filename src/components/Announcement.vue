@@ -35,6 +35,10 @@
             <p class="announcementTitle">{{ i.title }}</p>
             <div :id="`announcementContent2-${index}`" class="announcementContent"></div>
         </div>
+        <div>
+          <p class="announcementTitle"><br>臨時公告事項:</p>
+          <div v-for="(i,index) in announment" :key="index">{{i.message}}</div>
+        </div>
         <div class="d-flex align-items-center flex-column">
           <div class="form-group form-check d-flex align-items-center">
             <input type="checkbox" class="mr-2" id="announcementCheck2" v-model="announcementData2.checked"/>
@@ -166,6 +170,9 @@ export default defineComponent({
     const show = computed(() => {
       return store.state.lobby.showannouncement;
     });
+    const announment = computed(()=>{ //跑馬燈的公告事項，在這裡當作公告2的臨時工告事項
+      return store.state.announcement.BroadcastAnnouncement.announcements
+    })
     const currentAnnouncement = ref(0)
     watch(announcement1Checked,()=>{
       if(announcement1Checked.value){
@@ -214,6 +221,7 @@ export default defineComponent({
       announcementData3,
       show,
       currentAnnouncement,
+      announment,
       //methods
       closeAnnouncement,
       setCurrentAnnouncement,

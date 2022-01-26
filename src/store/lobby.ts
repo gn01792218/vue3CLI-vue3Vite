@@ -86,7 +86,8 @@ export const state = {
         }
       ]
     },
-  }
+  },
+  BroadcastTotalPlayersOnline:{}  //玩家在線總人數
 };
 export const actions = {}
 
@@ -108,7 +109,10 @@ export const mutations = {
   },
   setAnnouncement3Checked(state:any,checked:boolean){
     state.announcement.announcement3 = checked
-  }
+  },
+  BroadcastTotalPlayersOnline(state:any,payload:any){
+    state.BroadcastTotalPlayersOnline = payload
+  },
 };
 export const getters = {}
 

@@ -44,12 +44,12 @@
             @click="toGametable('B')"
             >B桌</a
           >
-          <!-- <a
+          <a
             class="header-btn"
             :class="{ active: tableNum == 'VIP' }"
             @click="toGametable('VIP')"
             >VIP</a
-          > -->
+          >
           <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
           <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow"
             >離開遊戲</a
@@ -77,7 +77,7 @@
           <i>洗碼值:{{ user.totalValidBets }}</i>
         </div>
         <div class="header-userName col font_yellows" v-if="user">
-          <i>在線:999人</i>
+          <i>在線:{{onlinePlayersNumber}}人</i>
         </div>
       </div>
       <!-- 手機版本漢堡 -->
@@ -119,10 +119,11 @@
 
 <script lang="ts">
 import {computed, defineComponent} from 'vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 import { useRouter} from 'vue-router'
 import { useRoute } from 'vue-router'
 import {useStore} from 'vuex'
-import ProgressBar from '@/components/ProgressBar.vue'
+import { state } from '@/store/lobby'
 export default defineComponent({
     components:{
         ProgressBar,
@@ -144,6 +145,9 @@ export default defineComponent({
         // const validBets = computed(()=>{
         //     return store.state.auth.UserInfo.user.totalValidBets
         // })
+        const onlinePlayersNumber = computed(()=>{
+          return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers
+        })
         const userWallet = computed(()=>{
             return store.state.auth.userWalletFomate
         })
@@ -194,6 +198,7 @@ export default defineComponent({
             roundNum,
             shoe,
             tableNum,
+            onlinePlayersNumber,
             // validBets,
             //methods
             toGametable,

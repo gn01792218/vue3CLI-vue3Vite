@@ -122,6 +122,15 @@
   .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.7);
   }
+  .coin-200000{
+    @include coinSpritePosition(-474,0,0.7);
+  }
+  .coin-200000:hover,.coin-200000-current{
+    @include coinSpritePosition(-474,-65,0.7);
+  }
+  .coin-200000-disable{
+    @include coinSpritePosition(-474,-130,0.7);
+  }
   //路圖圖示區
   //珠仔路
   .BeadPlate-B {
@@ -471,6 +480,15 @@
   .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 1.6);
   }
+  .coin-200000{
+    @include coinSpritePosition(-474,0,1.6);
+  }
+  .coin-200000:hover,.coin-200000-current{
+    @include coinSpritePosition(-474,-65,1.6);
+  }
+  .coin-200000-disable{
+    @include coinSpritePosition(-474,-130,1.6);
+  }
   .betArea-item {
     font-size: 2.5rem;
     flex: 20%;
@@ -777,6 +795,15 @@
   .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 1.2);
   }
+  .coin-200000{
+    @include coinSpritePosition(-474,0,1.2);
+  }
+  .coin-200000:hover,.coin-200000-current{
+    @include coinSpritePosition(-474,-65,1.2);
+  }
+  .coin-200000-disable{
+    @include coinSpritePosition(-474,-130,1.2);
+  }
   .betArea-mobile,
   .betArea-mobile-container {
     height: 120px;
@@ -1059,6 +1086,15 @@
   .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.7);
   }
+  .coin-200000{
+    @include coinSpritePosition(-474,0,0.7);
+  }
+  .coin-200000:hover,.coin-200000-current{
+    @include coinSpritePosition(-474,-65,0.7);
+  }
+  .coin-200000-disable{
+    @include coinSpritePosition(-474,-130,0.7);
+  }
   .gameHistory {
     height: 130px;
   }
@@ -1239,6 +1275,11 @@
     width:390px;
     top:51%;
   }
+  .newsTicker{
+    .bi-exclamation-triangle-fill{
+        font-size: 1rem;
+    }
+}
   .table-img {
     width: 100px;
     height: 100px;
@@ -1369,6 +1410,9 @@
     width:350px;
     top:55%;
   }
+  .header-btn{
+    width:30px;
+  }
   .tableItem {
     padding: 5px !important;
     width: 335px;
@@ -1472,6 +1516,15 @@
   }
   .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.6);
+  }
+  .coin-200000{
+    @include coinSpritePosition(-474,0,0.6);
+  }
+  .coin-200000:hover,.coin-200000-current{
+    @include coinSpritePosition(-474,-65,0.6);
+  }
+  .coin-200000-disable{
+    @include coinSpritePosition(-474,-130,0.6);
   }
 }
 @media screen and (max-width: 320px) {
@@ -1779,6 +1832,15 @@
   }
   .coin-100000-disable {
     @include coinSpritePosition(-395, -130, 0.5);
+  }
+  .coin-200000{
+    @include coinSpritePosition(-474,0,0.5);
+  }
+  .coin-200000:hover,.coin-200000-current{
+    @include coinSpritePosition(-474,-65,0.5);
+  }
+  .coin-200000-disable{
+    @include coinSpritePosition(-474,-130,0.5);
   }
   .card-container {
     margin-top: -35px;

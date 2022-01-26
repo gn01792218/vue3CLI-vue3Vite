@@ -6088,6 +6088,7 @@ export const foundation = $root.foundation = (() => {
                 case 28:
                 case 29:
                 case 30:
+                case 31:
                     break;
                 }
             return null;
@@ -6245,6 +6246,10 @@ export const foundation = $root.foundation = (() => {
             case "BroadcastAnnouncement":
             case 30:
                 message.uri = 30;
+                break;
+            case "BroadcastTotalPlayersOnline":
+            case 31:
+                message.uri = 31;
                 break;
             }
             return message;
@@ -8803,6 +8808,221 @@ export const lobby = $root.lobby = (() => {
         return TableInfo;
     })();
 
+    lobby.BroadcastTotalPlayersOnline = (function() {
+
+        /**
+         * Properties of a BroadcastTotalPlayersOnline.
+         * @memberof lobby
+         * @interface IBroadcastTotalPlayersOnline
+         * @property {foundation.IHeader|null} [header] BroadcastTotalPlayersOnline header
+         * @property {number|null} [numberOfPlayers] BroadcastTotalPlayersOnline numberOfPlayers
+         */
+
+        /**
+         * Constructs a new BroadcastTotalPlayersOnline.
+         * @memberof lobby
+         * @classdesc Represents a BroadcastTotalPlayersOnline.
+         * @implements IBroadcastTotalPlayersOnline
+         * @constructor
+         * @param {lobby.IBroadcastTotalPlayersOnline=} [properties] Properties to set
+         */
+        function BroadcastTotalPlayersOnline(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastTotalPlayersOnline header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @instance
+         */
+        BroadcastTotalPlayersOnline.prototype.header = null;
+
+        /**
+         * BroadcastTotalPlayersOnline numberOfPlayers.
+         * @member {number} numberOfPlayers
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @instance
+         */
+        BroadcastTotalPlayersOnline.prototype.numberOfPlayers = 0;
+
+        /**
+         * Creates a new BroadcastTotalPlayersOnline instance using the specified properties.
+         * @function create
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.IBroadcastTotalPlayersOnline=} [properties] Properties to set
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline instance
+         */
+        BroadcastTotalPlayersOnline.create = function create(properties) {
+            return new BroadcastTotalPlayersOnline(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @function encode
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.IBroadcastTotalPlayersOnline} message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastTotalPlayersOnline.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.numberOfPlayers != null && Object.hasOwnProperty.call(message, "numberOfPlayers"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.numberOfPlayers);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastTotalPlayersOnline message, length delimited. Does not implicitly {@link lobby.BroadcastTotalPlayersOnline.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.IBroadcastTotalPlayersOnline} message BroadcastTotalPlayersOnline message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastTotalPlayersOnline.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer.
+         * @function decode
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastTotalPlayersOnline.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.lobby.BroadcastTotalPlayersOnline();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.numberOfPlayers = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastTotalPlayersOnline message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastTotalPlayersOnline.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastTotalPlayersOnline message.
+         * @function verify
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastTotalPlayersOnline.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.numberOfPlayers != null && message.hasOwnProperty("numberOfPlayers"))
+                if (!$util.isInteger(message.numberOfPlayers))
+                    return "numberOfPlayers: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastTotalPlayersOnline message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {lobby.BroadcastTotalPlayersOnline} BroadcastTotalPlayersOnline
+         */
+        BroadcastTotalPlayersOnline.fromObject = function fromObject(object) {
+            if (object instanceof $root.lobby.BroadcastTotalPlayersOnline)
+                return object;
+            let message = new $root.lobby.BroadcastTotalPlayersOnline();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".lobby.BroadcastTotalPlayersOnline.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.numberOfPlayers != null)
+                message.numberOfPlayers = object.numberOfPlayers | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastTotalPlayersOnline message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @static
+         * @param {lobby.BroadcastTotalPlayersOnline} message BroadcastTotalPlayersOnline
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastTotalPlayersOnline.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.numberOfPlayers = 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.numberOfPlayers != null && message.hasOwnProperty("numberOfPlayers"))
+                object.numberOfPlayers = message.numberOfPlayers;
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastTotalPlayersOnline to JSON.
+         * @function toJSON
+         * @memberof lobby.BroadcastTotalPlayersOnline
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastTotalPlayersOnline.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastTotalPlayersOnline;
+    })();
+
     return lobby;
 })();
 
@@ -11333,6 +11553,7 @@ export const route = $root.route = (() => {
      * @property {number} AskRoadCall=28 AskRoadCall value
      * @property {number} AskRoadRecall=29 AskRoadRecall value
      * @property {number} BroadcastAnnouncement=30 BroadcastAnnouncement value
+     * @property {number} BroadcastTotalPlayersOnline=31 BroadcastTotalPlayersOnline value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -11371,6 +11592,7 @@ export const route = $root.route = (() => {
         values[valuesById[28] = "AskRoadCall"] = 28;
         values[valuesById[29] = "AskRoadRecall"] = 29;
         values[valuesById[30] = "BroadcastAnnouncement"] = 30;
+        values[valuesById[31] = "BroadcastTotalPlayersOnline"] = 31;
         return values;
     })();
 
@@ -11393,7 +11615,8 @@ export const table = $root.table = (() => {
          * @memberof table
          * @interface ITable
          * @property {bet.IBetStatus|null} [betStatus] Table betStatus
-         * @property {string|null} [streamingUrl] Table streamingUrl
+         * @property {table.IStreamingUrl|null} [streamingUrl] Table streamingUrl
+         * @property {Array.<number>|null} [betList] Table betList
          */
 
         /**
@@ -11405,6 +11628,7 @@ export const table = $root.table = (() => {
          * @param {table.ITable=} [properties] Properties to set
          */
         function Table(properties) {
+            this.betList = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -11421,11 +11645,19 @@ export const table = $root.table = (() => {
 
         /**
          * Table streamingUrl.
-         * @member {string} streamingUrl
+         * @member {table.IStreamingUrl|null|undefined} streamingUrl
          * @memberof table.Table
          * @instance
          */
-        Table.prototype.streamingUrl = "";
+        Table.prototype.streamingUrl = null;
+
+        /**
+         * Table betList.
+         * @member {Array.<number>} betList
+         * @memberof table.Table
+         * @instance
+         */
+        Table.prototype.betList = $util.emptyArray;
 
         /**
          * Creates a new Table instance using the specified properties.
@@ -11454,7 +11686,13 @@ export const table = $root.table = (() => {
             if (message.betStatus != null && Object.hasOwnProperty.call(message, "betStatus"))
                 $root.bet.BetStatus.encode(message.betStatus, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.streamingUrl != null && Object.hasOwnProperty.call(message, "streamingUrl"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.streamingUrl);
+                $root.table.StreamingUrl.encode(message.streamingUrl, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.betList != null && message.betList.length) {
+                writer.uint32(/* id 3, wireType 2 =*/26).fork();
+                for (let i = 0; i < message.betList.length; ++i)
+                    writer.double(message.betList[i]);
+                writer.ldelim();
+            }
             return writer;
         };
 
@@ -11493,7 +11731,17 @@ export const table = $root.table = (() => {
                     message.betStatus = $root.bet.BetStatus.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.streamingUrl = reader.string();
+                    message.streamingUrl = $root.table.StreamingUrl.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    if (!(message.betList && message.betList.length))
+                        message.betList = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.betList.push(reader.double());
+                    } else
+                        message.betList.push(reader.double());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -11535,9 +11783,18 @@ export const table = $root.table = (() => {
                 if (error)
                     return "betStatus." + error;
             }
-            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
-                if (!$util.isString(message.streamingUrl))
-                    return "streamingUrl: string expected";
+            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl")) {
+                let error = $root.table.StreamingUrl.verify(message.streamingUrl);
+                if (error)
+                    return "streamingUrl." + error;
+            }
+            if (message.betList != null && message.hasOwnProperty("betList")) {
+                if (!Array.isArray(message.betList))
+                    return "betList: array expected";
+                for (let i = 0; i < message.betList.length; ++i)
+                    if (typeof message.betList[i] !== "number")
+                        return "betList: number[] expected";
+            }
             return null;
         };
 
@@ -11558,8 +11815,18 @@ export const table = $root.table = (() => {
                     throw TypeError(".table.Table.betStatus: object expected");
                 message.betStatus = $root.bet.BetStatus.fromObject(object.betStatus);
             }
-            if (object.streamingUrl != null)
-                message.streamingUrl = String(object.streamingUrl);
+            if (object.streamingUrl != null) {
+                if (typeof object.streamingUrl !== "object")
+                    throw TypeError(".table.Table.streamingUrl: object expected");
+                message.streamingUrl = $root.table.StreamingUrl.fromObject(object.streamingUrl);
+            }
+            if (object.betList) {
+                if (!Array.isArray(object.betList))
+                    throw TypeError(".table.Table.betList: array expected");
+                message.betList = [];
+                for (let i = 0; i < object.betList.length; ++i)
+                    message.betList[i] = Number(object.betList[i]);
+            }
             return message;
         };
 
@@ -11576,14 +11843,21 @@ export const table = $root.table = (() => {
             if (!options)
                 options = {};
             let object = {};
+            if (options.arrays || options.defaults)
+                object.betList = [];
             if (options.defaults) {
                 object.betStatus = null;
-                object.streamingUrl = "";
+                object.streamingUrl = null;
             }
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
             if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
-                object.streamingUrl = message.streamingUrl;
+                object.streamingUrl = $root.table.StreamingUrl.toObject(message.streamingUrl, options);
+            if (message.betList && message.betList.length) {
+                object.betList = [];
+                for (let j = 0; j < message.betList.length; ++j)
+                    object.betList[j] = options.json && !isFinite(message.betList[j]) ? String(message.betList[j]) : message.betList[j];
+            }
             return object;
         };
 
@@ -12034,6 +12308,216 @@ export const table = $root.table = (() => {
         };
 
         return TableJoinRecall;
+    })();
+
+    table.StreamingUrl = (function() {
+
+        /**
+         * Properties of a StreamingUrl.
+         * @memberof table
+         * @interface IStreamingUrl
+         * @property {string|null} [desktop] StreamingUrl desktop
+         * @property {string|null} [moblie] StreamingUrl moblie
+         */
+
+        /**
+         * Constructs a new StreamingUrl.
+         * @memberof table
+         * @classdesc Represents a StreamingUrl.
+         * @implements IStreamingUrl
+         * @constructor
+         * @param {table.IStreamingUrl=} [properties] Properties to set
+         */
+        function StreamingUrl(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * StreamingUrl desktop.
+         * @member {string} desktop
+         * @memberof table.StreamingUrl
+         * @instance
+         */
+        StreamingUrl.prototype.desktop = "";
+
+        /**
+         * StreamingUrl moblie.
+         * @member {string} moblie
+         * @memberof table.StreamingUrl
+         * @instance
+         */
+        StreamingUrl.prototype.moblie = "";
+
+        /**
+         * Creates a new StreamingUrl instance using the specified properties.
+         * @function create
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {table.IStreamingUrl=} [properties] Properties to set
+         * @returns {table.StreamingUrl} StreamingUrl instance
+         */
+        StreamingUrl.create = function create(properties) {
+            return new StreamingUrl(properties);
+        };
+
+        /**
+         * Encodes the specified StreamingUrl message. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
+         * @function encode
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {table.IStreamingUrl} message StreamingUrl message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        StreamingUrl.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.desktop != null && Object.hasOwnProperty.call(message, "desktop"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.desktop);
+            if (message.moblie != null && Object.hasOwnProperty.call(message, "moblie"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.moblie);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified StreamingUrl message, length delimited. Does not implicitly {@link table.StreamingUrl.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {table.IStreamingUrl} message StreamingUrl message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        StreamingUrl.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer.
+         * @function decode
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {table.StreamingUrl} StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        StreamingUrl.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.StreamingUrl();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.desktop = reader.string();
+                    break;
+                case 2:
+                    message.moblie = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {table.StreamingUrl} StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        StreamingUrl.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a StreamingUrl message.
+         * @function verify
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        StreamingUrl.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.desktop != null && message.hasOwnProperty("desktop"))
+                if (!$util.isString(message.desktop))
+                    return "desktop: string expected";
+            if (message.moblie != null && message.hasOwnProperty("moblie"))
+                if (!$util.isString(message.moblie))
+                    return "moblie: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a StreamingUrl message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {table.StreamingUrl} StreamingUrl
+         */
+        StreamingUrl.fromObject = function fromObject(object) {
+            if (object instanceof $root.table.StreamingUrl)
+                return object;
+            let message = new $root.table.StreamingUrl();
+            if (object.desktop != null)
+                message.desktop = String(object.desktop);
+            if (object.moblie != null)
+                message.moblie = String(object.moblie);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a StreamingUrl message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof table.StreamingUrl
+         * @static
+         * @param {table.StreamingUrl} message StreamingUrl
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        StreamingUrl.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.desktop = "";
+                object.moblie = "";
+            }
+            if (message.desktop != null && message.hasOwnProperty("desktop"))
+                object.desktop = message.desktop;
+            if (message.moblie != null && message.hasOwnProperty("moblie"))
+                object.moblie = message.moblie;
+            return object;
+        };
+
+        /**
+         * Converts this StreamingUrl to JSON.
+         * @function toJSON
+         * @memberof table.StreamingUrl
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        StreamingUrl.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return StreamingUrl;
     })();
 
     return table;

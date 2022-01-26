@@ -28,6 +28,7 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.1.9",
     "@types/jquery": "^3.5.13",
     "@vue/cli-plugin-babel": "^4.5.15",
     "@vue/cli-plugin-router": "~4.5.0",

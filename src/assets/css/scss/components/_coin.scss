@@ -85,6 +85,18 @@
 	@extend %coin;
 	@include coinSpritePosition(-395,-130,0.9);
 }
+.coin-200000{
+	@extend %coin;
+	@include coinSpritePosition(-553,0,0.9);
+}
+.coin-200000:hover,.coin-200000-current{
+	@extend %coin;
+	@include coinSpritePosition(-553,-65,0.9);
+}
+.coin-200000-disable{
+	@extend %coin;
+	@include coinSpritePosition(-553,-130,0.9);
+}
 //籌碼子彈
 .ammo1{
 	left:3%;

@@ -153,16 +153,15 @@
 
 <script lang="ts">
 import {computed, defineComponent, onMounted, reactive, ref, watch} from 'vue'
-import {gsap,Power4} from 'gsap'
-import {sendBetCall,sendBetResetCall,sendAskRoadCall,sendBetConfirmCall} from '../socketApi'
-import {useStore} from 'vuex'
-import {useRoute } from 'vue-router'
 import GameResult from '@/components/GameResult.vue'
 import GameresultSound from '@/components/GameResultSound.vue'
 import GameResultLoading from '@/components/GameResultLoading.vue'
 import LightBox from '@/components/LightBox.vue'
+import {gsap,Power4} from 'gsap'
+import {sendBetCall,sendBetResetCall,sendAskRoadCall,sendBetConfirmCall} from '../socketApi'
+import {useStore} from 'vuex'
+import {useRoute } from 'vue-router'
 import proto from '../assets/js/bundle'
-import { configure } from 'protobufjs'
 interface currentCoint {
     coinElement:any | null , //選擇的籌碼div元素
     num:number | null,  //儲存點到的是第幾個
@@ -200,51 +199,23 @@ export default defineComponent({
             setDefaultCoin()
             //初始化注區的最大最小檯紅(給手機顯示用的)
             getBetLimit(tableInfoData.value)
+            //設置取消紐的顏色
             setCancleBetBtnColor()
             // setMinBetCoinUnusable()
         })
         const route = useRoute()
-        const tableNum = computed(()=>{
+        const tableNum = computed(()=>{  //當前桌號
             return route.params.tableId
         })
-        watch(tableNum,()=>{
-            //清空注區的動畫
-            reSetBetAreaAnimation()
-            resetGame()
-            setDefaultCoin()
-            //取得注區的最大最小檯紅(給手機顯示用的)
-            getBetLimit(tableInfoData.value)
-            // if(tableNum.value=='A'){
-            //     let arr = [{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3},{betArea:1,betIndex:3}]
-            //     arr.forEach((i,index)=>{
-            //         testBetCallArray(i)
-            //         let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
-            //         let ul = betArea.children[2]
-            //         let coin = ul.children[index] as HTMLElement
-            //         console.log('1.先計算位置',ul.children[index])
-            //         generateCoinAnimate(coin)
-            //     })
-            // }else if(tableNum.value=='B'){
-            //     let arr = [{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2},{betArea:1,betIndex:2}]
-            //     arr.forEach((i,index)=>{
-            //         testBetCallArray(i)
-            //         let betArea = document.querySelector(`.betArea-item${i.betArea}`) as HTMLElement
-            //         let ul = betArea.children[2]
-            //         let coin = ul.children[index] as HTMLElement
-            //         console.log('1.先計算位置',ul.children[index])
-            //         generateCoinAnimate(coin)
-            //     })
-            // }
-        })
-        //vuex
+        //vuex資料
         const store = useStore();
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
-        const betStatus = computed(()=>{  //各注區下注狀況
+        const betStatus = computed(()=>{  //玩家在各注區的下注額
             return store.state.bet.betstatus
         })
-        const broadcastBetstatus = computed(()=>{
+        const broadcastBetstatus = computed(()=>{ //此桌所有玩家的下注額
             return store.state.bet.BroadcastBetstatus
         })
         const betCallArray = computed(()=>{  //換桌時，server會回傳此桌的歷史下注資訊(哪個注區下了多少某種籌碼)
@@ -253,35 +224,35 @@ export default defineComponent({
         const betResult = computed(()=>{ //下注成功否的狀態
             return store.state.bet.BetRecall.result
         })
-        const betResetresult = computed(()=>{
+        const betResetresult = computed(()=>{ //取消下注成功與否
             return store.state.bet.BetResetRecall.result
         })
-        const betConfirmRecall = computed(()=>{
+        const betConfirmRecall = computed(()=>{ //確認下注成功與否
             return store.state.bet.BetConfirmRecall
         })
-        const betError = computed(()=>{
+        const betError = computed(()=>{ //錯誤訊息
             return store.state.bet.BetRecall.betError
         })
         const roundUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
         })
-        const gameEndUuid = computed(()=>{
-            return store.state.game.gameEndUuid
-        })
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-        const gameStatus = computed(()=>{
+        const gameStatus = computed(()=>{ //遊戲狀態 1.下注中 2.開牌中 3.等待中
             return store.state.game.GameStatus.status
         })
-        const betInfo = computed(()=>{
+        const betInfo = computed(()=>{  //莊家閒家等輸贏次數統計數字
             return store.state.game.gameResultCount
         })
-        const total = computed(()=>{
+        const total = computed(()=>{ //玩家此局的總下注額
             return store.state.bet.totalBets
         })
         const gameEnd = computed(()=>{
             return store.state.dealer.end
+        })
+        const gameEndUuid = computed(()=>{ //
+            return store.state.game.gameEndUuid
         })
         const askRoadRecall = computed(()=>{
           return store.state.roadmap.askRoadReCall
@@ -302,6 +273,14 @@ export default defineComponent({
         let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
         const currentAskRoadSide = ref(0)
         //監聽
+        watch(tableNum,()=>{  //換桌
+            //重置遊戲相關
+            reSetBetAreaAnimation()
+            resetGame()
+            setDefaultCoin()
+            //取得注區的最大最小檯紅(給手機顯示用的)
+            getBetLimit(tableInfoData.value)
+        })
         watch(betConfirmRecall,()=>{
              confirmBet()
         })
@@ -542,6 +521,7 @@ export default defineComponent({
             }
         }
         function getBetLimit (tableBetIndoData:any){
+            console.log(tableBetIndoData)
             //每次都把最大最小基準值恢復，再比大小
             minBetLimit.value = 999999999
             maxBetLimit.value = -1
@@ -570,61 +550,40 @@ export default defineComponent({
             currentCoint.point = coinList.value[0].point
             currentCoint.num = 0
         }
-        function setMinBetCoinUsable(){
-            //抓取前三個coin元素改變其外觀
-            let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
-            let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
-            let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
-            defaultCoin1.classList.replace('coin-menu1-disable','coin-menu1')
-            defaultCoin2.classList.replace('coin-menu2-disable','coin-menu2')
-            defaultCoin3.classList.replace('coin-menu3-disable','coin-menu3')
-            canUseSmallCoin.value = true
-            // console.log('可否使用小籌碼',canUseSmallCoin.value)
-        }
-        function setMinBetCoinUnusable(){
-            let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
-            let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
-            let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
-            defaultCoin1.classList.remove('coin-menu1-current')
-            defaultCoin2.classList.remove('coin-menu2-current')
-            defaultCoin3.classList.remove('coin-menu3-current')
-            defaultCoin1.classList.remove('coin-menu1')
-            defaultCoin2.classList.remove('coin-menu2')
-            defaultCoin3.classList.remove('coin-menu3')
-            defaultCoin1.classList.add('coin-menu1-disable')
-            defaultCoin2.classList.add('coin-menu2-disable')
-            defaultCoin3.classList.add('coin-menu3-disable')
-            canUseSmallCoin.value = false
-            // console.log(defaultCoin1.classList,defaultCoin2.classList,defaultCoin3.classList)
-            // console.log('可否使用小籌碼',canUseSmallCoin.value)
-        }
+        // function setMinBetCoinUsable(){
+        //     //抓取前三個coin元素改變其外觀
+        //     let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
+        //     let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
+        //     let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
+        //     defaultCoin1.classList.replace('coin-menu1-disable','coin-menu1')
+        //     defaultCoin2.classList.replace('coin-menu2-disable','coin-menu2')
+        //     defaultCoin3.classList.replace('coin-menu3-disable','coin-menu3')
+        //     canUseSmallCoin.value = true
+        //     // console.log('可否使用小籌碼',canUseSmallCoin.value)
+        // }
+        // function setMinBetCoinUnusable(){
+        //     let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
+        //     let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
+        //     let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
+        //     defaultCoin1.classList.remove('coin-menu1-current')
+        //     defaultCoin2.classList.remove('coin-menu2-current')
+        //     defaultCoin3.classList.remove('coin-menu3-current')
+        //     defaultCoin1.classList.remove('coin-menu1')
+        //     defaultCoin2.classList.remove('coin-menu2')
+        //     defaultCoin3.classList.remove('coin-menu3')
+        //     defaultCoin1.classList.add('coin-menu1-disable')
+        //     defaultCoin2.classList.add('coin-menu2-disable')
+        //     defaultCoin3.classList.add('coin-menu3-disable')
+        //     canUseSmallCoin.value = false
+        //     // console.log(defaultCoin1.classList,defaultCoin2.classList,defaultCoin3.classList)
+        //     // console.log('可否使用小籌碼',canUseSmallCoin.value)
+        // }
         function chooseCoint (index:number,e:MouseEvent) {
             currentCoint.coinElement = e.target; //得到該元素
             currentCoint.x = e.x;  //設置籌碼起始座標點
             currentCoint.y = e.y;
             currentCoint.num = index;
             currentCoint.point = coinList.value[index].point
-            console.log('選擇的point',currentCoint.point)
-            //超過最小下注額才可以使用前三個籌碼
-            // if(canUseSmallCoin.value){
-            //     console.log("可以選取前三個了",total.value)
-            //     currentCoint.coinElement = e.target; //得到該元素
-            //     currentCoint.x = e.x;  //設置籌碼起始座標點
-            //     currentCoint.y = e.y;
-            //     currentCoint.num = index;
-            //     currentCoint.point = coinList[index].point
-            // }else{
-            //     //0 1 2不能選，只能選後面的籌碼
-            //      console.log("不能選前三個")
-            //     if(index!==0 && index!==1 && index!==2){
-            //        console.log('可以選後面的')
-            //         currentCoint.coinElement = e.target; //得到該元素
-            //         currentCoint.x = e.x;  //設置籌碼起始座標點
-            //         currentCoint.y = e.y;
-            //         currentCoint.num = index;
-            //         currentCoint.point = coinList[index].point
-            //     }
-            // }
         }
         function betErrorAnimation (e:HTMLElement) {
             gsap

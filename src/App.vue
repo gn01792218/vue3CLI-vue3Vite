@@ -8,17 +8,16 @@
         <Footer />
       </div>
     </div>
-    
     <Loading />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent ,onMounted ,computed , watch } from "vue";
 import Announcement from '@/components/Announcement.vue'
-import Header from "./views/Header.vue";
-import Footer from "./views/Footer.vue";
-import BaccaratGame from "./views/BaccaratGame.vue";
 import Loading from "@/components/Loading.vue";
+import Header from "@/views/Header.vue";
+import Footer from "@/views/Footer.vue";
+import BaccaratGame from "@/views/BaccaratGame.vue";
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
 import Cookies from "js-cookie";
@@ -31,24 +30,13 @@ export default defineComponent({
     Announcement,
   },
   setup() {
-    createSocket();
+    createSocket(); //創建websocket 連線
     const store = useStore();
     const announcementShow = computed(()=>{
       return store.state.lobby.showannouncement
     })
-    // window.onbeforeunload = (e: any) => {
-    //   alert()
-    // };
-    if (Cookies.get("userToken")) {
-      // console.log("有cookie，抓cookie")
-      // sendLogin({
-      //     uri: "LoginCall",
-      //     token: Cookies.get('userToken'),
-      // })
-    }
     onMounted(()=>{
-      store.commit('lobby/setShowannouncement',true)
-      // store.commit('lobby/setShowannouncement',process.env.VUE_STORE_ANNOUNCEMENT_SHOW)
+      store.commit('lobby/setShowannouncement',true)  //顯示公告同意書
     })
     return{
       //data

@@ -29,17 +29,15 @@
 </template>
 <script lang="ts">
 import {computed, defineComponent,ref} from 'vue'
-import {useStore} from 'vuex'
-
-import screenfull from 'screenfull'
 import UserBetInfo from '@/components/UserBetInfo.vue'
 import Date from '@/components/Date.vue'
+import {useStore} from 'vuex'
+import screenfull from 'screenfull'
 export default defineComponent({
     components:{
         UserBetInfo,Date
     },
     setup(){
-        
         //vuex
         const store = useStore()
         //computed
@@ -52,10 +50,10 @@ export default defineComponent({
         const userWallet = computed(()=>{
             return store.state.auth.userWalletFomate
         })
-        const audio = computed<HTMLAudioElement>(()=>{
+        const audio = computed<HTMLAudioElement>(()=>{ //音效的實體
             return document.querySelector('#gameresultSound') as HTMLAudioElement
         })
-        const npvideo = computed(()=>{
+        const npvideo = computed(()=>{  //直播物件的實體
             return store.state.video.video
         })
         const flvStream = computed(()=>{ //直播網址
@@ -69,11 +67,12 @@ export default defineComponent({
                 screenfull.toggle()
             }
         }
-        //靜音
+        //靜音 / 打開 音效
         function mutedSound () {
             audio.value.muted = !audio.value.muted
             isAudioMuted.value = !isAudioMuted.value
         }
+        //播放/暫停直播
         function playVideo(){
             isVideoPlayed.value = !isVideoPlayed.value
             if(isVideoPlayed.value){ //播放直播
@@ -83,9 +82,9 @@ export default defineComponent({
                 npvideo.value.clearView()  //清除上一個視頻留下的東西
             }
         }
-        function showAnnouncement(){
-            store.commit('lobby/setShowannouncement',!announcementShow.value)
-        }
+        // function showAnnouncement(){ //控制公告同意書顯示與否
+        //     store.commit('lobby/setShowannouncement',!announcementShow.value)
+        // }
         return {
             //data
             user,
@@ -97,7 +96,7 @@ export default defineComponent({
             fullScreen,
             mutedSound,
             playVideo,
-            showAnnouncement,
+            // showAnnouncement,
         }
     }
 })
