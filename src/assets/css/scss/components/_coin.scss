@@ -73,6 +73,18 @@
 	@extend %coin;
 	@include coinSpritePosition(-316,-130,0.9);
 }
+.coin-20000{
+	@extend %coin;
+	@include coinSpritePosition(-632,0,0.9);
+}
+.coin-20000:hover,.coin-10000-current{
+	@extend %coin;
+	@include coinSpritePosition(-632,-65,0.9);
+}
+.coin-20000-disable{
+	@extend %coin;
+	@include coinSpritePosition(-632,-130,0.9);
+}
 .coin-100000{
 	@extend %coin;
 	@include coinSpritePosition(-395,0,0.9);

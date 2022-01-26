@@ -112,6 +112,15 @@
   .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.7);
   }
+  .coin-20000{
+    @include coinSpritePosition(-632,0,0.7);
+  }
+  .coin-20000:hover,.coin-10000-current{
+    @include coinSpritePosition(-632,-65,0.7);
+  }
+  .coin-20000-disable{
+    @include coinSpritePosition(-632,-130,0.7);
+  }
   .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.7);
   }
@@ -296,8 +305,6 @@
     @include tieNumberPosition(-700, 0, 0.15);
   }
 }
-@media screen and (max-width: 1140px) {
-}
 @media screen and (min-width: 1025px) {
   .header-bottom-mobil {
     display: none !important;
@@ -469,6 +476,15 @@
   }
   .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 1.6);
+  }
+  .coin-20000{
+    @include coinSpritePosition(-632,0,1.6);
+  }
+  .coin-20000:hover,.coin-10000-current{
+    @include coinSpritePosition(-632,-65,1.6);
+  }
+  .coin-20000-disable{
+    @include coinSpritePosition(-632,-130,1.6);
   }
   .coin-100000 {
     @include coinSpritePosition(-395, 0, 1.6);
@@ -785,6 +801,15 @@
   .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 1.2);
   }
+  .coin-20000{
+    @include coinSpritePosition(-632,0,1.2);
+  }
+  .coin-20000:hover,.coin-10000-current{
+    @include coinSpritePosition(-632,-65,1.2);
+  }
+  .coin-20000-disable{
+    @include coinSpritePosition(-632,-130,1.2);
+  }
   .coin-100000 {
     @include coinSpritePosition(-395, 0, 1.2);
   }
@@ -1075,6 +1100,15 @@
   }
   .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.7);
+  }
+  .coin-20000{
+    @include coinSpritePosition(-632,0,0.7);
+  }
+  .coin-20000:hover,.coin-10000-current{
+    @include coinSpritePosition(-632,-65,0.7);
+  }
+  .coin-20000-disable{
+    @include coinSpritePosition(-632,-130,0.7);
   }
   .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.7);
@@ -1507,6 +1541,15 @@
   .coin-10000-disable {
     @include coinSpritePosition(-316, -130, 0.6);
   }
+  .coin-20000{
+    @include coinSpritePosition(-632,0,0.6);
+  }
+  .coin-20000:hover,.coin-10000-current{
+    @include coinSpritePosition(-632,-65,0.6);
+  }
+  .coin-20000-disable{
+    @include coinSpritePosition(-632,-130,0.6);
+  }
   .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.6);
   }
@@ -1825,6 +1868,15 @@
   }
   .coin-100000 {
     @include coinSpritePosition(-395, 0, 0.5);
+  }
+  .coin-20000{
+    @include coinSpritePosition(-632,0,0.5);
+  }
+  .coin-20000:hover,.coin-10000-current{
+    @include coinSpritePosition(-632,-65,0.5);
+  }
+  .coin-20000-disable{
+    @include coinSpritePosition(-632,-130,0.5);
   }
   .coin-100000:hover,
   .coin-100000-current {
