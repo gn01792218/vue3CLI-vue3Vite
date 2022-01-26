@@ -35,7 +35,7 @@ export const state = {
     },
     VIP:{
       tableNum:'VIP',
-      onLine:false,
+      onLine:true,
       img:require('../images/vip.png'),
       playerMin:20000,
       playerMax:800000,

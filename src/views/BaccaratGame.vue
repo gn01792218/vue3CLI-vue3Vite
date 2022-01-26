@@ -63,12 +63,13 @@ export default defineComponent({
       return store.state.lobby.LobbyInfo.tables
     })
     //測試資料
-    const tableRecall = reactive(computed(()=>{  //桌號uuid
-      return store.state.table.TableJoinRecall
-    }))
-    watch(tableRecall,()=>{
-      // console.log("回應上桌資料:",tableRecall.value)
-    })
+    // const tableRecall = reactive(computed(()=>{  //桌號uuid
+    //   return store.state.table.TableJoinRecall
+    // }))
+    //測試用log
+    // watch(tableRecall,()=>{
+    //   // console.log("回應上桌資料:",tableRecall.value)
+    // })
     //先送一次tableJoinCall
     onMounted(async()=>{
       // console.log("創建遊戲桌",tables.value)
@@ -76,60 +77,57 @@ export default defineComponent({
         alert('請關閉遊戲，重新登入遊戲')
       }
       let table = await tables
-      //  if(tables.value){
         tableJoin()
-      // }
     })
     //監聽
     // 2.發送換桌請求
-    watch(tables,()=>{ //偵測到大廳給的桌子列表
-      console.log("有tables")
-      tableJoin()
-    })
+    // watch(tables,()=>{ //偵測到大廳給的桌子列表
+    //   console.log("有tables")
+    //   tableJoin()
+    // })
     watch(tableNum,()=>{ //偵測到換桌
-    console.log('偵測到換桌')
+    // console.log('偵測到換桌')
       store.commit('table/setCurrentTable',tableNum.value)
       tableJoin()
     })
     window.addEventListener('reConnect',()=>{ //重新連接的時候
-      console.log('重連換桌')
+      // console.log('重連換桌')
       tableJoin ()
     }) 
     function tableJoin (){ //上桌請求
        switch(tableNum.value){
         case 'A':
-          for(let i = 0 ; i<tables.value.length ; i++){
-            if(tables.value[i].name=="A桌"){
+          tables.value.find((i:any)=>{
+            if(i.name=="A桌"){
               sendTableJoinCall({
-                uuid:tables.value[i].uuid
+                uuid:i.uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
-              break
+              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
             }
-          }
+            return i.name == "A桌"
+          })
           break
         case 'B':
-           for(let i = 0 ; i<tables.value.length  ; i++){
-            if(tables.value[i].name=="B桌"){
-              console.log(tables.value[i].name)
+          tables.value.find((i:any)=>{
+            if(i.name=="B桌"){
               sendTableJoinCall({
-                uuid:tables.value[i].uuid
+                uuid:i.uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
-              break
+              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
             }
-          }
+            return i.name == "B桌"
+          })
           break
         case 'VIP':
-          for(let i = 0 ; i<tables.value.length  ; i++){
-            if(tables.value[i].name=="VIP"){
+          tables.value.find((i:any)=>{
+            if(i.name=="VIP"){
               sendTableJoinCall({
-                uuid:tables.value[i].uuid
+                uuid:i.uuid
               })
-              console.log(`請求${tableNum.value}桌`,"桌號:"+tables.value[i].name,"uuid:"+tables.value[i].uuid,"Loby資訊:",tables.value)
-              break
+              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
             }
-          }
+            return i.name == "VIP"
+          })
           break
       }
     }

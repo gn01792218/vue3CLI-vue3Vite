@@ -194,6 +194,7 @@ export default defineComponent({
         GameResult,GameresultSound,GameResultLoading,LightBox,
     },
     setup(){
+        //初始化
         onMounted(()=>{
             //初始化籌碼
             setDefaultCoin()
@@ -203,6 +204,7 @@ export default defineComponent({
             setCancleBetBtnColor()
             // setMinBetCoinUnusable()
         })
+        //路由
         const route = useRoute()
         const tableNum = computed(()=>{  //當前桌號
             return route.params.tableId
@@ -248,178 +250,50 @@ export default defineComponent({
         const total = computed(()=>{ //玩家此局的總下注額
             return store.state.bet.totalBets
         })
-        const gameEnd = computed(()=>{
+        const gameEnd = computed(()=>{  //換靴
             return store.state.dealer.end
         })
-        const gameEndUuid = computed(()=>{ //
+        const gameEndUuid = computed(()=>{ //下注結束
             return store.state.game.gameEndUuid
         })
-        const askRoadRecall = computed(()=>{
+        const askRoadRecall = computed(()=>{ //問路recall
           return store.state.roadmap.askRoadReCall
         })
-        const roundAskBanker = computed(()=>{
+        const roundAskBanker = computed(()=>{ //回合自動問莊的recall
             return store.state.game.askBankByRoundStart
         }) 
-        const roundAskPlayer = computed(()=>{
+        const roundAskPlayer = computed(()=>{ //回合自動問閒的recall
             return store.state.game.askPlayerByRoundStart
         })
-        //基本資料
-        const canBet = ref(true)
-        const isConfirmed = computed(()=>{
+        const isConfirmed = computed(()=>{ //確認鈕狀態
             return store.state.bet.isConfirmed
         })
-        const canUseSmallCoin = ref(false)
-        const betCallTemp = ref({}) //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
-        let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
-        const currentAskRoadSide = ref(0)
-        //監聽
-        watch(tableNum,()=>{  //換桌
-            //重置遊戲相關
-            reSetBetAreaAnimation()
-            resetGame()
-            setDefaultCoin()
-            //取得注區的最大最小檯紅(給手機顯示用的)
-            getBetLimit(tableInfoData.value)
-        })
-        watch(betConfirmRecall,()=>{
-             confirmBet()
-        })
-        watch(isConfirmed,()=>{ //根據是否按過確認鍵，更換相關顏色
-            setBetStatusTextColor() 
-            setConfirmBtnColor()
-            setCancleBetBtnColor()
-        })
-        watch(roundAskBanker,()=>{
-            // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
-            changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
-        })
-        watch(roundAskPlayer,()=>{
-            // console.log('回合閒問路',roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
-            changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
-        })
-        watch(askRoadRecall,()=>{
-            // console.log('按鈕問路reCall','問哪一路',currentAskRoadSide.value,'問路結果',askRoadRecall.value)
-            changeAskRoadBtnView(currentAskRoadSide.value,askRoadRecall.value)
-        })
-        watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
-            if(betResult.value!==-1 && betStatus.value){ 
-                coinPosition[0].betStatus = betStatus.value.Player
-                coinPosition[1].betStatus = betStatus.value.Banker
-                coinPosition[2].betStatus = betStatus.value.PlayerPair
-                coinPosition[3].betStatus = betStatus.value.Tie
-                coinPosition[4].betStatus = betStatus.value.BankerPair
-                // for(let i = 0 ; i<5 ;i++){
-                //     console.log(coinPosition[i].betStatus)
-                // }
-            }   
-        })
-        watch(broadcastBetstatus,()=>{
-            coinPosition[0].tableAllPlayerBetStatus = broadcastBetstatus.value.Player
-            coinPosition[1].tableAllPlayerBetStatus = broadcastBetstatus.value.Banker
-            coinPosition[2].tableAllPlayerBetStatus = broadcastBetstatus.value.PlayerPair
-            coinPosition[3].tableAllPlayerBetStatus = broadcastBetstatus.value.Tie
-            coinPosition[4].tableAllPlayerBetStatus = broadcastBetstatus.value.BankerPair
-        })
-        watch(gameEnd,()=>{ //換薛時也要重置，並且無法下注
-            // console.log("換靴重置BettingArear")
-            reSetBetAreaAnimation()
-            resetGame()
-            canBet.value = false
-        })
-        watch(roundUuid,()=>{  //回合開始時重置遊戲；也可能是換桌
-            reSetBetAreaAnimation()
-            resetGame()
-        })
-        watch(gameEndUuid,()=>{
-            canBet.value = false
-        })
-        watch(betError,()=>{
-            if(betError.value){
-                // console.log('進到-1',betError.value.error)
-                switch(betError.value.error){
-                    case 1:
-                        betErrorArray.value?.push('下注失敗')
-                        break
-                    case 2:
-                        betErrorArray.value?.push('非法的籌碼')
-                        break
-                    case 3:
-                        betErrorArray.value?.push(betError.value.errorMessage)
-                        break
-                    case 4:
-                        betErrorArray.value?.push(betError.value.errorMessage)
-                        break
-                    case 5:
-                        betErrorArray.value?.push('非法遊戲局')
-                        break
-                    case 6:
-                        betErrorArray.value?.push('餘額不足')
-                        break
-                }
-                store.commit('bet/resetBetResult') //重置result狀態
-            } 
-        })
-        watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
-            // if(betResult.value!==0 && betResult.value!=-1 && !isConfirmed.value){ //並且還沒按下確定鈕的時候才要產生動畫
-            //     betArray.push(betCallTemp.value) //確認server回傳為1才推入陣列中
-            //     let betArrayShift = betArray.shift()
-            //     betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
-            // }
-        })
-        function testBetCallArray(betObject:any){
-            let cp = coinPosition[betObject.betArea-1]  
-            cp.coinArray.push(coinList.value[betObject.betIndex].className)
-            currentBetPosition.betAreaIndex = betObject.betArea-1
-            if((cp.coinArray.length%10)==0){           //每10個橫移一次
-                cp.initX +=10
-                cp.initBottom = 0
-            }else{
-                cp.initBottom += 5             //修改樣式
-            }
-        }
-        // watch(betCallArray,()=>{
-        //     betCallArray.value.forEach((i:any)=>{
-        //         let cp = coinPosition[i.betArea]
-        //         cp.coinArray.push(coinList[i.betIndex].className)  //添加class名稱到注區
-        //         if((cp.coinArray.length%10)==0){ //每10個橫移一次
-        //             cp.initX +=10;
-        //             cp.initBottom = 0
-        //         }else{
-        //             cp.initBottom += 5;  //修改樣式
-        //         }
-        //     })
-        // })
-        watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
-            if(betResetresult.value===1){
-                resetGame()
-            }
-        })
-        watch(gameResult,()=>{
-            clearLoseArea(gameResult.value)
-            showResult()
-            winCoinAnimation()
-            store.commit('bet/setIsConfirmed',false) //重置按紐
-        })
-        //籌碼動畫、下注邏輯
-        const coinList = computed(()=>{
+        const coinList = computed(()=>{ //該桌籌碼陣列
             return store.state.table.tableCoinData[tableNum.value as string]
         })
-        const currentCoint = reactive<currentCoint>({ 
+        const tableInfoData = computed(()=>{  //該桌檯桌資訊
+            return store.state.table.tableInfoData[tableNum.value as string]
+        })
+        //基本資料
+        const canBet = ref(true)  //是否可以下注
+        const betCallTemp = ref({}) //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
+        let betArray = reactive<Array<any>>([]) //紀錄下注元素和區域的籌碼動畫陣列
+        const currentAskRoadSide = ref(0) //當前問的是哪一家的路(1莊 2閒)
+        const currentCoint = reactive<currentCoint>({  //玩家選擇的籌碼
             coinElement:document.querySelector('#defaultCoin4'), //選擇的籌碼元素
             num:3,  //儲存點到的是第幾個
             point:coinList.value[3].point, //預設是100點ㄉ
             x:0, //起飛的x
             y:0, //起飛的y
         });  
-        const currentBetPosition = reactive({
+        const currentBetPosition = reactive({  //玩家選擇的注區
             betAreaIndex:-1,
         })
-        const target = reactive<target>({ //目標位置
+        const target = reactive<target>({ //籌碼飛向的目標位置
             x : 0,
             y : 0,
         })
-        //coin-menu2 coin-menu2-current index0
-        const coinPosition = reactive<coinPosition[]>([   //注區
+        const coinPosition = reactive<coinPosition[]>([   //注區Data
             {
                 initBottom:0,
                 initX:0,
@@ -476,12 +350,114 @@ export default defineComponent({
                 maxBet:9000,
             },
         ]) 
-        const betErrorArray = ref<Array<string>>([])
-        const tableInfoData = computed(()=>{
-            return store.state.table.tableInfoData[tableNum.value as string]
+        const betErrorArray = ref<Array<string>>([])  //噴錯誤訊息用的陣列
+        const minBetLimit = ref(999999999) //手機版本顯示檯紅最小
+        const maxBetLimit = ref(-1) //手機版本顯示檯紅最大
+        //監聽
+        watch(tableNum,()=>{  //換桌
+            //重置遊戲相關
+            reSetBetAreaAnimation()
+            resetGame()
+            setDefaultCoin()
+            //取得注區的最大最小檯紅(給手機顯示用的)
+            getBetLimit(tableInfoData.value)
         })
-        const minBetLimit = ref(999999999)
-        const maxBetLimit = ref(-1)
+        watch(betConfirmRecall,()=>{ //收到server回應的確認下注，做確認鈕動作
+             confirmBet()
+        })
+        watch(isConfirmed,()=>{ //根據是否按過確認鍵，更換相關顏色
+            setBetStatusTextColor() 
+            setConfirmBtnColor()
+            setCancleBetBtnColor()
+        })
+        watch(betResetresult,()=>{  //玩家反悔收回籌碼的動作
+            if(betResetresult.value===1){
+                resetGame()
+            }
+        })
+        watch(roundAskBanker,()=>{ //每局開始時自動問莊
+            // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
+            changeAskRoadBtnView(roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
+        })
+        watch(roundAskPlayer,()=>{  //每局開始時自動問閒
+            // console.log('回合閒問路',roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
+            changeAskRoadBtnView(roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
+        })
+        watch(askRoadRecall,()=>{ //玩家點擊問路
+            // console.log('按鈕問路reCall','問哪一路',currentAskRoadSide.value,'問路結果',askRoadRecall.value)
+            changeAskRoadBtnView(currentAskRoadSide.value,askRoadRecall.value)
+        })
+        watch(betStatus,()=>{  //更新每次下注後顯示在注區的數字
+            if(betResult.value!==-1 && betStatus.value){ 
+                coinPosition[0].betStatus = betStatus.value.Player
+                coinPosition[1].betStatus = betStatus.value.Banker
+                coinPosition[2].betStatus = betStatus.value.PlayerPair
+                coinPosition[3].betStatus = betStatus.value.Tie
+                coinPosition[4].betStatus = betStatus.value.BankerPair
+                // for(let i = 0 ; i<5 ;i++){
+                //     console.log(coinPosition[i].betStatus)
+                // }
+            }   
+        })
+        watch(broadcastBetstatus,()=>{ //更新該桌的所有玩家總注額
+            coinPosition[0].tableAllPlayerBetStatus = broadcastBetstatus.value.Player
+            coinPosition[1].tableAllPlayerBetStatus = broadcastBetstatus.value.Banker
+            coinPosition[2].tableAllPlayerBetStatus = broadcastBetstatus.value.PlayerPair
+            coinPosition[3].tableAllPlayerBetStatus = broadcastBetstatus.value.Tie
+            coinPosition[4].tableAllPlayerBetStatus = broadcastBetstatus.value.BankerPair
+        })
+        watch(gameEnd,()=>{ //換靴時也要重置，並且無法下注
+            // console.log("換靴重置BettingArear")
+            reSetBetAreaAnimation()
+            resetGame()
+            canBet.value = false
+        })
+        watch(roundUuid,()=>{  //回合開始時重置遊戲；也可能是換桌
+            reSetBetAreaAnimation()
+            resetGame()
+        })
+        watch(gameEndUuid,()=>{ //停止下注，在開牌之前
+            canBet.value = false
+        })
+        watch(betError,()=>{ //更新錯誤訊息
+            if(betError.value){
+                // console.log('進到-1',betError.value.error)
+                switch(betError.value.error){
+                    case 1:
+                        betErrorArray.value?.push('下注失敗')
+                        break
+                    case 2:
+                        betErrorArray.value?.push('非法的籌碼')
+                        break
+                    case 3:
+                        betErrorArray.value?.push(betError.value.errorMessage)
+                        break
+                    case 4:
+                        betErrorArray.value?.push(betError.value.errorMessage)
+                        break
+                    case 5:
+                        betErrorArray.value?.push('非法遊戲局')
+                        break
+                    case 6:
+                        betErrorArray.value?.push('餘額不足')
+                        break
+                }
+                store.commit('bet/resetBetResult') //重置result狀態
+            } 
+        })
+        watch(betResult,()=>{  //偵測伺服器的下注回應，來做出籌碼動畫
+            // if(betResult.value!==0 && betResult.value!=-1 && !isConfirmed.value){ //並且還沒按下確定鈕的時候才要產生動畫
+            //     betArray.push(betCallTemp.value) //確認server回傳為1才推入陣列中
+            //     let betArrayShift = betArray.shift()
+            //     betResultAction(betArrayShift.betAreaElement,betArrayShift.betAreaIndex)
+            // }
+        })
+        watch(gameResult,()=>{ //更新遊戲結果
+            clearLoseArea(gameResult.value)
+            showResult()
+            winCoinAnimation()
+            store.commit('bet/setIsConfirmed',false) //重置按紐
+        })
         function setBetStatusTextColor(){ //更換bstStatus和totalBet的顏色
             let betStatusText = document.querySelectorAll('.betStatus') as NodeListOf<HTMLElement>
             let totalBet = document.querySelector('#totalBet') as HTMLElement
@@ -511,7 +487,7 @@ export default defineComponent({
         }
         function setCancleBetBtnColor(){
             let cancleBtn = document.querySelector('.bettingArea-btn-gitbackAllCoin') as HTMLElement
-            console.log('設置取消按鈕顏色',isConfirmed.value)
+            // console.log('設置取消按鈕顏色',isConfirmed.value)
             if(!isConfirmed.value){ //沒按過確認紐的時候是灰色的
                 //按鈕變成灰色
                 cancleBtn.style.background = 'rgb(80, 78, 78)'
@@ -521,7 +497,6 @@ export default defineComponent({
             }
         }
         function getBetLimit (tableBetIndoData:any){
-            console.log(tableBetIndoData)
             //每次都把最大最小基準值恢復，再比大小
             minBetLimit.value = 999999999
             maxBetLimit.value = -1
@@ -550,34 +525,6 @@ export default defineComponent({
             currentCoint.point = coinList.value[0].point
             currentCoint.num = 0
         }
-        // function setMinBetCoinUsable(){
-        //     //抓取前三個coin元素改變其外觀
-        //     let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
-        //     let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
-        //     let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
-        //     defaultCoin1.classList.replace('coin-menu1-disable','coin-menu1')
-        //     defaultCoin2.classList.replace('coin-menu2-disable','coin-menu2')
-        //     defaultCoin3.classList.replace('coin-menu3-disable','coin-menu3')
-        //     canUseSmallCoin.value = true
-        //     // console.log('可否使用小籌碼',canUseSmallCoin.value)
-        // }
-        // function setMinBetCoinUnusable(){
-        //     let defaultCoin1 = document.querySelector('#defaultCoin1') as HTMLElement
-        //     let defaultCoin2 = document.querySelector('#defaultCoin2') as HTMLElement
-        //     let defaultCoin3 = document.querySelector('#defaultCoin3') as HTMLElement
-        //     defaultCoin1.classList.remove('coin-menu1-current')
-        //     defaultCoin2.classList.remove('coin-menu2-current')
-        //     defaultCoin3.classList.remove('coin-menu3-current')
-        //     defaultCoin1.classList.remove('coin-menu1')
-        //     defaultCoin2.classList.remove('coin-menu2')
-        //     defaultCoin3.classList.remove('coin-menu3')
-        //     defaultCoin1.classList.add('coin-menu1-disable')
-        //     defaultCoin2.classList.add('coin-menu2-disable')
-        //     defaultCoin3.classList.add('coin-menu3-disable')
-        //     canUseSmallCoin.value = false
-        //     // console.log(defaultCoin1.classList,defaultCoin2.classList,defaultCoin3.classList)
-        //     // console.log('可否使用小籌碼',canUseSmallCoin.value)
-        // }
         function chooseCoint (index:number,e:MouseEvent) {
             currentCoint.coinElement = e.target; //得到該元素
             currentCoint.x = e.x;  //設置籌碼起始座標點
@@ -710,7 +657,6 @@ export default defineComponent({
         function loadCoin () {
             if(currentCoint.num!==null){
                 // console.log("裝入",currentCoint.coinElement.classList[0])
-                // coinList[currentCoint.num].ammo.push(currentCoint.coinElement.className)
                 coinList.value[currentCoint.num].ammo.push(currentCoint.coinElement.classList[0])
             }
         }
@@ -763,7 +709,6 @@ export default defineComponent({
         }
         function getAllBetBack(){
             if(canBet.value && gameStatus.value==1){  //可以下注，且遊戲狀態是下注中
-                // isConfirmed.value = true  //取消的話就可以再次確認下注
                 if(coinPosition[0].betStatus!=0 || coinPosition[1].betStatus!=0 ||
                   coinPosition[2].betStatus!=0 || coinPosition[3].betStatus!=0 || coinPosition[4].betStatus!=0){
                       sendBetResetCall({
@@ -824,7 +769,6 @@ export default defineComponent({
                     winArea2 = 2
                     break
             }
-            
             coinPosition.forEach((i,index) => {
                 if(index!==winArea1 && index!==winArea2){
                     i.coinArray = []
