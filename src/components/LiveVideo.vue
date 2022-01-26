@@ -20,26 +20,6 @@ export default defineComponent({
   setup() {
     //vuex
     const store = useStore();
-    // //暫時增加
-    // const route = useRoute()
-    // const tableNum = computed(()=>{
-    //   return route.params.tableId
-    // })
-    // watch(tableNum,()=>{
-    //   if(tableNum.value=="A"){
-    //     console.log('進A桌',flvStream.value)
-    //     np.value.stop()
-    //     np.value.clearView()
-    //     np.value.setKeepScreenOn()
-    //     np.value.start(flvStream.value)
-    //   }else if(tableNum.value=="B"){
-    //     console.log('進B桌',testB)
-    //     np.value.stop()
-    //     np.value.clearView()
-    //     np.value.setKeepScreenOn()
-    //     np.value.start(testB)
-    //   }
-    // })
     const flvStream = computed(() => {
       //直播網址
       return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
@@ -65,19 +45,11 @@ export default defineComponent({
     const isAndroid =
       userSystem.indexOf("Android") > -1 || userSystem.indexOf("Adr") > -1;
     const isIOS = userSystem.match(/\(i[^;]+;(U;)? CPU.+Mac OS X/);
-    const testPlayUrl = "http://flv.bdplay.nodemedia.cn/live/bbb.flv";
-    const testB = "http://35.201.183.73/live?app=KH89&stream=tt1";
-    // if(isIOS){
-    //   console.log("蘋果系統")
-    // }
-    // document.addEventListener('WeixinJSBridgeReady',function () {
-    //     flvPlayer?.play()
-    //     console.log("自動撥放")
-    //   },false)
     const hasAutoPlayed = ref(false);
     const loadingVideo = ref(true);
+    const mobileDevice = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone'] //各種手機的系統
     //初始化
-    store.commit("video/setVideo", new NodePlayer());
+    store.commit("video/setVideo", new NodePlayer()); //把player實體存進Vuex
     // let np = new NodePlayer()
     onMounted(() => {
       np.value.setView("video");
@@ -98,6 +70,9 @@ export default defineComponent({
       // createFlv()
       startPlay();
     });
+    function isMobil(){  //判斷是否是手機
+      return mobileDevice.some((e:any)=>navigator.userAgent.match(e))  //只要match手機裝置列表的其中一個，就返回true。否則false
+    }
     function startPlay() {
       // console.log("LiveVideo開始撥放",flvStream.value)
       np.value.setKeepScreenOn();

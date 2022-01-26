@@ -47,7 +47,7 @@ export const sendTableJoinCall =(data:any) => {
         uuid:data.uuid
     })
     let bytes = table.TableJoinCall.encode(proto).finish()
-    // console.log("sendTableJoinCall",proto)
+    console.log("sendTableJoinCall",proto)
     sendWSPush(bytes);
 }
 //發送下注資訊

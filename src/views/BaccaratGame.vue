@@ -86,12 +86,13 @@ export default defineComponent({
       console.log("有tables")
       tableJoin()
     })
-    watch([tableNum],()=>{ //偵測到換桌
+    watch(tableNum,()=>{ //偵測到換桌
     console.log('偵測到換桌')
       store.commit('table/setCurrentTable',tableNum.value)
       tableJoin()
     })
     window.addEventListener('reConnect',()=>{ //重新連接的時候
+      console.log('重連換桌')
       tableJoin ()
     }) 
     function tableJoin (){ //上桌請求
@@ -110,6 +111,7 @@ export default defineComponent({
         case 'B':
            for(let i = 0 ; i<tables.value.length  ; i++){
             if(tables.value[i].name=="B桌"){
+              console.log(tables.value[i].name)
               sendTableJoinCall({
                 uuid:tables.value[i].uuid
               })
@@ -117,6 +119,7 @@ export default defineComponent({
               break
             }
           }
+          break
         case 'VIP':
           for(let i = 0 ; i<tables.value.length  ; i++){
             if(tables.value[i].name=="VIP"){
@@ -127,6 +130,7 @@ export default defineComponent({
               break
             }
           }
+          break
       }
     }
     return{

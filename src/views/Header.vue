@@ -44,12 +44,12 @@
             @click="toGametable('B')"
             >B桌</a
           >
-          <a
+          <!-- <a
             class="header-btn"
             :class="{ active: tableNum == 'VIP' }"
             @click="toGametable('VIP')"
             >VIP</a
-          >
+          > -->
           <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
           <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow"
             >離開遊戲</a
