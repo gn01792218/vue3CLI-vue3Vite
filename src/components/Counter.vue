@@ -52,10 +52,9 @@ export default defineComponent({
         watch(roundUuid,()=>{ //偵測到換桌和新局時，倒數要根據剩餘的秒數來執行
             let temp = document.querySelector('.counter') as HTMLElement
             temp.style.display = 'block'
-            console.log("新局開始",lastCount.value,'回合uuid',roundUuid.value,'遊戲狀態',gameStatus.value)
+            // console.log("新局開始",lastCount.value,'回合uuid',roundUuid.value,'遊戲狀態',gameStatus.value)
             if(roundUuid.value && lastCount.value && gameStatus.value==1){
-                console.log('有UUid的才要倒數')
-                console.log('預設的秒數',defaultCount.value)
+                // console.log('預設的秒數',defaultCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 setCount()
             }
@@ -64,7 +63,7 @@ export default defineComponent({
             let temp = document.querySelector('.counter') as HTMLElement
                 temp.style.display = 'block'
             if(gameStatus.value==1){
-                console.log('倒數剩下幾秒',lastCount.value)
+                // console.log('倒數剩下幾秒',lastCount.value)
                 timer ?  clearInterval(timer.value) : null   //先清除上一桌的timer
                 count.value = lastCount.value
                 setCount()

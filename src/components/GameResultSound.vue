@@ -12,22 +12,15 @@ import {useRoute } from 'vue-router'
 import proto  from '../assets/js/bundle'
 export default defineComponent({
    setup(){
-    //    //暫時性的
-    //     const route = useRoute()
-    //     const tableNum = computed(()=>{
-    //     return route.params.tableId
-    //     })
-    //     watch(tableNum,()=>{
-    //         if(tableNum.value=="B"){
-    //             audio.value.muted = true
-    //         }
-    //     })
         //vuex
         const store = useStore();
         const gameResult = computed(()=>{ //回傳的是陣列
             return store.state.dealer.BroadcastGameResult.results
         })
-        const gameUuid = computed(()=>{ //遊戲回合的Uuid
+        const gameStatus = computed(()=>{
+            return store.state.game.GameStatus.status
+        })
+        const roundUuid = computed(()=>{ //遊戲回合的Uuid
             return store.state.game.gameUuid
         })
         const gameEndUuid = computed(()=>{
@@ -36,8 +29,8 @@ export default defineComponent({
         const audio = computed<HTMLAudioElement>(()=>{
             return document.querySelector('#gameresultSound') as HTMLAudioElement
         })
-        watch(gameUuid,()=>{
-                if(audio){
+        watch(roundUuid,()=>{ //可能是新局開始，也可能是換桌
+                if(audio && gameStatus.value==1){
                 audio.value.src = require('../assets/audio/start.mp3')
                 audio.value.play()
                 }
