@@ -33,7 +33,6 @@
         </div>
         <div class="modal-body">
           {{ kickoutWarn.message }}
-          <!-- 您已經連續五局沒有下注，若達10局無下注，將自動斷線 -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">

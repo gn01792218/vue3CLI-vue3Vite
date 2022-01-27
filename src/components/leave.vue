@@ -1,6 +1,6 @@
 <template>
     <div class="leave position-absolute">
-       <h1> {{text}}</h1>
+       <h1>{{text}}</h1>
     </div>
 </template>
 
