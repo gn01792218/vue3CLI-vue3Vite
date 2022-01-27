@@ -21,7 +21,7 @@ export default defineComponent({
    setup(){
        //偵測重新連線機制
        window.addEventListener('reConnect',()=>{
-        console.log('重連畫大眼路')
+        // console.log('重連畫大眼路')
         resetBigEyesRoad()
         showBigEyesRoad ()
       }) 
@@ -89,8 +89,8 @@ export default defineComponent({
           },2000)
         })
         watch(gameEnd,()=>{
-          //換薛時要重置遊戲
-          console.log("偵測到換靴資訊重置路圖-大眼路")
+          //換靴時要重置遊戲
+          // console.log("偵測到換靴資訊重置路圖-大眼路")
           resetBigEyesRoad()
         })
         watch(tableNum,()=>{

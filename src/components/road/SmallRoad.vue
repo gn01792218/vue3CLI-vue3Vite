@@ -82,7 +82,7 @@ export default defineComponent({
         })
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
-          console.log("偵測到換靴資訊重置路圖-小路")
+          // console.log("偵測到換靴資訊重置路圖-小路")
           resetSmallRoad()
         })
         watch(tableNum,()=>{

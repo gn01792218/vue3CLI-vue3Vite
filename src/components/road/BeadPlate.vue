@@ -83,7 +83,7 @@ export default defineComponent({
           },2000)
         })
         watch(gameEnd,()=>{  //換薛時要重置
-        console.log("換靴重置諸朱盤路")
+        // console.log("換靴重置諸朱盤路")
           resetRoad()
         })
         watch(tableNum,()=>{

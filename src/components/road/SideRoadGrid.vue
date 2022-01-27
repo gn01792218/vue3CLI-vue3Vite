@@ -147,7 +147,7 @@ export default defineComponent({
         }
         watch(gameEnd,()=>{
           //換薛時要重置遊戲
-          console.log("偵測到換靴資訊重置路圖-大路")
+          // console.log("偵測到換靴資訊重置路圖-大路")
           resetBigRoad()
         })
         watch(tableNum,()=>{
@@ -191,28 +191,28 @@ export default defineComponent({
               if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
                 if(bigRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
                   bigRoadColumn.value++
-                  console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
+                  // console.log("在第0格滿出，直接+行數","行",bigRoadColumn.value)
                   roadOverFlowerTimes.value = 0
                 }else{
                   bigRoadColumn.value = bigRoadColumn.value-roadOverFlowerTimes.value+1
                   roadOverFlowerTimes.value = 0
                 }
-                console.log("溢出後恢復","行",bigRoadColumn.value)
+                // console.log("溢出後恢復","行",bigRoadColumn.value)
               }else{
                 bigRoadColumn.value++
               }
               if(bigRoadColumn.value>=secWidth.length+(bigRoadColArr.length-secWidth.length)){     //溢出極限格子的時候要增加行數
-                console.log("滿了+行")
+                // console.log("滿了+行")
                 addBigRoadColumn()
               }  
                bigRoadItemIndex.value = 0
-               console.log("格",bigRoadItemIndex.value)
+              //  console.log("格",bigRoadItemIndex.value)
             }
             //換行二:溢出換行
             //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
             //溢出時如果遇到和局，其實不需要+行?!
             if(bigRoadColArr[bigRoadColumn.value][bigRoadItemIndex.value]!==0 || bigRoadItemIndex.value>5){
-              console.log("連贏溢出")
+              // console.log("連贏溢出")
               if(!bigRoadTie.value){  //不是和局時，才要+行
                 bigRoadColumn.value++ //換行
               }
@@ -224,7 +224,7 @@ export default defineComponent({
                 bigRoadItemIndex.value = bigRoadItemIndex.value-1
               }
               roadOverFlowerTimes.value++ 
-              console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
+              // console.log("連贏溢出","行",bigRoadColumn.value,"格",bigRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
                   for(let i = bigRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
                     bigRoadColArr[bigRoadColumn.value][i] = 1
                   }
@@ -522,7 +522,7 @@ export default defineComponent({
             if(i.symbol == 13 || i.symbol == 14 || i.symbol ==15 || i.symbol == 16 || i.symbol ==17 ||
                 i.symbol == 18 || i.symbol == 19 || i.symbol == 20 ){
                   bigRoadTie.value = true
-                  console.log("是否和局",bigRoadTie.value)
+                  // console.log("是否和局",bigRoadTie.value)
             }
             // console.log("陣營",currentBigRoadResult.value)
             //換行一:不同陣營
@@ -605,7 +605,7 @@ export default defineComponent({
           // let item = bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks[bigRoadResult.value.columns[bigRoadResult.value.columns.length-1].blocks.length-1]  //只取最後一條col的最後一個值出來畫
             if(item==3 || item==10 || item==11 || item==12){
               item = transfromTie(currentBigRoadResult.value,item)
-              console.log("轉換畫",item)
+              // console.log("轉換畫",item)
             }
             recordBigRoad(item.symbol)  //1.紀錄陣營
             if(item == 13 || item == 14 || item ==15 || item == 16 || item ==17 ||
