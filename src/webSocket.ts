@@ -21,15 +21,15 @@ const onerrorWs = ()=>{
 }
 //監聽關閉
 const oncloseWs = () => {
-    console.log('連線已被斷開')
+    console.log('連線已被斷開',Socket?.readyState)
     clearInterval(setIntervalWesocketPush)
-    if (Socket?.readyState !== 2) {  //readyState 2 = 連接正在關閉
+    if (Socket?.readyState == 3) {   //stateCode 3 為連接已關閉，或沒有連接成功
+      alert('websocket已斷開連線')
+    }else if(Socket?.readyState !== 2){ //readyState 2 = 連接正在關閉
       alert('websocket已斷開....正在嘗試重連')
       Socket = null
       createSocket()
       window.dispatchEvent(new CustomEvent('reConnect'))
-    }else{
-      alert('websocket已斷開連線')
     }
   }
 /**

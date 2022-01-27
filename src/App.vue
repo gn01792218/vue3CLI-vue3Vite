@@ -2,7 +2,7 @@
   <div id="wap" class="app">
     <div class="container-fluid pr-0 pl-0">
       <div class="container-waps row">
-        <Announcement v-show="announcementShow"/>
+        <Announcement v-show="announcementShow" />
         <Header />
         <router-view />
         <Footer />
@@ -10,17 +10,51 @@
     </div>
     <Loading />
   </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="alertModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">遊戲訊息</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{ kickoutWarn.message }}
+          <!-- 您已經連續五局沒有下注，若達10局無下注，將自動斷線 -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
-import { defineComponent ,onMounted ,computed , watch } from "vue";
-import Announcement from '@/components/Announcement.vue'
+import { defineComponent, onMounted, computed, watch } from "vue";
+import Announcement from "@/components/Announcement.vue";
 import Loading from "@/components/Loading.vue";
 import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import BaccaratGame from "@/views/BaccaratGame.vue";
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
-import Cookies from "js-cookie";
+import { useRouter } from "vue-router";
+import $ from "jquery";
 export default defineComponent({
   components: {
     Header,
@@ -30,18 +64,39 @@ export default defineComponent({
     Announcement,
   },
   setup() {
+    onMounted(() => {
+      store.commit("lobby/setShowannouncement", true); //顯示公告同意書
+    });
     createSocket(); //創建websocket 連線
+    const router = useRouter();
     const store = useStore();
-    const announcementShow = computed(()=>{
-      return store.state.lobby.showannouncement
-    })
-    onMounted(()=>{
-      store.commit('lobby/setShowannouncement',true)  //顯示公告同意書
-    })
-    return{
+    const announcementShow = computed(() => {
+      return store.state.lobby.showannouncement;
+    });
+    const kickout = computed(() => {
+      return store.state.kick.Kickout;
+    });
+    const kickoutWarn = computed(() => {
+      return store.state.kick.kickoutWarn;
+    });
+    watch(kickoutWarn, () => {
+      $("#alertModal").modal("show");
+    });
+    watch(kickout, () => {
+      store.commit("kick/setIsKickout", true);
+      alert(kickout.value.message);
+      closeWindow();
+    });
+    function closeWindow() {
+      var op = window.open("/leave", "_self") as Window;
+      op.opener = null;
+      op.close();
+    }
+    return {
       //data
       announcementShow,
-    }
+      kickoutWarn,
+    };
   },
 });
 </script>

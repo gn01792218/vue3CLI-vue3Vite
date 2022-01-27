@@ -8,6 +8,7 @@ import dealer from "./dealer";
 import roadmap from "./roadmap";
 import video from "./video";
 import announcement from "./announcement";
+import kick from "./kick";
 export default createStore({
   state: {},
   mutations: {},
@@ -22,5 +23,6 @@ export default createStore({
     roadmap,
     video,
     announcement,
+    kick,
   },
 });

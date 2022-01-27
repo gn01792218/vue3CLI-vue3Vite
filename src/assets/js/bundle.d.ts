@@ -3409,6 +3409,202 @@ export namespace game {
     }
 }
 
+/** Namespace kick. */
+export namespace kick {
+
+    /** Properties of a kickout. */
+    interface Ikickout {
+
+        /** kickout header */
+        header?: (foundation.IHeader|null);
+
+        /** kickout message */
+        message?: (string|null);
+    }
+
+    /** Represents a kickout. */
+    class kickout implements Ikickout {
+
+        /**
+         * Constructs a new kickout.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: kick.Ikickout);
+
+        /** kickout header. */
+        public header?: (foundation.IHeader|null);
+
+        /** kickout message. */
+        public message: string;
+
+        /**
+         * Creates a new kickout instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns kickout instance
+         */
+        public static create(properties?: kick.Ikickout): kick.kickout;
+
+        /**
+         * Encodes the specified kickout message. Does not implicitly {@link kick.kickout.verify|verify} messages.
+         * @param message kickout message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: kick.Ikickout, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified kickout message, length delimited. Does not implicitly {@link kick.kickout.verify|verify} messages.
+         * @param message kickout message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: kick.Ikickout, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a kickout message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns kickout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): kick.kickout;
+
+        /**
+         * Decodes a kickout message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns kickout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): kick.kickout;
+
+        /**
+         * Verifies a kickout message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a kickout message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns kickout
+         */
+        public static fromObject(object: { [k: string]: any }): kick.kickout;
+
+        /**
+         * Creates a plain object from a kickout message. Also converts values to other types if specified.
+         * @param message kickout
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: kick.kickout, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this kickout to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a kickoutWarn. */
+    interface IkickoutWarn {
+
+        /** kickoutWarn header */
+        header?: (foundation.IHeader|null);
+
+        /** kickoutWarn message */
+        message?: (string|null);
+    }
+
+    /** Represents a kickoutWarn. */
+    class kickoutWarn implements IkickoutWarn {
+
+        /**
+         * Constructs a new kickoutWarn.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: kick.IkickoutWarn);
+
+        /** kickoutWarn header. */
+        public header?: (foundation.IHeader|null);
+
+        /** kickoutWarn message. */
+        public message: string;
+
+        /**
+         * Creates a new kickoutWarn instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns kickoutWarn instance
+         */
+        public static create(properties?: kick.IkickoutWarn): kick.kickoutWarn;
+
+        /**
+         * Encodes the specified kickoutWarn message. Does not implicitly {@link kick.kickoutWarn.verify|verify} messages.
+         * @param message kickoutWarn message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: kick.IkickoutWarn, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified kickoutWarn message, length delimited. Does not implicitly {@link kick.kickoutWarn.verify|verify} messages.
+         * @param message kickoutWarn message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: kick.IkickoutWarn, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a kickoutWarn message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns kickoutWarn
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): kick.kickoutWarn;
+
+        /**
+         * Decodes a kickoutWarn message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns kickoutWarn
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): kick.kickoutWarn;
+
+        /**
+         * Verifies a kickoutWarn message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a kickoutWarn message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns kickoutWarn
+         */
+        public static fromObject(object: { [k: string]: any }): kick.kickoutWarn;
+
+        /**
+         * Creates a plain object from a kickoutWarn message. Also converts values to other types if specified.
+         * @param message kickoutWarn
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: kick.kickoutWarn, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this kickoutWarn to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace lobby. */
 export namespace lobby {
 
@@ -4736,7 +4932,9 @@ export namespace route {
         AskRoadCall = 28,
         AskRoadRecall = 29,
         BroadcastAnnouncement = 30,
-        BroadcastTotalPlayersOnline = 31
+        BroadcastTotalPlayersOnline = 31,
+        Kickout = 4000,
+        kickoutwarn = 4001
     }
 }
 

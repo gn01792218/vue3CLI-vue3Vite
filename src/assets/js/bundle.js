@@ -6089,6 +6089,8 @@ export const foundation = $root.foundation = (() => {
                 case 29:
                 case 30:
                 case 31:
+                case 4000:
+                case 4001:
                     break;
                 }
             return null;
@@ -6250,6 +6252,14 @@ export const foundation = $root.foundation = (() => {
             case "BroadcastTotalPlayersOnline":
             case 31:
                 message.uri = 31;
+                break;
+            case "Kickout":
+            case 4000:
+                message.uri = 4000;
+                break;
+            case "kickoutwarn":
+            case 4001:
+                message.uri = 4001;
                 break;
             }
             return message;
@@ -8351,6 +8361,448 @@ export const game = $root.game = (() => {
     })();
 
     return game;
+})();
+
+export const kick = $root.kick = (() => {
+
+    /**
+     * Namespace kick.
+     * @exports kick
+     * @namespace
+     */
+    const kick = {};
+
+    kick.kickout = (function() {
+
+        /**
+         * Properties of a kickout.
+         * @memberof kick
+         * @interface Ikickout
+         * @property {foundation.IHeader|null} [header] kickout header
+         * @property {string|null} [message] kickout message
+         */
+
+        /**
+         * Constructs a new kickout.
+         * @memberof kick
+         * @classdesc Represents a kickout.
+         * @implements Ikickout
+         * @constructor
+         * @param {kick.Ikickout=} [properties] Properties to set
+         */
+        function kickout(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * kickout header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof kick.kickout
+         * @instance
+         */
+        kickout.prototype.header = null;
+
+        /**
+         * kickout message.
+         * @member {string} message
+         * @memberof kick.kickout
+         * @instance
+         */
+        kickout.prototype.message = "";
+
+        /**
+         * Creates a new kickout instance using the specified properties.
+         * @function create
+         * @memberof kick.kickout
+         * @static
+         * @param {kick.Ikickout=} [properties] Properties to set
+         * @returns {kick.kickout} kickout instance
+         */
+        kickout.create = function create(properties) {
+            return new kickout(properties);
+        };
+
+        /**
+         * Encodes the specified kickout message. Does not implicitly {@link kick.kickout.verify|verify} messages.
+         * @function encode
+         * @memberof kick.kickout
+         * @static
+         * @param {kick.Ikickout} message kickout message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        kickout.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified kickout message, length delimited. Does not implicitly {@link kick.kickout.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof kick.kickout
+         * @static
+         * @param {kick.Ikickout} message kickout message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        kickout.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a kickout message from the specified reader or buffer.
+         * @function decode
+         * @memberof kick.kickout
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {kick.kickout} kickout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        kickout.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.kick.kickout();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.message = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a kickout message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof kick.kickout
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {kick.kickout} kickout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        kickout.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a kickout message.
+         * @function verify
+         * @memberof kick.kickout
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        kickout.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a kickout message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof kick.kickout
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {kick.kickout} kickout
+         */
+        kickout.fromObject = function fromObject(object) {
+            if (object instanceof $root.kick.kickout)
+                return object;
+            let message = new $root.kick.kickout();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".kick.kickout.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.message != null)
+                message.message = String(object.message);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a kickout message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof kick.kickout
+         * @static
+         * @param {kick.kickout} message kickout
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        kickout.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.message = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            return object;
+        };
+
+        /**
+         * Converts this kickout to JSON.
+         * @function toJSON
+         * @memberof kick.kickout
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        kickout.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return kickout;
+    })();
+
+    kick.kickoutWarn = (function() {
+
+        /**
+         * Properties of a kickoutWarn.
+         * @memberof kick
+         * @interface IkickoutWarn
+         * @property {foundation.IHeader|null} [header] kickoutWarn header
+         * @property {string|null} [message] kickoutWarn message
+         */
+
+        /**
+         * Constructs a new kickoutWarn.
+         * @memberof kick
+         * @classdesc Represents a kickoutWarn.
+         * @implements IkickoutWarn
+         * @constructor
+         * @param {kick.IkickoutWarn=} [properties] Properties to set
+         */
+        function kickoutWarn(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * kickoutWarn header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof kick.kickoutWarn
+         * @instance
+         */
+        kickoutWarn.prototype.header = null;
+
+        /**
+         * kickoutWarn message.
+         * @member {string} message
+         * @memberof kick.kickoutWarn
+         * @instance
+         */
+        kickoutWarn.prototype.message = "";
+
+        /**
+         * Creates a new kickoutWarn instance using the specified properties.
+         * @function create
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {kick.IkickoutWarn=} [properties] Properties to set
+         * @returns {kick.kickoutWarn} kickoutWarn instance
+         */
+        kickoutWarn.create = function create(properties) {
+            return new kickoutWarn(properties);
+        };
+
+        /**
+         * Encodes the specified kickoutWarn message. Does not implicitly {@link kick.kickoutWarn.verify|verify} messages.
+         * @function encode
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {kick.IkickoutWarn} message kickoutWarn message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        kickoutWarn.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified kickoutWarn message, length delimited. Does not implicitly {@link kick.kickoutWarn.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {kick.IkickoutWarn} message kickoutWarn message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        kickoutWarn.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a kickoutWarn message from the specified reader or buffer.
+         * @function decode
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {kick.kickoutWarn} kickoutWarn
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        kickoutWarn.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.kick.kickoutWarn();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.message = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a kickoutWarn message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {kick.kickoutWarn} kickoutWarn
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        kickoutWarn.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a kickoutWarn message.
+         * @function verify
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        kickoutWarn.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a kickoutWarn message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {kick.kickoutWarn} kickoutWarn
+         */
+        kickoutWarn.fromObject = function fromObject(object) {
+            if (object instanceof $root.kick.kickoutWarn)
+                return object;
+            let message = new $root.kick.kickoutWarn();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".kick.kickoutWarn.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.message != null)
+                message.message = String(object.message);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a kickoutWarn message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof kick.kickoutWarn
+         * @static
+         * @param {kick.kickoutWarn} message kickoutWarn
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        kickoutWarn.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.message = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            return object;
+        };
+
+        /**
+         * Converts this kickoutWarn to JSON.
+         * @function toJSON
+         * @memberof kick.kickoutWarn
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        kickoutWarn.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return kickoutWarn;
+    })();
+
+    return kick;
 })();
 
 export const lobby = $root.lobby = (() => {
@@ -11554,6 +12006,8 @@ export const route = $root.route = (() => {
      * @property {number} AskRoadRecall=29 AskRoadRecall value
      * @property {number} BroadcastAnnouncement=30 BroadcastAnnouncement value
      * @property {number} BroadcastTotalPlayersOnline=31 BroadcastTotalPlayersOnline value
+     * @property {number} Kickout=4000 Kickout value
+     * @property {number} kickoutwarn=4001 kickoutwarn value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -11593,6 +12047,8 @@ export const route = $root.route = (() => {
         values[valuesById[29] = "AskRoadRecall"] = 29;
         values[valuesById[30] = "BroadcastAnnouncement"] = 30;
         values[valuesById[31] = "BroadcastTotalPlayersOnline"] = 31;
+        values[valuesById[4000] = "Kickout"] = 4000;
+        values[valuesById[4001] = "kickoutwarn"] = 4001;
         return values;
     })();
 

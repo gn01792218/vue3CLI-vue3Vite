@@ -14,6 +14,7 @@ const dealer = protoRoot.dealer
 const game = protoRoot.game
 const roadmap = protoRoot.roadmap
 const announcement = protoRoot.announcement
+const kick = protoRoot.kick
 //各種send方法
 //發送心跳
 const sendPon = ()=>{
@@ -207,6 +208,16 @@ export const getMsgReCall = (e:any) =>{
             let BroadcastAnnouncement = announcement.BroadcastAnnouncement.decode(new Uint8Array(e.detail.msg.data))
             store.commit('announcement/BroadcastAnnouncement',BroadcastAnnouncement)
             // console.log(BroadcastAnnouncement)
+            break
+        case route.kickoutwarn:
+            let kickoutwarn = kick.kickoutWarn.decode(new Uint8Array(e.detail.msg.data))
+            store.commit('kick/kickoutwarn',kickoutwarn)
+            console.log('kickoutwarn',kickoutwarn)
+            break
+        case route.Kickout:
+            let Kickout = kick.kickout.decode(new Uint8Array(e.detail.msg.data))
+            store.commit('kick/Kickout',Kickout)
+            console.log('Kickout',Kickout)
             break
     }
 }
