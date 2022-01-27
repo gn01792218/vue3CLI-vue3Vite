@@ -10,6 +10,7 @@ const onopenWs = ()=>{
 }
 //連接失敗會重新連線
 const onerrorWs = ()=>{
+    console.log("連接失敗...準備進行重連")
     Socket?.close()
     clearInterval(setIntervalWesocketPush)
     if(Socket?.readyState !== 3){ //stateCode 3 為連接已關閉，或沒有連接成功
@@ -20,15 +21,17 @@ const onerrorWs = ()=>{
 }
 //監聽關閉
 const oncloseWs = () => {
+    console.log('連線已被斷開')
     clearInterval(setIntervalWesocketPush)
-    // alert('websocket已斷開....正在嘗試重連')
     if (Socket?.readyState !== 2) {  //readyState 2 = 連接正在關閉
+      alert('websocket已斷開....正在嘗試重連')
       Socket = null
       createSocket()
       window.dispatchEvent(new CustomEvent('reConnect'))
+    }else{
+      alert('websocket已斷開連線')
     }
   }
-
 /**
  * 发送数据但连接未建立时进行处理等待重发
  * @param {any} message 需要发送的数据
@@ -92,7 +95,7 @@ export const createSocket =()=>{  //使用createSocket的方法，會自動開�
         Socket.onmessage = onmessageWs    
         Socket.onerror = onerrorWs
         Socket.onclose = oncloseWs
-        console.log("建立websocket連線");
+        console.log("已創建websocket");
     }
 }
 

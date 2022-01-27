@@ -10,6 +10,7 @@ export const state = {
     gameResultCount:{},// 統計資訊
     askBankByRoundStart:{}, //回合自動問路莊家
     askPlayerByRoundStart:{}, //回合自動問路閒家
+    serverDisConnect:false,
   };
   export const actions = {}
   
