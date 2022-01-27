@@ -122,7 +122,7 @@
                         <!-- <span>在線10000人</span> -->
                     </div>
                     <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
-                        <span>在線<br>100人</span>
+                        <span>在線<br>{{onlinePlayersNumber}}人</span>
                     </div>
                 </div>
                 
@@ -273,6 +273,9 @@ export default defineComponent({
         })
         const tableInfoData = computed(()=>{  //該桌檯桌資訊
             return store.state.table.tableInfoData[tableNum.value as string]
+        })
+        const onlinePlayersNumber = computed(()=>{ //在線人數
+          return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers
         })
         //基本資料
         const canBet = ref(true)  //是否可以下注
@@ -982,6 +985,7 @@ export default defineComponent({
             betInfo,
             minBetLimit,
             maxBetLimit,
+            onlinePlayersNumber,
             //methods
             chooseCoint,
             cointAnimate,
