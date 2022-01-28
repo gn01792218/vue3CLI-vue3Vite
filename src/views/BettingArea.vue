@@ -19,7 +19,7 @@
                         </div>
                         <div class="betArea-item-bottom position-absolute">
                             <p class="betStatus" v-show="i.betStatus>0">{{i.betStatus}}</p>
-                            <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p>
+                            <!-- <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p> -->
                         </div>
                         <ul class="coinPosition">
                             <transition-group  @enter="generateCoinAnimate">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="betArea-item-bottom position-absolute">
                             <p class="betStatus" v-show="i.betStatus>0">{{i.betStatus}}</p>
-                            <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p>
+                            <!-- <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p> -->
                         </div>
                         <ul class="coinPosition">
                             <transition-group @enter="generateCoinAnimate">
@@ -64,7 +64,7 @@
                     </div>
                     <div class="betArea-item-bottom position-absolute">
                         <p class="betStatus" v-show="i.betStatus>0">{{i.betStatus}}</p>
-                        <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p>
+                        <!-- <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p> -->
                     </div>
                     <ul class="coinPosition">
                         <transition-group  @enter="generateCoinAnimate">
@@ -121,9 +121,9 @@
                         <span>{{numberFormat(minBetLimit)}}-<br>{{numberFormat(maxBetLimit)}}</span>
                         <!-- <span>在線10000人</span> -->
                     </div>
-                    <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
+                    <!-- <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2">
                         <span>在線<br>{{onlinePlayersNumber}}人</span>
-                    </div>
+                    </div> -->
                 </div>
                 
               <div class="bettingArea-btn-check d-flex justify-content-center align-items-center" @click="sendConfirmBetCall"><i class="bi bi-check-circle"></i>確定</div>

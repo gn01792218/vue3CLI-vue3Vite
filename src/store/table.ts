@@ -144,7 +144,7 @@ export const state = {
         num:6,
         }
     ],
-  }
+  },
 };
 export const actions = {}
 
