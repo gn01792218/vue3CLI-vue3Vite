@@ -77,16 +77,16 @@ export default defineComponent({
      })
      //watch
      watch(gameEnd,()=>{ //換薛時也要重置
-      // console.log("換靴重置Card")
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
       showCardResult.value = false
     })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
-      resetCards () //不管哪個狀態都先執行一次清除卡牌
-      resetCardPoint()
-      showCardResult.value = false  //不顯示卡牌
-      // console.log('不顯示卡牌點數',showCardResult.value)
+     if(gameStatus.value!==2){  //不是畫卡的時候，不清除卡牌
+       resetCards () //不是畫卡的時候才要reset
+       resetCardPoint()
+       showCardResult.value = false  //不顯示卡牌
+     }
      })
      watch(gameResult,()=>{
       //  console.log(gameResult.value.length)
@@ -102,7 +102,7 @@ export default defineComponent({
        showCards(card.side,card.card.suit,card.card.point,card.position)
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
-       if(gameStatus.value!==3){  //防止server在等待時間也傳卡牌來
+       if(gameStatus.value==2){  //防止server在等待時間也傳卡牌來
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
        })
@@ -110,7 +110,7 @@ export default defineComponent({
      })
      //撲克牌業務代碼
      function resetCards () {
-      for(let i=0 ;i<3;i++){
+      for(let i=0 ;i<3;i++){  //清除卡牌的顯示
         cards.banker[i]=null
         cards.player[i]=null
         let bankPoker = document.querySelectorAll(`.bankPoker${i}`)
@@ -123,7 +123,7 @@ export default defineComponent({
         })
       }
       let winCardBox = document.querySelectorAll('.winPoker')
-      winCardBox.forEach(i=>{
+      winCardBox.forEach(i=>{  //移除贏的區塊閃爍動畫
         i.classList.remove('winPoker')
       })
      }
@@ -162,14 +162,12 @@ export default defineComponent({
      }
      async function showCardTotalPoint () {
       // console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value)
-
       playerCardArray.value.forEach(i=>{
         if(i>=10){
           i = 0
         }
           playerPoint.value+=i
           playerPoint.value = playerPoint.value%10
-          // console.log('閒家牌','加點:',i,'本次值',playerPoint.value)
       })
       bankCardArray.value.forEach(i=>{
         if(i>=10){
@@ -177,23 +175,7 @@ export default defineComponent({
         }
         bankerPoint.value+=i
         bankerPoint.value = bankerPoint.value%10
-          // console.log('閒家牌','加點:',i,'本次值',bankerPoint.value)
       })
-      // playerCardArray.value =playerCardArray.value.map(i=>{
-      //   if(i>=10){
-      //     i = 0
-      //   }
-      //     return i
-      // })
-      
-      // bankCardArray.value =bankCardArray.value.map(i=>{
-      //   if(i>=10){
-      //     i = 0
-      //   }
-      //   return i
-      // })
-      // playerPoint.value = (playerCardArray.value[0]+playerCardArray.value[1]+playerCardArray.value[2])%10
-      // bankerPoint.value = (bankCardArray.value[0]+bankCardArray.value[1]+bankCardArray.value[2])%10
       showCardResult.value = true
       // console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
      }
@@ -212,7 +194,7 @@ export default defineComponent({
         playerCardArray.value[position-1] = point
           break
       }
-      if(cardElement){
+      if(cardElement){  //畫卡
         cardElement.forEach(i=>{
           i.classList.add('poker')
           i.style.width = `${uw*scale.value}px`
