@@ -76,9 +76,9 @@
         <div class="header-userName col font_yellows" v-if="user">
           <i>洗碼值:{{ user.totalValidBets }}</i>
         </div>
-        <div class="header-userName col font_yellows" v-if="user">
+        <!-- <div class="header-userName col font_yellows" v-if="user">
           <i>在線:{{onlinePlayersNumber}}人</i>
-        </div>
+        </div> -->
       </div>
       <!-- 手機版本漢堡 -->
       <div class="header-bottom-mobil d-flex align-items-center">

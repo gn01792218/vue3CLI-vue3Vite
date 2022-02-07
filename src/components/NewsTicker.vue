@@ -34,7 +34,7 @@ export default defineComponent({
     })
     const store = useStore()
     const announment = computed(()=>{ //接收桌子來的公告資料，是陣列，但最後一個才是當前需要的
-      return store.state.announcement.BroadcastAnnouncement.announcements[0]
+      return store.state.announcement.BroadcastAnnouncement?.announcements[0]
     })
     const announmentWidth = ref(0)
     const runTimes = ref(-1); //想要無限播放請使用-1

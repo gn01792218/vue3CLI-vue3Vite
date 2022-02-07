@@ -131,7 +131,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.TableJoinRecall:
             let TableJoinRecall = table.TableJoinRecall.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('TableJoinRecall',TableJoinRecall)
+            console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
             break
         case route.BetRecall:
