@@ -401,6 +401,70 @@ img {
   background-color: black;
 }
 
+.reward .modal-content {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid #644d31;
+  -webkit-box-shadow: 0px 0px 10px red;
+          box-shadow: 0px 0px 10px red;
+  background-color: #ffd236;
+}
+
+.reward .modal-header, .reward .modal-body, .reward .modal-footer {
+  background-color: #ffd236;
+}
+
+.reward .modal-header, .reward .modal-footer {
+  border: none;
+}
+
+.reward .close {
+  top: 0%;
+  right: 0%;
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: #ffd236;
+  opacity: 1;
+  border: 5px solid #644d31;
+  font-size: 2rem;
+}
+
+.reward .close div {
+  color: #644d31;
+  top: -12%;
+}
+
+.reward .close:not(:disabled):not(.disabled):hover {
+  opacity: 1;
+}
+
+.reward-btn {
+  border-radius: 5px;
+  background-color: orange;
+}
+
+.totalReward {
+  min-width: 78px;
+  border-radius: 5px;
+  background-color: orange;
+  color: red;
+}
+
+.noreward {
+  color: black;
+}
+
+.reward-confirm-btn {
+  background-color: #644d31;
+  border: none;
+  color: white;
+}
+
+.reward-confirm-btn:hover {
+  color: gray;
+}
+
 .newsTicker {
   background-color: rgba(128, 128, 128, 0.178);
   height: 50px;

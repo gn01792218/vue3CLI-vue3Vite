@@ -1,5 +1,6 @@
 <template>
     <UserBetInfo/>
+    <Reward/>
     <footer class="footer">
         <div class="pl-1 pr-1 d-flex">
             <div class="col-sm text-md-left d-flex">
@@ -8,7 +9,7 @@
                 <span v-if="!isAudioMuted" class="footer-item d-md-flex" @click="mutedSound"><i class="bi bi-volume-up"></i></span>
                 <span v-if="isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-fill"></i></span>
                 <span v-if="!isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
-                <span class="footer-item  d-md-flex"><i class="bi bi-gift"></i></span>
+                <span v-if="tableNum" class="footer-item  d-md-flex" data-toggle="modal" data-target="#reward"><i class="bi bi-gift"></i></span>
                 <span class="footer-item  d-md-flex"><i class="bi bi-chat-dots"></i></span>
                 <span class="footer-item  d-md-flex"><i class="bi bi-lightning"></i></span>
                 <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
@@ -30,14 +31,25 @@
 <script lang="ts">
 import {computed, defineComponent,ref} from 'vue'
 import UserBetInfo from '@/components/UserBetInfo.vue'
+import Reward from "@/components/Reward.vue";
 import Date from '@/components/Date.vue'
 import {useStore} from 'vuex'
 import screenfull from 'screenfull'
+import { useRoute } from 'vue-router'
 export default defineComponent({
     components:{
-        UserBetInfo,Date
+        UserBetInfo,
+        Date,
+        Reward,
     },
     setup(){
+        const route = useRoute()
+        const tableNum = computed(()=>{
+        return route.params.tableId
+        })
+        if(!tableNum.value){
+            console.log("幹拎老師")
+        }
         //vuex
         const store = useStore()
         //computed
@@ -92,6 +104,7 @@ export default defineComponent({
             audio,
             isAudioMuted,
             isVideoPlayed,
+            tableNum,
             //methods
             fullScreen,
             mutedSound,
