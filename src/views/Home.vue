@@ -40,6 +40,12 @@ export default defineComponent({
       return store.state.auth.LoginRecall.status;
     });
     const tableInfoData = store.state.table.tableInfoData;
+    const tableList = computed(()=>{ //自動接收server的資料，送進chatContentArr物件
+           return store.state.lobby.LobbyInfo.tables
+    })
+    watch(tableList,()=>{
+      store.commit('chat/loadChatContentArr',tableList.value)
+    })
     sendLogin({    //發送登入請求
       uri: "LoginCall",
       token: route.params.userToken,

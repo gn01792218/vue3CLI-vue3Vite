@@ -47,9 +47,6 @@ export default defineComponent({
         const tableNum = computed(()=>{
         return route.params.tableId
         })
-        if(!tableNum.value){
-            console.log("幹拎老師")
-        }
         //vuex
         const store = useStore()
         //computed
