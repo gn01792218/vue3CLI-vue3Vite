@@ -1,5 +1,6 @@
+import {chatContent} from '../types/global'
 export const state = {
-    chatContentArr:[]
+    chatContentArr:[] as chatContent[],
   };
   export const actions = {}
   
@@ -9,7 +10,8 @@ export const state = {
             i.name = i.name.replace('桌','')
             state.chatContentArr.push({
                 table:i.name,
-                chatContent:[],
+                chatMsgArr:[],
+                // rewardMsgArr:[],
             })
         })
     },

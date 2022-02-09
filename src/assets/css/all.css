@@ -409,6 +409,14 @@ img {
   border: 2px solid red;
 }
 
+.rewardMsg {
+  color: yellow;
+}
+
+.chatMsg {
+  bottom: 0;
+}
+
 .reward .modal-content {
   max-width: 300px;
   margin-left: auto;

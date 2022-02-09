@@ -1,9 +1,9 @@
 <template>
-    <div class="chatDisplay">
+    <div class="chatDisplay position-relative">
         <ul v-for="(i,index) in chatContentArr" :key="index" v-show="tableNum==i.table">
             {{i.table}}
-            <transition-group>
-                <li v-for="(i,index) in i.chatContent" :key="index">{{i}}</li>
+            <transition-group @enter="msgAnimate">
+                <li class="chatMsg position-absolute" v-for="(chatMsg) in i.chatMsgArr" :key="chatMsg" :class="{'rewardMsg':chatMsg.textColor=='yellow'}">{{chatMsg.content}}</li>
             </transition-group>
         </ul>
     </div>
@@ -14,10 +14,7 @@ import {defineComponent , reactive, ref , computed, watch} from 'vue'
 import gsap from 'gsap'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-interface chatContent{
-    table:string,
-    chatContent:string[]
-}
+import {chatContent} from '../types/global'
 export default defineComponent({
    setup(){
        //路由資料
@@ -27,17 +24,29 @@ export default defineComponent({
        })
        //vuex
        const store = useStore()
-       const chatContentArr = computed(()=>{  //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
+       const chatContentArr = computed<chatContent[]>(()=>{  //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
            return store.state.chat.chatContentArr
        })
-       function pushMsg(msg:string){
-        //    chatContentArr[tableNum.value as string].push(msg)
+       function msgAnimate(e:HTMLElement){
+           gsap.fromTo(e,{opacity:1},{duration:10,y:-200,opacity:0})
+           .then(()=>{
+               //刪除該元素
+            //    let parent = e.parentElement
+            //    parent?.removeChild(e)
+            //    //刪除該資料
+            //    let chatTable = chatContentArr.value.find((i:any)=>{
+            //        return i.table == tableNum.value
+            //    })
+            //    chatTable?.chatMsgArr.shift()
+           })
        }
         return {
             //data
             // tableList,
             tableNum,
             chatContentArr,
+            //methods
+            msgAnimate,
         }
     }
 })

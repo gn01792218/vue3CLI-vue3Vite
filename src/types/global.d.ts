@@ -3,3 +3,8 @@
 declare module '@/assets/js/proto'
 
 declare module 'vue-simple-progress'
+
+//全局interface
+interface chatContent{}
+//全局eunm
+declare enum tableName{}
