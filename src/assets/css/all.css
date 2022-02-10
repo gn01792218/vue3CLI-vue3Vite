@@ -401,6 +401,15 @@ img {
   background-color: black;
 }
 
+.bi-emoji-smile {
+  cursor: pointer;
+}
+
+.chatInput-emoji {
+  width: 300px;
+  top: -270px;
+}
+
 .chatDisplay {
   width: 250px;
   height: 200px;
@@ -414,6 +423,14 @@ img {
 
 .chatMsg {
   bottom: 0;
+}
+
+.emojiList {
+  background-color: black;
+}
+
+.emoji {
+  cursor: pointer;
 }
 
 .reward .modal-content {

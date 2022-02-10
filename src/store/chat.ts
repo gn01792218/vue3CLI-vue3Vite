@@ -1,6 +1,8 @@
 import {chatContent} from '../types/global'
 export const state = {
     chatContentArr:[] as chatContent[],
+    showEmoji:false,
+    chatMsg:""
   };
   export const actions = {}
   
@@ -14,6 +16,12 @@ export const state = {
             })
         })
     },
+    setShowEmoji(state:any,show:boolean){
+      state.showEmoji = show
+    },
+    setChatMsg(state:any,chatMsg:string){
+      state.chatMsg = chatMsg
+    }
   };
   export const getters = {}
   
