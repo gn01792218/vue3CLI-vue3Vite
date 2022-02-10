@@ -11,7 +11,6 @@ export const state = {
             state.chatContentArr.push({
                 table:i.name,
                 chatMsgArr:[],
-                // rewardMsgArr:[],
             })
         })
     },

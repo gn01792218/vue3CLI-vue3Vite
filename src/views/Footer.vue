@@ -11,14 +11,9 @@
                 <span v-if="!isVideoPlayed" class="footer-item  d-md-flex" @click="playVideo"><i class="bi bi-camera-video-off"></i></span>
                 <span v-if="tableNum" class="footer-item  d-md-flex" data-toggle="modal" data-target="#reward"><i class="bi bi-gift"></i></span>
                 <span class="footer-item  d-md-flex"><i class="bi bi-chat-dots"></i></span>
-                <span class="footer-item  d-md-flex"><i class="bi bi-lightning"></i></span>
+                <span class="footer-item  d-md-flex" @click="testSendMsg"><i class="bi bi-lightning"></i></span>
                 <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
-                <div v-if="tableNum" class="chat-input position-relative">
-                    <input @keyup.enter="sendChatMsg" type="text" class="" placeholder="你目前沒有發言權限" aria-label="Username" aria-describedby="basic-addon1" v-model="chatMsg">
-                    <div class="input-emoji position-absolute">
-                        <i class="bi bi-emoji-smile"></i>
-                    </div>
-                </div>
+                <ChatInput/>
             </div>
             <div class="col-sm text-md-right justify-content-end d-flex">
                 <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span> -->
@@ -33,15 +28,17 @@ import {computed, defineComponent,ref} from 'vue'
 import UserBetInfo from '@/components/UserBetInfo.vue'
 import Reward from "@/components/Reward.vue";
 import Date from '@/components/Date.vue'
+import ChatInput from '@/components/ChatInput.vue'
 import {useStore} from 'vuex'
 import screenfull from 'screenfull'
 import { useRoute } from 'vue-router'
-import {chatContent,tableName} from '../types/global'
+import { chatContent, tableName } from "../types/global";
 export default defineComponent({
     components:{
         UserBetInfo,
         Date,
         Reward,
+        ChatInput,
     },
     setup(){
         const route = useRoute()
@@ -69,16 +66,16 @@ export default defineComponent({
         const flvStream = computed(()=>{ //直播網址
         return store.state.table.TableJoinRecall.table.streamingUrl
         })
-        //暫時性:之後要傳送資料給server start
+        // //暫時性:之後要傳送資料給server start
         const chatContentArr = computed<chatContent[]>(()=>{ 
            return store.state.chat.chatContentArr
         })
        //暫時性end
         const isAudioMuted = ref(false)
         const isVideoPlayed = ref(true)
-        const chatMsg = ref("")
-        const typeTimer = ref()
-        const canType = ref(true)
+        // const chatMsg = ref("")
+        // const typeTimer = ref()
+        // const canType = ref(true)
         //全螢幕
         function fullScreen () {
             if(screenfull.isEnabled){
@@ -100,41 +97,32 @@ export default defineComponent({
                 npvideo.value.clearView()  //清除上一個視頻留下的東西
             }
         }
-        function setTypeTImer(){ //防止連按function
-            canType.value = false
-            typeTimer.value = setInterval(()=>{
-                    clearInterval(typeTimer.value)
-                    canType.value = true
-                    console.log('可以繼續打字',canType.value,typeTimer.value)
-            },1000)
+            //送出聊天訊息
+    async function testSendMsg() {
+      let chatTable: chatContent | undefined = chatContentArr.value.find(
+        (i: chatContent) => {
+          return i.table == tableNum.value;
         }
-        //送出聊天訊息
-        function sendChatMsg(){
-            if(chatMsg.value.length<20 && canType.value){
-                //設置防止連按
-                setTypeTImer()
-                //傳送訊息給serve
-                //以下測試start
-                let chatTable:chatContent | undefined= chatContentArr.value.find((i:chatContent)=>{
-                    return i.table == tableNum.value 
-                })
-                if(chatTable){
-                    chatTable.chatMsgArr.push({
-                        content:`玩家${user.value.name}:${chatMsg.value}`,
-                        textColor:'white',
-                    })
-                }
-                //測試end
-                chatMsg.value = ""
-            }else{
-                if(chatMsg.value.length>20){
-                    alert('請勿輸入超過20字')
-                    chatMsg.value = ""
-                }else if(!canType.value){
-                    alert('請勿連續輸入')
-                }
-            }
+      );
+      if (chatTable) {
+        let msgArr = [
+          { content: "測試", textColor: "yellow" },
+          { content: "AAA", textColor: "yellow" },
+          { content: "CKJHDJSHSJDH", textColor: "yellow" },
+        ];
+        for await (let i of msgArr) {
+          await delayMsg(i, chatTable).then(() => {
+            console.log("印出東西");
+          });
         }
+      }
+    }
+    async function delayMsg(msg: any, target: any) {
+      setTimeout(async () => {
+        await target?.chatMsgArr.push(msg);
+        console.log("推一次");
+      }, 5000);
+    }
         // function showAnnouncement(){ //控制公告同意書顯示與否
         //     store.commit('lobby/setShowannouncement',!announcementShow.value)
         // }
@@ -146,12 +134,11 @@ export default defineComponent({
             isAudioMuted,
             isVideoPlayed,
             tableNum,
-            chatMsg,
             //methods
             fullScreen,
             mutedSound,
             playVideo,
-            sendChatMsg,
+            testSendMsg,
             // showAnnouncement,
         }
     }
