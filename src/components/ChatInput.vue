@@ -58,9 +58,12 @@ export default defineComponent({
         canType.value = true;
       }, 1000);
     }
-    //
+    function copyInputText(dom:HTMLInputElement){
+      dom.select()
+      document.execCommand('copy')
+    }
     function sendChatMsg() {
-      if (chatMsg.value.length < 20 && canType.value) {
+      if (chatMsg.value.length <= 20 && canType.value) {
         //設置防止連按
         setTypeTimer();
         //傳送訊息給serve
@@ -77,8 +80,11 @@ export default defineComponent({
           });
         }
         //測試end
+        //複製剛剛輸入的文字
+        copyInputText(document.getElementById('chatInputElement') as HTMLInputElement)
         chatMsg.value = "";
       } else {
+        copyInputText(document.getElementById('chatInputElement') as HTMLInputElement)
         if (chatMsg.value.length > 20) {
           alert("請勿輸入超過20字");
           chatMsg.value = "";
