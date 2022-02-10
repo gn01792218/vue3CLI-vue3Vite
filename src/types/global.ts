@@ -1,10 +1,10 @@
-interface chatMsh{
+export interface chatMsg{
     content:string,
     textColor:string,
 }
 export interface chatContent{
     table:string,
-    chatMsgArr:chatMsh[],
+    chatMsgArr:chatMsg[],
 }
 export enum tableName{
     'A',

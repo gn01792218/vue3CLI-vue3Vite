@@ -47,7 +47,6 @@ export default defineComponent({
       typeTimer.value = setInterval(() => {
         clearInterval(typeTimer.value);
         canType.value = true;
-        console.log("可以繼續打字", canType.value, typeTimer.value);
       }, 1000);
     }
     //
@@ -57,17 +56,17 @@ export default defineComponent({
         setTypeTimer();
         //傳送訊息給serve
         //以下測試start
-        let chatTable: chatContent | undefined = chatContentArr.value.find(
-          (i: chatContent) => {
-            return i.table == tableNum.value;
+          let chatTable: chatContent | undefined = chatContentArr.value.find(
+            (i: chatContent) => {
+              return i.table == tableNum.value;
+            }
+          );
+          if (chatTable) {
+            chatTable.chatMsgArr.push({
+              content: `玩家${user.value.name}:${chatMsg.value}`,
+              textColor: "white",
+            });
           }
-        );
-        if (chatTable) {
-          chatTable.chatMsgArr.push({
-            content: `玩家${user.value.name}:${chatMsg.value}`,
-            textColor: "white",
-          });
-        }
         //測試end
         chatMsg.value = "";
       } else {
@@ -75,7 +74,7 @@ export default defineComponent({
           alert("請勿輸入超過20字");
           chatMsg.value = "";
         } else if (!canType.value) {
-          alert("請勿連續輸入");
+          alert("輸入間隔過短!");
         }
       }
     }

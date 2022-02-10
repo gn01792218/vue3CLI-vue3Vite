@@ -1,7 +1,7 @@
 <template>
     <div class="chatDisplay position-relative">
         <ul v-for="(i,index) in chatContentArr" :key="index" v-show="tableNum==i.table">
-            {{i.table}}
+            <!-- {{i.table}} -->
             <transition-group @enter="msgAnimate" tag="ul">
                 <li class="chatMsg position-absolute" v-for="(chatMsg) in i.chatMsgArr" :key="chatMsg" :class="{'rewardMsg':chatMsg.textColor=='yellow'}">{{chatMsg.content}}</li>
             </transition-group>
