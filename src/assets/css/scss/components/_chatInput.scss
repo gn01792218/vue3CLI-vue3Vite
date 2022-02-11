@@ -1,7 +1,29 @@
-.bi-emoji-smile{
+.input-emoji{
     cursor: pointer;
+	right:10px;
+	top:0;
+}
+.chat-input{
+	max-width: 200px;
+	min-width: 100px;
+	input{
+		border-radius: 44px;
+        width:170px;
+        background-color: transparent;
+        border: transparent !important;
+	}
+    input:focus{
+        outline-color: white;
+        border:none !important;
+    }
+}
+.chat-input-wrap{
+    width:200px;
+    background-color: white;
+    border-radius: 50px;
+    overflow: hidden;
 }
 .chatInput-emoji{
     width:300px;
-    top:-270px;
+    top:-259px;
 }

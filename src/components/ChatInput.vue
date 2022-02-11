@@ -1,17 +1,18 @@
 <template>
   <div v-if="tableNum" class="chat-input position-relative">
     <Emoji class="chatInput-emoji position-absolute" v-show="showEmoji" @selectEmoji="addEmoji"/>
-    <input
-      @keyup.enter="sendChatMsg"
-      type="text"
-      id="chatInputElement"
-      placeholder="你目前沒有發言權限"
-      aria-label="Username"
-      aria-describedby="basic-addon1"
-      v-model="chatMsg"
-    />
-    <div class="input-emoji position-absolute">
-      <i class="bi bi-emoji-smile" @click="emojiListControl(!showEmoji)"></i>
+    <div class="chat-input-wrap pl-2">
+        <input
+        @keyup.enter="sendChatMsg"
+        type="text"
+        id="chatInputElement"
+        placeholder="你目前沒有發言權限"
+       
+        v-model="chatMsg"
+      />
+      <div class="input-emoji position-absolute">
+        <i class="bi bi-emoji-smile" @click="emojiListControl(!showEmoji)"></i>
+      </div>
     </div>
   </div>
 </template>

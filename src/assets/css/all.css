@@ -378,7 +378,17 @@ img {
   margin-left: 5px;
 }
 
+.tabsArea-btn div {
+  cursor: pointer;
+  padding: 10px 35px;
+}
+
+.onclickTab {
+  background-color: black;
+}
+
 .input-emoji {
+  cursor: pointer;
   right: 10px;
   top: 0;
 }
@@ -390,24 +400,26 @@ img {
 
 .chat-input input {
   border-radius: 44px;
+  width: 170px;
+  background-color: transparent;
+  border: transparent !important;
 }
 
-.tabsArea-btn div {
-  cursor: pointer;
-  padding: 10px 35px;
+.chat-input input:focus {
+  outline-color: white;
+  border: none !important;
 }
 
-.onclickTab {
-  background-color: black;
-}
-
-.bi-emoji-smile {
-  cursor: pointer;
+.chat-input-wrap {
+  width: 200px;
+  background-color: white;
+  border-radius: 50px;
+  overflow: hidden;
 }
 
 .chatInput-emoji {
   width: 300px;
-  top: -270px;
+  top: -259px;
 }
 
 .chatDisplay {
@@ -426,7 +438,9 @@ img {
 }
 
 .emojiList {
-  background-color: black;
+  background-color: #2c2215;
+  border: #644d31 2px solid;
+  border-radius: 10px;
 }
 
 .emoji {
@@ -1989,6 +2003,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .gameHistory {
     height: 25%;
   }
+  .chatInput-emoji {
+    top: -235px;
+  }
   .coinArea {
     height: 21%;
   }
@@ -3482,6 +3499,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .alertFont {
     font-size: 1.5rem !important;
   }
+  .chatInput-emoji {
+    left: -50%;
+  }
   .betArea-mobile,
   .betArea-mobile-container {
     height: 100px;
@@ -4102,6 +4122,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .userBetInfo-title {
     font-size: 1rem;
   }
+  .chatInput-emoji {
+    left: -55%;
+  }
+  .footer-item {
+    margin-left: 0;
+  }
   .coin-100 {
     width: 47.4px;
     height: 39px;
@@ -4266,7 +4292,28 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (max-width: 345px) {
+  .chatInput-emoji {
+    left: -70%;
+  }
+  .chat-input-wrap {
+    width: 160px;
+  }
+  .chat-input input {
+    width: 120px;
+  }
+}
+
 @media screen and (max-width: 320px) {
+  .chat-input-wrap {
+    width: 120px;
+  }
+  .chatInput-emoji {
+    left: -84%;
+  }
+  .chat-input input {
+    width: 85px;
+  }
   .header {
     height: 30px;
   }
@@ -4495,6 +4542,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 280px) {
   .tableItem {
     width: 230px;
+  }
+  .chatInput-emoji {
+    left: -97%;
   }
   .announcement-container {
     width: 250px;
