@@ -4,7 +4,7 @@
     />
       <LiveVideo/>
       <BettingArea/>
-      <GameHistory/>
+      <!-- <GameHistory/> -->
       <TableInfo/>
   </div>
 </template>

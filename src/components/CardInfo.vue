@@ -41,19 +41,15 @@ export default defineComponent({
     const tableNum = computed(()=>{
       return route.params.tableId
     })
-    watch(tableNum,()=>{
-        resetCards ()  //換桌的時候卡牌要先重置
-        resetCardPoint()
-    })
     //vuex
     const store = useStore()
-    const roundUuid = computed(()=>{
+    const roundUuid = computed(()=>{ //回合UUID
        return store.state.game.gameUuid
      })
     const lastDrawCard = computed(()=>{ //陣列:進場前補畫的牌
       return store.state.game.GameStatus.draws
      })
-    const gameStatus = computed(()=>{
+    const gameStatus = computed(()=>{  //遊戲狀態
       return store.state.game.GameStatus.status
     })
     const DrawCard = computed(()=>{  //每次都傳一張
@@ -65,10 +61,10 @@ export default defineComponent({
     const gameEnd = computed(()=>{  //換靴
           return store.state.dealer.end
     })
-    const bankCardArray = ref([0,0,0])
-    const playerCardArray = ref([0,0,0])
-    const playerPoint = ref(0)
-    const bankerPoint = ref(0)
+    const bankCardArray = ref([0,0,0]) //莊家卡牌陣列，INDEX代表位置為左下、右下、上(補牌)
+    const playerCardArray = ref([0,0,0]) //閒家卡牌陣列，INDEX代表位置為左下、右下、上(補牌)
+    const playerPoint = ref(0) //閒家卡牌總和
+    const bankerPoint = ref(0)  //莊家卡牌總和
     const showCardResult =ref(false)
     //響應式卡牌監聽 應付電腦解析度切換、行動裝置直橫切換
     const mqlMax1280 = window.matchMedia("(max-width :1280px)")
@@ -76,20 +72,28 @@ export default defineComponent({
        cardPositionInit()
      })
      //watch
+     window.addEventListener('reConnect',()=>{
+       console.log('斷線重連，卡牌重整')
+       resetCards ()  
+       resetCardPoint()
+     })
+     watch(tableNum,()=>{ //換桌的時候卡牌要先重置
+        resetCards ()  
+        resetCardPoint()
+    })
      watch(gameEnd,()=>{ //換薛時也要重置
       resetCards () //不管哪個狀態都先執行一次清除卡牌
       resetCardPoint()
       showCardResult.value = false
     })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
-     if(gameStatus.value!==2){  //不是畫卡的時候，不清除卡牌
+     if(gameStatus.value!==2){  //不是畫卡的時候，不清除卡牌(因為換桌時ROUNDUUID也會改變)
        resetCards () //不是畫卡的時候才要reset
        resetCardPoint()
        showCardResult.value = false  //不顯示卡牌
      }
      })
-     watch(gameResult,()=>{
-      //  console.log(gameResult.value.length)
+     watch(gameResult,()=>{ //有遊戲結果時，顯示贏的一方
         setWinCardBoxLight()
        if(gameResult.value.length>0){
          showCardTotalPoint()
@@ -97,7 +101,6 @@ export default defineComponent({
      })
      watch(DrawCard,()=>{  //開牌
       //  console.log("開牌")
-      //if判斷是暫時性的
        let card = DrawCard.value
        showCards(card.side,card.card.suit,card.card.point,card.position)
      })
@@ -160,7 +163,7 @@ export default defineComponent({
        playerCardArray.value = [0,0,0]
        bankCardArray.value = [0,0,0]
      }
-     async function showCardTotalPoint () {
+     async function showCardTotalPoint () {  //開牌完成時，計算各家的卡牌總和
       // console.log('加總前的arr狀態:','閒',playerCardArray.value,'莊',bankCardArray.value)
       playerCardArray.value.forEach(i=>{
         if(i>=10){
@@ -187,11 +190,11 @@ export default defineComponent({
       switch(cardSide){
         case proto.dealer.Side.Banker:
         cardElement = getCardPosition(position,'.bankPoker')
-        bankCardArray.value[position-1] = point
+        bankCardArray.value[position-1] = point    //把卡加在指定的POSITION陣列中
           break
         case proto.dealer.Side.Player:
         cardElement = getCardPosition(position,'.playerPoker')
-        playerCardArray.value[position-1] = point
+        playerCardArray.value[position-1] = point //把卡加在指定的POSITION陣列中
           break
       }
       if(cardElement){  //畫卡
