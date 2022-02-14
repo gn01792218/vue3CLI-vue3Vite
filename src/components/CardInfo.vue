@@ -87,11 +87,10 @@ export default defineComponent({
       showCardResult.value = false
     })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
-     if(gameStatus.value!==2){  //不是畫卡的時候，不清除卡牌(因為換桌時ROUNDUUID也會改變)
+      console.log('偵測到不同局，畫牌要重置',gameStatus.value)
        resetCards () //不是畫卡的時候才要reset
        resetCardPoint()
        showCardResult.value = false  //不顯示卡牌
-     }
      })
      watch(gameResult,()=>{ //有遊戲結果時，顯示贏的一方
         setWinCardBoxLight()
@@ -106,6 +105,7 @@ export default defineComponent({
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
        if(gameStatus.value==2){  //防止server在等待時間也傳卡牌來
+        console.log('補畫卡牌!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
        })
