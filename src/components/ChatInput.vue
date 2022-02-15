@@ -23,6 +23,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { chatContent, tableName } from "../types/global";
 import Emoji from "@/components/Emoji.vue";
+import {sendChat} from '../socketApi'
 export default defineComponent({
   components: {
     Emoji,
@@ -68,19 +69,23 @@ export default defineComponent({
         //設置防止連按
         setTypeTimer();
         //傳送訊息給serve
-        //以下測試start
-        let chatTable: chatContent | undefined = chatContentArr.value.find(
-          (i: chatContent) => {
-            return i.table == tableNum.value;
-          }
-        );
-        if (chatTable) {
-          chatTable.chatMsgArr.push({
-            content: `玩家${user.value.name}:${chatMsg.value}`,
-            textColor: "white",
-          });
-        }
-        //測試end
+        sendChat({
+          message:`${chatMsg.value}`
+        })
+        // //以下測試start
+        // let chatTable: chatContent | undefined = chatContentArr.value.find(
+        //   (i: chatContent) => {
+        //     return i.table == tableNum.value;
+        //   }
+        // );
+        // if (chatTable) {
+        //   chatTable.chatMsgArr.push({
+        //     content: `玩家${user.value.name}:${chatMsg.value}`,
+        //     textColor: "white",
+        //   });
+        // }
+        // //測試end
+
         //複製剛剛輸入的文字
         copyInputText(document.getElementById('chatInputElement') as HTMLInputElement)
         chatMsg.value = "";

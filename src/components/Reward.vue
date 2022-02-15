@@ -33,6 +33,7 @@ import {defineComponent , reactive, ref , computed} from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import {chatContent,tableName} from '../types/global'
+import {sendChat} from '../socketApi'
 export default defineComponent({
    setup(){
        //基本資料
@@ -59,20 +60,22 @@ export default defineComponent({
        function sendReward(){
            if(totalReward.value>0){
                //傳送資料給server
-                //測試start:
-                let chatTable:chatContent | undefined= chatContentArr.value.find((i:chatContent)=>{
-                    return i.table == tableNum.value 
-                })
-                if(chatTable){
-                    chatTable.chatMsgArr.push({
-                        content:`玩家${userName.value}:送了${totalReward.value}`,
-                        textColor:'yellow',
-                    })
-                }
-                //測試end
+               sendChat({
+                   message:`送了${totalReward.value}`
+               })
+                // //測試start:
+                // let chatTable:chatContent | undefined= chatContentArr.value.find((i:chatContent)=>{
+                //     return i.table == tableNum.value 
+                // })
+                // if(chatTable){
+                //     chatTable.chatMsgArr.push({
+                //         content:`玩家${userName.value}:送了${totalReward.value}`,
+                //         textColor:'yellow',
+                //     })
+                // }
+                // //測試end
                 totalReward.value = 0
            }
-           
         }
         return {
             //data

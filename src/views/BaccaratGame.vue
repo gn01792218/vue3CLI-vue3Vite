@@ -74,24 +74,25 @@ export default defineComponent({
        switch(tableNum.value){
         case 'A':
           tables.value.find((i:any)=>{
-            if(i.name=="A桌"){
+            if(i.name=="A"){
               sendTableJoinCall({
                 uuid:i.uuid
               })
-              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
+              // console.log('發送TableJoin',tableNum.value)
+              console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
             }
-            return i.name == "A桌"
+            return i.name == "A"
           })
           break
         case 'B':
           tables.value.find((i:any)=>{
-            if(i.name=="B桌"){
+            if(i.name=="B"){
               sendTableJoinCall({
                 uuid:i.uuid
               })
               // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
             }
-            return i.name == "B桌"
+            return i.name == "B"
           })
           break
         case 'VIP':

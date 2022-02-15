@@ -2,11 +2,15 @@ import {chatContent} from '../types/global'
 export const state = {
     chatContentArr:[] as chatContent[],
     showEmoji:false,
-    chatMsg:""
+    chatMsg:"",
+    BroadcastChat:{}
   };
   export const actions = {}
   
   export const mutations = {
+    BroadcastChat(state:any,payload:any){
+      state.BroadcastChat = payload
+    },
     loadChatContentArr(state:any,payload:any){
         payload.forEach((i:any)=>{
             i.name = i.name.replace('桌','')

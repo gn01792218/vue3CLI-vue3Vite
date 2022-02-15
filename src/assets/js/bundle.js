@@ -6091,6 +6091,8 @@ export const foundation = $root.foundation = (() => {
                 case 31:
                 case 4000:
                 case 4001:
+                case 5000:
+                case 5001:
                     break;
                 }
             return null;
@@ -6260,6 +6262,14 @@ export const foundation = $root.foundation = (() => {
             case "kickoutwarn":
             case 4001:
                 message.uri = 4001;
+                break;
+            case "Chat":
+            case 5000:
+                message.uri = 5000;
+                break;
+            case "BroadcastChat":
+            case 5001:
+                message.uri = 5001;
                 break;
             }
             return message;
@@ -12008,6 +12018,8 @@ export const route = $root.route = (() => {
      * @property {number} BroadcastTotalPlayersOnline=31 BroadcastTotalPlayersOnline value
      * @property {number} Kickout=4000 Kickout value
      * @property {number} kickoutwarn=4001 kickoutwarn value
+     * @property {number} Chat=5000 Chat value
+     * @property {number} BroadcastChat=5001 BroadcastChat value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -12049,6 +12061,8 @@ export const route = $root.route = (() => {
         values[valuesById[31] = "BroadcastTotalPlayersOnline"] = 31;
         values[valuesById[4000] = "Kickout"] = 4000;
         values[valuesById[4001] = "kickoutwarn"] = 4001;
+        values[valuesById[5000] = "Chat"] = 5000;
+        values[valuesById[5001] = "BroadcastChat"] = 5001;
         return values;
     })();
 
@@ -12974,6 +12988,458 @@ export const table = $root.table = (() => {
         };
 
         return StreamingUrl;
+    })();
+
+    table.Chat = (function() {
+
+        /**
+         * Properties of a Chat.
+         * @memberof table
+         * @interface IChat
+         * @property {foundation.IHeader|null} [header] Chat header
+         * @property {string|null} [message] Chat message
+         */
+
+        /**
+         * Constructs a new Chat.
+         * @memberof table
+         * @classdesc Represents a Chat.
+         * @implements IChat
+         * @constructor
+         * @param {table.IChat=} [properties] Properties to set
+         */
+        function Chat(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Chat header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof table.Chat
+         * @instance
+         */
+        Chat.prototype.header = null;
+
+        /**
+         * Chat message.
+         * @member {string} message
+         * @memberof table.Chat
+         * @instance
+         */
+        Chat.prototype.message = "";
+
+        /**
+         * Creates a new Chat instance using the specified properties.
+         * @function create
+         * @memberof table.Chat
+         * @static
+         * @param {table.IChat=} [properties] Properties to set
+         * @returns {table.Chat} Chat instance
+         */
+        Chat.create = function create(properties) {
+            return new Chat(properties);
+        };
+
+        /**
+         * Encodes the specified Chat message. Does not implicitly {@link table.Chat.verify|verify} messages.
+         * @function encode
+         * @memberof table.Chat
+         * @static
+         * @param {table.IChat} message Chat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Chat.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Chat message, length delimited. Does not implicitly {@link table.Chat.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof table.Chat
+         * @static
+         * @param {table.IChat} message Chat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Chat.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer.
+         * @function decode
+         * @memberof table.Chat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {table.Chat} Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Chat.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.Chat();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.message = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof table.Chat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {table.Chat} Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Chat.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Chat message.
+         * @function verify
+         * @memberof table.Chat
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Chat.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a Chat message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof table.Chat
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {table.Chat} Chat
+         */
+        Chat.fromObject = function fromObject(object) {
+            if (object instanceof $root.table.Chat)
+                return object;
+            let message = new $root.table.Chat();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".table.Chat.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.message != null)
+                message.message = String(object.message);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Chat message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof table.Chat
+         * @static
+         * @param {table.Chat} message Chat
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Chat.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.message = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            return object;
+        };
+
+        /**
+         * Converts this Chat to JSON.
+         * @function toJSON
+         * @memberof table.Chat
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Chat.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Chat;
+    })();
+
+    table.BroadcastChat = (function() {
+
+        /**
+         * Properties of a BroadcastChat.
+         * @memberof table
+         * @interface IBroadcastChat
+         * @property {foundation.IHeader|null} [header] BroadcastChat header
+         * @property {string|null} [message] BroadcastChat message
+         * @property {string|null} [player] BroadcastChat player
+         */
+
+        /**
+         * Constructs a new BroadcastChat.
+         * @memberof table
+         * @classdesc Represents a BroadcastChat.
+         * @implements IBroadcastChat
+         * @constructor
+         * @param {table.IBroadcastChat=} [properties] Properties to set
+         */
+        function BroadcastChat(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastChat header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof table.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.header = null;
+
+        /**
+         * BroadcastChat message.
+         * @member {string} message
+         * @memberof table.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.message = "";
+
+        /**
+         * BroadcastChat player.
+         * @member {string} player
+         * @memberof table.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.player = "";
+
+        /**
+         * Creates a new BroadcastChat instance using the specified properties.
+         * @function create
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {table.IBroadcastChat=} [properties] Properties to set
+         * @returns {table.BroadcastChat} BroadcastChat instance
+         */
+        BroadcastChat.create = function create(properties) {
+            return new BroadcastChat(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastChat message. Does not implicitly {@link table.BroadcastChat.verify|verify} messages.
+         * @function encode
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {table.IBroadcastChat} message BroadcastChat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastChat.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+            if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.player);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastChat message, length delimited. Does not implicitly {@link table.BroadcastChat.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {table.IBroadcastChat} message BroadcastChat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastChat.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastChat message from the specified reader or buffer.
+         * @function decode
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {table.BroadcastChat} BroadcastChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastChat.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.BroadcastChat();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.message = reader.string();
+                    break;
+                case 3:
+                    message.player = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastChat message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {table.BroadcastChat} BroadcastChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastChat.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastChat message.
+         * @function verify
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastChat.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            if (message.player != null && message.hasOwnProperty("player"))
+                if (!$util.isString(message.player))
+                    return "player: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastChat message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {table.BroadcastChat} BroadcastChat
+         */
+        BroadcastChat.fromObject = function fromObject(object) {
+            if (object instanceof $root.table.BroadcastChat)
+                return object;
+            let message = new $root.table.BroadcastChat();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".table.BroadcastChat.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.message != null)
+                message.message = String(object.message);
+            if (object.player != null)
+                message.player = String(object.player);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastChat message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof table.BroadcastChat
+         * @static
+         * @param {table.BroadcastChat} message BroadcastChat
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastChat.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.message = "";
+                object.player = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            if (message.player != null && message.hasOwnProperty("player"))
+                object.player = message.player;
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastChat to JSON.
+         * @function toJSON
+         * @memberof table.BroadcastChat
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastChat.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastChat;
     })();
 
     return table;

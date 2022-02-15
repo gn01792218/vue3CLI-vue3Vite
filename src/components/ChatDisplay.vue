@@ -24,8 +24,24 @@ export default defineComponent({
        })
        //vuex
        const store = useStore()
+       const chatRecall = computed(()=>{
+           return store.state.chat.BroadcastChat
+       })
        const chatContentArr = computed<chatContent[]>(()=>{  //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
            return store.state.chat.chatContentArr
+       })
+       watch(chatRecall,()=>{
+        let chatTable: chatContent | undefined = chatContentArr.value.find(
+          (i: chatContent) => {
+            return i.table == tableNum.value;
+          }
+        );
+        if (chatTable) {
+          chatTable.chatMsgArr.push({
+            content: `玩家${chatRecall.value.player} : ${chatRecall.value.message}`,
+            textColor: "white",
+          });
+        }
        })
        function msgAnimate(e:HTMLElement){
            console.log('啟動訊息動畫',e)

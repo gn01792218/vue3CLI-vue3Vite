@@ -51,6 +51,18 @@ export const sendTableJoinCall =(data:any) => {
     // console.log("sendTableJoinCall",proto)
     sendWSPush(bytes);
 }
+//發送聊天訊息
+export const sendChat =(data:any) => {
+    let proto = table.Chat.create({
+        header:foundation.Header.create({
+            uri:route.Chat
+        }),
+        message:data.message
+    })
+    let bytes = table.Chat.encode(proto).finish()
+    // console.log("sendChat",proto)
+    sendWSPush(bytes);
+}
 //發送下注資訊
 export const sendBetCall = (data:any) => {
     let proto = bet.BetCall.create({
@@ -134,6 +146,10 @@ export const getMsgReCall = (e:any) =>{
             console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
             break
+        case route.BroadcastChat:
+            let BroadcastChat = table.BroadcastChat.decode(new Uint8Array(e.detail.msg.data))
+            console.log('BroadcastChat',BroadcastChat)
+            store.commit('chat/BroadcastChat',BroadcastChat)
         case route.BetRecall:
             let BetRecall = bet.BetRecall.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BetRecall',BetRecall)
