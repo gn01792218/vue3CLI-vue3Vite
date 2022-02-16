@@ -41,8 +41,8 @@ export const state = {
       // console.log("vuex-BetRoundCountdown資料更新",state.BetRoundCountdown)
     },
     GameStatus(state:any, payload:any){
-      state.GameStatus = payload
       state.gameUuid = payload.gameUuid
+      state.GameStatus = payload
       state.numOfRound = payload.numOfRound
       state.numOfShoe = payload.numOfShoe
       state.gameResultCount = payload.gameResultCounter

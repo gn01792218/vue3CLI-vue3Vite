@@ -78,6 +78,9 @@ export default defineComponent({
     const kickoutWarn = computed(() => {
       return store.state.kick.kickoutWarn;
     });
+    //  window.addEventListener('disconnect',()=>{
+    //    closeWindow();
+    //  })
     watch(kickoutWarn, () => {
       $("#alertModal").modal("show");
     });

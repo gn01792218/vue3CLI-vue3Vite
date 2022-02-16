@@ -40,6 +40,13 @@ export default defineComponent({
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
+        window.addEventListener('reConnect',()=>{
+            isWait.value = true
+            stateMsg.value = "網路不穩...重連中..."
+        })
+        window.addEventListener('connected',()=>{
+            isWait.value = false
+        })
         watch(gameEnd,()=>{ //換靴
                 isWait.value = true
                 stateMsg.value = "中場休息..."
