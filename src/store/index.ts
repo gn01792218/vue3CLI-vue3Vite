@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import lobby from "./lobby";
 import chat from "./chat";
+import donat from "./donat";
 import auth from "./auth";
 import table from "./table";
 import bet from "./bet";
@@ -26,5 +27,6 @@ export default createStore({
     announcement,
     kick,
     chat,
+    donat,
   },
 });

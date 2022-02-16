@@ -15,6 +15,7 @@ const roadmap = protoRoot.roadmap
 const announcement = protoRoot.announcement
 const kick = protoRoot.kick
 const chat = protoRoot.chat
+const donate = protoRoot.donate
 //各種send方法
 //發送心跳
 const sendPon = ()=>{
@@ -61,6 +62,17 @@ export const sendChat =(data:any) => {
     })
     let bytes = chat.Chat.encode(proto).finish()
     // console.log("sendChat",proto)
+    sendWSPush(bytes);
+}
+export const sendDonat =(data:any) => {
+    let proto = donate.DonateCall.create({
+        header:foundation.Header.create({
+            uri:route.DonateCall
+        }),
+        points:data.points
+    })
+    let bytes = donate.DonateCall.encode(proto).finish()
+    console.log("sendDonat",proto)
     sendWSPush(bytes);
 }
 //發送下注資訊
@@ -150,6 +162,10 @@ export const getMsgReCall = (e:any) =>{
             let BroadcastChat = chat.BroadcastChat.decode(new Uint8Array(e.detail.msg.data))
             console.log('BroadcastChat',BroadcastChat)
             store.commit('chat/BroadcastChat',BroadcastChat)
+        case route.DonateRecall:
+            let DonateRecall = donate.DonateRecall.decode(new Uint8Array(e.detail.msg.data))
+            console.log('DonateRecall',DonateRecall)
+            store.commit('donat/DonateRecall',DonateRecall)
         case route.BetRecall:
             let BetRecall = bet.BetRecall.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BetRecall',BetRecall)

@@ -25,7 +25,7 @@ import { defineComponent, reactive, ref, computed, watch } from "vue";
 import gsap from "gsap";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { chatContent } from "../../types/global";
+import { chatContent, chatMsg } from "../../types/global";
 export default defineComponent({
   setup() {
     //路由資料
@@ -38,10 +38,37 @@ export default defineComponent({
     const chatRecall = computed(() => {
       return store.state.chat.BroadcastChat;
     });
+    const donatRecall = computed(() => {
+      return store.state.donat.DonateRecall;
+    });
     const chatContentArr = computed<chatContent[]>(() => {
       //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
       return store.state.chat.chatContentArr;
     });
+    // watch(donatRecall, () => {
+    //   if (donatRecall.value.error) {
+    //     let chatTable: chatContent | undefined = chatContentArr.value.find(
+    //       (i: chatContent) => {
+    //         return i.table == tableNum.value;
+    //       }
+    //     );
+    //     if (chatTable) {
+    //       let chatObject = {
+    //         content: `玩家${chatRecall.value.player} : 送了${chatRecall.value.message}`,
+    //         textColor: "yellow",
+    //       };
+    //       if (chatTable.chatMsgArr.length > 0) {
+    //         //陣列中如果有多餘一則留言的話，就必須要有一點delay
+    //         console.log(chatTable.chatMsgArr.length, "要delay");
+    //         setTimeout(() => {
+    //           chatTable?.chatMsgArr.push(chatObject);
+    //         }, 500);
+    //       } else {
+    //         chatTable.chatMsgArr.push(chatObject);
+    //       }
+    //     }
+    //   }
+    // });
     watch(chatRecall, () => {
       let chatTable: chatContent | undefined = chatContentArr.value.find(
         (i: chatContent) => {
@@ -49,17 +76,33 @@ export default defineComponent({
         }
       );
       if (chatTable) {
-        let chatObject = {
-          content: `玩家${chatRecall.value.player} : ${chatRecall.value.message}`,
-          textColor: "white",
+        let chatObject: chatMsg 
+        = {
+          content:'',
+          textColor:'',
+        };
+        switch (chatRecall.value.type) {
+          case 1:
+            chatObject = {
+              content: `玩家${chatRecall.value.player} : ${chatRecall.value.message}`,
+              textColor: "white",
+            };
+            break;
+          case 2:
+            chatObject = {
+              content: `玩家${chatRecall.value.player} : 送了${chatRecall.value.message}`,
+              textColor: "yellow",
+            };
+            console.log('斗內',chatObject)
+            break;
         }
-        if(chatTable.chatMsgArr.length>0){  //陣列中如果有多餘一則留言的話，就必須要有一點delay
-          console.log(chatTable.chatMsgArr.length,'要delay')
+        if (chatTable.chatMsgArr.length > 0) {
+          //陣列中如果有多餘一則留言的話，就必須要有一點delay
           setTimeout(() => {
             chatTable?.chatMsgArr.push(chatObject);
           }, 500);
-        }else{
-          chatTable.chatMsgArr.push(chatObject);
+        } else {
+          chatTable?.chatMsgArr.push(chatObject);
         }
       }
     });
