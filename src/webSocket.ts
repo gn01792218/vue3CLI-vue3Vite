@@ -7,6 +7,7 @@ let setIntervalWesocketPush:number
 //連接上後會發送心跳
 const onopenWs = ()=>{
     console.log("連線建立成功")
+    window.dispatchEvent(new CustomEvent('connected'))
 }
 //連接失敗會重新連線
 const onerrorWs = ()=>{
@@ -23,12 +24,15 @@ const onerrorWs = ()=>{
 const oncloseWs = () => {
     console.log('連線已被斷開',Socket?.readyState)
     clearInterval(setIntervalWesocketPush)
+    if(Socket?.readyState==2){
+      alert('斷線了')
+    }
     // if (Socket?.readyState == 3) {   //stateCode 3 為連接已關閉，或沒有連接成功
     //   alert('websocket已被斷開連線，請關閉遊戲重新開啟')
-    //   window.dispatchEvent(new CustomEvent('disconnect'))
+    //   // window.dispatchEvent(new CustomEvent('disconnect'))
     // }
     if(Socket?.readyState !== 2){ //readyState 2 = 連接正在關閉
-      alert('websocket已被斷開....正在嘗試重連')
+      // alert('websocket已被斷開....正在嘗試重連')
       Socket = null
       createSocket()
       window.dispatchEvent(new CustomEvent('reConnect'))
@@ -39,6 +43,7 @@ const oncloseWs = () => {
  * @param {any} message 需要发送的数据
  */
  const connecting = (message:any) => {
+   console.log('正在連接中...')
     setTimeout(() => {
       if (Socket?.readyState === 0) { //readyState 0 表示正在連接中，那就繼續connecting
         connecting(message)
