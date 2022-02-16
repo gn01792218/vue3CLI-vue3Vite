@@ -52,11 +52,16 @@
         @extend %bettingArea-btn-base;
         background-color:rgba(128, 0, 128, 0.829);
     }
-    .bettingArea-btn-betInfo{
+    .bettingArea-btn-betInfo,.bettingArea-btn-reward{
         border-radius: 5px;
         background-color: #644d31;
         font-size: 18px;
         text-align: center;
+    }
+    .bettingArea-btn-reward{
+        height:42px;
+        // background-color: rgb(71, 71, 2);
+        background-color:rgba(128, 0, 128, 0.829);
     }
     .betArea-item{
         font-weight:500;
@@ -77,11 +82,9 @@
     }
     .askRoad-player{
         color:red;
-        cursor: pointer;
     }
     .askRoad-banker{
         color:yellow;
-        cursor: pointer;
     }
     .shotCoinUl{  
         width:100%;

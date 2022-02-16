@@ -39,7 +39,7 @@
         <span class="footer-item  d-md-flex"
           ><i class="bi bi-chat-dots"></i
         ></span>
-        <span class="footer-item  d-md-flex" @click="testSendMsg"
+        <span class="footer-item  d-md-flex"
           ><i class="bi bi-lightning"></i
         ></span>
         <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
@@ -128,33 +128,6 @@ export default defineComponent({
         npvideo.value.clearView(); //清除上一個視頻留下的東西
       }
     }
-    //暫時性:之後要傳送資料給server start
-    const chatContentArr = computed<chatContent[]>(() => {
-      return store.state.chat.chatContentArr;
-    });
-    //送出聊天訊息
-    async function testSendMsg() {
-      let chatTable: chatContent | undefined = chatContentArr.value.find(
-        (i: chatContent) => {
-          return i.table == tableNum.value;
-        }
-      );
-      if (chatTable) {
-        let msgArr = [
-          { content: "測試", textColor: "yellow" },
-          { content: "AAA", textColor: "yellow" },
-          { content: "CKJHDJSHSJDH", textColor: "yellow" },
-        ];
-        let count = 0;
-        setInterval(() => {
-          if (count < msgArr.length) {
-            chatTable?.chatMsgArr.push(msgArr[count++]);
-          }
-        }, 500);
-      }
-    }
-    //暫時性end
-    
     // function showAnnouncement(){ //控制公告同意書顯示與否
     //     store.commit('lobby/setShowannouncement',!announcementShow.value)
     // }
@@ -170,7 +143,6 @@ export default defineComponent({
       fullScreen,
       mutedSound,
       playVideo,
-      testSendMsg,
       // showAnnouncement,
     };
   },

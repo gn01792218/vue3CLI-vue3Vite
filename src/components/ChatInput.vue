@@ -72,20 +72,6 @@ export default defineComponent({
         sendChat({
           message:`${chatMsg.value}`
         })
-        // //以下測試start
-        // let chatTable: chatContent | undefined = chatContentArr.value.find(
-        //   (i: chatContent) => {
-        //     return i.table == tableNum.value;
-        //   }
-        // );
-        // if (chatTable) {
-        //   chatTable.chatMsgArr.push({
-        //     content: `玩家${user.value.name}:${chatMsg.value}`,
-        //     textColor: "white",
-        //   });
-        // }
-        // //測試end
-
         //複製剛剛輸入的文字
         copyInputText(document.getElementById('chatInputElement') as HTMLInputElement)
         chatMsg.value = "";

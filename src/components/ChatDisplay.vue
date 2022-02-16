@@ -57,6 +57,28 @@ export default defineComponent({
                chatTable?.chatMsgArr.shift()
            })
        }
+        //假如收到的陣列 : 送出聊天訊息
+    async function testSendMsg() {
+      let chatTable: chatContent | undefined = chatContentArr.value.find(
+        (i: chatContent) => {
+          return i.table == tableNum.value;
+        }
+      );
+      if (chatTable) {
+        let msgArr = [
+          { content: "測試", textColor: "yellow" },
+          { content: "AAA", textColor: "yellow" },
+          { content: "CKJHDJSHSJDH", textColor: "yellow" },
+        ];
+        let count = 0;
+        setInterval(() => {
+          if (count < msgArr.length) {
+            chatTable?.chatMsgArr.push(msgArr[count++]);
+          }
+        }, 500);
+      }
+    }
+    //暫時性end
         return {
             //data
             // tableList,

@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex align-items-center justify-content-center">
-                    <h1>金額</h1>
+                    <h1 class="mr-1 reward-title">金額</h1>
                     <div v-if="totalReward==0" class="totalReward noreward">{{totalReward}}</div>
                     <div v-else class="totalReward">{{totalReward}}</div>
                 </div>
