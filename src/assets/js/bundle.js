@@ -3543,6 +3543,566 @@ export const bet = $root.bet = (() => {
     return bet;
 })();
 
+export const chat = $root.chat = (() => {
+
+    /**
+     * Namespace chat.
+     * @exports chat
+     * @namespace
+     */
+    const chat = {};
+
+    /**
+     * MessageType enum.
+     * @name chat.MessageType
+     * @enum {number}
+     * @property {number} default_type=0 default_type value
+     * @property {number} chat=1 chat value
+     * @property {number} donate=2 donate value
+     */
+    chat.MessageType = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "default_type"] = 0;
+        values[valuesById[1] = "chat"] = 1;
+        values[valuesById[2] = "donate"] = 2;
+        return values;
+    })();
+
+    chat.Chat = (function() {
+
+        /**
+         * Properties of a Chat.
+         * @memberof chat
+         * @interface IChat
+         * @property {foundation.IHeader|null} [header] Chat header
+         * @property {string|null} [message] Chat message
+         * @property {chat.MessageType|null} [type] Chat type
+         */
+
+        /**
+         * Constructs a new Chat.
+         * @memberof chat
+         * @classdesc Represents a Chat.
+         * @implements IChat
+         * @constructor
+         * @param {chat.IChat=} [properties] Properties to set
+         */
+        function Chat(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Chat header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof chat.Chat
+         * @instance
+         */
+        Chat.prototype.header = null;
+
+        /**
+         * Chat message.
+         * @member {string} message
+         * @memberof chat.Chat
+         * @instance
+         */
+        Chat.prototype.message = "";
+
+        /**
+         * Chat type.
+         * @member {chat.MessageType} type
+         * @memberof chat.Chat
+         * @instance
+         */
+        Chat.prototype.type = 0;
+
+        /**
+         * Creates a new Chat instance using the specified properties.
+         * @function create
+         * @memberof chat.Chat
+         * @static
+         * @param {chat.IChat=} [properties] Properties to set
+         * @returns {chat.Chat} Chat instance
+         */
+        Chat.create = function create(properties) {
+            return new Chat(properties);
+        };
+
+        /**
+         * Encodes the specified Chat message. Does not implicitly {@link chat.Chat.verify|verify} messages.
+         * @function encode
+         * @memberof chat.Chat
+         * @static
+         * @param {chat.IChat} message Chat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Chat.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Chat message, length delimited. Does not implicitly {@link chat.Chat.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof chat.Chat
+         * @static
+         * @param {chat.IChat} message Chat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Chat.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer.
+         * @function decode
+         * @memberof chat.Chat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {chat.Chat} Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Chat.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.chat.Chat();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.message = reader.string();
+                    break;
+                case 3:
+                    message.type = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof chat.Chat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {chat.Chat} Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Chat.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Chat message.
+         * @function verify
+         * @memberof chat.Chat
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Chat.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                switch (message.type) {
+                default:
+                    return "type: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a Chat message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof chat.Chat
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {chat.Chat} Chat
+         */
+        Chat.fromObject = function fromObject(object) {
+            if (object instanceof $root.chat.Chat)
+                return object;
+            let message = new $root.chat.Chat();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".chat.Chat.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.message != null)
+                message.message = String(object.message);
+            switch (object.type) {
+            case "default_type":
+            case 0:
+                message.type = 0;
+                break;
+            case "chat":
+            case 1:
+                message.type = 1;
+                break;
+            case "donate":
+            case 2:
+                message.type = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Chat message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof chat.Chat
+         * @static
+         * @param {chat.Chat} message Chat
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Chat.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.message = "";
+                object.type = options.enums === String ? "default_type" : 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = options.enums === String ? $root.chat.MessageType[message.type] : message.type;
+            return object;
+        };
+
+        /**
+         * Converts this Chat to JSON.
+         * @function toJSON
+         * @memberof chat.Chat
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Chat.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Chat;
+    })();
+
+    chat.BroadcastChat = (function() {
+
+        /**
+         * Properties of a BroadcastChat.
+         * @memberof chat
+         * @interface IBroadcastChat
+         * @property {foundation.IHeader|null} [header] BroadcastChat header
+         * @property {string|null} [message] BroadcastChat message
+         * @property {string|null} [player] BroadcastChat player
+         * @property {chat.MessageType|null} [type] BroadcastChat type
+         */
+
+        /**
+         * Constructs a new BroadcastChat.
+         * @memberof chat
+         * @classdesc Represents a BroadcastChat.
+         * @implements IBroadcastChat
+         * @constructor
+         * @param {chat.IBroadcastChat=} [properties] Properties to set
+         */
+        function BroadcastChat(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastChat header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof chat.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.header = null;
+
+        /**
+         * BroadcastChat message.
+         * @member {string} message
+         * @memberof chat.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.message = "";
+
+        /**
+         * BroadcastChat player.
+         * @member {string} player
+         * @memberof chat.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.player = "";
+
+        /**
+         * BroadcastChat type.
+         * @member {chat.MessageType} type
+         * @memberof chat.BroadcastChat
+         * @instance
+         */
+        BroadcastChat.prototype.type = 0;
+
+        /**
+         * Creates a new BroadcastChat instance using the specified properties.
+         * @function create
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {chat.IBroadcastChat=} [properties] Properties to set
+         * @returns {chat.BroadcastChat} BroadcastChat instance
+         */
+        BroadcastChat.create = function create(properties) {
+            return new BroadcastChat(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastChat message. Does not implicitly {@link chat.BroadcastChat.verify|verify} messages.
+         * @function encode
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {chat.IBroadcastChat} message BroadcastChat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastChat.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+            if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.player);
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.type);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastChat message, length delimited. Does not implicitly {@link chat.BroadcastChat.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {chat.IBroadcastChat} message BroadcastChat message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastChat.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastChat message from the specified reader or buffer.
+         * @function decode
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {chat.BroadcastChat} BroadcastChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastChat.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.chat.BroadcastChat();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.message = reader.string();
+                    break;
+                case 3:
+                    message.player = reader.string();
+                    break;
+                case 4:
+                    message.type = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastChat message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {chat.BroadcastChat} BroadcastChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastChat.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastChat message.
+         * @function verify
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastChat.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message"))
+                if (!$util.isString(message.message))
+                    return "message: string expected";
+            if (message.player != null && message.hasOwnProperty("player"))
+                if (!$util.isString(message.player))
+                    return "player: string expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                switch (message.type) {
+                default:
+                    return "type: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastChat message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {chat.BroadcastChat} BroadcastChat
+         */
+        BroadcastChat.fromObject = function fromObject(object) {
+            if (object instanceof $root.chat.BroadcastChat)
+                return object;
+            let message = new $root.chat.BroadcastChat();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".chat.BroadcastChat.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.message != null)
+                message.message = String(object.message);
+            if (object.player != null)
+                message.player = String(object.player);
+            switch (object.type) {
+            case "default_type":
+            case 0:
+                message.type = 0;
+                break;
+            case "chat":
+            case 1:
+                message.type = 1;
+                break;
+            case "donate":
+            case 2:
+                message.type = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastChat message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof chat.BroadcastChat
+         * @static
+         * @param {chat.BroadcastChat} message BroadcastChat
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastChat.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.message = "";
+                object.player = "";
+                object.type = options.enums === String ? "default_type" : 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = message.message;
+            if (message.player != null && message.hasOwnProperty("player"))
+                object.player = message.player;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = options.enums === String ? $root.chat.MessageType[message.type] : message.type;
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastChat to JSON.
+         * @function toJSON
+         * @memberof chat.BroadcastChat
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastChat.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastChat;
+    })();
+
+    return chat;
+})();
+
 export const dealer = $root.dealer = (() => {
 
     /**
@@ -5910,6 +6470,504 @@ export const dealer = $root.dealer = (() => {
     return dealer;
 })();
 
+export const donate = $root.donate = (() => {
+
+    /**
+     * Namespace donate.
+     * @exports donate
+     * @namespace
+     */
+    const donate = {};
+
+    donate.DonateCall = (function() {
+
+        /**
+         * Properties of a DonateCall.
+         * @memberof donate
+         * @interface IDonateCall
+         * @property {foundation.IHeader|null} [header] DonateCall header
+         * @property {number|null} [points] DonateCall points
+         */
+
+        /**
+         * Constructs a new DonateCall.
+         * @memberof donate
+         * @classdesc Represents a DonateCall.
+         * @implements IDonateCall
+         * @constructor
+         * @param {donate.IDonateCall=} [properties] Properties to set
+         */
+        function DonateCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * DonateCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof donate.DonateCall
+         * @instance
+         */
+        DonateCall.prototype.header = null;
+
+        /**
+         * DonateCall points.
+         * @member {number} points
+         * @memberof donate.DonateCall
+         * @instance
+         */
+        DonateCall.prototype.points = 0;
+
+        /**
+         * Creates a new DonateCall instance using the specified properties.
+         * @function create
+         * @memberof donate.DonateCall
+         * @static
+         * @param {donate.IDonateCall=} [properties] Properties to set
+         * @returns {donate.DonateCall} DonateCall instance
+         */
+        DonateCall.create = function create(properties) {
+            return new DonateCall(properties);
+        };
+
+        /**
+         * Encodes the specified DonateCall message. Does not implicitly {@link donate.DonateCall.verify|verify} messages.
+         * @function encode
+         * @memberof donate.DonateCall
+         * @static
+         * @param {donate.IDonateCall} message DonateCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        DonateCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.points != null && Object.hasOwnProperty.call(message, "points"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.points);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified DonateCall message, length delimited. Does not implicitly {@link donate.DonateCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof donate.DonateCall
+         * @static
+         * @param {donate.IDonateCall} message DonateCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        DonateCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a DonateCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof donate.DonateCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {donate.DonateCall} DonateCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        DonateCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.donate.DonateCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.points = reader.double();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a DonateCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof donate.DonateCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {donate.DonateCall} DonateCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        DonateCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a DonateCall message.
+         * @function verify
+         * @memberof donate.DonateCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        DonateCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.points != null && message.hasOwnProperty("points"))
+                if (typeof message.points !== "number")
+                    return "points: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a DonateCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof donate.DonateCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {donate.DonateCall} DonateCall
+         */
+        DonateCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.donate.DonateCall)
+                return object;
+            let message = new $root.donate.DonateCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".donate.DonateCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.points != null)
+                message.points = Number(object.points);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a DonateCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof donate.DonateCall
+         * @static
+         * @param {donate.DonateCall} message DonateCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        DonateCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.points = 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.points != null && message.hasOwnProperty("points"))
+                object.points = options.json && !isFinite(message.points) ? String(message.points) : message.points;
+            return object;
+        };
+
+        /**
+         * Converts this DonateCall to JSON.
+         * @function toJSON
+         * @memberof donate.DonateCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        DonateCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return DonateCall;
+    })();
+
+    donate.DonateRecall = (function() {
+
+        /**
+         * Properties of a DonateRecall.
+         * @memberof donate
+         * @interface IDonateRecall
+         * @property {foundation.IHeader|null} [header] DonateRecall header
+         * @property {number|null} [result] DonateRecall result
+         * @property {donate.DonateError|null} [error] DonateRecall error
+         */
+
+        /**
+         * Constructs a new DonateRecall.
+         * @memberof donate
+         * @classdesc Represents a DonateRecall.
+         * @implements IDonateRecall
+         * @constructor
+         * @param {donate.IDonateRecall=} [properties] Properties to set
+         */
+        function DonateRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * DonateRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof donate.DonateRecall
+         * @instance
+         */
+        DonateRecall.prototype.header = null;
+
+        /**
+         * DonateRecall result.
+         * @member {number} result
+         * @memberof donate.DonateRecall
+         * @instance
+         */
+        DonateRecall.prototype.result = 0;
+
+        /**
+         * DonateRecall error.
+         * @member {donate.DonateError} error
+         * @memberof donate.DonateRecall
+         * @instance
+         */
+        DonateRecall.prototype.error = 0;
+
+        /**
+         * Creates a new DonateRecall instance using the specified properties.
+         * @function create
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {donate.IDonateRecall=} [properties] Properties to set
+         * @returns {donate.DonateRecall} DonateRecall instance
+         */
+        DonateRecall.create = function create(properties) {
+            return new DonateRecall(properties);
+        };
+
+        /**
+         * Encodes the specified DonateRecall message. Does not implicitly {@link donate.DonateRecall.verify|verify} messages.
+         * @function encode
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {donate.IDonateRecall} message DonateRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        DonateRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result);
+            if (message.error != null && Object.hasOwnProperty.call(message, "error"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.error);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified DonateRecall message, length delimited. Does not implicitly {@link donate.DonateRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {donate.IDonateRecall} message DonateRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        DonateRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a DonateRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {donate.DonateRecall} DonateRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        DonateRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.donate.DonateRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.result = reader.int32();
+                    break;
+                case 3:
+                    message.error = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a DonateRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {donate.DonateRecall} DonateRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        DonateRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a DonateRecall message.
+         * @function verify
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        DonateRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.result != null && message.hasOwnProperty("result"))
+                if (!$util.isInteger(message.result))
+                    return "result: integer expected";
+            if (message.error != null && message.hasOwnProperty("error"))
+                switch (message.error) {
+                default:
+                    return "error: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a DonateRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {donate.DonateRecall} DonateRecall
+         */
+        DonateRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.donate.DonateRecall)
+                return object;
+            let message = new $root.donate.DonateRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".donate.DonateRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.result != null)
+                message.result = object.result | 0;
+            switch (object.error) {
+            case "Default":
+            case 0:
+                message.error = 0;
+                break;
+            case "InvalidDonate":
+            case 1:
+                message.error = 1;
+                break;
+            case "NotEnoughWallet":
+            case 2:
+                message.error = 2;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a DonateRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof donate.DonateRecall
+         * @static
+         * @param {donate.DonateRecall} message DonateRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        DonateRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.result = 0;
+                object.error = options.enums === String ? "Default" : 0;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.result != null && message.hasOwnProperty("result"))
+                object.result = message.result;
+            if (message.error != null && message.hasOwnProperty("error"))
+                object.error = options.enums === String ? $root.donate.DonateError[message.error] : message.error;
+            return object;
+        };
+
+        /**
+         * Converts this DonateRecall to JSON.
+         * @function toJSON
+         * @memberof donate.DonateRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        DonateRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return DonateRecall;
+    })();
+
+    /**
+     * DonateError enum.
+     * @name donate.DonateError
+     * @enum {number}
+     * @property {number} Default=0 Default value
+     * @property {number} InvalidDonate=1 InvalidDonate value
+     * @property {number} NotEnoughWallet=2 NotEnoughWallet value
+     */
+    donate.DonateError = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "Default"] = 0;
+        values[valuesById[1] = "InvalidDonate"] = 1;
+        values[valuesById[2] = "NotEnoughWallet"] = 2;
+        return values;
+    })();
+
+    return donate;
+})();
+
 export const foundation = $root.foundation = (() => {
 
     /**
@@ -6091,6 +7149,10 @@ export const foundation = $root.foundation = (() => {
                 case 31:
                 case 4000:
                 case 4001:
+                case 5000:
+                case 5001:
+                case 6000:
+                case 6001:
                     break;
                 }
             return null;
@@ -6260,6 +7322,22 @@ export const foundation = $root.foundation = (() => {
             case "kickoutwarn":
             case 4001:
                 message.uri = 4001;
+                break;
+            case "Chat":
+            case 5000:
+                message.uri = 5000;
+                break;
+            case "BroadcastChat":
+            case 5001:
+                message.uri = 5001;
+                break;
+            case "DonateCall":
+            case 6000:
+                message.uri = 6000;
+                break;
+            case "DonateRecall":
+            case 6001:
+                message.uri = 6001;
                 break;
             }
             return message;
@@ -12008,6 +13086,10 @@ export const route = $root.route = (() => {
      * @property {number} BroadcastTotalPlayersOnline=31 BroadcastTotalPlayersOnline value
      * @property {number} Kickout=4000 Kickout value
      * @property {number} kickoutwarn=4001 kickoutwarn value
+     * @property {number} Chat=5000 Chat value
+     * @property {number} BroadcastChat=5001 BroadcastChat value
+     * @property {number} DonateCall=6000 DonateCall value
+     * @property {number} DonateRecall=6001 DonateRecall value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -12049,6 +13131,10 @@ export const route = $root.route = (() => {
         values[valuesById[31] = "BroadcastTotalPlayersOnline"] = 31;
         values[valuesById[4000] = "Kickout"] = 4000;
         values[valuesById[4001] = "kickoutwarn"] = 4001;
+        values[valuesById[5000] = "Chat"] = 5000;
+        values[valuesById[5001] = "BroadcastChat"] = 5001;
+        values[valuesById[6000] = "DonateCall"] = 6000;
+        values[valuesById[6001] = "DonateRecall"] = 6001;
         return values;
     })();
 

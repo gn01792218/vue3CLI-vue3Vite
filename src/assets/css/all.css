@@ -1,4 +1,9 @@
 @charset "UTF-8";
+/*一般工具*/
+.cursor-point {
+  cursor: pointer;
+}
+
 .roadImg-preLoad, .BeadPlate-B, .BeadPlate-B-BPair, .BeadPlate-B-PPair, .BeadPlate-B-BothPair, .BeadPlate-P, .BeadPlate-P-BPair, .BeadPlate-P-PPair, .BeadPlate-P-BothPair, .BeadPlate-T, .BeadPlate-T-BPair, .BeadPlate-T-PPair, .BeadPlate-T-BothPair, .big-B, .big-B-BPair, .big-B-PPair, .big-B-BothPair, .big-BT, .big-BT-BPair, .big-BT-PPair, .big-BT-BothPair, .big-P, .big-P-BPair, .big-P-PPair, .big-P-BothPair, .big-PT, .big-PT-BPair, .big-PT-PPair, .big-PT-BothPair, .small-red, .small-blue, .bigEye-red, .bigEye-blue, .cockroach-red, .cockroach-blue, .small-red-ask, .small-blue-ask, .bigEye-red-ask, .bigEye-blue-ask, .cockroach-red-ask, .cockroach-blue-ask {
   cursor: pointer;
   background-image: url("../../images/road-sprite.png");
@@ -378,7 +383,17 @@ img {
   margin-left: 5px;
 }
 
+.tabsArea-btn div {
+  cursor: pointer;
+  padding: 10px 35px;
+}
+
+.onclickTab {
+  background-color: black;
+}
+
 .input-emoji {
+  cursor: pointer;
   right: 10px;
   top: 0;
 }
@@ -390,15 +405,120 @@ img {
 
 .chat-input input {
   border-radius: 44px;
+  width: 170px;
+  background-color: transparent;
+  border: transparent !important;
 }
 
-.tabsArea-btn div {
+.chat-input input:focus {
+  outline-color: white;
+  border: none !important;
+}
+
+.chat-input-wrap {
+  width: 200px;
+  background-color: white;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.chatInput-emoji {
+  width: 300px;
+  top: -259px;
+}
+
+.chatDisplay {
+  width: 250px;
+  height: 200px;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.rewardMsg {
+  color: yellow;
+}
+
+.chatMsg {
+  bottom: 0;
+}
+
+.emojiList {
+  background-color: #2c2215;
+  border: #644d31 2px solid;
+  border-radius: 10px;
+}
+
+.emoji {
   cursor: pointer;
-  padding: 10px 35px;
 }
 
-.onclickTab {
-  background-color: black;
+.reward .modal-content {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #644d31;
+  -webkit-box-shadow: 0px 0px 10px red;
+          box-shadow: 0px 0px 10px red;
+  background: #331d02;
+}
+
+.reward .modal-header, .reward .modal-body, .reward .modal-footer {
+  background: #331d02;
+}
+
+.reward .modal-header, .reward .modal-footer {
+  border: none;
+}
+
+.reward .close {
+  top: 0%;
+  right: 0%;
+  cursor: pointer;
+  border-radius: 100%;
+  background: #331d02;
+  opacity: 1;
+  border: 2px solid #644d31;
+  font-size: 2rem;
+}
+
+.reward .close div {
+  color: #644d31;
+  top: -12%;
+}
+
+.reward .close:not(:disabled):not(.disabled):hover {
+  opacity: 1;
+}
+
+.reward-title {
+  color: white;
+}
+
+.reward-btn {
+  border-radius: 5px;
+  background-color: #ffd236;
+}
+
+.totalReward {
+  min-width: 78px;
+  border-radius: 5px;
+  background-color: #ffd236;
+  color: red;
+}
+
+.noreward {
+  color: black;
+}
+
+.reward-confirm-btn {
+  background: -webkit-gradient(linear, left top, left bottom, from(#775124), to(#ae8b27));
+  background: linear-gradient(to bottom, #775124 0%, #ae8b27 100%);
+  border: none;
+  color: white;
+}
+
+.reward-confirm-btn:hover {
+  color: gray;
 }
 
 .newsTicker {
@@ -483,6 +603,11 @@ img {
 .video-box .video {
   width: 100%;
   height: 100%;
+}
+
+.chatElement {
+  left: 0;
+  bottom: 0;
 }
 
 .progress {
@@ -889,11 +1014,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-color: rgba(128, 0, 128, 0.829);
 }
 
-.bettingArea-btn-betInfo {
+.bettingArea-btn-betInfo, .bettingArea-btn-reward {
   border-radius: 5px;
   background-color: #644d31;
   font-size: 18px;
   text-align: center;
+}
+
+.bettingArea-btn-reward {
+  height: 42px;
+  background-color: rgba(128, 0, 128, 0.829);
 }
 
 .betArea-item {
@@ -920,12 +1050,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .askRoad-player {
   color: red;
-  cursor: pointer;
 }
 
 .askRoad-banker {
   color: yellow;
-  cursor: pointer;
 }
 
 .shotCoinUl {
@@ -1888,6 +2016,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .gameHistory {
     height: 25%;
   }
+  .chatInput-emoji {
+    top: -235px;
+  }
   .coinArea {
     height: 21%;
   }
@@ -2313,6 +2444,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (max-width: 1280px) and (max-height: 800px) {
+  .coinArea {
+    height: 9%;
+  }
+}
+
 @media screen and (min-width: 1025px) {
   .header-bottom-mobil {
     display: none !important;
@@ -2324,6 +2461,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  .bettingArea-btn-betrule {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -2334,6 +2474,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
+  }
+  .bettingArea-btn-reward {
+    height: auto;
   }
   #betConfirm, #cancleBet {
     position: absolute;
@@ -2919,7 +3062,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     bottom: 5%;
   }
   .bettingArea-btn-betInfo {
-    font-size: 16px;
+    font-size: 14px;
   }
   .betRatioText {
     font-size: 1rem;
@@ -3378,8 +3521,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .table-total-betStatus {
     font-size: 0.5rem;
   }
+  .bettingArea-btn-betInfo {
+    font-size: 12px;
+  }
   .alertFont {
     font-size: 1.5rem !important;
+  }
+  .chatInput-emoji {
+    left: -50%;
   }
   .betArea-mobile,
   .betArea-mobile-container {
@@ -4001,6 +4150,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .userBetInfo-title {
     font-size: 1rem;
   }
+  .chatInput-emoji {
+    left: -55%;
+  }
+  .footer-item {
+    margin-left: 0;
+  }
   .coin-100 {
     width: 47.4px;
     height: 39px;
@@ -4165,7 +4320,28 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (max-width: 345px) {
+  .chatInput-emoji {
+    left: -70%;
+  }
+  .chat-input-wrap {
+    width: 160px;
+  }
+  .chat-input input {
+    width: 120px;
+  }
+}
+
 @media screen and (max-width: 320px) {
+  .chat-input-wrap {
+    width: 120px;
+  }
+  .chatInput-emoji {
+    left: -84%;
+  }
+  .chat-input input {
+    width: 85px;
+  }
   .header {
     height: 30px;
   }
@@ -4224,10 +4400,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-left {
     width: 65%;
   }
-  .bettingArea-btn-gitbackAllCoin {
-    width: auto;
-    font-size: 12px;
-    padding: 2px;
+  .bettingArea-btn-reward {
+    width: 25px;
+  }
+  .bettingArea-btn-gitbackAllCoin,
+  .bettingArea-btn-check {
+    width: 40px;
+    font-size: 10px;
   }
   .bettingArea-btn {
     height: 50px;
@@ -4395,6 +4574,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .tableItem {
     width: 230px;
   }
+  .chatInput-emoji {
+    left: -97%;
+  }
   .announcement-container {
     width: 250px;
     height: 653px;
@@ -4444,10 +4626,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-left {
     width: 62%;
   }
-  .bettingArea-btn-gitbackAllCoin,
-  .bettingArea-btn-check {
-    font-size: 10px;
-    width: 55px;
+  .bettingArea-btn-check, .bettingArea-btn-gitbackAllCoin {
+    width: 30px;
+  }
+  .bettingArea-btn-check .bi, .bettingArea-btn-gitbackAllCoin .bi {
+    display: none;
   }
   .coin-100 {
     width: 39.5px;

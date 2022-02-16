@@ -65,6 +65,10 @@
 	background-position: $POSITIONX+px $POSITIONY+px;
     background-size: $BGSIZEX+px auto;
 }
+/*一般工具*/
+.cursor-point{
+    cursor: pointer;
+}
 %hisRoad{
     cursor: pointer;
     background-image:$historyRoad-spriteImg;

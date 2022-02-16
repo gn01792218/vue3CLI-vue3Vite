@@ -3,6 +3,7 @@
     <NewsTicker class="position-absolute top-0" />
     <canvas class="video" id="video" width="980" height="588" /><br />
     <VideoLoading v-show="loadingVideo" />
+    <ChatDisplay class="chatElement position-absolute" />
   </div>
 </template>
 <script lang="ts">
@@ -10,10 +11,12 @@ import { computed, defineComponent, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
 import NewsTicker from "@/components/NewsTicker.vue";
+import ChatDisplay from "@/components/chat/ChatDisplay.vue";
 export default defineComponent({
   components: {
     NewsTicker,
     VideoLoading,
+    ChatDisplay,
   },
   //修正蘋果手機無法撥放的問題
   setup() {
