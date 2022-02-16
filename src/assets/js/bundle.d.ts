@@ -1467,6 +1467,227 @@ export namespace bet {
     }
 }
 
+/** Namespace chat. */
+export namespace chat {
+
+    /** MessageType enum. */
+    enum MessageType {
+        default_type = 0,
+        chat = 1,
+        donate = 2
+    }
+
+    /** Properties of a Chat. */
+    interface IChat {
+
+        /** Chat header */
+        header?: (foundation.IHeader|null);
+
+        /** Chat message */
+        message?: (string|null);
+
+        /** Chat type */
+        type?: (chat.MessageType|null);
+    }
+
+    /** Represents a Chat. */
+    class Chat implements IChat {
+
+        /**
+         * Constructs a new Chat.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: chat.IChat);
+
+        /** Chat header. */
+        public header?: (foundation.IHeader|null);
+
+        /** Chat message. */
+        public message: string;
+
+        /** Chat type. */
+        public type: chat.MessageType;
+
+        /**
+         * Creates a new Chat instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Chat instance
+         */
+        public static create(properties?: chat.IChat): chat.Chat;
+
+        /**
+         * Encodes the specified Chat message. Does not implicitly {@link chat.Chat.verify|verify} messages.
+         * @param message Chat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: chat.IChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Chat message, length delimited. Does not implicitly {@link chat.Chat.verify|verify} messages.
+         * @param message Chat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: chat.IChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): chat.Chat;
+
+        /**
+         * Decodes a Chat message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Chat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): chat.Chat;
+
+        /**
+         * Verifies a Chat message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Chat message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Chat
+         */
+        public static fromObject(object: { [k: string]: any }): chat.Chat;
+
+        /**
+         * Creates a plain object from a Chat message. Also converts values to other types if specified.
+         * @param message Chat
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: chat.Chat, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Chat to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BroadcastChat. */
+    interface IBroadcastChat {
+
+        /** BroadcastChat header */
+        header?: (foundation.IHeader|null);
+
+        /** BroadcastChat message */
+        message?: (string|null);
+
+        /** BroadcastChat player */
+        player?: (string|null);
+
+        /** BroadcastChat type */
+        type?: (chat.MessageType|null);
+    }
+
+    /** Represents a BroadcastChat. */
+    class BroadcastChat implements IBroadcastChat {
+
+        /**
+         * Constructs a new BroadcastChat.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: chat.IBroadcastChat);
+
+        /** BroadcastChat header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BroadcastChat message. */
+        public message: string;
+
+        /** BroadcastChat player. */
+        public player: string;
+
+        /** BroadcastChat type. */
+        public type: chat.MessageType;
+
+        /**
+         * Creates a new BroadcastChat instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BroadcastChat instance
+         */
+        public static create(properties?: chat.IBroadcastChat): chat.BroadcastChat;
+
+        /**
+         * Encodes the specified BroadcastChat message. Does not implicitly {@link chat.BroadcastChat.verify|verify} messages.
+         * @param message BroadcastChat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: chat.IBroadcastChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BroadcastChat message, length delimited. Does not implicitly {@link chat.BroadcastChat.verify|verify} messages.
+         * @param message BroadcastChat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: chat.IBroadcastChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BroadcastChat message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BroadcastChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): chat.BroadcastChat;
+
+        /**
+         * Decodes a BroadcastChat message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BroadcastChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): chat.BroadcastChat;
+
+        /**
+         * Verifies a BroadcastChat message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BroadcastChat message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BroadcastChat
+         */
+        public static fromObject(object: { [k: string]: any }): chat.BroadcastChat;
+
+        /**
+         * Creates a plain object from a BroadcastChat message. Also converts values to other types if specified.
+         * @param message BroadcastChat
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: chat.BroadcastChat, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BroadcastChat to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace dealer. */
 export namespace dealer {
 
@@ -2466,6 +2687,215 @@ export namespace dealer {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace donate. */
+export namespace donate {
+
+    /** Properties of a DonateCall. */
+    interface IDonateCall {
+
+        /** DonateCall header */
+        header?: (foundation.IHeader|null);
+
+        /** DonateCall points */
+        points?: (number|null);
+    }
+
+    /** Represents a DonateCall. */
+    class DonateCall implements IDonateCall {
+
+        /**
+         * Constructs a new DonateCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: donate.IDonateCall);
+
+        /** DonateCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** DonateCall points. */
+        public points: number;
+
+        /**
+         * Creates a new DonateCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns DonateCall instance
+         */
+        public static create(properties?: donate.IDonateCall): donate.DonateCall;
+
+        /**
+         * Encodes the specified DonateCall message. Does not implicitly {@link donate.DonateCall.verify|verify} messages.
+         * @param message DonateCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: donate.IDonateCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified DonateCall message, length delimited. Does not implicitly {@link donate.DonateCall.verify|verify} messages.
+         * @param message DonateCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: donate.IDonateCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a DonateCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns DonateCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): donate.DonateCall;
+
+        /**
+         * Decodes a DonateCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns DonateCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): donate.DonateCall;
+
+        /**
+         * Verifies a DonateCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a DonateCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns DonateCall
+         */
+        public static fromObject(object: { [k: string]: any }): donate.DonateCall;
+
+        /**
+         * Creates a plain object from a DonateCall message. Also converts values to other types if specified.
+         * @param message DonateCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: donate.DonateCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this DonateCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a DonateRecall. */
+    interface IDonateRecall {
+
+        /** DonateRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** DonateRecall result */
+        result?: (number|null);
+
+        /** DonateRecall error */
+        error?: (donate.DonateError|null);
+    }
+
+    /** Represents a DonateRecall. */
+    class DonateRecall implements IDonateRecall {
+
+        /**
+         * Constructs a new DonateRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: donate.IDonateRecall);
+
+        /** DonateRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** DonateRecall result. */
+        public result: number;
+
+        /** DonateRecall error. */
+        public error: donate.DonateError;
+
+        /**
+         * Creates a new DonateRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns DonateRecall instance
+         */
+        public static create(properties?: donate.IDonateRecall): donate.DonateRecall;
+
+        /**
+         * Encodes the specified DonateRecall message. Does not implicitly {@link donate.DonateRecall.verify|verify} messages.
+         * @param message DonateRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: donate.IDonateRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified DonateRecall message, length delimited. Does not implicitly {@link donate.DonateRecall.verify|verify} messages.
+         * @param message DonateRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: donate.IDonateRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a DonateRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns DonateRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): donate.DonateRecall;
+
+        /**
+         * Decodes a DonateRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns DonateRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): donate.DonateRecall;
+
+        /**
+         * Verifies a DonateRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a DonateRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns DonateRecall
+         */
+        public static fromObject(object: { [k: string]: any }): donate.DonateRecall;
+
+        /**
+         * Creates a plain object from a DonateRecall message. Also converts values to other types if specified.
+         * @param message DonateRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: donate.DonateRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this DonateRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** DonateError enum. */
+    enum DonateError {
+        Default = 0,
+        InvalidDonate = 1,
+        NotEnoughWallet = 2
     }
 }
 
@@ -4936,7 +5366,9 @@ export namespace route {
         Kickout = 4000,
         kickoutwarn = 4001,
         Chat = 5000,
-        BroadcastChat = 5001
+        BroadcastChat = 5001,
+        DonateCall = 6000,
+        DonateRecall = 6001
     }
 }
 
@@ -5328,204 +5760,6 @@ export namespace table {
 
         /**
          * Converts this StreamingUrl to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a Chat. */
-    interface IChat {
-
-        /** Chat header */
-        header?: (foundation.IHeader|null);
-
-        /** Chat message */
-        message?: (string|null);
-    }
-
-    /** Represents a Chat. */
-    class Chat implements IChat {
-
-        /**
-         * Constructs a new Chat.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: table.IChat);
-
-        /** Chat header. */
-        public header?: (foundation.IHeader|null);
-
-        /** Chat message. */
-        public message: string;
-
-        /**
-         * Creates a new Chat instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Chat instance
-         */
-        public static create(properties?: table.IChat): table.Chat;
-
-        /**
-         * Encodes the specified Chat message. Does not implicitly {@link table.Chat.verify|verify} messages.
-         * @param message Chat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: table.IChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Chat message, length delimited. Does not implicitly {@link table.Chat.verify|verify} messages.
-         * @param message Chat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: table.IChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Chat message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Chat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.Chat;
-
-        /**
-         * Decodes a Chat message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Chat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.Chat;
-
-        /**
-         * Verifies a Chat message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a Chat message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Chat
-         */
-        public static fromObject(object: { [k: string]: any }): table.Chat;
-
-        /**
-         * Creates a plain object from a Chat message. Also converts values to other types if specified.
-         * @param message Chat
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: table.Chat, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Chat to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a BroadcastChat. */
-    interface IBroadcastChat {
-
-        /** BroadcastChat header */
-        header?: (foundation.IHeader|null);
-
-        /** BroadcastChat message */
-        message?: (string|null);
-
-        /** BroadcastChat player */
-        player?: (string|null);
-    }
-
-    /** Represents a BroadcastChat. */
-    class BroadcastChat implements IBroadcastChat {
-
-        /**
-         * Constructs a new BroadcastChat.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: table.IBroadcastChat);
-
-        /** BroadcastChat header. */
-        public header?: (foundation.IHeader|null);
-
-        /** BroadcastChat message. */
-        public message: string;
-
-        /** BroadcastChat player. */
-        public player: string;
-
-        /**
-         * Creates a new BroadcastChat instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns BroadcastChat instance
-         */
-        public static create(properties?: table.IBroadcastChat): table.BroadcastChat;
-
-        /**
-         * Encodes the specified BroadcastChat message. Does not implicitly {@link table.BroadcastChat.verify|verify} messages.
-         * @param message BroadcastChat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: table.IBroadcastChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified BroadcastChat message, length delimited. Does not implicitly {@link table.BroadcastChat.verify|verify} messages.
-         * @param message BroadcastChat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: table.IBroadcastChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a BroadcastChat message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns BroadcastChat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.BroadcastChat;
-
-        /**
-         * Decodes a BroadcastChat message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns BroadcastChat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.BroadcastChat;
-
-        /**
-         * Verifies a BroadcastChat message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a BroadcastChat message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns BroadcastChat
-         */
-        public static fromObject(object: { [k: string]: any }): table.BroadcastChat;
-
-        /**
-         * Creates a plain object from a BroadcastChat message. Also converts values to other types if specified.
-         * @param message BroadcastChat
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: table.BroadcastChat, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this BroadcastChat to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

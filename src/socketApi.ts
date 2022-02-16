@@ -14,6 +14,7 @@ const game = protoRoot.game
 const roadmap = protoRoot.roadmap
 const announcement = protoRoot.announcement
 const kick = protoRoot.kick
+const chat = protoRoot.chat
 //各種send方法
 //發送心跳
 const sendPon = ()=>{
@@ -52,13 +53,13 @@ export const sendTableJoinCall =(data:any) => {
 }
 //發送聊天訊息
 export const sendChat =(data:any) => {
-    let proto = table.Chat.create({
+    let proto = chat.Chat.create({
         header:foundation.Header.create({
             uri:route.Chat
         }),
         message:data.message
     })
-    let bytes = table.Chat.encode(proto).finish()
+    let bytes = chat.Chat.encode(proto).finish()
     // console.log("sendChat",proto)
     sendWSPush(bytes);
 }
@@ -146,7 +147,7 @@ export const getMsgReCall = (e:any) =>{
             store.commit('table/TableJoinRecall',TableJoinRecall)
             break
         case route.BroadcastChat:
-            let BroadcastChat = table.BroadcastChat.decode(new Uint8Array(e.detail.msg.data))
+            let BroadcastChat = chat.BroadcastChat.decode(new Uint8Array(e.detail.msg.data))
             console.log('BroadcastChat',BroadcastChat)
             store.commit('chat/BroadcastChat',BroadcastChat)
         case route.BetRecall:
