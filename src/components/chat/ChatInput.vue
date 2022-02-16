@@ -21,9 +21,9 @@
 import { defineComponent, computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { chatContent, tableName } from "../types/global";
-import Emoji from "@/components/Emoji.vue";
-import {sendChat} from '../socketApi'
+import { chatContent, tableName } from "../../types/global";
+import Emoji from "@/components/chat/Emoji.vue";
+import {sendChat} from '../../socketApi'
 export default defineComponent({
   components: {
     Emoji,

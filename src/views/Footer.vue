@@ -62,7 +62,7 @@ import { computed, defineComponent, ref } from "vue";
 import UserBetInfo from "@/components/UserBetInfo.vue";
 import Reward from "@/components/Reward.vue";
 import Date from "@/components/Date.vue";
-import ChatInput from "@/components/ChatInput.vue";
+import ChatInput from "@/components/chat/ChatInput.vue";
 import { useStore } from "vuex";
 import screenfull from "screenfull";
 import { useRoute } from "vue-router";

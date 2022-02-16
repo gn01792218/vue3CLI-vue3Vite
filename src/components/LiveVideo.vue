@@ -11,7 +11,7 @@ import { computed, defineComponent, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
 import NewsTicker from "@/components/NewsTicker.vue";
-import ChatDisplay from "@/components/ChatDisplay.vue";
+import ChatDisplay from "@/components/chat/ChatDisplay.vue";
 export default defineComponent({
   components: {
     NewsTicker,
