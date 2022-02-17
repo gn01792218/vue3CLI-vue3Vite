@@ -44,10 +44,12 @@ const oncloseWs = () => {
  */
  const connecting = (message:any) => {
    console.log('正在連接中...')
-    setTimeout(() => {
+   let timer =
+    setInterval(() => {
       if (Socket?.readyState === 0) { //readyState 0 表示正在連接中，那就繼續connecting
         connecting(message)
       } else {
+        clearInterval(timer)
         Socket?.send(message)
         
       }
