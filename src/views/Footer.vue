@@ -37,10 +37,10 @@
           ><i class="bi bi-gift"></i
         ></span>
         <span class="footer-item  d-md-flex"
-          ><i class="bi bi-chat-dots"></i
-        ></span>
-        <span class="footer-item  d-md-flex"
           ><i class="bi bi-lightning"></i
+        ></span>
+        <span class="d-md-flex mr-2"
+          ><i class="bi bi-chat-dots"></i
         ></span>
         <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
         <ChatInput />
