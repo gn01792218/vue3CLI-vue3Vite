@@ -2895,7 +2895,8 @@ export namespace donate {
     enum DonateError {
         Default = 0,
         InvalidDonate = 1,
-        NotEnoughWallet = 2
+        NotEnoughWallet = 2,
+        NoPermission = 3
     }
 }
 
@@ -5386,6 +5387,9 @@ export namespace table {
 
         /** Table betList */
         betList?: (number[]|null);
+
+        /** Table betRule */
+        betRule?: (table.IBetRule|null);
     }
 
     /** Represents a Table. */
@@ -5405,6 +5409,9 @@ export namespace table {
 
         /** Table betList. */
         public betList: number[];
+
+        /** Table betRule. */
+        public betRule?: (table.IBetRule|null);
 
         /**
          * Creates a new Table instance using the specified properties.
@@ -5760,6 +5767,216 @@ export namespace table {
 
         /**
          * Converts this StreamingUrl to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BetRule. */
+    interface IBetRule {
+
+        /** BetRule player */
+        player?: (table.IRule|null);
+
+        /** BetRule banker */
+        banker?: (table.IRule|null);
+
+        /** BetRule playerPair */
+        playerPair?: (table.IRule|null);
+
+        /** BetRule tie */
+        tie?: (table.IRule|null);
+
+        /** BetRule bankerPair */
+        bankerPair?: (table.IRule|null);
+    }
+
+    /** Represents a BetRule. */
+    class BetRule implements IBetRule {
+
+        /**
+         * Constructs a new BetRule.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: table.IBetRule);
+
+        /** BetRule player. */
+        public player?: (table.IRule|null);
+
+        /** BetRule banker. */
+        public banker?: (table.IRule|null);
+
+        /** BetRule playerPair. */
+        public playerPair?: (table.IRule|null);
+
+        /** BetRule tie. */
+        public tie?: (table.IRule|null);
+
+        /** BetRule bankerPair. */
+        public bankerPair?: (table.IRule|null);
+
+        /**
+         * Creates a new BetRule instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetRule instance
+         */
+        public static create(properties?: table.IBetRule): table.BetRule;
+
+        /**
+         * Encodes the specified BetRule message. Does not implicitly {@link table.BetRule.verify|verify} messages.
+         * @param message BetRule message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: table.IBetRule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetRule message, length delimited. Does not implicitly {@link table.BetRule.verify|verify} messages.
+         * @param message BetRule message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: table.IBetRule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetRule message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetRule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.BetRule;
+
+        /**
+         * Decodes a BetRule message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetRule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.BetRule;
+
+        /**
+         * Verifies a BetRule message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetRule message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetRule
+         */
+        public static fromObject(object: { [k: string]: any }): table.BetRule;
+
+        /**
+         * Creates a plain object from a BetRule message. Also converts values to other types if specified.
+         * @param message BetRule
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: table.BetRule, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetRule to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a Rule. */
+    interface IRule {
+
+        /** Rule max */
+        max?: (number|null);
+
+        /** Rule min */
+        min?: (number|null);
+    }
+
+    /** Represents a Rule. */
+    class Rule implements IRule {
+
+        /**
+         * Constructs a new Rule.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: table.IRule);
+
+        /** Rule max. */
+        public max: number;
+
+        /** Rule min. */
+        public min: number;
+
+        /**
+         * Creates a new Rule instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Rule instance
+         */
+        public static create(properties?: table.IRule): table.Rule;
+
+        /**
+         * Encodes the specified Rule message. Does not implicitly {@link table.Rule.verify|verify} messages.
+         * @param message Rule message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: table.IRule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Rule message, length delimited. Does not implicitly {@link table.Rule.verify|verify} messages.
+         * @param message Rule message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: table.IRule, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Rule message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Rule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): table.Rule;
+
+        /**
+         * Decodes a Rule message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Rule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): table.Rule;
+
+        /**
+         * Verifies a Rule message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Rule message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Rule
+         */
+        public static fromObject(object: { [k: string]: any }): table.Rule;
+
+        /**
+         * Creates a plain object from a Rule message. Also converts values to other types if specified.
+         * @param message Rule
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: table.Rule, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Rule to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

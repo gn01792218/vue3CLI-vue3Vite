@@ -6867,6 +6867,7 @@ export const donate = $root.donate = (() => {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             return null;
@@ -6903,6 +6904,10 @@ export const donate = $root.donate = (() => {
             case "NotEnoughWallet":
             case 2:
                 message.error = 2;
+                break;
+            case "NoPermission":
+            case 3:
+                message.error = 3;
                 break;
             }
             return message;
@@ -6956,12 +6961,14 @@ export const donate = $root.donate = (() => {
      * @property {number} Default=0 Default value
      * @property {number} InvalidDonate=1 InvalidDonate value
      * @property {number} NotEnoughWallet=2 NotEnoughWallet value
+     * @property {number} NoPermission=3 NoPermission value
      */
     donate.DonateError = (function() {
         const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "Default"] = 0;
         values[valuesById[1] = "InvalidDonate"] = 1;
         values[valuesById[2] = "NotEnoughWallet"] = 2;
+        values[valuesById[3] = "NoPermission"] = 3;
         return values;
     })();
 
@@ -13159,6 +13166,7 @@ export const table = $root.table = (() => {
          * @property {bet.IBetStatus|null} [betStatus] Table betStatus
          * @property {table.IStreamingUrl|null} [streamingUrl] Table streamingUrl
          * @property {Array.<number>|null} [betList] Table betList
+         * @property {table.IBetRule|null} [betRule] Table betRule
          */
 
         /**
@@ -13202,6 +13210,14 @@ export const table = $root.table = (() => {
         Table.prototype.betList = $util.emptyArray;
 
         /**
+         * Table betRule.
+         * @member {table.IBetRule|null|undefined} betRule
+         * @memberof table.Table
+         * @instance
+         */
+        Table.prototype.betRule = null;
+
+        /**
          * Creates a new Table instance using the specified properties.
          * @function create
          * @memberof table.Table
@@ -13235,6 +13251,8 @@ export const table = $root.table = (() => {
                     writer.double(message.betList[i]);
                 writer.ldelim();
             }
+            if (message.betRule != null && Object.hasOwnProperty.call(message, "betRule"))
+                $root.table.BetRule.encode(message.betRule, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -13284,6 +13302,9 @@ export const table = $root.table = (() => {
                             message.betList.push(reader.double());
                     } else
                         message.betList.push(reader.double());
+                    break;
+                case 4:
+                    message.betRule = $root.table.BetRule.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -13337,6 +13358,11 @@ export const table = $root.table = (() => {
                     if (typeof message.betList[i] !== "number")
                         return "betList: number[] expected";
             }
+            if (message.betRule != null && message.hasOwnProperty("betRule")) {
+                let error = $root.table.BetRule.verify(message.betRule);
+                if (error)
+                    return "betRule." + error;
+            }
             return null;
         };
 
@@ -13369,6 +13395,11 @@ export const table = $root.table = (() => {
                 for (let i = 0; i < object.betList.length; ++i)
                     message.betList[i] = Number(object.betList[i]);
             }
+            if (object.betRule != null) {
+                if (typeof object.betRule !== "object")
+                    throw TypeError(".table.Table.betRule: object expected");
+                message.betRule = $root.table.BetRule.fromObject(object.betRule);
+            }
             return message;
         };
 
@@ -13390,6 +13421,7 @@ export const table = $root.table = (() => {
             if (options.defaults) {
                 object.betStatus = null;
                 object.streamingUrl = null;
+                object.betRule = null;
             }
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
@@ -13400,6 +13432,8 @@ export const table = $root.table = (() => {
                 for (let j = 0; j < message.betList.length; ++j)
                     object.betList[j] = options.json && !isFinite(message.betList[j]) ? String(message.betList[j]) : message.betList[j];
             }
+            if (message.betRule != null && message.hasOwnProperty("betRule"))
+                object.betRule = $root.table.BetRule.toObject(message.betRule, options);
             return object;
         };
 
@@ -14060,6 +14094,517 @@ export const table = $root.table = (() => {
         };
 
         return StreamingUrl;
+    })();
+
+    table.BetRule = (function() {
+
+        /**
+         * Properties of a BetRule.
+         * @memberof table
+         * @interface IBetRule
+         * @property {table.IRule|null} [player] BetRule player
+         * @property {table.IRule|null} [banker] BetRule banker
+         * @property {table.IRule|null} [playerPair] BetRule playerPair
+         * @property {table.IRule|null} [tie] BetRule tie
+         * @property {table.IRule|null} [bankerPair] BetRule bankerPair
+         */
+
+        /**
+         * Constructs a new BetRule.
+         * @memberof table
+         * @classdesc Represents a BetRule.
+         * @implements IBetRule
+         * @constructor
+         * @param {table.IBetRule=} [properties] Properties to set
+         */
+        function BetRule(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BetRule player.
+         * @member {table.IRule|null|undefined} player
+         * @memberof table.BetRule
+         * @instance
+         */
+        BetRule.prototype.player = null;
+
+        /**
+         * BetRule banker.
+         * @member {table.IRule|null|undefined} banker
+         * @memberof table.BetRule
+         * @instance
+         */
+        BetRule.prototype.banker = null;
+
+        /**
+         * BetRule playerPair.
+         * @member {table.IRule|null|undefined} playerPair
+         * @memberof table.BetRule
+         * @instance
+         */
+        BetRule.prototype.playerPair = null;
+
+        /**
+         * BetRule tie.
+         * @member {table.IRule|null|undefined} tie
+         * @memberof table.BetRule
+         * @instance
+         */
+        BetRule.prototype.tie = null;
+
+        /**
+         * BetRule bankerPair.
+         * @member {table.IRule|null|undefined} bankerPair
+         * @memberof table.BetRule
+         * @instance
+         */
+        BetRule.prototype.bankerPair = null;
+
+        /**
+         * Creates a new BetRule instance using the specified properties.
+         * @function create
+         * @memberof table.BetRule
+         * @static
+         * @param {table.IBetRule=} [properties] Properties to set
+         * @returns {table.BetRule} BetRule instance
+         */
+        BetRule.create = function create(properties) {
+            return new BetRule(properties);
+        };
+
+        /**
+         * Encodes the specified BetRule message. Does not implicitly {@link table.BetRule.verify|verify} messages.
+         * @function encode
+         * @memberof table.BetRule
+         * @static
+         * @param {table.IBetRule} message BetRule message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetRule.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                $root.table.Rule.encode(message.player, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.banker != null && Object.hasOwnProperty.call(message, "banker"))
+                $root.table.Rule.encode(message.banker, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.playerPair != null && Object.hasOwnProperty.call(message, "playerPair"))
+                $root.table.Rule.encode(message.playerPair, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.tie != null && Object.hasOwnProperty.call(message, "tie"))
+                $root.table.Rule.encode(message.tie, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.bankerPair != null && Object.hasOwnProperty.call(message, "bankerPair"))
+                $root.table.Rule.encode(message.bankerPair, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BetRule message, length delimited. Does not implicitly {@link table.BetRule.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof table.BetRule
+         * @static
+         * @param {table.IBetRule} message BetRule message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetRule.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BetRule message from the specified reader or buffer.
+         * @function decode
+         * @memberof table.BetRule
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {table.BetRule} BetRule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetRule.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.BetRule();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.player = $root.table.Rule.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.banker = $root.table.Rule.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.playerPair = $root.table.Rule.decode(reader, reader.uint32());
+                    break;
+                case 4:
+                    message.tie = $root.table.Rule.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.bankerPair = $root.table.Rule.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BetRule message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof table.BetRule
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {table.BetRule} BetRule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetRule.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BetRule message.
+         * @function verify
+         * @memberof table.BetRule
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BetRule.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.player != null && message.hasOwnProperty("player")) {
+                let error = $root.table.Rule.verify(message.player);
+                if (error)
+                    return "player." + error;
+            }
+            if (message.banker != null && message.hasOwnProperty("banker")) {
+                let error = $root.table.Rule.verify(message.banker);
+                if (error)
+                    return "banker." + error;
+            }
+            if (message.playerPair != null && message.hasOwnProperty("playerPair")) {
+                let error = $root.table.Rule.verify(message.playerPair);
+                if (error)
+                    return "playerPair." + error;
+            }
+            if (message.tie != null && message.hasOwnProperty("tie")) {
+                let error = $root.table.Rule.verify(message.tie);
+                if (error)
+                    return "tie." + error;
+            }
+            if (message.bankerPair != null && message.hasOwnProperty("bankerPair")) {
+                let error = $root.table.Rule.verify(message.bankerPair);
+                if (error)
+                    return "bankerPair." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BetRule message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof table.BetRule
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {table.BetRule} BetRule
+         */
+        BetRule.fromObject = function fromObject(object) {
+            if (object instanceof $root.table.BetRule)
+                return object;
+            let message = new $root.table.BetRule();
+            if (object.player != null) {
+                if (typeof object.player !== "object")
+                    throw TypeError(".table.BetRule.player: object expected");
+                message.player = $root.table.Rule.fromObject(object.player);
+            }
+            if (object.banker != null) {
+                if (typeof object.banker !== "object")
+                    throw TypeError(".table.BetRule.banker: object expected");
+                message.banker = $root.table.Rule.fromObject(object.banker);
+            }
+            if (object.playerPair != null) {
+                if (typeof object.playerPair !== "object")
+                    throw TypeError(".table.BetRule.playerPair: object expected");
+                message.playerPair = $root.table.Rule.fromObject(object.playerPair);
+            }
+            if (object.tie != null) {
+                if (typeof object.tie !== "object")
+                    throw TypeError(".table.BetRule.tie: object expected");
+                message.tie = $root.table.Rule.fromObject(object.tie);
+            }
+            if (object.bankerPair != null) {
+                if (typeof object.bankerPair !== "object")
+                    throw TypeError(".table.BetRule.bankerPair: object expected");
+                message.bankerPair = $root.table.Rule.fromObject(object.bankerPair);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BetRule message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof table.BetRule
+         * @static
+         * @param {table.BetRule} message BetRule
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BetRule.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.player = null;
+                object.banker = null;
+                object.playerPair = null;
+                object.tie = null;
+                object.bankerPair = null;
+            }
+            if (message.player != null && message.hasOwnProperty("player"))
+                object.player = $root.table.Rule.toObject(message.player, options);
+            if (message.banker != null && message.hasOwnProperty("banker"))
+                object.banker = $root.table.Rule.toObject(message.banker, options);
+            if (message.playerPair != null && message.hasOwnProperty("playerPair"))
+                object.playerPair = $root.table.Rule.toObject(message.playerPair, options);
+            if (message.tie != null && message.hasOwnProperty("tie"))
+                object.tie = $root.table.Rule.toObject(message.tie, options);
+            if (message.bankerPair != null && message.hasOwnProperty("bankerPair"))
+                object.bankerPair = $root.table.Rule.toObject(message.bankerPair, options);
+            return object;
+        };
+
+        /**
+         * Converts this BetRule to JSON.
+         * @function toJSON
+         * @memberof table.BetRule
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BetRule.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BetRule;
+    })();
+
+    table.Rule = (function() {
+
+        /**
+         * Properties of a Rule.
+         * @memberof table
+         * @interface IRule
+         * @property {number|null} [max] Rule max
+         * @property {number|null} [min] Rule min
+         */
+
+        /**
+         * Constructs a new Rule.
+         * @memberof table
+         * @classdesc Represents a Rule.
+         * @implements IRule
+         * @constructor
+         * @param {table.IRule=} [properties] Properties to set
+         */
+        function Rule(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Rule max.
+         * @member {number} max
+         * @memberof table.Rule
+         * @instance
+         */
+        Rule.prototype.max = 0;
+
+        /**
+         * Rule min.
+         * @member {number} min
+         * @memberof table.Rule
+         * @instance
+         */
+        Rule.prototype.min = 0;
+
+        /**
+         * Creates a new Rule instance using the specified properties.
+         * @function create
+         * @memberof table.Rule
+         * @static
+         * @param {table.IRule=} [properties] Properties to set
+         * @returns {table.Rule} Rule instance
+         */
+        Rule.create = function create(properties) {
+            return new Rule(properties);
+        };
+
+        /**
+         * Encodes the specified Rule message. Does not implicitly {@link table.Rule.verify|verify} messages.
+         * @function encode
+         * @memberof table.Rule
+         * @static
+         * @param {table.IRule} message Rule message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Rule.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.max != null && Object.hasOwnProperty.call(message, "max"))
+                writer.uint32(/* id 1, wireType 1 =*/9).double(message.max);
+            if (message.min != null && Object.hasOwnProperty.call(message, "min"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.min);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Rule message, length delimited. Does not implicitly {@link table.Rule.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof table.Rule
+         * @static
+         * @param {table.IRule} message Rule message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Rule.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Rule message from the specified reader or buffer.
+         * @function decode
+         * @memberof table.Rule
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {table.Rule} Rule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Rule.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.table.Rule();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.max = reader.double();
+                    break;
+                case 2:
+                    message.min = reader.double();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Rule message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof table.Rule
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {table.Rule} Rule
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Rule.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Rule message.
+         * @function verify
+         * @memberof table.Rule
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Rule.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.max != null && message.hasOwnProperty("max"))
+                if (typeof message.max !== "number")
+                    return "max: number expected";
+            if (message.min != null && message.hasOwnProperty("min"))
+                if (typeof message.min !== "number")
+                    return "min: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a Rule message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof table.Rule
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {table.Rule} Rule
+         */
+        Rule.fromObject = function fromObject(object) {
+            if (object instanceof $root.table.Rule)
+                return object;
+            let message = new $root.table.Rule();
+            if (object.max != null)
+                message.max = Number(object.max);
+            if (object.min != null)
+                message.min = Number(object.min);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Rule message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof table.Rule
+         * @static
+         * @param {table.Rule} message Rule
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Rule.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.max = 0;
+                object.min = 0;
+            }
+            if (message.max != null && message.hasOwnProperty("max"))
+                object.max = options.json && !isFinite(message.max) ? String(message.max) : message.max;
+            if (message.min != null && message.hasOwnProperty("min"))
+                object.min = options.json && !isFinite(message.min) ? String(message.min) : message.min;
+            return object;
+        };
+
+        /**
+         * Converts this Rule to JSON.
+         * @function toJSON
+         * @memberof table.Rule
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Rule.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return Rule;
     })();
 
     return table;

@@ -35,14 +35,12 @@ export default defineComponent({
       //可能是新局開始，也可能是換桌
       if (audio && gameStatus.value == 1) {
         audio.value.src = require("../assets/audio/start.mp3");
-        audio.value.volume = 0.3
         audio.value.play();
       }
     });
     watch(gameEndUuid, () => {
       if (audio) {
         audio.value.src = require("../assets/audio/stop.mp3");
-        audio.value.volume = 0.3
         audio.value.play();
       }
     });
