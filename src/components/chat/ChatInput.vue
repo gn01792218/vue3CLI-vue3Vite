@@ -84,7 +84,7 @@ export default defineComponent({
       } else {
         copyInputText(document.getElementById('chatInputElement') as HTMLInputElement)
         if (chatMsg.value.length > 20) {
-          inputErrArr.push('請勿輸入超過20個字!')
+          inputErrArr.push('請勿輸入超過20個字元!')
           // alert("請勿輸入超過20字");
           chatMsg.value = "";
         } else if (!canType.value) {
