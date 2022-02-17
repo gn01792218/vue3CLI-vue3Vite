@@ -337,7 +337,7 @@
     transform: translateX(-50%);
   }
   .bettingArea-btn-reward{
-    height:auto;
+    // height:auto;
   }
   #betConfirm,#cancleBet{
     position: absolute;
@@ -1058,6 +1058,9 @@
     p {
       font-size: 0.5rem;
     }
+  }
+  .bettingArea-btn-reward{
+    width:50px;
   }
   .tableItem{
     width:475px;

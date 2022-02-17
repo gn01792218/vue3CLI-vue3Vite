@@ -6,8 +6,6 @@
         @keyup.enter="sendChatMsg"
         type="text"
         id="chatInputElement"
-        placeholder="你目前沒有發言權限"
-       
         v-model="chatMsg"
       />
       <div class="input-emoji position-absolute">

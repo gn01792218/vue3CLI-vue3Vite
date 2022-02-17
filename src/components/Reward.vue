@@ -18,6 +18,9 @@
                     <div v-for="(i,index) in rewardList" :key="index" class="reward-btn p-2 mr-2" @click="addReward(i)" >{{i}}</div>
                 </div>
             </div>
+            <div class="rewardError">
+                    <p v-show="!userhasMoney">餘額不足!</p>
+            </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn w-75 reward-confirm-btn" @click="sendReward" data-dismiss="modal">送出</button>
                 <button type="button" class="btn w-75 reward-confirm-btn" @click="reSetReward" data-dismiss="modal">重設</button>
@@ -37,6 +40,7 @@ export default defineComponent({
        //基本資料
        const totalReward = ref(0)
        const rewardList = reactive([500,1000,5000])
+       const userhasMoney = ref(true)
        //vuex
        const store = useStore()
        const userWallet = computed(()=>{
@@ -45,8 +49,11 @@ export default defineComponent({
        function addReward(reward:number){
            if(userWallet.value>=reward){
                totalReward.value += reward
-           }else{
-               alert('餘額不足')
+           }else{  //沒錢的話跳警告提示
+               userhasMoney.value = false
+               setTimeout(()=>{
+                   userhasMoney.value = true
+               },500)
            }
         }
        function sendReward(){
@@ -65,6 +72,7 @@ export default defineComponent({
             //data
             totalReward,
             rewardList,
+            userhasMoney,
             //methods
             addReward,
             sendReward,

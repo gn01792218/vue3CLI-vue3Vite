@@ -454,6 +454,7 @@ img {
 
 .reward .modal-content {
   max-width: 300px;
+  height: 300px;
   margin-left: auto;
   margin-right: auto;
   border: 2px solid #644d31;
@@ -468,6 +469,15 @@ img {
 
 .reward .modal-header, .reward .modal-footer {
   border: none;
+}
+
+.reward .rewardError {
+  text-align: center;
+}
+
+.reward .rewardError p {
+  color: red;
+  margin-bottom: 0;
 }
 
 .reward .close {
@@ -1022,7 +1032,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-reward {
-  height: 42px;
+  width: 80px;
+  font-size: 1.5rem;
   background-color: rgba(128, 0, 128, 0.829);
 }
 
@@ -2475,9 +2486,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
-  .bettingArea-btn-reward {
-    height: auto;
-  }
   #betConfirm, #cancleBet {
     position: absolute;
     width: 100px;
@@ -3536,6 +3544,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .askRoad-player p, .askRoad-banker p {
     font-size: 0.5rem;
+  }
+  .bettingArea-btn-reward {
+    width: 50px;
   }
   .tableItem {
     width: 475px;

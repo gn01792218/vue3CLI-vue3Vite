@@ -118,9 +118,9 @@
             <div class="bettingArea-btn-left d-flex justify-content-around align-items-center">
                 <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
                 
-                <div class="d-flex">
+                <div class="d-flex align-items-center">
                     <!-- 打賞按鈕 -->
-                    <div class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center p-1 pl-2 pr-2 mr-1">
+                    <div class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1">
                         <span data-toggle="modal" data-target="#reward"><i class="bi bi-gift"></i></span>
                     </div>
                     <!-- 手機版本才會出現的檯紅顯示 -->
