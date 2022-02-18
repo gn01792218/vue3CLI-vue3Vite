@@ -10143,6 +10143,7 @@ export const lobby = $root.lobby = (() => {
          * @interface ITableInfo
          * @property {string|null} [uuid] TableInfo uuid
          * @property {string|null} [name] TableInfo name
+         * @property {table.IBetRule|null} [betRule] TableInfo betRule
          */
 
         /**
@@ -10177,6 +10178,14 @@ export const lobby = $root.lobby = (() => {
         TableInfo.prototype.name = "";
 
         /**
+         * TableInfo betRule.
+         * @member {table.IBetRule|null|undefined} betRule
+         * @memberof lobby.TableInfo
+         * @instance
+         */
+        TableInfo.prototype.betRule = null;
+
+        /**
          * Creates a new TableInfo instance using the specified properties.
          * @function create
          * @memberof lobby.TableInfo
@@ -10204,6 +10213,8 @@ export const lobby = $root.lobby = (() => {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+            if (message.betRule != null && Object.hasOwnProperty.call(message, "betRule"))
+                $root.table.BetRule.encode(message.betRule, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -10243,6 +10254,9 @@ export const lobby = $root.lobby = (() => {
                     break;
                 case 2:
                     message.name = reader.string();
+                    break;
+                case 3:
+                    message.betRule = $root.table.BetRule.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -10285,6 +10299,11 @@ export const lobby = $root.lobby = (() => {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
+            if (message.betRule != null && message.hasOwnProperty("betRule")) {
+                let error = $root.table.BetRule.verify(message.betRule);
+                if (error)
+                    return "betRule." + error;
+            }
             return null;
         };
 
@@ -10304,6 +10323,11 @@ export const lobby = $root.lobby = (() => {
                 message.uuid = String(object.uuid);
             if (object.name != null)
                 message.name = String(object.name);
+            if (object.betRule != null) {
+                if (typeof object.betRule !== "object")
+                    throw TypeError(".lobby.TableInfo.betRule: object expected");
+                message.betRule = $root.table.BetRule.fromObject(object.betRule);
+            }
             return message;
         };
 
@@ -10323,11 +10347,14 @@ export const lobby = $root.lobby = (() => {
             if (options.defaults) {
                 object.uuid = "";
                 object.name = "";
+                object.betRule = null;
             }
             if (message.uuid != null && message.hasOwnProperty("uuid"))
                 object.uuid = message.uuid;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
+            if (message.betRule != null && message.hasOwnProperty("betRule"))
+                object.betRule = $root.table.BetRule.toObject(message.betRule, options);
             return object;
         };
 

@@ -143,14 +143,15 @@ export const getMsgReCall = (e:any) =>{
             let lobbyInfo = lobby.LobbyInfo.decode(new Uint8Array(e.detail.msg.data))
             // console.log('lobbyInfo',lobbyInfo)
             store.commit('lobby/LobbyInfo',lobbyInfo)
+            store.commit('table/setTable',lobbyInfo.tables)
             break
         case route.BroadcastTotalPlayersOnline:
             let BroadcastTotalPlayersOnline = lobby.BroadcastTotalPlayersOnline.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
+            console.log('BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
             store.commit('lobby/BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
         case route.UserInfo:
             let UserInfo = auth.UserInfo.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('UserInfo',UserInfo)
+            console.log('UserInfo',UserInfo)
             store.commit('auth/UserInfo',UserInfo)
             break
         case route.TableJoinRecall:

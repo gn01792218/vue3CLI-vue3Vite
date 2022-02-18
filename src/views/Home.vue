@@ -5,7 +5,7 @@
       class="tableList flex-column flex-xl-row justify-content-center align-items-center mt-5 mt-xl-0 h-100"
     >
       <TableInfoCard
-        v-for="(i, index) in tableInfoData"
+        v-for="(i, index) in tableDataList"
         :key="index"
         :tableInfoData="i"
       />
@@ -27,6 +27,7 @@ export default defineComponent({
     onMounted(()=>{
       setTableListVisible() //初始化時有公告同意書，故隱藏tableList
     })
+    //router
     const route = useRoute();
     // const localStorage = window.localStorage
     // Cookies.set('userToken',route.params.userToken,{expires:0.1})
@@ -40,6 +41,11 @@ export default defineComponent({
       return store.state.auth.LoginRecall.status;
     });
     const tableInfoData = store.state.table.tableInfoData;
+    const tableDataList = computed(()=>{
+      return store.state.table.tableLDataist.sort((a:any,b:any)=>{
+        return a.tableName.localeCompare(b.tableName)
+      });
+    })
     const tableList = computed(()=>{ //自動接收server的資料，送進chatContentArr物件
            return store.state.lobby.LobbyInfo.tables
     })
@@ -63,6 +69,9 @@ export default defineComponent({
           alert("驗證失敗，請重新登入");
       }
     });
+    function sortTableList(){ //把table物件轉換成陣列做排序
+
+    }
     function setTableListVisible(){ //為了解決平板時候，出現公告時，tableList會漏餡的Bug
       let tableListElement = document.querySelector('.tableList') as HTMLElement
       if(announcementShow.value){
@@ -74,6 +83,7 @@ export default defineComponent({
     return {
       //data
       tableInfoData,
+      tableDataList,
       //methods
     };
   },

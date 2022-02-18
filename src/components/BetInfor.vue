@@ -51,6 +51,7 @@ import { defineComponent, computed} from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import BetLimitInfo from "@/components/BetLimtInfo.vue";
+import { table } from "@/assets/js/bundle";
 export default defineComponent({
   components: {
     BetLimitInfo,
@@ -70,6 +71,9 @@ export default defineComponent({
     });
     const tableInfoData = computed(() => {
       return store.state.table.tableInfoData[tableNum.value as string]
+      // .find((i:any)=>{
+      //   return i.tableName == tableNum
+      // })
     });
     return {
       //data

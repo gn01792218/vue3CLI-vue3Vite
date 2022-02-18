@@ -1,13 +1,13 @@
 <template>
   <div
     class="tableItem mb-5 mb-xl-0 mr-xl-5 p-3 d-flex d-xl-block align-items-center"
-    @click="toGametable(tableInfoData.tableNum)"
+    @click="toGametable(tableInfoData.tableName)"
   >
     <div class="table-img">
       <img
         class="w-100"
         :src="tableInfoData.img"
-        :alt="tableInfoData.tableNum"
+        :alt="tableInfoData.tableName"
       />
     </div>
     <div class="betLimitInfo">
