@@ -10144,6 +10144,7 @@ export const lobby = $root.lobby = (() => {
          * @property {string|null} [uuid] TableInfo uuid
          * @property {string|null} [name] TableInfo name
          * @property {table.IBetRule|null} [betRule] TableInfo betRule
+         * @property {Array.<number>|null} [betList] TableInfo betList
          */
 
         /**
@@ -10155,6 +10156,7 @@ export const lobby = $root.lobby = (() => {
          * @param {lobby.ITableInfo=} [properties] Properties to set
          */
         function TableInfo(properties) {
+            this.betList = [];
             if (properties)
                 for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -10186,6 +10188,14 @@ export const lobby = $root.lobby = (() => {
         TableInfo.prototype.betRule = null;
 
         /**
+         * TableInfo betList.
+         * @member {Array.<number>} betList
+         * @memberof lobby.TableInfo
+         * @instance
+         */
+        TableInfo.prototype.betList = $util.emptyArray;
+
+        /**
          * Creates a new TableInfo instance using the specified properties.
          * @function create
          * @memberof lobby.TableInfo
@@ -10215,6 +10225,12 @@ export const lobby = $root.lobby = (() => {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
             if (message.betRule != null && Object.hasOwnProperty.call(message, "betRule"))
                 $root.table.BetRule.encode(message.betRule, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.betList != null && message.betList.length) {
+                writer.uint32(/* id 4, wireType 2 =*/34).fork();
+                for (let i = 0; i < message.betList.length; ++i)
+                    writer.double(message.betList[i]);
+                writer.ldelim();
+            }
             return writer;
         };
 
@@ -10257,6 +10273,16 @@ export const lobby = $root.lobby = (() => {
                     break;
                 case 3:
                     message.betRule = $root.table.BetRule.decode(reader, reader.uint32());
+                    break;
+                case 4:
+                    if (!(message.betList && message.betList.length))
+                        message.betList = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.betList.push(reader.double());
+                    } else
+                        message.betList.push(reader.double());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -10304,6 +10330,13 @@ export const lobby = $root.lobby = (() => {
                 if (error)
                     return "betRule." + error;
             }
+            if (message.betList != null && message.hasOwnProperty("betList")) {
+                if (!Array.isArray(message.betList))
+                    return "betList: array expected";
+                for (let i = 0; i < message.betList.length; ++i)
+                    if (typeof message.betList[i] !== "number")
+                        return "betList: number[] expected";
+            }
             return null;
         };
 
@@ -10328,6 +10361,13 @@ export const lobby = $root.lobby = (() => {
                     throw TypeError(".lobby.TableInfo.betRule: object expected");
                 message.betRule = $root.table.BetRule.fromObject(object.betRule);
             }
+            if (object.betList) {
+                if (!Array.isArray(object.betList))
+                    throw TypeError(".lobby.TableInfo.betList: array expected");
+                message.betList = [];
+                for (let i = 0; i < object.betList.length; ++i)
+                    message.betList[i] = Number(object.betList[i]);
+            }
             return message;
         };
 
@@ -10344,6 +10384,8 @@ export const lobby = $root.lobby = (() => {
             if (!options)
                 options = {};
             let object = {};
+            if (options.arrays || options.defaults)
+                object.betList = [];
             if (options.defaults) {
                 object.uuid = "";
                 object.name = "";
@@ -10355,6 +10397,11 @@ export const lobby = $root.lobby = (() => {
                 object.name = message.name;
             if (message.betRule != null && message.hasOwnProperty("betRule"))
                 object.betRule = $root.table.BetRule.toObject(message.betRule, options);
+            if (message.betList && message.betList.length) {
+                object.betList = [];
+                for (let j = 0; j < message.betList.length; ++j)
+                    object.betList[j] = options.json && !isFinite(message.betList[j]) ? String(message.betList[j]) : message.betList[j];
+            }
             return object;
         };
 

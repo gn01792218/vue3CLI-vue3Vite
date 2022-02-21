@@ -1,10 +1,3 @@
-// const modulesFiles = require.context('./modules',true,/\.js$/)
-// const modules = modulesFiles.keys().reduce((modules:any,modulePath:any)=>{
-//   const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/,'$1')
-//   const value = modulesFiles(modulePath)
-//   modulePath[moduleName] = value.default
-//   return modules
-// },{})
 export const state = {
   TableJoinRecall:{
     table:{
@@ -15,143 +8,8 @@ export const state = {
   currentTable:"",
   tableLDataist:[],
   tableInfoData:{  //給Home的桌牌使用
-    // A:{
-    //   // tableName:'A',
-    //   // onLine:true,
-    //   // img:require('../images/A.png'),
-    //   // playerMin:2000,
-    //   // playerMax:100000,
-    //   // bankerMin:2000,
-    //   // bankerMax:100000,
-    //   // tieMin:0,
-    //   // tieMax:12500,
-    //   // pairMin:0,
-    //   // pairMax:9000,
-    // },
-    // B:{
-    //   // tableName:'B',
-    //   // onLine:true,
-    //   // img:require('../images/B.png'),
-    //   // playerMin:5000,
-    //   // playerMax:250000,
-    //   // bankerMin:5000,
-    //   // bankerMax:250000,
-    //   // tieMin:500,
-    //   // tieMax:31200,
-    //   // pairMin:500,
-    //   // pairMax:22700,
-    // },
-    // VIP:{
-    //   // tableName:'VIP',
-    //   // onLine:true,
-    //   // img:require('../images/VIP.png'),
-    //   // playerMin:20000,
-    //   // playerMax:800000,
-    //   // bankerMin:20000,
-    //   // bankerMax:800000,
-    //   // tieMin:1000,
-    //   // tieMax:100000,
-    //   // pairMin:1000,
-    //   // pairMax:72000,
-    // }
   },
   tableCoinData:{  //顯示的籌碼組合
-    A:[
-      {
-        point:100,
-        ammo:[], //子彈陣列
-        num:1,
-        },
-        {
-        point:500,
-        ammo:[], //子彈陣列
-        num:2,
-        },
-        {
-        point:1000,
-        ammo:[], //子彈陣列
-        num:3,
-        },
-        {
-        point:2000,
-        ammo:[], //子彈陣列
-        num:4,
-        },
-        {
-        point:10000,
-        ammo:[], //子彈陣列
-        num:5,
-        },
-        {
-        point:100000,
-        ammo:[],
-        num:6,
-        }
-    ],
-    B:[
-      {
-        point:100,
-        ammo:[], //子彈陣列
-        num:1,
-        },
-        {
-        point:500,
-        ammo:[], //子彈陣列
-        num:2,
-        },
-        {
-        point:1000,
-        ammo:[], //子彈陣列
-        num:3,
-        },
-        {
-        point:5000,
-        ammo:[], //子彈陣列
-        num:4,
-        },
-        {
-        point:10000,
-        ammo:[], //子彈陣列
-        num:5,
-        },
-        {
-        point:100000,
-        ammo:[],
-        num:6,
-        }
-    ],
-    VIP:[
-      {
-        point:1000,
-        ammo:[], //子彈陣列
-        num:1,
-        },
-        {
-        point:5000,
-        ammo:[], //子彈陣列
-        num:2,
-        },
-        {
-        point:10000,
-        ammo:[], //子彈陣列
-        num:3,
-        },
-        {
-        point:20000,
-        ammo:[], //子彈陣列
-        num:4,
-        },
-        {
-        point:100000,
-        ammo:[], //子彈陣列
-        num:5,
-        },
-        {
-        point:200000,
-        ammo:[],
-        num:6,
-        }
-    ],
   },
 };
 export const actions = {}
@@ -177,7 +35,7 @@ export const mutations = {
           pairMin:i.betRule.bankerPair.min,
           pairMax:i.betRule.bankerPair.max,
         })
-        state.tableInfoData[table] = {
+      state.tableInfoData[table] = {
           tableName:table,
           onLine:true,
           img:require(`../images/${table}.png`),
@@ -190,6 +48,38 @@ export const mutations = {
           pairMin:i.betRule.bankerPair.min,
           pairMax:i.betRule.bankerPair.max,
         }
+      state.tableCoinData[table] =[
+        {
+          point:i.betList[0],
+          ammo:[], //子彈陣列
+          num:1,
+          },
+          {
+          point:i.betList[1],
+          ammo:[], //子彈陣列
+          num:2,
+          },
+          {
+          point:i.betList[2],
+          ammo:[], //子彈陣列
+          num:3,
+          },
+          {
+          point:i.betList[3],
+          ammo:[], //子彈陣列
+          num:4,
+          },
+          {
+          point:i.betList[4],
+          ammo:[], //子彈陣列
+          num:5,
+          },
+          {
+          point:i.betList[5],
+          ammo:[],
+          num:6,
+          }
+      ]
     })
   },
   setCurrentTable(state:any,tableNum:string){

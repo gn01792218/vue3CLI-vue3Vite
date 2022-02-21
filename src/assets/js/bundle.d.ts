@@ -4146,6 +4146,9 @@ export namespace lobby {
 
         /** TableInfo betRule */
         betRule?: (table.IBetRule|null);
+
+        /** TableInfo betList */
+        betList?: (number[]|null);
     }
 
     /** Represents a TableInfo. */
@@ -4165,6 +4168,9 @@ export namespace lobby {
 
         /** TableInfo betRule. */
         public betRule?: (table.IBetRule|null);
+
+        /** TableInfo betList. */
+        public betList: number[];
 
         /**
          * Creates a new TableInfo instance using the specified properties.
