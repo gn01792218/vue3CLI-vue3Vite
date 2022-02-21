@@ -1,14 +1,12 @@
 <template>
   <audio id="gameresultSound">
-    <source src="../assets/audio/bankerWin.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/bankerWinSound.mp3" type="audio/mpeg" />
   </audio>
-  <!-- <button class="muted position-absolute" @click="mutedSound">靜音</button> -->
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, watch } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
 import proto from "../assets/js/bundle";
 export default defineComponent({
   setup() {
@@ -34,13 +32,13 @@ export default defineComponent({
     watch(roundUuid, () => {
       //可能是新局開始，也可能是換桌
       if (audio && gameStatus.value == 1) {
-        audio.value.src = require("../assets/audio/start.mp3");
+        audio.value.src = require("../assets/audio/startSound.mp3");
         audio.value.play();
       }
     });
     watch(gameEndUuid, () => {
       if (audio) {
-        audio.value.src = require("../assets/audio/stop.mp3");
+        audio.value.src = require("../assets/audio/stopSound.mp3");
         audio.value.play();
       }
     });
@@ -66,13 +64,13 @@ export default defineComponent({
     function switchSound(audioElement: HTMLAudioElement, soundNumber: number) {
       switch (soundNumber) {
         case proto.dealer.Result.Tie:
-          audioElement.src = require("../assets/audio/tie.mp3");
+          audioElement.src = require("../assets/audio/tieSound.mp3");
           break;
         case proto.dealer.Result.Banker:
-          audioElement.src = require("../assets/audio/bankerWin.mp3");
+          audioElement.src = require("../assets/audio/bankerWinSound.mp3");
           break;
         case proto.dealer.Result.Player:
-          audioElement.src = require("../assets/audio/playerWin.mp3");
+          audioElement.src = require("../assets/audio/playerWinSound.mp3");
           break;
       }
     }
