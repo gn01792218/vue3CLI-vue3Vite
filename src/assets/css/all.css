@@ -2490,6 +2490,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header {
     background-image: none;
   }
+  .leaveGame-btn {
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+  }
   .betError {
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -3056,6 +3061,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 768px) {
   .header {
     height: 40px;
+  }
+  .table-btn-list {
+    max-width: 300px;
+    overflow: scroll;
   }
   .announcement-container {
     width: 600px;
@@ -3989,6 +3998,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 414px) {
+  .table-btn-list {
+    max-width: 148px;
+  }
   .gameResultLoading {
     top: 25%;
     font-size: 40%;
@@ -4591,6 +4603,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 280px) {
+  .table-btn-list {
+    max-width: 170px;
+  }
   .tableItem {
     width: 230px;
   }

@@ -332,6 +332,9 @@
   .header {
     background-image: none;
   }
+  .leaveGame-btn{
+    order:-1;
+  }
   .betError{
     left: 50%;
     transform: translateX(-50%);
@@ -714,6 +717,10 @@
 @media screen and (max-width: 768px) {
   .header {
     height: 40px;
+  }
+  .table-btn-list{
+    max-width:300px;
+    overflow:scroll;
   }
   .announcement-container{
     width:600px;
@@ -1324,7 +1331,9 @@
   }
 }
 @media screen and (max-width: 414px) {
-  
+  .table-btn-list{
+    max-width:148px;
+  }
   .gameResultLoading {
     top: 25%;
     font-size: 40%;
@@ -1807,6 +1816,9 @@
   }
 }
 @media screen and (max-width: 280px) {
+  .table-btn-list{
+    max-width:170px;
+  }
   .tableItem{
     width:230px;
   }

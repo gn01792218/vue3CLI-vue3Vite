@@ -30,7 +30,7 @@
         >
           <i>洗:{{ user.totalValidBets }}</i>
         </div>
-        <div class="d-flex flex-row flex-xl-column">
+        <div class="table-btn-list d-flex flex-row flex-xl-column">
           <a
             class="header-btn"
             :class="{ active: tableNum == 'A' }"
@@ -41,8 +41,17 @@
           <a
             class="header-btn"
             :class="{ active: tableNum == 'B' }"
-            @click="toGametable('B')"
             >B桌</a
+          >
+          <a
+            class="header-btn disabled"
+            :class="{ active: tableNum == 'C' }"
+            >C桌</a
+          >
+          <a
+            class="header-btn disabled"
+            :class="{ active: tableNum == 'D' }"
+            >D桌</a
           >
           <a
             class="header-btn"
@@ -50,11 +59,16 @@
             @click="toGametable('VIP')"
             >VIP</a
           >
+          <a
+            class="header-btn disabled"
+            :class="{ active: tableNum == 'VIP2' }"
+            >VIP2</a
+          >
           <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
-          <a href="#" class="header-btn d-none d-xl-block" @click="closeWindow"
+          <a href="#" class="header-btn leaveGame-btn d-none d-xl-block" @click="closeWindow"
             >離開遊戲</a
           >
-          <a href="#" class="header-btn d-block d-xl-none" @click="closeWindow"
+          <a href="#" class="header-btn leaveGame-btn d-block d-xl-none" @click="closeWindow"
             >離開</a
           >
         </div>
