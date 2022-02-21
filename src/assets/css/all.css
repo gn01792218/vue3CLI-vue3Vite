@@ -49,6 +49,10 @@ img {
   height: auto;
 }
 
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 .font_red {
   color: #bd0505;
 }
@@ -83,21 +87,35 @@ img {
   font-size: 2.8rem !important;
 }
 
+.home {
+  overflow: scroll;
+}
+
 .tableItem {
   cursor: pointer;
   border: 5px solid #644d31;
   border-radius: 5px;
+  width: 30.2%;
 }
 
 .tableList {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 865px;
 }
 
 .table-img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
 }
 
 .chooseTable {
@@ -616,6 +634,7 @@ img {
 
 .betLimitInfo {
   height: 120px;
+  font-size: 14px;
 }
 
 .video-box .video {
@@ -2579,7 +2598,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
             flex-grow: 0;
   }
   .tableItem {
-    width: 565px;
+    width: 34.2%;
   }
   .font-total {
     line-height: 1.5em;
@@ -3065,6 +3084,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .table-btn-list {
     max-width: 300px;
     overflow: scroll;
+  }
+  .tableList {
+    width: auto;
+  }
+  .tableItem {
+    width: 38.2%;
   }
   .announcement-container {
     width: 600px;
@@ -3566,8 +3591,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-reward {
     width: 50px;
   }
+  .betLimitInfo {
+    font-size: 12px;
+  }
   .tableItem {
-    width: 475px;
+    width: 45.2%;
   }
   .coin-100 {
     width: 55.3px;
@@ -4017,8 +4045,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 100px;
   }
   .tableItem {
-    font-size: 12px;
-    width: 360px;
+    width: 34.2%;
+    height: 385px;
+    padding: 5px;
   }
   .header-top {
     width: 90%;
@@ -4146,10 +4175,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .header-btn {
     width: 30px;
-  }
-  .tableItem {
-    padding: 5px !important;
-    width: 335px;
   }
   .betArea {
     height: 265px;
@@ -4390,10 +4415,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-weight: 600;
   }
   .tableItem {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
     width: 260px;
   }
   .header-userName {

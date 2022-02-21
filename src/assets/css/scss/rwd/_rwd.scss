@@ -339,9 +339,6 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .bettingArea-btn-reward{
-    // height:auto;
-  }
   #betConfirm,#cancleBet{
     position: absolute;
     width:100px;
@@ -403,7 +400,7 @@
     flex-grow: 0;
   }
   .tableItem{
-    width:565px;
+    width:34.2%;
   }
   .font-total {
     line-height: 1.5em;
@@ -722,6 +719,12 @@
     max-width:300px;
     overflow:scroll;
   }
+  .tableList{
+    width:auto;
+  }
+  .tableItem {
+    width: 38.2%;
+}
   .announcement-container{
     width:600px;
   }
@@ -1069,8 +1072,11 @@
   .bettingArea-btn-reward{
     width:50px;
   }
+  .betLimitInfo{
+    font-size: 12px;
+  }
   .tableItem{
-    width:475px;
+    width:45.2%;
   }
   .coin-100 {
     @include coinSpritePosition(0, 0, 0.7);
@@ -1352,8 +1358,9 @@
     height: 100px;
   }
   .tableItem {
-    font-size: 12px;
-    width:360px;
+    width:34.2%;
+    height:385px;
+    padding:5px;
   }
   .header-top {
     width: 90%;
@@ -1479,10 +1486,6 @@
   }
   .header-btn{
     width:30px;
-  }
-  .tableItem {
-    padding: 5px !important;
-    width: 335px;
   }
   .betArea {
     height: 265px;
@@ -1650,7 +1653,6 @@
     }
   }
   .tableItem {
-    flex-direction: column;
     width:260px;
   }
   .header-userName {

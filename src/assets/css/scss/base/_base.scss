@@ -18,6 +18,7 @@ img{
 	max-width:100%;
 	height:auto;
 }
+::-webkit-scrollbar { width: 0 !important }  //隱藏滾動條
 .font_red{
 	color: $betArea_red;
 }
