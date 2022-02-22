@@ -27,7 +27,7 @@ export default defineComponent({
       return store.state.game.gameEndUuid;
     });
     const audio = computed<HTMLAudioElement>(() => {
-      return document.querySelector("#gameresult") as HTMLAudioElement;
+      return document.querySelector("#gameresultSound") as HTMLAudioElement;
     });
     watch(roundUuid, () => {
       //可能是新局開始，也可能是換桌

@@ -131,38 +131,47 @@ export const mutations = {
           playerPairMin:i.betRule.playerPair.min,
           playerPairMax:i.betRule.playerPair.max,
         }
-      state.tableCoinData[table] =[
-        {
-          point:i.betList[0],
-          ammo:[], //子彈陣列
-          num:1,
-          },
-          {
-          point:i.betList[1],
-          ammo:[], //子彈陣列
-          num:2,
-          },
-          {
-          point:i.betList[2],
-          ammo:[], //子彈陣列
-          num:3,
-          },
-          {
-          point:i.betList[3],
-          ammo:[], //子彈陣列
-          num:4,
-          },
-          {
-          point:i.betList[4],
-          ammo:[], //子彈陣列
-          num:5,
-          },
-          {
-          point:i.betList[5],
-          ammo:[],
-          num:6,
-          }
-      ]
+      state.tableCoinData[table] = []
+      i.betList.forEach((i:any,index:number)=>{
+        state.tableCoinData[table].push({
+            point:i,
+            ammo:[], //子彈陣列
+            num:index+1,
+        })
+      })
+      
+      // =[
+      //   {
+      //     point:i.betList[0],
+      //     ammo:[], //子彈陣列
+      //     num:1,
+      //     },
+      //     {
+      //     point:i.betList[1],
+      //     ammo:[], //子彈陣列
+      //     num:2,
+      //     },
+      //     {
+      //     point:i.betList[2],
+      //     ammo:[], //子彈陣列
+      //     num:3,
+      //     },
+      //     {
+      //     point:i.betList[3],
+      //     ammo:[], //子彈陣列
+      //     num:4,
+      //     },
+      //     {
+      //     point:i.betList[4],
+      //     ammo:[], //子彈陣列
+      //     num:5,
+      //     },
+      //     {
+      //     point:i.betList[5],
+      //     ammo:[],
+      //     num:6,
+      //     }
+      // ]
     })
   },
   setCurrentTable(state:any,tableNum:string){
