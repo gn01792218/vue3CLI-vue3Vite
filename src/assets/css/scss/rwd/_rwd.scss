@@ -332,12 +332,15 @@
   .header {
     background-image: none;
   }
+  .home{
+    width:100%;
+  }
+  .leaveGame-btn{
+    order:-1;
+  }
   .betError{
     left: 50%;
     transform: translateX(-50%);
-  }
-  .bettingArea-btn-reward{
-    // height:auto;
   }
   #betConfirm,#cancleBet{
     position: absolute;
@@ -400,7 +403,7 @@
     flex-grow: 0;
   }
   .tableItem{
-    width:565px;
+    width:34.2%;
   }
   .font-total {
     line-height: 1.5em;
@@ -715,6 +718,16 @@
   .header {
     height: 40px;
   }
+  .table-btn-list{
+    max-width:300px;
+    overflow:scroll;
+  }
+  .tableList{
+    width:auto;
+  }
+  .tableItem {
+    width: 38.2%;
+}
   .announcement-container{
     width:600px;
   }
@@ -1062,8 +1075,11 @@
   .bettingArea-btn-reward{
     width:50px;
   }
+  .betLimitInfo{
+    font-size: 12px;
+  }
   .tableItem{
-    width:475px;
+    width:45.2%;
   }
   .coin-100 {
     @include coinSpritePosition(0, 0, 0.7);
@@ -1324,7 +1340,9 @@
   }
 }
 @media screen and (max-width: 414px) {
-  
+  .table-btn-list{
+    max-width:148px;
+  }
   .gameResultLoading {
     top: 25%;
     font-size: 40%;
@@ -1339,12 +1357,12 @@
     }
 }
   .table-img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
   .tableItem {
-    font-size: 12px;
-    width:360px;
+    width:47.2%;
+    padding:5px;
   }
   .header-top {
     width: 90%;
@@ -1470,10 +1488,6 @@
   }
   .header-btn{
     width:30px;
-  }
-  .tableItem {
-    padding: 5px !important;
-    width: 335px;
   }
   .betArea {
     height: 265px;
@@ -1640,10 +1654,6 @@
       font-weight: 600;
     }
   }
-  .tableItem {
-    flex-direction: column;
-    width:260px;
-  }
   .header-userName {
     line-height: 0.7rem;
   }
@@ -1807,6 +1817,9 @@
   }
 }
 @media screen and (max-width: 280px) {
+  .table-btn-list{
+    max-width:170px;
+  }
   .tableItem{
     width:230px;
   }

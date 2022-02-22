@@ -83,25 +83,39 @@ img {
   font-size: 2.8rem !important;
 }
 
+.home {
+  overflow: scroll;
+}
+
+.home::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .tableItem {
   cursor: pointer;
   border: 5px solid #644d31;
   border-radius: 5px;
+  width: 30.2%;
 }
 
 .tableList {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .table-img {
-  width: 250px;
-  height: 250px;
-}
-
-.chooseTable {
-  margin-top: 50px;
+  width: 200px;
+  height: 200px;
 }
 
 /*-------------------------------------------
@@ -220,6 +234,11 @@ img {
 .header-btnList {
   float: left;
   width: 100%;
+}
+
+.table-btn-list::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .header-userName {
@@ -616,6 +635,7 @@ img {
 
 .betLimitInfo {
   height: 120px;
+  font-size: 14px;
 }
 
 .video-box .video {
@@ -2490,6 +2510,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header {
     background-image: none;
   }
+  .home {
+    width: 100%;
+  }
+  .leaveGame-btn {
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+  }
   .betError {
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -2574,7 +2602,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
             flex-grow: 0;
   }
   .tableItem {
-    width: 565px;
+    width: 34.2%;
   }
   .font-total {
     line-height: 1.5em;
@@ -3056,6 +3084,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
 @media screen and (max-width: 768px) {
   .header {
     height: 40px;
+  }
+  .table-btn-list {
+    max-width: 300px;
+    overflow: scroll;
+  }
+  .tableList {
+    width: auto;
+  }
+  .tableItem {
+    width: 38.2%;
   }
   .announcement-container {
     width: 600px;
@@ -3557,8 +3595,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-reward {
     width: 50px;
   }
+  .betLimitInfo {
+    font-size: 12px;
+  }
   .tableItem {
-    width: 475px;
+    width: 45.2%;
   }
   .coin-100 {
     width: 55.3px;
@@ -3989,6 +4030,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 414px) {
+  .table-btn-list {
+    max-width: 148px;
+  }
   .gameResultLoading {
     top: 25%;
     font-size: 40%;
@@ -4001,12 +4045,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   .table-img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
   .tableItem {
-    font-size: 12px;
-    width: 360px;
+    width: 47.2%;
+    padding: 5px;
   }
   .header-top {
     width: 90%;
@@ -4134,10 +4178,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .header-btn {
     width: 30px;
-  }
-  .tableItem {
-    padding: 5px !important;
-    width: 335px;
   }
   .betArea {
     height: 265px;
@@ -4377,13 +4417,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1.2rem;
     font-weight: 600;
   }
-  .tableItem {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    width: 260px;
-  }
   .header-userName {
     line-height: 0.7rem;
   }
@@ -4591,6 +4624,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 280px) {
+  .table-btn-list {
+    max-width: 170px;
+  }
   .tableItem {
     width: 230px;
   }

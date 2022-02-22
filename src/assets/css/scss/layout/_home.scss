@@ -1,20 +1,23 @@
+.home{
+    overflow: scroll;
+}
+.home::-webkit-scrollbar { width: 0 !important;height:0 !important }  //隱藏滾動條
 .tableItem{
     cursor: pointer;
     border: 5px solid $mainColor;
     border-radius: 5px;
-    // text-align: right;
+    width:30.2%;
 }
 .tableList{
     display: flex;
-    // height:95%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 .table-img{
-    width:250px;
-    height:250px;
+    width:200px;
+    height:200px;
 }
-.chooseTable{
-    margin-top: 50px;
-    // top:10%;
-    // left:50%;
-    // transform: translateX(-50%);
-}
+// .chooseTable{
+//     margin-top: 50px;
+// }

@@ -8,6 +8,7 @@
 	float: left;
 	width: 100%;
 }
+.table-btn-list::-webkit-scrollbar { width: 0 !important;height:0 !important }  //隱藏滾動條
 .header-userName{
 	cursor: pointer;
 }

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tableItem mb-5 mb-xl-0 mr-xl-5 p-3 d-flex d-xl-block align-items-center"
+    class="tableItem mb-2 d-flex flex-column align-items-center"
     @click="toGametable(tableInfoData.tableName)"
   >
     <div class="table-img">
