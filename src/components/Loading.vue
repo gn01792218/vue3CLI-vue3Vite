@@ -7,19 +7,19 @@
         <span class="roadImg-preLoad"></span>
         <img :src="announcementData3.content.img" alt="預載入公告書內容" style="opacity:0">
         <audio class="preaudio" preload muted>
-            <source src="../assets/audio/bankerWinSound.mp3" > 
+            <source src="../assets/audio/bankerWin.mp3" > 
         </audio>
         <audio class="preaudio" preload muted>
-            <source src="../assets/audio/playerWinSound.mp3">
+            <source src="../assets/audio/playerWin.mp3">
         </audio>
         <audio class="preaudio" preload muted>
-            <source src="../assets/audio/tieSound.mp3">
+            <source src="../assets/audio/tie.mp3">
         </audio>
         <audio class="preaudio" preload muted>
-            <source src="../assets/audio/startSound.mp3">
+            <source src="../assets/audio/start.mp3">
         </audio>
         <audio class="preaudio" preload muted>
-            <source src="../assets/audio/stopSound.mp3">
+            <source src="../assets/audio/stop.mp3">
         </audio>
         <!-- <div class='progress'>
             <div class='progress-inset'></div>

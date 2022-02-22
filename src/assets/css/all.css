@@ -256,6 +256,7 @@ img {
 
 .disabled, .disabled:hover {
   background: gray !important;
+  color: #353434 !important;
 }
 
 .video-box {
