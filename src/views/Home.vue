@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 class="chooseTable text-center">選擇遊戲桌檯</h1>
+    <h1 class="chooseTable text-center mt-4">選擇遊戲桌檯</h1>
     <div
       class="tableList mt-2 mr-auto ml-auto"
     >

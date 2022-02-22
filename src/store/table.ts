@@ -94,19 +94,6 @@ export const state = {
       pairMin:0,
       pairMax:0,
     },
-    // A:{
-    //   // tableName:'A',
-    //   // onLine:true,
-    //   // img:require('../images/A.png'),
-    //   // playerMin:2000,
-    //   // playerMax:100000,
-    //   // bankerMin:2000,
-    //   // bankerMax:100000,
-    //   // tieMin:0,
-    //   // tieMax:12500,
-    //   // pairMin:0,
-    //   // pairMax:9000,
-    // },
   },
   tableCoinData:{  //顯示的籌碼組合
     A:[
@@ -227,8 +214,10 @@ export const mutations = {
           bankerMax:i.betRule.banker.max,
           tieMin:i.betRule.tie.min,
           tieMax:i.betRule.tie.max,
-          pairMin:i.betRule.bankerPair.min,
-          pairMax:i.betRule.bankerPair.max,
+          bankerPairMin:i.betRule.bankerPair.min,
+          bankerPairMax:i.betRule.bankerPair.max,
+          playerPairMin:i.betRule.playerPair.min,
+          playerPairMax:i.betRule.playerPair.max,
         })
         state.tableInfoData[table] = {
           tableName:table,
@@ -240,8 +229,10 @@ export const mutations = {
           bankerMax:i.betRule.banker.max,
           tieMin:i.betRule.tie.min,
           tieMax:i.betRule.tie.max,
-          pairMin:i.betRule.bankerPair.min,
-          pairMax:i.betRule.bankerPair.max,
+          bankerPairMin:i.betRule.bankerPair.min,
+          bankerPairMax:i.betRule.bankerPair.max,
+          playerPairMin:i.betRule.playerPair.min,
+          playerPairMax:i.betRule.playerPair.max,
         }
     })
   },

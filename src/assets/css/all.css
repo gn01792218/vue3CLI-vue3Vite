@@ -49,10 +49,6 @@ img {
   height: auto;
 }
 
-::-webkit-scrollbar {
-  width: 0 !important;
-}
-
 .font_red {
   color: #bd0505;
 }
@@ -91,6 +87,11 @@ img {
   overflow: scroll;
 }
 
+.home::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .tableItem {
   cursor: pointer;
   border: 5px solid #644d31;
@@ -116,10 +117,6 @@ img {
 .table-img {
   width: 200px;
   height: 200px;
-}
-
-.chooseTable {
-  margin-top: 50px;
 }
 
 /*-------------------------------------------
@@ -238,6 +235,11 @@ img {
 .header-btnList {
   float: left;
   width: 100%;
+}
+
+.table-btn-list::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .header-userName {
@@ -4041,12 +4043,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   .table-img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
   .tableItem {
-    width: 34.2%;
-    height: 385px;
+    width: 47.2%;
     padding: 5px;
   }
   .header-top {
@@ -4413,9 +4414,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .announcement-container h3 {
     font-size: 1.2rem;
     font-weight: 600;
-  }
-  .tableItem {
-    width: 260px;
   }
   .header-userName {
     line-height: 0.7rem;

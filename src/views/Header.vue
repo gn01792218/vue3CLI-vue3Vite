@@ -37,7 +37,6 @@
             @click="toGametable('A')"
             >A桌</a
           >
-          <!-- <a class="header-btn disabled">B桌</a> -->
           <a
             class="header-btn"
             :class="{ active: tableNum == 'B' }"
