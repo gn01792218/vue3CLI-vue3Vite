@@ -17,7 +17,7 @@ export const state = {
     {
       tableName:'C',
       onLine:false,
-      img:"",
+      img:require(`../images/C.png`),
       playerMin:0,
       playerMax:0,
       bankerMin:0,
@@ -30,7 +30,7 @@ export const state = {
     {
       tableName:'D',
       onLine:false,
-      img:"",
+      img:require(`../images/D.png`),
       playerMin:0,
       playerMax:0,
       bankerMin:0,
@@ -43,7 +43,7 @@ export const state = {
     {
       tableName:'VIP2',
       onLine:false,
-      img:"",
+      img:require(`../images/VIP2.png`),
       playerMin:0,
       playerMax:0,
       bankerMin:0,
@@ -58,7 +58,7 @@ export const state = {
     C:{
       tableName:'C',
       onLine:false,
-      img:"",
+      img:require(`../images/C.png`),
       playerMin:0,
       playerMax:0,
       bankerMin:0,
@@ -71,7 +71,7 @@ export const state = {
     D:{
       tableName:'D',
       onLine:false,
-      img:"",
+      img:require(`../images/D.png`),
       playerMin:0,
       playerMax:0,
       bankerMin:0,
@@ -84,7 +84,7 @@ export const state = {
     VIP2:{
       tableName:'VIP2',
       onLine:false,
-      img:"",
+      img:require(`../images/VIP2.png`),
       playerMin:0,
       playerMax:0,
       bankerMin:0,
