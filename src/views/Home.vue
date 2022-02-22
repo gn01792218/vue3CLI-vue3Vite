@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
-    <h1 class="chooseTable text-center mt-4">選擇遊戲桌檯</h1>
+  <div class="home d-flex flex-column justify-content-center">
+    <h1 class="chooseTable text-center mt-4 mt-xl-0">選擇遊戲桌檯</h1>
     <div
-      class="tableList mt-2 mr-auto ml-auto"
+      class="tableList mt-2 mr-auto ml-auto mb-4 mb-xl-0"
     >
       <TableInfoCard
         v-for="(i, index) in tableDataList"
