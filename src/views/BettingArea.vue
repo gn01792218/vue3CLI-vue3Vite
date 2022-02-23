@@ -117,11 +117,14 @@
             <LightBox/>
             <div class="bettingArea-btn-left d-flex justify-content-around align-items-center">
                 <div class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center" @click="getAllBetBack"><i class="bi bi-arrow-counterclockwise"></i>取消</div>
-                
                 <div class="d-flex align-items-center">
                     <!-- 打賞按鈕 -->
                     <div class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1" data-toggle="modal" data-target="#reward">
                         <span><i class="bi bi-gift"></i></span>
+                    </div>
+                    <!-- 咪牌按鈕 ，VIP才有-->
+                    <div v-if="tableNum.includes('VIP')" class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1" data-toggle="modal" data-target="#reward">
+                        <span><i class="bi bi-eye"></i></span>
                     </div>
                     <!-- 手機版本才會出現的檯紅顯示 -->
                     <div class="bettingArea-btn-betInfo bettingArea-btn-betrule  d-flex align-items-center p-1 pl-2 pr-2 mr-1">
@@ -133,8 +136,7 @@
                     <!-- </div> -->
                 </div>
               <div class="bettingArea-btn-check d-flex justify-content-center align-items-center" @click="sendConfirmBetCall"><i class="bi bi-check-circle"></i>確定</div>
-            </div>
-            <div class="askRoad d-flex">
+                <div class="askRoad d-flex">
                 <div class="askRoad-player cursor-point p-1 mr-2" @click="askRoad(2)">
                     <p>閒問路</p>
                     <div class="d-flex justify-content-around p-1">
@@ -152,6 +154,8 @@
                     </div>
                 </div>
             </div>
+            </div>
+            
         </div>
         <GameResult/>
     </div>
@@ -403,9 +407,6 @@ export default defineComponent({
                 coinPosition[2].betStatus = betStatus.value.PlayerPair
                 coinPosition[3].betStatus = betStatus.value.Tie
                 coinPosition[4].betStatus = betStatus.value.BankerPair
-                // for(let i = 0 ; i<5 ;i++){
-                //     console.log(coinPosition[i].betStatus)
-                // }
             }   
         })
         watch(broadcastBetstatus,()=>{ //更新該桌的所有玩家總注額
@@ -992,6 +993,7 @@ export default defineComponent({
             minBetLimit,
             maxBetLimit,
             onlinePlayersNumber,
+            tableNum,
             //methods
             chooseCoint,
             cointAnimate,

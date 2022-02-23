@@ -1035,7 +1035,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-left {
-  width: 65%;
+  width: 100%;
 }
 
 .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
@@ -1061,7 +1061,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-reward {
-  width: 80px;
+  width: 70px;
   height: 42px;
   font-size: 1.5rem;
   background-color: rgba(128, 0, 128, 0.829);
@@ -2485,9 +2485,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
-@media screen and (max-width: 1280px) and (max-height: 800px) {
+@media screen and (max-width: 1280px) and (height: 800px) {
   .coinArea {
     height: 9%;
+  }
+  .bettingArea-btn-reward {
+    width: 25px;
   }
 }
 
@@ -2621,9 +2624,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea {
     border: 2px solid #262626;
     width: 100%;
-  }
-  .bettingArea-btn-left {
-    width: 80%;
   }
   .betArea-pc {
     display: none;
@@ -4076,8 +4076,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item-bottom {
     bottom: 0%;
   }
-  .bettingArea-btn-left {
-    width: 70%;
+  .bettingArea-btn-reward {
+    width: 25px;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -4451,12 +4451,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea {
     height: 230px;
   }
-  .bettingArea-btn-left {
-    width: 65%;
-  }
-  .bettingArea-btn-reward {
-    width: 25px;
-  }
   .bettingArea-btn-gitbackAllCoin,
   .bettingArea-btn-check {
     width: 40px;
@@ -4680,14 +4674,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-mobile-container {
     height: 160px;
   }
-  .bettingArea-btn-left {
-    width: 62%;
-  }
   .bettingArea-btn-check, .bettingArea-btn-gitbackAllCoin {
-    width: 30px;
+    width: 26px;
   }
   .bettingArea-btn-check .bi, .bettingArea-btn-gitbackAllCoin .bi {
     display: none;
+  }
+  .bettingArea-btn-reward {
+    width: 20px;
   }
   .coin-100 {
     width: 39.5px;
