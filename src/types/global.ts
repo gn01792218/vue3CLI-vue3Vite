@@ -9,5 +9,5 @@ export interface chatContent{
 export enum tableName{
     'A',
     'B',
-    'VIP',
+    'VIP1',
 }
