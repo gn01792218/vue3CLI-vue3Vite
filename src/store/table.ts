@@ -7,19 +7,6 @@ export const state = {
   },
   currentTable:"",
   tableLDataist:[
-    // {
-    //   tableName:'C',
-    //   onLine:false,
-    //   img:require(`../images/C.png`),
-    //   playerMin:0,
-    //   playerMax:0,
-    //   bankerMin:0,
-    //   bankerMax:0,
-    //   tieMin:0,
-    //   tieMax:0,
-    //   pairMin:0,
-    //   pairMax:0,
-    // },
     {
       tableName:'D',
       onLine:false,
@@ -48,19 +35,6 @@ export const state = {
     }
   ],
   tableInfoData:{  //給Home的桌牌使用
-    // C:{
-    //   tableName:'C',
-    //   onLine:false,
-    //   img:require(`../images/C.png`),
-    //   playerMin:0,
-    //   playerMax:0,
-    //   bankerMin:0,
-    //   bankerMax:0,
-    //   tieMin:0,
-    //   tieMax:0,
-    //   pairMin:0,
-    //   pairMax:0,
-    // },
     D:{
       tableName:'D',
       onLine:false,

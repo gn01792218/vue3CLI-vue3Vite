@@ -71,54 +71,16 @@ export default defineComponent({
       tableJoin ()
     }) 
     function tableJoin (){ //上桌請求
-       switch(tableNum.value){
-        case 'A':
-          tables.value.find((i:any)=>{
-            if(i.name=="A"){
-              sendTableJoinCall({
-                uuid:i.uuid
-              })
-              // console.log('發送TableJoin',tableNum.value)
-              console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
-            }
-            return i.name == "A"
+      tables.value.find((i:any)=>{
+        if(i.name == tableNum.value){
+          sendTableJoinCall({
+            uuid:i.uuid
           })
-          break
-        case 'B':
-          tables.value.find((i:any)=>{
-            if(i.name=="B"){
-              sendTableJoinCall({
-                uuid:i.uuid
-              })
-              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
-            }
-            return i.name == "B"
-          })
-          break
-        case 'C':
-          tables.value.find((i:any)=>{
-            if(i.name=="C"){
-              sendTableJoinCall({
-                uuid:i.uuid
-              })
-              // console.log('發送TableJoin',tableNum.value)
-              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
-            }
-            return i.name == "C"
-          })
-          break
-        case 'VIP1':
-          tables.value.find((i:any)=>{
-            if(i.name=="VIP1"){
-              sendTableJoinCall({
-                uuid:i.uuid
-              })
-              // console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
-            }
-            return i.name == "VIP1"
-          })
-          break
-      }
+          // console.log('發送TableJoin',tableNum.value)
+          console.log(`請求${tableNum.value}桌`,"桌號:"+i.name,"uuid:"+i.uuid,"Loby資訊:",tables.value)
+        }
+        return i.name == tableNum
+      })
     }
     return{
       //data
