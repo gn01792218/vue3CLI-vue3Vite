@@ -1,35 +1,54 @@
 <template>
-  <div class="video-box position-relative">
-    <NewsTicker class="position-absolute top-0" />
-    <canvas class="video" id="video" width="980" height="588" /><br />
-    <VideoLoading v-show="loadingVideo" />
-    <ChatDisplay class="chatElement position-absolute" />
+  <!-- 咪牌視訊盒子 -->
+  <div
+    class="modal fade position-absolute"
+    id="watchCardBox"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog watchCard-box position-absolute ">
+      <div class="modal-content position-relative">
+        <button
+          type="button"
+          class="close position-absolute"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <canvas
+          class="video"
+          id="watchCardVideo"
+          width="980"
+          height="588"
+        />
+        <VideoLoading v-show="loadingVideo" />
+      </div>
+    </div>
   </div>
 </template>
+
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, watch } from "vue";
+import { computed, defineComponent, watch , ref ,onMounted} from "vue";
 import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
-import NewsTicker from "@/components/NewsTicker.vue";
-import ChatDisplay from "@/components/chat/ChatDisplay.vue";
+import $ from "jquery";
 export default defineComponent({
-  components: {
-    NewsTicker,
-    VideoLoading,
-    ChatDisplay,
+  components:{
+      VideoLoading,
   },
-  //修正蘋果手機無法撥放的問題
   setup() {
+    //初始化
     onMounted(() => {
-      np.value.setView("video");
+      np.value.setView("watchCardVideo");
       np.value.setScaleMode(2);
-      np.value.onResize(0);
       np.value.setBufferTime(300);
       np.value.on("error", (e: any) => {
         console.log('直播發生錯誤',e)
       });
-      np.value.on("videoInfo", (w: any) => {
-        // console.log("顯示Video",w)
+      np.value.on("videoInfo", (w: any,h:any) => {
+        // console.log("顯示咪牌",w,h)
         loadingVideo.value = false;
       });
       np.value.on("stop", () => {
@@ -39,7 +58,6 @@ export default defineComponent({
       startPlay();
     });
     //基本資料
-    const zoonScale = ref<number>(1);
     const loadingVideo = ref(true);
     const mobileDevice = ref([
       //各種手機的系統
@@ -54,6 +72,12 @@ export default defineComponent({
     const mobileOrNot = isMobile(); //是否是行動裝置
     //vuex
     const store = useStore();
+    store.commit("video/setWatchCardVideo", new NodePlayer()); //把player實體存進Vuex
+    //等收到stream的時候才要顯示modal
+    const np = computed(() => {
+      return store.state.video.watchCardVideo;
+    });
+    //暫時使用直播影片測試
     const flvStreamDesk = computed(() => {
       //直播網址
       return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
@@ -61,11 +85,13 @@ export default defineComponent({
     const flvStreamMobil = computed(() => {
       return store.state.table.TableJoinRecall.table.streamingUrl.moblie;
     });
-    const np = computed(() => {
-      return store.state.video.video;
+    //暫時使用直播影片測試
+    const watchCardVideoStream = computed(() => {
+      return store.state;
     });
-    store.commit("video/setVideo", new NodePlayer()); //把player實體存進Vuex
-    //監聽換桌的直播網址
+    watch(watchCardVideoStream, () => {
+      $("#watchCardBox").modal("show");
+    });
     watch(flvStreamDesk, () => {
       stopPlay();
       startPlay();
@@ -78,6 +104,7 @@ export default defineComponent({
         startPlay();
       }
     });
+    //視訊方法
     function isMobile() {
       //判斷是否是手機
       return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
@@ -86,20 +113,20 @@ export default defineComponent({
       np.value.setKeepScreenOn();
       if (mobileOrNot) {
         np.value.start(flvStreamMobil.value);
-        console.log("行動裝置-LiveVideo開始撥放", flvStreamMobil.value);
+        console.log("行動裝置-咪牌開始撥放", flvStreamMobil.value);
       } else {
         np.value.start(flvStreamDesk.value);
-        console.log("桌機-LiveVideo開始撥放", flvStreamDesk.value);
+        console.log("桌機-咪牌開始撥放", flvStreamDesk.value);
       }
     }
     function stopPlay() {
       np.value.stop();
       np.value.clearView(); //清除上一個視頻留下的東西
     }
+
     return {
-      //data
-      loadingVideo,
-      //methods
+        //data
+        loadingVideo,
     };
   },
 });

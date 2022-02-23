@@ -1,0 +1,19 @@
+.watchCard-box{
+    //rwd的時候置中
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%) !important;
+    .modal-content{
+        width:500px;
+        height:281px;
+    }
+    .close{
+        width:30px;
+        height:30px;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 1;
+        right:0%;
+        top:-3%;
+    }
+}

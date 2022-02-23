@@ -1032,6 +1032,13 @@
     width:500px;
     top:52%;
   }
+  .watchCard-box{
+    transform: translate(-53%,-50%) !important;
+    .modal-content{
+      width:460px;
+      height:258px;
+    }
+  }
   .header-btn {
     font-size: 100%;
     line-height: 1rem;
@@ -1351,11 +1358,17 @@
     width:390px;
     top:51%;
   }
+  .watchCard-box{
+    .modal-content{
+      width:360px;
+      height:202px;
+    }
+  }
   .newsTicker{
     .bi-exclamation-triangle-fill{
         font-size: 1rem;
     }
-}
+  }
   .table-img {
     width: 50px;
     height: 50px;
@@ -1626,6 +1639,12 @@
       width:120px;
     }
   }
+  .watchCard-box{
+    .modal-content{
+      width:300px;
+      height:168px;
+    }
+  }
 }
 @media screen and (max-width: 320px) {
   .chat-input-wrap{
@@ -1811,6 +1830,12 @@
   }
 }
 @media screen and (max-width: 280px) {
+  .watchCard-box{
+    .modal-content{
+      width:260px;
+      height:146px;
+    }
+  }
   .table-btn-list{
     max-width:170px;
   }

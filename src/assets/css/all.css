@@ -412,6 +412,28 @@ img {
   background-color: black;
 }
 
+.watchCard-box {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) !important;
+          transform: translate(-50%, -50%) !important;
+}
+
+.watchCard-box .modal-content {
+  width: 500px;
+  height: 281px;
+}
+
+.watchCard-box .close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 1;
+  right: 0%;
+  top: -3%;
+}
+
 .input-emoji {
   cursor: pointer;
   right: 10px;
@@ -3556,6 +3578,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 500px;
     top: 52%;
   }
+  .watchCard-box {
+    -webkit-transform: translate(-53%, -50%) !important;
+            transform: translate(-53%, -50%) !important;
+  }
+  .watchCard-box .modal-content {
+    width: 460px;
+    height: 258px;
+  }
   .header-btn {
     font-size: 100%;
     line-height: 1rem;
@@ -4042,6 +4072,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 390px;
     top: 51%;
   }
+  .watchCard-box .modal-content {
+    width: 360px;
+    height: 202px;
+  }
   .newsTicker .bi-exclamation-triangle-fill {
     font-size: 1rem;
   }
@@ -4391,6 +4425,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .chat-input input {
     width: 120px;
   }
+  .watchCard-box .modal-content {
+    width: 300px;
+    height: 168px;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -4619,6 +4657,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 280px) {
+  .watchCard-box .modal-content {
+    width: 260px;
+    height: 146px;
+  }
   .table-btn-list {
     max-width: 170px;
   }
