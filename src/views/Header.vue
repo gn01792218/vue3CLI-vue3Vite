@@ -44,8 +44,9 @@
             >B桌</a
           >
           <a
-            class="header-btn disabled"
+            class="header-btn"
             :class="{ active: tableNum == 'C' }"
+            @click="toGametable('C')"
             >C桌</a
           >
           <a
@@ -55,9 +56,9 @@
           >
           <a
             class="header-btn"
-            :class="{ active: tableNum == 'VIP' }"
-            @click="toGametable('VIP')"
-            >VIP</a
+            :class="{ active: tableNum == 'VIP1' }"
+            @click="toGametable('VIP1')"
+            >VIP1</a
           >
           <a
             class="header-btn disabled"
