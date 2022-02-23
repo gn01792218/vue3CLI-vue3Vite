@@ -31,40 +31,11 @@
           <i>洗:{{ user.totalValidBets }}</i>
         </div>
         <div class="table-btn-list d-flex flex-row flex-xl-column">
-          <a
+          <a v-for="(table) in tableLDataist" :key="table"
             class="header-btn"
-            :class="{ active: tableNum == 'A' }"
-            @click="toGametable('A')"
-            >A桌</a
-          >
-          <a
-            class="header-btn"
-            :class="{ active: tableNum == 'B' }"
-            @click="toGametable('B')"
-            >B桌</a
-          >
-          <a
-            class="header-btn"
-            :class="{ active: tableNum == 'C' }"
-            @click="toGametable('C')"
-            >C桌</a
-          >
-          <a
-            class="header-btn disabled"
-            :class="{ active: tableNum == 'D' }"
-            >D桌</a
-          >
-          <a
-            class="header-btn"
-            :class="{ active: tableNum == 'VIP1' }"
-            @click="toGametable('VIP1')"
-            >VIP1</a
-          >
-          <a
-            class="header-btn disabled"
-            :class="{ active: tableNum == 'VIP2' }"
-            >VIP2</a
-          >
+            :class="[{ active: tableNum == table.tableName },{disabled: table.onLine == false}]"
+            @click="toGametable(table.tableName)"
+          >{{table.tableName}}<span v-if="table.tableName.length<2">桌</span></a>
           <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
           <a href="#" class="header-btn leaveGame-btn d-none d-xl-block" @click="closeWindow"
             >離開遊戲</a
@@ -157,9 +128,12 @@ export default defineComponent({
         const user = computed(()=>{
             return store.state.auth.UserInfo.user
         })
-        // const validBets = computed(()=>{
-        //     return store.state.auth.UserInfo.user.totalValidBets
-        // })
+        const tableLDataist = computed(()=>{
+          return store.state.table.tableLDataist
+        })
+        const tableInfoData = computed(()=>{
+          return store.state.table.tableInfoData
+        })
         const onlinePlayersNumber = computed(()=>{
           return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers
         })
@@ -185,6 +159,7 @@ export default defineComponent({
         const router = useRouter()
         //換桌
         function toGametable (tableNum:string) {
+          if(tableInfoData.value[tableNum].onLine){
             if(announcement1Checked.value && announcement2Checked.value && announcement3Checked.value){
                 store.commit('table/setCurrentTable',tableNum)
                 router.push({
@@ -193,6 +168,7 @@ export default defineComponent({
             }else{
                 alert('請先同意所有遊戲公告事項之規範')
             }
+          }
         }
         //回Home
         function backToHome () {
@@ -214,6 +190,7 @@ export default defineComponent({
             shoe,
             tableNum,
             onlinePlayersNumber,
+            tableLDataist,
             // validBets,
             //methods
             toGametable,
