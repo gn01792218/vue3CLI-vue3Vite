@@ -4,7 +4,9 @@
     class="modal watchCard-modal fade position-absolute"
     id="watchCardBox"
     tabindex="-1"
-    aria-labelledby="exampleModalLabel"
+    data-backdrop="static"
+    data-keyboard="false" 
+    aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog watchCard-box position-absolute ">
@@ -60,6 +62,10 @@ export default defineComponent({
     //vuex
     const store = useStore();
     store.commit("video/setWatchCardVideo", new NodePlayer()); //把player實體存進Vuex
+    const gameEndUuid = computed(() => {
+      //下注結束
+      return store.state.game.gameEndUuid;
+    });
     //等收到stream的時候才要顯示modal
     const np = computed(() => {
       return store.state.video.watchCardVideo;
@@ -76,6 +82,9 @@ export default defineComponent({
     const watchCardVideoStream = computed(() => {
       return store.state;
     });
+    watch(gameEndUuid,()=>{
+      $("#watchCardBox").modal("hide");
+    })
     watch(watchCardVideoStream, () => {
       $("#watchCardBox").modal("show");
     });
