@@ -24,10 +24,25 @@
     height: 30%;
   }
 }
+@media screen and (max-width: 1545px){
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 70px;
+  }
+  .bettingArea-btn-reward {
+    width: 40px;
+  } 
+}
 @media screen and (max-width: 1280px) {
   .text-md-left,
   .text-md-right {
     font-size: smaller;
+  }
+  .watchCard-box{
+    top:50%;
+    .modal-content{
+      width:300px;
+      height:168px;
+    }
   }
   .card-container {
     margin-top: -20px;
@@ -46,6 +61,9 @@
   }
   .betArea-item {
     font-size: 1.5rem;
+  }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 55px;
   }
   .gameHistory {
     height: 25%;
@@ -312,9 +330,6 @@
   .coinArea {
     height: 9%;
   }
-  .bettingArea-btn-reward{
-    width:25px;
-  }
 }
 @media screen and (min-width: 1025px) {
   .header-bottom-mobil {
@@ -415,6 +430,13 @@
     width: 100%;
     height: 575px;
   }
+  .watchCard-box{
+    top:35%;
+    .modal-content{
+      width:500px;
+      height:281px;
+    }
+  }
   .mainGame {
     width: 100%;
   }
@@ -435,6 +457,12 @@
   .betArea-mobile-container {
     height: 250px;
   }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 100px;
+  }
+  .bettingArea-btn-reward {
+    width: 60px;
+  } 
   .coin-100 {
     @include coinSpritePosition(0, 0, 1.6);
   }
@@ -733,6 +761,9 @@
   }
   .video-box {
     height: 430px;
+  }
+  .watchCard-box{
+    top:50%;
   }
   .lightBox {
     display: block;
@@ -1401,7 +1432,7 @@
     bottom: 0%;
   }
   .bettingArea-btn-reward{
-    width:25px;
+    width:40px;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -1514,6 +1545,20 @@
   .betArea-item {
     font-size: 0.5rem;
     font-weight: bolder;
+  }
+  .bettingArea-btn-reward{
+    width:35px;
+  }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 40px;
+    font-size: 12px;
+  }
+  .watchCard-box{
+    top:60%;
+    .modal-content{
+      width:300px;
+      height:168px;
+    }
   }
   .table-total-betStatus{
     font-size: 0.3rem;
@@ -1639,12 +1684,6 @@
       width:120px;
     }
   }
-  .watchCard-box{
-    .modal-content{
-      width:300px;
-      height:168px;
-    }
-  }
 }
 @media screen and (max-width: 320px) {
   .chat-input-wrap{
@@ -1694,6 +1733,9 @@
   .video-box {
     height: 180px;
   }
+  .watchCard-box{
+    top:70%;
+  }
   .gameHistory {
     height: 100px;
   }
@@ -1707,9 +1749,15 @@
     height: 230px;
   }
   .bettingArea-btn-gitbackAllCoin,.bettingArea-btn-check {
-    width: 40px;
+    width: 30px;
     font-size: 10px;
+    .bi{
+      display: none;
+    }
   }
+  .bettingArea-btn-reward {
+    width: 25px;
+}
   .bettingArea-btn {
     height: 50px;
   }
@@ -1804,7 +1852,6 @@
     @include hisRoadSpritePosition(-1100, 0, 0.12);
   }
   .userBetInfo-title {
-    // width:30%;
     font-size: 0.5rem;
   }
   //小路(左下角)

@@ -1,7 +1,7 @@
 <template>
   <!-- 咪牌視訊盒子 -->
   <div
-    class="modal fade position-absolute"
+    class="modal watchCard-modal fade position-absolute"
     id="watchCardBox"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
@@ -18,7 +18,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <canvas
-          class="video"
+          class="video w-100 h-100"
           id="watchCardVideo"
           width="980"
           height="588"
