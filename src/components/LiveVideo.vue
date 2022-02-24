@@ -21,25 +21,10 @@ export default defineComponent({
   //修正蘋果手機無法撥放的問題
   setup() {
     onMounted(() => {
-      np.value.setView("video");
-      np.value.setScaleMode(2);
-      np.value.onResize(0);
-      np.value.setBufferTime(300);
-      np.value.on("error", (e: any) => {
-        console.log('直播發生錯誤',e)
-      });
-      np.value.on("videoInfo", (w: any) => {
-        // console.log("顯示Video",w)
-        loadingVideo.value = false;
-      });
-      np.value.on("stop", () => {
-        //  console.log("結束播放Video")
-        loadingVideo.value = true;
-      });
+      createVideo(np.value,'video')
       startPlay();
     });
     //基本資料
-    const zoonScale = ref<number>(1);
     const loadingVideo = ref(true);
     const mobileDevice = ref([
       //各種手機的系統
@@ -54,6 +39,7 @@ export default defineComponent({
     const mobileOrNot = isMobile(); //是否是行動裝置
     //vuex
     const store = useStore();
+    store.commit("video/setVideo", new NodePlayer()); //把player實體存進Vuex
     const flvStreamDesk = computed(() => {
       //直播網址
       return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
@@ -61,10 +47,9 @@ export default defineComponent({
     const flvStreamMobil = computed(() => {
       return store.state.table.TableJoinRecall.table.streamingUrl.moblie;
     });
-    const np = computed(() => {
+    const np = computed(() => {  //取得nodeplayer物件實體
       return store.state.video.video;
     });
-    store.commit("video/setVideo", new NodePlayer()); //把player實體存進Vuex
     //監聽換桌的直播網址
     watch(flvStreamDesk, () => {
       stopPlay();
@@ -72,7 +57,6 @@ export default defineComponent({
     });
     //解決視窗失焦掉秒數問題
     window.addEventListener("focus", () => {
-      //原本的
       if (np) {
         stopPlay();
         startPlay();
@@ -95,6 +79,23 @@ export default defineComponent({
     function stopPlay() {
       np.value.stop();
       np.value.clearView(); //清除上一個視頻留下的東西
+    }
+    function createVideo(nodePlayer:NodePlayer,videoElementId:string){
+      nodePlayer.setView(videoElementId);
+      nodePlayer.setScaleMode(2);
+      nodePlayer.onResize(0);
+      nodePlayer.setBufferTime(300);
+      nodePlayer.on("error", (e: any) => {
+        console.log("直播發生錯誤", e);
+      });
+      nodePlayer.on("videoInfo", (w: any) => {
+        // console.log("顯示Video",w)
+        loadingVideo.value = false;
+      });
+      nodePlayer.on("stop", () => {
+        //  console.log("結束播放Video")
+        loadingVideo.value = true;
+      });
     }
     return {
       //data

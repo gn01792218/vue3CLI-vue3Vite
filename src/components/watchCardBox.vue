@@ -41,20 +41,7 @@ export default defineComponent({
   setup() {
     //初始化
     onMounted(() => {
-      np.value.setView("watchCardVideo");
-      np.value.setScaleMode(2);
-      np.value.setBufferTime(300);
-      np.value.on("error", (e: any) => {
-        console.log('直播發生錯誤',e)
-      });
-      np.value.on("videoInfo", (w: any,h:any) => {
-        // console.log("顯示咪牌",w,h)
-        loadingVideo.value = false;
-      });
-      np.value.on("stop", () => {
-        //  console.log("結束播放Video")
-        loadingVideo.value = true;
-      });
+      createWatchCardVideo(np.value,'watchCardVideo')
       startPlay();
     });
     //基本資料
@@ -123,7 +110,22 @@ export default defineComponent({
       np.value.stop();
       np.value.clearView(); //清除上一個視頻留下的東西
     }
-
+    function createWatchCardVideo(nodePlayer:NodePlayer,videoElementId:string){
+      nodePlayer.setView(videoElementId);
+      nodePlayer.setScaleMode(2);
+      nodePlayer.setBufferTime(300);
+      nodePlayer.on("error", (e: any) => {
+        console.log('直播發生錯誤',e)
+      });
+      nodePlayer.on("videoInfo", (w: any,h:any) => {
+        // console.log("顯示咪牌",w,h)
+        loadingVideo.value = false;
+      });
+      nodePlayer.on("stop", () => {
+        //  console.log("結束播放Video")
+        loadingVideo.value = true;
+      });
+    }
     return {
         //data
         loadingVideo,
