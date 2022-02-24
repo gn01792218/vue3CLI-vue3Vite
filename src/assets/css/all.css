@@ -4030,6 +4030,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (max-width: 460px) {
+  .table-btn-list {
+    max-width: 255px;
+  }
+}
+
 @media screen and (max-width: 414px) {
   .table-btn-list {
     max-width: 148px;

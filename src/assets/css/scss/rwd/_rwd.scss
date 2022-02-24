@@ -1339,6 +1339,11 @@
     @include tieNumberPosition(-700, 0, 0.08);
   }
 }
+@media screen and (max-width: 460px){
+  .table-btn-list {
+    max-width: 255px;
+  }
+}
 @media screen and (max-width: 414px) {
   .table-btn-list{
     max-width:148px;
