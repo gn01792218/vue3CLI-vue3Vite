@@ -4,7 +4,6 @@
     <watchCardBox/>
     <!-- PC版本注區 -->
     <div class="betArea-pc position-relative">
-      
       <GameResultLoading />
       <ul class="betInfortext-ul position-absolute">
         <transition-group @enter="betErrorAnimation">
@@ -32,7 +31,7 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <!-- <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p> -->
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -62,7 +61,7 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <!-- <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p> -->
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -107,7 +106,7 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <!-- <p class="table-total-betStatus">總注額:{{i.tableAllPlayerBetStatus}}</p> -->
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
