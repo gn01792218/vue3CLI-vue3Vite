@@ -11,6 +11,7 @@ export const state = {
     askBankByRoundStart:{}, //回合自動問路莊家
     askPlayerByRoundStart:{}, //回合自動問路閒家
     serverDisConnect:false,
+    canWatchCard:{}, //VIP玩家是否取得咪牌權利
   };
   export const actions = {}
   
@@ -53,6 +54,9 @@ export const state = {
       state.BetRoundEnd = payload
       state.gameEndUuid = payload.gameUuid
       // console.log("vuex-BetRoundCountdown資料更新",state.BetRoundCountdown)
+    },
+    setCanWatchCard(state:any,payload:any){
+      state.canWatchCard = payload
     },
   };
   export const getters = {

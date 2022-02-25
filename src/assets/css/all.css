@@ -1098,6 +1098,78 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-color: rgba(128, 0, 128, 0.829);
 }
 
+.bettingArea-btn-watchCard {
+  width: 70px;
+  height: 42px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background: #504e4e;
+}
+
+.bettingArea-btn-watchCard-Animation {
+  -webkit-animation-name: watchCardAnimation;
+          animation-name: watchCardAnimation;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  background-color: rgba(128, 0, 128, 0.829);
+}
+
+.bettingArea-btn-watchCard-Animation .bi-eye {
+  -webkit-animation-name: watchCardEyeAnimation;
+          animation-name: watchCardEyeAnimation;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes watchCardAnimation {
+  from {
+    background-color: rgba(128, 0, 128, 0.629);
+    -webkit-box-shadow: 0px 0px 10px #fafa04;
+            box-shadow: 0px 0px 10px #fafa04;
+  }
+  to {
+    background-color: rgba(128, 0, 128, 0.829);
+  }
+}
+
+@keyframes watchCardAnimation {
+  from {
+    background-color: rgba(128, 0, 128, 0.629);
+    -webkit-box-shadow: 0px 0px 10px #fafa04;
+            box-shadow: 0px 0px 10px #fafa04;
+  }
+  to {
+    background-color: rgba(128, 0, 128, 0.829);
+  }
+}
+
+@-webkit-keyframes watchCardEyeAnimation {
+  from {
+    font-size: 1rem;
+  }
+  to {
+    font-size: 2rem;
+  }
+}
+
+@keyframes watchCardEyeAnimation {
+  from {
+    font-size: 1rem;
+  }
+  to {
+    font-size: 2rem;
+  }
+}
+
 .betArea-item {
   font-weight: 500;
 }
@@ -2066,7 +2138,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
     width: 70px;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 40px;
   }
 }
@@ -2692,7 +2764,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
     width: 100px;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 60px;
   }
   .coin-100 {
@@ -3664,7 +3736,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .askRoad-player p, .askRoad-banker p {
     font-size: 0.5rem;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 50px;
   }
   .betLimitInfo {
@@ -4151,7 +4223,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item-bottom {
     bottom: 0%;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 40px;
   }
   .header-userName {
@@ -4267,7 +4339,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 0.5rem;
     font-weight: bolder;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 35px;
   }
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
@@ -4549,7 +4621,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-gitbackAllCoin .bi, .bettingArea-btn-check .bi {
     display: none;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 25px;
   }
   .bettingArea-btn {
@@ -4780,7 +4852,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-check .bi, .bettingArea-btn-gitbackAllCoin .bi {
     display: none;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 20px;
   }
   .coin-100 {

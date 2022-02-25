@@ -62,8 +62,43 @@
         width:70px;
         height:42px;
         font-size: 1.5rem;
-        // background-color: rgb(71, 71, 2);
         background-color:rgba(128, 0, 128, 0.829);
+    }
+    .bettingArea-btn-watchCard{
+        width:70px;
+        height:42px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        background: rgb(80, 78, 78);
+    }
+    .bettingArea-btn-watchCard-Animation {
+        animation-name: watchCardAnimation;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function:ease-in-out;
+        background-color:rgba(128, 0, 128, 0.829);
+        .bi-eye{
+            animation-name: watchCardEyeAnimation;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function:ease-in-out;
+        }
+    }
+    @keyframes watchCardAnimation {
+        from{
+            background-color:rgba(128, 0, 128, 0.629);
+            box-shadow: 0px 0px 10px rgb(250, 250, 4);
+        }to{
+            background-color:rgba(128, 0, 128, 0.829);
+        }
+    }
+    @keyframes watchCardEyeAnimation {
+        from{
+            font-size: 1rem;
+        }to{
+            font-size: 2rem;
+        }
     }
     .betArea-item{
         font-weight:500;

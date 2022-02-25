@@ -2,6 +2,7 @@
   <GameresultSound />
   <div class="betArea position-relative">
     <watchCardBox/>
+    <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button>
     <!-- PC版本注區 -->
     <div class="betArea-pc position-relative">
       <GameResultLoading />
@@ -204,9 +205,9 @@
             data-target="#watchCardBox"
             @click="watchCardReq"
             v-if="tableNum.includes('VIP')"
-            class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
+            class="bettingArea-btn-watchCard cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
           >
-            <span><i class="bi bi-eye"></i></span>
+            <span class="d-flex align-item-center"><i class="bi bi-eye"></i></span>
           </div>
           <!-- 手機版本才會出現的檯紅顯示 -->
           <div
@@ -273,6 +274,7 @@ import {
   sendBetResetCall,
   sendAskRoadCall,
   sendBetConfirmCall,
+  sendWatchCardCall,
 } from "../socketApi";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
@@ -418,6 +420,10 @@ export default defineComponent({
       //在線人數
       return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers;
     });
+    const canWatchCard = computed(()=>{  
+      //是否取得咪牌權利
+      return store.state.game.canWatchCard
+    })
     //基本資料
     const canBet = ref(true); //是否可以下注
     const betCallTemp = ref({}); //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
@@ -583,6 +589,7 @@ export default defineComponent({
     watch(gameEndUuid, () => {
       //停止下注，在開牌之前
       canBet.value = false;
+      resetWatchCardAlert()
     });
     watch(betError, () => {
       //更新錯誤訊息
@@ -626,6 +633,9 @@ export default defineComponent({
       winCoinAnimation();
       store.commit("bet/setIsConfirmed", false); //重置按紐
     });
+    watch(canWatchCard,()=>{
+      alertCanWatchCard()
+    })
     function setBetStatusTextColor() {
       //更換bstStatus和totalBet的顏色
       let betStatusText = document.querySelectorAll(".betStatus") as NodeListOf<
@@ -1276,6 +1286,18 @@ export default defineComponent({
     }
     function watchCardReq() {
       //向server發送咪牌訊號
+      sendWatchCardCall({
+        
+      })
+    }
+    function alertCanWatchCard(){
+      //收到此人獲得咪牌權限時開通咪牌功能
+      let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
+      watchCardBtn?.classList.add('bettingArea-btn-watchCard-Animation')
+    }
+    function resetWatchCardAlert(){
+      let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
+      watchCardBtn?.classList.remove('bettingArea-btn-watchCard-Animation')
     }
     return {
       //data
@@ -1303,7 +1325,13 @@ export default defineComponent({
       numberFormat,
       sendConfirmBetCall,
       watchCardReq,
+      alertCanWatchCard,
     };
   },
 });
 </script>
+<style scoped>
+  .watchTest{
+    z-index:100;
+  }
+</style>
