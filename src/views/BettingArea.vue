@@ -1,6 +1,7 @@
 <template>
   <GameresultSound />
   <div class="betArea position-relative">
+    <ConfirmWatchCard/>
     <watchCardBox/>
     <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button>
     <!-- PC版本注區 -->
@@ -201,9 +202,6 @@
           </div>
           <!-- 咪牌按鈕 ，VIP才有-->
           <div
-            data-toggle="modal"
-            data-target="#watchCardBox"
-            @click="watchCardReq"
             v-if="tableNum.includes('VIP')"
             class="bettingArea-btn-watchCard cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
           >
@@ -267,18 +265,19 @@ import GameResult from "@/components/GameResult.vue";
 import GameresultSound from "@/components/GameResultSound.vue";
 import GameResultLoading from "@/components/GameResultLoading.vue";
 import LightBox from "@/components/LightBox.vue";
-import watchCardBox from "@/components/watchCardBox.vue";
+import watchCardBox from "@/components/modal/watchCardBox.vue";
+import ConfirmWatchCard from "@/components/modal/ConfirmWatchCard.vue";
 import { gsap, Power4 } from "gsap";
 import {
   sendBetCall,
   sendBetResetCall,
   sendAskRoadCall,
   sendBetConfirmCall,
-  sendWatchCardCall,
 } from "../socketApi";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import proto from "../assets/js/bundle";
+import $ from "jquery";
 interface currentCoint {
   coinElement: any | null; //選擇的籌碼div元素
   num: number | null; //儲存點到的是第幾個
@@ -308,6 +307,7 @@ export default defineComponent({
     GameResultLoading,
     LightBox,
     watchCardBox,
+    ConfirmWatchCard,
   },
   setup() {
     //初始化
@@ -318,7 +318,6 @@ export default defineComponent({
       getBetLimit(tableInfoData.value);
       //設置取消紐的顏色
       setCancleBetBtnColor();
-      // setMinBetCoinUnusable()
     });
     //路由
     const route = useRoute();
@@ -1279,16 +1278,14 @@ export default defineComponent({
         store.commit("bet/setIsConfirmed", true);
       }
     }
-    function watchCardReq() {
-      //向server發送咪牌訊號
-      sendWatchCardCall({
-        
-      })
-    }
     function alertCanWatchCard(){
       //收到此人獲得咪牌權限時開通咪牌功能
+      //咪牌按鈕亮起
       let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
       watchCardBtn?.classList.add('bettingArea-btn-watchCard-Animation')
+      //顯示確認是否咪牌按鈕
+      console.log($("#whatchCardOrNot"))
+      $("#whatchCardOrNot").modal("show");
     }
     function resetWatchCardAlert(){
       let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
@@ -1319,7 +1316,6 @@ export default defineComponent({
       askRoad,
       numberFormat,
       sendConfirmBetCall,
-      watchCardReq,
       alertCanWatchCard,
     };
   },

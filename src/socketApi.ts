@@ -141,6 +141,19 @@ export const sendWatchCardCall = (data:any) =>{
     // // console.log('sendWatchCardCall',proto)
     // sendWSPush(bytes);
 }
+export const sendFlyCardCall = (data:any) => {
+    // let proto = roadmap.AskRoadCall.create({
+    //     header:foundation.Header.create({
+    //         uri:route.AskRoadCall
+    //     }),
+    //     block:roadmap.Block.create({
+    //         symbol:data.symbol
+    //     })
+    // })
+    // let bytes = roadmap.AskRoadCall.encode(proto).finish()
+    // // console.log('sendWatchCardCall',proto)
+    // sendWSPush(bytes);
+}
 //各種接收訊息的方法，在main.js中全局註冊監聽
 export const getMsgReCall = (e:any) =>{
     let header = foundation.Message.decode(new Uint8Array(e.detail.msg.data)).header
