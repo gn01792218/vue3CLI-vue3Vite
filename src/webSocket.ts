@@ -27,10 +27,6 @@ const oncloseWs = () => {
     if(Socket?.readyState==2){
       alert('斷線了')
     }
-    // if (Socket?.readyState == 3) {   //stateCode 3 為連接已關閉，或沒有連接成功
-    //   alert('websocket已被斷開連線，請關閉遊戲重新開啟')
-    //   // window.dispatchEvent(new CustomEvent('disconnect'))
-    // }
     if(Socket?.readyState !== 2){ //readyState 2 = 連接正在關閉
       // alert('websocket已被斷開....正在嘗試重連')
       Socket = null

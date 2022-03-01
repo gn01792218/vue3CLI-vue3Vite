@@ -290,11 +290,6 @@ interface target {
   x: number;
   y: number;
 }
-// interface coint {
-//   point:number,
-//   ammo:string[],
-//   num:number,
-// }
 interface coinPosition {
   initBottom: number; //初始化的bottom值
   initX: number; //水平初始位置
