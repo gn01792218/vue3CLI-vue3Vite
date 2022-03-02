@@ -16,7 +16,7 @@
         id="chatInputElement"
         v-model="chatMsg"
       />
-      <div class="input-emoji position-absolute">
+      <div class="chat-inputs position-absolute d-flex">
         <i class="bi bi-cursor-fill mr-1" @click="sendChatMsg"></i>
         <i class="bi bi-emoji-smile" @click="emojiListControl(!showEmoji)"></i>
       </div>

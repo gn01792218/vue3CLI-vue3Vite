@@ -1641,8 +1641,13 @@
   } 
   .chat-input {
     input{
-      width:70px;
+      width:60px;
     }
+  }
+  .chat-inputs{
+      .bi-cursor-fill{
+          font-size: 1.3rem !important;
+      }
   }
   .header {
     height: 30px;

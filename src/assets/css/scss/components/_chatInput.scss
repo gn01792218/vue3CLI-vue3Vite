@@ -1,14 +1,20 @@
-.input-emoji{
-    cursor: pointer;
+.chat-inputs{
 	right:10px;
 	top:0;
+    .bi-cursor-fill{
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+    .bi-emoji-smile{
+        cursor: pointer;
+    }
 }
 .chat-input{
 	max-width: 200px;
 	min-width: 100px;
 	input{
 		border-radius: 44px;
-        width:145px;
+        width:135px;
         background-color: transparent;
         border: transparent !important;
 	}

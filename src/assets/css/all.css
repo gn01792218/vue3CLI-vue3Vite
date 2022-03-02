@@ -412,10 +412,18 @@ img {
   background-color: black;
 }
 
-.input-emoji {
-  cursor: pointer;
+.chat-inputs {
   right: 10px;
   top: 0;
+}
+
+.chat-inputs .bi-cursor-fill {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.chat-inputs .bi-emoji-smile {
+  cursor: pointer;
 }
 
 .chat-input {
@@ -425,7 +433,7 @@ img {
 
 .chat-input input {
   border-radius: 44px;
-  width: 145px;
+  width: 135px;
   background-color: transparent;
   border: transparent !important;
 }
@@ -4407,7 +4415,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     left: -84%;
   }
   .chat-input input {
-    width: 70px;
+    width: 60px;
+  }
+  .chat-inputs .bi-cursor-fill {
+    font-size: 1.3rem !important;
   }
   .header {
     height: 30px;
