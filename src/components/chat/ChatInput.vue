@@ -10,12 +10,14 @@
     <Emoji class="chatInput-emoji position-absolute" v-show="showEmoji" @selectEmoji="addEmoji"/>
     <div class="chat-input-wrap pl-2">
         <input
+        enterkeyhint="send"
         @keyup.enter="sendChatMsg"
         type="text"
         id="chatInputElement"
         v-model="chatMsg"
       />
       <div class="input-emoji position-absolute">
+        <i class="bi bi-cursor-fill mr-1" @click="sendChatMsg"></i>
         <i class="bi bi-emoji-smile" @click="emojiListControl(!showEmoji)"></i>
       </div>
     </div>

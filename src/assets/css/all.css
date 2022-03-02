@@ -425,7 +425,7 @@ img {
 
 .chat-input input {
   border-radius: 44px;
-  width: 170px;
+  width: 145px;
   background-color: transparent;
   border: transparent !important;
 }
@@ -4407,7 +4407,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     left: -84%;
   }
   .chat-input input {
-    width: 85px;
+    width: 70px;
   }
   .header {
     height: 30px;
