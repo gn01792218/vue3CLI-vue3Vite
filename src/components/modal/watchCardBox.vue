@@ -10,22 +10,34 @@
     aria-hidden="true"
   >
     <div class="modal-dialog watchCard-box position-absolute ">
-      <div class="modal-content position-relative">
+      <div class="modal-content position-relative d-flex flex-row">
         <button
           type="button"
           class="close position-absolute"
           data-dismiss="modal"
           aria-label="Close"
         >
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" class="d-flex flex-column w-100 h-100">&times;</span>
         </button>
-        <canvas
+        <div class="w-50 h-100 position-relative">
+          <canvas
           class="video w-100 h-100"
-          id="watchCardVideo"
+          id="watchCardVideo1"
           width="980"
           height="588"
         />
-        <VideoLoading v-show="loadingVideo" />
+        <VideoLoading v-show="loadingVideo1" />
+        </div>
+        <div class="w-50 h-100 position-relative">
+          <canvas
+          class="video w-100 h-100"
+          id="watchCardVideo2"
+          width="980"
+          height="588"
+        />
+        <VideoLoading v-show="loadingVideo2" />
+        </div>
+        
       </div>
     </div>
   </div>
@@ -43,11 +55,14 @@ export default defineComponent({
   setup() {
     //初始化
     onMounted(() => {
-      createWatchCardVideo(np.value,'watchCardVideo')
-      startPlay();
+      createWatchCardVideo(np1.value,'watchCardVideo1',loadingVideo1.value)
+      createWatchCardVideo(np2.value,'watchCardVideo2',loadingVideo2.value)
+      startPlay(np1.value);
+      startPlay(np2.value);
     });
     //基本資料
-    const loadingVideo = ref(true);
+    const loadingVideo1 = ref(true);
+    const loadingVideo2 = ref(true);
     const mobileDevice = ref([
       //各種手機的系統
       "Android",
@@ -61,14 +76,18 @@ export default defineComponent({
     const mobileOrNot = isMobile(); //是否是行動裝置
     //vuex
     const store = useStore();
-    store.commit("video/setWatchCardVideo", new NodePlayer()); //把player實體存進Vuex
+    store.commit("video/setWatchCardVideo1", new NodePlayer()); //把player實體存進Vuex
+    store.commit("video/setWatchCardVideo2", new NodePlayer()); //把player實體存進Vuex
     const gameEndUuid = computed(() => {
       //下注結束
       return store.state.game.gameEndUuid;
     });
     //等收到stream的時候才要顯示modal
-    const np = computed(() => {
-      return store.state.video.watchCardVideo;
+    const np1 = computed(() => {
+      return store.state.video.watchCardVideo1;
+    });
+    const np2 = computed(() => {
+      return store.state.video.watchCardVideo2;
     });
     //暫時使用直播影片測試
     const flvStreamDesk = computed(() => {
@@ -79,25 +98,40 @@ export default defineComponent({
       return store.state.table.TableJoinRecall.table.streamingUrl.moblie;
     });
     //暫時使用直播影片測試
-    const watchCardVideoStream = computed(() => {
+    const watchCardVideoStream1 = computed(() => {
+      return store.state;
+    });
+    const watchCardVideoStream2 = computed(() => {
       return store.state;
     });
     watch(gameEndUuid,()=>{
       $("#watchCardBox").modal("hide");
     })
-    watch(watchCardVideoStream, () => {
+    watch([watchCardVideoStream1,watchCardVideoStream2], () => {
       $("#watchCardBox").modal("show");
     });
-    watch(flvStreamDesk, () => {
-      stopPlay();
-      startPlay();
-    });
+    // watch(flvStreamDesk, () => {
+    //   stopPlay();
+    //   startPlay();
+    // });
+    watch(watchCardVideoStream1,()=>{
+      stopPlay(np1.value);
+      startPlay(np1.value);
+    })
+     watch(watchCardVideoStream2,()=>{
+      stopPlay(np2.value);
+      startPlay(np2.value);
+    })
     //解決視窗失焦掉秒數問題
     window.addEventListener("focus", () => {
       //原本的
-      if (np) {
-        stopPlay();
-        startPlay();
+      if (np1.value) {
+        stopPlay(np1.value);
+        startPlay(np1.value);
+      }
+      if (np2.value) {
+        stopPlay(np2.value);
+        startPlay(np2.value);
       }
     });
     //視訊方法
@@ -105,21 +139,21 @@ export default defineComponent({
       //判斷是否是手機
       return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
     }
-    function startPlay() {
-      np.value.setKeepScreenOn();
+    function startPlay(nodePlayer:NodePlayer) {
+      nodePlayer.setKeepScreenOn();
       if (mobileOrNot) {
-        np.value.start(flvStreamMobil.value);
+        nodePlayer.start(flvStreamMobil.value);
         console.log("行動裝置-咪牌開始撥放", flvStreamMobil.value);
       } else {
-        np.value.start(flvStreamDesk.value);
+        nodePlayer.start(flvStreamDesk.value);
         console.log("桌機-咪牌開始撥放", flvStreamDesk.value);
       }
     }
-    function stopPlay() {
-      np.value.stop();
-      np.value.clearView(); //清除上一個視頻留下的東西
+    function stopPlay(nodePlayer:NodePlayer) {
+      nodePlayer.stop();
+      nodePlayer.clearView(); //清除上一個視頻留下的東西
     }
-    function createWatchCardVideo(nodePlayer:NodePlayer,videoElementId:string){
+    function createWatchCardVideo(nodePlayer:NodePlayer,videoElementId:string,loadingVideo:any){
       nodePlayer.setView(videoElementId);
       nodePlayer.setScaleMode(2);
       nodePlayer.setBufferTime(300);
@@ -128,16 +162,17 @@ export default defineComponent({
       });
       nodePlayer.on("videoInfo", (w: any,h:any) => {
         // console.log("顯示咪牌",w,h)
-        loadingVideo.value = false;
+        loadingVideo = false;
       });
       nodePlayer.on("stop", () => {
         //  console.log("結束播放Video")
-        loadingVideo.value = true;
+        loadingVideo = true;
       });
     }
     return {
         //data
-        loadingVideo,
+        loadingVideo1,
+        loadingVideo2,
     };
   },
 });

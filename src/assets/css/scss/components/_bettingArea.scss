@@ -80,7 +80,7 @@
         background-color:rgba(128, 0, 128, 0.829);
         .bi-eye{
             animation-name: watchCardEyeAnimation;
-            animation-duration: 2s;
+            animation-duration: 1s;
             animation-iteration-count: infinite;
             animation-timing-function:ease-in-out;
         }
@@ -97,7 +97,7 @@
         from{
             font-size: 1rem;
         }to{
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
     }
     .betArea-item{

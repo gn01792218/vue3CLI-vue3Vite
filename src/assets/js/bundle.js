@@ -5933,6 +5933,198 @@ export const dealer = $root.dealer = (() => {
         return WhiteCardCall;
     })();
 
+    dealer.BetRoundEndCall = (function() {
+
+        /**
+         * Properties of a BetRoundEndCall.
+         * @memberof dealer
+         * @interface IBetRoundEndCall
+         * @property {foundation.IHeader|null} [header] BetRoundEndCall header
+         */
+
+        /**
+         * Constructs a new BetRoundEndCall.
+         * @memberof dealer
+         * @classdesc Represents a BetRoundEndCall.
+         * @implements IBetRoundEndCall
+         * @constructor
+         * @param {dealer.IBetRoundEndCall=} [properties] Properties to set
+         */
+        function BetRoundEndCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BetRoundEndCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof dealer.BetRoundEndCall
+         * @instance
+         */
+        BetRoundEndCall.prototype.header = null;
+
+        /**
+         * Creates a new BetRoundEndCall instance using the specified properties.
+         * @function create
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {dealer.IBetRoundEndCall=} [properties] Properties to set
+         * @returns {dealer.BetRoundEndCall} BetRoundEndCall instance
+         */
+        BetRoundEndCall.create = function create(properties) {
+            return new BetRoundEndCall(properties);
+        };
+
+        /**
+         * Encodes the specified BetRoundEndCall message. Does not implicitly {@link dealer.BetRoundEndCall.verify|verify} messages.
+         * @function encode
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {dealer.IBetRoundEndCall} message BetRoundEndCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetRoundEndCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BetRoundEndCall message, length delimited. Does not implicitly {@link dealer.BetRoundEndCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {dealer.IBetRoundEndCall} message BetRoundEndCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetRoundEndCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BetRoundEndCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {dealer.BetRoundEndCall} BetRoundEndCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetRoundEndCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.dealer.BetRoundEndCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BetRoundEndCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {dealer.BetRoundEndCall} BetRoundEndCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetRoundEndCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BetRoundEndCall message.
+         * @function verify
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BetRoundEndCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BetRoundEndCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {dealer.BetRoundEndCall} BetRoundEndCall
+         */
+        BetRoundEndCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.dealer.BetRoundEndCall)
+                return object;
+            let message = new $root.dealer.BetRoundEndCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".dealer.BetRoundEndCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BetRoundEndCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof dealer.BetRoundEndCall
+         * @static
+         * @param {dealer.BetRoundEndCall} message BetRoundEndCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BetRoundEndCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this BetRoundEndCall to JSON.
+         * @function toJSON
+         * @memberof dealer.BetRoundEndCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BetRoundEndCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BetRoundEndCall;
+    })();
+
     /**
      * Result enum.
      * @name dealer.Result
@@ -7137,6 +7329,7 @@ export const foundation = $root.foundation = (() => {
                 case 13:
                 case 14:
                 case 15:
+                case 1501:
                 case 16:
                 case 17:
                 case 18:
@@ -7160,6 +7353,9 @@ export const foundation = $root.foundation = (() => {
                 case 5001:
                 case 6000:
                 case 6001:
+                case 7000:
+                case 7001:
+                case 7002:
                     break;
                 }
             return null;
@@ -7254,6 +7450,10 @@ export const foundation = $root.foundation = (() => {
             case 15:
                 message.uri = 15;
                 break;
+            case "BetRoundEndCall":
+            case 1501:
+                message.uri = 1501;
+                break;
             case "BetRoundCountdown":
             case 16:
                 message.uri = 16;
@@ -7345,6 +7545,18 @@ export const foundation = $root.foundation = (() => {
             case "DonateRecall":
             case 6001:
                 message.uri = 6001;
+                break;
+            case "WatchcardNotificaion":
+            case 7000:
+                message.uri = 7000;
+                break;
+            case "WatchcardCall":
+            case 7001:
+                message.uri = 7001;
+                break;
+            case "WatchcardRecall":
+            case 7002:
+                message.uri = 7002;
                 break;
             }
             return message;
@@ -7980,6 +8192,7 @@ export const game = $root.game = (() => {
      * @property {number} beting=1 beting value
      * @property {number} drawing=2 drawing value
      * @property {number} waiting=3 waiting value
+     * @property {number} paused=4 paused value
      */
     game.Status = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -7987,6 +8200,23 @@ export const game = $root.game = (() => {
         values[valuesById[1] = "beting"] = 1;
         values[valuesById[2] = "drawing"] = 2;
         values[valuesById[3] = "waiting"] = 3;
+        values[valuesById[4] = "paused"] = 4;
+        return values;
+    })();
+
+    /**
+     * GameType enum.
+     * @name game.GameType
+     * @enum {number}
+     * @property {number} GameType_default=0 GameType_default value
+     * @property {number} normal=1 normal value
+     * @property {number} vip=2 vip value
+     */
+    game.GameType = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "GameType_default"] = 0;
+        values[valuesById[1] = "normal"] = 1;
+        values[valuesById[2] = "vip"] = 2;
         return values;
     })();
 
@@ -9293,6 +9523,7 @@ export const game = $root.game = (() => {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
                     break;
                 }
             if (message.timeRemain != null && message.hasOwnProperty("timeRemain"))
@@ -9357,6 +9588,10 @@ export const game = $root.game = (() => {
             case "waiting":
             case 3:
                 message.status = 3;
+                break;
+            case "paused":
+            case 4:
+                message.status = 4;
                 break;
             }
             if (object.timeRemain != null)
@@ -9443,6 +9678,628 @@ export const game = $root.game = (() => {
         };
 
         return GameStatus;
+    })();
+
+    game.WatchcardNotificaion = (function() {
+
+        /**
+         * Properties of a WatchcardNotificaion.
+         * @memberof game
+         * @interface IWatchcardNotificaion
+         * @property {foundation.IHeader|null} [header] WatchcardNotificaion header
+         * @property {string|null} [streamingUrl] WatchcardNotificaion streamingUrl
+         */
+
+        /**
+         * Constructs a new WatchcardNotificaion.
+         * @memberof game
+         * @classdesc Represents a WatchcardNotificaion.
+         * @implements IWatchcardNotificaion
+         * @constructor
+         * @param {game.IWatchcardNotificaion=} [properties] Properties to set
+         */
+        function WatchcardNotificaion(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WatchcardNotificaion header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.WatchcardNotificaion
+         * @instance
+         */
+        WatchcardNotificaion.prototype.header = null;
+
+        /**
+         * WatchcardNotificaion streamingUrl.
+         * @member {string} streamingUrl
+         * @memberof game.WatchcardNotificaion
+         * @instance
+         */
+        WatchcardNotificaion.prototype.streamingUrl = "";
+
+        /**
+         * Creates a new WatchcardNotificaion instance using the specified properties.
+         * @function create
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {game.IWatchcardNotificaion=} [properties] Properties to set
+         * @returns {game.WatchcardNotificaion} WatchcardNotificaion instance
+         */
+        WatchcardNotificaion.create = function create(properties) {
+            return new WatchcardNotificaion(properties);
+        };
+
+        /**
+         * Encodes the specified WatchcardNotificaion message. Does not implicitly {@link game.WatchcardNotificaion.verify|verify} messages.
+         * @function encode
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {game.IWatchcardNotificaion} message WatchcardNotificaion message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WatchcardNotificaion.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.streamingUrl != null && Object.hasOwnProperty.call(message, "streamingUrl"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.streamingUrl);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WatchcardNotificaion message, length delimited. Does not implicitly {@link game.WatchcardNotificaion.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {game.IWatchcardNotificaion} message WatchcardNotificaion message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WatchcardNotificaion.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WatchcardNotificaion message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.WatchcardNotificaion} WatchcardNotificaion
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WatchcardNotificaion.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.WatchcardNotificaion();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.streamingUrl = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WatchcardNotificaion message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.WatchcardNotificaion} WatchcardNotificaion
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WatchcardNotificaion.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WatchcardNotificaion message.
+         * @function verify
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WatchcardNotificaion.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
+                if (!$util.isString(message.streamingUrl))
+                    return "streamingUrl: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a WatchcardNotificaion message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.WatchcardNotificaion} WatchcardNotificaion
+         */
+        WatchcardNotificaion.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.WatchcardNotificaion)
+                return object;
+            let message = new $root.game.WatchcardNotificaion();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.WatchcardNotificaion.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.streamingUrl != null)
+                message.streamingUrl = String(object.streamingUrl);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WatchcardNotificaion message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.WatchcardNotificaion
+         * @static
+         * @param {game.WatchcardNotificaion} message WatchcardNotificaion
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WatchcardNotificaion.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.streamingUrl = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
+                object.streamingUrl = message.streamingUrl;
+            return object;
+        };
+
+        /**
+         * Converts this WatchcardNotificaion to JSON.
+         * @function toJSON
+         * @memberof game.WatchcardNotificaion
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WatchcardNotificaion.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return WatchcardNotificaion;
+    })();
+
+    game.WatchcardCall = (function() {
+
+        /**
+         * Properties of a WatchcardCall.
+         * @memberof game
+         * @interface IWatchcardCall
+         * @property {foundation.IHeader|null} [header] WatchcardCall header
+         * @property {boolean|null} [confirm] WatchcardCall confirm
+         */
+
+        /**
+         * Constructs a new WatchcardCall.
+         * @memberof game
+         * @classdesc Represents a WatchcardCall.
+         * @implements IWatchcardCall
+         * @constructor
+         * @param {game.IWatchcardCall=} [properties] Properties to set
+         */
+        function WatchcardCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WatchcardCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.WatchcardCall
+         * @instance
+         */
+        WatchcardCall.prototype.header = null;
+
+        /**
+         * WatchcardCall confirm.
+         * @member {boolean} confirm
+         * @memberof game.WatchcardCall
+         * @instance
+         */
+        WatchcardCall.prototype.confirm = false;
+
+        /**
+         * Creates a new WatchcardCall instance using the specified properties.
+         * @function create
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {game.IWatchcardCall=} [properties] Properties to set
+         * @returns {game.WatchcardCall} WatchcardCall instance
+         */
+        WatchcardCall.create = function create(properties) {
+            return new WatchcardCall(properties);
+        };
+
+        /**
+         * Encodes the specified WatchcardCall message. Does not implicitly {@link game.WatchcardCall.verify|verify} messages.
+         * @function encode
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {game.IWatchcardCall} message WatchcardCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WatchcardCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.confirm != null && Object.hasOwnProperty.call(message, "confirm"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.confirm);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WatchcardCall message, length delimited. Does not implicitly {@link game.WatchcardCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {game.IWatchcardCall} message WatchcardCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WatchcardCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WatchcardCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.WatchcardCall} WatchcardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WatchcardCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.WatchcardCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.confirm = reader.bool();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WatchcardCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.WatchcardCall} WatchcardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WatchcardCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WatchcardCall message.
+         * @function verify
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WatchcardCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.confirm != null && message.hasOwnProperty("confirm"))
+                if (typeof message.confirm !== "boolean")
+                    return "confirm: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a WatchcardCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.WatchcardCall} WatchcardCall
+         */
+        WatchcardCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.WatchcardCall)
+                return object;
+            let message = new $root.game.WatchcardCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.WatchcardCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.confirm != null)
+                message.confirm = Boolean(object.confirm);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WatchcardCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.WatchcardCall
+         * @static
+         * @param {game.WatchcardCall} message WatchcardCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WatchcardCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.confirm = false;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.confirm != null && message.hasOwnProperty("confirm"))
+                object.confirm = message.confirm;
+            return object;
+        };
+
+        /**
+         * Converts this WatchcardCall to JSON.
+         * @function toJSON
+         * @memberof game.WatchcardCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WatchcardCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return WatchcardCall;
+    })();
+
+    game.WatchcardRecall = (function() {
+
+        /**
+         * Properties of a WatchcardRecall.
+         * @memberof game
+         * @interface IWatchcardRecall
+         * @property {foundation.IHeader|null} [header] WatchcardRecall header
+         */
+
+        /**
+         * Constructs a new WatchcardRecall.
+         * @memberof game
+         * @classdesc Represents a WatchcardRecall.
+         * @implements IWatchcardRecall
+         * @constructor
+         * @param {game.IWatchcardRecall=} [properties] Properties to set
+         */
+        function WatchcardRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WatchcardRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.WatchcardRecall
+         * @instance
+         */
+        WatchcardRecall.prototype.header = null;
+
+        /**
+         * Creates a new WatchcardRecall instance using the specified properties.
+         * @function create
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {game.IWatchcardRecall=} [properties] Properties to set
+         * @returns {game.WatchcardRecall} WatchcardRecall instance
+         */
+        WatchcardRecall.create = function create(properties) {
+            return new WatchcardRecall(properties);
+        };
+
+        /**
+         * Encodes the specified WatchcardRecall message. Does not implicitly {@link game.WatchcardRecall.verify|verify} messages.
+         * @function encode
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {game.IWatchcardRecall} message WatchcardRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WatchcardRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WatchcardRecall message, length delimited. Does not implicitly {@link game.WatchcardRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {game.IWatchcardRecall} message WatchcardRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WatchcardRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WatchcardRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.WatchcardRecall} WatchcardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WatchcardRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.WatchcardRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WatchcardRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.WatchcardRecall} WatchcardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WatchcardRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WatchcardRecall message.
+         * @function verify
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WatchcardRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a WatchcardRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.WatchcardRecall} WatchcardRecall
+         */
+        WatchcardRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.WatchcardRecall)
+                return object;
+            let message = new $root.game.WatchcardRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.WatchcardRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WatchcardRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.WatchcardRecall
+         * @static
+         * @param {game.WatchcardRecall} message WatchcardRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WatchcardRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this WatchcardRecall to JSON.
+         * @function toJSON
+         * @memberof game.WatchcardRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WatchcardRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return WatchcardRecall;
     })();
 
     return game;
@@ -13148,6 +14005,7 @@ export const route = $root.route = (() => {
      * @property {number} BroadcastGameResult=13 BroadcastGameResult value
      * @property {number} BetRoundStart=14 BetRoundStart value
      * @property {number} BetRoundEnd=15 BetRoundEnd value
+     * @property {number} BetRoundEndCall=1501 BetRoundEndCall value
      * @property {number} BetRoundCountdown=16 BetRoundCountdown value
      * @property {number} HeartbeatPing=17 HeartbeatPing value
      * @property {number} HeartbeatPong=18 HeartbeatPong value
@@ -13171,6 +14029,9 @@ export const route = $root.route = (() => {
      * @property {number} BroadcastChat=5001 BroadcastChat value
      * @property {number} DonateCall=6000 DonateCall value
      * @property {number} DonateRecall=6001 DonateRecall value
+     * @property {number} WatchcardNotificaion=7000 WatchcardNotificaion value
+     * @property {number} WatchcardCall=7001 WatchcardCall value
+     * @property {number} WatchcardRecall=7002 WatchcardRecall value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -13193,6 +14054,7 @@ export const route = $root.route = (() => {
         values[valuesById[13] = "BroadcastGameResult"] = 13;
         values[valuesById[14] = "BetRoundStart"] = 14;
         values[valuesById[15] = "BetRoundEnd"] = 15;
+        values[valuesById[1501] = "BetRoundEndCall"] = 1501;
         values[valuesById[16] = "BetRoundCountdown"] = 16;
         values[valuesById[17] = "HeartbeatPing"] = 17;
         values[valuesById[18] = "HeartbeatPong"] = 18;
@@ -13216,6 +14078,9 @@ export const route = $root.route = (() => {
         values[valuesById[5001] = "BroadcastChat"] = 5001;
         values[valuesById[6000] = "DonateCall"] = 6000;
         values[valuesById[6001] = "DonateRecall"] = 6001;
+        values[valuesById[7000] = "WatchcardNotificaion"] = 7000;
+        values[valuesById[7001] = "WatchcardCall"] = 7001;
+        values[valuesById[7002] = "WatchcardRecall"] = 7002;
         return values;
     })();
 
@@ -13241,6 +14106,7 @@ export const table = $root.table = (() => {
          * @property {table.IStreamingUrl|null} [streamingUrl] Table streamingUrl
          * @property {Array.<number>|null} [betList] Table betList
          * @property {table.IBetRule|null} [betRule] Table betRule
+         * @property {game.GameType|null} [gameType] Table gameType
          */
 
         /**
@@ -13292,6 +14158,14 @@ export const table = $root.table = (() => {
         Table.prototype.betRule = null;
 
         /**
+         * Table gameType.
+         * @member {game.GameType} gameType
+         * @memberof table.Table
+         * @instance
+         */
+        Table.prototype.gameType = 0;
+
+        /**
          * Creates a new Table instance using the specified properties.
          * @function create
          * @memberof table.Table
@@ -13327,6 +14201,8 @@ export const table = $root.table = (() => {
             }
             if (message.betRule != null && Object.hasOwnProperty.call(message, "betRule"))
                 $root.table.BetRule.encode(message.betRule, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.gameType != null && Object.hasOwnProperty.call(message, "gameType"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.gameType);
             return writer;
         };
 
@@ -13379,6 +14255,9 @@ export const table = $root.table = (() => {
                     break;
                 case 4:
                     message.betRule = $root.table.BetRule.decode(reader, reader.uint32());
+                    break;
+                case 5:
+                    message.gameType = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -13437,6 +14316,15 @@ export const table = $root.table = (() => {
                 if (error)
                     return "betRule." + error;
             }
+            if (message.gameType != null && message.hasOwnProperty("gameType"))
+                switch (message.gameType) {
+                default:
+                    return "gameType: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
             return null;
         };
 
@@ -13474,6 +14362,20 @@ export const table = $root.table = (() => {
                     throw TypeError(".table.Table.betRule: object expected");
                 message.betRule = $root.table.BetRule.fromObject(object.betRule);
             }
+            switch (object.gameType) {
+            case "GameType_default":
+            case 0:
+                message.gameType = 0;
+                break;
+            case "normal":
+            case 1:
+                message.gameType = 1;
+                break;
+            case "vip":
+            case 2:
+                message.gameType = 2;
+                break;
+            }
             return message;
         };
 
@@ -13496,6 +14398,7 @@ export const table = $root.table = (() => {
                 object.betStatus = null;
                 object.streamingUrl = null;
                 object.betRule = null;
+                object.gameType = options.enums === String ? "GameType_default" : 0;
             }
             if (message.betStatus != null && message.hasOwnProperty("betStatus"))
                 object.betStatus = $root.bet.BetStatus.toObject(message.betStatus, options);
@@ -13508,6 +14411,8 @@ export const table = $root.table = (() => {
             }
             if (message.betRule != null && message.hasOwnProperty("betRule"))
                 object.betRule = $root.table.BetRule.toObject(message.betRule, options);
+            if (message.gameType != null && message.hasOwnProperty("gameType"))
+                object.gameType = options.enums === String ? $root.game.GameType[message.gameType] : message.gameType;
             return object;
         };
 

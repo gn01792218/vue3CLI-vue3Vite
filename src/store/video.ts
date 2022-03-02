@@ -1,6 +1,7 @@
 export const state = {
     video:"",
-    watchCardVideo:"",
+    watchCardVideo1:"",
+    watchCardVideo2:"",
   };
   export const actions = {}
   
@@ -8,9 +9,16 @@ export const state = {
     setVideo(state:any,videoInstance:any){
       state.video = videoInstance
     },
-    setWatchCardVideo(state:any,watchCardVideo:any){
-      state.watchCardVideo = watchCardVideo
-    }
+    WatchcardRecall(state:any,payload:any){
+      state.watchCardVideo1 = payload
+      state.watchCardVideo2 = payload
+    },
+    setWatchCardVideo1(state:any,watchCardVideo:any){
+      state.watchCardVideo1 = watchCardVideo
+    },
+    setWatchCardVideo2(state:any,watchCardVideo:any){
+      state.watchCardVideo2 = watchCardVideo
+    },
   };
   export const getters = {
    

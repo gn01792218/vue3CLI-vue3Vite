@@ -441,6 +441,7 @@ img {
   opacity: 1;
   left: -3%;
   top: -8%;
+  z-index: 1;
 }
 
 .input-emoji {
@@ -1122,8 +1123,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .bettingArea-btn-watchCard-Animation .bi-eye {
   -webkit-animation-name: watchCardEyeAnimation;
           animation-name: watchCardEyeAnimation;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
@@ -1157,7 +1158,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   to {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -1166,7 +1167,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1rem;
   }
   to {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
 

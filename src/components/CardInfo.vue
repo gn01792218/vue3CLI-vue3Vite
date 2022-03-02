@@ -7,7 +7,6 @@
           		<div :class="[`playerPoker${index}`]"></div>
         	</div>
       	</div>
-        
       	<div class="banker card-box row justify-content-center">
         	<div :class="['caritem',{'card-item-w d-flex justify-content-center col-9':index === 0}]"  v-for="(card,index) in cards.player" :key="index">
           		<div :class="[`bankPoker${index}`]"></div>

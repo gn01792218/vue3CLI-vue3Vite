@@ -1284,7 +1284,6 @@ export default defineComponent({
       let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
       watchCardBtn?.classList.add('bettingArea-btn-watchCard-Animation')
       //顯示確認是否咪牌按鈕
-      console.log($("#whatchCardOrNot"))
       $("#whatchCardOrNot").modal("show");
     }
     function resetWatchCardAlert(){
