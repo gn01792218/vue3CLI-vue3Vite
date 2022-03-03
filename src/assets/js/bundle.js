@@ -8193,6 +8193,7 @@ export const game = $root.game = (() => {
      * @property {number} drawing=2 drawing value
      * @property {number} waiting=3 waiting value
      * @property {number} paused=4 paused value
+     * @property {number} watchingcard=5 watchingcard value
      */
     game.Status = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -8201,6 +8202,7 @@ export const game = $root.game = (() => {
         values[valuesById[2] = "drawing"] = 2;
         values[valuesById[3] = "waiting"] = 3;
         values[valuesById[4] = "paused"] = 4;
+        values[valuesById[5] = "watchingcard"] = 5;
         return values;
     })();
 
@@ -9524,6 +9526,7 @@ export const game = $root.game = (() => {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
                     break;
                 }
             if (message.timeRemain != null && message.hasOwnProperty("timeRemain"))
@@ -9592,6 +9595,10 @@ export const game = $root.game = (() => {
             case "paused":
             case 4:
                 message.status = 4;
+                break;
+            case "watchingcard":
+            case 5:
+                message.status = 5;
                 break;
             }
             if (object.timeRemain != null)

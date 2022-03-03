@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, watch, ref, onMounted } from "vue";
+import { computed, defineComponent, watch, ref, onMounted, Ref } from "vue";
 import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
 import $ from "jquery";
@@ -68,8 +68,8 @@ export default defineComponent({
   setup() {
     //初始化
     onMounted(() => {
-      createWatchCardVideo(np1.value, "watchCardVideo1", loadingVideo1.value);
-      // createWatchCardVideo(np2.value,'watchCardVideo2',loadingVideo2.value)
+      createWatchCardVideo(np1.value, "watchCardVideo1", loadingVideo1);
+      // createWatchCardVideo(np2.value,'watchCardVideo2',loadingVideo2)
       startPlay(np1.value,watchCardVideoStream1.value);
       // startPlay(np2.value,watchCardVideoStream2.value);
     });
@@ -92,8 +92,12 @@ export default defineComponent({
     store.commit("video/setWatchCardVideo1", new NodePlayer()); //把player實體存進Vuex
     // store.commit("video/setWatchCardVideo2", new NodePlayer()); //把player實體存進Vuex
     const gameType = computed(()=>{
-      return store.state.table.TableJoinRecall.gameType
+      return store.state.table.TableJoinRecall.table.gameType
     })
+    const gameStatus = computed(() => {
+      //遊戲狀態 1.下注中 2.開牌中 3.等待新局 4.等待中
+      return store.state.game.GameStatus.status;
+    });
     const DrawCard = computed(()=>{  //開始畫牌的時候，就是結束咪牌時
        return store.state.dealer.Draw
      })
@@ -157,8 +161,9 @@ export default defineComponent({
       return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
     }
     function startPlay(nodePlayer: NodePlayer, flvStream: any) {
-      if(!flvStream){return}
       if(gameType.value !== proto.game.GameType.vip){return}
+      if(!flvStream){return}
+      if(gameStatus.value !== 5){return}
       nodePlayer.setKeepScreenOn();
       if(mobileOrNot){
         nodePlayer.start(flvStream.moblie);
@@ -173,7 +178,7 @@ export default defineComponent({
       nodePlayer.stop();
       nodePlayer.clearView(); //清除上一個視頻留下的東西
     }
-    function createWatchCardVideo(nodePlayer: NodePlayer,videoElementId: string,loadingVideo: any) {
+    function createWatchCardVideo(nodePlayer: NodePlayer,videoElementId: string,loadingVideo: Ref) {
       nodePlayer.setView(videoElementId);
       nodePlayer.setScaleMode(2);
       nodePlayer.setBufferTime(300);
@@ -182,11 +187,11 @@ export default defineComponent({
       });
       nodePlayer.on("videoInfo", (w: any, h: any) => {
         // console.log("顯示咪牌",w,h)
-        loadingVideo = false;
+        loadingVideo.value = false;
       });
       nodePlayer.on("stop", () => {
         //  console.log("結束播放Video")
-        loadingVideo = true;
+        loadingVideo.value = true;
       });
     }
     return {

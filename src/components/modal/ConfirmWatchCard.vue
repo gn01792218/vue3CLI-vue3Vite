@@ -40,7 +40,6 @@ export default defineComponent({
       sendWatchCardCall({
         confirm: true,
       })
-      $("#watchCardBox").modal("show");
       $("#whatchCardOrNot").modal("hide");
     }
     //要飛牌，直接退出畫面前先傳送資料給serve

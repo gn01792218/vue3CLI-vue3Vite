@@ -3363,7 +3363,8 @@ export namespace game {
         beting = 1,
         drawing = 2,
         waiting = 3,
-        paused = 4
+        paused = 4,
+        watchingcard = 5
     }
 
     /** GameType enum. */
