@@ -50,9 +50,10 @@
       <div class="header-bottom-desk">
         <div
           class="header-userName d-flex col font_yellows"
-          data-toggle="modal"
-          data-target="#exampleModal"
+          
         >
+        <!-- data-toggle="modal"
+          data-target="#exampleModal" -->
           <i class="bi bi-person-circle"></i><i v-if="user">{{ user.name }}</i>
         </div>
         <div class="header-userName col font_yellows">分{{ userWallet }}</div>
