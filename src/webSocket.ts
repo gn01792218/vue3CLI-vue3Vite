@@ -3,6 +3,7 @@ const url = process.env.VUE_APP_API_HOST;  //後端網址寫在.env檔案中；�
 //建立webSocket實例
 export let Socket:WebSocket | null
 let setIntervalWesocketPush:number
+let setReConnect:number
 //websocket方法區
 //連接上後會發送心跳
 const onopenWs = ()=>{
@@ -40,16 +41,17 @@ const oncloseWs = () => {
  */
  const connecting = (message:any) => {
    console.log('正在連接中...')
-   let timer =
+   if(!setReConnect){
+    setReConnect =
     setInterval(() => {
       if (Socket?.readyState === 0) { //readyState 0 表示正在連接中，那就繼續connecting
         connecting(message)
       } else {
-        clearInterval(timer)
+        clearInterval(setReConnect)
         Socket?.send(message)
-        
       }
     }, 1000)
+   }
   }
 //暴露的方法區
 /**

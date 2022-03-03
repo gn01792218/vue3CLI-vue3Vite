@@ -22,7 +22,7 @@ export default defineComponent({
   setup() {
     onMounted(() => {
       createVideo(np.value,'video')
-      startPlay();
+      startPlay(np.value,flvStream.value);
     });
     //基本資料
     const loadingVideo = ref(true);
@@ -40,40 +40,38 @@ export default defineComponent({
     //vuex
     const store = useStore();
     store.commit("video/setVideo", new NodePlayer()); //把player實體存進Vuex
-    const flvStreamDesk = computed(() => {
+    const flvStream = computed(() => {
       //直播網址
-      return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
-    });
-    const flvStreamMobil = computed(() => {
-      return store.state.table.TableJoinRecall.table.streamingUrl.moblie;
+      return store.state.table.TableJoinRecall.table.streamingUrl;
     });
     const np = computed(() => {  //取得nodeplayer物件實體
       return store.state.video.video;
     });
     //監聽換桌的直播網址
-    watch(flvStreamDesk, () => {
-      stopPlay();
-      startPlay();
+    watch(flvStream, () => {
+        stopPlay();
+        startPlay(np.value,flvStream.value);
     });
     //解決視窗失焦掉秒數問題
     window.addEventListener("focus", () => {
-      if (np) {
         stopPlay();
-        startPlay();
-      }
+        startPlay(np.value,flvStream.value);
     });
     function isMobile() {
       //判斷是否是手機
       return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
     }
-    function startPlay() {
-      np.value.setKeepScreenOn();
-      if (mobileOrNot) {
-        np.value.start(flvStreamMobil.value);
-        console.log("行動裝置-LiveVideo開始撥放", flvStreamMobil.value);
-      } else {
-        np.value.start(flvStreamDesk.value);
-        console.log("桌機-LiveVideo開始撥放", flvStreamDesk.value);
+    function startPlay(np:NodePlayer,stream:any) {
+      if(!stream){
+        return
+      }
+      np.setKeepScreenOn();
+      if(mobileOrNot){
+        np.start(stream.moblie); 
+        console.log('LiveVideo手機',stream.moblie)
+      }else{
+        np.start(stream.desktop); 
+        console.log('LiveVideo桌機',stream.desktop)
       }
     }
     function stopPlay() {

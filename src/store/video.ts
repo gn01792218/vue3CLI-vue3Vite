@@ -9,10 +9,6 @@ export const state = {
     setVideo(state:any,videoInstance:any){
       state.video = videoInstance
     },
-    WatchcardRecall(state:any,payload:any){
-      state.watchCardVideo1 = payload
-      state.watchCardVideo2 = payload
-    },
     setWatchCardVideo1(state:any,watchCardVideo:any){
       state.watchCardVideo1 = watchCardVideo
     },

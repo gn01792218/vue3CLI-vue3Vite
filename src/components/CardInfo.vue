@@ -86,7 +86,7 @@ export default defineComponent({
       showCardResult.value = false
     })
      watch(roundUuid,()=>{ //uuid改變時，更換卡牌
-      console.log('偵測到不同局，畫牌要重置',gameStatus.value)
+      // console.log('偵測到不同局，畫牌要重置',gameStatus.value)
        resetCards () //不是畫卡的時候才要reset
        resetCardPoint()
        showCardResult.value = false  //不顯示卡牌

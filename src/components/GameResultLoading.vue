@@ -75,6 +75,13 @@ export default defineComponent({
                         // isWait.value = false
                         // },500)
                         break
+                    case 4:
+                        isWait.value = true
+                        stateMsg.value = "等待中..."
+                        // setTimeout(()=>{
+                        // isWait.value = false
+                        // },500)
+                        break
                 }
         })
         watch(gameUuid,()=>{ //新回合開始的時候，要關閉顯示

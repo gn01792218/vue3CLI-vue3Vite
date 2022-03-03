@@ -1,8 +1,6 @@
 export const state = {
   LobbyInfo: {
   },
-  tableAUid:"",
-  tableBuid:"",
   showannouncement:false,
   announcement:{
     announcement1:{
@@ -93,9 +91,7 @@ export const actions = {}
 export const mutations = {
   LobbyInfo(state:any, payload:any) { //接收wbSocket的訊息
     state.LobbyInfo=payload
-    // console.log("vuex-lobby資料更新",state.LobbyInfo)
-    state.tableAUid = payload.tables[0].uuid
-    state.tableBuid = payload.tables[1].uuid
+    console.log("vuex-lobby資料更新",state.LobbyInfo)
   },
   setShowannouncement(state:any, showOrnot:boolean){
     state.showannouncement = showOrnot

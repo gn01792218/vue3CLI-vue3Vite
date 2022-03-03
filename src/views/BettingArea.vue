@@ -390,6 +390,9 @@ export default defineComponent({
       //問路recall
       return store.state.roadmap.askRoadReCall;
     });
+    const DrawCard = computed(()=>{  //每次都傳一張
+       return store.state.dealer.Draw
+    })
     const roundAskBanker = computed(() => {
       //回合自動問莊的recall
       return store.state.game.askBankByRoundStart;
@@ -416,7 +419,7 @@ export default defineComponent({
     });
     const canWatchCard = computed(()=>{  
       //是否取得咪牌權利
-      return store.state.game.canWatchCard
+      return store.state.game.WatchcardNotificaion
     })
     //基本資料
     const canBet = ref(true); //是否可以下注
@@ -501,6 +504,9 @@ export default defineComponent({
     const betErrorArray = ref<Array<string>>([]); //噴錯誤訊息用的陣列
     const minBetLimit = ref(999999999); //手機版本顯示檯紅最小
     const maxBetLimit = ref(-1); //手機版本顯示檯紅最大
+    const watchCardBtn = computed(()=>{
+      return document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
+    })
     //監聽
     watch(tableNum, () => {
       //換桌
@@ -583,8 +589,13 @@ export default defineComponent({
     watch(gameEndUuid, () => {
       //停止下注，在開牌之前
       canBet.value = false;
-      resetWatchCardAlert()
     });
+    watch(DrawCard,()=>{
+      //開始畫牌的時候 VIP的瞇排按鈕特效要去除
+      if(watchCardBtn.value.className.includes("bettingArea-btn-watchCard-Animation")){ 
+        resetWatchCardAlert(watchCardBtn.value)
+      }
+    })
     watch(betError, () => {
       //更新錯誤訊息
       if (betError.value) {
@@ -1286,9 +1297,10 @@ export default defineComponent({
       //顯示確認是否咪牌按鈕
       $("#whatchCardOrNot").modal("show");
     }
-    function resetWatchCardAlert(){
-      let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
+    function resetWatchCardAlert(watchCardBtn:HTMLElement){
+      // let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
       watchCardBtn?.classList.remove('bettingArea-btn-watchCard-Animation')
+      $("#watchCardBox").modal("hide");
     }
     return {
       //data

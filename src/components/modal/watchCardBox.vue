@@ -5,7 +5,7 @@
     id="watchCardBox"
     tabindex="-1"
     data-backdrop="static"
-    data-keyboard="false" 
+    data-keyboard="false"
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
@@ -17,9 +17,22 @@
           data-dismiss="modal"
           aria-label="Close"
         >
-          <span aria-hidden="true" class="d-flex flex-column w-100 h-100">&times;</span>
+          <span aria-hidden="true" class="d-flex flex-column w-100 h-100"
+            >&times;</span
+          >
         </button>
-        <div class="w-50 h-100 position-relative">
+        <!-- 單畫面版本 -->
+        <div class="w-100 h-100 position-relative">
+          <canvas
+            class="video w-100 h-100"
+            id="watchCardVideo1"
+            width="980"
+            height="588"
+          />
+          <VideoLoading v-show="loadingVideo1" />
+        </div>
+        <!-- 雙視訊版本 -->
+        <!-- <div class="w-50 h-100 position-relative">
           <canvas
           class="video w-100 h-100"
           id="watchCardVideo1"
@@ -36,33 +49,33 @@
           height="588"
         />
         <VideoLoading v-show="loadingVideo2" />
-        </div>
-        
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, watch , ref ,onMounted} from "vue";
+import { computed, defineComponent, watch, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
 import $ from "jquery";
+import proto from "../../assets/js/bundle";
 export default defineComponent({
-  components:{
-      VideoLoading,
+  components: {
+    VideoLoading,
   },
   setup() {
     //初始化
     onMounted(() => {
-      createWatchCardVideo(np1.value,'watchCardVideo1',loadingVideo1.value)
-      createWatchCardVideo(np2.value,'watchCardVideo2',loadingVideo2.value)
-      startPlay(np1.value);
-      startPlay(np2.value);
+      createWatchCardVideo(np1.value, "watchCardVideo1", loadingVideo1.value);
+      // createWatchCardVideo(np2.value,'watchCardVideo2',loadingVideo2.value)
+      startPlay(np1.value,watchCardVideoStream1.value);
+      // startPlay(np2.value,watchCardVideoStream2.value);
     });
     //基本資料
     const loadingVideo1 = ref(true);
-    const loadingVideo2 = ref(true);
+    // const loadingVideo2 = ref(true);
     const mobileDevice = ref([
       //各種手機的系統
       "Android",
@@ -77,90 +90,97 @@ export default defineComponent({
     //vuex
     const store = useStore();
     store.commit("video/setWatchCardVideo1", new NodePlayer()); //把player實體存進Vuex
-    store.commit("video/setWatchCardVideo2", new NodePlayer()); //把player實體存進Vuex
-    const gameEndUuid = computed(() => {
-      //下注結束
-      return store.state.game.gameEndUuid;
-    });
+    // store.commit("video/setWatchCardVideo2", new NodePlayer()); //把player實體存進Vuex
+    const gameType = computed(()=>{
+      return store.state.table.TableJoinRecall.gameType
+    })
+    const DrawCard = computed(()=>{  //開始畫牌的時候，就是結束咪牌時
+       return store.state.dealer.Draw
+     })
     //等收到stream的時候才要顯示modal
     const np1 = computed(() => {
       return store.state.video.watchCardVideo1;
     });
-    const np2 = computed(() => {
-      return store.state.video.watchCardVideo2;
-    });
-    //暫時使用直播影片測試
-    const flvStreamDesk = computed(() => {
-      //直播網址
-      return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
-    });
-    const flvStreamMobil = computed(() => {
-      return store.state.table.TableJoinRecall.table.streamingUrl.moblie;
-    });
+    // const np2 = computed(() => {
+    //   return store.state.video.watchCardVideo2;
+    // });
+    // //暫時使用直播影片測試
+    // const flvStreamDesk = computed(() => {
+    //   //直播網址
+    //   return store.state.table.TableJoinRecall.table.streamingUrl.desktop;
+    // });
+    // const flvStreamMobil = computed(() => {
+    //   return store.state.table.TableJoinRecall.table.streamingUrl.moblie;
+    // });
     //暫時使用直播影片測試
     const watchCardVideoStream1 = computed(() => {
-      return store.state;
+      return store.state.game.watchCardVideo1Stream;
     });
     const watchCardVideoStream2 = computed(() => {
-      return store.state;
+      return store.state.game.watchCardVideo2Stream;
     });
-    watch(gameEndUuid,()=>{
+    watch(DrawCard,()=>{  //開牌的時候就關掉咪牌視訊
+      //  console.log("開牌")
       $("#watchCardBox").modal("hide");
-    })
-    watch([watchCardVideoStream1,watchCardVideoStream2], () => {
+     })
+    watch([watchCardVideoStream1, watchCardVideoStream2], () => {
       $("#watchCardBox").modal("show");
     });
-    // watch(flvStreamDesk, () => {
-    //   stopPlay();
-    //   startPlay();
-    // });
-    watch(watchCardVideoStream1,()=>{
-      stopPlay(np1.value);
-      startPlay(np1.value);
-    })
-     watch(watchCardVideoStream2,()=>{
-      stopPlay(np2.value);
-      startPlay(np2.value);
-    })
+    watch(watchCardVideoStream1, () => {
+        stopPlay(np1.value);
+        startPlay(np1.value, watchCardVideoStream1.value);
+    });
+    //  watch(watchCardVideoStream2,()=>{
+    //   if (mobileOrNot) {
+    //     stopPlay(np2.value);
+    //     startPlay(np2.value, watchCardVideoStream2.value.moblie);
+    //   } else {
+    //     stopPlay(np2.value);
+    //     startPlay(np2.value, watchCardVideoStream2.value.desktop);
+    //   }
+    // })
     //解決視窗失焦掉秒數問題
     window.addEventListener("focus", () => {
-      //原本的
+       //vip桌才要咪牌
       if (np1.value) {
-        stopPlay(np1.value);
-        startPlay(np1.value);
+      stopPlay(np1.value);
+      startPlay(np1.value, watchCardVideoStream1.value);
       }
-      if (np2.value) {
-        stopPlay(np2.value);
-        startPlay(np2.value);
-      }
+      // if (np2.value) {
+      //   stopPlay(np2.value);
+      //   startPlay(np2.value);
+      // }
     });
     //視訊方法
     function isMobile() {
       //判斷是否是手機
       return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
     }
-    function startPlay(nodePlayer:NodePlayer) {
+    function startPlay(nodePlayer: NodePlayer, flvStream: any) {
+      if(!flvStream){return}
+      if(gameType.value !== proto.game.GameType.vip){return}
       nodePlayer.setKeepScreenOn();
-      if (mobileOrNot) {
-        nodePlayer.start(flvStreamMobil.value);
-        console.log("行動裝置-咪牌開始撥放", flvStreamMobil.value);
-      } else {
-        nodePlayer.start(flvStreamDesk.value);
-        console.log("桌機-咪牌開始撥放", flvStreamDesk.value);
+      if(mobileOrNot){
+        nodePlayer.start(flvStream.moblie);
+        console.log('咪牌手機',flvStream.moblie)
+      }else{
+        nodePlayer.start(flvStream.desktop);
+        console.log('咪牌桌機',flvStream.desktop)
       }
     }
-    function stopPlay(nodePlayer:NodePlayer) {
+    function stopPlay(nodePlayer: NodePlayer) {
+      if(gameType.value !== proto.game.GameType.vip){return}
       nodePlayer.stop();
       nodePlayer.clearView(); //清除上一個視頻留下的東西
     }
-    function createWatchCardVideo(nodePlayer:NodePlayer,videoElementId:string,loadingVideo:any){
+    function createWatchCardVideo(nodePlayer: NodePlayer,videoElementId: string,loadingVideo: any) {
       nodePlayer.setView(videoElementId);
       nodePlayer.setScaleMode(2);
       nodePlayer.setBufferTime(300);
       nodePlayer.on("error", (e: any) => {
-        console.log('直播發生錯誤',e)
+        console.log("直播發生錯誤", e);
       });
-      nodePlayer.on("videoInfo", (w: any,h:any) => {
+      nodePlayer.on("videoInfo", (w: any, h: any) => {
         // console.log("顯示咪牌",w,h)
         loadingVideo = false;
       });
@@ -170,9 +190,9 @@ export default defineComponent({
       });
     }
     return {
-        //data
-        loadingVideo1,
-        loadingVideo2,
+      //data
+      loadingVideo1,
+      // loadingVideo2,
     };
   },
 });

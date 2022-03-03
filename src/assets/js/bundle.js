@@ -9687,7 +9687,6 @@ export const game = $root.game = (() => {
          * @memberof game
          * @interface IWatchcardNotificaion
          * @property {foundation.IHeader|null} [header] WatchcardNotificaion header
-         * @property {string|null} [streamingUrl] WatchcardNotificaion streamingUrl
          */
 
         /**
@@ -9712,14 +9711,6 @@ export const game = $root.game = (() => {
          * @instance
          */
         WatchcardNotificaion.prototype.header = null;
-
-        /**
-         * WatchcardNotificaion streamingUrl.
-         * @member {string} streamingUrl
-         * @memberof game.WatchcardNotificaion
-         * @instance
-         */
-        WatchcardNotificaion.prototype.streamingUrl = "";
 
         /**
          * Creates a new WatchcardNotificaion instance using the specified properties.
@@ -9747,8 +9738,6 @@ export const game = $root.game = (() => {
                 writer = $Writer.create();
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
                 $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.streamingUrl != null && Object.hasOwnProperty.call(message, "streamingUrl"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.streamingUrl);
             return writer;
         };
 
@@ -9785,9 +9774,6 @@ export const game = $root.game = (() => {
                 switch (tag >>> 3) {
                 case 1:
                     message.header = $root.foundation.Header.decode(reader, reader.uint32());
-                    break;
-                case 2:
-                    message.streamingUrl = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -9829,9 +9815,6 @@ export const game = $root.game = (() => {
                 if (error)
                     return "header." + error;
             }
-            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
-                if (!$util.isString(message.streamingUrl))
-                    return "streamingUrl: string expected";
             return null;
         };
 
@@ -9852,8 +9835,6 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.WatchcardNotificaion.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
-            if (object.streamingUrl != null)
-                message.streamingUrl = String(object.streamingUrl);
             return message;
         };
 
@@ -9870,14 +9851,10 @@ export const game = $root.game = (() => {
             if (!options)
                 options = {};
             let object = {};
-            if (options.defaults) {
+            if (options.defaults)
                 object.header = null;
-                object.streamingUrl = "";
-            }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
-            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
-                object.streamingUrl = message.streamingUrl;
             return object;
         };
 
@@ -10117,6 +10094,7 @@ export const game = $root.game = (() => {
          * @memberof game
          * @interface IWatchcardRecall
          * @property {foundation.IHeader|null} [header] WatchcardRecall header
+         * @property {game.IStreamingUrl|null} [streamingUrl] WatchcardRecall streamingUrl
          */
 
         /**
@@ -10141,6 +10119,14 @@ export const game = $root.game = (() => {
          * @instance
          */
         WatchcardRecall.prototype.header = null;
+
+        /**
+         * WatchcardRecall streamingUrl.
+         * @member {game.IStreamingUrl|null|undefined} streamingUrl
+         * @memberof game.WatchcardRecall
+         * @instance
+         */
+        WatchcardRecall.prototype.streamingUrl = null;
 
         /**
          * Creates a new WatchcardRecall instance using the specified properties.
@@ -10168,6 +10154,8 @@ export const game = $root.game = (() => {
                 writer = $Writer.create();
             if (message.header != null && Object.hasOwnProperty.call(message, "header"))
                 $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.streamingUrl != null && Object.hasOwnProperty.call(message, "streamingUrl"))
+                $root.game.StreamingUrl.encode(message.streamingUrl, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -10204,6 +10192,9 @@ export const game = $root.game = (() => {
                 switch (tag >>> 3) {
                 case 1:
                     message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.streamingUrl = $root.game.StreamingUrl.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -10245,6 +10236,11 @@ export const game = $root.game = (() => {
                 if (error)
                     return "header." + error;
             }
+            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl")) {
+                let error = $root.game.StreamingUrl.verify(message.streamingUrl);
+                if (error)
+                    return "streamingUrl." + error;
+            }
             return null;
         };
 
@@ -10265,6 +10261,11 @@ export const game = $root.game = (() => {
                     throw TypeError(".game.WatchcardRecall.header: object expected");
                 message.header = $root.foundation.Header.fromObject(object.header);
             }
+            if (object.streamingUrl != null) {
+                if (typeof object.streamingUrl !== "object")
+                    throw TypeError(".game.WatchcardRecall.streamingUrl: object expected");
+                message.streamingUrl = $root.game.StreamingUrl.fromObject(object.streamingUrl);
+            }
             return message;
         };
 
@@ -10281,10 +10282,14 @@ export const game = $root.game = (() => {
             if (!options)
                 options = {};
             let object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.header = null;
+                object.streamingUrl = null;
+            }
             if (message.header != null && message.hasOwnProperty("header"))
                 object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.streamingUrl != null && message.hasOwnProperty("streamingUrl"))
+                object.streamingUrl = $root.game.StreamingUrl.toObject(message.streamingUrl, options);
             return object;
         };
 
@@ -10300,6 +10305,216 @@ export const game = $root.game = (() => {
         };
 
         return WatchcardRecall;
+    })();
+
+    game.StreamingUrl = (function() {
+
+        /**
+         * Properties of a StreamingUrl.
+         * @memberof game
+         * @interface IStreamingUrl
+         * @property {string|null} [desktop] StreamingUrl desktop
+         * @property {string|null} [moblie] StreamingUrl moblie
+         */
+
+        /**
+         * Constructs a new StreamingUrl.
+         * @memberof game
+         * @classdesc Represents a StreamingUrl.
+         * @implements IStreamingUrl
+         * @constructor
+         * @param {game.IStreamingUrl=} [properties] Properties to set
+         */
+        function StreamingUrl(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * StreamingUrl desktop.
+         * @member {string} desktop
+         * @memberof game.StreamingUrl
+         * @instance
+         */
+        StreamingUrl.prototype.desktop = "";
+
+        /**
+         * StreamingUrl moblie.
+         * @member {string} moblie
+         * @memberof game.StreamingUrl
+         * @instance
+         */
+        StreamingUrl.prototype.moblie = "";
+
+        /**
+         * Creates a new StreamingUrl instance using the specified properties.
+         * @function create
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {game.IStreamingUrl=} [properties] Properties to set
+         * @returns {game.StreamingUrl} StreamingUrl instance
+         */
+        StreamingUrl.create = function create(properties) {
+            return new StreamingUrl(properties);
+        };
+
+        /**
+         * Encodes the specified StreamingUrl message. Does not implicitly {@link game.StreamingUrl.verify|verify} messages.
+         * @function encode
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {game.IStreamingUrl} message StreamingUrl message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        StreamingUrl.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.desktop != null && Object.hasOwnProperty.call(message, "desktop"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.desktop);
+            if (message.moblie != null && Object.hasOwnProperty.call(message, "moblie"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.moblie);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified StreamingUrl message, length delimited. Does not implicitly {@link game.StreamingUrl.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {game.IStreamingUrl} message StreamingUrl message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        StreamingUrl.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.StreamingUrl} StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        StreamingUrl.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.StreamingUrl();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.desktop = reader.string();
+                    break;
+                case 2:
+                    message.moblie = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.StreamingUrl} StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        StreamingUrl.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a StreamingUrl message.
+         * @function verify
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        StreamingUrl.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.desktop != null && message.hasOwnProperty("desktop"))
+                if (!$util.isString(message.desktop))
+                    return "desktop: string expected";
+            if (message.moblie != null && message.hasOwnProperty("moblie"))
+                if (!$util.isString(message.moblie))
+                    return "moblie: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a StreamingUrl message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.StreamingUrl} StreamingUrl
+         */
+        StreamingUrl.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.StreamingUrl)
+                return object;
+            let message = new $root.game.StreamingUrl();
+            if (object.desktop != null)
+                message.desktop = String(object.desktop);
+            if (object.moblie != null)
+                message.moblie = String(object.moblie);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a StreamingUrl message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.StreamingUrl
+         * @static
+         * @param {game.StreamingUrl} message StreamingUrl
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        StreamingUrl.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.desktop = "";
+                object.moblie = "";
+            }
+            if (message.desktop != null && message.hasOwnProperty("desktop"))
+                object.desktop = message.desktop;
+            if (message.moblie != null && message.hasOwnProperty("moblie"))
+                object.moblie = message.moblie;
+            return object;
+        };
+
+        /**
+         * Converts this StreamingUrl to JSON.
+         * @function toJSON
+         * @memberof game.StreamingUrl
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        StreamingUrl.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return StreamingUrl;
     })();
 
     return game;

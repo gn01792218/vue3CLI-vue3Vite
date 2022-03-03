@@ -241,12 +241,12 @@ export const getMsgReCall = (e:any) =>{
         case route.WatchcardRecall:
             let WatchcardRecall = game.WatchcardRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log(WatchcardRecall,WatchcardRecall)
-            store.commit('video/WatchcardRecall',WatchcardRecall)
+            store.commit('game/WatchcardRecall',WatchcardRecall)
             break;
         case route.WatchcardNotificaion :
             let WatchcardNotificaion = game.WatchcardNotificaion.decode(new Uint8Array(e.detail.msg.data))
             console.log(WatchcardNotificaion,WatchcardNotificaion)
-            store.commit('video/WatchcardNotificaion',WatchcardNotificaion)
+            store.commit('game/WatchcardNotificaion',WatchcardNotificaion)
             break;
         case route.Roadmap:
             let map = roadmap.Roadmap.decode(new Uint8Array(e.detail.msg.data))
