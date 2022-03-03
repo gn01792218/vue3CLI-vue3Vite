@@ -11,6 +11,9 @@ export const state = {
     askBankByRoundStart:{}, //回合自動問路莊家
     askPlayerByRoundStart:{}, //回合自動問路閒家
     serverDisConnect:false,
+    WatchcardNotificaion:{}, //VIP玩家是否取得咪牌權利
+    watchCardVideo1Stream:'',
+    // watchCardVideo2Stream:'',
   };
   export const actions = {}
   
@@ -53,6 +56,13 @@ export const state = {
       state.BetRoundEnd = payload
       state.gameEndUuid = payload.gameUuid
       // console.log("vuex-BetRoundCountdown資料更新",state.BetRoundCountdown)
+    },
+    WatchcardNotificaion(state:any,payload:any){
+      state.WatchcardNotificaion = payload
+    },
+    WatchcardRecall(state:any,payload:any){
+      state.watchCardVideo1Stream = payload.streamingUrl
+      // state.watchCardVideo2Stream = payload.streamingUrl
     },
   };
   export const getters = {

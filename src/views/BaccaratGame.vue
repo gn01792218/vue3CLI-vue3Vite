@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent,onMounted,watch} from 'vue'
+import {computed, defineComponent,onMounted,watch,ref} from 'vue'
 import LiveVideo from '@/components/LiveVideo.vue'
 import BettingArea from '@/views/BettingArea.vue'
 import TableInfo from '@/views/TableInfo.vue'
@@ -28,6 +28,8 @@ export default defineComponent({
     Counter,
   },
   setup(){
+    //基本資料
+    let reConnectTimer = ref<number | null>(null)
     //路由處理，取得當前桌號
     const route = useRoute()
     const tableNum = computed(()=>{
@@ -68,7 +70,10 @@ export default defineComponent({
     })
     window.addEventListener('reConnect',()=>{ //重新連接的時候
       // console.log('重連換桌')
-      tableJoin ()
+      // reConnectTimer.value = setInterval(()=>{
+        tableJoin ()
+      // },1000)
+      
     }) 
     function tableJoin (){ //上桌請求
       tables.value.find((i:any)=>{

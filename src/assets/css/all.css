@@ -412,6 +412,38 @@ img {
   background-color: black;
 }
 
+.watchCard-modal {
+  overflow: visible !important;
+}
+
+.watchCard-box {
+  max-width: 500px;
+  height: 300px;
+  top: 33%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) !important;
+          transform: translate(-50%, -50%) !important;
+}
+
+.watchCard-box .modal-content {
+  width: 500px;
+  height: 281px;
+  border: 5px solid #644d31;
+  -webkit-box-shadow: 0px 0px 10px yellow;
+          box-shadow: 0px 0px 10px yellow;
+}
+
+.watchCard-box .close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #644d31;
+  opacity: 1;
+  left: -3%;
+  top: -8%;
+  z-index: 1;
+}
+
 .chat-inputs {
   right: 10px;
   top: 0;
@@ -1043,7 +1075,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-left {
-  width: 65%;
+  width: 100%;
 }
 
 .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
@@ -1069,10 +1101,82 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-reward {
-  width: 80px;
+  width: 70px;
   height: 42px;
   font-size: 1.5rem;
   background-color: rgba(128, 0, 128, 0.829);
+}
+
+.bettingArea-btn-watchCard {
+  width: 70px;
+  height: 42px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background: #504e4e;
+}
+
+.bettingArea-btn-watchCard-Animation {
+  -webkit-animation-name: watchCardAnimation;
+          animation-name: watchCardAnimation;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  background-color: rgba(128, 0, 128, 0.829);
+}
+
+.bettingArea-btn-watchCard-Animation .bi-eye {
+  -webkit-animation-name: watchCardEyeAnimation;
+          animation-name: watchCardEyeAnimation;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes watchCardAnimation {
+  from {
+    background-color: rgba(128, 0, 128, 0.629);
+    -webkit-box-shadow: 0px 0px 10px #fafa04;
+            box-shadow: 0px 0px 10px #fafa04;
+  }
+  to {
+    background-color: rgba(128, 0, 128, 0.829);
+  }
+}
+
+@keyframes watchCardAnimation {
+  from {
+    background-color: rgba(128, 0, 128, 0.629);
+    -webkit-box-shadow: 0px 0px 10px #fafa04;
+            box-shadow: 0px 0px 10px #fafa04;
+  }
+  to {
+    background-color: rgba(128, 0, 128, 0.829);
+  }
+}
+
+@-webkit-keyframes watchCardEyeAnimation {
+  from {
+    font-size: 1rem;
+  }
+  to {
+    font-size: 1.8rem;
+  }
+}
+
+@keyframes watchCardEyeAnimation {
+  from {
+    font-size: 1rem;
+  }
+  to {
+    font-size: 1.8rem;
+  }
 }
 
 .betArea-item {
@@ -2039,10 +2143,26 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
+@media screen and (max-width: 1545px) {
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 70px;
+  }
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
+    width: 40px;
+  }
+}
+
 @media screen and (max-width: 1280px) {
   .text-md-left,
   .text-md-right {
     font-size: smaller;
+  }
+  .watchCard-box {
+    top: 50%;
+  }
+  .watchCard-box .modal-content {
+    width: 300px;
+    height: 168px;
   }
   .card-container {
     margin-top: -20px;
@@ -2061,6 +2181,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item {
     font-size: 1.5rem;
+  }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 55px;
   }
   .gameHistory {
     height: 25%;
@@ -2493,7 +2616,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
-@media screen and (max-width: 1280px) and (max-height: 800px) {
+@media screen and (max-width: 1280px) and (height: 800px) {
   .coinArea {
     height: 9%;
   }
@@ -2620,6 +2743,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 100%;
     height: 575px;
   }
+  .watchCard-box {
+    top: 35%;
+  }
+  .watchCard-box .modal-content {
+    width: 500px;
+    height: 281px;
+  }
   .mainGame {
     width: 100%;
   }
@@ -2630,9 +2760,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     border: 2px solid #262626;
     width: 100%;
   }
-  .bettingArea-btn-left {
-    width: 80%;
-  }
   .betArea-pc {
     display: none;
   }
@@ -2642,6 +2769,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-mobile-container {
     height: 250px;
+  }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 100px;
+  }
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
+    width: 60px;
   }
   .coin-100 {
     width: 126.4px;
@@ -3110,6 +3243,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .video-box {
     height: 430px;
   }
+  .watchCard-box {
+    top: 50%;
+  }
   .lightBox {
     display: block;
   }
@@ -3564,6 +3700,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 500px;
     top: 52%;
   }
+  .watchCard-box {
+    -webkit-transform: translate(-53%, -50%) !important;
+            transform: translate(-53%, -50%) !important;
+  }
+  .watchCard-box .modal-content {
+    width: 460px;
+    height: 258px;
+  }
   .header-btn {
     font-size: 100%;
     line-height: 1rem;
@@ -3601,7 +3745,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .askRoad-player p, .askRoad-banker p {
     font-size: 0.5rem;
   }
-  .bettingArea-btn-reward {
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 50px;
   }
   .betLimitInfo {
@@ -4056,6 +4200,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 390px;
     top: 51%;
   }
+  .watchCard-box .modal-content {
+    width: 360px;
+    height: 202px;
+  }
   .newsTicker .bi-exclamation-triangle-fill {
     font-size: 1rem;
   }
@@ -4090,8 +4238,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item-bottom {
     bottom: 0%;
   }
-  .bettingArea-btn-left {
-    width: 70%;
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
+    width: 40px;
   }
   .header-userName {
     font-size: 0.5rem;
@@ -4132,8 +4280,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .navbar-toggler {
     padding: 0;
   }
-  .bettingArea-btn-gitbackAllCoin,
-  .bettingArea-btn-check {
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
     width: 55px;
   }
   .bettingArea-btn-betInfo {
@@ -4206,6 +4353,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-item {
     font-size: 0.5rem;
     font-weight: bolder;
+  }
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
+    width: 35px;
+  }
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 40px;
+    font-size: 12px;
+  }
+  .watchCard-box {
+    top: 60%;
+  }
+  .watchCard-box .modal-content {
+    width: 300px;
+    height: 168px;
   }
   .table-total-betStatus {
     font-size: 0.3rem;
@@ -4456,6 +4617,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .video-box {
     height: 180px;
   }
+  .watchCard-box {
+    top: 70%;
+  }
   .gameHistory {
     height: 100px;
   }
@@ -4468,16 +4632,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea {
     height: 230px;
   }
-  .bettingArea-btn-left {
-    width: 65%;
-  }
-  .bettingArea-btn-reward {
-    width: 25px;
-  }
-  .bettingArea-btn-gitbackAllCoin,
-  .bettingArea-btn-check {
-    width: 40px;
+  .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+    width: 30px;
     font-size: 10px;
+  }
+  .bettingArea-btn-gitbackAllCoin .bi, .bettingArea-btn-check .bi {
+    display: none;
+  }
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
+    width: 25px;
   }
   .bettingArea-btn {
     height: 50px;
@@ -4642,6 +4805,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 280px) {
+  .watchCard-box .modal-content {
+    width: 260px;
+    height: 146px;
+  }
   .table-btn-list {
     max-width: 170px;
   }
@@ -4697,14 +4864,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-mobile-container {
     height: 160px;
   }
-  .bettingArea-btn-left {
-    width: 62%;
-  }
   .bettingArea-btn-check, .bettingArea-btn-gitbackAllCoin {
-    width: 30px;
+    width: 26px;
   }
   .bettingArea-btn-check .bi, .bettingArea-btn-gitbackAllCoin .bi {
     display: none;
+  }
+  .bettingArea-btn-reward, .bettingArea-btn-watchCard {
+    width: 20px;
   }
   .coin-100 {
     width: 39.5px;

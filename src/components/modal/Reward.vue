@@ -65,7 +65,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, computed, watch } from "vue";
 import { useStore } from "vuex";
-import { sendDonat } from "../socketApi";
+import { sendDonat } from "../../socketApi";
 export default defineComponent({
   setup() {
     //基本資料

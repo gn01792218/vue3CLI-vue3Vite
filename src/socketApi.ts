@@ -127,28 +127,41 @@ export const sendAskRoadCall = (data:any) => {
     // console.log('sendAskRoadCall',proto)
     sendWSPush(bytes);
 }
+//發送咪牌訊息
+export const sendWatchCardCall = (data:any) =>{
+    let proto = game.WatchcardCall.create({
+        header:foundation.Header.create({
+            uri:route.WatchcardCall
+        }),
+        confirm : data.confirm
+    })
+    let bytes = game.WatchcardCall.encode(proto).finish()
+    console.log('sendWatchCardCall',proto)
+    sendWSPush(bytes);
+}
 //各種接收訊息的方法，在main.js中全局註冊監聽
 export const getMsgReCall = (e:any) =>{
     let header = foundation.Message.decode(new Uint8Array(e.detail.msg.data)).header
     switch(header?.uri){
         case route.HeartbeatPing:
             sendPon()
-            break
+            break;
         case route.LoginRecall:
             let loginRecall = auth.LoginRecall.decode(new Uint8Array(e.detail.msg.data))
             // console.log('LoginRecall',loginRecall)
             store.commit('auth/LoginRecall',loginRecall)
-            break
+            break;
         case route.LobbyInfo:
             let lobbyInfo = lobby.LobbyInfo.decode(new Uint8Array(e.detail.msg.data))
             // console.log('lobbyInfo',lobbyInfo)
             store.commit('lobby/LobbyInfo',lobbyInfo)
             store.commit('table/setTable',lobbyInfo.tables)
-            break
+            break;
         case route.BroadcastTotalPlayersOnline:
             let BroadcastTotalPlayersOnline = lobby.BroadcastTotalPlayersOnline.decode(new Uint8Array(e.detail.msg.data))
             console.log('BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
             store.commit('lobby/BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
+            break;
         case route.UserInfo:
             let UserInfo = auth.UserInfo.decode(new Uint8Array(e.detail.msg.data))
             console.log('UserInfo',UserInfo)
@@ -158,99 +171,112 @@ export const getMsgReCall = (e:any) =>{
             let TableJoinRecall = table.TableJoinRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
-            break
+            break;
         case route.BroadcastChat:
             let BroadcastChat = chat.BroadcastChat.decode(new Uint8Array(e.detail.msg.data))
             console.log('BroadcastChat',BroadcastChat)
             store.commit('chat/BroadcastChat',BroadcastChat)
+            break;
         case route.DonateRecall:
             let DonateRecall = donate.DonateRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('DonateRecall',DonateRecall)
             store.commit('donat/DonateRecall',DonateRecall)
+            break;
         case route.BetRecall:
             let BetRecall = bet.BetRecall.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BetRecall',BetRecall)
             store.commit('bet/BetRecall',BetRecall)
-            break
+            break;
         case route.BroadcastBetstatus:
             let BroadcastBetstatus = bet.BetStatus.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BroadcastBetstatus',BroadcastBetstatus)
             store.commit('bet/BroadcastBetstatus',BroadcastBetstatus)
-            break
+            break;
         case route.BetResetRecall:
             let BetResetRecall = bet.BetResetRecall.decode(new Uint8Array(e.detail.msg.data)).toJSON()
             // console.log(BetResetRecall)
             // console.log('BetReSetRecall',BetResetRecall)
             store.commit('bet/BetResetRecall',BetResetRecall)
-            break
+            break;
         case route.BetConfirmRecall:
             let BetConfirmRecall = bet.ConfirmBetRecall.decode(new Uint8Array(e.detail.msg.data))
             store.commit('bet/BetConfirmRecall',BetConfirmRecall)
             // console.log(BetConfirmRecall)
+            break;
         case route.BetError:
             let BetError = bet.BetError.decode(new Uint8Array(e.detail.msg.data))
             console.log('BetError',BetError)
             store.commit('bet/BetError',BetError)
-            break
+            break;
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
             console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
-            break
+            break;
         case route.BroadcastGameResult:
             let BroadcastGameResult = dealer.GameResult.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BroadcastGameResult',BroadcastGameResult)
             store.commit('dealer/BroadcastGameResult',BroadcastGameResult)
-            break
+            break;
         case route.BetRoundStart:
             let BetRoundStart = game.BetRoundStart.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BetRoundStart',BetRoundStart)
             store.commit('game/BetRoundStart',BetRoundStart)
-            break
+            break;
         case route.BetRoundEnd:
             let BetRoundEnd = game.BetRoundEnd.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BetRoundEnd',BetRoundEnd)
             store.commit('game/BetRoundEnd',BetRoundEnd)
-            break
+            break;
         case route.GameStatus:
             let GameStatus = game.GameStatus.decode(new Uint8Array(e.detail.msg.data))
             console.log('GameStatus',GameStatus)
             store.commit('game/GameStatus',GameStatus)
-            break
+            break;
         case route.BetRoundCountdown:
             let BetRoundCountdown = game.BetRoundCountdown.decode(new Uint8Array(e.detail.msg.data))
             // console.log('BetRoundCountdown',BetRoundCountdown)
             store.commit('game/BetRoundCountdown',BetRoundCountdown)
-            break
+            break;
+        case route.WatchcardRecall:
+            let WatchcardRecall = game.WatchcardRecall.decode(new Uint8Array(e.detail.msg.data))
+            console.log(WatchcardRecall,WatchcardRecall)
+            store.commit('game/WatchcardRecall',WatchcardRecall)
+            break;
+        case route.WatchcardNotificaion :
+            let WatchcardNotificaion = game.WatchcardNotificaion.decode(new Uint8Array(e.detail.msg.data))
+            console.log(WatchcardNotificaion,WatchcardNotificaion)
+            store.commit('game/WatchcardNotificaion',WatchcardNotificaion)
+            break;
         case route.Roadmap:
             let map = roadmap.Roadmap.decode(new Uint8Array(e.detail.msg.data))
             // console.log('map',map)
             store.commit('roadmap/map',map)
-            break
+            break;
         case route.BroadcastDealerRoundEnd:
             let end = dealer.BroadcastDealerRoundEnd.decode(new Uint8Array(e.detail.msg.data))
             // console.log('換靴',end)
             store.commit('dealer/end',end)
-            break
+            break;
         case route.AskRoadRecall:
             let askRoadReCall = roadmap.AskRoadRecall.decode(new Uint8Array(e.detail.msg.data))
             // console.log('問下三路',askRoadReCall)
             store.commit('roadmap/setAskRoadRecall',askRoadReCall)
-            break
+            break;
         case route.BroadcastAnnouncement:
             let BroadcastAnnouncement = announcement.BroadcastAnnouncement.decode(new Uint8Array(e.detail.msg.data))
             store.commit('announcement/BroadcastAnnouncement',BroadcastAnnouncement)
             // console.log(BroadcastAnnouncement)
-            break
+            break;
         case route.kickoutwarn:
             let kickoutwarn = kick.kickoutWarn.decode(new Uint8Array(e.detail.msg.data))
             store.commit('kick/kickoutwarn',kickoutwarn)
             console.log('kickoutwarn',kickoutwarn)
-            break
+            break;
         case route.Kickout:
             let Kickout = kick.kickout.decode(new Uint8Array(e.detail.msg.data))
             store.commit('kick/Kickout',Kickout)
             console.log('Kickout',Kickout)
-            break
+            break;
     }
 }

@@ -28,7 +28,6 @@
 import { defineComponent, computed, ref, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { chatContent, tableName } from "../../types/global";
 import Emoji from "@/components/chat/Emoji.vue";
 import {sendChat} from '../../socketApi'
 import {gsap,Power4} from 'gsap'
@@ -54,10 +53,6 @@ export default defineComponent({
     });
     const showEmoji = computed(() => {
       return store.state.chat.showEmoji;
-    });
-    //暫時性:之後要傳送資料給server start
-    const chatContentArr = computed<chatContent[]>(() => {
-      return store.state.chat.chatContentArr;
     });
     //function
     function setTypeTimer() {

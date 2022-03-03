@@ -2481,6 +2481,96 @@ export namespace dealer {
         public toJSON(): { [k: string]: any };
     }
 
+    /** Properties of a BetRoundEndCall. */
+    interface IBetRoundEndCall {
+
+        /** BetRoundEndCall header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a BetRoundEndCall. */
+    class BetRoundEndCall implements IBetRoundEndCall {
+
+        /**
+         * Constructs a new BetRoundEndCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: dealer.IBetRoundEndCall);
+
+        /** BetRoundEndCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new BetRoundEndCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetRoundEndCall instance
+         */
+        public static create(properties?: dealer.IBetRoundEndCall): dealer.BetRoundEndCall;
+
+        /**
+         * Encodes the specified BetRoundEndCall message. Does not implicitly {@link dealer.BetRoundEndCall.verify|verify} messages.
+         * @param message BetRoundEndCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: dealer.IBetRoundEndCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetRoundEndCall message, length delimited. Does not implicitly {@link dealer.BetRoundEndCall.verify|verify} messages.
+         * @param message BetRoundEndCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: dealer.IBetRoundEndCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetRoundEndCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetRoundEndCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): dealer.BetRoundEndCall;
+
+        /**
+         * Decodes a BetRoundEndCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetRoundEndCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): dealer.BetRoundEndCall;
+
+        /**
+         * Verifies a BetRoundEndCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetRoundEndCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetRoundEndCall
+         */
+        public static fromObject(object: { [k: string]: any }): dealer.BetRoundEndCall;
+
+        /**
+         * Creates a plain object from a BetRoundEndCall message. Also converts values to other types if specified.
+         * @param message BetRoundEndCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: dealer.BetRoundEndCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetRoundEndCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
     /** Result enum. */
     enum Result {
         Default = 0,
@@ -3272,7 +3362,16 @@ export namespace game {
         default = 0,
         beting = 1,
         drawing = 2,
-        waiting = 3
+        waiting = 3,
+        paused = 4,
+        watchingcard = 5
+    }
+
+    /** GameType enum. */
+    enum GameType {
+        GameType_default = 0,
+        normal = 1,
+        vip = 2
     }
 
     /** Properties of a GameResultCounter. */
@@ -3834,6 +3933,384 @@ export namespace game {
 
         /**
          * Converts this GameStatus to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a WatchcardNotificaion. */
+    interface IWatchcardNotificaion {
+
+        /** WatchcardNotificaion header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a WatchcardNotificaion. */
+    class WatchcardNotificaion implements IWatchcardNotificaion {
+
+        /**
+         * Constructs a new WatchcardNotificaion.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IWatchcardNotificaion);
+
+        /** WatchcardNotificaion header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new WatchcardNotificaion instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WatchcardNotificaion instance
+         */
+        public static create(properties?: game.IWatchcardNotificaion): game.WatchcardNotificaion;
+
+        /**
+         * Encodes the specified WatchcardNotificaion message. Does not implicitly {@link game.WatchcardNotificaion.verify|verify} messages.
+         * @param message WatchcardNotificaion message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IWatchcardNotificaion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WatchcardNotificaion message, length delimited. Does not implicitly {@link game.WatchcardNotificaion.verify|verify} messages.
+         * @param message WatchcardNotificaion message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IWatchcardNotificaion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WatchcardNotificaion message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WatchcardNotificaion
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.WatchcardNotificaion;
+
+        /**
+         * Decodes a WatchcardNotificaion message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WatchcardNotificaion
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.WatchcardNotificaion;
+
+        /**
+         * Verifies a WatchcardNotificaion message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WatchcardNotificaion message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WatchcardNotificaion
+         */
+        public static fromObject(object: { [k: string]: any }): game.WatchcardNotificaion;
+
+        /**
+         * Creates a plain object from a WatchcardNotificaion message. Also converts values to other types if specified.
+         * @param message WatchcardNotificaion
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.WatchcardNotificaion, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WatchcardNotificaion to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a WatchcardCall. */
+    interface IWatchcardCall {
+
+        /** WatchcardCall header */
+        header?: (foundation.IHeader|null);
+
+        /** WatchcardCall confirm */
+        confirm?: (boolean|null);
+    }
+
+    /** Represents a WatchcardCall. */
+    class WatchcardCall implements IWatchcardCall {
+
+        /**
+         * Constructs a new WatchcardCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IWatchcardCall);
+
+        /** WatchcardCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** WatchcardCall confirm. */
+        public confirm: boolean;
+
+        /**
+         * Creates a new WatchcardCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WatchcardCall instance
+         */
+        public static create(properties?: game.IWatchcardCall): game.WatchcardCall;
+
+        /**
+         * Encodes the specified WatchcardCall message. Does not implicitly {@link game.WatchcardCall.verify|verify} messages.
+         * @param message WatchcardCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IWatchcardCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WatchcardCall message, length delimited. Does not implicitly {@link game.WatchcardCall.verify|verify} messages.
+         * @param message WatchcardCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IWatchcardCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WatchcardCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WatchcardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.WatchcardCall;
+
+        /**
+         * Decodes a WatchcardCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WatchcardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.WatchcardCall;
+
+        /**
+         * Verifies a WatchcardCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WatchcardCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WatchcardCall
+         */
+        public static fromObject(object: { [k: string]: any }): game.WatchcardCall;
+
+        /**
+         * Creates a plain object from a WatchcardCall message. Also converts values to other types if specified.
+         * @param message WatchcardCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.WatchcardCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WatchcardCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a WatchcardRecall. */
+    interface IWatchcardRecall {
+
+        /** WatchcardRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** WatchcardRecall streamingUrl */
+        streamingUrl?: (game.IStreamingUrl|null);
+    }
+
+    /** Represents a WatchcardRecall. */
+    class WatchcardRecall implements IWatchcardRecall {
+
+        /**
+         * Constructs a new WatchcardRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IWatchcardRecall);
+
+        /** WatchcardRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** WatchcardRecall streamingUrl. */
+        public streamingUrl?: (game.IStreamingUrl|null);
+
+        /**
+         * Creates a new WatchcardRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WatchcardRecall instance
+         */
+        public static create(properties?: game.IWatchcardRecall): game.WatchcardRecall;
+
+        /**
+         * Encodes the specified WatchcardRecall message. Does not implicitly {@link game.WatchcardRecall.verify|verify} messages.
+         * @param message WatchcardRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IWatchcardRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WatchcardRecall message, length delimited. Does not implicitly {@link game.WatchcardRecall.verify|verify} messages.
+         * @param message WatchcardRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IWatchcardRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WatchcardRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WatchcardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.WatchcardRecall;
+
+        /**
+         * Decodes a WatchcardRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WatchcardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.WatchcardRecall;
+
+        /**
+         * Verifies a WatchcardRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WatchcardRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WatchcardRecall
+         */
+        public static fromObject(object: { [k: string]: any }): game.WatchcardRecall;
+
+        /**
+         * Creates a plain object from a WatchcardRecall message. Also converts values to other types if specified.
+         * @param message WatchcardRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.WatchcardRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WatchcardRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a StreamingUrl. */
+    interface IStreamingUrl {
+
+        /** StreamingUrl desktop */
+        desktop?: (string|null);
+
+        /** StreamingUrl moblie */
+        moblie?: (string|null);
+    }
+
+    /** Represents a StreamingUrl. */
+    class StreamingUrl implements IStreamingUrl {
+
+        /**
+         * Constructs a new StreamingUrl.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IStreamingUrl);
+
+        /** StreamingUrl desktop. */
+        public desktop: string;
+
+        /** StreamingUrl moblie. */
+        public moblie: string;
+
+        /**
+         * Creates a new StreamingUrl instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns StreamingUrl instance
+         */
+        public static create(properties?: game.IStreamingUrl): game.StreamingUrl;
+
+        /**
+         * Encodes the specified StreamingUrl message. Does not implicitly {@link game.StreamingUrl.verify|verify} messages.
+         * @param message StreamingUrl message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IStreamingUrl, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified StreamingUrl message, length delimited. Does not implicitly {@link game.StreamingUrl.verify|verify} messages.
+         * @param message StreamingUrl message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IStreamingUrl, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.StreamingUrl;
+
+        /**
+         * Decodes a StreamingUrl message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns StreamingUrl
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.StreamingUrl;
+
+        /**
+         * Verifies a StreamingUrl message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a StreamingUrl message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns StreamingUrl
+         */
+        public static fromObject(object: { [k: string]: any }): game.StreamingUrl;
+
+        /**
+         * Creates a plain object from a StreamingUrl message. Also converts values to other types if specified.
+         * @param message StreamingUrl
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.StreamingUrl, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this StreamingUrl to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
@@ -5359,6 +5836,7 @@ export namespace route {
         BroadcastGameResult = 13,
         BetRoundStart = 14,
         BetRoundEnd = 15,
+        BetRoundEndCall = 1501,
         BetRoundCountdown = 16,
         HeartbeatPing = 17,
         HeartbeatPong = 18,
@@ -5381,7 +5859,10 @@ export namespace route {
         Chat = 5000,
         BroadcastChat = 5001,
         DonateCall = 6000,
-        DonateRecall = 6001
+        DonateRecall = 6001,
+        WatchcardNotificaion = 7000,
+        WatchcardCall = 7001,
+        WatchcardRecall = 7002
     }
 }
 
@@ -5402,6 +5883,9 @@ export namespace table {
 
         /** Table betRule */
         betRule?: (table.IBetRule|null);
+
+        /** Table gameType */
+        gameType?: (game.GameType|null);
     }
 
     /** Represents a Table. */
@@ -5424,6 +5908,9 @@ export namespace table {
 
         /** Table betRule. */
         public betRule?: (table.IBetRule|null);
+
+        /** Table gameType. */
+        public gameType: game.GameType;
 
         /**
          * Creates a new Table instance using the specified properties.

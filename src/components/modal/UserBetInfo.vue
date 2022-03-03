@@ -89,7 +89,7 @@
 import {defineComponent,computed, ref, watch, reactive} from 'vue'
 import {useStore} from 'vuex'
 import Date from '@/components/Date.vue'
-import proto from '../assets/js/bundle'
+import proto from '../../assets/js/bundle'
 interface userInfo{
     gameUuid:string,
     time?:Date,

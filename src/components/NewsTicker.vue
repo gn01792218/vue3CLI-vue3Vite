@@ -1,6 +1,5 @@
 <template>
   <div class="newsTicker w-100 d-flex align-items-center">
-    <!-- <div class="newsTicker-text d-flex align-items-center" ><i class="bi bi-exclamation-triangle-fill"></i>公告測試</div> -->
     <div class="newsTicker-text d-flex align-items-center" v-if="announment"><i class="bi bi-exclamation-triangle-fill"></i>{{announment.message}}</div>
   </div>
 </template>

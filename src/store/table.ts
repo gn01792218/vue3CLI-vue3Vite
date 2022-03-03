@@ -118,12 +118,6 @@ export const mutations = {
   setCurrentTable(state:any,tableNum:string){
     state.currentTable = tableNum
   },
-  setTableInfoData(state:any,payload:any){
-
-  },
-  setTableCoinData(state:any,payload:any){
-    state
-  },
 };
 export const getters = {
  

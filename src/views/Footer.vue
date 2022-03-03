@@ -59,8 +59,8 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
-import UserBetInfo from "@/components/UserBetInfo.vue";
-import Reward from "@/components/Reward.vue";
+import UserBetInfo from "@/components/modal/UserBetInfo.vue";
+import Reward from "@/components/modal/Reward.vue";
 import Date from "@/components/Date.vue";
 import ChatInput from "@/components/chat/ChatInput.vue";
 import { useStore } from "vuex";
