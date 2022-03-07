@@ -86,7 +86,7 @@ export const sendBetCall = (data:any) => {
         betArea:data.betArea,
     })
     let bytes = bet.BetCall.encode(proto).finish()
-    // console.log("sendBetCall",proto)
+    console.log("sendBetCall",proto)
     sendWSPush(bytes);
 }
 //發送下注重置

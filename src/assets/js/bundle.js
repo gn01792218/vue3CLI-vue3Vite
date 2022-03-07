@@ -1380,6 +1380,7 @@ export const bet = $root.bet = (() => {
      * @property {number} RoundNotFound=5 RoundNotFound value
      * @property {number} NoEnoughWallet=6 NoEnoughWallet value
      * @property {number} AlreadyConfirmed=7 AlreadyConfirmed value
+     * @property {number} PermissionDeined=8 PermissionDeined value
      */
     bet.Error = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -1391,6 +1392,7 @@ export const bet = $root.bet = (() => {
         values[valuesById[5] = "RoundNotFound"] = 5;
         values[valuesById[6] = "NoEnoughWallet"] = 6;
         values[valuesById[7] = "AlreadyConfirmed"] = 7;
+        values[valuesById[8] = "PermissionDeined"] = 8;
         return values;
     })();
 
@@ -2978,6 +2980,7 @@ export const bet = $root.bet = (() => {
                 case 5:
                 case 6:
                 case 7:
+                case 8:
                     break;
                 }
             if (message.errorMessage != null && message.hasOwnProperty("errorMessage"))
@@ -3035,6 +3038,10 @@ export const bet = $root.bet = (() => {
             case "AlreadyConfirmed":
             case 7:
                 message.error = 7;
+                break;
+            case "PermissionDeined":
+            case 8:
+                message.error = 8;
                 break;
             }
             if (object.errorMessage != null)

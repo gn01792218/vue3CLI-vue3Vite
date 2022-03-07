@@ -601,7 +601,8 @@ export namespace bet {
         ReachMaxLimit = 4,
         RoundNotFound = 5,
         NoEnoughWallet = 6,
-        AlreadyConfirmed = 7
+        AlreadyConfirmed = 7,
+        PermissionDeined = 8
     }
 
     /** BetArea enum. */

@@ -133,6 +133,7 @@ export default defineComponent({
     watch(watchCardVideoStream1, () => {
         stopPlay(np1.value);
         startPlay(np1.value, watchCardVideoStream1.value);
+        // console.log('偵測到咪牌視訊1',watchCardVideoStream1)
     });
     //  watch(watchCardVideoStream2,()=>{
     //   if (mobileOrNot) {
@@ -161,6 +162,7 @@ export default defineComponent({
       return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
     }
     function startPlay(nodePlayer: NodePlayer, flvStream: any) {
+      // console.log('遊戲type',gameType.value,'視訊網址',flvStream,'gameStatus',gameStatus.value)
       if(gameType.value !== proto.game.GameType.vip){return}
       if(!flvStream){return}
       if(gameStatus.value !== 5){return}
