@@ -79,7 +79,7 @@ export const state = {
         {
           title:'百家樂遊戲牌例',
           content:'',
-          img:require('../images/poker-sample.jpg'),
+          img:require('../images/poker-sample.webp'),
         }
       ]
     },

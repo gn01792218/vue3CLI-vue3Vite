@@ -11,7 +11,8 @@
     <Loading />
   </div>
   <!-- Modal -->
-  <div
+  <KickoutWarn/>
+  <!-- <div
     class="modal fade"
     id="alertModal"
     tabindex="-1"
@@ -41,64 +42,69 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
-<script lang="ts">
-import { defineComponent, onMounted, computed, watch } from "vue";
+<script setup lang="ts">
+import { onMounted, computed } from "vue";
 import Announcement from "@/components/Announcement.vue";
 import Loading from "@/components/Loading.vue";
 import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import BaccaratGame from "@/views/BaccaratGame.vue";
+import KickoutWarn from "@/components/modal/KickoutWarn.vue";
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
-import { useRouter } from "vue-router";
-import $ from "jquery";
-export default defineComponent({
-  components: {
-    Header,
-    Footer,
-    BaccaratGame,
-    Loading,
-    Announcement,
-  },
-  setup() {
-    onMounted(() => {
+onMounted(() => {
       store.commit("lobby/setShowannouncement", true); //顯示公告同意書
     });
     createSocket(); //創建websocket 連線
-    const router = useRouter();
     const store = useStore();
     const announcementShow = computed(() => {
       return store.state.lobby.showannouncement;
     });
-    const kickout = computed(() => {
-      return store.state.kick.Kickout;
-    });
-    const kickoutWarn = computed(() => {
-      return store.state.kick.kickoutWarn;
-    });
-    //  window.addEventListener('disconnect',()=>{
-    //    closeWindow();
-    //  })
-    watch(kickoutWarn, () => {
-      $("#alertModal").modal("show");
-    });
-    watch(kickout, () => {
-      store.commit("kick/setIsKickout", true);
-      alert(kickout.value.message);
-      closeWindow();
-    });
-    function closeWindow() {
-      var op = window.open("/leave", "_self") as Window;
-      op.opener = null;
-      op.close();
-    }
-    return {
-      //data
-      announcementShow,
-      kickoutWarn,
-    };
-  },
-});
+// export default defineComponent({
+//   components: {
+//     Header,
+//     Footer,
+//     BaccaratGame,
+//     Loading,
+//     Announcement,
+//     KickoutWarn,
+//   },
+//   setup() {
+//     onMounted(() => {
+//       store.commit("lobby/setShowannouncement", true); //顯示公告同意書
+//     });
+//     createSocket(); //創建websocket 連線
+//     const router = useRouter();
+//     const store = useStore();
+//     const announcementShow = computed(() => {
+//       return store.state.lobby.showannouncement;
+//     });
+//     // const kickout = computed(() => {
+//     //   return store.state.kick.Kickout;
+//     // });
+//     // const kickoutWarn = computed(() => {
+//     //   return store.state.kick.kickoutWarn;
+//     // });
+//     // watch(kickoutWarn, () => {
+//     //   $("#alertModal").modal("show");
+//     // });
+//     // watch(kickout, () => {
+//     //   store.commit("kick/setIsKickout", true);
+//     //   alert(kickout.value.message);
+//     //   closeWindow();
+//     // });
+//     // function closeWindow() {
+//     //   var op = window.open("/leave", "_self") as Window;
+//     //   op.opener = null;
+//     //   op.close();
+//     // }
+//     return {
+//       //data
+//       announcementShow,
+//       // kickoutWarn,
+//     };
+//   },
+// });
 </script>

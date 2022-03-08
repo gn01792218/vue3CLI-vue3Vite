@@ -104,7 +104,6 @@ export default defineComponent({
      })
      watch(lastDrawCard,()=>{  //補畫進場前的卡牌
        if(gameStatus.value==2){  //防止server在等待時間也傳卡牌來
-        console.log('補畫卡牌!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         lastDrawCard.value.forEach((i:any)=>{
          showCards (i.side,i.card.suit,i.card.point,i.position)
        })
