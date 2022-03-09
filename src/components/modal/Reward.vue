@@ -62,13 +62,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref, computed, watch } from "vue";
+<script setup lang="ts">
+import { reactive, ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import { sendDonat } from "../../socketApi";
-export default defineComponent({
-  setup() {
-    //基本資料
+//基本資料
     const totalReward = ref(0);
     const rewardList = reactive([500, 1000, 5000]);
     const donatErr = ref(true);
@@ -85,13 +83,6 @@ export default defineComponent({
       if (donatError.value == 3) {
         console.log(donatError.value)
         setErrorMsg("此帳號無打賞權限!",donatError.value)
-        // donatErr.value = false;
-        // errorMsg.value = "此帳號無打賞權限!";
-        // setTimeout(() => {
-        //   donatErr.value = true;
-        //   errorMsg.value = "";
-        //   store.commit("donat/reSetDonatErr");
-        // }, 500);
       }
     });
     function addReward(reward: number) {
@@ -115,28 +106,13 @@ export default defineComponent({
       }, 500);
     }
     function sendReward() {
-      // if (totalReward.value > 0) {
       //傳送資料給server
       sendDonat({
         points: `${totalReward.value}`,
       });
       totalReward.value = 0;
-      // }
     }
     function reSetReward() {
       totalReward.value = 0;
     }
-    return {
-      //data
-      totalReward,
-      rewardList,
-      donatErr,
-      errorMsg,
-      //methods
-      addReward,
-      sendReward,
-      reSetReward,
-    };
-  },
-});
 </script>

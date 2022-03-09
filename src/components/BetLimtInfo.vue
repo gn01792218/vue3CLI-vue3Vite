@@ -1,8 +1,8 @@
 <template>
-<section>
+  <section>
     <p class="text-left mb-0">
       <span v-if="betLimitInfo.bankerMin > 0">
-        莊 : {{ numberFormat(betLimitInfo.bankerMin)}} ~
+        莊 : {{ numberFormat(betLimitInfo.bankerMin) }} ~
       </span>
       <span v-if="betLimitInfo.onLine && betLimitInfo.bankerMin == 0">
         莊 : 0 ~
@@ -57,29 +57,29 @@
     </p>
   </section>
   <!-- 即將開桌 -->
-  <section v-if="betLimitInfo.pairMax == 0 && betLimitInfo.pairMin == 0 && betLimitInfo.tieMax == 0 && betLimitInfo.tieMin == 0 &&
-       betLimitInfo.playerMax == 0 && betLimitInfo.playerMin == 0 && betLimitInfo.bankerMin == 0 && betLimitInfo.bankerMax == 0">
+  <section
+    v-if="
+      betLimitInfo.pairMax == 0 &&
+        betLimitInfo.pairMin == 0 &&
+        betLimitInfo.tieMax == 0 &&
+        betLimitInfo.tieMin == 0 &&
+        betLimitInfo.playerMax == 0 &&
+        betLimitInfo.playerMin == 0 &&
+        betLimitInfo.bankerMin == 0 &&
+        betLimitInfo.bankerMax == 0
+    "
+  >
     <p class="commingSoon text-center">
       準備中
     </p>
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  props:{
-      betLimitInfo:{}
-  },
-  setup() {
-    function numberFormat(number: number): string {
-      return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-    }
-    return {
-       //data
-      //methods
-      numberFormat,
-    };
-  },
+<script setup lang="ts">
+const props = defineProps({
+  betLimitInfo: {},
 });
+function numberFormat(number: number): string {
+  return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
 </script>

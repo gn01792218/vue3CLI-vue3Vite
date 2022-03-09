@@ -29,38 +29,31 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+// import { defineComponent } from "vue";
 import $ from "jquery";
 import { sendWatchCardCall } from "../../socketApi";
-export default defineComponent({
-  setup() {
-    //要咪牌，顯示視訊畫面
-    function watchCard() {
-      sendWatchCardCall({
-        confirm: true,
-      })
-      $("#whatchCardOrNot").modal("hide");
-    }
-    //要飛牌，直接退出畫面前先傳送資料給serve
-    function flyCard() {
-      //發送飛牌給serve
-      sendWatchCardCall({
-        confirm: false,
-      })
-      //關閉視窗
-      $("#whatchCardOrNot").modal("hide");
-      resetWatchCardAlert()
-    }
-    function resetWatchCardAlert(){
-      let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-      watchCardBtn?.classList.remove('bettingArea-btn-watchCard-Animation')
-    }
-    return {
-      //methods
-      watchCard,
-      flyCard,
-    };
-  },
-});
+//要咪牌，顯示視訊畫面
+function watchCard() {
+  sendWatchCardCall({
+    confirm: true,
+  });
+  $("#whatchCardOrNot").modal("hide");
+}
+//要飛牌，直接退出畫面前先傳送資料給serve
+function flyCard() {
+  //發送飛牌給serve
+  sendWatchCardCall({
+    confirm: false,
+  });
+  //關閉視窗
+  $("#whatchCardOrNot").modal("hide");
+  resetWatchCardAlert();
+}
+function resetWatchCardAlert() {
+  let watchCardBtn = document.querySelector(
+    ".bettingArea-btn-watchCard"
+  ) as HTMLElement;
+  watchCardBtn?.classList.remove("bettingArea-btn-watchCard-Animation");
+}
 </script>

@@ -38,32 +38,4 @@ function toGametable(tableNum: string) {
     alert("即將開放~!敬請期待~");
   }
 }
-// export default defineComponent({
-//   components: {
-//     BetLimitInfo,
-//   },
-//   props: {
-//     tableInfoData: {
-//       type: Object,
-//     },
-//   },
-//   setup(props) {
-//     const router = useRouter();
-//     const store = useStore();
-//     function toGametable(tableNum: string) {
-//       if (props.tableInfoData?.onLine) {
-//         store.commit("table/setCurrentTable", tableNum);
-//         router.push({
-//           path: `/BaccaratGame/${tableNum}`,
-//         });
-//       } else {
-//         alert("即將開放~!敬請期待~");
-//       }
-//     }
-//     return {
-//       //methods
-//       toGametable,
-//     };
-//   },
-// });
 </script>

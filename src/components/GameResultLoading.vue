@@ -10,16 +10,6 @@ import { useStore } from 'vuex'
 import {useRoute } from 'vue-router'
 export default defineComponent({
    setup(){
-       //暫時性的
-        const route = useRoute()
-        // const tableNum = computed(()=>{
-        // return route.params.tableId
-        // })
-        // watch(tableNum,()=>{
-        //     if(tableNum.value=="B"){
-        //         isWait.value = false
-        //     }
-        // })
         //vuex
         const store = useStore()
         const isWait = ref(true)

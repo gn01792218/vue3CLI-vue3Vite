@@ -19,94 +19,83 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, watch } from "vue";
+<script setup lang="ts">
+import { computed, watch } from "vue";
 import gsap from "gsap";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { chatContent, chatMsg } from "../../types/global";
-export default defineComponent({
-  setup() {
-    //路由資料
-    const route = useRoute();
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
-    //vuex
-    const store = useStore();
-    const chatRecall = computed(() => {
-      return store.state.chat.BroadcastChat;
-    });
-    const chatContentArr = computed<chatContent[]>(() => {
-      //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
-      return store.state.chat.chatContentArr;
-    });
-    watch(chatRecall, () => { //收到server回傳的chat資料，push到該桌聊天陣列中
-      pushChatData(chatRecall.value)
-    });
-    function pushChatData(chatRecall:any){
-      //找到目前是哪桌
-      let chatTable: chatContent | undefined = chatContentArr.value.find(
-        (i: chatContent) => {
-          return i.table == tableNum.value;
-        }
-      );
-      //假如存在該桌
-      if (chatTable) {
-        //建立chatMsg物件
-        let chatObject: chatMsg 
-        = {
-          content:'',
-          textColor:'',
-        };
-        //依照chatType判斷顯示何種顏色
-        switch (chatRecall.type) {
-          case 1:
-            chatObject = {
-              content: `玩家${chatRecall.player} : ${chatRecall.message}`,
-              textColor: "white",
-            };
-            break;
-          case 2:
-            chatObject = {
-              content: `玩家${chatRecall.player} : 送了${chatRecall.message}`,
-              textColor: "yellow",
-            };
-            break;
-        }
-        //假如聊天陣列中已經多餘一則，就要delay push Data避免黏在一起
-        if (chatTable.chatMsgArr.length > 0) {
-          //陣列中如果有多餘一則留言的話，就必須要有一點delay
-          setTimeout(() => {
-            chatTable?.chatMsgArr.push(chatObject);
-          }, 500);
-        } else {
-          chatTable?.chatMsgArr.push(chatObject);
-        }
-      }
-    }
-    function msgAnimate(e: HTMLElement) {
-      gsap
-        .fromTo(e, { opacity: 1 }, { duration: 15, y: -200, opacity: 0 })
-        .then(() => {
-          //刪除該元素
-          let parent = e.parentElement;
-          parent?.removeChild(e);
-          //刪除該資料
-          let chatTable = chatContentArr.value.find((i: any) => {
-            return i.table == tableNum.value;
-          });
-          //從聊天陣列中移除
-          chatTable?.chatMsgArr.shift();
-        });
-    }
-    return {
-      //data
-      tableNum,
-      chatContentArr,
-      //methods
-      msgAnimate,
-    };
-  },
+//路由資料
+const route = useRoute();
+const tableNum = computed(() => {
+  return route.params.tableId;
 });
+//vuex
+const store = useStore();
+const chatRecall = computed(() => {
+  return store.state.chat.BroadcastChat;
+});
+const chatContentArr = computed<chatContent[]>(() => {
+  //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
+  return store.state.chat.chatContentArr;
+});
+watch(chatRecall, () => {
+  //收到server回傳的chat資料，push到該桌聊天陣列中
+  pushChatData(chatRecall.value);
+});
+function pushChatData(chatRecall: any) {
+  //找到目前是哪桌
+  let chatTable: chatContent | undefined = chatContentArr.value.find(
+    (i: chatContent) => {
+      return i.table == tableNum.value;
+    }
+  );
+  //假如存在該桌
+  if (chatTable) {
+    //建立chatMsg物件
+    let chatObject: chatMsg = {
+      content: "",
+      textColor: "",
+    };
+    //依照chatType判斷顯示何種顏色
+    switch (chatRecall.type) {
+      case 1:
+        chatObject = {
+          content: `玩家${chatRecall.player} : ${chatRecall.message}`,
+          textColor: "white",
+        };
+        break;
+      case 2:
+        chatObject = {
+          content: `玩家${chatRecall.player} : 送了${chatRecall.message}`,
+          textColor: "yellow",
+        };
+        break;
+    }
+    //假如聊天陣列中已經多餘一則，就要delay push Data避免黏在一起
+    if (chatTable.chatMsgArr.length > 0) {
+      //陣列中如果有多餘一則留言的話，就必須要有一點delay
+      setTimeout(() => {
+        chatTable?.chatMsgArr.push(chatObject);
+      }, 500);
+    } else {
+      chatTable?.chatMsgArr.push(chatObject);
+    }
+  }
+}
+function msgAnimate(e: HTMLElement) {
+  gsap
+    .fromTo(e, { opacity: 1 }, { duration: 15, y: -200, opacity: 0 })
+    .then(() => {
+      //刪除該元素
+      let parent = e.parentElement;
+      parent?.removeChild(e);
+      //刪除該資料
+      let chatTable = chatContentArr.value.find((i: any) => {
+        return i.table == tableNum.value;
+      });
+      //從聊天陣列中移除
+      chatTable?.chatMsgArr.shift();
+    });
+}
 </script>

@@ -13,7 +13,7 @@ export const state = {
     serverDisConnect:false,
     WatchcardNotificaion:{}, //VIP玩家是否取得咪牌權利
     watchCardVideo1Stream:'',
-    // watchCardVideo2Stream:'',
+    watchCardVideo2Stream:'',
   };
   export const actions = {}
   
@@ -62,7 +62,7 @@ export const state = {
     },
     WatchcardRecall(state:any,payload:any){
       state.watchCardVideo1Stream = payload.streamingUrl
-      // state.watchCardVideo2Stream = payload.streamingUrl
+      state.watchCardVideo2Stream = ""
     },
   };
   export const getters = {
