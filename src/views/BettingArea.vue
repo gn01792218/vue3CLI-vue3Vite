@@ -3,7 +3,7 @@
   <div class="betArea position-relative">
     <ConfirmWatchCard/>
     <watchCardBox/>
-    <!-- <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button> -->
+    <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button>
     <!-- PC版本注區 -->
     <div class="betArea-pc position-relative">
       <GameResultLoading />
@@ -1336,7 +1336,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-  /* .watchTest{
+  .watchTest{
     z-index:100;
-  } */
+  }
 </style>

@@ -87,6 +87,7 @@ const showCardResult = ref(false);
 const mqlMax1280 = window.matchMedia("(max-width :1280px)");
 mqlMax1280.addEventListener("change", () => {
   cardPositionInit();
+  console.log('變更卡牌尺寸')
 });
 //watch
 window.addEventListener("reConnect", () => {
@@ -155,18 +156,6 @@ function resetCards() {
     i.classList.remove("winPoker");
   });
 }
-function getCardPosition(
-  position: number,
-  cardSideClassName: string
-): NodeListOf<HTMLElement> | undefined {
-  switch (position) {
-    case 1:
-    case 2:
-      return document.querySelectorAll(`${cardSideClassName}${position}`);
-    case 3:
-      return document.querySelectorAll(`${cardSideClassName}0`);
-  }
-}
 function setWinCardBoxLight() {
   gameResult.value.forEach((i: any) => {
     switch (i) {
@@ -210,6 +199,18 @@ async function showCardTotalPoint() {
   });
   showCardResult.value = true;
   // console.log("計算最終卡牌點數",'閒',playerCardArray.value,playerPoint.value,'莊',bankCardArray.value,bankerPoint.value,'要不要顯示卡牌',showCardResult.value)
+}
+function getCardPosition(
+  position: number,
+  cardSideClassName: string
+): NodeListOf<HTMLElement> | undefined {
+  switch (position) {
+    case 1:
+    case 2:
+      return document.querySelectorAll(`${cardSideClassName}${position}`);
+    case 3:
+      return document.querySelectorAll(`${cardSideClassName}0`);
+  }
 }
 function showCards(
   cardSide: number,
@@ -259,7 +260,6 @@ function cardPositionInit() {
   } else if (viewportWidth <= 540 && viewportWidth > 280) {
     scale.value = 0.14;
   } else if (viewportWidth <= 280) {
-    // console.log("偵測到最小尺寸280")
     scale.value = 0.12;
   } else {
     scale.value = 0.19;
