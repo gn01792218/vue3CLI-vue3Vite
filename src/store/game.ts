@@ -61,8 +61,8 @@ export const state = {
       state.WatchcardNotificaion = payload
     },
     WatchcardRecall(state:any,payload:any){
-      state.watchCardVideo1Stream = payload.streamingUrl
-      state.watchCardVideo2Stream = ""
+      state.watchCardVideo1Stream = payload.watchcardUrl.player
+      state.watchCardVideo2Stream = payload.watchcardUrl.banker
     },
   };
   export const getters = {
