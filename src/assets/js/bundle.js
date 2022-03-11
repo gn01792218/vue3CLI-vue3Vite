@@ -7631,6 +7631,8 @@ export const foundation = $root.foundation = (() => {
                 case 7002:
                 case 7003:
                 case 7004:
+                case 8001:
+                case 8002:
                     break;
                 }
             return null;
@@ -7848,6 +7850,14 @@ export const foundation = $root.foundation = (() => {
             case "BroadcastWatchcardCall":
             case 7004:
                 message.uri = 7004;
+                break;
+            case "HistoryCall":
+            case 8001:
+                message.uri = 8001;
+                break;
+            case "HistoryRecall":
+            case 8002:
+                message.uri = 8002;
                 break;
             }
             return message;
@@ -11591,6 +11601,1195 @@ export const game = $root.game = (() => {
     return game;
 })();
 
+export const history = $root.history = (() => {
+
+    /**
+     * Namespace history.
+     * @exports history
+     * @namespace
+     */
+    const history = {};
+
+    history.History = (function() {
+
+        /**
+         * Properties of a History.
+         * @memberof history
+         * @interface IHistory
+         * @property {history.IBetStatus|null} [bets] History bets
+         * @property {number|null} [totalBet] History totalBet
+         * @property {Array.<history.HistoryResult>|null} [results] History results
+         * @property {Array.<dealer.IDraw>|null} [draws] History draws
+         * @property {string|null} [table] History table
+         * @property {number|null} [numOfShoe] History numOfShoe
+         * @property {number|null} [numOfRound] History numOfRound
+         * @property {number|null} [totalWin] History totalWin
+         * @property {string|null} [gameTime] History gameTime
+         */
+
+        /**
+         * Constructs a new History.
+         * @memberof history
+         * @classdesc Represents a History.
+         * @implements IHistory
+         * @constructor
+         * @param {history.IHistory=} [properties] Properties to set
+         */
+        function History(properties) {
+            this.results = [];
+            this.draws = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * History bets.
+         * @member {history.IBetStatus|null|undefined} bets
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.bets = null;
+
+        /**
+         * History totalBet.
+         * @member {number} totalBet
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.totalBet = 0;
+
+        /**
+         * History results.
+         * @member {Array.<history.HistoryResult>} results
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.results = $util.emptyArray;
+
+        /**
+         * History draws.
+         * @member {Array.<dealer.IDraw>} draws
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.draws = $util.emptyArray;
+
+        /**
+         * History table.
+         * @member {string} table
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.table = "";
+
+        /**
+         * History numOfShoe.
+         * @member {number} numOfShoe
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.numOfShoe = 0;
+
+        /**
+         * History numOfRound.
+         * @member {number} numOfRound
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.numOfRound = 0;
+
+        /**
+         * History totalWin.
+         * @member {number} totalWin
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.totalWin = 0;
+
+        /**
+         * History gameTime.
+         * @member {string} gameTime
+         * @memberof history.History
+         * @instance
+         */
+        History.prototype.gameTime = "";
+
+        /**
+         * Creates a new History instance using the specified properties.
+         * @function create
+         * @memberof history.History
+         * @static
+         * @param {history.IHistory=} [properties] Properties to set
+         * @returns {history.History} History instance
+         */
+        History.create = function create(properties) {
+            return new History(properties);
+        };
+
+        /**
+         * Encodes the specified History message. Does not implicitly {@link history.History.verify|verify} messages.
+         * @function encode
+         * @memberof history.History
+         * @static
+         * @param {history.IHistory} message History message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        History.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.bets != null && Object.hasOwnProperty.call(message, "bets"))
+                $root.history.BetStatus.encode(message.bets, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.totalBet != null && Object.hasOwnProperty.call(message, "totalBet"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.totalBet);
+            if (message.results != null && message.results.length) {
+                writer.uint32(/* id 3, wireType 2 =*/26).fork();
+                for (let i = 0; i < message.results.length; ++i)
+                    writer.int32(message.results[i]);
+                writer.ldelim();
+            }
+            if (message.draws != null && message.draws.length)
+                for (let i = 0; i < message.draws.length; ++i)
+                    $root.dealer.Draw.encode(message.draws[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+            if (message.table != null && Object.hasOwnProperty.call(message, "table"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.table);
+            if (message.numOfShoe != null && Object.hasOwnProperty.call(message, "numOfShoe"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.numOfShoe);
+            if (message.numOfRound != null && Object.hasOwnProperty.call(message, "numOfRound"))
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.numOfRound);
+            if (message.totalWin != null && Object.hasOwnProperty.call(message, "totalWin"))
+                writer.uint32(/* id 8, wireType 1 =*/65).double(message.totalWin);
+            if (message.gameTime != null && Object.hasOwnProperty.call(message, "gameTime"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.gameTime);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified History message, length delimited. Does not implicitly {@link history.History.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof history.History
+         * @static
+         * @param {history.IHistory} message History message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        History.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a History message from the specified reader or buffer.
+         * @function decode
+         * @memberof history.History
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {history.History} History
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        History.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.history.History();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.bets = $root.history.BetStatus.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.totalBet = reader.double();
+                    break;
+                case 3:
+                    if (!(message.results && message.results.length))
+                        message.results = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.results.push(reader.int32());
+                    } else
+                        message.results.push(reader.int32());
+                    break;
+                case 4:
+                    if (!(message.draws && message.draws.length))
+                        message.draws = [];
+                    message.draws.push($root.dealer.Draw.decode(reader, reader.uint32()));
+                    break;
+                case 5:
+                    message.table = reader.string();
+                    break;
+                case 6:
+                    message.numOfShoe = reader.int32();
+                    break;
+                case 7:
+                    message.numOfRound = reader.int32();
+                    break;
+                case 8:
+                    message.totalWin = reader.double();
+                    break;
+                case 9:
+                    message.gameTime = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a History message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof history.History
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {history.History} History
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        History.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a History message.
+         * @function verify
+         * @memberof history.History
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        History.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.bets != null && message.hasOwnProperty("bets")) {
+                let error = $root.history.BetStatus.verify(message.bets);
+                if (error)
+                    return "bets." + error;
+            }
+            if (message.totalBet != null && message.hasOwnProperty("totalBet"))
+                if (typeof message.totalBet !== "number")
+                    return "totalBet: number expected";
+            if (message.results != null && message.hasOwnProperty("results")) {
+                if (!Array.isArray(message.results))
+                    return "results: array expected";
+                for (let i = 0; i < message.results.length; ++i)
+                    switch (message.results[i]) {
+                    default:
+                        return "results: enum value[] expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        break;
+                    }
+            }
+            if (message.draws != null && message.hasOwnProperty("draws")) {
+                if (!Array.isArray(message.draws))
+                    return "draws: array expected";
+                for (let i = 0; i < message.draws.length; ++i) {
+                    let error = $root.dealer.Draw.verify(message.draws[i]);
+                    if (error)
+                        return "draws." + error;
+                }
+            }
+            if (message.table != null && message.hasOwnProperty("table"))
+                if (!$util.isString(message.table))
+                    return "table: string expected";
+            if (message.numOfShoe != null && message.hasOwnProperty("numOfShoe"))
+                if (!$util.isInteger(message.numOfShoe))
+                    return "numOfShoe: integer expected";
+            if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
+                if (!$util.isInteger(message.numOfRound))
+                    return "numOfRound: integer expected";
+            if (message.totalWin != null && message.hasOwnProperty("totalWin"))
+                if (typeof message.totalWin !== "number")
+                    return "totalWin: number expected";
+            if (message.gameTime != null && message.hasOwnProperty("gameTime"))
+                if (!$util.isString(message.gameTime))
+                    return "gameTime: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a History message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof history.History
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {history.History} History
+         */
+        History.fromObject = function fromObject(object) {
+            if (object instanceof $root.history.History)
+                return object;
+            let message = new $root.history.History();
+            if (object.bets != null) {
+                if (typeof object.bets !== "object")
+                    throw TypeError(".history.History.bets: object expected");
+                message.bets = $root.history.BetStatus.fromObject(object.bets);
+            }
+            if (object.totalBet != null)
+                message.totalBet = Number(object.totalBet);
+            if (object.results) {
+                if (!Array.isArray(object.results))
+                    throw TypeError(".history.History.results: array expected");
+                message.results = [];
+                for (let i = 0; i < object.results.length; ++i)
+                    switch (object.results[i]) {
+                    default:
+                    case "ResultDefault":
+                    case 0:
+                        message.results[i] = 0;
+                        break;
+                    case "Banker":
+                    case 1:
+                        message.results[i] = 1;
+                        break;
+                    case "Player":
+                    case 2:
+                        message.results[i] = 2;
+                        break;
+                    case "BankerPair":
+                    case 3:
+                        message.results[i] = 3;
+                        break;
+                    case "Tie":
+                    case 4:
+                        message.results[i] = 4;
+                        break;
+                    case "PlayerPair":
+                    case 5:
+                        message.results[i] = 5;
+                        break;
+                    }
+            }
+            if (object.draws) {
+                if (!Array.isArray(object.draws))
+                    throw TypeError(".history.History.draws: array expected");
+                message.draws = [];
+                for (let i = 0; i < object.draws.length; ++i) {
+                    if (typeof object.draws[i] !== "object")
+                        throw TypeError(".history.History.draws: object expected");
+                    message.draws[i] = $root.dealer.Draw.fromObject(object.draws[i]);
+                }
+            }
+            if (object.table != null)
+                message.table = String(object.table);
+            if (object.numOfShoe != null)
+                message.numOfShoe = object.numOfShoe | 0;
+            if (object.numOfRound != null)
+                message.numOfRound = object.numOfRound | 0;
+            if (object.totalWin != null)
+                message.totalWin = Number(object.totalWin);
+            if (object.gameTime != null)
+                message.gameTime = String(object.gameTime);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a History message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof history.History
+         * @static
+         * @param {history.History} message History
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        History.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults) {
+                object.results = [];
+                object.draws = [];
+            }
+            if (options.defaults) {
+                object.bets = null;
+                object.totalBet = 0;
+                object.table = "";
+                object.numOfShoe = 0;
+                object.numOfRound = 0;
+                object.totalWin = 0;
+                object.gameTime = "";
+            }
+            if (message.bets != null && message.hasOwnProperty("bets"))
+                object.bets = $root.history.BetStatus.toObject(message.bets, options);
+            if (message.totalBet != null && message.hasOwnProperty("totalBet"))
+                object.totalBet = options.json && !isFinite(message.totalBet) ? String(message.totalBet) : message.totalBet;
+            if (message.results && message.results.length) {
+                object.results = [];
+                for (let j = 0; j < message.results.length; ++j)
+                    object.results[j] = options.enums === String ? $root.history.HistoryResult[message.results[j]] : message.results[j];
+            }
+            if (message.draws && message.draws.length) {
+                object.draws = [];
+                for (let j = 0; j < message.draws.length; ++j)
+                    object.draws[j] = $root.dealer.Draw.toObject(message.draws[j], options);
+            }
+            if (message.table != null && message.hasOwnProperty("table"))
+                object.table = message.table;
+            if (message.numOfShoe != null && message.hasOwnProperty("numOfShoe"))
+                object.numOfShoe = message.numOfShoe;
+            if (message.numOfRound != null && message.hasOwnProperty("numOfRound"))
+                object.numOfRound = message.numOfRound;
+            if (message.totalWin != null && message.hasOwnProperty("totalWin"))
+                object.totalWin = options.json && !isFinite(message.totalWin) ? String(message.totalWin) : message.totalWin;
+            if (message.gameTime != null && message.hasOwnProperty("gameTime"))
+                object.gameTime = message.gameTime;
+            return object;
+        };
+
+        /**
+         * Converts this History to JSON.
+         * @function toJSON
+         * @memberof history.History
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        History.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return History;
+    })();
+
+    history.HistoryCall = (function() {
+
+        /**
+         * Properties of a HistoryCall.
+         * @memberof history
+         * @interface IHistoryCall
+         * @property {foundation.IHeader|null} [header] HistoryCall header
+         */
+
+        /**
+         * Constructs a new HistoryCall.
+         * @memberof history
+         * @classdesc Represents a HistoryCall.
+         * @implements IHistoryCall
+         * @constructor
+         * @param {history.IHistoryCall=} [properties] Properties to set
+         */
+        function HistoryCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * HistoryCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof history.HistoryCall
+         * @instance
+         */
+        HistoryCall.prototype.header = null;
+
+        /**
+         * Creates a new HistoryCall instance using the specified properties.
+         * @function create
+         * @memberof history.HistoryCall
+         * @static
+         * @param {history.IHistoryCall=} [properties] Properties to set
+         * @returns {history.HistoryCall} HistoryCall instance
+         */
+        HistoryCall.create = function create(properties) {
+            return new HistoryCall(properties);
+        };
+
+        /**
+         * Encodes the specified HistoryCall message. Does not implicitly {@link history.HistoryCall.verify|verify} messages.
+         * @function encode
+         * @memberof history.HistoryCall
+         * @static
+         * @param {history.IHistoryCall} message HistoryCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HistoryCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified HistoryCall message, length delimited. Does not implicitly {@link history.HistoryCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof history.HistoryCall
+         * @static
+         * @param {history.IHistoryCall} message HistoryCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HistoryCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a HistoryCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof history.HistoryCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {history.HistoryCall} HistoryCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HistoryCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.history.HistoryCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a HistoryCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof history.HistoryCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {history.HistoryCall} HistoryCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HistoryCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a HistoryCall message.
+         * @function verify
+         * @memberof history.HistoryCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        HistoryCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a HistoryCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof history.HistoryCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {history.HistoryCall} HistoryCall
+         */
+        HistoryCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.history.HistoryCall)
+                return object;
+            let message = new $root.history.HistoryCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".history.HistoryCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a HistoryCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof history.HistoryCall
+         * @static
+         * @param {history.HistoryCall} message HistoryCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        HistoryCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            return object;
+        };
+
+        /**
+         * Converts this HistoryCall to JSON.
+         * @function toJSON
+         * @memberof history.HistoryCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        HistoryCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return HistoryCall;
+    })();
+
+    history.HistoryRecall = (function() {
+
+        /**
+         * Properties of a HistoryRecall.
+         * @memberof history
+         * @interface IHistoryRecall
+         * @property {foundation.IHeader|null} [header] HistoryRecall header
+         * @property {Array.<history.IHistory>|null} [histories] HistoryRecall histories
+         */
+
+        /**
+         * Constructs a new HistoryRecall.
+         * @memberof history
+         * @classdesc Represents a HistoryRecall.
+         * @implements IHistoryRecall
+         * @constructor
+         * @param {history.IHistoryRecall=} [properties] Properties to set
+         */
+        function HistoryRecall(properties) {
+            this.histories = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * HistoryRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof history.HistoryRecall
+         * @instance
+         */
+        HistoryRecall.prototype.header = null;
+
+        /**
+         * HistoryRecall histories.
+         * @member {Array.<history.IHistory>} histories
+         * @memberof history.HistoryRecall
+         * @instance
+         */
+        HistoryRecall.prototype.histories = $util.emptyArray;
+
+        /**
+         * Creates a new HistoryRecall instance using the specified properties.
+         * @function create
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {history.IHistoryRecall=} [properties] Properties to set
+         * @returns {history.HistoryRecall} HistoryRecall instance
+         */
+        HistoryRecall.create = function create(properties) {
+            return new HistoryRecall(properties);
+        };
+
+        /**
+         * Encodes the specified HistoryRecall message. Does not implicitly {@link history.HistoryRecall.verify|verify} messages.
+         * @function encode
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {history.IHistoryRecall} message HistoryRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HistoryRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.histories != null && message.histories.length)
+                for (let i = 0; i < message.histories.length; ++i)
+                    $root.history.History.encode(message.histories[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified HistoryRecall message, length delimited. Does not implicitly {@link history.HistoryRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {history.IHistoryRecall} message HistoryRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HistoryRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a HistoryRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {history.HistoryRecall} HistoryRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HistoryRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.history.HistoryRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    if (!(message.histories && message.histories.length))
+                        message.histories = [];
+                    message.histories.push($root.history.History.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a HistoryRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {history.HistoryRecall} HistoryRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HistoryRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a HistoryRecall message.
+         * @function verify
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        HistoryRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.histories != null && message.hasOwnProperty("histories")) {
+                if (!Array.isArray(message.histories))
+                    return "histories: array expected";
+                for (let i = 0; i < message.histories.length; ++i) {
+                    let error = $root.history.History.verify(message.histories[i]);
+                    if (error)
+                        return "histories." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a HistoryRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {history.HistoryRecall} HistoryRecall
+         */
+        HistoryRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.history.HistoryRecall)
+                return object;
+            let message = new $root.history.HistoryRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".history.HistoryRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.histories) {
+                if (!Array.isArray(object.histories))
+                    throw TypeError(".history.HistoryRecall.histories: array expected");
+                message.histories = [];
+                for (let i = 0; i < object.histories.length; ++i) {
+                    if (typeof object.histories[i] !== "object")
+                        throw TypeError(".history.HistoryRecall.histories: object expected");
+                    message.histories[i] = $root.history.History.fromObject(object.histories[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a HistoryRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof history.HistoryRecall
+         * @static
+         * @param {history.HistoryRecall} message HistoryRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        HistoryRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.histories = [];
+            if (options.defaults)
+                object.header = null;
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.histories && message.histories.length) {
+                object.histories = [];
+                for (let j = 0; j < message.histories.length; ++j)
+                    object.histories[j] = $root.history.History.toObject(message.histories[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this HistoryRecall to JSON.
+         * @function toJSON
+         * @memberof history.HistoryRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        HistoryRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return HistoryRecall;
+    })();
+
+    /**
+     * HistoryResult enum.
+     * @name history.HistoryResult
+     * @enum {number}
+     * @property {number} ResultDefault=0 ResultDefault value
+     * @property {number} Banker=1 Banker value
+     * @property {number} Player=2 Player value
+     * @property {number} BankerPair=3 BankerPair value
+     * @property {number} Tie=4 Tie value
+     * @property {number} PlayerPair=5 PlayerPair value
+     */
+    history.HistoryResult = (function() {
+        const valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "ResultDefault"] = 0;
+        values[valuesById[1] = "Banker"] = 1;
+        values[valuesById[2] = "Player"] = 2;
+        values[valuesById[3] = "BankerPair"] = 3;
+        values[valuesById[4] = "Tie"] = 4;
+        values[valuesById[5] = "PlayerPair"] = 5;
+        return values;
+    })();
+
+    history.BetStatus = (function() {
+
+        /**
+         * Properties of a BetStatus.
+         * @memberof history
+         * @interface IBetStatus
+         * @property {number|null} [Banker] BetStatus Banker
+         * @property {number|null} [Player] BetStatus Player
+         * @property {number|null} [BankerPair] BetStatus BankerPair
+         * @property {number|null} [Tie] BetStatus Tie
+         * @property {number|null} [PlayerPair] BetStatus PlayerPair
+         */
+
+        /**
+         * Constructs a new BetStatus.
+         * @memberof history
+         * @classdesc Represents a BetStatus.
+         * @implements IBetStatus
+         * @constructor
+         * @param {history.IBetStatus=} [properties] Properties to set
+         */
+        function BetStatus(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BetStatus Banker.
+         * @member {number} Banker
+         * @memberof history.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.Banker = 0;
+
+        /**
+         * BetStatus Player.
+         * @member {number} Player
+         * @memberof history.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.Player = 0;
+
+        /**
+         * BetStatus BankerPair.
+         * @member {number} BankerPair
+         * @memberof history.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.BankerPair = 0;
+
+        /**
+         * BetStatus Tie.
+         * @member {number} Tie
+         * @memberof history.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.Tie = 0;
+
+        /**
+         * BetStatus PlayerPair.
+         * @member {number} PlayerPair
+         * @memberof history.BetStatus
+         * @instance
+         */
+        BetStatus.prototype.PlayerPair = 0;
+
+        /**
+         * Creates a new BetStatus instance using the specified properties.
+         * @function create
+         * @memberof history.BetStatus
+         * @static
+         * @param {history.IBetStatus=} [properties] Properties to set
+         * @returns {history.BetStatus} BetStatus instance
+         */
+        BetStatus.create = function create(properties) {
+            return new BetStatus(properties);
+        };
+
+        /**
+         * Encodes the specified BetStatus message. Does not implicitly {@link history.BetStatus.verify|verify} messages.
+         * @function encode
+         * @memberof history.BetStatus
+         * @static
+         * @param {history.IBetStatus} message BetStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetStatus.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.Banker != null && Object.hasOwnProperty.call(message, "Banker"))
+                writer.uint32(/* id 1, wireType 1 =*/9).double(message.Banker);
+            if (message.Player != null && Object.hasOwnProperty.call(message, "Player"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.Player);
+            if (message.BankerPair != null && Object.hasOwnProperty.call(message, "BankerPair"))
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.BankerPair);
+            if (message.Tie != null && Object.hasOwnProperty.call(message, "Tie"))
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.Tie);
+            if (message.PlayerPair != null && Object.hasOwnProperty.call(message, "PlayerPair"))
+                writer.uint32(/* id 5, wireType 1 =*/41).double(message.PlayerPair);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BetStatus message, length delimited. Does not implicitly {@link history.BetStatus.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof history.BetStatus
+         * @static
+         * @param {history.IBetStatus} message BetStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BetStatus.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BetStatus message from the specified reader or buffer.
+         * @function decode
+         * @memberof history.BetStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {history.BetStatus} BetStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetStatus.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.history.BetStatus();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.Banker = reader.double();
+                    break;
+                case 2:
+                    message.Player = reader.double();
+                    break;
+                case 3:
+                    message.BankerPair = reader.double();
+                    break;
+                case 4:
+                    message.Tie = reader.double();
+                    break;
+                case 5:
+                    message.PlayerPair = reader.double();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BetStatus message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof history.BetStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {history.BetStatus} BetStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BetStatus.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BetStatus message.
+         * @function verify
+         * @memberof history.BetStatus
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BetStatus.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.Banker != null && message.hasOwnProperty("Banker"))
+                if (typeof message.Banker !== "number")
+                    return "Banker: number expected";
+            if (message.Player != null && message.hasOwnProperty("Player"))
+                if (typeof message.Player !== "number")
+                    return "Player: number expected";
+            if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
+                if (typeof message.BankerPair !== "number")
+                    return "BankerPair: number expected";
+            if (message.Tie != null && message.hasOwnProperty("Tie"))
+                if (typeof message.Tie !== "number")
+                    return "Tie: number expected";
+            if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
+                if (typeof message.PlayerPair !== "number")
+                    return "PlayerPair: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a BetStatus message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof history.BetStatus
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {history.BetStatus} BetStatus
+         */
+        BetStatus.fromObject = function fromObject(object) {
+            if (object instanceof $root.history.BetStatus)
+                return object;
+            let message = new $root.history.BetStatus();
+            if (object.Banker != null)
+                message.Banker = Number(object.Banker);
+            if (object.Player != null)
+                message.Player = Number(object.Player);
+            if (object.BankerPair != null)
+                message.BankerPair = Number(object.BankerPair);
+            if (object.Tie != null)
+                message.Tie = Number(object.Tie);
+            if (object.PlayerPair != null)
+                message.PlayerPair = Number(object.PlayerPair);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BetStatus message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof history.BetStatus
+         * @static
+         * @param {history.BetStatus} message BetStatus
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BetStatus.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.Banker = 0;
+                object.Player = 0;
+                object.BankerPair = 0;
+                object.Tie = 0;
+                object.PlayerPair = 0;
+            }
+            if (message.Banker != null && message.hasOwnProperty("Banker"))
+                object.Banker = options.json && !isFinite(message.Banker) ? String(message.Banker) : message.Banker;
+            if (message.Player != null && message.hasOwnProperty("Player"))
+                object.Player = options.json && !isFinite(message.Player) ? String(message.Player) : message.Player;
+            if (message.BankerPair != null && message.hasOwnProperty("BankerPair"))
+                object.BankerPair = options.json && !isFinite(message.BankerPair) ? String(message.BankerPair) : message.BankerPair;
+            if (message.Tie != null && message.hasOwnProperty("Tie"))
+                object.Tie = options.json && !isFinite(message.Tie) ? String(message.Tie) : message.Tie;
+            if (message.PlayerPair != null && message.hasOwnProperty("PlayerPair"))
+                object.PlayerPair = options.json && !isFinite(message.PlayerPair) ? String(message.PlayerPair) : message.PlayerPair;
+            return object;
+        };
+
+        /**
+         * Converts this BetStatus to JSON.
+         * @function toJSON
+         * @memberof history.BetStatus
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BetStatus.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BetStatus;
+    })();
+
+    return history;
+})();
+
 export const kick = $root.kick = (() => {
 
     /**
@@ -15322,6 +16521,8 @@ export const route = $root.route = (() => {
      * @property {number} WatchcardRecall=7002 WatchcardRecall value
      * @property {number} BroadcastWatchcardNotificaion=7003 BroadcastWatchcardNotificaion value
      * @property {number} BroadcastWatchcardCall=7004 BroadcastWatchcardCall value
+     * @property {number} HistoryCall=8001 HistoryCall value
+     * @property {number} HistoryRecall=8002 HistoryRecall value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -15375,6 +16576,8 @@ export const route = $root.route = (() => {
         values[valuesById[7002] = "WatchcardRecall"] = 7002;
         values[valuesById[7003] = "BroadcastWatchcardNotificaion"] = 7003;
         values[valuesById[7004] = "BroadcastWatchcardCall"] = 7004;
+        values[valuesById[8001] = "HistoryCall"] = 8001;
+        values[valuesById[8002] = "HistoryRecall"] = 8002;
         return values;
     })();
 

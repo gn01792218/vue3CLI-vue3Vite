@@ -16,6 +16,7 @@ const announcement = protoRoot.announcement
 const kick = protoRoot.kick
 const chat = protoRoot.chat
 const donate = protoRoot.donate
+const history = protoRoot.history
 //各種send方法
 //發送心跳
 const sendPon = ()=>{
@@ -137,6 +138,17 @@ export const sendWatchCardCall = (data:any) =>{
     })
     let bytes = game.WatchcardCall.encode(proto).finish()
     console.log('sendWatchCardCall',proto)
+    sendWSPush(bytes);
+}
+//發送歷史資訊Call
+export const sendHistoryCall = () =>{
+    let proto = history.HistoryCall.create({
+        header:foundation.Header.create({
+            uri:route.HistoryCall
+        }),
+    })
+    let bytes = history.HistoryCall.encode(proto).finish()
+    console.log('sendHistoryCall',proto)
     sendWSPush(bytes);
 }
 //各種接收訊息的方法，在main.js中全局註冊監聽
@@ -277,6 +289,12 @@ export const getMsgReCall = (e:any) =>{
             let Kickout = kick.kickout.decode(new Uint8Array(e.detail.msg.data))
             store.commit('kick/Kickout',Kickout)
             console.log('Kickout',Kickout)
+            break;
+        case route.HistoryRecall:
+            let HistoryRecall = history.HistoryRecall.decode(new Uint8Array(e.detail.msg.data))
+            console.log('HistoryRecall',HistoryRecall)
+            store.commit('history/HistoryRecall',HistoryRecall)
+            
             break;
     }
 }

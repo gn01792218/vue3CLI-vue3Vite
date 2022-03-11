@@ -61,9 +61,8 @@
     </div>
     <div class="header-bottom">
       <div class="header-bottom-desk">
-        <!-- 給下面的++看見userInfo data-toggle="modal"
-          data-target="#exampleModal" -->
-        <div class="header-userName d-flex col font_yellows">
+        <div class="header-userName d-flex col font_yellows" data-toggle="modal"
+          data-target="#exampleModal" @click="getHistory">
           <i class="bi bi-person-circle"></i><i v-if="user">{{ user.name }}</i>
         </div>
         <div class="header-userName col font_yellows">分{{ userWallet }}</div>
@@ -121,6 +120,7 @@ import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { state } from "@/store/lobby";
+import { sendHistoryCall } from '@/socketApi'
 //route
 const route = useRoute();
 const tableNum = computed(() => {
@@ -191,5 +191,9 @@ function closeWindow() {
   op.alert("您已離開遊戲，請關閉網頁");
   op.opener = null;
   op.close();
+}
+//拿取歷史資訊
+function getHistory (){
+  sendHistoryCall()
 }
 </script>

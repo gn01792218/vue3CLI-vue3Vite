@@ -4739,6 +4739,458 @@ export namespace game {
     }
 }
 
+/** Namespace history. */
+export namespace history {
+
+    /** Properties of a History. */
+    interface IHistory {
+
+        /** History bets */
+        bets?: (history.IBetStatus|null);
+
+        /** History totalBet */
+        totalBet?: (number|null);
+
+        /** History results */
+        results?: (history.HistoryResult[]|null);
+
+        /** History draws */
+        draws?: (dealer.IDraw[]|null);
+
+        /** History table */
+        table?: (string|null);
+
+        /** History numOfShoe */
+        numOfShoe?: (number|null);
+
+        /** History numOfRound */
+        numOfRound?: (number|null);
+
+        /** History totalWin */
+        totalWin?: (number|null);
+
+        /** History gameTime */
+        gameTime?: (string|null);
+    }
+
+    /** Represents a History. */
+    class History implements IHistory {
+
+        /**
+         * Constructs a new History.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: history.IHistory);
+
+        /** History bets. */
+        public bets?: (history.IBetStatus|null);
+
+        /** History totalBet. */
+        public totalBet: number;
+
+        /** History results. */
+        public results: history.HistoryResult[];
+
+        /** History draws. */
+        public draws: dealer.IDraw[];
+
+        /** History table. */
+        public table: string;
+
+        /** History numOfShoe. */
+        public numOfShoe: number;
+
+        /** History numOfRound. */
+        public numOfRound: number;
+
+        /** History totalWin. */
+        public totalWin: number;
+
+        /** History gameTime. */
+        public gameTime: string;
+
+        /**
+         * Creates a new History instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns History instance
+         */
+        public static create(properties?: history.IHistory): history.History;
+
+        /**
+         * Encodes the specified History message. Does not implicitly {@link history.History.verify|verify} messages.
+         * @param message History message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: history.IHistory, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified History message, length delimited. Does not implicitly {@link history.History.verify|verify} messages.
+         * @param message History message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: history.IHistory, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a History message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns History
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): history.History;
+
+        /**
+         * Decodes a History message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns History
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): history.History;
+
+        /**
+         * Verifies a History message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a History message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns History
+         */
+        public static fromObject(object: { [k: string]: any }): history.History;
+
+        /**
+         * Creates a plain object from a History message. Also converts values to other types if specified.
+         * @param message History
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: history.History, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this History to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a HistoryCall. */
+    interface IHistoryCall {
+
+        /** HistoryCall header */
+        header?: (foundation.IHeader|null);
+    }
+
+    /** Represents a HistoryCall. */
+    class HistoryCall implements IHistoryCall {
+
+        /**
+         * Constructs a new HistoryCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: history.IHistoryCall);
+
+        /** HistoryCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /**
+         * Creates a new HistoryCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns HistoryCall instance
+         */
+        public static create(properties?: history.IHistoryCall): history.HistoryCall;
+
+        /**
+         * Encodes the specified HistoryCall message. Does not implicitly {@link history.HistoryCall.verify|verify} messages.
+         * @param message HistoryCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: history.IHistoryCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified HistoryCall message, length delimited. Does not implicitly {@link history.HistoryCall.verify|verify} messages.
+         * @param message HistoryCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: history.IHistoryCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a HistoryCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns HistoryCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): history.HistoryCall;
+
+        /**
+         * Decodes a HistoryCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns HistoryCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): history.HistoryCall;
+
+        /**
+         * Verifies a HistoryCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a HistoryCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns HistoryCall
+         */
+        public static fromObject(object: { [k: string]: any }): history.HistoryCall;
+
+        /**
+         * Creates a plain object from a HistoryCall message. Also converts values to other types if specified.
+         * @param message HistoryCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: history.HistoryCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this HistoryCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a HistoryRecall. */
+    interface IHistoryRecall {
+
+        /** HistoryRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** HistoryRecall histories */
+        histories?: (history.IHistory[]|null);
+    }
+
+    /** Represents a HistoryRecall. */
+    class HistoryRecall implements IHistoryRecall {
+
+        /**
+         * Constructs a new HistoryRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: history.IHistoryRecall);
+
+        /** HistoryRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** HistoryRecall histories. */
+        public histories: history.IHistory[];
+
+        /**
+         * Creates a new HistoryRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns HistoryRecall instance
+         */
+        public static create(properties?: history.IHistoryRecall): history.HistoryRecall;
+
+        /**
+         * Encodes the specified HistoryRecall message. Does not implicitly {@link history.HistoryRecall.verify|verify} messages.
+         * @param message HistoryRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: history.IHistoryRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified HistoryRecall message, length delimited. Does not implicitly {@link history.HistoryRecall.verify|verify} messages.
+         * @param message HistoryRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: history.IHistoryRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a HistoryRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns HistoryRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): history.HistoryRecall;
+
+        /**
+         * Decodes a HistoryRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns HistoryRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): history.HistoryRecall;
+
+        /**
+         * Verifies a HistoryRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a HistoryRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns HistoryRecall
+         */
+        public static fromObject(object: { [k: string]: any }): history.HistoryRecall;
+
+        /**
+         * Creates a plain object from a HistoryRecall message. Also converts values to other types if specified.
+         * @param message HistoryRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: history.HistoryRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this HistoryRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** HistoryResult enum. */
+    enum HistoryResult {
+        ResultDefault = 0,
+        Banker = 1,
+        Player = 2,
+        BankerPair = 3,
+        Tie = 4,
+        PlayerPair = 5
+    }
+
+    /** Properties of a BetStatus. */
+    interface IBetStatus {
+
+        /** BetStatus Banker */
+        Banker?: (number|null);
+
+        /** BetStatus Player */
+        Player?: (number|null);
+
+        /** BetStatus BankerPair */
+        BankerPair?: (number|null);
+
+        /** BetStatus Tie */
+        Tie?: (number|null);
+
+        /** BetStatus PlayerPair */
+        PlayerPair?: (number|null);
+    }
+
+    /** Represents a BetStatus. */
+    class BetStatus implements IBetStatus {
+
+        /**
+         * Constructs a new BetStatus.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: history.IBetStatus);
+
+        /** BetStatus Banker. */
+        public Banker: number;
+
+        /** BetStatus Player. */
+        public Player: number;
+
+        /** BetStatus BankerPair. */
+        public BankerPair: number;
+
+        /** BetStatus Tie. */
+        public Tie: number;
+
+        /** BetStatus PlayerPair. */
+        public PlayerPair: number;
+
+        /**
+         * Creates a new BetStatus instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BetStatus instance
+         */
+        public static create(properties?: history.IBetStatus): history.BetStatus;
+
+        /**
+         * Encodes the specified BetStatus message. Does not implicitly {@link history.BetStatus.verify|verify} messages.
+         * @param message BetStatus message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: history.IBetStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BetStatus message, length delimited. Does not implicitly {@link history.BetStatus.verify|verify} messages.
+         * @param message BetStatus message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: history.IBetStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BetStatus message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BetStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): history.BetStatus;
+
+        /**
+         * Decodes a BetStatus message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BetStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): history.BetStatus;
+
+        /**
+         * Verifies a BetStatus message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BetStatus message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BetStatus
+         */
+        public static fromObject(object: { [k: string]: any }): history.BetStatus;
+
+        /**
+         * Creates a plain object from a BetStatus message. Also converts values to other types if specified.
+         * @param message BetStatus
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: history.BetStatus, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BetStatus to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
 /** Namespace kick. */
 export namespace kick {
 
@@ -6288,7 +6740,9 @@ export namespace route {
         WatchcardCall = 7001,
         WatchcardRecall = 7002,
         BroadcastWatchcardNotificaion = 7003,
-        BroadcastWatchcardCall = 7004
+        BroadcastWatchcardCall = 7004,
+        HistoryCall = 8001,
+        HistoryRecall = 8002
     }
 }
 

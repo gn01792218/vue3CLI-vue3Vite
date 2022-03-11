@@ -592,6 +592,7 @@ export default defineComponent({
     });
     watch(DrawCard,()=>{
       //開始畫牌的時候 VIP的瞇排按鈕特效要去除
+      if(!watchCardBtn.value) return
       if(watchCardBtn.value.className.includes("bettingArea-btn-watchCard-Animation")){ 
         resetWatchCardAlert(watchCardBtn.value)
       }
