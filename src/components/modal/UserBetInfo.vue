@@ -200,10 +200,8 @@ interface draw {
   card: Card;
   position: number;
 }
-onMounted(() => {
-  cardPositionInit();
-});
 onUpdated(()=>{
+  cardPositionInit();
   userBetInfoArray.value.forEach((i: userInfo, index: number) => {
     i.draws.forEach((card: draw) => {
       //畫出六張卡牌
@@ -301,16 +299,22 @@ function setWinCardBoxLight(userBetInfoIndex: number, winSide: number[]) {
   })
   switch (win) {
     case 0:
-      console.log(`.userBetInfo-banker${userBetInfoIndex}`)
+      let bankerCard = document.querySelector(
+        `.userBetInfo-banker${userBetInfoIndex}`
+      ) as HTMLElement;
+      let playererCard = document.querySelector(
+        `.userBetInfo-player${userBetInfoIndex}`
+      ) as HTMLElement;
+      bankerCard.classList.remove("winPoker")
+      playererCard.classList.remove("winPoker")
+      break;
     case 1:
-      console.log(`.userBetInfo-banker${userBetInfoIndex}`)
       let bankerCardBox = document.querySelector(
         `.userBetInfo-banker${userBetInfoIndex}`
       ) as HTMLElement;
       bankerCardBox.classList.add("winPoker");
       break;
     case 2:
-      console.log(`.userBetInfo-player${userBetInfoIndex}`)
       let playererCardBox = document.querySelector(
         `.userBetInfo-player${userBetInfoIndex}`
       ) as HTMLElement;
