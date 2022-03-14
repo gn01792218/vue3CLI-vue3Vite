@@ -9,6 +9,8 @@ dateRun();
 //日期顯示
 const date = ref("");
 const isalerted = ref(false);
+const alertLastThreeGameStartHours = 6 //幾點提醒只剩下最後幾局(格式:24小時制)
+const alertLastThreeGameStartMinutes = 10 //提醒的時間到幾分
 function dateRun() {
   setInterval(() => {
     let temp = new Date();
@@ -28,13 +30,12 @@ function dateRun() {
     alertLastThreeGame(temp);
   }, 1000);
 }
-function alertLastThreeGame(date: Date) {
+function alertLastThreeGame(date: Date) {  //凌晨時刻提示最後X局的alert
   //提示遊戲還剩下三局結束
   if (isalerted.value) return;
   if (
-    date.getHours() == 3 &&
-    date.getMinutes() >= 0 &&
-    date.getMinutes() <= 10
+    date.getHours() == alertLastThreeGameStartHours &&          
+    date.getMinutes() <= alertLastThreeGameStartMinutes         
   ) {
     isalerted.value = true;
     $("#closedAlert").modal("show");
