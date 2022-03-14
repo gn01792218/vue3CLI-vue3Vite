@@ -11,6 +11,7 @@ import roadmap from "./roadmap";
 import video from "./video";
 import announcement from "./announcement";
 import kick from "./kick";
+import history from "./history";
 export default createStore({
   state: {},
   mutations: {},
@@ -28,5 +29,6 @@ export default createStore({
     kick,
     chat,
     donat,
+    history,
   },
 });

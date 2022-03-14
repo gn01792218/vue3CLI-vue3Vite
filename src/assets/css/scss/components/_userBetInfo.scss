@@ -4,6 +4,9 @@
 }
 .userBetInfo-content{
     width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .userBetInfo-footer{
     justify-content: center;

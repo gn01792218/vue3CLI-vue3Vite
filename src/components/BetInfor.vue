@@ -46,44 +46,25 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed} from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import BetLimitInfo from "@/components/BetLimtInfo.vue";
 import { table } from "@/assets/js/bundle";
-export default defineComponent({
-  components: {
-    BetLimitInfo,
-  },
-  setup() {
-    //vuex
-    const store = useStore();
-    const betInfo = computed(() => {
-      return store.state.game.gameResultCount;
-    });
-    const totalRound = computed(() => {
-      return store.state.game.numOfRound - 1;
-    });
-    const route = useRoute();
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
-    const tableInfoData = computed(() => {
-      return store.state.table.tableInfoData[tableNum.value as string]
-      // .find((i:any)=>{
-      //   return i.tableName == tableNum
-      // })
-    });
-    return {
-      //data
-      betInfo,
-      totalRound,
-      tableInfoData,
-      //methods
-    };
-  },
+//vuex
+const store = useStore();
+const betInfo = computed(() => {
+  return store.state.game.gameResultCount;
+});
+const totalRound = computed(() => {
+  return store.state.game.numOfRound - 1;
+});
+const route = useRoute();
+const tableNum = computed(() => {
+  return route.params.tableId;
+});
+const tableInfoData = computed(() => {
+  return store.state.table.tableInfoData[tableNum.value as string];
 });
 </script>
-
-<style></style>

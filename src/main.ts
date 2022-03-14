@@ -2,8 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Cookies from 'js-cookie'
-import { getMsgReCall , sendTableJoinCall} from './socketApi'
+import { getMsgReCall } from './socketApi'
 import "bootstrap"
 import "../src/assets/css/bootstrap.min.css"
 import './assets/css/all.css';  //最後引入主要CSS

@@ -39,9 +39,7 @@
         <span class="footer-item  d-md-flex"
           ><i class="bi bi-lightning"></i
         ></span>
-        <span class="d-md-flex mr-2"
-          ><i class="bi bi-chat-dots"></i
-        ></span>
+        <span class="d-md-flex mr-2"><i class="bi bi-chat-dots"></i></span>
         <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
         <ChatInput />
       </div>
@@ -57,94 +55,70 @@
     </div>
   </footer>
 </template>
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import UserBetInfo from "@/components/UserBetInfo.vue";
-import Reward from "@/components/Reward.vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
+import UserBetInfo from "@/components/modal/UserBetInfo.vue";
+import Reward from "@/components/modal/Reward.vue";
 import Date from "@/components/Date.vue";
 import ChatInput from "@/components/chat/ChatInput.vue";
 import { useStore } from "vuex";
 import screenfull from "screenfull";
 import { useRoute } from "vue-router";
 import { chatContent, chatMsg } from "../types/global";
-export default defineComponent({
-  components: {
-    UserBetInfo,
-    Date,
-    Reward,
-    ChatInput,
-  },
-  setup() {
-    const route = useRoute();
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
-    //vuex
-    const store = useStore();
-    //computed
-    const announcementShow = computed(() => {
-      return store.state.lobby.showannouncement;
-    });
-    const user = computed(() => {
-      return store.state.auth.UserInfo.user;
-    });
-    const userWallet = computed(() => {
-      return store.state.auth.userWalletFomate;
-    });
-    const audio = computed<HTMLAudioElement>(() => {
-      //音效的實體
-      return document.querySelector("#gameresultSound") as HTMLAudioElement;
-    });
-    const npvideo = computed(() => {
-      //直播物件的實體
-      return store.state.video.video;
-    });
-    const flvStream = computed(() => {
-      //直播網址
-      return store.state.table.TableJoinRecall.table.streamingUrl;
-    });
-    const isAudioMuted = ref(false);
-    const isVideoPlayed = ref(true);
-    //全螢幕
-    function fullScreen() {
-      if (screenfull.isEnabled) {
-        screenfull.toggle();
-      }
-    }
-    //靜音 / 打開 音效
-    function mutedSound() {
-      audio.value.muted = !audio.value.muted;
-      isAudioMuted.value = !isAudioMuted.value;
-    }
-    //播放/暫停直播
-    function playVideo() {
-      isVideoPlayed.value = !isVideoPlayed.value;
-      if (isVideoPlayed.value) {
-        //播放直播
-        npvideo.value.start(flvStream.value);
-      } else {
-        //暫停直播
-        npvideo.value.stop();
-        npvideo.value.clearView(); //清除上一個視頻留下的東西
-      }
-    }
-    // function showAnnouncement(){ //控制公告同意書顯示與否
-    //     store.commit('lobby/setShowannouncement',!announcementShow.value)
-    // }
-    return {
-      //data
-      user,
-      userWallet,
-      audio,
-      isAudioMuted,
-      isVideoPlayed,
-      tableNum,
-      //methods
-      fullScreen,
-      mutedSound,
-      playVideo,
-      // showAnnouncement,
-    };
-  },
+const route = useRoute();
+const tableNum = computed(() => {
+  return route.params.tableId;
 });
+//vuex
+const store = useStore();
+//computed
+const announcementShow = computed(() => {
+  return store.state.lobby.showannouncement;
+});
+const user = computed(() => {
+  return store.state.auth.UserInfo.user;
+});
+const userWallet = computed(() => {
+  return store.state.auth.userWalletFomate;
+});
+const audio = computed<HTMLAudioElement>(() => {
+  //音效的實體
+  return document.querySelector("#gameresultSound") as HTMLAudioElement;
+});
+const npvideo = computed(() => {
+  //直播物件的實體
+  return store.state.video.video;
+});
+const flvStream = computed(() => {
+  //直播網址
+  return store.state.table.TableJoinRecall.table.streamingUrl;
+});
+const isAudioMuted = ref(false);
+const isVideoPlayed = ref(true);
+//全螢幕
+function fullScreen() {
+  if (screenfull.isEnabled) {
+    screenfull.toggle();
+  }
+}
+//靜音 / 打開 音效
+function mutedSound() {
+  audio.value.muted = !audio.value.muted;
+  isAudioMuted.value = !isAudioMuted.value;
+}
+//播放/暫停直播
+function playVideo() {
+  isVideoPlayed.value = !isVideoPlayed.value;
+  if (isVideoPlayed.value) {
+    //播放直播
+    npvideo.value.start(flvStream.value);
+  } else {
+    //暫停直播
+    npvideo.value.stop();
+    npvideo.value.clearView(); //清除上一個視頻留下的東西
+  }
+}
+// function showAnnouncement(){ //控制公告同意書顯示與否
+//     store.commit('lobby/setShowannouncement',!announcementShow.value)
+// }
 </script>

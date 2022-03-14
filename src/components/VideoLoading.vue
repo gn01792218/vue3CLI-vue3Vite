@@ -1,16 +1,5 @@
 <template>
-    <div class="video-loading position-absolute w-100 h-100">
-
-    </div>
+  <div class="video-loading position-absolute w-100 h-100"></div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from 'vue'
-export default defineComponent({
-   setup(){
-        return {
-            
-        }
-    }
-})
-</script>
+<script setup lang="ts"></script>

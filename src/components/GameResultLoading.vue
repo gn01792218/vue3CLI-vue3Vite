@@ -10,16 +10,6 @@ import { useStore } from 'vuex'
 import {useRoute } from 'vue-router'
 export default defineComponent({
    setup(){
-       //暫時性的
-        const route = useRoute()
-        // const tableNum = computed(()=>{
-        // return route.params.tableId
-        // })
-        // watch(tableNum,()=>{
-        //     if(tableNum.value=="B"){
-        //         isWait.value = false
-        //     }
-        // })
         //vuex
         const store = useStore()
         const isWait = ref(true)
@@ -71,6 +61,13 @@ export default defineComponent({
                     case 3:
                         isWait.value = true
                         stateMsg.value = "等待新局..."
+                        // setTimeout(()=>{
+                        // isWait.value = false
+                        // },500)
+                        break
+                    case 4:
+                        isWait.value = true
+                        stateMsg.value = "等待中..."
                         // setTimeout(()=>{
                         // isWait.value = false
                         // },500)
