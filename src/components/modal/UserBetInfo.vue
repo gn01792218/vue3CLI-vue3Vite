@@ -28,7 +28,7 @@
             v-for="(info, index) in userBetInfoArray"
             :key="index"
           >
-          <ul class="userBetInfo-ul list-group list-group-horizontal">
+            <ul class="userBetInfo-ul list-group list-group-horizontal">
               <li class="userBetInfo-title list-group-item">時間</li>
               <li class="userBetInfo-content list-group-item">
                 {{ info.gameTime }}
@@ -55,12 +55,12 @@
             <ul class="userBetInfo-ul list-group list-group-horizontal">
               <li class="userBetInfo-title list-group-item">遊戲輸贏</li>
               <li class="userBetInfo-content list-group-item">
-                <div v-for="(result) in info.results" :key="result">
-                  <span v-if="result==1">莊贏 </span>
-                  <span v-if="result==2">閒贏 </span>
-                  <span v-if="result==3">莊對 </span>
-                  <span v-if="result==4">和局 </span>
-                  <span v-if="result==5">閒對 </span>
+                <div v-for="result in info.results" :key="result">
+                  <span v-if="result == 1">莊贏 </span>
+                  <span v-if="result == 2">閒贏 </span>
+                  <span v-if="result == 3">莊對 </span>
+                  <span v-if="result == 4">和局 </span>
+                  <span v-if="result == 5">閒對 </span>
                 </div>
               </li>
             </ul>
@@ -166,7 +166,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, reactive, onUpdated } from "vue";
+import { computed, ref, reactive, onUpdated, watch } from "vue";
 import { useStore } from "vuex";
 import proto from "@/assets/js/bundle";
 interface userInfo {
@@ -200,8 +200,9 @@ interface draw {
   card: Card;
   position: number;
 }
-onUpdated(()=>{
+onUpdated(() => {
   cardPositionInit();
+  resetCards(); //清除所有再顯示卡牌
   userBetInfoArray.value.forEach((i: userInfo, index: number) => {
     i.draws.forEach((card: draw) => {
       //畫出六張卡牌
@@ -215,7 +216,7 @@ onUpdated(()=>{
     });
     setWinCardBoxLight(index, i.results);
   });
-})
+});
 //撲克牌資料
 const uw = 373; //牌的原圖大小
 const uh = 556; //牌的原圖大小
@@ -231,6 +232,23 @@ const store = useStore();
 const userBetInfoArray = computed<userInfo[]>(() => {
   return store.state.history.HistoryRecall;
 });
+function resetCards() {
+  //先清除所有卡牌的顯示
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 6; j++) {
+      let bankerCard = document.querySelector(
+        `.userBet-banker-poker${i}${j}`
+      ) as HTMLElement;
+      let playererCard = document.querySelector(
+        `.userBet-player-poker${i}${j}`
+      ) as HTMLElement;
+      if (bankerCard && playererCard) {
+        bankerCard.classList.remove("poker");
+        playererCard.classList.remove("poker");
+      }
+    }
+  }
+}
 function getCardPosition( //卡牌要畫在哪一格
   cardSideClassName: string,
   userBetInfoIndex: number, //第幾格的userBetInfo
@@ -248,7 +266,7 @@ function getCardPosition( //卡牌要畫在哪一格
       ) as HTMLElement;
   }
 }
-function showCards( //劃出該張卡牌
+function showCards( //畫出該張卡牌
   cardSide: number,
   cardSuit: number,
   cardPoint: number,
@@ -292,11 +310,11 @@ function showCards( //劃出該張卡牌
 function setWinCardBoxLight(userBetInfoIndex: number, winSide: number[]) {
   //標示哪一邊贏
   //應該是根據該局的gameResult在HTML模板上面直接:class="[winPoker:win==]"
-  let win = 0
-  winSide.forEach(i=>{
-    if(i ==1 ) win = 1
-    if(i ==2 ) win =2 
-  })
+  let win = 0;
+  winSide.forEach((i) => {
+    if (i == 1) win = 1;
+    if (i == 2) win = 2;
+  });
   switch (win) {
     case 0:
       let bankerCard = document.querySelector(
@@ -305,8 +323,8 @@ function setWinCardBoxLight(userBetInfoIndex: number, winSide: number[]) {
       let playererCard = document.querySelector(
         `.userBetInfo-player${userBetInfoIndex}`
       ) as HTMLElement;
-      bankerCard.classList.remove("winPoker")
-      playererCard.classList.remove("winPoker")
+      bankerCard.classList.remove("winPoker");
+      playererCard.classList.remove("winPoker");
       break;
     case 1:
       let bankerCardBox = document.querySelector(
