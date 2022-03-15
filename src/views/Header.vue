@@ -80,17 +80,17 @@
       <div class="header-bottom-mobil d-flex align-items-center">
         <div class="header-bottom-mobil-extend position-absolute">
           <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
+            <div class="bg-dark d-flex p-4">
               <div
                 class="header-userName d-flex col font_yellows"
                 data-toggle="modal"
                 data-target="#exampleModal"
               >
-                <i class="bi bi-person-circle"></i
+                <i class="bi bi-person-circle" @click="getHistory"></i
                 ><i v-if="user">{{ user.name }}</i>
               </div>
-              <div class="header-userName col font_yellows">
-                <i>{{ tableNum }}桌 靴:{{ shoe }}局:{{ roundNum }}</i>
+              <div class="header-userName d-flex col font_yellows">
+                <i class="header-tableInfo">{{ tableNum }}桌 靴:{{ shoe }}局:{{ roundNum }}</i>
               </div>
             </div>
           </div>
@@ -114,13 +114,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { state } from "@/store/lobby";
 import { sendHistoryCall } from '@/socketApi'
+
 //route
 const route = useRoute();
 const tableNum = computed(() => {

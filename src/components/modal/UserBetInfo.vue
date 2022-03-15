@@ -169,6 +169,7 @@
 import { computed, ref, reactive, onMounted, watch, onUpdated } from "vue";
 import { useStore } from "vuex";
 import proto from "@/assets/js/bundle";
+import { sendHistoryCall } from '@/socketApi'
 interface userInfo {
   table: string;
   results: number[];
