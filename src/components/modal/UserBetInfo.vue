@@ -28,7 +28,7 @@
             v-for="(info, index) in userBetInfoArray"
             :key="index"
           >
-          <ul class="userBetInfo-ul list-group list-group-horizontal">
+            <ul class="userBetInfo-ul list-group list-group-horizontal">
               <li class="userBetInfo-title list-group-item">時間</li>
               <li class="userBetInfo-content list-group-item">
                 {{ info.gameTime }}
@@ -55,12 +55,12 @@
             <ul class="userBetInfo-ul list-group list-group-horizontal">
               <li class="userBetInfo-title list-group-item">遊戲輸贏</li>
               <li class="userBetInfo-content list-group-item">
-                <div v-for="(result) in info.results" :key="result">
-                  <span v-if="result==1">莊贏 </span>
-                  <span v-if="result==2">閒贏 </span>
-                  <span v-if="result==3">莊對 </span>
-                  <span v-if="result==4">和局 </span>
-                  <span v-if="result==5">閒對 </span>
+                <div v-for="result in info.results" :key="result">
+                  <span v-if="result == 1">莊贏 </span>
+                  <span v-if="result == 2">閒贏 </span>
+                  <span v-if="result == 3">莊對 </span>
+                  <span v-if="result == 4">和局 </span>
+                  <span v-if="result == 5">閒對 </span>
                 </div>
               </li>
             </ul>
@@ -200,7 +200,7 @@ interface draw {
   card: Card;
   position: number;
 }
-onUpdated(()=>{
+onUpdated(() => {
   cardPositionInit();
   userBetInfoArray.value.forEach((i: userInfo, index: number) => {
     i.draws.forEach((card: draw) => {
@@ -215,7 +215,7 @@ onUpdated(()=>{
     });
     setWinCardBoxLight(index, i.results);
   });
-})
+});
 //撲克牌資料
 const uw = 373; //牌的原圖大小
 const uh = 556; //牌的原圖大小
@@ -292,11 +292,11 @@ function showCards( //劃出該張卡牌
 function setWinCardBoxLight(userBetInfoIndex: number, winSide: number[]) {
   //標示哪一邊贏
   //應該是根據該局的gameResult在HTML模板上面直接:class="[winPoker:win==]"
-  let win = 0
-  winSide.forEach(i=>{
-    if(i ==1 ) win = 1
-    if(i ==2 ) win =2 
-  })
+  let win = 0;
+  winSide.forEach((i) => {
+    if (i == 1) win = 1;
+    if (i == 2) win = 2;
+  });
   switch (win) {
     case 0:
       let bankerCard = document.querySelector(
@@ -305,8 +305,8 @@ function setWinCardBoxLight(userBetInfoIndex: number, winSide: number[]) {
       let playererCard = document.querySelector(
         `.userBetInfo-player${userBetInfoIndex}`
       ) as HTMLElement;
-      bankerCard.classList.remove("winPoker")
-      playererCard.classList.remove("winPoker")
+      bankerCard.classList.remove("winPoker");
+      playererCard.classList.remove("winPoker");
       break;
     case 1:
       let bankerCardBox = document.querySelector(

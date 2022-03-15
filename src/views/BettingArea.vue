@@ -1,8 +1,8 @@
 <template>
   <GameresultSound />
   <div class="betArea position-relative">
-    <ConfirmWatchCard/>
-    <watchCardBox/>
+    <ConfirmWatchCard />
+    <watchCardBox />
     <!-- <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button> -->
     <!-- PC版本注區 -->
     <div class="betArea-pc position-relative">
@@ -33,7 +33,9 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
+              總注額:{{ i.tableAllPlayerBetStatus }}
+            </p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -63,7 +65,9 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
+              總注額:{{ i.tableAllPlayerBetStatus }}
+            </p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -88,6 +92,7 @@
         </transition-group>
         <li id="betConfirm">確認下注!!</li>
         <li id="cancleBet">取消下注!!</li>
+        <li id="flyCard">飛牌!</li>
       </ul>
       <div class="betArea-mobile-container d-flex">
         <div
@@ -108,7 +113,9 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
+              總注額:{{ i.tableAllPlayerBetStatus }}
+            </p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -192,6 +199,14 @@
           <i class="bi bi-arrow-counterclockwise"></i>取消
         </div>
         <div class="d-flex align-items-center">
+          <!-- 飛牌鈕，VIP才有 -->
+          <div
+            v-if="tableNum.includes('VIP')"
+            @click="flyCard"
+            class="bettingArea-btn-center fly-card cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
+          >
+            <span>飛</span>
+          </div>
           <!-- 打賞按鈕 -->
           <div
             class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
@@ -203,9 +218,13 @@
           <!-- 咪牌按鈕 ，VIP才有-->
           <div
             v-if="tableNum.includes('VIP')"
-            class="bettingArea-btn-watchCard cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
+            id="watchCard-btn"
+            @click="watchCard"
+            class="bettingArea-btn-center cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
           >
-            <span class="d-flex align-item-center"><i class="bi bi-eye"></i></span>
+            <span class="d-flex align-item-center"
+              ><i class="bi bi-eye"></i
+            ></span>
           </div>
           <!-- 手機版本才會出現的檯紅顯示 -->
           <div
@@ -273,6 +292,7 @@ import {
   sendBetResetCall,
   sendAskRoadCall,
   sendBetConfirmCall,
+  sendWatchCardCall,
 } from "../socketApi";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
@@ -390,9 +410,10 @@ export default defineComponent({
       //問路recall
       return store.state.roadmap.askRoadReCall;
     });
-    const DrawCard = computed(()=>{  //每次都傳一張
-       return store.state.dealer.Draw
-    })
+    const DrawCard = computed(() => {
+      //每次都傳一張
+      return store.state.dealer.Draw;
+    });
     const roundAskBanker = computed(() => {
       //回合自動問莊的recall
       return store.state.game.askBankByRoundStart;
@@ -417,10 +438,10 @@ export default defineComponent({
       //在線人數
       return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers;
     });
-    const canWatchCard = computed(()=>{  
+    const canWatchCard = computed(() => {
       //是否取得咪牌權利
-      return store.state.game.WatchcardNotificaion
-    })
+      return store.state.game.WatchcardNotificaion;
+    });
     //基本資料
     const canBet = ref(true); //是否可以下注
     const betCallTemp = ref({}); //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
@@ -504,9 +525,11 @@ export default defineComponent({
     const betErrorArray = ref<Array<string>>([]); //噴錯誤訊息用的陣列
     const minBetLimit = ref(999999999); //手機版本顯示檯紅最小
     const maxBetLimit = ref(-1); //手機版本顯示檯紅最大
-    const watchCardBtn = computed(()=>{
-      return document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-    })
+    const watchCardBtn = computed(() => {
+      return document.querySelector(
+        "#watchCard-btn"
+      ) as HTMLElement;
+    });
     //監聽
     watch(tableNum, () => {
       //換桌
@@ -590,13 +613,17 @@ export default defineComponent({
       //停止下注，在開牌之前
       canBet.value = false;
     });
-    watch(DrawCard,()=>{
+    watch(DrawCard, () => {
       //開始畫牌的時候 VIP的瞇排按鈕特效要去除
-      if(!watchCardBtn.value) return
-      if(watchCardBtn.value.className.includes("bettingArea-btn-watchCard-Animation")){ 
-        resetWatchCardAlert(watchCardBtn.value)
+      if (!watchCardBtn.value) return;
+      if (
+        watchCardBtn.value.className.includes(
+          "bettingArea-btn-watchCard-Animation"
+        )
+      ) {
+        resetWatchCardAlert(watchCardBtn.value);
       }
-    })
+    });
     watch(betError, () => {
       //更新錯誤訊息
       if (betError.value) {
@@ -621,7 +648,7 @@ export default defineComponent({
             betErrorArray.value?.push("餘額不足");
             break;
           case 8:
-            betErrorArray.value?.push(betError.value.errorMessage)
+            betErrorArray.value?.push(betError.value.errorMessage);
             break;
         }
         store.commit("bet/resetBetResult"); //重置result狀態
@@ -642,9 +669,9 @@ export default defineComponent({
       winCoinAnimation();
       store.commit("bet/setIsConfirmed", false); //重置按紐
     });
-    watch(canWatchCard,()=>{
-      alertCanWatchCard()
-    })
+    watch(canWatchCard, () => {
+      alertCanWatchCard();
+    });
     function setBetStatusTextColor() {
       //更換bstStatus和totalBet的顏色
       let betStatusText = document.querySelectorAll(".betStatus") as NodeListOf<
@@ -1293,17 +1320,36 @@ export default defineComponent({
         store.commit("bet/setIsConfirmed", true);
       }
     }
-    function alertCanWatchCard(){
+    function watchCard() {
+      sendWatchCardCall({
+        confirm: true,
+      });
+    }
+    //要飛牌，直接退出畫面前先傳送資料給serve
+    function flyCard() {
+      //發送飛牌給serve
+      sendWatchCardCall({
+        confirm: false,
+      });
+      gsap.fromTo(
+          "#flyCard",
+          { opacity: 1, y: 0, scale: 1, color: "yellow" },
+          { duration: 2, scale: 4, opacity: 0, ease: Power4.easeOut }
+        )
+    }
+    function alertCanWatchCard() {
       //收到此人獲得咪牌權限時開通咪牌功能
       //咪牌按鈕亮起
-      let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-      watchCardBtn?.classList.add('bettingArea-btn-watchCard-Animation')
+      let watchCardBtn = document.querySelector(
+        "#watchCard-btn"
+      ) as HTMLElement;
+      watchCardBtn?.classList.add("bettingArea-btn-watchCard-Animation");
       //顯示確認是否咪牌按鈕
-      $("#whatchCardOrNot").modal("show");
+      // $("#whatchCardOrNot").modal("show");
     }
-    function resetWatchCardAlert(watchCardBtn:HTMLElement){
+    function resetWatchCardAlert(watchCardBtn: HTMLElement) {
       // let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-      watchCardBtn?.classList.remove('bettingArea-btn-watchCard-Animation')
+      watchCardBtn?.classList.remove("bettingArea-btn-watchCard-Animation");
       $("#watchCardBox").modal("hide");
     }
     return {
@@ -1332,12 +1378,14 @@ export default defineComponent({
       numberFormat,
       sendConfirmBetCall,
       alertCanWatchCard,
+      watchCard,
+      flyCard,
     };
   },
 });
 </script>
 <style scoped>
-  .watchTest{
-    z-index:100;
-  }
+.watchTest {
+  z-index: 100;
+}
 </style>
