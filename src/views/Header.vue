@@ -85,8 +85,9 @@
                 class="header-userName d-flex col font_yellows"
                 data-toggle="modal"
                 data-target="#exampleModal"
+                @click="getHistory"
               >
-                <i class="bi bi-person-circle" @click="getHistory"></i
+                <i class="bi bi-person-circle" ></i
                 ><i v-if="user">{{ user.name }}</i>
               </div>
               <div class="header-userName d-flex col font_yellows">

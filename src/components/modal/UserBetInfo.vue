@@ -166,10 +166,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, reactive, onMounted, watch, onUpdated } from "vue";
+import { computed, ref, reactive, onUpdated } from "vue";
 import { useStore } from "vuex";
 import proto from "@/assets/js/bundle";
-import { sendHistoryCall } from '@/socketApi'
 interface userInfo {
   table: string;
   results: number[];
@@ -336,7 +335,7 @@ function cardPositionInit() {
   } else if (viewportWidth <= 540 && viewportWidth > 375) {
     scale.value = 0.2;
   } else if (viewportWidth <= 375 && viewportWidth > 280) {
-    scale.value = 0.15;
+    scale.value = 0.12;
   } else if (viewportWidth <= 280) {
     scale.value = 0.1;
   } else {
