@@ -14,6 +14,7 @@ export const state = {
     WatchcardNotificaion:{}, //VIP玩家是否取得咪牌權利
     watchCardVideo1Stream:'',
     watchCardVideo2Stream:'',
+    flyCardRecall:{},
   };
   export const actions = {}
   
@@ -64,6 +65,9 @@ export const state = {
       state.watchCardVideo1Stream = payload.watchcardUrl.player
       state.watchCardVideo2Stream = payload.watchcardUrl.banker
     },
+    FlyCardRecall(state:any,payload:any){
+      state.flyCardRecall = payload
+    }
   };
   export const getters = {
     

@@ -7633,6 +7633,9 @@ export const foundation = $root.foundation = (() => {
                 case 7004:
                 case 8001:
                 case 8002:
+                case 8101:
+                case 8102:
+                case 8103:
                     break;
                 }
             return null;
@@ -7858,6 +7861,18 @@ export const foundation = $root.foundation = (() => {
             case "HistoryRecall":
             case 8002:
                 message.uri = 8002;
+                break;
+            case "FlyCardCall":
+            case 8101:
+                message.uri = 8101;
+                break;
+            case "FlyCardRecall":
+            case 8102:
+                message.uri = 8102;
+                break;
+            case "BroadcastFlyCardRecall":
+            case 8103:
+                message.uri = 8103;
                 break;
             }
             return message;
@@ -11596,6 +11611,700 @@ export const game = $root.game = (() => {
         };
 
         return StreamingUrl;
+    })();
+
+    game.FlyCardCall = (function() {
+
+        /**
+         * Properties of a FlyCardCall.
+         * @memberof game
+         * @interface IFlyCardCall
+         * @property {foundation.IHeader|null} [header] FlyCardCall header
+         * @property {string|null} [gameUuid] FlyCardCall gameUuid
+         */
+
+        /**
+         * Constructs a new FlyCardCall.
+         * @memberof game
+         * @classdesc Represents a FlyCardCall.
+         * @implements IFlyCardCall
+         * @constructor
+         * @param {game.IFlyCardCall=} [properties] Properties to set
+         */
+        function FlyCardCall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FlyCardCall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.FlyCardCall
+         * @instance
+         */
+        FlyCardCall.prototype.header = null;
+
+        /**
+         * FlyCardCall gameUuid.
+         * @member {string} gameUuid
+         * @memberof game.FlyCardCall
+         * @instance
+         */
+        FlyCardCall.prototype.gameUuid = "";
+
+        /**
+         * Creates a new FlyCardCall instance using the specified properties.
+         * @function create
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {game.IFlyCardCall=} [properties] Properties to set
+         * @returns {game.FlyCardCall} FlyCardCall instance
+         */
+        FlyCardCall.create = function create(properties) {
+            return new FlyCardCall(properties);
+        };
+
+        /**
+         * Encodes the specified FlyCardCall message. Does not implicitly {@link game.FlyCardCall.verify|verify} messages.
+         * @function encode
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {game.IFlyCardCall} message FlyCardCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FlyCardCall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.gameUuid != null && Object.hasOwnProperty.call(message, "gameUuid"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.gameUuid);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FlyCardCall message, length delimited. Does not implicitly {@link game.FlyCardCall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {game.IFlyCardCall} message FlyCardCall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FlyCardCall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FlyCardCall message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.FlyCardCall} FlyCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FlyCardCall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.FlyCardCall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.gameUuid = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FlyCardCall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.FlyCardCall} FlyCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FlyCardCall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FlyCardCall message.
+         * @function verify
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FlyCardCall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                if (!$util.isString(message.gameUuid))
+                    return "gameUuid: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FlyCardCall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.FlyCardCall} FlyCardCall
+         */
+        FlyCardCall.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.FlyCardCall)
+                return object;
+            let message = new $root.game.FlyCardCall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.FlyCardCall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.gameUuid != null)
+                message.gameUuid = String(object.gameUuid);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FlyCardCall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.FlyCardCall
+         * @static
+         * @param {game.FlyCardCall} message FlyCardCall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FlyCardCall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.gameUuid = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.gameUuid != null && message.hasOwnProperty("gameUuid"))
+                object.gameUuid = message.gameUuid;
+            return object;
+        };
+
+        /**
+         * Converts this FlyCardCall to JSON.
+         * @function toJSON
+         * @memberof game.FlyCardCall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FlyCardCall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return FlyCardCall;
+    })();
+
+    game.FlyCardRecall = (function() {
+
+        /**
+         * Properties of a FlyCardRecall.
+         * @memberof game
+         * @interface IFlyCardRecall
+         * @property {foundation.IHeader|null} [header] FlyCardRecall header
+         * @property {number|null} [result] FlyCardRecall result
+         * @property {string|null} [error] FlyCardRecall error
+         */
+
+        /**
+         * Constructs a new FlyCardRecall.
+         * @memberof game
+         * @classdesc Represents a FlyCardRecall.
+         * @implements IFlyCardRecall
+         * @constructor
+         * @param {game.IFlyCardRecall=} [properties] Properties to set
+         */
+        function FlyCardRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FlyCardRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.FlyCardRecall
+         * @instance
+         */
+        FlyCardRecall.prototype.header = null;
+
+        /**
+         * FlyCardRecall result.
+         * @member {number} result
+         * @memberof game.FlyCardRecall
+         * @instance
+         */
+        FlyCardRecall.prototype.result = 0;
+
+        /**
+         * FlyCardRecall error.
+         * @member {string} error
+         * @memberof game.FlyCardRecall
+         * @instance
+         */
+        FlyCardRecall.prototype.error = "";
+
+        /**
+         * Creates a new FlyCardRecall instance using the specified properties.
+         * @function create
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {game.IFlyCardRecall=} [properties] Properties to set
+         * @returns {game.FlyCardRecall} FlyCardRecall instance
+         */
+        FlyCardRecall.create = function create(properties) {
+            return new FlyCardRecall(properties);
+        };
+
+        /**
+         * Encodes the specified FlyCardRecall message. Does not implicitly {@link game.FlyCardRecall.verify|verify} messages.
+         * @function encode
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {game.IFlyCardRecall} message FlyCardRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FlyCardRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.result != null && Object.hasOwnProperty.call(message, "result"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.result);
+            if (message.error != null && Object.hasOwnProperty.call(message, "error"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.error);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FlyCardRecall message, length delimited. Does not implicitly {@link game.FlyCardRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {game.IFlyCardRecall} message FlyCardRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FlyCardRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FlyCardRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.FlyCardRecall} FlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FlyCardRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.FlyCardRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.result = reader.int32();
+                    break;
+                case 3:
+                    message.error = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FlyCardRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.FlyCardRecall} FlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FlyCardRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FlyCardRecall message.
+         * @function verify
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FlyCardRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.result != null && message.hasOwnProperty("result"))
+                if (!$util.isInteger(message.result))
+                    return "result: integer expected";
+            if (message.error != null && message.hasOwnProperty("error"))
+                if (!$util.isString(message.error))
+                    return "error: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FlyCardRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.FlyCardRecall} FlyCardRecall
+         */
+        FlyCardRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.FlyCardRecall)
+                return object;
+            let message = new $root.game.FlyCardRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.FlyCardRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.result != null)
+                message.result = object.result | 0;
+            if (object.error != null)
+                message.error = String(object.error);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FlyCardRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.FlyCardRecall
+         * @static
+         * @param {game.FlyCardRecall} message FlyCardRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FlyCardRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.result = 0;
+                object.error = "";
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.result != null && message.hasOwnProperty("result"))
+                object.result = message.result;
+            if (message.error != null && message.hasOwnProperty("error"))
+                object.error = message.error;
+            return object;
+        };
+
+        /**
+         * Converts this FlyCardRecall to JSON.
+         * @function toJSON
+         * @memberof game.FlyCardRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FlyCardRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return FlyCardRecall;
+    })();
+
+    game.BroadcastFlyCardRecall = (function() {
+
+        /**
+         * Properties of a BroadcastFlyCardRecall.
+         * @memberof game
+         * @interface IBroadcastFlyCardRecall
+         * @property {foundation.IHeader|null} [header] BroadcastFlyCardRecall header
+         * @property {string|null} [account] BroadcastFlyCardRecall account
+         * @property {game.IFlyCardRecall|null} [recall] BroadcastFlyCardRecall recall
+         */
+
+        /**
+         * Constructs a new BroadcastFlyCardRecall.
+         * @memberof game
+         * @classdesc Represents a BroadcastFlyCardRecall.
+         * @implements IBroadcastFlyCardRecall
+         * @constructor
+         * @param {game.IBroadcastFlyCardRecall=} [properties] Properties to set
+         */
+        function BroadcastFlyCardRecall(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BroadcastFlyCardRecall header.
+         * @member {foundation.IHeader|null|undefined} header
+         * @memberof game.BroadcastFlyCardRecall
+         * @instance
+         */
+        BroadcastFlyCardRecall.prototype.header = null;
+
+        /**
+         * BroadcastFlyCardRecall account.
+         * @member {string} account
+         * @memberof game.BroadcastFlyCardRecall
+         * @instance
+         */
+        BroadcastFlyCardRecall.prototype.account = "";
+
+        /**
+         * BroadcastFlyCardRecall recall.
+         * @member {game.IFlyCardRecall|null|undefined} recall
+         * @memberof game.BroadcastFlyCardRecall
+         * @instance
+         */
+        BroadcastFlyCardRecall.prototype.recall = null;
+
+        /**
+         * Creates a new BroadcastFlyCardRecall instance using the specified properties.
+         * @function create
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {game.IBroadcastFlyCardRecall=} [properties] Properties to set
+         * @returns {game.BroadcastFlyCardRecall} BroadcastFlyCardRecall instance
+         */
+        BroadcastFlyCardRecall.create = function create(properties) {
+            return new BroadcastFlyCardRecall(properties);
+        };
+
+        /**
+         * Encodes the specified BroadcastFlyCardRecall message. Does not implicitly {@link game.BroadcastFlyCardRecall.verify|verify} messages.
+         * @function encode
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {game.IBroadcastFlyCardRecall} message BroadcastFlyCardRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastFlyCardRecall.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                $root.foundation.Header.encode(message.header, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.account != null && Object.hasOwnProperty.call(message, "account"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.account);
+            if (message.recall != null && Object.hasOwnProperty.call(message, "recall"))
+                $root.game.FlyCardRecall.encode(message.recall, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BroadcastFlyCardRecall message, length delimited. Does not implicitly {@link game.BroadcastFlyCardRecall.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {game.IBroadcastFlyCardRecall} message BroadcastFlyCardRecall message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BroadcastFlyCardRecall.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BroadcastFlyCardRecall message from the specified reader or buffer.
+         * @function decode
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {game.BroadcastFlyCardRecall} BroadcastFlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastFlyCardRecall.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.game.BroadcastFlyCardRecall();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.header = $root.foundation.Header.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.account = reader.string();
+                    break;
+                case 3:
+                    message.recall = $root.game.FlyCardRecall.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BroadcastFlyCardRecall message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {game.BroadcastFlyCardRecall} BroadcastFlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BroadcastFlyCardRecall.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BroadcastFlyCardRecall message.
+         * @function verify
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BroadcastFlyCardRecall.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.header != null && message.hasOwnProperty("header")) {
+                let error = $root.foundation.Header.verify(message.header);
+                if (error)
+                    return "header." + error;
+            }
+            if (message.account != null && message.hasOwnProperty("account"))
+                if (!$util.isString(message.account))
+                    return "account: string expected";
+            if (message.recall != null && message.hasOwnProperty("recall")) {
+                let error = $root.game.FlyCardRecall.verify(message.recall);
+                if (error)
+                    return "recall." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BroadcastFlyCardRecall message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {game.BroadcastFlyCardRecall} BroadcastFlyCardRecall
+         */
+        BroadcastFlyCardRecall.fromObject = function fromObject(object) {
+            if (object instanceof $root.game.BroadcastFlyCardRecall)
+                return object;
+            let message = new $root.game.BroadcastFlyCardRecall();
+            if (object.header != null) {
+                if (typeof object.header !== "object")
+                    throw TypeError(".game.BroadcastFlyCardRecall.header: object expected");
+                message.header = $root.foundation.Header.fromObject(object.header);
+            }
+            if (object.account != null)
+                message.account = String(object.account);
+            if (object.recall != null) {
+                if (typeof object.recall !== "object")
+                    throw TypeError(".game.BroadcastFlyCardRecall.recall: object expected");
+                message.recall = $root.game.FlyCardRecall.fromObject(object.recall);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BroadcastFlyCardRecall message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof game.BroadcastFlyCardRecall
+         * @static
+         * @param {game.BroadcastFlyCardRecall} message BroadcastFlyCardRecall
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BroadcastFlyCardRecall.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.header = null;
+                object.account = "";
+                object.recall = null;
+            }
+            if (message.header != null && message.hasOwnProperty("header"))
+                object.header = $root.foundation.Header.toObject(message.header, options);
+            if (message.account != null && message.hasOwnProperty("account"))
+                object.account = message.account;
+            if (message.recall != null && message.hasOwnProperty("recall"))
+                object.recall = $root.game.FlyCardRecall.toObject(message.recall, options);
+            return object;
+        };
+
+        /**
+         * Converts this BroadcastFlyCardRecall to JSON.
+         * @function toJSON
+         * @memberof game.BroadcastFlyCardRecall
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BroadcastFlyCardRecall.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BroadcastFlyCardRecall;
     })();
 
     return game;
@@ -16523,6 +17232,9 @@ export const route = $root.route = (() => {
      * @property {number} BroadcastWatchcardCall=7004 BroadcastWatchcardCall value
      * @property {number} HistoryCall=8001 HistoryCall value
      * @property {number} HistoryRecall=8002 HistoryRecall value
+     * @property {number} FlyCardCall=8101 FlyCardCall value
+     * @property {number} FlyCardRecall=8102 FlyCardRecall value
+     * @property {number} BroadcastFlyCardRecall=8103 BroadcastFlyCardRecall value
      */
     route.URI = (function() {
         const valuesById = {}, values = Object.create(valuesById);
@@ -16578,6 +17290,9 @@ export const route = $root.route = (() => {
         values[valuesById[7004] = "BroadcastWatchcardCall"] = 7004;
         values[valuesById[8001] = "HistoryCall"] = 8001;
         values[valuesById[8002] = "HistoryRecall"] = 8002;
+        values[valuesById[8101] = "FlyCardCall"] = 8101;
+        values[valuesById[8102] = "FlyCardRecall"] = 8102;
+        values[valuesById[8103] = "BroadcastFlyCardRecall"] = 8103;
         return values;
     })();
 
@@ -17606,7 +18321,7 @@ export const table = $root.table = (() => {
          * @interface IJoinedPlayer
          * @property {string|null} [account] JoinedPlayer account
          * @property {string|null} [name] JoinedPlayer name
-         * @property {boolean|null} [isBet] JoinedPlayer isBet
+         * @property {bet.IBetStatus|null} [bets] JoinedPlayer bets
          */
 
         /**
@@ -17641,12 +18356,12 @@ export const table = $root.table = (() => {
         JoinedPlayer.prototype.name = "";
 
         /**
-         * JoinedPlayer isBet.
-         * @member {boolean} isBet
+         * JoinedPlayer bets.
+         * @member {bet.IBetStatus|null|undefined} bets
          * @memberof table.JoinedPlayer
          * @instance
          */
-        JoinedPlayer.prototype.isBet = false;
+        JoinedPlayer.prototype.bets = null;
 
         /**
          * Creates a new JoinedPlayer instance using the specified properties.
@@ -17676,8 +18391,8 @@ export const table = $root.table = (() => {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.account);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-            if (message.isBet != null && Object.hasOwnProperty.call(message, "isBet"))
-                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isBet);
+            if (message.bets != null && Object.hasOwnProperty.call(message, "bets"))
+                $root.bet.BetStatus.encode(message.bets, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -17719,7 +18434,7 @@ export const table = $root.table = (() => {
                     message.name = reader.string();
                     break;
                 case 3:
-                    message.isBet = reader.bool();
+                    message.bets = $root.bet.BetStatus.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -17762,9 +18477,11 @@ export const table = $root.table = (() => {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
-            if (message.isBet != null && message.hasOwnProperty("isBet"))
-                if (typeof message.isBet !== "boolean")
-                    return "isBet: boolean expected";
+            if (message.bets != null && message.hasOwnProperty("bets")) {
+                let error = $root.bet.BetStatus.verify(message.bets);
+                if (error)
+                    return "bets." + error;
+            }
             return null;
         };
 
@@ -17784,8 +18501,11 @@ export const table = $root.table = (() => {
                 message.account = String(object.account);
             if (object.name != null)
                 message.name = String(object.name);
-            if (object.isBet != null)
-                message.isBet = Boolean(object.isBet);
+            if (object.bets != null) {
+                if (typeof object.bets !== "object")
+                    throw TypeError(".table.JoinedPlayer.bets: object expected");
+                message.bets = $root.bet.BetStatus.fromObject(object.bets);
+            }
             return message;
         };
 
@@ -17805,14 +18525,14 @@ export const table = $root.table = (() => {
             if (options.defaults) {
                 object.account = "";
                 object.name = "";
-                object.isBet = false;
+                object.bets = null;
             }
             if (message.account != null && message.hasOwnProperty("account"))
                 object.account = message.account;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
-            if (message.isBet != null && message.hasOwnProperty("isBet"))
-                object.isBet = message.isBet;
+            if (message.bets != null && message.hasOwnProperty("bets"))
+                object.bets = $root.bet.BetStatus.toObject(message.bets, options);
             return object;
         };
 

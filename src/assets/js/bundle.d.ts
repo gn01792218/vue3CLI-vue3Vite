@@ -4737,6 +4737,306 @@ export namespace game {
          */
         public toJSON(): { [k: string]: any };
     }
+
+    /** Properties of a FlyCardCall. */
+    interface IFlyCardCall {
+
+        /** FlyCardCall header */
+        header?: (foundation.IHeader|null);
+
+        /** FlyCardCall gameUuid */
+        gameUuid?: (string|null);
+    }
+
+    /** Represents a FlyCardCall. */
+    class FlyCardCall implements IFlyCardCall {
+
+        /**
+         * Constructs a new FlyCardCall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IFlyCardCall);
+
+        /** FlyCardCall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** FlyCardCall gameUuid. */
+        public gameUuid: string;
+
+        /**
+         * Creates a new FlyCardCall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FlyCardCall instance
+         */
+        public static create(properties?: game.IFlyCardCall): game.FlyCardCall;
+
+        /**
+         * Encodes the specified FlyCardCall message. Does not implicitly {@link game.FlyCardCall.verify|verify} messages.
+         * @param message FlyCardCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IFlyCardCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FlyCardCall message, length delimited. Does not implicitly {@link game.FlyCardCall.verify|verify} messages.
+         * @param message FlyCardCall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IFlyCardCall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FlyCardCall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FlyCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.FlyCardCall;
+
+        /**
+         * Decodes a FlyCardCall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FlyCardCall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.FlyCardCall;
+
+        /**
+         * Verifies a FlyCardCall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FlyCardCall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FlyCardCall
+         */
+        public static fromObject(object: { [k: string]: any }): game.FlyCardCall;
+
+        /**
+         * Creates a plain object from a FlyCardCall message. Also converts values to other types if specified.
+         * @param message FlyCardCall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.FlyCardCall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FlyCardCall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a FlyCardRecall. */
+    interface IFlyCardRecall {
+
+        /** FlyCardRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** FlyCardRecall result */
+        result?: (number|null);
+
+        /** FlyCardRecall error */
+        error?: (string|null);
+    }
+
+    /** Represents a FlyCardRecall. */
+    class FlyCardRecall implements IFlyCardRecall {
+
+        /**
+         * Constructs a new FlyCardRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IFlyCardRecall);
+
+        /** FlyCardRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** FlyCardRecall result. */
+        public result: number;
+
+        /** FlyCardRecall error. */
+        public error: string;
+
+        /**
+         * Creates a new FlyCardRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FlyCardRecall instance
+         */
+        public static create(properties?: game.IFlyCardRecall): game.FlyCardRecall;
+
+        /**
+         * Encodes the specified FlyCardRecall message. Does not implicitly {@link game.FlyCardRecall.verify|verify} messages.
+         * @param message FlyCardRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IFlyCardRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FlyCardRecall message, length delimited. Does not implicitly {@link game.FlyCardRecall.verify|verify} messages.
+         * @param message FlyCardRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IFlyCardRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FlyCardRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.FlyCardRecall;
+
+        /**
+         * Decodes a FlyCardRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.FlyCardRecall;
+
+        /**
+         * Verifies a FlyCardRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FlyCardRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FlyCardRecall
+         */
+        public static fromObject(object: { [k: string]: any }): game.FlyCardRecall;
+
+        /**
+         * Creates a plain object from a FlyCardRecall message. Also converts values to other types if specified.
+         * @param message FlyCardRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.FlyCardRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FlyCardRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BroadcastFlyCardRecall. */
+    interface IBroadcastFlyCardRecall {
+
+        /** BroadcastFlyCardRecall header */
+        header?: (foundation.IHeader|null);
+
+        /** BroadcastFlyCardRecall account */
+        account?: (string|null);
+
+        /** BroadcastFlyCardRecall recall */
+        recall?: (game.IFlyCardRecall|null);
+    }
+
+    /** Represents a BroadcastFlyCardRecall. */
+    class BroadcastFlyCardRecall implements IBroadcastFlyCardRecall {
+
+        /**
+         * Constructs a new BroadcastFlyCardRecall.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: game.IBroadcastFlyCardRecall);
+
+        /** BroadcastFlyCardRecall header. */
+        public header?: (foundation.IHeader|null);
+
+        /** BroadcastFlyCardRecall account. */
+        public account: string;
+
+        /** BroadcastFlyCardRecall recall. */
+        public recall?: (game.IFlyCardRecall|null);
+
+        /**
+         * Creates a new BroadcastFlyCardRecall instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BroadcastFlyCardRecall instance
+         */
+        public static create(properties?: game.IBroadcastFlyCardRecall): game.BroadcastFlyCardRecall;
+
+        /**
+         * Encodes the specified BroadcastFlyCardRecall message. Does not implicitly {@link game.BroadcastFlyCardRecall.verify|verify} messages.
+         * @param message BroadcastFlyCardRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: game.IBroadcastFlyCardRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BroadcastFlyCardRecall message, length delimited. Does not implicitly {@link game.BroadcastFlyCardRecall.verify|verify} messages.
+         * @param message BroadcastFlyCardRecall message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: game.IBroadcastFlyCardRecall, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BroadcastFlyCardRecall message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BroadcastFlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): game.BroadcastFlyCardRecall;
+
+        /**
+         * Decodes a BroadcastFlyCardRecall message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BroadcastFlyCardRecall
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): game.BroadcastFlyCardRecall;
+
+        /**
+         * Verifies a BroadcastFlyCardRecall message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BroadcastFlyCardRecall message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BroadcastFlyCardRecall
+         */
+        public static fromObject(object: { [k: string]: any }): game.BroadcastFlyCardRecall;
+
+        /**
+         * Creates a plain object from a BroadcastFlyCardRecall message. Also converts values to other types if specified.
+         * @param message BroadcastFlyCardRecall
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: game.BroadcastFlyCardRecall, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BroadcastFlyCardRecall to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
 }
 
 /** Namespace history. */
@@ -6742,7 +7042,10 @@ export namespace route {
         BroadcastWatchcardNotificaion = 7003,
         BroadcastWatchcardCall = 7004,
         HistoryCall = 8001,
-        HistoryRecall = 8002
+        HistoryRecall = 8002,
+        FlyCardCall = 8101,
+        FlyCardRecall = 8102,
+        BroadcastFlyCardRecall = 8103
     }
 }
 
@@ -7160,8 +7463,8 @@ export namespace table {
         /** JoinedPlayer name */
         name?: (string|null);
 
-        /** JoinedPlayer isBet */
-        isBet?: (boolean|null);
+        /** JoinedPlayer bets */
+        bets?: (bet.IBetStatus|null);
     }
 
     /** Represents a JoinedPlayer. */
@@ -7179,8 +7482,8 @@ export namespace table {
         /** JoinedPlayer name. */
         public name: string;
 
-        /** JoinedPlayer isBet. */
-        public isBet: boolean;
+        /** JoinedPlayer bets. */
+        public bets?: (bet.IBetStatus|null);
 
         /**
          * Creates a new JoinedPlayer instance using the specified properties.

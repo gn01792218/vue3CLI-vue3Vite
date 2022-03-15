@@ -140,6 +140,18 @@ export const sendWatchCardCall = (data:any) =>{
     console.log('sendWatchCardCall',proto)
     sendWSPush(bytes);
 }
+//飛牌按鈕
+export const sendFlyCardCall = (data:any) =>{
+    let proto = game.FlyCardCall.create({
+        header:foundation.Header.create({
+            uri:route.FlyCardCall
+        }),
+        gameUuid : data.gameUuid
+    })
+    let bytes = game.FlyCardCall.encode(proto).finish()
+    console.log('sendFlyCardCall',proto)
+    sendWSPush(bytes);
+}
 //發送歷史資訊Call
 export const sendHistoryCall = () =>{
     let proto = history.HistoryCall.create({
@@ -260,6 +272,11 @@ export const getMsgReCall = (e:any) =>{
             console.log(WatchcardNotificaion,WatchcardNotificaion)
             store.commit('game/WatchcardNotificaion',WatchcardNotificaion)
             break;
+        case route.FlyCardRecall:
+            let FlyCardRecall = game.FlyCardRecall.decode(new Uint8Array(e.detail.msg.data))
+            console.log(FlyCardRecall,FlyCardRecall)
+            store.commit('game/FlyCardRecall',FlyCardRecall)
+            break
         case route.Roadmap:
             let map = roadmap.Roadmap.decode(new Uint8Array(e.detail.msg.data))
             // console.log('map',map)
@@ -294,7 +311,6 @@ export const getMsgReCall = (e:any) =>{
             let HistoryRecall = history.HistoryRecall.decode(new Uint8Array(e.detail.msg.data))
             console.log('HistoryRecall',HistoryRecall)
             store.commit('history/HistoryRecall',HistoryRecall)
-            
             break;
     }
 }

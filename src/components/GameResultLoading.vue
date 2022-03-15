@@ -30,6 +30,9 @@ export default defineComponent({
         const gameEnd = computed(()=>{
             return store.state.dealer.end
         })
+        const flyCard = computed(()=>{
+            return store.state.bet.flyCard
+        })
         window.addEventListener('reConnect',()=>{
             isWait.value = true
             stateMsg.value = "網路不穩...重連中..."
@@ -102,9 +105,15 @@ export default defineComponent({
             isWait.value = true
             stateMsg.value = "停止下注"
         })
-         watch(gameResult,()=>{  //公布結果時，關閉顯示
+        watch(gameResult,()=>{  //公布結果時，關閉顯示
            //關閉loading效果 
            isWait.value = false
+        })
+        watch(flyCard,()=>{
+            if(flyCard.value){
+                isWait.value = true
+                stateMsg.value = "飛牌!"
+            }
         })
         return {
             //data

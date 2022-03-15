@@ -92,15 +92,14 @@
         </transition-group>
         <li id="betConfirm">確認下注!!</li>
         <li id="cancleBet">取消下注!!</li>
-        <li id="flyCard">飛牌!</li>
       </ul>
       <div class="betArea-mobile-container d-flex">
         <div
           :class="[
             `betArea-item${index + 1}`,
             i.configClass,
-            { 'col-6': (index === 0) | (index === 1) },
-            { 'col-4': (index !== 0) | (index !== 1) },
+            { 'col-6': index === 0 || index === 1 },
+            { 'col-4': index !== 0 || index !== 1 },
             'd-flex flex-column justify-content-center',
           ]"
           v-for="(i, index) in coinPosition"
@@ -293,6 +292,7 @@ import {
   sendAskRoadCall,
   sendBetConfirmCall,
   sendWatchCardCall,
+  sendFlyCardCall,
 } from "../socketApi";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
@@ -442,6 +442,9 @@ export default defineComponent({
       //是否取得咪牌權利
       return store.state.game.WatchcardNotificaion;
     });
+    const flyCardStatus = computed(() => {
+      return store.state.bet.flyCard;
+    });
     //基本資料
     const canBet = ref(true); //是否可以下注
     const betCallTemp = ref({}); //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
@@ -526,9 +529,7 @@ export default defineComponent({
     const minBetLimit = ref(999999999); //手機版本顯示檯紅最小
     const maxBetLimit = ref(-1); //手機版本顯示檯紅最大
     const watchCardBtn = computed(() => {
-      return document.querySelector(
-        "#watchCard-btn"
-      ) as HTMLElement;
+      return document.querySelector("#watchCard-btn") as HTMLElement;
     });
     //監聽
     watch(tableNum, () => {
@@ -672,55 +673,11 @@ export default defineComponent({
     watch(canWatchCard, () => {
       alertCanWatchCard();
     });
-    function setBetStatusTextColor() {
-      //更換bstStatus和totalBet的顏色
-      let betStatusText = document.querySelectorAll(".betStatus") as NodeListOf<
-        HTMLElement
-      >;
-      let totalBet = document.querySelector("#totalBet") as HTMLElement;
-      if (isConfirmed.value) {
-        //按過了是灰色
-        //字變成白色
-        betStatusText.forEach((i: HTMLElement) => {
-          i.style.color = "white";
-        });
-        totalBet.style.color = "white";
-      } else {
-        //字變成灰色
-        betStatusText.forEach((i: HTMLElement) => {
-          i.style.color = "gray";
-        });
-        totalBet.style.color = "gray";
+    watch(flyCardStatus, () => {
+      if (!flyCardStatus.value) {
+        setConfirmBtnColor();
       }
-    }
-    function setConfirmBtnColor() {
-      //更換確認紐顏色
-      let confirmBtn = document.querySelector(
-        ".bettingArea-btn-check"
-      ) as HTMLElement;
-      if (isConfirmed.value) {
-        //按過了是灰色
-        //按鈕變成灰色
-        confirmBtn.style.background = "rgb(80, 78, 78)";
-      } else {
-        //按鈕變成原本顏色
-        confirmBtn.style.background = "rgba(128, 0, 128, 0.829)";
-      }
-    }
-    function setCancleBetBtnColor() {
-      let cancleBtn = document.querySelector(
-        ".bettingArea-btn-gitbackAllCoin"
-      ) as HTMLElement;
-      // console.log('設置取消按鈕顏色',isConfirmed.value)
-      if (!isConfirmed.value) {
-        //沒按過確認紐的時候是灰色的
-        //按鈕變成灰色
-        cancleBtn.style.background = "rgb(80, 78, 78)";
-      } else {
-        //按鈕變成原本顏色
-        cancleBtn.style.background = "rgba(0,0,255,.692)";
-      }
-    }
+    });
     function getBetLimit(tableBetIndoData: any) {
       //每次都把最大最小基準值恢復，再比大小
       minBetLimit.value = 999999999;
@@ -1105,6 +1062,7 @@ export default defineComponent({
       });
       store.commit("bet/setBetResultRest");
       canBet.value = true;
+      store.commit("bet/setFlyCard", false);
       betArray = [];
     }
     function showResult() {
@@ -1278,6 +1236,63 @@ export default defineComponent({
       }
       // console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
     }
+    function setBetStatusTextColor() {
+      //更換bstStatus和totalBet的顏色
+      let betStatusText = document.querySelectorAll(".betStatus") as NodeListOf<
+        HTMLElement
+      >;
+      let totalBet = document.querySelector("#totalBet") as HTMLElement;
+      if (isConfirmed.value) {
+        //按過了是灰色
+        //字變成白色
+        betStatusText.forEach((i: HTMLElement) => {
+          i.style.color = "white";
+        });
+        totalBet.style.color = "white";
+      } else {
+        //字變成灰色
+        betStatusText.forEach((i: HTMLElement) => {
+          i.style.color = "gray";
+        });
+        totalBet.style.color = "gray";
+      }
+    }
+    function setConfirmBtnColor() {
+      //更換確認紐顏色
+      let confirmBtn = document.querySelector(
+        ".bettingArea-btn-check"
+      ) as HTMLElement;
+      if (isConfirmed.value) {
+        //按過了是灰色
+        //按鈕變成灰色
+        confirmBtn.style.background = "rgb(80, 78, 78)";
+      } else {
+        //按鈕變成原本顏色
+        confirmBtn.style.background = "rgba(128, 0, 128, 0.829)";
+      }
+    }
+    function setFlyCardColorGrey(){
+      let flyCardBtn = document.querySelector(
+        ".fly-card"
+      ) as HTMLElement;
+      console.log('飛牌紐變灰色',flyCardBtn.style.backgroundColor)
+      flyCardBtn.style.backgroundColor = "rgb(80, 78, 78) !important"; //變成灰色
+      console.log('飛牌紐變灰色',flyCardBtn.style.backgroundColor)
+    }
+    function setCancleBetBtnColor() {
+      let cancleBtn = document.querySelector(
+        ".bettingArea-btn-gitbackAllCoin"
+      ) as HTMLElement;
+      // console.log('設置取消按鈕顏色',isConfirmed.value)
+      if (!isConfirmed.value) {
+        //沒按過確認紐的時候是灰色的
+        //按鈕變成灰色
+        cancleBtn.style.background = "rgb(80, 78, 78)";
+      } else {
+        //按鈕變成原本顏色
+        cancleBtn.style.background = "rgba(0,0,255,.692)";
+      }
+    }
     function sendConfirmBetCall() {
       //發送確認下注請求
       //可以發出確認紐的時機:
@@ -1293,6 +1308,8 @@ export default defineComponent({
           sendBetConfirmCall({
             gameUuid: roundUuid.value,
           });
+          setFlyCardColorGrey() //不能按飛牌，把顏色變成灰色
+
         } else {
           betErrorArray.value?.push("尚未下注");
         }
@@ -1327,15 +1344,30 @@ export default defineComponent({
     }
     //要飛牌，直接退出畫面前先傳送資料給serve
     function flyCard() {
+      if (!canBet.value) return;
+      if (isConfirmed.value) return;
+      if (flyCardStatus.value) return;
       //發送飛牌給serve
-      sendWatchCardCall({
-        confirm: false,
+      sendFlyCardCall({
+        gameUuid: roundUuid.value,
       });
-      gsap.fromTo(
-          "#flyCard",
-          { opacity: 1, y: 0, scale: 1, color: "yellow" },
-          { duration: 2, scale: 4, opacity: 0, ease: Power4.easeOut }
-        )
+      canBet.value = false; //不能下注
+      store.commit("bet/setIsConfirmed", false);
+      store.commit("bet/setFlyCard", true); //按過飛牌了
+      setFlyCardColorGrey() //不能按飛牌，把顏色變成灰色
+      //清空下注
+      coinPosition.forEach((i) => {
+        i.coinArray = [];
+        i.initBottom = 0;
+        i.betStatus = 0;
+        i.tableAllPlayerBetStatus = 0;
+        i.initX = 0;
+      });
+      //確認按鈕變灰色
+      let confirmBtn = document.querySelector(
+        ".bettingArea-btn-check"
+      ) as HTMLElement;
+      confirmBtn.style.background = "rgb(80, 78, 78)";
     }
     function alertCanWatchCard() {
       //收到此人獲得咪牌權限時開通咪牌功能

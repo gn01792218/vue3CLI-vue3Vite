@@ -6,7 +6,8 @@ export const state = {
   totalBets:0,
   BetError:{},
   betstatus:{},
-  isConfirmed:false //下注按鈕是否有下注
+  isConfirmed:false, //下注按鈕是否有下注
+  flyCard:false //是否要飛牌
 };
 export const actions = {}
 
@@ -45,6 +46,9 @@ export const mutations = {
   },
   setIsConfirmed(state:any,usage:boolean){
     state.isConfirmed = usage
+  },
+  setFlyCard(state:any,flyCard:boolean){
+    state.flyCard = flyCard
   }
 };
 export const getters = {
