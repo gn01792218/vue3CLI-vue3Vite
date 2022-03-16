@@ -202,7 +202,7 @@
           <div
             v-if="tableNum.includes('VIP')"
             @click="flyCard"
-            class="bettingArea-btn-center fly-card cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
+            class="fly-card bettingArea-btn-center cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
           >
             <span>飛</span>
           </div>
@@ -1275,9 +1275,8 @@ export default defineComponent({
       let flyCardBtn = document.querySelector(
         ".fly-card"
       ) as HTMLElement;
-      console.log('飛牌紐變灰色',flyCardBtn.style.backgroundColor)
-      flyCardBtn.style.backgroundColor = "rgb(80, 78, 78) !important"; //變成灰色
-      console.log('飛牌紐變灰色',flyCardBtn.style.backgroundColor)
+      flyCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
+      console.log('飛牌紐變灰色',flyCardBtn.style)
     }
     function setCancleBetBtnColor() {
       let cancleBtn = document.querySelector(
@@ -1338,6 +1337,7 @@ export default defineComponent({
       }
     }
     function watchCard() {
+      if (flyCardStatus.value) return;
       sendWatchCardCall({
         confirm: true,
       });
