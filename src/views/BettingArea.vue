@@ -1271,12 +1271,17 @@ export default defineComponent({
         confirmBtn.style.background = "rgba(128, 0, 128, 0.829)";
       }
     }
-    function setFlyCardColorGrey(){
+    function setFlyCardColorUnavailable(){
       let flyCardBtn = document.querySelector(
         ".fly-card"
       ) as HTMLElement;
       flyCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
-      console.log('飛牌紐變灰色',flyCardBtn.style)
+    }
+    function setwatchCardColorUnavailable(){
+      let watchCardBtn = document.querySelector(
+        "#watchCard-btn"
+      ) as HTMLElement;
+      watchCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
     }
     function setCancleBetBtnColor() {
       let cancleBtn = document.querySelector(
@@ -1307,8 +1312,7 @@ export default defineComponent({
           sendBetConfirmCall({
             gameUuid: roundUuid.value,
           });
-          setFlyCardColorGrey() //不能按飛牌，把顏色變成灰色
-
+          setFlyCardColorUnavailable() //不能按飛牌，把顏色變成灰色
         } else {
           betErrorArray.value?.push("尚未下注");
         }
@@ -1338,6 +1342,7 @@ export default defineComponent({
     }
     function watchCard() {
       if (flyCardStatus.value) return;
+      setwatchCardColorUnavailable() //把按鈕變成灰色
       sendWatchCardCall({
         confirm: true,
       });
@@ -1354,7 +1359,7 @@ export default defineComponent({
       canBet.value = false; //不能下注
       store.commit("bet/setIsConfirmed", false);
       store.commit("bet/setFlyCard", true); //按過飛牌了
-      setFlyCardColorGrey() //不能按飛牌，把顏色變成灰色
+      setFlyCardColorUnavailable() //不能按飛牌，把顏色變成灰色
       //清空下注
       coinPosition.forEach((i) => {
         i.coinArray = [];
@@ -1376,8 +1381,6 @@ export default defineComponent({
         "#watchCard-btn"
       ) as HTMLElement;
       watchCardBtn?.classList.add("bettingArea-btn-watchCard-Animation");
-      //顯示確認是否咪牌按鈕
-      // $("#whatchCardOrNot").modal("show");
     }
     function resetWatchCardAlert(watchCardBtn: HTMLElement) {
       // let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement

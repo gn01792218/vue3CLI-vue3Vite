@@ -110,8 +110,12 @@ const watchCardVideoStream2 = computed(() => {
 const gameResult = computed(()=>{ //回傳的是陣列
     return store.state.dealer.BroadcastGameResult.results
 })
+const flyCardStatus = computed(() => {
+      return store.state.bet.flyCard;
+    });
 watch(gameResult,()=>{
   console.log("有遊戲結果，關掉咪牌畫面")
+    if(flyCardStatus.value) return //選擇飛牌的時候就不必再隱藏畫面了
     $("#watchCardBox").modal("hide");
 })
 watch([watchCardVideoStream1, watchCardVideoStream2], () => {

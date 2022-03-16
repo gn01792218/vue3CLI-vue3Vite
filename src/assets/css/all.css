@@ -1120,6 +1120,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   background-color: #644d31;
 }
 
+#watchCard-btn {
+  background-color: rgba(128, 0, 128, 0.829);
+}
+
 .bettingArea-btn-watchCard-Animation {
   -webkit-animation-name: watchCardAnimation;
           animation-name: watchCardAnimation;
