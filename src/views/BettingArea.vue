@@ -1,7 +1,7 @@
 <template>
   <GameresultSound />
   <div class="betArea position-relative">
-    <ConfirmWatchCard />
+    <!-- <ConfirmWatchCard /> -->
     <watchCardBox />
     <!-- <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button> -->
     <!-- PC版本注區 -->
@@ -222,8 +222,8 @@
             class="bettingArea-btn-center cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
           >
             <span class="d-flex align-item-center"
-              ><i class="bi bi-eye"></i
-            ></span>
+              ><i class="bi bi-eye" v-show="watchCardStatus"></i
+            ><i class="bi bi-eye-slash" v-show="!watchCardStatus"></i></span>
           </div>
           <!-- 手機版本才會出現的檯紅顯示 -->
           <div
@@ -234,11 +234,7 @@
                 numberFormat(maxBetLimit)
               }}</span
             >
-            <!-- <span>在線10000人</span> -->
           </div>
-          <!-- <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2"> -->
-          <!-- <span>在線<br>{{onlinePlayersNumber}}人</span> -->
-          <!-- </div> -->
         </div>
         <div
           class="bettingArea-btn-check d-flex justify-content-center align-items-center"
@@ -284,7 +280,7 @@ import GameresultSound from "@/components/GameResultSound.vue";
 import GameResultLoading from "@/components/GameResultLoading.vue";
 import LightBox from "@/components/LightBox.vue";
 import watchCardBox from "@/components/modal/watchCardBox.vue";
-import ConfirmWatchCard from "@/components/modal/ConfirmWatchCard.vue";
+// import ConfirmWatchCard from "@/components/modal/ConfirmWatchCard.vue";
 import { gsap, Power4 } from "gsap";
 import {
   sendBetCall,
@@ -327,7 +323,7 @@ export default defineComponent({
     GameResultLoading,
     LightBox,
     watchCardBox,
-    ConfirmWatchCard,
+    // ConfirmWatchCard,
   },
   setup() {
     //初始化
@@ -422,10 +418,7 @@ export default defineComponent({
       //回合自動問閒的recall
       return store.state.game.askPlayerByRoundStart;
     });
-    const isConfirmed = computed(() => {
-      //確認鈕狀態
-      return store.state.bet.isConfirmed;
-    });
+    
     const coinList = computed(() => {
       //該桌籌碼陣列
       return store.state.table.tableCoinData[tableNum.value as string];
@@ -438,13 +431,32 @@ export default defineComponent({
       //在線人數
       return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers;
     });
-    const canWatchCard = computed(() => {
+    const canConfirm = computed(()=>{
+      return store.state.bet.canUseConfirm
+    })
+    const isConfirmed = computed(() => {
+      //確認鈕狀態
+      return store.state.bet.isConfirmed;
+    });
+    const askWatchCard = computed(() => {
       //是否取得咪牌權利
       return store.state.game.WatchcardNotificaion;
     });
+    const watchCardStatus = computed(()=>{ //是否要咪牌
+      return store.state.bet.isWatchCard
+    })
+    const canWatchCard = computed(()=>{ //咪牌可不可用
+      return store.state.bet.canUseWatchCard
+    })
     const flyCardStatus = computed(() => {
       return store.state.bet.flyCard;
     });
+    const canUseFlyCard = computed(()=>{
+      return store.state.bet.canUseFlyCard
+    })
+    const flyCardRecall = computed(()=>{
+      return store.state.game.flyCardRecall
+    })
     //基本資料
     const canBet = ref(true); //是否可以下注
     const betCallTemp = ref({}); //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
@@ -545,11 +557,33 @@ export default defineComponent({
       //收到server回應的確認下注，做確認鈕動作
       confirmBet();
     });
-    watch(isConfirmed, () => {
-      //根據是否按過確認鍵，更換相關顏色
+    watch(canConfirm,()=>{ //監聽可否使用確認鈕
       setBetStatusTextColor();
       setConfirmBtnColor();
       setCancleBetBtnColor();
+    })
+    watch(canUseFlyCard, () => { //玩家是否可以按飛牌鈕
+      setFlyCardColor()
+      if (!canUseFlyCard.value) { //飛牌鈕不能按的時候，設置確認鈕的顏色
+        setConfirmBtnColor();
+      }
+    });
+    watch(canWatchCard,()=>{
+      setWatchCardColor()
+    })
+    watch(isConfirmed, () => {
+      //根據是否按過確認鍵，更換相關顏色
+      // setBetStatusTextColor();
+      // setConfirmBtnColor();
+      // setCancleBetBtnColor();
+      setWatchCardColor()
+      if(isConfirmed.value){ //按過確認鈕後，飛牌就不能按了
+        store.commit('bet/setCanUseConfirm',false) //確認鈕也不能按
+        store.commit("bet/setCanUseFlyCard", false); //飛牌不能按
+        store.commit('bet/setCanUseWatchCard',false); //咪排按鈕不能按
+      }else{
+        store.commit('bet/setCanUseConfirm',true) //確認鈕可以按
+      }
     });
     watch(betResetresult, () => {
       //玩家反悔收回籌碼的動作
@@ -609,6 +643,12 @@ export default defineComponent({
       //回合開始時重置遊戲；也可能是換桌
       reSetBetAreaAnimation();
       resetGame();
+      store.commit("bet/setIsConfirmed",false)//重置是否按下確認
+      store.commit('bet/setCanUseConfirm',true) //可以按下確認紐
+      store.commit("bet/setWatchCard", true); //重置咪牌按紐
+      store.commit("bet/setCanUseWatchCard", true); //咪牌紐可以使用
+      store.commit('bet/setFlyCard',false); //重置飛牌鈕
+      store.commit("bet/setCanUseFlyCard", true); //飛牌鈕可以按
     });
     watch(gameEndUuid, () => {
       //停止下注，在開牌之前
@@ -668,16 +708,31 @@ export default defineComponent({
       clearLoseArea(gameResult.value);
       showResult();
       winCoinAnimation();
-      store.commit("bet/setIsConfirmed", false); //重置按紐
+      // store.commit("bet/setIsConfirmed", false); //重置按紐
     });
-    watch(canWatchCard, () => {
+    watch(askWatchCard, () => { //server詢問是否要咪牌
       alertCanWatchCard();
     });
-    watch(flyCardStatus, () => {
-      if (!flyCardStatus.value) {
-        setConfirmBtnColor();
-      }
-    });
+    watch(flyCardRecall,()=>{ //有收到reCall表使這桌要飛牌
+       canBet.value = false; //不能下注
+      store.commit('bet/setCanUseConfirm',false); //確認按鈕不能按
+      store.commit("bet/setFlyCard", true); //按過飛牌了
+      store.commit('bet/setCanUseFlyCard',false) //飛牌鈕不能使用了
+      store.commit("bet/setCanUseWatchCard", false); //也不能咪牌了
+      //清空下注
+      coinPosition.forEach((i) => {
+        i.coinArray = [];
+        i.initBottom = 0;
+        i.betStatus = 0;
+        i.tableAllPlayerBetStatus = 0;
+        i.initX = 0;
+      });
+      //確認按鈕變灰色
+      let confirmBtn = document.querySelector(
+        ".bettingArea-btn-check"
+      ) as HTMLElement;
+      confirmBtn.style.background = "rgb(80, 78, 78)";
+    })
     function getBetLimit(tableBetIndoData: any) {
       //每次都把最大最小基準值恢復，再比大小
       minBetLimit.value = 999999999;
@@ -967,39 +1022,6 @@ export default defineComponent({
         store.commit("bet/resetBetResult"); //重置result狀態
       }
     }
-    function getAllBetBack() {
-      if (canBet.value && gameStatus.value == 1) {
-        //可以下注，且遊戲狀態是下注中
-        if (
-          coinPosition[0].betStatus != 0 ||
-          coinPosition[1].betStatus != 0 ||
-          coinPosition[2].betStatus != 0 ||
-          coinPosition[3].betStatus != 0 ||
-          coinPosition[4].betStatus != 0
-        ) {
-          sendBetResetCall({
-            gameUuid: roundUuid.value,
-          });
-          gsap.fromTo(
-            "#cancleBet",
-            { opacity: 1, y: 0, scale: 1, color: "yellow" },
-            { duration: 2, scale: 3, opacity: 0, ease: Power4.easeOut }
-          );
-          store.commit("bet/setIsConfirmed", false);
-        } else {
-          betErrorArray.value?.push("尚未下注");
-        }
-      } else {
-        switch (gameStatus.value) {
-          case 2:
-            betErrorArray.value?.push("開牌中，無法取消");
-            break;
-          case 3:
-            betErrorArray.value?.push("等待中，無法取消");
-            break;
-        }
-      }
-    }
     function clearLoseArea(winAreaArray: Array<number>) {
       let winArea1 = winAreaArray[0];
       let winArea2 = winAreaArray[1]; //若沒有，就是undefined
@@ -1061,8 +1083,8 @@ export default defineComponent({
         i.ammo = [];
       });
       store.commit("bet/setBetResultRest");
-      canBet.value = true;
-      store.commit("bet/setFlyCard", false);
+      canBet.value = true; //可以下注
+      store.commit("bet/setFlyCard", false); //飛牌狀態恢復預設
       betArray = [];
     }
     function showResult() {
@@ -1262,35 +1284,43 @@ export default defineComponent({
       let confirmBtn = document.querySelector(
         ".bettingArea-btn-check"
       ) as HTMLElement;
-      if (isConfirmed.value) {
+      
+      if (!canConfirm.value) {
         //按過了是灰色
-        //按鈕變成灰色
         confirmBtn.style.background = "rgb(80, 78, 78)";
       } else {
         //按鈕變成原本顏色
         confirmBtn.style.background = "rgba(128, 0, 128, 0.829)";
       }
     }
-    function setFlyCardColorUnavailable(){
-      let flyCardBtn = document.querySelector(
-        ".fly-card"
-      ) as HTMLElement;
-      flyCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
+    function setFlyCardColor() {
+      let flyCardBtn = document.querySelector(".fly-card") as HTMLElement;
+      if(!flyCardBtn) return
+      if(!canUseFlyCard.value){
+        console.log('使否可以使用飛牌鈕',canUseFlyCard.value)
+        flyCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
+      }else{
+        console.log('使否可以使用飛牌鈕',canUseFlyCard.value)
+        flyCardBtn.style.backgroundColor ="#644d31"; //變回原本顏色
+      }
     }
-    function setwatchCardColorUnavailable(){
+    function setWatchCardColor() {
       let watchCardBtn = document.querySelector(
         "#watchCard-btn"
       ) as HTMLElement;
-      watchCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
+      if(!watchCardBtn) return
+      if(!canWatchCard.value){ //按過了變成灰色的
+        watchCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
+      }else{
+         watchCardBtn.style.backgroundColor = "rgba(128, 0, 128, 0.829)";
+      }
     }
     function setCancleBetBtnColor() {
       let cancleBtn = document.querySelector(
         ".bettingArea-btn-gitbackAllCoin"
       ) as HTMLElement;
-      // console.log('設置取消按鈕顏色',isConfirmed.value)
       if (!isConfirmed.value) {
         //沒按過確認紐的時候是灰色的
-        //按鈕變成灰色
         cancleBtn.style.background = "rgb(80, 78, 78)";
       } else {
         //按鈕變成原本顏色
@@ -1312,7 +1342,7 @@ export default defineComponent({
           sendBetConfirmCall({
             gameUuid: roundUuid.value,
           });
-          setFlyCardColorUnavailable() //不能按飛牌，把顏色變成灰色
+          store.commit('bet/setCanUseFlyCard',false) //不能按飛牌，把顏色變成灰色
         } else {
           betErrorArray.value?.push("尚未下注");
         }
@@ -1338,28 +1368,66 @@ export default defineComponent({
         );
         //不能下注，除非按取消
         store.commit("bet/setIsConfirmed", true);
+        store.commit('bet/setCanUseConfirm',false); //確認按鈕不能按
+        store.commit('bet/setCanUseWatchCard',false); //咪排按鈕不能按
+        console.log('確認鈕不可以按了',canConfirm.value)
       }
     }
-    function watchCard() {
-      if (flyCardStatus.value) return;
-      setwatchCardColorUnavailable() //把按鈕變成灰色
-      sendWatchCardCall({
-        confirm: true,
-      });
+    function getAllBetBack() {
+      if (canBet.value && gameStatus.value == 1) {
+        //可以下注，且遊戲狀態是下注中
+        if (
+          coinPosition[0].betStatus != 0 ||
+          coinPosition[1].betStatus != 0 ||
+          coinPosition[2].betStatus != 0 ||
+          coinPosition[3].betStatus != 0 ||
+          coinPosition[4].betStatus != 0
+        ) {
+          sendBetResetCall({
+            gameUuid: roundUuid.value,
+          });
+          gsap.fromTo(
+            "#cancleBet",
+            { opacity: 1, y: 0, scale: 1, color: "yellow" },
+            { duration: 2, scale: 3, opacity: 0, ease: Power4.easeOut }
+          );
+          store.commit("bet/setIsConfirmed", false); //取消確認
+          store.commit('bet/setCanUseConfirm',true); //確認按鈕可以按
+          store.commit("bet/setCanUseFlyCard", true); //可以使用飛牌鈕
+          store.commit("bet/setFlyCard", false); //還沒按過飛牌
+        } else {
+          betErrorArray.value?.push("尚未下注");
+        }
+      } else {
+        switch (gameStatus.value) {
+          case 2:
+            betErrorArray.value?.push("開牌中，無法取消");
+            break;
+          case 3:
+            betErrorArray.value?.push("等待中，無法取消");
+            break;
+        }
+      }
+    }
+    function watchCard() { //咪牌
+      if(flyCardStatus.value) return;
+      if(isConfirmed.value) return;
+      store.commit('bet/setWatchCard',!watchCardStatus.value)
     }
     //要飛牌，直接退出畫面前先傳送資料給serve
-    function flyCard() {
+    function flyCard() { //飛牌
       if (!canBet.value) return;
       if (isConfirmed.value) return;
-      if (flyCardStatus.value) return;
+      if(!canUseFlyCard.value) return;
       //發送飛牌給serve
       sendFlyCardCall({
         gameUuid: roundUuid.value,
       });
       canBet.value = false; //不能下注
-      store.commit("bet/setIsConfirmed", false);
+      store.commit('bet/setCanUseConfirm',false); //確認按鈕不能按
       store.commit("bet/setFlyCard", true); //按過飛牌了
-      setFlyCardColorUnavailable() //不能按飛牌，把顏色變成灰色
+      store.commit('bet/setCanUseFlyCard',false) //飛牌鈕不能使用了
+      store.commit("bet/setCanUseWatchCard", false); //也不能咪牌了
       //清空下注
       coinPosition.forEach((i) => {
         i.coinArray = [];
@@ -1368,22 +1436,14 @@ export default defineComponent({
         i.tableAllPlayerBetStatus = 0;
         i.initX = 0;
       });
-      //確認按鈕變灰色
-      let confirmBtn = document.querySelector(
-        ".bettingArea-btn-check"
-      ) as HTMLElement;
-      confirmBtn.style.background = "rgb(80, 78, 78)";
     }
     function alertCanWatchCard() {
-      //收到此人獲得咪牌權限時開通咪牌功能
-      //咪牌按鈕亮起
-      let watchCardBtn = document.querySelector(
-        "#watchCard-btn"
-      ) as HTMLElement;
-      watchCardBtn?.classList.add("bettingArea-btn-watchCard-Animation");
+      //收到此人獲得咪牌權限時傳送此人要不要咪牌
+      sendWatchCardCall({
+        confirm: watchCardStatus.value,
+      });
     }
     function resetWatchCardAlert(watchCardBtn: HTMLElement) {
-      // let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
       watchCardBtn?.classList.remove("bettingArea-btn-watchCard-Animation");
       $("#watchCardBox").modal("hide");
     }
@@ -1400,6 +1460,7 @@ export default defineComponent({
       maxBetLimit,
       onlinePlayersNumber,
       tableNum,
+     watchCardStatus,
       //methods
       chooseCoint,
       cointAnimate,
@@ -1412,7 +1473,7 @@ export default defineComponent({
       askRoad,
       numberFormat,
       sendConfirmBetCall,
-      alertCanWatchCard,
+      // alertCanWatchCard,
       watchCard,
       flyCard,
     };

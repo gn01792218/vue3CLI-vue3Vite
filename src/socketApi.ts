@@ -208,7 +208,7 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.BetRecall:
             let BetRecall = bet.BetRecall.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('BetRecall',BetRecall)
+            console.log('BetRecall',BetRecall)
             store.commit('bet/BetRecall',BetRecall)
             break;
         case route.BroadcastBetstatus:

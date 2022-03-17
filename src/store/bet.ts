@@ -7,7 +7,12 @@ export const state = {
   BetError:{},
   betstatus:{},
   isConfirmed:false, //下注按鈕是否有下注
-  flyCard:false //是否要飛牌
+  flyCard:false, //是否要飛牌
+  isWatchCard:true, //是否選擇咪牌
+  canUseFlyCard:true,// 可以使用飛牌按鈕
+  canUseConfirm:true,//可以使用確認鈕
+  canUseWatchCard:true, //可否使用咪牌按鈕
+  tableBtn:{}
 };
 export const actions = {}
 
@@ -49,6 +54,22 @@ export const mutations = {
   },
   setFlyCard(state:any,flyCard:boolean){
     state.flyCard = flyCard
+  },
+  setWatchCard(state:any,watchCard:boolean){
+    state.isWatchCard = watchCard
+  },
+  setCanUseFlyCard(state:any,canuse:boolean){
+    state.canUseFlyCard = canuse
+  },
+  setCanUseConfirm(state:any,canuse:boolean){
+    state.canUseConfirm = canuse
+  },
+  setCanUseWatchCard(state:any,canuse:boolean){
+    state.canUseWatchCard = canuse
+  },
+  setTableBtn(state:any,payload:any){
+    state.tableBtn[payload.table].iswatchCard = payload.iswatchCard
+    state.tableBtn[payload.table].canUseWatchCard = payload.canUseWatchCard
   }
 };
 export const getters = {
