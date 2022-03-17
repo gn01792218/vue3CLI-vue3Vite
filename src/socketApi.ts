@@ -289,7 +289,7 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.AskRoadRecall:
             let askRoadReCall = roadmap.AskRoadRecall.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('問下三路',askRoadReCall)
+            console.log('問下三路',askRoadReCall)
             store.commit('roadmap/setAskRoadRecall',askRoadReCall)
             break;
         case route.BroadcastAnnouncement:

@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from "vue";
 import LiveVideo from "@/components/LiveVideo.vue";
-import BettingArea from "@/views/BettingArea.vue";
+import BettingArea from "@/components/bettingArea/BettingArea.vue";
 import TableInfo from "@/views/TableInfo.vue";
 import GameHistory from "@/components/GameHistory.vue";
 import Counter from "@/components/Counter.vue";
