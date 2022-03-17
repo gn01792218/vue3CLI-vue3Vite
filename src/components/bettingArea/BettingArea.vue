@@ -188,7 +188,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import {
   computed,
   defineComponent,
@@ -232,18 +232,7 @@ interface coinPosition {
   tableAllPlayerBetStatus: number;
   maxBet: number; //最大限注
 }
-export default defineComponent({
-  components: {
-    GameResult,
-    GameresultSound,
-    GameResultLoading,
-    LightBox,
-    watchCardBox,
-    BtnList,
-    // ConfirmWatchCard,
-  },
-  setup() {
-    //初始化
+//初始化
     onMounted(() => {
       //初始化籌碼
       setDefaultCoin();
@@ -901,28 +890,6 @@ export default defineComponent({
         });
       }
     }
-    return {
-      //data
-      coinList,
-      currentCoint,
-      coinPosition,
-      betStatus,
-      total,
-      betErrorArray,
-      betInfo,
-      onlinePlayersNumber,
-      tableNum,
-      //methods
-      chooseCoint,
-      cointAnimate,
-      generateCoinAnimate,
-      resetGame,
-      showResult,
-      betErrorAnimation,
-      sendBetData,
-    };
-  },
-});
 </script>
 <style scoped>
 .watchTest {
