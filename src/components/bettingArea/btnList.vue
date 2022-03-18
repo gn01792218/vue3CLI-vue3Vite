@@ -84,6 +84,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
+import LightBox from '@/components/LightBox.vue'
 import { gsap, Power4 } from "gsap";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
