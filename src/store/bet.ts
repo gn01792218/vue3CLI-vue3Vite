@@ -109,9 +109,6 @@ export const mutations = {
     state.BetError = payload;
     // console.log("vuex-BetError資料更新",state.BetError)
   },
-  // addBetErrorString(state:any,errorStr:string){
-  //   state.betErrorArray.push(errorStr)
-  // },
   resetBetResult(state: any) {
     state.BetRecall.result = 0;
   },

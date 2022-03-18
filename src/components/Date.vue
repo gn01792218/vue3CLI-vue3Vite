@@ -5,7 +5,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import $ from "jquery";
+import { useStore } from "vuex";
 dateRun();
+const store = useStore()
 //日期顯示
 const date = ref("");
 const isalerted = ref(false);
@@ -38,7 +40,8 @@ function alertLastThreeGame(date: Date) {  //凌晨時刻提示最後X局的aler
     date.getMinutes() <= alertLastThreeGameStartMinutes         
   ) {
     isalerted.value = true;
-    $("#closedAlert").modal("show");
+    store.commit('game/setGameMsg',"營業時間即將結束，遊戲剩下三局以內。")
+    $("#gameMsg").modal("show");
   }
 }
 </script>

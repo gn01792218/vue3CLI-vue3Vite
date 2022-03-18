@@ -18,6 +18,7 @@ import Counter from "@/components/Counter.vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { sendTableJoinCall } from "../socketApi";
+import $ from "jquery";
 //初始化
 onMounted(async () => {
   // console.log("創建遊戲桌",tables.value)
@@ -44,7 +45,12 @@ const roundUuid = computed(() => {
   //遊戲回合的Uuid
   return store.state.game.gameUuid;
 });
-
+const flayCardRecall = computed(()=>{
+  return store.state.game.flyCardRecall
+})
+const confirmBetStatus = computed(()=>{
+  return store.state.bet.isConfirmed
+})
 //監聽
 watch(tableNum, () => {
   //偵測到換桌
@@ -54,8 +60,19 @@ watch(tableNum, () => {
 });
 watch(roundUuid,()=>{
   //換桌的時候就重新計算時間
-  // clearTimer(vipCounter.value as number)
-  // setVipCounter(vipCounter)
+  if(!tableNum.value.includes('VIP')){ //不是VIP桌的話不需要設置計時器
+    clearTimer(vipCounter.value as number)
+    return
+  } 
+  clearTimer(vipCounter.value as number)
+  setVipCounter(vipCounter)
+})
+watch(flayCardRecall,()=>{ //只要聽到飛牌reCall表示玩家要飛牌，所以清除計時器
+  clearTimer(vipCounter.value as number)  
+})
+watch(confirmBetStatus,()=>{ //聽到按下確認紐，以要停止計時器
+  if(!confirmBetStatus.value) return
+  clearTimer(vipCounter.value as number)  
 })
 window.addEventListener("reConnect", () => {
   //重新連接的時候
@@ -85,11 +102,9 @@ function clearTimer(timer:number){
   clearInterval(timer)
 }
 function setVipCounter(timer:Ref){
-  if(timer.value===null) return
   timer.value = setInterval(()=>{
-    //跳出提醒10分鐘(600000)未下注了
-    alert('您已經10分鐘未下注了')
-  },1000) 
-  console.log('執行計時器')
+    store.commit('game/setGameMsg',"您未下注已達10分鐘，請下注")
+    $("#gameMsg").modal("show");
+  },600000) 
 }
 </script>

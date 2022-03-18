@@ -12,7 +12,7 @@
   </div>
   <!-- Modal -->
   <KickoutWarn />
-  <ClosedWarn />
+  <GameMsgModal/>
 </template>
 <script setup lang="ts">
 import { onMounted, computed } from "vue";
@@ -22,7 +22,7 @@ import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import BaccaratGame from "@/views/BaccaratGame.vue";
 import KickoutWarn from "@/components/modal/KickoutWarn.vue";
-import ClosedWarn from "@/components/modal/ClosedWarn.vue";
+import GameMsgModal from '@/components/modal/GameMsgModal.vue'
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
 onMounted(() => {
