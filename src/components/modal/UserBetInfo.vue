@@ -111,6 +111,10 @@
             </ul>
             <ul class="userBetInfo-ul list-group list-group-horizontal">
               <li class="w-100 list-group-item">
+                <div class="d-flex justify-content-between text-danger font-weight-bolder fs-larger">
+                  <span>閒</span>
+                  <span>莊</span>
+                </div>
                 <div class="card-wrap">
                   <section class="d-flex justify-content-center">
                     <div
