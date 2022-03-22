@@ -1,9 +1,8 @@
 <template>
-<!-- 凌晨三點~三點10分警告剩下三局以內 -->
-<!-- 由Date.vue控制 -->
+<!-- 遊戲訊息視窗 -->
     <div
     class="modal fade"
-    id="closedAlert"
+    id="gameMsg"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
@@ -22,7 +21,7 @@
           </button>
         </div>
         <div class="modal-body">
-          營業時間即將結束，遊戲剩下三局以內。
+          {{gameMsg}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -35,6 +34,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "@vue/reactivity";
+import { useStore } from "vuex";
 
+const store = useStore()
+const gameMsg = computed(()=>{
+  return store.state.game.gameMsg
+})
 
 </script>

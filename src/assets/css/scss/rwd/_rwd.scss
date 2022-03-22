@@ -28,7 +28,7 @@
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
     width: 70px;
   }
-  .bettingArea-btn-reward , .bettingArea-btn-watchCard {
+  .bettingArea-btn-reward , .bettingArea-btn-center {
     width: 40px;
   } 
 }
@@ -458,9 +458,9 @@
     height: 250px;
   }
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
-    width: 100px;
+    width: 70px;
   }
-  .bettingArea-btn-reward ,.bettingArea-btn-watchCard {
+  .bettingArea-btn-reward ,.bettingArea-btn-center {
     width: 60px;
   } 
   .coin-100 {
@@ -1107,7 +1107,7 @@
       font-size: 0.5rem;
     }
   }
-  .bettingArea-btn-reward , .bettingArea-btn-watchCard{
+  .bettingArea-btn-reward , .bettingArea-btn-center{
     width:50px;
   }
   .betLimitInfo{
@@ -1436,8 +1436,9 @@
   .betArea-item-bottom {
     bottom: 0%;
   }
-  .bettingArea-btn-reward , .bettingArea-btn-watchCard{
-    width:40px;
+  .bettingArea-btn-reward , .bettingArea-btn-center{
+    width:30px;
+    font-size: 1rem;
   }
   .header-item {
     font-size: 0.5rem;
@@ -1551,8 +1552,9 @@
     font-size: 0.5rem;
     font-weight: bolder;
   }
-  .bettingArea-btn-reward , .bettingArea-btn-watchCard{
-    width:35px;
+  .bettingArea-btn-reward , .bettingArea-btn-center{
+    width:25px;
+    font-size: 0.5rem;
   }
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
     width: 40px;
@@ -1763,8 +1765,8 @@
       display: none;
     }
   }
-  .bettingArea-btn-reward , .bettingArea-btn-watchCard {
-    width: 25px;
+  .bettingArea-btn-reward , .bettingArea-btn-center {
+    width: 20px;
 }
   .bettingArea-btn {
     height: 50px;
@@ -1952,7 +1954,7 @@
       display: none;
     }
   }
-  .bettingArea-btn-reward , .bettingArea-btn-watchCard {
+  .bettingArea-btn-reward , .bettingArea-btn-center {
     width: 20px;
 }
   .coin-100 {

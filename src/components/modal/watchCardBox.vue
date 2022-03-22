@@ -84,10 +84,6 @@ const gameStatus = computed(() => {
   //遊戲狀態 1.下注中 2.開牌中 3.等待新局 4.等待中
   return store.state.game.GameStatus.status;
 });
-const DrawCard = computed(() => {
-  //開始畫牌的時候，就是結束咪牌時
-  return store.state.dealer.Draw;
-});
 //等收到stream的時候才要顯示modal
 const np1 = computed(() => {
   return store.state.video.watchCardVideo1;
@@ -102,11 +98,17 @@ const watchCardVideoStream1 = computed(() => {
 const watchCardVideoStream2 = computed(() => {
   return store.state.game.watchCardVideo2Stream;
 });
-watch(DrawCard, () => {
-  //開牌的時候就關掉咪牌視訊
-  //  console.log("開牌")
-  $("#watchCardBox").modal("hide");
-});
+const gameResult = computed(()=>{ //回傳的是陣列
+    return store.state.dealer.BroadcastGameResult.results
+})
+const flyCardStatus = computed(() => {
+      return store.state.bet.flyCard;
+    });
+watch(gameResult,()=>{
+  console.log("有遊戲結果，關掉咪牌畫面")
+    if(flyCardStatus.value) return //選擇飛牌的時候就不必再隱藏畫面了
+    $("#watchCardBox").modal("hide");
+})
 watch([watchCardVideoStream1, watchCardVideoStream2], () => {
   $("#watchCardBox").modal("show");
 });

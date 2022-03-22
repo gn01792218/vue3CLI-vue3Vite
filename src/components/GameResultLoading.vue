@@ -13,6 +13,7 @@ export default defineComponent({
         //vuex
         const store = useStore()
         const isWait = ref(true)
+        const statusTimer = ref<number | null>(null)
         const stateMsg = ref("停止下注")
         const gameState = computed(()=>{  //上桌時會得到遊戲狀態，要播放現在是什麼狀態
             //1.下注狀態 2.開牌狀態 3.等待狀態
@@ -29,6 +30,9 @@ export default defineComponent({
         })
         const gameEnd = computed(()=>{
             return store.state.dealer.end
+        })
+        const flyCardRecall = computed(()=>{
+            return store.state.game.flyCardRecall
         })
         window.addEventListener('reConnect',()=>{
             isWait.value = true
@@ -47,14 +51,15 @@ export default defineComponent({
                     case 1:
                         isWait.value = true
                         stateMsg.value = "下注中..."
-                        setTimeout(()=>{
+                        statusTimer.value = setTimeout(()=>{
                         isWait.value = false
                         },500)
+                        console.log('下注中')
                         break
                     case 2:
                         isWait.value = true
                         stateMsg.value = "開牌中..."
-                        setTimeout(()=>{
+                        statusTimer.value = setTimeout(()=>{
                         isWait.value = false
                         },500)
                         break
@@ -102,9 +107,15 @@ export default defineComponent({
             isWait.value = true
             stateMsg.value = "停止下注"
         })
-         watch(gameResult,()=>{  //公布結果時，關閉顯示
+        watch(gameResult,()=>{  //公布結果時，關閉顯示
            //關閉loading效果 
            isWait.value = false
+        })
+        watch(flyCardRecall,()=>{
+            clearTimeout(statusTimer.value as number)
+            isWait.value = true
+            stateMsg.value = "飛牌!"
+            console.log('飛牌狀態')
         })
         return {
             //data
