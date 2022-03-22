@@ -385,7 +385,7 @@
     flex-direction: row;
     justify-content: space-around;
   }
-  .header-userName {
+  .header-item {
     border: none;
     line-height: 1rem;
   }
@@ -417,7 +417,7 @@
   .header-bottom-desk {
     display: none;
   }
-  .header-userName {
+  .header-item {
     flex-grow: 0;
   }
   .tableItem{
@@ -1424,6 +1424,9 @@
     font-size: 70%;
     width: 40px;
   }
+  .header-tableInfo{
+    width:135px;
+  }
   .alertFont{
     font-size: 1.3rem !important;
   }
@@ -1437,7 +1440,7 @@
     width:30px;
     font-size: 1rem;
   }
-  .header-userName {
+  .header-item {
     font-size: 0.5rem;
   }
   .video-box {
@@ -1721,10 +1724,8 @@
       font-weight: 600;
     }
   }
-  .header-userName {
+  .header-item {
     line-height: 0.7rem;
-  }
-  .header-userName {
     padding: 2.5px;
   }
   .header-logo {

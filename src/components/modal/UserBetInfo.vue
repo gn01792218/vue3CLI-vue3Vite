@@ -111,6 +111,10 @@
             </ul>
             <ul class="userBetInfo-ul list-group list-group-horizontal">
               <li class="w-100 list-group-item">
+                <div class="d-flex justify-content-between font-weight-bolder fs-larger">
+                  <span class="text-danger">閒</span>
+                  <span class="font_yellow">莊</span>
+                </div>
                 <div class="card-wrap">
                   <section class="d-flex justify-content-center">
                     <div
@@ -166,7 +170,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, reactive, onMounted, watch, onUpdated } from "vue";
+import { computed, ref, reactive, onUpdated, watch } from "vue";
 import { useStore } from "vuex";
 import proto from "@/assets/js/bundle";
 interface userInfo {
@@ -202,6 +206,7 @@ interface draw {
 }
 onUpdated(() => {
   cardPositionInit();
+  resetCards(); //清除所有再顯示卡牌
   userBetInfoArray.value.forEach((i: userInfo, index: number) => {
     i.draws.forEach((card: draw) => {
       //畫出六張卡牌
@@ -231,6 +236,23 @@ const store = useStore();
 const userBetInfoArray = computed<userInfo[]>(() => {
   return store.state.history.HistoryRecall;
 });
+function resetCards() {
+  //先清除所有卡牌的顯示
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 6; j++) {
+      let bankerCard = document.querySelector(
+        `.userBet-banker-poker${i}${j}`
+      ) as HTMLElement;
+      let playererCard = document.querySelector(
+        `.userBet-player-poker${i}${j}`
+      ) as HTMLElement;
+      if (bankerCard && playererCard) {
+        bankerCard.classList.remove("poker");
+        playererCard.classList.remove("poker");
+      }
+    }
+  }
+}
 function getCardPosition( //卡牌要畫在哪一格
   cardSideClassName: string,
   userBetInfoIndex: number, //第幾格的userBetInfo
@@ -248,7 +270,7 @@ function getCardPosition( //卡牌要畫在哪一格
       ) as HTMLElement;
   }
 }
-function showCards( //劃出該張卡牌
+function showCards( //畫出該張卡牌
   cardSide: number,
   cardSuit: number,
   cardPoint: number,
@@ -335,7 +357,7 @@ function cardPositionInit() {
   } else if (viewportWidth <= 540 && viewportWidth > 375) {
     scale.value = 0.2;
   } else if (viewportWidth <= 375 && viewportWidth > 280) {
-    scale.value = 0.15;
+    scale.value = 0.12;
   } else if (viewportWidth <= 280) {
     scale.value = 0.1;
   } else {
