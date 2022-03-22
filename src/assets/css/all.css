@@ -245,8 +245,9 @@ img {
   height: 0 !important;
 }
 
-.header-userName {
+.header-item {
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .header-top {
@@ -2706,7 +2707,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
-  .header-userName {
+  .header-item {
     border: none;
     line-height: 1rem;
   }
@@ -2746,7 +2747,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-bottom-desk {
     display: none;
   }
-  .header-userName {
+  .header-item {
     -webkit-box-flex: 0;
         -ms-flex-positive: 0;
             flex-grow: 0;
@@ -4244,6 +4245,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 70%;
     width: 40px;
   }
+  .header-tableInfo {
+    width: 135px;
+  }
   .alertFont {
     font-size: 1.3rem !important;
   }
@@ -4256,7 +4260,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn-reward, .bettingArea-btn-watchCard {
     width: 40px;
   }
-  .header-userName {
+  .header-item {
     font-size: 0.5rem;
   }
   .video-box {
@@ -4611,10 +4615,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1.2rem;
     font-weight: 600;
   }
-  .header-userName {
+  .header-item {
     line-height: 0.7rem;
-  }
-  .header-userName {
     padding: 2.5px;
   }
   .header-logo {
