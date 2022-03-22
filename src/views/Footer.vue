@@ -65,6 +65,7 @@ import { useStore } from "vuex";
 import screenfull from "screenfull";
 import { useRoute } from "vue-router";
 import { chatContent, chatMsg } from "../types/global";
+import useMobileDefiend  from '@/composables/useMobileDefiend'
 const route = useRoute();
 const tableNum = computed(() => {
   return route.params.tableId;
@@ -95,6 +96,7 @@ const flvStream = computed(() => {
 });
 const isAudioMuted = ref(false);
 const isVideoPlayed = ref(true);
+const { isMobileOrNot } = useMobileDefiend()
 //全螢幕
 function fullScreen() {
   if (screenfull.isEnabled) {
@@ -111,9 +113,14 @@ function playVideo() {
   isVideoPlayed.value = !isVideoPlayed.value;
   if (isVideoPlayed.value) {
     //播放直播
-    npvideo.value.start(flvStream.value);
+    if(isMobileOrNot){
+      npvideo.value.start(flvStream.value.moblie);
+    }else{
+      npvideo.value.start(flvStream.value.desktop,useMobileDefiend());
+    }
   } else {
     //暫停直播
+    console.log('暫停直播')
     npvideo.value.stop();
     npvideo.value.clearView(); //清除上一個視頻留下的東西
   }
