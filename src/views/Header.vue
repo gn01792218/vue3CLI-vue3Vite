@@ -11,7 +11,7 @@
           class="
             d-flex d-xl-none
             userWallet-mobil
-            header-userName
+            header-item
             col
             font_yellows
           "
@@ -22,7 +22,7 @@
           class="
             d-block d-xl-none
             userWallet-mobil
-            header-userName
+            header-item
             col
             font_yellows
           "
@@ -61,18 +61,30 @@
     </div>
     <div class="header-bottom">
       <div class="header-bottom-desk">
-        <div class="header-userName d-flex col font_yellows" data-toggle="modal"
-          data-target="#exampleModal" @click="getHistory">
+        <div
+          class="header-item d-flex col font_yellows"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          @click="getHistory"
+        >
           <i class="bi bi-person-circle"></i><i v-if="user">{{ user.name }}</i>
         </div>
-        <div class="header-userName col font_yellows">分{{ userWallet }}</div>
-        <div class="header-userName col font_yellows">
+        <div class="header-item col font_yellows">分{{ userWallet }}</div>
+        <div class="header-item col font_yellows">
           <i>{{ tableNum }}桌 靴:{{ shoe }}局:{{ roundNum }}</i>
         </div>
-        <div class="header-userName col font_yellows" v-if="user">
+        <div class="header-item col font_yellows" v-if="user">
           <i>洗碼值:{{ user.totalValidBets }}</i>
         </div>
-        <!-- <div class="header-userName col font_yellows" v-if="user">
+        <div
+          class="header-item col font_yellows"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          @click="getHistory"
+        >
+          <i class="bi bi-card-list"></i>遊戲紀錄
+        </div>
+        <!-- <div class="header-item col font_yellows" v-if="user">
           <i>在線:{{onlinePlayersNumber}}人</i>
         </div> -->
       </div>
@@ -80,17 +92,28 @@
       <div class="header-bottom-mobil d-flex align-items-center">
         <div class="header-bottom-mobil-extend position-absolute">
           <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
+            <div class="bg-dark d-flex p-4">
               <div
-                class="header-userName d-flex col font_yellows"
+                class="header-item d-flex font_yellows"
                 data-toggle="modal"
                 data-target="#exampleModal"
+                @click="getHistory"
               >
-                <i class="bi bi-person-circle"></i
+                <i class="bi bi-person-circle mr-1"></i
                 ><i v-if="user">{{ user.name }}</i>
               </div>
-              <div class="header-userName col font_yellows">
-                <i>{{ tableNum }}桌 靴:{{ shoe }}局:{{ roundNum }}</i>
+              <div class="header-item d-flex font_yellows">
+                <i class="header-tableInfo"
+                  >{{ tableNum }} 桌 靴 : {{ shoe }} 局 : {{ roundNum }}</i
+                >
+              </div>
+              <div
+                class="header-item d-flex font_yellows"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                @click="getHistory"
+              >
+                <i class="bi bi-card-list mr-1"></i><i>紀錄</i>
               </div>
             </div>
           </div>
@@ -114,13 +137,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { state } from "@/store/lobby";
-import { sendHistoryCall } from '@/socketApi'
+import { sendHistoryCall } from "@/socketApi";
+
 //route
 const route = useRoute();
 const tableNum = computed(() => {
@@ -193,7 +217,7 @@ function closeWindow() {
   op.close();
 }
 //拿取歷史資訊
-function getHistory (){
-  sendHistoryCall()
+function getHistory() {
+  sendHistoryCall();
 }
 </script>
