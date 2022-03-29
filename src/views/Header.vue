@@ -177,13 +177,13 @@ const roundNum = computed(() => {
   return store.state.game.numOfRound;
 });
 const announcement1Checked = computed(() => {
-  return store.state.lobby.announcement.announcement1.checked;
+  return store.state.announcement.announcement.announcement1.checked;
 });
 const announcement2Checked = computed(() => {
-  return store.state.lobby.announcement.announcement2.checked;
+  return store.state.announcement.announcement.announcement2.checked;
 });
 const announcement3Checked = computed(() => {
-  return store.state.lobby.announcement.announcement3.checked;
+  return store.state.announcement.announcement.announcement3.checked;
 });
 //路由處理
 const router = useRouter();

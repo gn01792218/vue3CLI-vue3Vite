@@ -26,11 +26,11 @@ import GameMsgModal from '@/components/modal/GameMsgModal.vue'
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
 onMounted(() => {
-  store.commit("lobby/setShowannouncement", true); //顯示公告同意書
+  store.commit("announcement/setShowannouncement", true); //顯示公告同意書
 });
 createSocket(); //創建websocket 連線
 const store = useStore();
 const announcementShow = computed(() => {
-  return store.state.lobby.showannouncement;
+  return store.state.announcement.showannouncement;
 });
 </script>

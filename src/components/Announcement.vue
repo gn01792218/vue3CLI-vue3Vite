@@ -198,20 +198,20 @@ onMounted(() => {
 });
 //  const localStorage = window.localStorage
 const store = useStore();
-const announcementData1 = store.state.lobby.announcement.announcement1;
-const announcementData2 = store.state.lobby.announcement.announcement2;
-const announcementData3 = store.state.lobby.announcement.announcement3;
+const announcementData1 = store.state.announcement.announcement.announcement1;
+const announcementData2 = store.state.announcement.announcement.announcement2;
+const announcementData3 = store.state.announcement.announcement.announcement3;
 const announcement1Checked = computed(() => {
-  return store.state.lobby.announcement.announcement1.checked;
+  return store.state.announcement.announcement.announcement1.checked;
 });
 const announcement2Checked = computed(() => {
-  return store.state.lobby.announcement.announcement2.checked;
+  return store.state.announcement.announcement.announcement2.checked;
 });
 const announcement3Checked = computed(() => {
-  return store.state.lobby.announcement.announcement3.checked;
+  return store.state.announcement.announcement.announcement3.checked;
 });
 const show = computed(() => {
-  return store.state.lobby.showannouncement;
+  return store.state.announcement.showannouncement;
 });
 const announment = computed(() => {
   //跑馬燈的公告事項，在這裡當作公告2的臨時工告事項
@@ -231,15 +231,15 @@ watch(announcement2Checked, () => {
 // function announcementChecked(announcementNum:number){
 //   switch(announcementNum){
 //     case 1:
-//       store.commit('lobby/setAnnouncement1Checked',!announcement1Checked.value)
+//       store.commit('announcement/setAnnouncement1Checked',!announcement1Checked.value)
 //       console.log('公告1確認',announcement1Checked.value)
 //       break
 //     case 2:
-//       store.commit('lobby/setAnnouncement2Checked',!announcement2Checked.value)
+//       store.commit('announcement/setAnnouncement2Checked',!announcement2Checked.value)
 //       console.log('公告2確認',announcement2Checked.value)
 //       break
 //     case 3:
-//       store.commit('lobby/setAnnouncement3Checked',!announcement3Checked.value)
+//       store.commit('announcement/setAnnouncement3Checked',!announcement3Checked.value)
 //       console.log('公告3確認',announcement3Checked.value)
 //       break
 //   }
@@ -253,7 +253,7 @@ function closeAnnouncement() {
     announcementData2.checked &&
     announcementData3.checked
   ) {
-    store.commit("lobby/setShowannouncement", false);
+    store.commit("announcement/setShowannouncement", false);
   } else {
     alert("若要進行遊戲，請先勾選同意書");
   }

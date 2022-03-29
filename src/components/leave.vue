@@ -17,7 +17,7 @@ const store = useStore();
 const isKickout = computed(() => {
   return store.state.kick.isKickout;
 });
-store.commit("lobby/setShowannouncement", false);
+store.commit("announcement/setShowannouncement", false);
 const textArr = ["您已離開此遊戲，請關閉網頁"];
 const text = ref(textArr[0]);
 </script>

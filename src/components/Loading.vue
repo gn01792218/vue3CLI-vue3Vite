@@ -48,7 +48,7 @@ onMounted(() => {
     const router = useRouter();
     const loading = ref(true);
     const preLoad = ref(true);
-    const announcementData3 = store.state.lobby.announcement.announcement3;
+    const announcementData3 = store.state.announcement.announcement.announcement3;
     const vuexUserToken = computed(() => {
       return store.state.auth.userToken;
     });
