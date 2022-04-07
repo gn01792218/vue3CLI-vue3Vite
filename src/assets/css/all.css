@@ -506,7 +506,7 @@ img {
 
 .chatDisplay {
   width: 250px;
-  height: 200px;
+  height: 300px;
   background-color: transparent;
   overflow: hidden;
 }
@@ -4213,6 +4213,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 414px) {
+  .chatDisplay {
+    height: 220px;
+  }
   .table-btn-list {
     max-width: 148px;
   }
@@ -4603,6 +4606,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .chatInput-emoji {
     left: -84%;
+  }
+  .chatDisplay {
+    height: 180px;
   }
   .chat-input input {
     width: 60px;

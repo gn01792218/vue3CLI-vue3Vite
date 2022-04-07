@@ -77,7 +77,7 @@ function pushChatData(chatRecall: any) {
       //陣列中如果有多餘一則留言的話，就必須要有一點delay
       setTimeout(() => {
         chatTable?.chatMsgArr.push(chatObject);
-      }, 500);
+      }, 700);
     } else {
       chatTable?.chatMsgArr.push(chatObject);
     }
@@ -85,7 +85,7 @@ function pushChatData(chatRecall: any) {
 }
 function msgAnimate(e: HTMLElement) {
   gsap
-    .fromTo(e, { opacity: 1 }, { duration: 15, y: -200, opacity: 0 })
+    .fromTo(e, { opacity: 1 }, { duration: 60, y: -300, opacity: 0 })
     .then(() => {
       //刪除該元素
       let parent = e.parentElement;

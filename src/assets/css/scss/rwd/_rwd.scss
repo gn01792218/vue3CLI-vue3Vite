@@ -1380,6 +1380,9 @@
   }
 }
 @media screen and (max-width: 414px) {
+  .chatDisplay{
+    height:220px;
+  }
   .table-btn-list{
     max-width:148px;
   }
@@ -1699,6 +1702,9 @@
   .chatInput-emoji{
     left: -84%
   } 
+  .chatDisplay{
+    height:180px;
+  }
   .chat-input {
     input{
       width:60px;
