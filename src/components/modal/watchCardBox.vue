@@ -61,6 +61,7 @@ import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
 import $ from "jquery";
 import proto from "../../assets/js/bundle";
+import useMobileDefiend  from '@/composables/useMobileDefiend'
 //初始化
 onMounted(() => {
   createWatchCardVideo(np1.value, "watchCardVideo1", loadingVideo1);
@@ -71,17 +72,7 @@ onMounted(() => {
 //基本資料
 const loadingVideo1 = ref(true);
 const loadingVideo2 = ref(true);
-const mobileDevice = ref([
-  //各種手機的系統
-  "Android",
-  "webOS",
-  "iPhone",
-  "iPad",
-  "iPod",
-  "BlackBerry",
-  "Windows Phone",
-]);
-const mobileOrNot = isMobile(); //是否是行動裝置
+const { isMobileOrNot } = useMobileDefiend() //是否為手機版本
 //vuex
 const store = useStore();
 store.commit("video/setWatchCardVideo1", new NodePlayer()); //把player實體存進Vuex
@@ -92,10 +83,6 @@ const gameType = computed(() => {
 const gameStatus = computed(() => {
   //遊戲狀態 1.下注中 2.開牌中 3.等待新局 4.等待中
   return store.state.game.GameStatus.status;
-});
-const DrawCard = computed(() => {
-  //開始畫牌的時候，就是結束咪牌時
-  return store.state.dealer.Draw;
 });
 //等收到stream的時候才要顯示modal
 const np1 = computed(() => {
@@ -111,11 +98,17 @@ const watchCardVideoStream1 = computed(() => {
 const watchCardVideoStream2 = computed(() => {
   return store.state.game.watchCardVideo2Stream;
 });
-watch(DrawCard, () => {
-  //開牌的時候就關掉咪牌視訊
-  //  console.log("開牌")
-  $("#watchCardBox").modal("hide");
-});
+const gameResult = computed(()=>{ //回傳的是陣列
+    return store.state.dealer.BroadcastGameResult.results
+})
+const flyCardStatus = computed(() => {
+      return store.state.bet.flyCard;
+    });
+watch(gameResult,()=>{
+  console.log("有遊戲結果，關掉咪牌畫面")
+    if(flyCardStatus.value) return //選擇飛牌的時候就不必再隱藏畫面了
+    $("#watchCardBox").modal("hide");
+})
 watch([watchCardVideoStream1, watchCardVideoStream2], () => {
   $("#watchCardBox").modal("show");
 });
@@ -142,10 +135,6 @@ window.addEventListener("focus", () => {
   }
 });
 //視訊方法
-function isMobile() {
-  //判斷是否是手機
-  return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
-}
 function startPlay(nodePlayer: NodePlayer, flvStream: any) {
   // console.log('遊戲type',gameType.value,'視訊網址',flvStream,'gameStatus',gameStatus.value)
   if (gameType.value !== proto.game.GameType.vip) {
@@ -158,7 +147,7 @@ function startPlay(nodePlayer: NodePlayer, flvStream: any) {
     return;
   }
   nodePlayer.setKeepScreenOn();
-  if (mobileOrNot) {
+  if (isMobileOrNot) {
     nodePlayer.start(flvStream.moblie);
     console.log("咪牌手機", flvStream.moblie);
   } else {

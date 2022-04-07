@@ -1,9 +1,8 @@
 <template>
   <GameresultSound />
   <div class="betArea position-relative">
-    <ConfirmWatchCard/>
-    <watchCardBox/>
-    <!-- <button class="watchTest position-absolute" @click="alertCanWatchCard">有權咪牌</button> -->
+    <!-- <ConfirmWatchCard /> -->
+    <watchCardBox />
     <!-- PC版本注區 -->
     <div class="betArea-pc position-relative">
       <GameResultLoading />
@@ -33,7 +32,9 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
+              總注額:{{ i.tableAllPlayerBetStatus }}
+            </p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -63,7 +64,9 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
+              總注額:{{ i.tableAllPlayerBetStatus }}
+            </p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -94,8 +97,8 @@
           :class="[
             `betArea-item${index + 1}`,
             i.configClass,
-            { 'col-6': (index === 0) | (index === 1) },
-            { 'col-4': (index !== 0) | (index !== 1) },
+            { 'col-6': index === 0 || index === 1 },
+            { 'col-4': index !== 0 || index !== 1 },
             'd-flex flex-column justify-content-center',
           ]"
           v-for="(i, index) in coinPosition"
@@ -108,7 +111,9 @@
           </div>
           <div class="betArea-item-bottom position-absolute">
             <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">總注額:{{i.tableAllPlayerBetStatus}}</p>
+            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
+              總注額:{{ i.tableAllPlayerBetStatus }}
+            </p>
           </div>
           <ul class="coinPosition">
             <transition-group @enter="generateCoinAnimate">
@@ -178,81 +183,12 @@
       </ul>
     </div>
     <!-- 按鈕區 -->
-    <div
-      class="bettingArea-btn d-flex justify-content-between align-items-center p-2 position-relative"
-    >
-      <LightBox />
-      <div
-        class="bettingArea-btn-left d-flex justify-content-around align-items-center"
-      >
-        <div
-          class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center"
-          @click="getAllBetBack"
-        >
-          <i class="bi bi-arrow-counterclockwise"></i>取消
-        </div>
-        <div class="d-flex align-items-center">
-          <!-- 打賞按鈕 -->
-          <div
-            class="bettingArea-btn-betInfo bettingArea-btn-reward cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
-            data-toggle="modal"
-            data-target="#reward"
-          >
-            <span><i class="bi bi-gift"></i></span>
-          </div>
-          <!-- 咪牌按鈕 ，VIP才有-->
-          <div
-            v-if="tableNum.includes('VIP')"
-            class="bettingArea-btn-watchCard cursor-point d-flex align-items-center justify-content-center p-1 pl-2 pr-2 mr-1"
-          >
-            <span class="d-flex align-item-center"><i class="bi bi-eye"></i></span>
-          </div>
-          <!-- 手機版本才會出現的檯紅顯示 -->
-          <div
-            class="bettingArea-btn-betInfo bettingArea-btn-betrule  d-flex align-items-center p-1 pl-2 pr-2 mr-1"
-          >
-            <span
-              >{{ numberFormat(minBetLimit) }}-<br />{{
-                numberFormat(maxBetLimit)
-              }}</span
-            >
-            <!-- <span>在線10000人</span> -->
-          </div>
-          <!-- <div class="bettingArea-btn-betInfo d-xl-none d-flex align-items-center p-1 pl-2 pr-2"> -->
-          <!-- <span>在線<br>{{onlinePlayersNumber}}人</span> -->
-          <!-- </div> -->
-        </div>
-        <div
-          class="bettingArea-btn-check d-flex justify-content-center align-items-center"
-          @click="sendConfirmBetCall"
-        >
-          <i class="bi bi-check-circle"></i>確定
-        </div>
-        <div class="askRoad d-flex">
-          <div class="askRoad-player cursor-point p-1 mr-2" @click="askRoad(2)">
-            <p>閒問路</p>
-            <div class="d-flex justify-content-around p-1">
-              <div id="bigEyeRoad-2"></div>
-              <div id="smallRoad-2"></div>
-              <div id="cockroachRoad-2"></div>
-            </div>
-          </div>
-          <div class="askRoad-banker cursor-point p-1" @click="askRoad(1)">
-            <p>莊問路</p>
-            <div class="d-flex justify-content-around p-1">
-              <div id="bigEyeRoad-1"></div>
-              <div id="smallRoad-1"></div>
-              <div id="cockroachRoad-1"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <BtnList />
     <GameResult />
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import {
   computed,
   defineComponent,
@@ -266,17 +202,13 @@ import GameresultSound from "@/components/GameResultSound.vue";
 import GameResultLoading from "@/components/GameResultLoading.vue";
 import LightBox from "@/components/LightBox.vue";
 import watchCardBox from "@/components/modal/watchCardBox.vue";
-import ConfirmWatchCard from "@/components/modal/ConfirmWatchCard.vue";
+import BtnList from "@/components/bettingArea/BtnList.vue";
+// import ConfirmWatchCard from "@/components/modal/ConfirmWatchCard.vue";
 import { gsap, Power4 } from "gsap";
-import {
-  sendBetCall,
-  sendBetResetCall,
-  sendAskRoadCall,
-  sendBetConfirmCall,
-} from "../socketApi";
+import { sendBetCall } from "@/socketApi";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import proto from "../assets/js/bundle";
+import proto from "@/assets/js/bundle";
 import $ from "jquery";
 interface currentCoint {
   coinElement: any | null; //選擇的籌碼div元素
@@ -300,24 +232,10 @@ interface coinPosition {
   tableAllPlayerBetStatus: number;
   maxBet: number; //最大限注
 }
-export default defineComponent({
-  components: {
-    GameResult,
-    GameresultSound,
-    GameResultLoading,
-    LightBox,
-    watchCardBox,
-    ConfirmWatchCard,
-  },
-  setup() {
-    //初始化
+//初始化
     onMounted(() => {
       //初始化籌碼
       setDefaultCoin();
-      //初始化注區的最大最小檯紅(給手機顯示用的)
-      getBetLimit(tableInfoData.value);
-      //設置取消紐的顏色
-      setCancleBetBtnColor();
     });
     //路由
     const route = useRoute();
@@ -329,6 +247,9 @@ export default defineComponent({
     const store = useStore();
     const user = computed(() => {
       return store.state.auth.UserInfo.user;
+    });
+    const canBet = computed(() => {
+      return store.state.bet.canBet;
     });
     const betStatus = computed(() => {
       //玩家在各注區的下注額
@@ -350,10 +271,7 @@ export default defineComponent({
       //取消下注成功與否
       return store.state.bet.BetResetRecall.result;
     });
-    const betConfirmRecall = computed(() => {
-      //確認下注成功與否
-      return store.state.bet.BetConfirmRecall;
-    });
+
     const betError = computed(() => {
       //錯誤訊息
       return store.state.bet.BetRecall.betError;
@@ -386,46 +304,24 @@ export default defineComponent({
       //下注結束
       return store.state.game.gameEndUuid;
     });
-    const askRoadRecall = computed(() => {
-      //問路recall
-      return store.state.roadmap.askRoadReCall;
-    });
-    const DrawCard = computed(()=>{  //每次都傳一張
-       return store.state.dealer.Draw
-    })
-    const roundAskBanker = computed(() => {
-      //回合自動問莊的recall
-      return store.state.game.askBankByRoundStart;
-    });
-    const roundAskPlayer = computed(() => {
-      //回合自動問閒的recall
-      return store.state.game.askPlayerByRoundStart;
-    });
-    const isConfirmed = computed(() => {
-      //確認鈕狀態
-      return store.state.bet.isConfirmed;
-    });
     const coinList = computed(() => {
       //該桌籌碼陣列
       return store.state.table.tableCoinData[tableNum.value as string];
-    });
-    const tableInfoData = computed(() => {
-      //該桌檯桌資訊
-      return store.state.table.tableInfoData[tableNum.value as string];
     });
     const onlinePlayersNumber = computed(() => {
       //在線人數
       return store.state.lobby.BroadcastTotalPlayersOnline.numberOfPlayers;
     });
-    const canWatchCard = computed(()=>{  
-      //是否取得咪牌權利
-      return store.state.game.WatchcardNotificaion
-    })
+    const isConfirmed = computed(() => {
+      //確認鈕狀態
+      return store.state.bet.isConfirmed;
+    });
+    const betErrorArray = computed(() => {
+      return store.state.bet.betErrorArray;
+    });
     //基本資料
-    const canBet = ref(true); //是否可以下注
     const betCallTemp = ref({}); //發送betCall時紀錄哪個注區、下了哪種coin的暫存資料
     let betArray = reactive<Array<any>>([]); //紀錄下注元素和區域的籌碼動畫陣列
-    const currentAskRoadSide = ref(0); //當前問的是哪一家的路(1莊 2閒)
     const currentCoint = reactive<currentCoint>({
       //玩家選擇的籌碼
       coinElement: document.querySelector("#defaultCoin4"), //選擇的籌碼元素
@@ -443,70 +339,9 @@ export default defineComponent({
       x: 0,
       y: 0,
     });
-    const coinPosition = reactive<coinPosition[]>([
-      //注區Data
-      {
-        initBottom: 0,
-        initX: 0,
-        coinArray: [],
-        odds: "1:1",
-        host: "閒",
-        configClass: "betArea-item red alertFont",
-        betStatus: 0,
-        tableAllPlayerBetStatus: 0,
-        maxBet: 100000, //目前這一回合的下注狀況
-      },
-      {
-        initBottom: 0, //初始化的bottom值
-        initX: 0,
-        coinArray: [], //生籌碼的地方
-        odds: "1:0.95",
-        host: "莊",
-        configClass: "betArea-item yellow alertFont",
-        betStatus: 0, //目前這一回合的下注狀況
-        tableAllPlayerBetStatus: 0,
-        maxBet: 100000,
-      },
-      {
-        initBottom: 0,
-        initX: 0,
-        coinArray: [],
-        odds: "1:11",
-        host: "閒對",
-        configClass: "betArea-item red",
-        betStatus: 0, //目前這一回合的下注狀況
-        tableAllPlayerBetStatus: 0,
-        maxBet: 9000,
-      },
-      {
-        initBottom: 0,
-        initX: 0,
-        coinArray: [],
-        odds: "1:8",
-        host: "和",
-        configClass: "betArea-item green alertFont",
-        betStatus: 0, //目前這一回合的下注狀況
-        tableAllPlayerBetStatus: 0,
-        maxBet: 12500,
-      },
-      {
-        initBottom: 0,
-        initX: 0,
-        coinArray: [],
-        odds: "1:11",
-        host: "莊對",
-        configClass: "betArea-item yellow",
-        betStatus: 0, //目前這一回合的下注狀況
-        tableAllPlayerBetStatus: 0,
-        maxBet: 9000,
-      },
-    ]);
-    const betErrorArray = ref<Array<string>>([]); //噴錯誤訊息用的陣列
-    const minBetLimit = ref(999999999); //手機版本顯示檯紅最小
-    const maxBetLimit = ref(-1); //手機版本顯示檯紅最大
-    const watchCardBtn = computed(()=>{
-      return document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-    })
+    const coinPosition = computed(() => {
+      return store.state.bet.coinPosition;
+    });
     //監聽
     watch(tableNum, () => {
       //換桌
@@ -514,18 +349,6 @@ export default defineComponent({
       reSetBetAreaAnimation();
       resetGame();
       setDefaultCoin();
-      //取得注區的最大最小檯紅(給手機顯示用的)
-      getBetLimit(tableInfoData.value);
-    });
-    watch(betConfirmRecall, () => {
-      //收到server回應的確認下注，做確認鈕動作
-      confirmBet();
-    });
-    watch(isConfirmed, () => {
-      //根據是否按過確認鍵，更換相關顏色
-      setBetStatusTextColor();
-      setConfirmBtnColor();
-      setCancleBetBtnColor();
     });
     watch(betResetresult, () => {
       //玩家反悔收回籌碼的動作
@@ -533,45 +356,27 @@ export default defineComponent({
         resetGame();
       }
     });
-    watch(roundAskBanker, () => {
-      //每局開始時自動問莊
-      // console.log('回合莊問路',roundAskBanker.value.askRoadCall.block.symbol,roundAskBanker.value)
-      changeAskRoadBtnView(
-        roundAskBanker.value.askRoadCall.block.symbol,
-        roundAskBanker.value
-      );
-    });
-    watch(roundAskPlayer, () => {
-      //每局開始時自動問閒
-      // console.log('回合閒問路',roundAskPlayer.value.askRoadCall.block.symbol,roundAskPlayer.value)
-      changeAskRoadBtnView(
-        roundAskPlayer.value.askRoadCall.block.symbol,
-        roundAskPlayer.value
-      );
-    });
-    watch(askRoadRecall, () => {
-      //玩家點擊問路
-      // console.log('按鈕問路reCall','問哪一路',currentAskRoadSide.value,'問路結果',askRoadRecall.value)
-      changeAskRoadBtnView(currentAskRoadSide.value, askRoadRecall.value);
-    });
     watch(betStatus, () => {
       //更新每次下注後顯示在注區的數字
       if (betResult.value !== -1 && betStatus.value) {
-        coinPosition[0].betStatus = betStatus.value.Player;
-        coinPosition[1].betStatus = betStatus.value.Banker;
-        coinPosition[2].betStatus = betStatus.value.PlayerPair;
-        coinPosition[3].betStatus = betStatus.value.Tie;
-        coinPosition[4].betStatus = betStatus.value.BankerPair;
+        coinPosition.value[0].betStatus = betStatus.value.Player;
+        coinPosition.value[1].betStatus = betStatus.value.Banker;
+        coinPosition.value[2].betStatus = betStatus.value.PlayerPair;
+        coinPosition.value[3].betStatus = betStatus.value.Tie;
+        coinPosition.value[4].betStatus = betStatus.value.BankerPair;
       }
     });
     watch(broadcastBetstatus, () => {
       //更新該桌的所有玩家總注額
-      coinPosition[0].tableAllPlayerBetStatus = broadcastBetstatus.value.Player;
-      coinPosition[1].tableAllPlayerBetStatus = broadcastBetstatus.value.Banker;
-      coinPosition[2].tableAllPlayerBetStatus =
+      coinPosition.value[0].tableAllPlayerBetStatus =
+        broadcastBetstatus.value.Player;
+      coinPosition.value[1].tableAllPlayerBetStatus =
+        broadcastBetstatus.value.Banker;
+      coinPosition.value[2].tableAllPlayerBetStatus =
         broadcastBetstatus.value.PlayerPair;
-      coinPosition[3].tableAllPlayerBetStatus = broadcastBetstatus.value.Tie;
-      coinPosition[4].tableAllPlayerBetStatus =
+      coinPosition.value[3].tableAllPlayerBetStatus =
+        broadcastBetstatus.value.Tie;
+      coinPosition.value[4].tableAllPlayerBetStatus =
         broadcastBetstatus.value.BankerPair;
     });
     watch(gameEnd, () => {
@@ -579,24 +384,23 @@ export default defineComponent({
       // console.log("換靴重置BettingArear")
       reSetBetAreaAnimation();
       resetGame();
-      canBet.value = false;
+      store.commit("bet/setCanBet", false); //不能下注
     });
     watch(roundUuid, () => {
       //回合開始時重置遊戲；也可能是換桌
       reSetBetAreaAnimation();
       resetGame();
+      // store.commit("bet/setIsConfirmed", false); //重置是否按下確認
+      // store.commit("bet/setCanUseConfirm", true); //可以按下確認紐
+      // store.commit("bet/setWatchCard", true); //重置咪牌按紐
+      // store.commit("bet/setCanUseWatchCard", true); //咪牌紐可以使用
+      // store.commit("bet/setFlyCard", false); //重置飛牌鈕
+      // store.commit("bet/setCanUseFlyCard", true); //飛牌鈕可以按
     });
     watch(gameEndUuid, () => {
       //停止下注，在開牌之前
-      canBet.value = false;
+      store.commit("bet/setCanBet", false); //不能下注
     });
-    watch(DrawCard,()=>{
-      //開始畫牌的時候 VIP的瞇排按鈕特效要去除
-      if(!watchCardBtn.value) return
-      if(watchCardBtn.value.className.includes("bettingArea-btn-watchCard-Animation")){ 
-        resetWatchCardAlert(watchCardBtn.value)
-      }
-    })
     watch(betError, () => {
       //更新錯誤訊息
       if (betError.value) {
@@ -621,7 +425,7 @@ export default defineComponent({
             betErrorArray.value?.push("餘額不足");
             break;
           case 8:
-            betErrorArray.value?.push(betError.value.errorMessage)
+            betErrorArray.value?.push(betError.value.errorMessage);
             break;
         }
         store.commit("bet/resetBetResult"); //重置result狀態
@@ -640,87 +444,7 @@ export default defineComponent({
       clearLoseArea(gameResult.value);
       showResult();
       winCoinAnimation();
-      store.commit("bet/setIsConfirmed", false); //重置按紐
     });
-    watch(canWatchCard,()=>{
-      alertCanWatchCard()
-    })
-    function setBetStatusTextColor() {
-      //更換bstStatus和totalBet的顏色
-      let betStatusText = document.querySelectorAll(".betStatus") as NodeListOf<
-        HTMLElement
-      >;
-      let totalBet = document.querySelector("#totalBet") as HTMLElement;
-      if (isConfirmed.value) {
-        //按過了是灰色
-        //字變成白色
-        betStatusText.forEach((i: HTMLElement) => {
-          i.style.color = "white";
-        });
-        totalBet.style.color = "white";
-      } else {
-        //字變成灰色
-        betStatusText.forEach((i: HTMLElement) => {
-          i.style.color = "gray";
-        });
-        totalBet.style.color = "gray";
-      }
-    }
-    function setConfirmBtnColor() {
-      //更換確認紐顏色
-      let confirmBtn = document.querySelector(
-        ".bettingArea-btn-check"
-      ) as HTMLElement;
-      if (isConfirmed.value) {
-        //按過了是灰色
-        //按鈕變成灰色
-        confirmBtn.style.background = "rgb(80, 78, 78)";
-      } else {
-        //按鈕變成原本顏色
-        confirmBtn.style.background = "rgba(128, 0, 128, 0.829)";
-      }
-    }
-    function setCancleBetBtnColor() {
-      let cancleBtn = document.querySelector(
-        ".bettingArea-btn-gitbackAllCoin"
-      ) as HTMLElement;
-      // console.log('設置取消按鈕顏色',isConfirmed.value)
-      if (!isConfirmed.value) {
-        //沒按過確認紐的時候是灰色的
-        //按鈕變成灰色
-        cancleBtn.style.background = "rgb(80, 78, 78)";
-      } else {
-        //按鈕變成原本顏色
-        cancleBtn.style.background = "rgba(0,0,255,.692)";
-      }
-    }
-    function getBetLimit(tableBetIndoData: any) {
-      //每次都把最大最小基準值恢復，再比大小
-      minBetLimit.value = 999999999;
-      maxBetLimit.value = -1;
-      let keyList = Object.keys(tableBetIndoData);
-      keyList
-        .filter((i) => {
-          return (
-            i == "playerMin" ||
-            i == "playerMax" ||
-            i == "bankerMin" ||
-            i == "bankerMax"
-          );
-        })
-        .forEach((i: any) => {
-          if (tableBetIndoData[i] < minBetLimit.value) {
-            minBetLimit.value = tableBetIndoData[i];
-          }
-          if (tableBetIndoData[i] > maxBetLimit.value) {
-            maxBetLimit.value = tableBetIndoData[i];
-          }
-        });
-      // console.log(minBetLimit.value,maxBetLimit.value)
-    }
-    function numberFormat(number: number): string {
-      return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-    }
     function setDefaultCoin() {
       let defaultCoin = document.querySelector("#defaultCoin1") as HTMLElement;
       let rect = defaultCoin.getBoundingClientRect();
@@ -912,8 +636,8 @@ export default defineComponent({
           {
             delay: 0.75,
             duration: 0.5,
-            x: coinPosition[currentBetPosition.betAreaIndex].initX,
-            y: -coinPosition[currentBetPosition.betAreaIndex].initBottom,
+            x: coinPosition.value[currentBetPosition.betAreaIndex].initX,
+            y: -coinPosition.value[currentBetPosition.betAreaIndex].initBottom,
             opacity: 1,
             display: "block",
           },
@@ -977,43 +701,10 @@ export default defineComponent({
         let rect = betAreaElement?.getBoundingClientRect(); //固定飛到點擊區域的左下方
         target.x = rect.left;
         target.y = rect.bottom;
-        let cp = coinPosition[index]; //用來存點選到的注區
+        let cp = coinPosition.value[index]; //用來存點選到的注區
         currentBetPosition.betAreaIndex = index;
         setCoinPosition(cp); //在駐區生成籌碼並設置起始位置
         store.commit("bet/resetBetResult"); //重置result狀態
-      }
-    }
-    function getAllBetBack() {
-      if (canBet.value && gameStatus.value == 1) {
-        //可以下注，且遊戲狀態是下注中
-        if (
-          coinPosition[0].betStatus != 0 ||
-          coinPosition[1].betStatus != 0 ||
-          coinPosition[2].betStatus != 0 ||
-          coinPosition[3].betStatus != 0 ||
-          coinPosition[4].betStatus != 0
-        ) {
-          sendBetResetCall({
-            gameUuid: roundUuid.value,
-          });
-          gsap.fromTo(
-            "#cancleBet",
-            { opacity: 1, y: 0, scale: 1, color: "yellow" },
-            { duration: 2, scale: 3, opacity: 0, ease: Power4.easeOut }
-          );
-          store.commit("bet/setIsConfirmed", false);
-        } else {
-          betErrorArray.value?.push("尚未下注");
-        }
-      } else {
-        switch (gameStatus.value) {
-          case 2:
-            betErrorArray.value?.push("開牌中，無法取消");
-            break;
-          case 3:
-            betErrorArray.value?.push("等待中，無法取消");
-            break;
-        }
       }
     }
     function clearLoseArea(winAreaArray: Array<number>) {
@@ -1054,7 +745,7 @@ export default defineComponent({
           winArea2 = 2;
           break;
       }
-      coinPosition.forEach((i, index) => {
+      coinPosition.value.forEach((i: any, index: number) => {
         if (index !== winArea1 && index !== winArea2) {
           i.coinArray = [];
           i.initBottom = 0;
@@ -1065,7 +756,7 @@ export default defineComponent({
     function resetGame() {
       store.commit("bet/resetTotalBets");
       //清空注區籌碼，最後只需要清除贏
-      coinPosition.forEach((i) => {
+      coinPosition.value.forEach((i: any) => {
         i.coinArray = [];
         i.initBottom = 0;
         i.betStatus = 0;
@@ -1077,7 +768,8 @@ export default defineComponent({
         i.ammo = [];
       });
       store.commit("bet/setBetResultRest");
-      canBet.value = true;
+      store.commit("bet/setCanBet", true); //可以
+      store.commit("bet/setFlyCard", false); //飛牌狀態恢復預設
       betArray = [];
     }
     function showResult() {
@@ -1198,146 +890,9 @@ export default defineComponent({
         });
       }
     }
-    function askRoad(roadNum: number) {
-      currentAskRoadSide.value = roadNum;
-      store.commit("roadmap/setAskRoad", roadNum);
-      sendAskRoadCall({
-        symbol: roadNum,
-      });
-    }
-    function changeAskRoadBtnView(currentRoadNum: number, askRoadRecall: any) {
-      //更換問路時候，按鈕上顯示的圖案
-      let smallRoad = document.getElementById(
-        `smallRoad-${currentRoadNum}`
-      ) as HTMLElement;
-      let bigEyes = document.getElementById(
-        `bigEyeRoad-${currentRoadNum}`
-      ) as HTMLElement;
-      let cockroach = document.getElementById(
-        `cockroachRoad-${currentRoadNum}`
-      ) as HTMLElement;
-      smallRoad.classList.remove(smallRoad.classList[0]);
-      bigEyes.classList.remove(bigEyes.classList[0]);
-      cockroach.classList.remove(cockroach.classList[0]);
-      if (askRoadRecall.smallRoadNext) {
-        switch (askRoadRecall.smallRoadNext.symbol) {
-          case 1:
-            smallRoad.classList.add("small-red-ask");
-            break;
-          case 2:
-            smallRoad.classList.add("small-blue-ask");
-            break;
-        }
-      }
-      if (askRoadRecall.bigEyeRoadNext) {
-        switch (askRoadRecall.bigEyeRoadNext.symbol) {
-          case 1:
-            bigEyes.classList.add("bigEye-red-ask");
-            break;
-          case 2:
-            bigEyes.classList.add("bigEye-blue-ask");
-            break;
-        }
-      }
-      if (askRoadRecall.cockroachRoadNext) {
-        switch (askRoadRecall.cockroachRoadNext.symbol) {
-          case 1:
-            cockroach.classList.add("cockroach-red-ask");
-            break;
-          case 2:
-            cockroach.classList.add("cockroach-blue-ask");
-            break;
-        }
-      }
-      // console.log('更換按鈕的下三路圖形:小路/大眼/蟑螂',askRoadRecall.smallRoadNext,askRoadRecall.bigEyeRoadNext,askRoadRecall.cockroachRoadNext)
-    }
-    function sendConfirmBetCall() {
-      //發送確認下注請求
-      //可以發出確認紐的時機:
-      //1.canBet  2.玩家有下注在任一區域時  3.當局還沒按過確認鍵
-      if (canBet.value && !isConfirmed.value && gameStatus.value == 1) {
-        if (
-          coinPosition[0].betStatus != 0 ||
-          coinPosition[1].betStatus != 0 ||
-          coinPosition[2].betStatus != 0 ||
-          coinPosition[3].betStatus != 0 ||
-          coinPosition[4].betStatus != 0
-        ) {
-          sendBetConfirmCall({
-            gameUuid: roundUuid.value,
-          });
-        } else {
-          betErrorArray.value?.push("尚未下注");
-        }
-      } else {
-        switch (gameStatus.value) {
-          case 2:
-            betErrorArray.value?.push("開牌中，無法下注");
-            break;
-          case 3:
-            betErrorArray.value?.push("等待中，無法下注");
-            break;
-        }
-      }
-    }
-    function confirmBet() {
-      //收到serve確認下注時的動作
-      if (canBet.value && !isConfirmed.value) {
-        //噴出確認下注的提示文字
-        gsap.fromTo(
-          "#betConfirm",
-          { opacity: 1, y: 0, scale: 1, color: "yellow" },
-          { duration: 2, scale: 3, opacity: 0, ease: Power4.easeOut }
-        );
-        //不能下注，除非按取消
-        store.commit("bet/setIsConfirmed", true);
-      }
-    }
-    function alertCanWatchCard(){
-      //收到此人獲得咪牌權限時開通咪牌功能
-      //咪牌按鈕亮起
-      let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-      watchCardBtn?.classList.add('bettingArea-btn-watchCard-Animation')
-      //顯示確認是否咪牌按鈕
-      $("#whatchCardOrNot").modal("show");
-    }
-    function resetWatchCardAlert(watchCardBtn:HTMLElement){
-      // let watchCardBtn = document.querySelector('.bettingArea-btn-watchCard') as HTMLElement
-      watchCardBtn?.classList.remove('bettingArea-btn-watchCard-Animation')
-      $("#watchCardBox").modal("hide");
-    }
-    return {
-      //data
-      coinList,
-      currentCoint,
-      coinPosition,
-      betStatus,
-      total,
-      betErrorArray,
-      betInfo,
-      minBetLimit,
-      maxBetLimit,
-      onlinePlayersNumber,
-      tableNum,
-      //methods
-      chooseCoint,
-      cointAnimate,
-      generateCoinAnimate,
-      resetGame,
-      showResult,
-      getAllBetBack,
-      betErrorAnimation,
-      sendBetData,
-      askRoad,
-      numberFormat,
-      sendConfirmBetCall,
-      alertCanWatchCard,
-    };
-  },
-});
 </script>
 <style scoped>
-  .watchTest{
-    z-index:100;
-  }
+.watchTest {
+  z-index: 100;
+}
 </style>

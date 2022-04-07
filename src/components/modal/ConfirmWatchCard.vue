@@ -52,7 +52,7 @@ function flyCard() {
 }
 function resetWatchCardAlert() {
   let watchCardBtn = document.querySelector(
-    ".bettingArea-btn-watchCard"
+    "#watchCard-btn"
   ) as HTMLElement;
   watchCardBtn?.classList.remove("bettingArea-btn-watchCard-Animation");
 }

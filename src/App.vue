@@ -12,7 +12,7 @@
   </div>
   <!-- Modal -->
   <KickoutWarn />
-  <ClosedWarn />
+  <GameMsgModal/>
 </template>
 <script setup lang="ts">
 import { onMounted, computed } from "vue";
@@ -22,15 +22,15 @@ import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import BaccaratGame from "@/views/BaccaratGame.vue";
 import KickoutWarn from "@/components/modal/KickoutWarn.vue";
-import ClosedWarn from "@/components/modal/ClosedWarn.vue";
+import GameMsgModal from '@/components/modal/GameMsgModal.vue'
 import { createSocket } from "./webSocket";
 import { useStore } from "vuex";
 onMounted(() => {
-  store.commit("lobby/setShowannouncement", true); //顯示公告同意書
+  store.commit("announcement/setShowannouncement", true); //顯示公告同意書
 });
 createSocket(); //創建websocket 連線
 const store = useStore();
 const announcementShow = computed(() => {
-  return store.state.lobby.showannouncement;
+  return store.state.announcement.showannouncement;
 });
 </script>

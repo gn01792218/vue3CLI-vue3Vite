@@ -12,23 +12,14 @@ import { useStore } from "vuex";
 import VideoLoading from "@/components/VideoLoading.vue";
 import NewsTicker from "@/components/NewsTicker.vue";
 import ChatDisplay from "@/components/chat/ChatDisplay.vue";
+import useMobileDefiend  from '@/composables/useMobileDefiend'
 onMounted(() => {
   createVideo(np.value, "video");
   startPlay(np.value, flvStream.value);
 });
 //基本資料
 const loadingVideo = ref(true);
-const mobileDevice = ref([
-  //各種手機的系統
-  "Android",
-  "webOS",
-  "iPhone",
-  "iPad",
-  "iPod",
-  "BlackBerry",
-  "Windows Phone",
-]);
-const mobileOrNot = isMobile(); //是否是行動裝置
+const { isMobileOrNot } = useMobileDefiend() //是否為手機版本
 //vuex
 const store = useStore();
 store.commit("video/setVideo", new NodePlayer()); //把player實體存進Vuex
@@ -50,16 +41,12 @@ window.addEventListener("focus", () => {
   stopPlay();
   startPlay(np.value, flvStream.value);
 });
-function isMobile() {
-  //判斷是否是手機
-  return mobileDevice.value.some((e: any) => navigator.userAgent.match(e)); //只要match手機裝置列表的其中一個，就返回true。否則false
-}
 function startPlay(np: NodePlayer, stream: any) {
   if (!stream) {
     return;
   }
   np.setKeepScreenOn();
-  if (mobileOrNot) {
+  if (isMobileOrNot) {
     np.start(stream.moblie);
     console.log("LiveVideo手機", stream.moblie);
   } else {

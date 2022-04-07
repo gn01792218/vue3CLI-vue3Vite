@@ -64,13 +64,19 @@
         font-size: 1.5rem;
         background-color:rgba(128, 0, 128, 0.829);
     }
-    .bettingArea-btn-watchCard{
+    .bettingArea-btn-center{
         width:70px;
         height:42px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 1.5rem;
         background: rgb(80, 78, 78);
+    }
+    .fly-card{
+        background-color: #644d31;
+    }
+    #watchCard-btn{
+        background-color: rgba(128, 0, 128, 0.829);
     }
     .bettingArea-btn-watchCard-Animation {
         animation-name: watchCardAnimation;
@@ -184,7 +190,7 @@
             color:red;
         }
     }
-    #betConfirm,#cancleBet{
+    #betConfirm,#cancleBet,#flyCard{
         opacity: 0;
     }
 

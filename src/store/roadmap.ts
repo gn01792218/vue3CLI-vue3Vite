@@ -18,7 +18,7 @@ export const mutations = {
     },
     setAskRoadRecall(state:any,payload:any){
         state.askRoadReCall = payload
-        // console.log('vuex下三路',state.askRoadReCall)
+        console.log('vuex下三路',state.askRoadReCall)
     },
     resetBigEyeRoadAsk(state:any){
         state.bigEyeRoadAsk = 0
