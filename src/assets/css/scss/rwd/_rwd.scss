@@ -356,10 +356,14 @@
   .leaveGame-btn{
     order:-1;
   }
-  .betError{
+  .betInfortext-ul{
     left: 50%;
     transform: translateX(-50%);
   }
+  // .betError{  //確定注區優化完畢可以刪除
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  // }
   #betConfirm,#cancleBet{
     position: absolute;
     width:100px;

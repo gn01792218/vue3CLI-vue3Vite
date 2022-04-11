@@ -338,7 +338,12 @@ img {
 }
 
 .betArea-mobile {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 79%;
 }
 
 .betInfo-container {
@@ -2677,7 +2682,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
         -ms-flex-order: -1;
             order: -1;
   }
-  .betError {
+  .betInfortext-ul {
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);

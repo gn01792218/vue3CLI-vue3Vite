@@ -3,8 +3,8 @@
   <div class="betArea position-relative">
     <!-- <ConfirmWatchCard /> -->
     <watchCardBox />
-    <!-- PC版本注區 -->
-    <div class="betArea-pc position-relative">
+    <!-- PC版本注區 ，確認優化完畢可以刪除-->
+    <!-- <div class="betArea-pc position-relative">
       <GameResultLoading />
       <ul class="betInfortext-ul position-absolute">
         <transition-group @enter="betErrorAnimation">
@@ -79,11 +79,12 @@
           </ul>
         </div>
       </div>
-    </div>
-    <!-- mobile注區 -->
+    </div> -->
+    <!-- 注區 -->
     <div class="betArea-mobile position-relative">
       <GameResultLoading />
-      <ul class="betError position-absolute">
+      <!-- 下面的betError確定優化完畢可以刪除 -->
+      <ul class="betError betInfortext-ul position-absolute">
         <transition-group @enter="betErrorAnimation">
           <li v-for="(betErr, index) in betErrorArray" :key="index">
             {{ betErr }}
@@ -92,7 +93,7 @@
         <li id="betConfirm">確認下注!!</li>
         <li id="cancleBet">取消下注!!</li>
       </ul>
-      <div class="betArea-mobile-container d-flex">
+      <div class="betArea-mobile-container d-flex flex-wrap w-100">
         <div
           :class="[
             `betArea-item${index + 1}`,
@@ -203,7 +204,6 @@ import GameResultLoading from "@/components/GameResultLoading.vue";
 import LightBox from "@/components/LightBox.vue";
 import watchCardBox from "@/components/modal/watchCardBox.vue";
 import BtnList from "@/components/bettingArea/BtnList.vue";
-// import ConfirmWatchCard from "@/components/modal/ConfirmWatchCard.vue";
 import { gsap, Power4 } from "gsap";
 import { sendBetCall } from "@/socketApi";
 import { useStore } from "vuex";
@@ -891,8 +891,3 @@ interface coinPosition {
       }
     }
 </script>
-<style scoped>
-.watchTest {
-  z-index: 100;
-}
-</style>
