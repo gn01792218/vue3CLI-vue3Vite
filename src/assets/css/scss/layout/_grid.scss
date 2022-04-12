@@ -20,11 +20,6 @@
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
-.betArea-pc-container {
-  @include flex-wrap;
-  height: 280px;
-  padding: 0px;
-}
 .betArea-item {
 	-webkit-user-select:none;
 	-moz-user-select:none;

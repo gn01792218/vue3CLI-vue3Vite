@@ -3,8 +3,8 @@
   <div class="betArea position-relative">
     <!-- <ConfirmWatchCard /> -->
     <watchCardBox />
-    <!-- PC版本注區 ，確認優化完畢可以刪除-->
-    <!-- <div class="betArea-pc position-relative">
+    <!-- 注區 -->
+    <div class="betArea-wrap position-relative">
       <GameResultLoading />
       <ul class="betInfortext-ul position-absolute">
         <transition-group @enter="betErrorAnimation">
@@ -15,85 +15,7 @@
         <li id="betConfirm">確認下注!!</li>
         <li id="cancleBet">取消下注!!</li>
       </ul>
-      <div class="betArea-pc-container">
-        <div
-          :class="[
-            `betArea-item${index + 1}`,
-            i.configClass,
-            'col-6 d-flex flex-column justify-content-around',
-          ]"
-          v-for="(i, index) in coinPosition.slice(0, 2)"
-          :key="index"
-          @click="sendBetData($event, index)"
-        >
-          <div class="betArea-item-top position-absolute d-flex flex-column">
-            <span>{{ i.host }}</span>
-            <span class="betRatioText">{{ i.odds }}</span>
-          </div>
-          <div class="betArea-item-bottom position-absolute">
-            <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
-              總注額:{{ i.tableAllPlayerBetStatus }}
-            </p>
-          </div>
-          <ul class="coinPosition">
-            <transition-group @enter="generateCoinAnimate">
-              <li
-                v-for="(coin, index) in i.coinArray"
-                :key="index"
-                :class="[coin, `index${index}`]"
-              ></li>
-            </transition-group>
-          </ul>
-        </div>
-      </div>
-      <div class="betArea-pc-container">
-        <div
-          :class="[
-            `betArea-item${index + 3}`,
-            i.configClass,
-            'col-4 d-flex flex-column justify-content-center',
-          ]"
-          v-for="(i, index) in coinPosition.slice(2, coinPosition.length)"
-          :key="index"
-          @click="sendBetData($event, index + 2)"
-        >
-          <div class="betArea-item-top position-absolute d-flex flex-column">
-            <span>{{ i.host }}</span>
-            <span class="betRatioText">{{ i.odds }}</span>
-          </div>
-          <div class="betArea-item-bottom position-absolute">
-            <p class="betStatus" v-show="i.betStatus > 0">{{ i.betStatus }}</p>
-            <p class="table-total-betStatus" v-show="tableNum.includes('VIP')">
-              總注額:{{ i.tableAllPlayerBetStatus }}
-            </p>
-          </div>
-          <ul class="coinPosition">
-            <transition-group @enter="generateCoinAnimate">
-              <li
-                v-for="(coin, index) in i.coinArray"
-                :key="index"
-                :class="[coin, `index${index}`]"
-              ></li>
-            </transition-group>
-          </ul>
-        </div>
-      </div>
-    </div> -->
-    <!-- 注區 -->
-    <div class="betArea-mobile position-relative">
-      <GameResultLoading />
-      <!-- 下面的betError確定優化完畢可以刪除 -->
-      <ul class="betError betInfortext-ul position-absolute">
-        <transition-group @enter="betErrorAnimation">
-          <li v-for="(betErr, index) in betErrorArray" :key="index">
-            {{ betErr }}
-          </li>
-        </transition-group>
-        <li id="betConfirm">確認下注!!</li>
-        <li id="cancleBet">取消下注!!</li>
-      </ul>
-      <div class="betArea-mobile-container d-flex flex-wrap w-100">
+      <div class="betArea-container d-flex flex-wrap w-100">
         <div
           :class="[
             `betArea-item${index + 1}`,

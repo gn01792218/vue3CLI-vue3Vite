@@ -8,14 +8,8 @@
   .betArea {
     height: 65%;
   }
-  .betArea-pc {
-    height: 79%;
-  }
   .coinArea {
     height: 15%;
-  }
-  .betArea-pc-container {
-    height: 50%;
   }
   .betArea-item {
     font-size: 2rem;
@@ -52,12 +46,6 @@
   }
   .betArea {
     height: 75%;
-  }
-  .betArea-pc {
-    height: 75%;
-  }
-  .betArea-pc-container {
-    height: 50%;
   }
   .betArea-item {
     font-size: 1.5rem;
@@ -360,10 +348,6 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  // .betError{  //確定注區優化完畢可以刪除
-  //   left: 50%;
-  //   transform: translateX(-50%);
-  // }
   #betConfirm,#cancleBet{
     position: absolute;
     width:100px;
@@ -457,14 +441,11 @@
   .betArea-item2{
     order:2,
   }
-  .betArea-pc {
-    display: none;
-  }
-  .betArea-mobile {
+  .betArea-wrap {
     display: block;
     height: 250px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 250px;
   }
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
@@ -894,8 +875,8 @@
   .coin-200000-disable{
     @include coinSpritePosition(-553,-130,1.2);
   }
-  .betArea-mobile,
-  .betArea-mobile-container {
+  .betArea-wrap,
+  .betArea-container {
     height: 120px;
   }
   .betArea-item {
@@ -1107,8 +1088,8 @@
   .chatInput-emoji{
     left:-50%;
   }
-  .betArea-mobile,
-  .betArea-mobile-container {
+  .betArea-wrap,
+  .betArea-container {
     height: 100px;
   }
   .askRoad-player,
@@ -1481,10 +1462,10 @@
   .betStatus {
     font-size: 1rem;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 180px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 180px;
     flex-wrap: wrap;
   }
@@ -1589,10 +1570,10 @@
   .betRatioText {
     font-size: 0.3rem;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 141px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 141px;
   }
   .playerNum {
@@ -1807,10 +1788,10 @@
   .alertFont {
     font-size: 1.2rem !important;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 121px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 121px;
   }
   .card-container {
@@ -1961,10 +1942,10 @@
   .betStatus {
     font-size: 1rem;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 160px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 160px;
   }
   .bettingArea-btn-check,.bettingArea-btn-gitbackAllCoin{

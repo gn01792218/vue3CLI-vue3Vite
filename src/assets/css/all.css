@@ -178,16 +178,6 @@ img {
 /*-------------------------------------------
      欄目設定區
 -------------------------------------------*/
-.betArea-pc-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  height: 280px;
-  padding: 0px;
-}
-
 .betArea-item {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -331,13 +321,7 @@ img {
   border-right-color: #FFF;
 }
 
-.betArea-pc {
-  float: left;
-  width: 100%;
-  display: block;
-}
-
-.betArea-mobile {
+.betArea-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2158,14 +2142,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea {
     height: 65%;
   }
-  .betArea-pc {
-    height: 79%;
-  }
   .coinArea {
     height: 15%;
-  }
-  .betArea-pc-container {
-    height: 50%;
   }
   .betArea-item {
     font-size: 2rem;
@@ -2204,12 +2182,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea {
     height: 75%;
-  }
-  .betArea-pc {
-    height: 75%;
-  }
-  .betArea-pc-container {
-    height: 50%;
   }
   .betArea-item {
     font-size: 1.5rem;
@@ -2802,14 +2774,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
         -ms-flex-order: 2;
             order: 2;
   }
-  .betArea-pc {
-    display: none;
-  }
-  .betArea-mobile {
+  .betArea-wrap {
     display: block;
     height: 250px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 250px;
   }
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
@@ -3482,8 +3451,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -663.6px -156px;
     background-size: 853.2px 234px;
   }
-  .betArea-mobile,
-  .betArea-mobile-container {
+  .betArea-wrap,
+  .betArea-container {
     height: 120px;
   }
   .betArea-item {
@@ -3777,8 +3746,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .chatInput-emoji {
     left: -50%;
   }
-  .betArea-mobile,
-  .betArea-mobile-container {
+  .betArea-wrap,
+  .betArea-container {
     height: 100px;
   }
   .askRoad-player p, .askRoad-banker p {
@@ -4317,10 +4286,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betStatus {
     font-size: 1rem;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 180px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 180px;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
@@ -4426,10 +4395,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betRatioText {
     font-size: 0.3rem;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 141px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 141px;
   }
   .playerNum {
@@ -4720,10 +4689,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .alertFont {
     font-size: 1.2rem !important;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 121px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 121px;
   }
   .card-container {
@@ -4911,10 +4880,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betStatus {
     font-size: 1rem;
   }
-  .betArea-mobile {
+  .betArea-wrap {
     height: 160px;
   }
-  .betArea-mobile-container {
+  .betArea-container {
     height: 160px;
   }
   .bettingArea-btn-check, .bettingArea-btn-gitbackAllCoin {
