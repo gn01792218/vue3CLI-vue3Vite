@@ -52,13 +52,11 @@
 	border-right-style: solid;
 	border-right-color: #FFF;
 }
-.betArea-pc{
-	float: left;
-	width: 100%;
-	display: block;
-}
-.betArea-mobile{
-	display: none;
+.betArea-wrap{
+	// display: none;
+	display: flex;
+	flex-wrap: wrap;
+	height:79%;
 }
 
 //選單區
