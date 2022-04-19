@@ -6,9 +6,6 @@
         </div>
       </div>
     </section>
-    <!-- <button class="position-absolute" @click="testBigEyes(2)">藍圈</button>
-    <button class="position-absolute test" @click="testBigEyes(1)">紅圈</button>
-    <button class="position-absolute test2" @click="resetBigEyesRoad">重置大眼路</button> -->
 </template>
 
 <script lang="ts">
@@ -17,13 +14,12 @@ import proto from '../../assets/js/bundle'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 export default defineComponent({
-  
    setup(){
        //偵測重新連線機制
        window.addEventListener('reConnect',()=>{
-        // console.log('重連畫大眼路')
+        console.log('重連畫大眼路')
         resetBigEyesRoad()
-        showBigEyesRoad ()
+        showBigEyesRoad()
       }) 
       //基本資料
         const BigEyesRoadWidth =new Array(44)
@@ -33,7 +29,6 @@ export default defineComponent({
         const currentbigEyesRoadResult = ref(0) //現在是哪個陣營
         const lastbigEyesRoadResult = ref(0) //上次是哪個陣營
         const roadOverFlowerTimes = ref(0) //超出格子幾次
-        const bigEyesRoadInit = ref(false) //大路是否初始化過(上桌時)
         const lastbigEyesRoadDataLength = ref(0)
         const lastBigEyesRoadColumnLength = ref(0)
         let bigEyesRoadColArr = reactive<any[]>([]) //大路的Array
@@ -66,7 +61,7 @@ export default defineComponent({
           }
           //2.重置路圖
           resetBigEyesRoad()
-          showBigEyesRoadInit()
+          showBigEyesRoad()
           //3.放置問路
           let roadNum = askRoadRecall.value.bigEyeRoadNext.symbol
           askRoad(roadNum)
@@ -82,7 +77,7 @@ export default defineComponent({
           //5.畫完之後等二秒就reset路圖，並重新畫
           askRoadtimer.value =  setTimeout(()=>{
             resetBigEyesRoad()
-            showBigEyesRoadInit()
+            showBigEyesRoad()
             road.classList.remove('askRoadanimation')
             asking.value = false
             // store.commit('roadmap/resetBigEyeRoadAsk')
@@ -99,15 +94,9 @@ export default defineComponent({
         })
         watch(bigEyesRoadResult,()=>{
           // console.log("偵測到大眼路")
-          if(asking.value){
-            resetBigEyesRoad()
-          }
-            if(bigEyesRoadResult.value.columns[0].blocks.length>0){
-            if(bigEyesRoadInit.value){
+          if(bigEyesRoadResult.value.columns[0].blocks.length>0){
+              resetBigEyesRoad()
               showBigEyesRoad()
-            }else{
-              showBigEyesRoadInit()
-            }
           }
         })
       //function
@@ -138,16 +127,6 @@ export default defineComponent({
         lastbigEyesRoadDataLength.value = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length  //將這次的最後一個columns的blocks的長度紀錄起來
         lastBigEyesRoadColumnLength.value = bigEyesRoadResult.value.columns.length
             // console.log("現在是第",bigEyesRoadColumn.value,"行；","下一格格子",bigEyesRoadItemIndex.value)
-      }
-      function removeAskRoadAnimation(){
-        let column = document.querySelector(`.BigEyesRoad-colum${bigEyesRoadColumn.value}`) as HTMLElement
-          let road:HTMLElement
-          if(bigEyesRoadItemIndex.value>0){
-           road = column.children[bigEyesRoadItemIndex.value-1].firstChild as HTMLElement
-          }else{
-           road = column.children[bigEyesRoadItemIndex.value].firstChild as HTMLElement
-          }
-          road.classList.remove('askRoadanimation')
       }
       function askRoad(roadNum:number){
         //每次都畫最後一顆
@@ -197,59 +176,7 @@ export default defineComponent({
             putBigEyesRoad(roadNum)
       }
       function showBigEyesRoad(){
-        //每次都畫最後一顆
-        // console.log('大眼露','上一次的長度',lastbigEyesRoadDataLength.value,'當前的長度',bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length)
-        if(lastBigEyesRoadColumnLength.value==bigEyesRoadResult.value.columns.length && lastbigEyesRoadDataLength.value==bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length){
-          return
-        }else{
-          // console.log('畫大眼露')
-          let item = bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks[bigEyesRoadResult.value.columns[bigEyesRoadResult.value.columns.length-1].blocks.length-1]
-          recordRoad(item.symbol)
-          if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
-              // console.log("換陣營前","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value)
-              if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
-                if(bigEyesRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
-                  bigEyesRoadColumn.value++
-                  // console.log("在第0格滿出，直接+行數","行",bigEyesRoadColumn.value)
-                  roadOverFlowerTimes.value = 0
-                }else{
-                  bigEyesRoadColumn.value = bigEyesRoadColumn.value-roadOverFlowerTimes.value+1
-                  roadOverFlowerTimes.value = 0
-                }
-                // console.log("溢出後恢復","行",bigEyesRoadColumn.value)
-              }else{
-                bigEyesRoadColumn.value++
-              }
-              if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){ //溢出極限格子的時候要增加行數
-                // console.log("滿了+行")
-                addBigEyesRoadColumn()
-              }  
-               bigEyesRoadItemIndex.value = 0
-              //  console.log("格",bigEyesRoadItemIndex.value)
-            }
-            //換行二:溢出換行
-            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
-            //溢出時如果遇到和局，其實不需要+行?!
-            if(bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value]!==0 || bigEyesRoadItemIndex.value>5){
-              // console.log("連贏溢出")
-              bigEyesRoadColumn.value++ //換行
-              //和局時不會進下面的addBigRoad
-              if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
-                 addBigEyesRoadColumn()
-              }  //溢出極限格子的時候要增加行數
-              if(bigEyesRoadItemIndex.value>0){ //在第0格以上才要-1
-                bigEyesRoadItemIndex.value = bigEyesRoadItemIndex.value-1
-              }
-              roadOverFlowerTimes.value++ 
-              // console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
-                  for(let i = bigEyesRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
-                    bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
-                  }
-            }
-            putBigEyesRoad(item.symbol)
-        }
-      }
-      function showBigEyesRoadInit(){
+        console.log('全劃大眼露')
         //第一次全畫
         bigEyesRoadResult.value.columns.forEach((item:any)=>{
           item.blocks.forEach((i:any)=>{
@@ -299,7 +226,6 @@ export default defineComponent({
             putBigEyesRoad(i.symbol)
           })
         })
-        bigEyesRoadInit.value = true
       }
       function resetBigEyesRoad(){
         console.log('重置大眼路')
@@ -342,7 +268,7 @@ export default defineComponent({
             newArr [i] = [0,0,0,0,0,0]
           }
           bigEyesRoadColArr = newArr
-          bigEyesRoadInit.value = false
+          // bigEyesRoadInit.value = false
       }
       function addBigEyesRoadColumn(){
         let Road = document.querySelector('.BigEyesRoad') as HTMLElement  
@@ -368,67 +294,13 @@ export default defineComponent({
           addBigEyesRoadColumnCount.value++
           // roadOverFlowerTimes.value++
       }
-      function testBigEyes(num:number){
-        recordRoad(num)
-        if(currentbigEyesRoadResult.value!==lastbigEyesRoadResult.value && currentbigEyesRoadResult.value!==0 && lastbigEyesRoadResult.value!==0){
-              // console.log("換陣營前","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value)
-              if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
-                if(bigEyesRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
-                  bigEyesRoadColumn.value++
-                  // console.log("在第0格滿出，直接+行數","行",bigEyesRoadColumn.value)
-                  roadOverFlowerTimes.value = 0
-                }else{
-                  bigEyesRoadColumn.value = bigEyesRoadColumn.value-roadOverFlowerTimes.value+1
-                  roadOverFlowerTimes.value = 0
-                }
-                // console.log("溢出後恢復","行",bigEyesRoadColumn.value)
-              }else{
-                bigEyesRoadColumn.value++
-              }
-              if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){ //溢出極限格子的時候要增加行數
-                // console.log("滿了+行")
-                addBigEyesRoadColumn()
-              }  
-               bigEyesRoadItemIndex.value = 0
-              //  console.log("格",bigEyesRoadItemIndex.value)
-            }
-            //換行二:溢出換行
-            //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
-            //溢出時如果遇到和局，其實不需要+行?!
-            if(bigEyesRoadColArr[bigEyesRoadColumn.value][bigEyesRoadItemIndex.value]!==0 || bigEyesRoadItemIndex.value>5){
-              // console.log("連贏溢出")
-              bigEyesRoadColumn.value++ //換行
-              //和局時不會進下面的addBigRoad
-              if(bigEyesRoadColumn.value>=BigEyesRoadWidth.length+(bigEyesRoadColArr.length-BigEyesRoadWidth.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
-                 addBigEyesRoadColumn()
-              }  //溢出極限格子的時候要增加行數
-              if(bigEyesRoadItemIndex.value>0){ //在第0格以上才要-1
-                bigEyesRoadItemIndex.value = bigEyesRoadItemIndex.value-1
-              }
-              roadOverFlowerTimes.value++ 
-              // console.log("連贏溢出","行",bigEyesRoadColumn.value,"格",bigEyesRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
-                  for(let i = bigEyesRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
-                    bigEyesRoadColArr[bigEyesRoadColumn.value][i] = 1
-                  }
-            }
-            putBigEyesRoad(num)
-      }
         return {
             //data
             BigEyesRoadWidth,
             bottomHeight,
             //methods
-            testBigEyes,
             resetBigEyesRoad,
         }
     }
 })
 </script>
-<style scoped>
-  .test{
-    left:0%;
-  }
-  .test2{
-    left:20%;
-  }
-</style>

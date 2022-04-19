@@ -22,7 +22,6 @@ export default defineComponent({
         const currentcockroachRoadResult = ref(0) //現在是哪個陣營
         const lastcockroachRoadResult = ref(0) //上次是哪個陣營
         const roadOverFlowerTimes = ref(0) //超出格子幾次
-        const cockroachRoadInit = ref(false) //大路是否初始化過(上桌時)
         const lastcockroachRoadDataLength = ref(0)
         const lastcockroachDataColumnLength = ref(0)
         let cockroachRoadColArr = reactive<any[]>([]) //大路的Array
@@ -57,7 +56,7 @@ export default defineComponent({
           }
           //2.重置路圖
           resetcockroachRoad()
-          showCockroachRoadInit()
+          showCockroachRoad()
           //3.放置問路
           let roadNum = askRoadRecall.value.cockroachRoadNext.symbol
           askRoad(roadNum)
@@ -73,7 +72,7 @@ export default defineComponent({
           //5.畫完之後等二秒就reset路圖，並重新畫
           askRoadtimer.value =  setTimeout(()=>{
             resetcockroachRoad()
-            showCockroachRoadInit()
+            showCockroachRoad()
             road.classList.remove('askRoadanimation')
             asking.value = false
           },2000)
@@ -88,27 +87,11 @@ export default defineComponent({
           resetcockroachRoad()
         })
         watch(cockroachRoadResult,()=>{
-          if(asking.value){
-            resetcockroachRoad()
-          }
             if(cockroachRoadResult.value.columns[0].blocks.length>0){
-            if(cockroachRoadInit.value){
+              resetcockroachRoad()
               showCockroachRoad()
-            }else{
-              showCockroachRoadInit()
-            }
           }
         })
-        function removeAskRoadAnimation(){
-          let column = document.querySelector(`.cockroachRoad-column${cockroachRoadColumn.value}`) as HTMLElement
-          let road:HTMLElement
-          if(cockroachRoadItemIndex.value>0){
-           road = column.children[cockroachRoadItemIndex.value-1].firstChild as HTMLElement
-          }else{
-           road = column.children[cockroachRoadItemIndex.value].firstChild as HTMLElement
-          }
-          road.classList.remove('askRoadanimation')
-        }
         function askRoad(roadNum:number){
           //每次都畫最後一顆
             //  console.log('畫蟑螂路')
@@ -224,7 +207,6 @@ export default defineComponent({
             newArr [i] = [0,0,0,0,0,0]
           }
           cockroachRoadColArr = newArr
-          cockroachRoadInit.value = false
         }
         function addCokroachRoadCoulmn(){
           let Road = document.querySelector('.cockroachRoad') as HTMLElement  
@@ -251,61 +233,7 @@ export default defineComponent({
           // roadOverFlowerTimes.value++
         }
         function showCockroachRoad(){
-          // console.log('蟑螂路上次長度',lastcockroachRoadDataLength.value,'當前長度',cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length)
-          if(lastcockroachDataColumnLength.value==cockroachRoadResult.value.columns.length && lastcockroachRoadDataLength.value==cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length){
-            return
-          }else{
-             //每次都畫最後一顆
-            //  console.log('畫蟑螂路')
-            let item = cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks[cockroachRoadResult.value.columns[cockroachRoadResult.value.columns.length-1].blocks.length-1].symbol
-            // console.log('最後一顆蟑螂',item)
-            recordRoad(item)
-            if(currentcockroachRoadResult.value!==lastcockroachRoadResult.value && currentcockroachRoadResult.value!==0 && lastcockroachRoadResult.value!==0){
-                // console.log("換陣營前","行",cockroachRoadColumn.value,"格",cockroachRoadItemIndex.value)
-                if(roadOverFlowerTimes.value!=0){ //第一次恢復的時候
-                    if(cockroachRoadItemIndex.value-1<1){  //因為上一次已經被+過了，要減回來
-                    cockroachRoadColumn.value++
-                    // console.log("在第0格滿出，直接+行數","行",cockroachRoadColumn.value)
-                    roadOverFlowerTimes.value = 0
-                    }else{
-                    cockroachRoadColumn.value = cockroachRoadColumn.value-roadOverFlowerTimes.value+1
-                    roadOverFlowerTimes.value = 0
-                    }
-                    // console.log("溢出後恢復","行",cockroachRoadColumn.value)
-                }else{
-                    cockroachRoadColumn.value++
-                }
-                if(cockroachRoadColumn.value>=bottom1width.length+(cockroachRoadColArr.length-bottom1width.length)){ //溢出極限格子的時候要增加行數
-                    // console.log("滿了+行")
-                    addCokroachRoadCoulmn()
-                }  
-                cockroachRoadItemIndex.value = 0
-                // console.log("格",cockroachRoadItemIndex.value)
-                }
-                //換行二:溢出換行
-                //當下一次溢出大於前一次溢出時，bigRoadItemIndex.value要再-1
-                //溢出時如果遇到和局，其實不需要+行?!
-                if(cockroachRoadColArr[cockroachRoadColumn.value][cockroachRoadItemIndex.value]!==0 || cockroachRoadItemIndex.value>5){
-                // console.log("連贏溢出")
-                 cockroachRoadColumn.value++ //換行
-                //和局時不會進下面的addBigRoad
-                if(cockroachRoadColumn.value>=bottom1width.length+(cockroachRoadColArr.length-bottom1width.length)){  //不可以固定監測22，因為+了格子之後總行數也變多，必須+一個"增加的行數"
-                    addCokroachRoadCoulmn()
-                }  //溢出極限格子的時候要增加行數
-                if(cockroachRoadItemIndex.value>0){ //在第0格以上才要-1
-                    cockroachRoadItemIndex.value = cockroachRoadItemIndex.value-1
-                }
-                roadOverFlowerTimes.value++ 
-                // console.log("連贏溢出","行",cockroachRoadColumn.value,"格",cockroachRoadItemIndex.value,"溢出次數",roadOverFlowerTimes.value)
-                    for(let i = cockroachRoadItemIndex.value ; i < 6 ; i++ ){  //只有溢出時才要這麼做:把溢出當格以下的格子都變成1
-                        cockroachRoadColArr[cockroachRoadColumn.value][i] = 1
-                    }
-                }
-                putRoad(item)
-          }
-         
-        }
-        function showCockroachRoadInit(){
+          console.log('全劃蟑螂路')
           cockroachRoadResult.value.columns.forEach((item:any)=>{
                 item.blocks.forEach((i:any)=>{
                     // console.log('蟑螂路列表',i)
@@ -355,8 +283,6 @@ export default defineComponent({
                         putRoad(i.symbol)
                     })
                 })
-            cockroachRoadInit.value = true
-            // console.log(cockroachRoadColArr)
         }
         return {
             //data

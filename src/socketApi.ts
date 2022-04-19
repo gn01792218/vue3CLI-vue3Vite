@@ -279,7 +279,7 @@ export const getMsgReCall = (e:any) =>{
             break
         case route.Roadmap:
             let map = roadmap.Roadmap.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('map',map)
+            console.log('map',map)
             store.commit('roadmap/map',map)
             break;
         case route.BroadcastDealerRoundEnd:
