@@ -9,7 +9,7 @@ export const actions = {}
 export const mutations = {
   LobbyInfo(state:any, payload:any) { //接收wbSocket的訊息
     state.LobbyInfo=payload
-    console.log("vuex-lobby資料更新",state.LobbyInfo)
+    // console.log("vuex-lobby資料更新",state.LobbyInfo)
   },
   BroadcastTotalPlayersOnline(state:any,payload:any){
     state.BroadcastTotalPlayersOnline = payload

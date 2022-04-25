@@ -28,6 +28,12 @@ import { useStore } from "vuex";
 import proto from "../../assets/js/bundle";
 export default defineComponent({
   setup() {
+    //reloadRoadMap是由footer的閃電按鈕發出的重整路圖機制。
+    window.addEventListener("reloadRoadMap", () => {
+      console.log("偵測重連-畫豬盤路");
+      resetRoad();
+      showRoad();
+    });
     //桌號
     const route = useRoute();
     const tableNum = computed(() => {

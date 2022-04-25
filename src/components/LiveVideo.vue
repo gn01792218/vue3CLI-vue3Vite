@@ -48,10 +48,10 @@ function startPlay(np: NodePlayer, stream: any) {
   np.setKeepScreenOn();
   if (isMobileOrNot) {
     np.start(stream.moblie);
-    console.log("LiveVideo手機", stream.moblie);
+    // console.log("LiveVideo手機", stream.moblie);
   } else {
     np.start(stream.desktop);
-    console.log("LiveVideo桌機", stream.desktop);
+    // console.log("LiveVideo桌機", stream.desktop);
   }
 }
 function stopPlay() {

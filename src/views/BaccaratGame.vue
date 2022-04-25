@@ -86,13 +86,13 @@ function tableJoin() {
         uuid: i.uuid,
       });
       // console.log('發送TableJoin',tableNum.value)
-      console.log(
-        `請求${tableNum.value}桌`,
-        "桌號:" + i.name,
-        "uuid:" + i.uuid,
-        "Loby資訊:",
-        tables.value
-      );
+      // console.log(
+      //   `請求${tableNum.value}桌`,
+      //   "桌號:" + i.name,
+      //   "uuid:" + i.uuid,
+      //   "Loby資訊:",
+      //   tables.value
+      // );
     }
     return i.name == tableNum;
   });
