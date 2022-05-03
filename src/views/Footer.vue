@@ -134,6 +134,8 @@ function reloadVideo() {
   } else {
     npvideo.value.start(flvStream.value.desktop, useMobileDefiend());
   }
+  //發送reloadRoadMap，讓路圖重整
+  window.dispatchEvent(new CustomEvent('reloadRoadMap'))
 }
 // function showAnnouncement(){ //控制公告同意書顯示與否
 //     store.commit('announcement/setShowannouncement',!announcementShow.value)

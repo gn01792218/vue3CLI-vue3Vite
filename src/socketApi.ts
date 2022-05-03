@@ -73,7 +73,7 @@ export const sendDonat =(data:any) => {
         points:data.points
     })
     let bytes = donate.DonateCall.encode(proto).finish()
-    console.log("sendDonat",proto)
+    // console.log("sendDonat",proto)
     sendWSPush(bytes);
 }
 //發送下注資訊
@@ -87,7 +87,7 @@ export const sendBetCall = (data:any) => {
         betArea:data.betArea,
     })
     let bytes = bet.BetCall.encode(proto).finish()
-    console.log("sendBetCall",proto)
+    // console.log("sendBetCall",proto)
     sendWSPush(bytes);
 }
 //發送下注重置
@@ -137,7 +137,7 @@ export const sendWatchCardCall = (data:any) =>{
         confirm : data.confirm
     })
     let bytes = game.WatchcardCall.encode(proto).finish()
-    console.log('sendWatchCardCall',proto)
+    // console.log('sendWatchCardCall',proto)
     sendWSPush(bytes);
 }
 //飛牌按鈕
@@ -149,7 +149,7 @@ export const sendFlyCardCall = (data:any) =>{
         gameUuid : data.gameUuid
     })
     let bytes = game.FlyCardCall.encode(proto).finish()
-    console.log('sendFlyCardCall',proto)
+    // console.log('sendFlyCardCall',proto)
     sendWSPush(bytes);
 }
 //發送歷史資訊Call
@@ -160,7 +160,7 @@ export const sendHistoryCall = () =>{
         }),
     })
     let bytes = history.HistoryCall.encode(proto).finish()
-    console.log('sendHistoryCall',proto)
+    // console.log('sendHistoryCall',proto)
     sendWSPush(bytes);
 }
 //各種接收訊息的方法，在main.js中全局註冊監聽
@@ -183,32 +183,32 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.BroadcastTotalPlayersOnline:
             let BroadcastTotalPlayersOnline = lobby.BroadcastTotalPlayersOnline.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
+            // console.log('BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
             store.commit('lobby/BroadcastTotalPlayersOnline',BroadcastTotalPlayersOnline)
             break;
         case route.UserInfo:
             let UserInfo = auth.UserInfo.decode(new Uint8Array(e.detail.msg.data))
-            console.log('UserInfo',UserInfo)
+            // console.log('UserInfo',UserInfo)
             store.commit('auth/UserInfo',UserInfo)
             break
         case route.TableJoinRecall:
             let TableJoinRecall = table.TableJoinRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('TableJoinRecall',TableJoinRecall)
+            // console.log('TableJoinRecall',TableJoinRecall)
             store.commit('table/TableJoinRecall',TableJoinRecall)
             break;
         case route.BroadcastChat:
             let BroadcastChat = chat.BroadcastChat.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BroadcastChat',BroadcastChat)
+            // console.log('BroadcastChat',BroadcastChat)
             store.commit('chat/BroadcastChat',BroadcastChat)
             break;
         case route.DonateRecall:
             let DonateRecall = donate.DonateRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('DonateRecall',DonateRecall)
+            // console.log('DonateRecall',DonateRecall)
             store.commit('donat/DonateRecall',DonateRecall)
             break;
         case route.BetRecall:
             let BetRecall = bet.BetRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BetRecall',BetRecall)
+            // console.log('BetRecall',BetRecall)
             store.commit('bet/BetRecall',BetRecall)
             break;
         case route.BroadcastBetstatus:
@@ -229,12 +229,12 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.BetError:
             let BetError = bet.BetError.decode(new Uint8Array(e.detail.msg.data))
-            console.log('BetError',BetError)
+            // console.log('BetError',BetError)
             store.commit('bet/BetError',BetError)
             break;
         case route.Draw:
             let Draw = dealer.Draw.decode(new Uint8Array(e.detail.msg.data))
-            console.log('Draw',Draw)
+            // console.log('Draw',Draw)
             store.commit('dealer/Draw',Draw)
             break;
         case route.BroadcastGameResult:
@@ -254,7 +254,7 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.GameStatus:
             let GameStatus = game.GameStatus.decode(new Uint8Array(e.detail.msg.data))
-            console.log('GameStatus',GameStatus)
+            // console.log('GameStatus',GameStatus)
             store.commit('game/GameStatus',GameStatus)
             break;
         case route.BetRoundCountdown:
@@ -264,17 +264,17 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.WatchcardRecall:
             let WatchcardRecall = game.WatchcardRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log(WatchcardRecall,WatchcardRecall)
+            // console.log(WatchcardRecall,WatchcardRecall)
             store.commit('game/WatchcardRecall',WatchcardRecall)
             break;
         case route.WatchcardNotificaion :
             let WatchcardNotificaion = game.WatchcardNotificaion.decode(new Uint8Array(e.detail.msg.data))
-            console.log(WatchcardNotificaion,WatchcardNotificaion)
+            // console.log(WatchcardNotificaion,WatchcardNotificaion)
             store.commit('game/WatchcardNotificaion',WatchcardNotificaion)
             break;
         case route.FlyCardRecall:
             let FlyCardRecall = game.FlyCardRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log(FlyCardRecall,FlyCardRecall)
+            // console.log(FlyCardRecall,FlyCardRecall)
             store.commit('game/FlyCardRecall',FlyCardRecall)
             break
         case route.Roadmap:
@@ -289,7 +289,7 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.AskRoadRecall:
             let askRoadReCall = roadmap.AskRoadRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('問下三路',askRoadReCall)
+            // console.log('問下三路',askRoadReCall)
             store.commit('roadmap/setAskRoadRecall',askRoadReCall)
             break;
         case route.BroadcastAnnouncement:
@@ -300,17 +300,17 @@ export const getMsgReCall = (e:any) =>{
         case route.kickoutwarn:
             let kickoutwarn = kick.kickoutWarn.decode(new Uint8Array(e.detail.msg.data))
             store.commit('kick/kickoutwarn',kickoutwarn)
-            console.log('kickoutwarn',kickoutwarn)
+            // console.log('kickoutwarn',kickoutwarn)
             break;
         case route.Kickout:
             let Kickout = kick.kickout.decode(new Uint8Array(e.detail.msg.data))
             store.commit('kick/Kickout',Kickout)
-            console.log('Kickout',Kickout)
+            // console.log('Kickout',Kickout)
             break;
         case route.HistoryRecall:
             let HistoryRecall = history.HistoryRecall.decode(new Uint8Array(e.detail.msg.data))
-            console.log('HistoryRecall',HistoryRecall)
             store.commit('history/HistoryRecall',HistoryRecall)
+            // console.log('HistoryRecall',HistoryRecall)
             break;
     }
 }
