@@ -299,18 +299,18 @@ export const getMsgReCall = (e:any) =>{
             break;
         case route.kickoutwarn:
             let kickoutwarn = kick.kickoutWarn.decode(new Uint8Array(e.detail.msg.data))
-            // store.commit('kick/kickoutwarn',kickoutwarn)
-            console.log('kickoutwarn',kickoutwarn)
+            store.commit('kick/kickoutwarn',kickoutwarn)
+            // console.log('kickoutwarn',kickoutwarn)
             break;
         case route.Kickout:
             let Kickout = kick.kickout.decode(new Uint8Array(e.detail.msg.data))
-            // store.commit('kick/Kickout',Kickout)
-            console.log('Kickout',Kickout)
+            store.commit('kick/Kickout',Kickout)
+            // console.log('Kickout',Kickout)
             break;
         case route.HistoryRecall:
             let HistoryRecall = history.HistoryRecall.decode(new Uint8Array(e.detail.msg.data))
-            // console.log('HistoryRecall',HistoryRecall)
             store.commit('history/HistoryRecall',HistoryRecall)
+            // console.log('HistoryRecall',HistoryRecall)
             break;
     }
 }
