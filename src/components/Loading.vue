@@ -48,17 +48,10 @@ const loading = ref(true);
 const preLoad = ref(true);
 const progressValue = ref(0);
 // const announcementData3 = store.state.announcement.announcement.announcement3;
-// const vuexUserToken = computed(() => {
-//   return store.state.auth.userToken;
-// });
 const loginState = computed(() => {
   //取得登入狀態
   return store.state.auth.LoginRecall.status;
 });
-// if (vuexUserToken.value !== "") {
-//   //已經有人登入的話，就不執行
-//   loading.value = false;
-// }
 router.beforeEach((to, from, next) => {
   if (to.path.indexOf("leave") == 1) {
     //要去的地方不含leave
@@ -77,12 +70,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-function bankSoundLoad(){
-  console.log('banksoundLoad')
-}
 function progressUp(timer:number) {
-  // const pr = document.getElementById("progress") as HTMLProgressElement;
-
   if (progressValue?.value == 100) {
     loading.value = false;
     clearInterval(timer)
@@ -95,7 +83,6 @@ onMounted(() => {
   watch(loginState, () => {
     switch (loginState.value) {
       case 1:
-        // loading.value = false;
         //成功登入的人才執行跑條
         const progressTime = setInterval(() => {
           progressUp(progressTime);

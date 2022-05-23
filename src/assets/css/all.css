@@ -694,8 +694,33 @@ img {
   height: 20px;
   overflow: hidden;
   border-radius: 50px;
-  -webkit-box-shadow: 5px 5px 5px solid black;
-          box-shadow: 5px 5px 5px solid black;
+  border: 3px solid white;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-animation: progressAnimation 2s linear infinite;
+          animation: progressAnimation 2s linear infinite;
+}
+
+@-webkit-keyframes progressAnimation {
+  from {
+    -webkit-box-shadow: 0px 0px 10px black;
+            box-shadow: 0px 0px 10px black;
+  }
+  to {
+    -webkit-box-shadow: 0px 0px 20px #f0ce0c;
+            box-shadow: 0px 0px 20px #f0ce0c;
+  }
+}
+
+@keyframes progressAnimation {
+  from {
+    -webkit-box-shadow: 0px 0px 10px black;
+            box-shadow: 0px 0px 10px black;
+  }
+  to {
+    -webkit-box-shadow: 0px 0px 20px #f0ce0c;
+            box-shadow: 0px 0px 20px #f0ce0c;
+  }
 }
 
 progress {
@@ -3718,6 +3743,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 540px) {
+  .progressBar {
+    width: 280px;
+  }
   .header {
     height: 30px;
   }
@@ -4614,6 +4642,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 320px) {
+  .progressBar {
+    width: 220px;
+  }
   .chat-input-wrap {
     width: 120px;
   }

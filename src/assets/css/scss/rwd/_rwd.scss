@@ -1044,6 +1044,9 @@
   }
 }
 @media screen and (max-width: 540px) {
+  .progressBar{
+    width:280px;
+  }
   .header {
     height: 30px;
   }
@@ -1692,6 +1695,9 @@
   }
 }
 @media screen and (max-width: 320px) {
+  .progressBar{
+    width:220px;
+  }
   .chat-input-wrap{
     width:120px;
   }
