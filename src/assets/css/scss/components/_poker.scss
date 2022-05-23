@@ -4,19 +4,31 @@
 .card-item-w{
     transform: rotate(90deg);
 }
+.player{
+  background-color: rgba(47, 169, 240, 0.849);
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+}
+.banker{
+  background-color: #e00000d2;
+  border-top-right-radius:20px;
+  border-bottom-right-radius:20px;
+}
+.winCard-wrap{
+  z-index: 0;
+  width:85%;
+  height:100%;
+}
 .winPoker{
-  background-color: rgba(206, 156, 94, 0.438);
-  animation-name: winpoker;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in;
+  animation :winpoker 1s ease-in forwards;
   border-radius: 10px;
   padding-bottom: 15px;
 }
 @keyframes winpoker {
   from{
-    background-color: rgba(206, 156, 94, 0.342);
   }to{
-    background-color: rgba(206, 156, 94, 0.822);
+    border: #FC0 5px solid;
+    box-shadow: -5px 5px 10px rgb(66, 64, 64);
   }
 }
 .playerNum,.bankerNum{

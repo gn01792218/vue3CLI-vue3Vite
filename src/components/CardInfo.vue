@@ -1,7 +1,8 @@
 <template>
   <div class="card-wrap">
     <section class="card-container d-flex justify-content-center">
-      <div class="player card-box row justify-content-center">
+      <div class="player card-box row justify-content-center position-relative pb-3">
+        <div class="winCard-wrap position-absolute"></div>
         <span v-show="showCardResult" class="playerNum">{{ playerPoint }}</span>
         <div
           :class="[
@@ -14,7 +15,8 @@
           <div :class="[`playerPoker${index}`]"></div>
         </div>
       </div>
-      <div class="banker card-box row justify-content-center">
+      <div class="banker card-box row justify-content-center position-relative pb-3">
+        <div class="winCard-wrap position-absolute"></div>
         <div
           :class="[
             'caritem',
@@ -162,13 +164,15 @@ function setWinCardBoxLight() {
       case 1:
         let bankerCardBox = document.querySelectorAll(".banker");
         bankerCardBox.forEach((i) => {
-          i.classList.add("winPoker");
+          i.querySelector('.winCard-wrap')?.classList.add("winPoker")
+          // i.classList.add("winPoker");
         });
         break;
       case 2:
         let playererCardBox = document.querySelectorAll(".player");
         playererCardBox.forEach((i) => {
-          i.classList.add("winPoker");
+          i.querySelector('.winCard-wrap')?.classList.add("winPoker")
+          // i.classList.add("winPoker");
         });
         break;
     }

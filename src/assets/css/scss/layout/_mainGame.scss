@@ -18,17 +18,16 @@
 .coinArea{
 	@include flex-x-spaceEvenly-y-center ;
 	width: 100%;
-	background-color: #1e1e1e;
+	background-color: $btnlist_coin;
 	border: 0px solid #333;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-align: center;
 }
 .betArea{
-	border: 1px solid #262626;
 	float: left;
 	width: 35%;
-	background-color: #02478d;
+	background-color: $betArea;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center top;
@@ -40,7 +39,7 @@
 	text-align: center;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: $betArea_border;
+	border-bottom-color: black;
 	border-top-width: 1px;
 	border-top-style: solid;
 	border-top-color: $betArea_border;
@@ -95,5 +94,6 @@
 .caritem{ //卡牌的預設位置
     //預設margin，響應式的時候可以依照情況拿掉
     margin-right:10px;
+	z-index:1;
     // border:1px solid blue;
 }

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /*一般工具*/
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
 .cursor-point {
   cursor: pointer;
 }
@@ -9,7 +10,7 @@
 }
 
 .font_red {
-  color: #bd0505;
+  color: #F44224;
 }
 
 .font_green {
@@ -17,7 +18,7 @@
 }
 
 .font_yellow {
-  color: #ffd236;
+  color: #E1BD33;
 }
 
 .font_yellows {
@@ -68,6 +69,7 @@ html, body {
 }
 
 body {
+  font-family: 'cwTeXYen', sans-serif;
   padding: 0px;
   background-color: #000;
   background-image: url("../../images/body-bg.png");
@@ -196,7 +198,7 @@ img {
       -ms-flex-align: center;
           align-items: center;
   color: white;
-  border: 1px solid gray;
+  border: 1px solid #347553;
   text-align: center;
 }
 
@@ -209,7 +211,7 @@ img {
 }
 
 .green {
-  color: #34be0a;
+  color: #31c907;
 }
 
 .header {
@@ -283,7 +285,7 @@ img {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  background-color: #1e1e1e;
+  background-color: #271604;
   border: 0px solid #333;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -291,10 +293,9 @@ img {
 }
 
 .betArea {
-  border: 1px solid #262626;
   float: left;
   width: 35%;
-  background-color: #02478d;
+  background-color: #206548;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -307,10 +308,10 @@ img {
   text-align: center;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: gray;
+  border-bottom-color: black;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: gray;
+  border-top-color: #347553;
 }
 
 .betArea .ems {
@@ -368,6 +369,7 @@ img {
 
 .caritem {
   margin-right: 10px;
+  z-index: 1;
 }
 
 /*-------------------------------------------
@@ -736,7 +738,6 @@ img {
   touch-action: manipulation;
   cursor: pointer;
   font-size: 136%;
-  font-family: 'cwtexhei', 'Varela Round', '微軟正黑體', sans-serif;
   text-decoration: none;
   color: #fff6d5;
   padding: 5px 0px;
@@ -791,6 +792,7 @@ img {
 }
 
 .header-btn.active, .header-btn:active {
+  padding: 5px;
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
@@ -1052,6 +1054,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   display: none;
 }
 
+.bettingArea-betInfo {
+  background-color: #164531;
+}
+
 .bettingArea-betInfo p {
   margin-bottom: 0;
 }
@@ -1061,15 +1067,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
       justify-content: space-around;
 }
 
-.gameresult {
-  top: 25%;
-}
-
 .bettingArea-btn {
   height: 65px;
   width: 100%;
-  background-color: #1e1e1e;
-  border-top: gray 1px solid;
+  background-color: #271604;
+  border-top: black 1px solid;
 }
 
 .bettingArea-btn-left {
@@ -1083,17 +1085,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
   cursor: pointer;
 }
 
-.bettingArea-btn-gitbackAllCoin {
-  background-color: rgba(0, 0, 255, 0.692);
-}
-
-.bettingArea-btn-check {
-  background-color: rgba(128, 0, 128, 0.829);
+.bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
+  background-color: #415BBB;
 }
 
 .bettingArea-btn-betInfo, .bettingArea-btn-reward {
   border-radius: 5px;
-  background-color: #644d31;
+  background-color: #206548;
   font-size: 18px;
   text-align: center;
 }
@@ -1102,7 +1100,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   width: 70px;
   height: 42px;
   font-size: 1.5rem;
-  background-color: rgba(128, 0, 128, 0.829);
+  background-color: #206548;
 }
 
 .bettingArea-btn-center {
@@ -1186,15 +1184,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .betArea-item {
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .betRatioText {
-  font-size: 1.5rem;
+  font-size: 0.8rem;
 }
 
 .askRoad-player, .askRoad-banker {
-  background-color: #4b4949;
+  background-color: black;
   border-radius: 5px;
 }
 
@@ -1207,12 +1206,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
   border-radius: 10px;
 }
 
-.askRoad-player {
-  color: red;
-}
-
-.askRoad-banker {
-  color: yellow;
+.askRoad-banker, .askRoad-player {
+  color: #e7e5e5;
 }
 
 .shotCoinUl {
@@ -1331,6 +1326,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .result-text {
   font-size: 400%;
+  font-weight: 700;
 }
 
 .gainMoney {
@@ -1403,6 +1399,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
   }
+}
+
+.askRoad-border {
+  border: 1px solid #383737;
 }
 
 .BeadPlate-B {
@@ -1966,7 +1966,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .LoadingPage {
-  background-image: url("../../images/loading.svg");
   background-position: center center;
   background-repeat: no-repeat;
   background-color: #644d31;
@@ -2005,33 +2004,48 @@ a.btn.disabled, fieldset[disabled] a.btn {
           transform: rotate(90deg);
 }
 
+.player {
+  background-color: rgba(47, 169, 240, 0.849);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.banker {
+  background-color: #e00000d2;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.winCard-wrap {
+  z-index: 0;
+  width: 85%;
+  height: 100%;
+}
+
 .winPoker {
-  background-color: rgba(206, 156, 94, 0.438);
-  -webkit-animation-name: winpoker;
-          animation-name: winpoker;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-timing-function: ease-in;
-          animation-timing-function: ease-in;
+  -webkit-animation: winpoker 1s ease-in forwards;
+          animation: winpoker 1s ease-in forwards;
   border-radius: 10px;
   padding-bottom: 15px;
 }
 
 @-webkit-keyframes winpoker {
   from {
-    background-color: rgba(206, 156, 94, 0.342);
   }
   to {
-    background-color: rgba(206, 156, 94, 0.822);
+    border: #FC0 5px solid;
+    -webkit-box-shadow: -5px 5px 10px #424040;
+            box-shadow: -5px 5px 10px #424040;
   }
 }
 
 @keyframes winpoker {
   from {
-    background-color: rgba(206, 156, 94, 0.342);
   }
   to {
-    background-color: rgba(206, 156, 94, 0.822);
+    border: #FC0 5px solid;
+    -webkit-box-shadow: -5px 5px 10px #424040;
+            box-shadow: -5px 5px 10px #424040;
   }
 }
 
@@ -2145,9 +2159,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .coinArea {
     height: 15%;
   }
-  .betArea-item {
-    font-size: 2rem;
-  }
   .gameHistory {
     height: 30%;
   }
@@ -2182,9 +2193,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea {
     height: 75%;
-  }
-  .betArea-item {
-    font-size: 1.5rem;
   }
   .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
     width: 55px;
@@ -2715,6 +2723,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: auto;
     line-height: 1.75rem;
     font-size: 180%;
+    padding: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .header-top {
     display: -webkit-box;
@@ -2746,6 +2761,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .video-box {
     width: 100%;
     height: 575px;
+    border-bottom: none;
+  }
+  .card-wrap {
+    bottom: 30%;
   }
   .watchCard-box {
     top: 35%;
@@ -2761,18 +2780,28 @@ a.btn.disabled, fieldset[disabled] a.btn {
     margin-top: 0px;
   }
   .betArea {
-    border: 2px solid #262626;
     width: 100%;
   }
+  .betArea-item1 {
+    border-top: none;
+  }
+  .betArea-item3 {
+    border-top: none;
+  }
   .betArea-item4 {
+    border-top: none;
     -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
             order: 0;
   }
   .betArea-item2 {
+    border-top: none;
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
+  }
+  .betArea-item5 {
+    border-top: none;
   }
   .betArea-wrap {
     display: block;
@@ -2950,7 +2979,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-size: 1137.6px 312px;
   }
   .betArea-item {
-    font-size: 2.5rem;
     -webkit-box-flex: 20%;
         -ms-flex: 20%;
             flex: 20%;
@@ -3263,17 +3291,17 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bettingArea-btn {
     height: 55px;
   }
+  .betArea-item {
+    line-height: 1.5rem;
+  }
   .betArea-item-top {
-    top: 2%;
+    top: 10%;
   }
   .betArea-item-bottom {
     bottom: 5%;
   }
   .bettingArea-btn-betInfo {
     font-size: 14px;
-  }
-  .betRatioText {
-    font-size: 1rem;
   }
   .tabsArea {
     display: none;
@@ -3454,12 +3482,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-wrap,
   .betArea-container {
     height: 120px;
-  }
-  .betArea-item {
-    font-size: 1.6rem;
-  }
-  .alertFont {
-    font-size: 1.6rem !important;
   }
   .card-container {
     margin-top: -35px;
@@ -3730,18 +3752,15 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 150px;
     height: 150px;
   }
-  .betArea-item {
-    font-size: 1rem;
-  }
   .betStatus,
   .table-total-betStatus {
     font-size: 0.5rem;
   }
+  .betStatus {
+    line-height: 0.5rem;
+  }
   .bettingArea-btn-betInfo {
     font-size: 12px;
-  }
-  .alertFont {
-    font-size: 1.5rem !important;
   }
   .chatInput-emoji {
     left: -50%;
@@ -3749,9 +3768,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .betArea-wrap,
   .betArea-container {
     height: 100px;
-  }
-  .askRoad-player p, .askRoad-banker p {
-    font-size: 0.5rem;
   }
   .bettingArea-btn-reward, .bettingArea-btn-center {
     width: 50px;
@@ -4238,13 +4254,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-btn {
     line-height: 0.5rem;
     font-size: 70%;
-    width: 40px;
   }
   .header-tableInfo {
     width: 135px;
   }
   .alertFont {
-    font-size: 1.3rem !important;
+    font-size: 2.8rem !important;
   }
   .betArea-item2 {
     -webkit-box-ordinal-group: 1;
@@ -4252,10 +4267,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
             order: 0;
   }
   .betArea-item-top {
-    top: 0%;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .betArea-item-top span {
+    margin-top: 10px;
   }
   .betArea-item-bottom {
     bottom: 0%;
+    padding-bottom: 3px;
   }
   .bettingArea-btn-reward, .bettingArea-btn-center {
     width: 30px;
@@ -4307,7 +4332,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 10px;
   }
   .betArea-item {
-    font-size: 1rem;
     -webkit-box-flex: 1;
         -ms-flex: auto;
             flex: auto;
@@ -4315,15 +4339,18 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-container {
     margin-top: -25px;
   }
+  .card-wrap {
+    bottom: 20%;
+  }
   .playerNum, .bankerNum {
     font-size: 1.5rem;
   }
   .playerNum {
-    left: 5%;
+    left: 15%;
     top: 10%;
   }
   .bankerNum {
-    right: 5%;
+    right: 15%;
     top: 10%;
   }
   .caritem {
@@ -4336,7 +4363,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
     height: 115px;
   }
   .gameResult {
-    top: 25%;
+    top: 15%;
   }
   .gainMoney {
     font-size: 100%;
@@ -4358,20 +4385,21 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 350px;
     top: 55%;
   }
-  .header-btn {
-    width: 30px;
-  }
   .betArea {
     height: 265px;
   }
   .betStatus {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
+    line-height: 0.1rem;
   }
   .alertFont {
-    font-size: 0.9rem !important;
+    font-size: 2.5rem !important;
+  }
+  .betArea-item-top span {
+    margin-top: 5px;
   }
   .betArea-item {
-    font-size: 0.5rem;
+    font-size: 1.5rem;
     font-weight: bolder;
   }
   .bettingArea-btn-reward, .bettingArea-btn-center {
@@ -4392,17 +4420,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .table-total-betStatus {
     font-size: 0.3rem;
   }
-  .betRatioText {
-    font-size: 0.3rem;
-  }
   .betArea-wrap {
     height: 141px;
   }
   .betArea-container {
     height: 141px;
   }
-  .playerNum {
-    left: 3%;
+  .betArea-item-bottom {
+    padding-bottom: 1px;
   }
   .userBetInfo-title {
     font-size: 1rem;
@@ -4620,6 +4645,9 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 1.2rem;
     font-weight: 600;
   }
+  .askRoad-player p, .askRoad-banker p {
+    font-size: 0.5rem;
+  }
   .header-item {
     line-height: 0.7rem;
     padding: 2.5px;
@@ -4671,23 +4699,14 @@ a.btn.disabled, fieldset[disabled] a.btn {
     font-size: 12px;
     height: 40px;
   }
-  .betArea-item-top {
-    -webkit-box-orient: horizontal !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: row !important;
-            flex-direction: row !important;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .betArea-item-top span {
-    margin-right: 5px;
-  }
   .betArea-item {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
   }
   .alertFont {
-    font-size: 1.2rem !important;
+    font-size: 1.5rem !important;
+  }
+  .betArea-item-top span {
+    margin-top: 2px;
   }
   .betArea-wrap {
     height: 121px;
@@ -4701,14 +4720,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .bankerNum,
   .playerNum {
     font-size: 1rem;
-  }
-  .playerNum {
-    left: 0%;
-    top: 50%;
-  }
-  .bankerNum {
-    right: 0%;
-    top: 50%;
   }
   .mobilTableInfo {
     font-size: small;
@@ -4851,11 +4862,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header-logo {
     margin-left: 0;
   }
-  .header-btn {
-    width: 100%;
-    line-height: 1.75rem;
-    font-size: 100%;
-  }
   .video-box {
     height: 190px;
   }
@@ -4873,9 +4879,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item {
     font-size: 1rem;
-  }
-  .alertFont {
-    font-size: 1.2rem !important;
   }
   .betStatus {
     font-size: 1rem;

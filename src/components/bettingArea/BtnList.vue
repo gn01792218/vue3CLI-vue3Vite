@@ -63,7 +63,7 @@
       <div class="askRoad d-flex">
         <div class="askRoad-player cursor-point p-1 mr-2" @click="askRoad(2)">
           <p>閒問路</p>
-          <div class="d-flex justify-content-around p-1">
+          <div class="d-flex justify-content-around p-1 askRoad-border">
             <div id="bigEyeRoad-2"></div>
             <div id="smallRoad-2"></div>
             <div id="cockroachRoad-2"></div>
@@ -71,7 +71,7 @@
         </div>
         <div class="askRoad-banker cursor-point p-1" @click="askRoad(1)">
           <p>莊問路</p>
-          <div class="d-flex justify-content-around p-1">
+          <div class="d-flex justify-content-around p-1 askRoad-border">
             <div id="bigEyeRoad-1"></div>
             <div id="smallRoad-1"></div>
             <div id="cockroachRoad-1"></div>
@@ -461,7 +461,7 @@ function setConfirmBtnColor() {
     confirmBtn.style.background = "rgb(80, 78, 78)";
   } else {
     //按鈕變成原本顏色
-    confirmBtn.style.background = "rgba(128, 0, 128, 0.829)";
+    confirmBtn.style.background = "#415BBB";
   }
 }
 function setFlyCardColor() {
@@ -494,7 +494,7 @@ function setCancleBetBtnColor() {
     cancleBtn.style.background = "rgb(80, 78, 78)";
   } else {
     //按鈕變成原本顏色
-    cancleBtn.style.background = "rgba(0,0,255,.692)";
+    cancleBtn.style.background = "#415BBB";
   }
 }
 function askRoad(roadNum: number) {

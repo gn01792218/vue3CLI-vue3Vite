@@ -1,5 +1,5 @@
 <template>
-    <div class="gameResult w-100 position-absolute" v-if="hasGameResult">
+    <div class="gameResult w-100 position-absolute" >
         <!-- <section class="gameResult-title">
             <p v-if="isWait">等待遊戲結果...請稍後</p>
             <p v-else>遊戲結果</p>
