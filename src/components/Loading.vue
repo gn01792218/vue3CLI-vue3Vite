@@ -1,5 +1,5 @@
 <template>
-  <div class="LoadingPage w-100 h-100 position-absolute" v-if="loading">
+  <div class="LoadingPage w-100 h-100 position-absolute d-flex align-items-center justify-content-center" v-if="loading">
     <div class="preLoad" v-show="preLoad">
       <span class="coin-preLoad"></span>
       <span class="poker"></span>
@@ -24,8 +24,8 @@
       <audio class="preaudio" preload muted>
         <source src="../assets/audio/stop.mp3" />
       </audio>
-      <ProgressBar :progressValue="progressValue" />
     </div>
+    <ProgressBar :progressValue="progressValue" />
   </div>
 </template>
 
@@ -81,13 +81,14 @@ function bankSoundLoad(){
   console.log('banksoundLoad')
 }
 function progressUp(timer:number) {
-  const pr = document.getElementById("progress") as HTMLProgressElement;
-  if (pr?.value == 100) {
+  // const pr = document.getElementById("progress") as HTMLProgressElement;
+
+  if (progressValue?.value == 100) {
     loading.value = false;
     clearInterval(timer)
     return;
   }
-  pr.value += 10;
+  progressValue.value += 10;
 }
 onMounted(() => {
   //且登入狀態是1就給登入

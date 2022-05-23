@@ -689,24 +689,25 @@ img {
   bottom: 0;
 }
 
-.progress {
-  position: relative;
-  border: 5px solid #FFF;
-  width: 400px;
+.progressBar {
+  width: 500px;
   height: 20px;
   overflow: hidden;
+  border-radius: 50px;
+  -webkit-box-shadow: 5px 5px 5px solid black;
+          box-shadow: 5px 5px 5px solid black;
 }
 
-.progress.loaded {
-  display: none;
+progress {
+  color: #f00;
+  /* 表示已完成进度背景色 */
+  background: #EFEFF4;
+  /* 表示总长度背景色 */
 }
 
-.progress .progress-inset {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background: #FFF;
+progress::-webkit-progress-value {
+  background: #a21211;
+  border-radius: 0.2rem;
 }
 
 .lightBox {
@@ -1966,8 +1967,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .LoadingPage {
-  background-position: center center;
-  background-repeat: no-repeat;
   background-color: #644d31;
   text-align: center;
   z-index: 10;

@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, onUpdated, ref, watch } from "vue";
 import TableInfoCard from "@/components/TableInfoCard.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
