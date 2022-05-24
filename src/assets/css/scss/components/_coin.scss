@@ -1,3 +1,14 @@
+.coinLight{
+	display: block;
+	width:94%;
+	height:113%;
+	position: absolute;
+	left:5%;
+	top:-5%;
+}
+%activeCoinAnimation{
+    animation: activeCoinAnimation 6s ease-in-out infinite;
+}
 .coin-preLoad {
 	@extend %coin;
 }
@@ -8,6 +19,9 @@
 .coin-100:hover,.coin-100-current{
 	@extend %coin;
 	@include coinSpritePosition(0,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-100-disable{
 	@extend %coin;
@@ -20,6 +34,9 @@
 .coin-500:hover,.coin-500-current{
 	@extend %coin;
 	@include coinSpritePosition(-79,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-500-disable{
 	@extend %coin;
@@ -32,6 +49,9 @@
 .coin-1000:hover,.coin-1000-current{
 	@extend %coin;
 	@include coinSpritePosition(-158,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-1000-disable{
 	@extend %coin;
@@ -44,6 +64,9 @@
 .coin-2000:hover,.coin-2000-current{
 	@extend %coin;
 	@include coinSpritePosition(-237,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-2000-disable{
 	@extend %coin;
@@ -56,6 +79,9 @@
 .coin-5000:hover,.coin-5000-current{
 	@extend %coin;
 	@include coinSpritePosition(-474,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-5000-disable{
 	@extend %coin;
@@ -68,6 +94,9 @@
 .coin-10000:hover,.coin-10000-current{
 	@extend %coin;
 	@include coinSpritePosition(-316,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-10000-disable{
 	@extend %coin;
@@ -80,6 +109,9 @@
 .coin-20000:hover,.coin-20000-current{
 	@extend %coin;
 	@include coinSpritePosition(-632,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-20000-disable{
 	@extend %coin;
@@ -92,6 +124,9 @@
 .coin-100000:hover,.coin-100000-current{
 	@extend %coin;
 	@include coinSpritePosition(-395,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-100000-disable{
 	@extend %coin;
@@ -104,10 +139,36 @@
 .coin-200000:hover,.coin-200000-current{
 	@extend %coin;
 	@include coinSpritePosition(-553,-65,0.9);
+	.coinLight{
+		@extend %activeCoinAnimation;
+	}
 }
 .coin-200000-disable{
 	@extend %coin;
 	@include coinSpritePosition(-553,-130,0.9);
+}
+//籌碼光圈動畫
+@keyframes activeCoinAnimation {
+	0%{
+		border-radius: 100%;
+		box-shadow:inset 5px 5px -10px rgba(255, 237, 3, 0.207);
+		border-right:0px solid rgba(253, 237, 3, 0.5);
+	}25%{
+		border-radius: 100%;
+		box-shadow:inset -5px 5px 5px rgb(255, 237, 3);
+		border-right:1px solid rgba(255, 237, 3,1);
+	}
+	50%{
+		border-radius: 100%;
+		box-shadow:inset -5px -5px 20px rgb(255, 237, 3);
+		border-right:5px solid rgba(255, 237, 3, 0.508);
+	}
+	100%{
+		border-radius: 100%;
+		box-shadow:inset 5px -5px 0px rgba(255, 238, 0, 0.11);
+		border-right:0px solid rgba(255, 238, 0, 0);
+		transform: rotate(3turn);
+	}
 }
 //籌碼子彈
 .ammo1{
@@ -128,21 +189,3 @@
 .ammo6{
 	left:85%;
  }
-// .ammo100{
-// 	left:3%;
-// }
-// .ammo500{
-// 	left:20%;
-// }
-// .ammo1000{
-// 	left:35%;
-// }
-// .ammo5000{
-// 	left:50%;
-// }
-// .ammo10000{
-//    left:70%;
-// }
-// .ammo100000{
-// 	left:85%;
-//  }

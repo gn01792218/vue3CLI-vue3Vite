@@ -87,11 +87,12 @@
         v-for="(coin, index) in coinList"
         :key="index"
         :class="[
+          'coin position-relative',
           coin.point === currentCoint.point ? `coin-${coin.point}-current` : '',
           `coin-${coin.point}`,
         ]"
         @click="chooseCoint(index, $event)"
-      ></div>
+      ><div class="coinLight"></div></div>
       <!-- coin ammo -->
       <ul class="shotCoinUl d-flex position-absolute">
         <div v-for="(coin, index) in coinList" :key="index">

@@ -837,6 +837,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
   pointer-events: none;
 }
 
+.coinLight {
+  display: block;
+  width: 94%;
+  height: 113%;
+  position: absolute;
+  left: 5%;
+  top: -5%;
+}
+
+.coin-100:hover .coinLight, .coin-100-current .coinLight, .coin-500:hover .coinLight, .coin-500-current .coinLight, .coin-1000:hover .coinLight, .coin-1000-current .coinLight, .coin-2000:hover .coinLight, .coin-2000-current .coinLight, .coin-5000:hover .coinLight, .coin-5000-current .coinLight, .coin-10000:hover .coinLight, .coin-10000-current .coinLight, .coin-20000:hover .coinLight, .coin-20000-current .coinLight, .coin-100000:hover .coinLight, .coin-100000-current .coinLight, .coin-200000:hover .coinLight, .coin-200000-current .coinLight {
+  -webkit-animation: activeCoinAnimation 6s ease-in-out infinite;
+          animation: activeCoinAnimation 6s ease-in-out infinite;
+}
+
 .coin-100 {
   width: 71.1px;
   height: 58.5px;
@@ -1024,6 +1038,64 @@ a.btn.disabled, fieldset[disabled] a.btn {
   height: 58.5px;
   background-position: -497.7px -117px;
   background-size: 639.9px 175.5px;
+}
+
+@-webkit-keyframes activeCoinAnimation {
+  0% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset 5px 5px -10px rgba(255, 237, 3, 0.207);
+            box-shadow: inset 5px 5px -10px rgba(255, 237, 3, 0.207);
+    border-right: 0px solid rgba(253, 237, 3, 0.5);
+  }
+  25% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset -5px 5px 5px #ffed03;
+            box-shadow: inset -5px 5px 5px #ffed03;
+    border-right: 1px solid #ffed03;
+  }
+  50% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset -5px -5px 20px #ffed03;
+            box-shadow: inset -5px -5px 20px #ffed03;
+    border-right: 5px solid rgba(255, 237, 3, 0.508);
+  }
+  100% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset 5px -5px 0px rgba(255, 238, 0, 0.11);
+            box-shadow: inset 5px -5px 0px rgba(255, 238, 0, 0.11);
+    border-right: 0px solid rgba(255, 238, 0, 0);
+    -webkit-transform: rotate(3turn);
+            transform: rotate(3turn);
+  }
+}
+
+@keyframes activeCoinAnimation {
+  0% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset 5px 5px -10px rgba(255, 237, 3, 0.207);
+            box-shadow: inset 5px 5px -10px rgba(255, 237, 3, 0.207);
+    border-right: 0px solid rgba(253, 237, 3, 0.5);
+  }
+  25% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset -5px 5px 5px #ffed03;
+            box-shadow: inset -5px 5px 5px #ffed03;
+    border-right: 1px solid #ffed03;
+  }
+  50% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset -5px -5px 20px #ffed03;
+            box-shadow: inset -5px -5px 20px #ffed03;
+    border-right: 5px solid rgba(255, 237, 3, 0.508);
+  }
+  100% {
+    border-radius: 100%;
+    -webkit-box-shadow: inset 5px -5px 0px rgba(255, 238, 0, 0.11);
+            box-shadow: inset 5px -5px 0px rgba(255, 238, 0, 0.11);
+    border-right: 0px solid rgba(255, 238, 0, 0);
+    -webkit-transform: rotate(3turn);
+            transform: rotate(3turn);
+  }
 }
 
 .ammo1 {
