@@ -26,6 +26,14 @@
   line-height: 2em;
 }
 
+.font_white {
+  color: white;
+}
+
+.font_grey {
+  color: #fffefe;
+}
+
 .font .font-total {
   color: gray;
   float: left;
@@ -1409,7 +1417,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .gameResult {
   top: 28%;
   left: 0;
-  background-color: #523e2544;
   text-align: center;
 }
 
@@ -1453,17 +1460,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .gameResult-content {
+  height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 80%;
 }
 
 .askRoadanimation {
@@ -2071,7 +2074,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .gameResultLoading {
   top: 35%;
-  background-color: #523e2544;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(50%, blue), to(transparent));
+  background: linear-gradient(90deg, transparent 0%, blue 50%, transparent 100%);
   z-index: 9;
 }
 

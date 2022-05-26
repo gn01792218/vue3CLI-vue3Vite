@@ -115,7 +115,6 @@ export default defineComponent({
             clearTimeout(statusTimer.value as number)
             isWait.value = true
             stateMsg.value = "飛牌!"
-            console.log('飛牌狀態')
         })
         return {
             //data
