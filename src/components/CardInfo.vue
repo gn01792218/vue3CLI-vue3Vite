@@ -3,7 +3,7 @@
     <section class="card-container d-flex justify-content-center">
       <div class="player card-box row justify-content-center position-relative pb-3">
         <div class="winCard-wrap position-absolute"></div>
-        <span v-show="showCardResult" class="playerNum">{{ playerPoint }}</span>
+        <!-- <span v-show="showCardResult" class="playerNum">{{ playerPoint }}</span> -->
         <div
           :class="[
             'caritem',
@@ -14,6 +14,7 @@
         >
           <div :class="[`playerPoker${index}`]"></div>
         </div>
+        <div class="card-banner-player position-absolute"><span>閒</span><span v-show="showCardResult" class="playerNum">{{ playerPoint }}</span></div>
       </div>
       <div class="banker card-box row justify-content-center position-relative pb-3">
         <div class="winCard-wrap position-absolute"></div>
@@ -27,7 +28,7 @@
         >
           <div :class="[`bankPoker${index}`]"></div>
         </div>
-        <span v-show="showCardResult" class="bankerNum">{{ bankerPoint }}</span>
+         <div class="card-banner-banker position-absolute"><span v-show="showCardResult" class="bankerNum">{{ bankerPoint }}</span><span>莊</span></div>
       </div>
     </section>
   </div>

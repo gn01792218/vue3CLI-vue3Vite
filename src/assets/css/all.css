@@ -2104,14 +2104,80 @@ a.btn.disabled, fieldset[disabled] a.btn {
           transform: rotate(90deg);
 }
 
+.card-banner-banker, .card-banner-player {
+  width: 220px;
+  height: 50px;
+  border-radius: 100px;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+.card-banner-banker span, .card-banner-player span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5rem;
+}
+
+.card-banner-banker {
+  background: -webkit-gradient(linear, right top, left top, from(orange), color-stop(80%, transparent), to(transparent));
+  background: linear-gradient(-90deg, orange 0%, transparent 80%, transparent 100%);
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  padding-right: 10px;
+}
+
+.card-banner-banker span {
+  -webkit-box-shadow: inset 0 0 5px #4848f5;
+          box-shadow: inset 0 0 5px #4848f5;
+  text-shadow: 0px 0 5px #f8f8b8;
+  background-color: #724b03;
+  border: 1px solid #f3b2b2;
+}
+
+.card-banner-player {
+  background: -webkit-gradient(linear, left top, right top, from(blue), color-stop(80%, transparent), to(transparent));
+  background: linear-gradient(90deg, blue 0%, transparent 80%, transparent 100%);
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  padding-left: 10px;
+}
+
+.card-banner-player span {
+  -webkit-box-shadow: inset 0 0 5px #4848f5;
+          box-shadow: inset 0 0 5px #4848f5;
+  text-shadow: 0px 0 5px #f8f8b8;
+  background-color: #010142;
+  border: 1px solid #9c9cf8;
+}
+
 .player {
-  background-color: rgba(47, 169, 240, 0.849);
+  background: -webkit-gradient(linear, right top, left top, from(blue), to(rgba(100, 100, 253, 0.397)));
+  background: linear-gradient(-90deg, blue 0%, rgba(100, 100, 253, 0.397) 100%);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
 .banker {
-  background-color: #e00000d2;
+  background: -webkit-gradient(linear, left top, right top, from(#e00000d2), to(#db58586c));
+  background: linear-gradient(90deg, #e00000d2 0%, #db58586c 100%);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -2149,19 +2215,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
 }
 
-.playerNum, .bankerNum {
-  position: absolute;
-  font-size: 1.5rem;
-}
-
 .playerNum {
-  left: 18%;
-  top: 20%;
+  margin-left: 120px;
 }
 
 .bankerNum {
-  right: 20%;
-  top: 20%;
+  margin-right: 125px;
 }
 
 .counter {
@@ -3093,17 +3152,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-box {
     margin-top: -20px;
   }
-  .playerNum, .bankerNum {
-    font-size: 2.5rem;
-  }
-  .playerNum {
-    left: 20%;
-    top: 10%;
-  }
-  .bankerNum {
-    right: 20%;
-    top: 10%;
-  }
   .BeadPlate-B {
     width: 35px;
     height: 35px;
@@ -3585,14 +3633,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .card-container {
     margin-top: -35px;
-  }
-  .playerNum {
-    left: 10%;
-    top: 10%;
-  }
-  .bankerNum {
-    right: 10%;
-    top: 10%;
   }
   .BeadPlate-B {
     width: 30px;
@@ -4445,16 +4485,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-wrap {
     bottom: 20%;
   }
-  .playerNum, .bankerNum {
-    font-size: 1.5rem;
-  }
   .playerNum {
-    left: 15%;
-    top: 10%;
+    margin-left: 100px;
   }
   .bankerNum {
-    right: 15%;
-    top: 10%;
+    margin-right: 110px;
   }
   .caritem {
     margin-right: 10px;
@@ -4513,12 +4548,21 @@ a.btn.disabled, fieldset[disabled] a.btn {
     width: 40px;
     font-size: 12px;
   }
+  .card-banner-banker, .card-banner-player {
+    width: 170px;
+  }
   .watchCard-box {
     top: 60%;
   }
   .watchCard-box .modal-content {
     width: 300px;
     height: 168px;
+  }
+  .playerNum {
+    margin-left: 70px;
+  }
+  .bankerNum {
+    margin-right: 75px;
   }
   .table-total-betStatus {
     font-size: 0.3rem;
@@ -4822,10 +4866,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .card-container {
     margin-top: -35px;
-  }
-  .bankerNum,
-  .playerNum {
-    font-size: 1rem;
   }
   .mobilTableInfo {
     font-size: small;

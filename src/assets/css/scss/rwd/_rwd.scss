@@ -565,18 +565,18 @@
   .card-box {
     margin-top: -20px;
   }
-  .playerNum,
-  .bankerNum {
-    font-size: 2.5rem;
-  }
-  .playerNum {
-    left: 20%;
-    top: 10%;
-  }
-  .bankerNum {
-    right: 20%;
-    top: 10%;
-  }
+  // .playerNum,
+  // .bankerNum {
+  //   font-size: 2.5rem;
+  // }
+  // .playerNum {
+  //   left: 20%;
+  //   top: 10%;
+  // }
+  // .bankerNum {
+  //   right: 20%;
+  //   top: 10%;
+  // }
   //珠仔路
   .BeadPlate-B {
     //莊
@@ -892,14 +892,14 @@
   .card-container {
     margin-top: -35px;
   }
-  .playerNum {
-    left: 10%;
-    top: 10%;
-  }
-  .bankerNum {
-    right: 10%;
-    top: 10%;
-  }
+  // .playerNum {
+  //   left: 10%;
+  //   top: 10%;
+  // }
+  // .bankerNum {
+  //   right: 10%;
+  //   top: 10%;
+  // }
   //珠仔路
   .BeadPlate-B {
     //莊
@@ -1495,17 +1495,11 @@
   .card-wrap{
     bottom:20%;
   }
-  .playerNum,
-  .bankerNum {
-    font-size: 1.5rem;
+  .playerNum{
+    margin-left:100px;
   }
-  .playerNum {
-    left: 15%;
-    top: 10%;
-  }
-  .bankerNum {
-    right: 15%;
-    top: 10%;
+  .bankerNum{
+    margin-right:110px;
   }
   .caritem {
     margin-right: 10px;
@@ -1565,12 +1559,21 @@
     width: 40px;
     font-size: 12px;
   }
+  .card-banner-banker,.card-banner-player{
+    width:170px;
+  }
   .watchCard-box{
     top:60%;
     .modal-content{
       width:300px;
       height:168px;
     }
+  }
+  .playerNum{
+    margin-left:70px;
+  }
+  .bankerNum{
+    margin-right:75px;
   }
   .table-total-betStatus{
     font-size: 0.3rem;
@@ -1809,10 +1812,10 @@
   .card-container {
     margin-top: -35px;
   }
-  .bankerNum,
-  .playerNum {
-    font-size: 1rem;
-  }
+  // .bankerNum,
+  // .playerNum {
+  //   font-size: 1rem;
+  // }
   .mobilTableInfo {
     font-size: small;
   }

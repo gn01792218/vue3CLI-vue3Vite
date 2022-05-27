@@ -11,8 +11,6 @@ import { computed, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import proto from "../assets/js/bundle";
-// export default defineComponent({
-//     setup(){
 //暫時性的
 const route = useRoute();
 const tableNum = computed(() => {
