@@ -1,98 +1,17 @@
 <template>
   <div class="header">
     <div class="header-top">
-      <div class="header-logo d-none d-md-block">
+      <div class="header-logo d-none d-xl-block">
         <a href="#"><img src="../images/logo.png"/></a>
       </div>
       <div
         class="header-btnList align-items-center justify-content-around mt-xl-5"
       >
-        <div
-          class="
-            d-flex d-xl-none
-            userWallet-mobil
-            header-item
-            col
-            font_yellows
-          "
-        >
-          <span>分</span><span>{{ userWallet }}</span>
-        </div>
-        <div
-          class="
-            d-block d-xl-none
-            userWallet-mobil
-            header-item
-            col
-            font_yellows
-          "
-          v-if="user"
-        >
-          <i>洗:{{ user.totalValidBets }}</i>
-        </div>
-        <div class="table-btn-list d-flex flex-row flex-xl-column">
-          <a
-            v-for="table in tableLDataist"
-            :key="table"
-            class="header-btn"
-            :class="[
-              { active: tableNum == table.tableName },
-              { disabled: table.onLine == false },
-            ]"
-            @click="toGametable(table.tableName)"
-            >{{ table.tableName
-            }}<span v-if="table.tableName.length < 2">桌</span></a
-          >
-          <!-- <a href="#" class="header-btn" @click="backToHome">回大廳</a> -->
-          <a
-            href="#"
-            class="header-btn leaveGame-btn d-none d-xl-block"
-            @click="closeWindow"
-            >離開遊戲</a
-          >
-          <a
-            href="#"
-            class="header-btn leaveGame-btn d-block d-xl-none"
-            @click="closeWindow"
-            >離開</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="header-bottom">
-      <div class="header-bottom-desk">
-        <div
-          class="header-item d-flex col font_yellows"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          @click="getHistory"
-        >
-          <i class="bi bi-person-circle"></i><i v-if="user">{{ user.name }}</i>
-        </div>
-        <div class="header-item col font_yellows">分{{ userWallet }}</div>
-        <div class="header-item col font_yellows">
-          <i>{{ tableNum }}桌 靴:{{ shoe }}局:{{ roundNum }}</i>
-        </div>
-        <div class="header-item col font_yellows" v-if="user">
-          <i>洗碼值:{{ user.totalValidBets }}</i>
-        </div>
-        <div
-          class="header-item col font_yellows"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          @click="getHistory"
-        >
-          <i class="bi bi-card-list"></i>遊戲紀錄
-        </div>
-        <!-- <div class="header-item col font_yellows" v-if="user">
-          <i>在線:{{onlinePlayersNumber}}人</i>
-        </div> -->
-      </div>
       <!-- 手機版本漢堡 -->
       <div class="header-bottom-mobil d-flex align-items-center">
         <div class="header-bottom-mobil-extend position-absolute">
           <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark d-flex p-4">
+            <div class="bg-dark d-flex p-5">
               <div
                 class="header-item d-flex font_yellows"
                 data-toggle="modal"
@@ -128,11 +47,106 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+          <i class="bi bi-list-ul"></i>
           </button>
         </nav>
       </div>
+        <div
+          class="
+            d-flex d-xl-none
+            userWallet-mobil
+            header-item
+            col
+            font_yellows
+          "
+        >
+          <span>分</span><span>{{ userWallet }}</span>
+        </div>
+        <div
+          class="
+            d-block d-xl-none
+            userWallet-mobil
+            header-item
+            col
+            font_yellows
+          "
+          v-if="user"
+        >
+          <i>洗:{{ user.totalValidBets }}</i>
+        </div>
+        <div class="table-btn-list d-none d-xl-flex flex-row flex-xl-column">
+          <a
+            v-for="table in tableLDataist"
+            :key="table"
+            class="header-btn"
+            :class="[
+              { active: tableNum == table.tableName },
+              { disabled: table.onLine == false },
+            ]"
+            @click="toGametable(table.tableName)"
+            >{{ table.tableName
+            }}<span v-if="table.tableName.length < 2">桌</span></a
+          >
+          <a
+            href="#"
+            class="header-btn leaveGame-btn d-none d-xl-block"
+            @click="closeWindow"
+            >離開遊戲</a
+          >
+        </div>
+      </div>
     </div>
+    <div class="header-bottom">
+      <div class="header-bottom-desk">
+        <div
+          class="header-item d-flex col font_yellows"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          @click="getHistory"
+        >
+          <i class="bi bi-person-circle"></i><i v-if="user">{{ user.name }}</i>
+        </div>
+        <div class="header-item col font_yellows">分{{ userWallet }}</div>
+        <div class="header-item col font_yellows">
+          <i>{{ tableNum }}桌 靴:{{ shoe }}局:{{ roundNum }}</i>
+        </div>
+        <div class="header-item col font_yellows" v-if="user">
+          <i>洗碼值:{{ user.totalValidBets }}</i>
+        </div>
+        <div
+          class="header-item col font_yellows"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          @click="getHistory"
+        >
+          <i class="bi bi-card-list"></i>遊戲紀錄
+        </div>
+        <!-- <div class="header-item col font_yellows" v-if="user">
+          <i>在線:{{onlinePlayersNumber}}人</i>
+        </div> -->
+      </div>
+    </div>
+    <div class="table-btn-list d-flex d-xl-none flex-row flex-xl-column">
+          <a
+            v-for="table in tableLDataist"
+            :key="table"
+            class="header-btn"
+            :class="[
+              { active: tableNum == table.tableName },
+              { disabled: table.onLine == false },
+            ]"
+            @click="toGametable(table.tableName)"
+            >{{ table.tableName
+            }}<span v-if="table.tableName.length < 2">桌</span></a
+          >
+          <a
+            href="#"
+            class="header-btn leaveGame-btn d-none d-xl-block"
+            @click="closeWindow"
+            >離開遊戲</a
+          >
+        </div>
+    <i class="d-block d-xl-none bi bi-box-arrow-right" @click="closeWindow"></i>
   </div>
 </template>
 

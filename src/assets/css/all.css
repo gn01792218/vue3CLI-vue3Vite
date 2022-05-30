@@ -257,9 +257,35 @@ img {
   width: 150px;
 }
 
+.header-bottom-mobil {
+  z-index: 1;
+}
+
+.header-bottom-mobil .navbar {
+  padding: 0px;
+}
+
+.header-bottom-mobil .navbar-dark .navbar-toggler {
+  border: none;
+}
+
+.bi-list-ul::before {
+  color: #9B7524;
+  font-size: 2.8rem;
+  vertical-align: -1.1rem;
+}
+
+.bi-box-arrow-right {
+  margin-top: -7px;
+  margin-left: 5px;
+  color: #9B7524;
+  font-size: 2.8rem;
+}
+
 .header-bottom-mobil-extend {
   left: 0;
   right: 0;
+  z-index: -1;
 }
 
 .disabled, .disabled:hover {
@@ -3409,6 +3435,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .header {
     height: 40px;
   }
+  .bi-list-ul::before {
+    font-size: 2.5rem;
+  }
+  .bi-box-arrow-right {
+    font-size: 2.5rem;
+  }
   .table-btn-list {
     max-width: 300px;
     overflow: scroll;
@@ -3862,6 +3894,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .header {
     height: 30px;
+  }
+  .bi-list-ul::before {
+    font-size: xx-large;
+  }
+  .bi-box-arrow-right {
+    font-size: xx-large;
   }
   .newsTicker {
     height: 25px;
