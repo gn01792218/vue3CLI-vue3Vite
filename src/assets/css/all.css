@@ -9,6 +9,18 @@
   font-size: larger;
 }
 
+.red {
+  color: #EF5766;
+}
+
+.yellow {
+  color: #E1BD33;
+}
+
+.green {
+  color: #59C68D;
+}
+
 .font_red {
   color: #F44224;
 }
@@ -205,21 +217,8 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: white;
   border: 1px solid #347553;
   text-align: center;
-}
-
-.red {
-  color: red;
-}
-
-.yellow {
-  color: #FC0;
-}
-
-.green {
-  color: #31c907;
 }
 
 .header {
@@ -314,7 +313,7 @@ img {
   float: left;
   width: 100%;
   text-align: center;
-  border-bottom-width: 1px;
+  border-bottom-width: 3px;
   border-bottom-style: solid;
   border-bottom-color: black;
   border-top-width: 1px;
