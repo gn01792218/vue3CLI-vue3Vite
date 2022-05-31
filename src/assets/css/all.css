@@ -179,9 +179,8 @@ img {
 .header {
   float: left;
   width: 10%;
-  background-color: #1e1101;
-  border: 1px solid #654d31;
-  background-image: url(../../images/left-bg.jpg);
+  background: -webkit-gradient(linear, left top, left bottom, from(#41514A), color-stop(10%, #404542), color-stop(11%, #3B3B3B), to(#1E1E1F));
+  background: linear-gradient(180deg, #41514A 0%, #404542 10%, #3B3B3B 11%, #1E1E1F 100%);
   background-repeat: no-repeat;
   background-position: left top;
   position: relative;
@@ -318,7 +317,8 @@ img {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  background-color: #271604;
+  background: -webkit-gradient(linear, left top, left bottom, from(#41514A), color-stop(20%, #3B3B3B), to(#1E1E1F));
+  background: linear-gradient(180deg, #41514A 0%, #3B3B3B 20%, #1E1E1F 100%);
   border: 0px solid #333;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -410,15 +410,8 @@ img {
 -------------------------------------------*/
 .footer {
   z-index: 1;
-  background: #331d02;
-  /* Old browsers */
-  /* FF3.6-15 */
-  /* Chrome10-25,Safari5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#331d02), to(black));
-  background: linear-gradient(to bottom, #331d02 0%, black 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331d02', endColorstr='#000000',GradientType=0 );
-  /* IE6-9 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#41514A), color-stop(10%, #404542), color-stop(11%, #3B3B3B), to(#1E1E1F));
+  background: linear-gradient(180deg, #41514A 0%, #404542 10%, #3B3B3B 11%, #1E1E1F 100%);
   border-top-width: 1px;
   border-top-style: solid;
   border-top-color: #9a8326;
@@ -788,7 +781,7 @@ progress::-webkit-progress-value {
 -------------------------------------------*/
 .header-btn {
   width: 85%;
-  display: inline-block;
+  position: relative;
   line-height: 1.75rem;
   text-align: center;
   white-space: nowrap;
@@ -798,29 +791,34 @@ progress::-webkit-progress-value {
   cursor: pointer;
   font-size: 136%;
   text-decoration: none;
-  color: #fff6d5;
+  color: #36FFBE;
   padding: 5px 0px;
   margin: 5px 10px;
-  border: 0px solid #d0c0a4;
-  background-color: #ae8b27;
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ae8b27+0,775124+99 */
-  background: #ae8b27;
-  /* Old browsers */
-  /* FF3.6-15 */
-  /* Chrome10-25,Safari5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#ae8b27), color-stop(99%, #775124));
-  background: linear-gradient(to bottom, #ae8b27 0%, #775124 99%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ae8b27', endColorstr='#775124',GradientType=0 );
-  /* IE6-9 */
+  border: 1px solid #202120;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3D4442), to(#303231));
+  background: linear-gradient(180deg, #3D4442 0%, #303231 100%);
   border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 0px #9e9e9e;
-          box-shadow: 0px 0px 0px #9e9e9e;
+  -webkit-box-shadow: 0px 0px 1px #202120,inset 0px 0px 5px #5A605E;
+          box-shadow: 0px 0px 1px #202120,inset 0px 0px 5px #5A605E;
+}
+
+.header-btn::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  -webkit-transform: translate(7%, 0%);
+          transform: translate(7%, 0%);
+  width: 106%;
+  height: 120%;
+  border-radius: inherit;
+  border: 1px solid #363636;
+  -webkit-box-shadow: inset 0px 0px 5px #3C3C3C;
+          box-shadow: inset 0px 0px 5px #3C3C3C;
 }
 
 .header-btn.active, header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
   background-color: #f22e89 !important;
-  border: black 2px solid;
 }
 
 .header-btn.active.focus, .header-btn.active:focus, .header-btn.focus, .header-btn:active.focus, .header-btn:active:focus, .header-btn:focus {
@@ -1201,7 +1199,8 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .bettingArea-btn {
   height: 65px;
   width: 100%;
-  background-color: #271604;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3B3B3B), to(#1E1E1F));
+  background: linear-gradient(180deg, #3B3B3B 0%, #1E1E1F 100%);
   border-top: black 1px solid;
 }
 
@@ -1217,13 +1216,16 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 .bettingArea-btn-gitbackAllCoin, .bettingArea-btn-check {
-  background-color: #415BBB;
+  background: -webkit-gradient(linear, left top, left bottom, from(#31A576), to(#0A5F3C));
+  background: linear-gradient(180deg, #31A576 0%, #0A5F3C 100%);
+  -webkit-box-shadow: 0px 0px 1px #202120,inset 0px 0px 5px #5A605E;
+          box-shadow: 0px 0px 1px #202120,inset 0px 0px 5px #5A605E;
 }
 
 .bettingArea-btn-betInfo, .bettingArea-btn-reward {
   border-radius: 5px;
-  background-color: #206548;
-  font-size: 18px;
+  background-color: black;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -2834,9 +2836,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 }
 
 @media screen and (max-width: 1024px) {
-  .header {
-    background-image: none;
-  }
   .home {
     width: 100%;
   }
@@ -2944,7 +2943,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .video-box {
     width: 100%;
     height: 575px;
-    border-bottom: none;
   }
   .card-wrap {
     bottom: 30%;
@@ -2964,6 +2962,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea {
     width: 100%;
+    border-top: 3px solid black;
   }
   .betArea-item1 {
     border-top: none;
@@ -3362,13 +3361,13 @@ a.btn.disabled, fieldset[disabled] a.btn {
     background-position: -126px 0px;
     background-size: 144px auto;
   }
-  cockroach-red {
+  .cockroach-red {
     width: 9px;
     height: 9px;
     background-position: -117px 0px;
     background-size: 144px auto;
   }
-  cockroach-blue {
+  .cockroach-blue {
     width: 9px;
     height: 9px;
     background-position: -135px 0px;
@@ -3477,9 +3476,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betArea-item-bottom {
     bottom: 5%;
-  }
-  .bettingArea-btn-betInfo {
-    font-size: 14px;
   }
   .tabsArea {
     display: none;
@@ -3937,9 +3933,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .betStatus {
     line-height: 0.5rem;
-  }
-  .bettingArea-btn-betInfo {
-    font-size: 12px;
   }
   .chatInput-emoji {
     left: -50%;

@@ -7,13 +7,37 @@
     <div
       class="bettingArea-btn-left d-flex justify-content-around align-items-center"
     >
-      <div
-        class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center"
-        @click="getAllBetBack"
-      >
-        <i class="bi bi-arrow-counterclockwise"></i>取消
+    <!-- 問路 -->
+      <div class="askRoad d-flex">
+        <div class="askRoad-player cursor-point p-1 mr-2" @click="askRoad(2)">
+          <p>閒問路</p>
+          <div class="d-flex justify-content-around p-1 askRoad-border">
+            <div id="bigEyeRoad-2"></div>
+            <div id="smallRoad-2"></div>
+            <div id="cockroachRoad-2"></div>
+          </div>
+        </div>
+        <div class="askRoad-banker cursor-point p-1" @click="askRoad(1)">
+          <p>莊問路</p>
+          <div class="d-flex justify-content-around p-1 askRoad-border">
+            <div id="bigEyeRoad-1"></div>
+            <div id="smallRoad-1"></div>
+            <div id="cockroachRoad-1"></div>
+          </div>
+        </div>
       </div>
+      
       <div class="d-flex align-items-center">
+        <!-- 手機版本才會出現的檯紅顯示 -->
+        <div
+          class="bettingArea-btn-betInfo bettingArea-btn-betrule  d-flex align-items-center p-1 pl-2 pr-2 mr-1"
+        >
+          <span
+            >{{ numberFormat(minBetLimit) }}-<br />{{
+              numberFormat(maxBetLimit)
+            }}</span
+          >
+        </div>
         <!-- 飛牌鈕，VIP才有 -->
         <div
           v-if="tableNum.includes('VIP')"
@@ -43,16 +67,7 @@
           <i class="bi bi-eye-slash" v-show="!watchCardStatus"></i>
           </span>
         </div>
-        <!-- 手機版本才會出現的檯紅顯示 -->
-        <div
-          class="bettingArea-btn-betInfo bettingArea-btn-betrule  d-flex align-items-center p-1 pl-2 pr-2 mr-1"
-        >
-          <span
-            >{{ numberFormat(minBetLimit) }}-<br />{{
-              numberFormat(maxBetLimit)
-            }}</span
-          >
-        </div>
+        
       </div>
       <div
         class="bettingArea-btn-check d-flex justify-content-center align-items-center"
@@ -60,23 +75,11 @@
       >
         <i class="bi bi-check-circle"></i>確定
       </div>
-      <div class="askRoad d-flex">
-        <div class="askRoad-player cursor-point p-1 mr-2" @click="askRoad(2)">
-          <p>閒問路</p>
-          <div class="d-flex justify-content-around p-1 askRoad-border">
-            <div id="bigEyeRoad-2"></div>
-            <div id="smallRoad-2"></div>
-            <div id="cockroachRoad-2"></div>
-          </div>
-        </div>
-        <div class="askRoad-banker cursor-point p-1" @click="askRoad(1)">
-          <p>莊問路</p>
-          <div class="d-flex justify-content-around p-1 askRoad-border">
-            <div id="bigEyeRoad-1"></div>
-            <div id="smallRoad-1"></div>
-            <div id="cockroachRoad-1"></div>
-          </div>
-        </div>
+      <div
+        class="bettingArea-btn-gitbackAllCoin d-flex justify-content-center align-items-center"
+        @click="getAllBetBack"
+      >
+        <i class="bi bi-arrow-counterclockwise"></i>取消
       </div>
     </div>
   </div>
@@ -461,17 +464,17 @@ function setConfirmBtnColor() {
     confirmBtn.style.background = "rgb(80, 78, 78)";
   } else {
     //按鈕變成原本顏色
-    confirmBtn.style.background = "#415BBB";
+    confirmBtn.style.background = "linear-gradient(180deg,#31A576 0%,#0A5F3C 100%)";
   }
 }
 function setFlyCardColor() {
   let flyCardBtn = document.querySelector(".fly-card") as HTMLElement;
   if (!flyCardBtn) return;
   if (!canUseFlyCard.value) {
-    console.log("使否可以使用飛牌鈕", canUseFlyCard.value);
+    // console.log("使否可以使用飛牌鈕", canUseFlyCard.value);
     flyCardBtn.style.backgroundColor = "rgb(80, 78, 78)"; //變成灰色
   } else {
-    console.log("使否可以使用飛牌鈕", canUseFlyCard.value);
+    // console.log("使否可以使用飛牌鈕", canUseFlyCard.value);
     flyCardBtn.style.backgroundColor = "#644d31"; //變回原本顏色
   }
 }

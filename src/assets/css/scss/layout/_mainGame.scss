@@ -18,7 +18,8 @@
 .coinArea{
 	@include flex-x-spaceEvenly-y-center ;
 	width: 100%;
-	background-color: $btnlist_coin;
+	// background-color: $btnlist_coin;
+	background: linear-gradient(180deg,#41514A 0%,#3B3B3B 20%,#1E1E1F 100%);
 	border: 0px solid #333;
 	padding-top: 10px;
 	padding-bottom: 10px;

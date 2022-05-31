@@ -30,7 +30,8 @@
     .bettingArea-btn{
         height:65px;
         width:100%;
-        background-color: $btnlist_coin;
+        // background-color: $btnlist_coin;
+        background: linear-gradient(180deg,#3B3B3B 0%,#1E1E1F 100%);
         border-top:black 1px solid;
     }
     .bettingArea-btn-left{
@@ -44,12 +45,14 @@
     }
     .bettingArea-btn-gitbackAllCoin,.bettingArea-btn-check{
         @extend %bettingArea-btn-base;
-        background-color: #415BBB;
+        background: linear-gradient(180deg,#31A576 0%,#0A5F3C 100%);
+        box-shadow: 0px 0px 1px #202120,inset 0px 0px 5px #5A605E;
     }
     .bettingArea-btn-betInfo,.bettingArea-btn-reward{
         border-radius: 5px;
-        background-color: $betArea;
-        font-size: 18px;
+        // background-color: $betArea;
+        background-color:black;
+        font-size: 12px;
         text-align: center;
     }
     .bettingArea-btn-reward{
