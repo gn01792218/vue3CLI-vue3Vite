@@ -231,6 +231,7 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  overflow: hidden;
 }
 
 .header-btnList {
@@ -285,6 +286,10 @@ img {
   left: 0;
   right: 0;
   z-index: -1;
+}
+
+.extend-content {
+  height: 50px;
 }
 
 .disabled, .disabled:hover {
@@ -634,6 +639,10 @@ img {
 .newsTicker .bi-exclamation-triangle-fill {
   color: yellow;
   font-size: 1.5rem;
+}
+
+.announcement {
+  height: 120%;
 }
 
 .announcement-bg {
@@ -2857,7 +2866,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
             transform: translateY(-50%);
   }
   .announcement-container {
-    top: 45%;
+    top: 37%;
   }
   .container-waps {
     height: auto;
@@ -2943,9 +2952,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .video-box {
     width: 100%;
     height: 575px;
-  }
-  .card-wrap {
-    bottom: 30%;
   }
   .watchCard-box {
     top: 35%;
@@ -3903,7 +3909,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .announcement-container {
     width: 500px;
-    top: 52%;
+    top: 43%;
   }
   .watchCard-box {
     -webkit-transform: translate(-53%, -50%) !important;
@@ -4397,7 +4403,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .announcement-container {
     width: 390px;
-    top: 51%;
   }
   .watchCard-box .modal-content {
     width: 360px;
@@ -4511,9 +4516,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .card-container {
     margin-top: -25px;
   }
-  .card-wrap {
-    bottom: 20%;
-  }
   .playerNum {
     margin-left: 100px;
   }
@@ -4550,7 +4552,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .announcement-container {
     width: 350px;
-    top: 55%;
+    top: 45%;
   }
   .betArea {
     height: 265px;
@@ -4814,7 +4816,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   }
   .announcement-container {
     width: 300px;
-    top: 65%;
   }
   .announcement-container h1 {
     font-size: 1.5rem;
@@ -5029,7 +5030,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
   .announcement-container {
     width: 250px;
     height: 653px;
-    top: 65%;
   }
   .header {
     height: 50px;

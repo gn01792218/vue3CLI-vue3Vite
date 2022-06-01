@@ -11,7 +11,7 @@
       <div class="header-bottom-mobil d-flex align-items-center">
         <div class="header-bottom-mobil-extend position-absolute">
           <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark d-flex p-5">
+            <div class="extend-content bg-dark d-flex justify-content-center align-items-center">
               <div
                 class="header-item d-flex font_yellows"
                 data-toggle="modal"

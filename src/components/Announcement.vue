@@ -1,5 +1,5 @@
 <template>
-  <div class="announcement w-100 h-100 position-absolute">
+  <div class="announcement w-100 position-absolute">
     <div class="announcement-bg w-100 h-100 position-absolute"></div>
     <div class="announcement-container position-absolute p-4">
       <header class="announcement-header text-center mb-4">
