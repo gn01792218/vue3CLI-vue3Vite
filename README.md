@@ -17,3 +17,6 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## 遊戲備註
+### coin圖檔尺寸 79*65
