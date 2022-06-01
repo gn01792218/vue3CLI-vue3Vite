@@ -98,7 +98,7 @@ function showGameResult() {
           result.appendChild(appendElement4);
           break;
         case proto.dealer.Result.Tie:
-          gameResultElement.style.background ="linear-gradient(90deg,transparent 0%,yellow 50%,transparent 100%)"
+          gameResultElement.style.background ="linear-gradient(90deg,transparent 0%,rgb(141, 141, 3) 50%,transparent 100%)"
           let appendElement1 = document.createElement("LI") as HTMLElement;
           appendElement1.classList.add("font_white");
           appendElement1.classList.add("result-text");
