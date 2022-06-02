@@ -67,13 +67,15 @@ import { useStore } from "vuex";
 import screenfull from "screenfull";
 import { useRoute } from "vue-router";
 import { chatContent, chatMsg } from "../types/global";
-import useMobileDefiend from "@/composables/useMobileDefiend";
+import useLiveVideo from "@/composables/media/useLiveVideo";
 const route = useRoute();
 const tableNum = computed(() => {
   return route.params.tableId;
 });
 //vuex
 const store = useStore();
+//useLiveVideo
+const {stopLiveVideo,playLiveVIdeo} = useLiveVideo(store)
 //computed
 const announcementShow = computed(() => {
   return store.state.lobby.showannouncement;
@@ -88,17 +90,8 @@ const audio = computed<HTMLAudioElement>(() => {
   //音效的實體
   return document.querySelector("#gameresultSound") as HTMLAudioElement;
 });
-const npvideo = computed(() => {
-  //直播物件的實體
-  return store.state.video.video;
-});
-const flvStream = computed(() => {
-  //直播網址
-  return store.state.table.TableJoinRecall.table.streamingUrl;
-});
 const isAudioMuted = ref(false);
 const isVideoPlayed = ref(true);
-const { isMobileOrNot } = useMobileDefiend();
 //全螢幕
 function fullScreen() {
   if (screenfull.isEnabled) {
@@ -117,30 +110,19 @@ function playVideo() {
   isVideoPlayed.value = !isVideoPlayed.value;
   if (isVideoPlayed.value) {
     //播放直播
-    if (isMobileOrNot) {
-      npvideo.value.start(flvStream.value.moblie);
-    } else {
-      npvideo.value.start(flvStream.value.desktop, useMobileDefiend());
-    }
+    playLiveVIdeo()
   } else {
     //暫停直播
     console.log("暫停直播");
-    npvideo.value.stop();
-    npvideo.value.clearView(); //清除上一個視頻留下的東西
+    stopLiveVideo()
   }
 }
 function reLoadGame() {
   //1.重新發一次上桌資訊
   window.dispatchEvent(new CustomEvent("reConnect"));
   //2.reload直播
-  npvideo.value.stop();
-  npvideo.value.clearView(); //清除上一個視頻留下的東西
-  //播放直播
-  if (isMobileOrNot) {
-    npvideo.value.start(flvStream.value.moblie);
-  } else {
-    npvideo.value.start(flvStream.value.desktop, useMobileDefiend());
-  }
+  stopLiveVideo()
+  playLiveVIdeo()
   //發送reloadRoadMap，讓路圖重整
   window.dispatchEvent(new CustomEvent("reloadRoadMap"));
 }
