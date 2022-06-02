@@ -68,6 +68,7 @@ import screenfull from "screenfull";
 import { useRoute } from "vue-router";
 import { chatContent, chatMsg } from "../types/global";
 import useLiveVideo from "@/composables/media/useLiveVideo";
+import useGameSound from "@/composables/media/useGameSound";
 const route = useRoute();
 const tableNum = computed(() => {
   return route.params.tableId;
@@ -76,6 +77,8 @@ const tableNum = computed(() => {
 const store = useStore();
 //useLiveVideo
 const {stopLiveVideo,playLiveVIdeo} = useLiveVideo(store)
+//useGameResultSound
+const {mutedGameSound} = useGameSound(store)
 //computed
 const announcementShow = computed(() => {
   return store.state.lobby.showannouncement;
@@ -85,10 +88,6 @@ const user = computed(() => {
 });
 const userWallet = computed(() => {
   return store.state.auth.userWalletFomate;
-});
-const audio = computed<HTMLAudioElement>(() => {
-  //音效的實體
-  return document.querySelector("#gameresultSound") as HTMLAudioElement;
 });
 const isAudioMuted = ref(false);
 const isVideoPlayed = ref(true);
@@ -100,10 +99,8 @@ function fullScreen() {
 }
 //靜音 / 打開 音效
 function mutedSound() {
-  if (audio.value) {
-    audio.value.muted = !audio.value.muted;
+    mutedGameSound()
     isAudioMuted.value = !isAudioMuted.value;
-  }
 }
 //播放/暫停直播
 function playVideo() {
