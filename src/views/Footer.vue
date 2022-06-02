@@ -5,44 +5,48 @@
     <div class="pl-1 pr-1 d-flex">
       <div class="col-sm text-md-left d-flex">
         <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-bar-chart-fill"></i></span> -->
-        <span
-          v-if="isAudioMuted"
-          class="footer-item d-md-flex"
-          @click="mutedSound"
-          ><i class="bi bi-volume-off"></i
-        ></span>
-        <span
-          v-if="!isAudioMuted"
-          class="footer-item d-md-flex"
-          @click="mutedSound"
-          ><i class="bi bi-volume-up"></i
-        ></span>
-        <span
-          v-if="isVideoPlayed"
-          class="footer-item  d-md-flex"
-          @click="playVideo"
-          ><i class="bi bi-camera-video-fill"></i
-        ></span>
-        <span
-          v-if="!isVideoPlayed"
-          class="footer-item  d-md-flex"
-          @click="playVideo"
-          ><i class="bi bi-camera-video-off"></i
-        ></span>
-        <span
-          v-if="tableNum"
-          class="footer-item  d-md-flex"
-          data-toggle="modal"
-          data-target="#reward"
-          ><i class="bi bi-gift"></i
-        ></span>
-        <span class="footer-item  d-md-flex" @click="reloadVideo"
-          ><i class="bi bi-lightning"></i
-        ></span>
-        <span class="d-md-flex mr-2"><i class="bi bi-chat-dots"></i></span>
-        <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
-        <ChatInput />
+        <!-- 進桌後才顯示的按鈕 -->
+        <div v-if="tableNum" class="d-flex">
+          <span
+            v-if="isAudioMuted"
+            class="footer-item d-md-flex"
+            @click="mutedSound"
+            ><i class="bi bi-volume-off"></i
+          ></span>
+          <span
+            v-if="!isAudioMuted"
+            class="footer-item d-md-flex"
+            @click="mutedSound"
+            ><i class="bi bi-volume-up"></i
+          ></span>
+          <span
+            v-if="isVideoPlayed"
+            class="footer-item d-md-flex"
+            @click="playVideo"
+            ><i class="bi bi-camera-video-fill"></i
+          ></span>
+          <span
+            v-if="!isVideoPlayed"
+            class="footer-item d-md-flex"
+            @click="playVideo"
+            ><i class="bi bi-camera-video-off"></i
+          ></span>
+          <span
+            class="footer-item d-md-flex"
+            data-toggle="modal"
+            data-target="#reward"
+            ><i class="bi bi-gift"></i
+          ></span>
+          <span
+            class="footer-item d-md-flex"
+            @click="reloadVideo"
+            ><i class="bi bi-lightning"></i
+          ></span>
+          <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
+          <ChatInput />
+        </div>
       </div>
+      <!-- 常駐顯示的按鈕 -->
       <div class="col-sm text-md-right justify-content-end d-flex">
         <!-- <span class="footer-item d-none d-md-flex"><i class="bi bi-music-note-beamed"></i></span> -->
         <span class="footer-item d-none d-md-flex"
@@ -105,8 +109,10 @@ function fullScreen() {
 }
 //靜音 / 打開 音效
 function mutedSound() {
-  audio.value.muted = !audio.value.muted;
-  isAudioMuted.value = !isAudioMuted.value;
+  if (audio.value) {
+    audio.value.muted = !audio.value.muted;
+    isAudioMuted.value = !isAudioMuted.value;
+  }
 }
 //播放/暫停直播
 function playVideo() {
@@ -135,7 +141,7 @@ function reloadVideo() {
     npvideo.value.start(flvStream.value.desktop, useMobileDefiend());
   }
   //發送reloadRoadMap，讓路圖重整
-  window.dispatchEvent(new CustomEvent('reloadRoadMap'))
+  window.dispatchEvent(new CustomEvent("reloadRoadMap"));
 }
 // function showAnnouncement(){ //控制公告同意書顯示與否
 //     store.commit('announcement/setShowannouncement',!announcementShow.value)
