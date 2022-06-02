@@ -76,10 +76,9 @@
 </template>
 
 <script setup lang="ts">
+import useUtil from '@/composables/useUtil';
+const {numberFormat} = useUtil()
 const props = defineProps({
   betLimitInfo: {},
 });
-function numberFormat(number: number): string {
-  return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-}
 </script>

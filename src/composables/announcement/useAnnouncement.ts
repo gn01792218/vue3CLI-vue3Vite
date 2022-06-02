@@ -1,5 +1,4 @@
 import { computed } from "vue";
-import { Store } from "vuex";
 export default function useAnnouncement(store:any) {
   const announcement1Checked = computed(() => {
     return store.state.announcement.announcement.announcement1.checked;

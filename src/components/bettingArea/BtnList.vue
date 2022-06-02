@@ -98,6 +98,7 @@ import {
   sendFlyCardCall,
   sendWatchCardCall,
 } from "../../socketApi";
+import useUtil from '../../composables/useUtil'
 //初始化
 onMounted(() => {
   //初始化注區的最大最小檯紅(給手機顯示用的)
@@ -105,6 +106,8 @@ onMounted(() => {
   //設置取消紐的顏色
   setCancleBetBtnColor();
 });
+//工具function
+const {numberFormat} = useUtil() 
 //路由
 const route = useRoute();
 const tableNum = computed(() => {
@@ -307,9 +310,6 @@ function getBetLimit(tableBetIndoData: any) {
       }
     });
   // console.log(minBetLimit.value,maxBetLimit.value)
-}
-function numberFormat(number: number): string {
-  return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 function getAllBetBack() {
   if (canBet.value && gameStatus.value == 1) {
