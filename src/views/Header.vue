@@ -158,7 +158,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { state } from "@/store/lobby";
 import { sendHistoryCall } from "@/socketApi";
-
+import useAnnouncement from '../composables/announcement/useAnnouncement'
 //route
 const route = useRoute();
 const tableNum = computed(() => {
@@ -190,24 +190,17 @@ const shoe = computed(() => {
 const roundNum = computed(() => {
   return store.state.game.numOfRound;
 });
-const announcement1Checked = computed(() => {
-  return store.state.announcement.announcement.announcement1.checked;
-});
-const announcement2Checked = computed(() => {
-  return store.state.announcement.announcement.announcement2.checked;
-});
-const announcement3Checked = computed(() => {
-  return store.state.announcement.announcement.announcement3.checked;
-});
+
+//useAnnouncement
+const {isChecked} = useAnnouncement(store)
+
 //路由處理
 const router = useRouter();
 //換桌
 function toGametable(tableNum: string) {
   if (tableInfoData.value[tableNum].onLine) {
     if (
-      announcement1Checked.value &&
-      announcement2Checked.value &&
-      announcement3Checked.value
+      isChecked()
     ) {
       store.commit("table/setCurrentTable", tableNum);
       router.push({
