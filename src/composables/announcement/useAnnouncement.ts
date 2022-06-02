@@ -10,11 +10,11 @@ export default function useAnnouncement(store:any) {
   const announcement3Checked = computed(() => {
     return store.state.announcement.announcement.announcement3.checked;
   });
-  function isChecked():boolean {
+  function isAnnouncementChecked():boolean {
     //判斷是否通過全部的公告
     return announcement1Checked.value && announcement2Checked.value && announcement3Checked.value
   }
   return {
-    isChecked,
+    isAnnouncementChecked,
   };
 }

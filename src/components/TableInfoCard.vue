@@ -30,10 +30,10 @@ const props = defineProps({
 const router = useRouter();
 const store = useStore();
 //useAnnouncement
-const { isChecked } = useAnnouncement(store);
+const { isAnnouncementChecked } = useAnnouncement(store);
 function toGametable(tableNum: string) {
   if (props.tableInfoData?.onLine) {
-    if (isChecked()) {
+    if (isAnnouncementChecked()) {
       store.commit("table/setCurrentTable", tableNum);
       router.push({
         path: `/BaccaratGame/${tableNum}`,

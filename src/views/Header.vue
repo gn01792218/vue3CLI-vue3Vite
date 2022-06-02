@@ -192,7 +192,7 @@ const roundNum = computed(() => {
 });
 
 //useAnnouncement
-const {isChecked} = useAnnouncement(store)
+const {isAnnouncementChecked} = useAnnouncement(store)
 
 //路由處理
 const router = useRouter();
@@ -200,7 +200,7 @@ const router = useRouter();
 function toGametable(tableNum: string) {
   if (tableInfoData.value[tableNum].onLine) {
     if (
-      isChecked()
+      isAnnouncementChecked()
     ) {
       store.commit("table/setCurrentTable", tableNum);
       router.push({
