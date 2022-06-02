@@ -37,9 +37,7 @@
             data-target="#reward"
             ><i class="bi bi-gift"></i
           ></span>
-          <span
-            class="footer-item d-md-flex"
-            @click="reloadVideo"
+          <span class="footer-item d-md-flex" @click="reLoadGame"
             ><i class="bi bi-lightning"></i
           ></span>
           <!-- <span class="footer-item  d-md-flex" @click="showAnnouncement"><i class="bi bi-journal-text"></i></span> -->
@@ -131,7 +129,10 @@ function playVideo() {
     npvideo.value.clearView(); //清除上一個視頻留下的東西
   }
 }
-function reloadVideo() {
+function reLoadGame() {
+  //1.重新發一次上桌資訊
+  window.dispatchEvent(new CustomEvent("reConnect"));
+  //2.reload直播
   npvideo.value.stop();
   npvideo.value.clearView(); //清除上一個視頻留下的東西
   //播放直播
