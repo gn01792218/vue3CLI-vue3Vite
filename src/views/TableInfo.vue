@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineComponent, reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import CardInfo from "@/components/CardInfo.vue";
 import BetInfor from "@/components/BetInfor.vue";
 import { useStore } from "vuex";

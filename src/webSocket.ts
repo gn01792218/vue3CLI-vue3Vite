@@ -9,6 +9,8 @@ let setReConnect:number
 const onopenWs = ()=>{
     console.log("連線建立成功")
     window.dispatchEvent(new CustomEvent('connected'))
+    window.dispatchEvent(new CustomEvent('reConnect'))
+    window.dispatchEvent(new CustomEvent('reSetCards'))
 }
 //連接失敗會重新連線
 const onerrorWs = ()=>{
@@ -32,7 +34,6 @@ const oncloseWs = () => {
       // alert('websocket已被斷開....正在嘗試重連')
       Socket = null
       createSocket()
-      window.dispatchEvent(new CustomEvent('reConnect'))
     }
   }
 /**

@@ -93,7 +93,7 @@ mqlMax1280.addEventListener("change", () => {
   console.log('變更卡牌尺寸')
 });
 //watch
-window.addEventListener("reConnect", () => {
+window.addEventListener("reSetCards", () => {
   console.log("斷線重連，卡牌重整");
   resetCards();
   resetCardPoint();

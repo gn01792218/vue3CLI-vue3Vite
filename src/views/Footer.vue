@@ -67,6 +67,7 @@ import { useStore } from "vuex";
 import screenfull from "screenfull";
 import { useRoute } from "vue-router";
 import { chatContent, chatMsg } from "../types/global";
+import useTable from '@/composables/table/useTable'
 import useLiveVideo from "@/composables/media/useLiveVideo";
 import useGameSound from "@/composables/media/useGameSound";
 const route = useRoute();
@@ -75,6 +76,8 @@ const tableNum = computed(() => {
 });
 //vuex
 const store = useStore();
+//useTable
+const {tableReload} = useTable(store)
 //useLiveVideo
 const {stopLiveVideo,playLiveVIdeo} = useLiveVideo(store)
 //useGameResultSound
@@ -116,7 +119,7 @@ function playVideo() {
 }
 function reLoadGame() {
   //1.重新發一次上桌資訊
-  window.dispatchEvent(new CustomEvent("reConnect"));
+  tableReload()
   //2.reload直播
   stopLiveVideo()
   playLiveVIdeo()

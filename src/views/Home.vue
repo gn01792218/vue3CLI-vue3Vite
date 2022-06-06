@@ -17,9 +17,7 @@ import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { sendLogin } from "../socketApi";
 import Cookies from "js-cookie";
-onMounted(() => {
-  setTableListVisible(); //初始化時有公告同意書，故隱藏tableList
-});
+
 //router
 const route = useRoute();
 const store = useStore();
@@ -56,10 +54,10 @@ watch(announcementShow, () => {
 watch(loginState, () => {
   //根據登入成功與否回應
   switch (loginState.value) {
-    case 1:
-      userToken.value = "ImLogin";
-      store.commit("auth/setUserToken", Cookies.get("userToken"));
-      break;
+    // case 1:
+    //   // userToken.value = "ImLogin";
+    //   // store.commit("auth/setUserToken", Cookies.get("userToken"));
+    //   break;
     case -1:
       alert("驗證失敗，請重新登入");
   }
@@ -73,4 +71,7 @@ function setTableListVisible() {
     tableListElement.style.visibility = "visible";
   }
 }
+onMounted(() => {
+  setTableListVisible(); //初始化時有公告同意書，故隱藏tableList
+});
 </script>
