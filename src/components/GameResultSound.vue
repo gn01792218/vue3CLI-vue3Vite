@@ -81,8 +81,3 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-.muted {
-  z-index: 9;
-}
-</style>

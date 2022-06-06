@@ -65,19 +65,13 @@ import Date from "@/components/Date.vue";
 import ChatInput from "@/components/chat/ChatInput.vue";
 import { useStore } from "vuex";
 import screenfull from "screenfull";
-import { useRoute } from "vue-router";
-import { chatContent, chatMsg } from "../types/global";
 import useTable from '@/composables/table/useTable'
 import useLiveVideo from "@/composables/media/useLiveVideo";
 import useGameSound from "@/composables/media/useGameSound";
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
 //vuex
 const store = useStore();
 //useTable
-const {tableReload} = useTable(store)
+const {tableReload,tableNum} = useTable(store)
 //useLiveVideo
 const {stopLiveVideo,playLiveVIdeo} = useLiveVideo(store)
 //useGameResultSound

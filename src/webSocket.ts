@@ -20,7 +20,6 @@ const onerrorWs = ()=>{
     if(Socket?.readyState !== 3){ //stateCode 3 為連接已關閉，或沒有連接成功
         Socket = null
         createSocket()
-        console.log("重連成功")
     }
 }
 //監聽關閉
