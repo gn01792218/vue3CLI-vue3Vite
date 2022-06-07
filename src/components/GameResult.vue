@@ -1,6 +1,6 @@
 <template>
   <div class="gameResult w-100 position-absolute">
-    <section class="gameResult-content">
+    <section class="gameResult-content align-items-center flex-column">
       <p class="gainMoney"></p>
       <ul id="result"></ul>
     </section>
@@ -130,6 +130,9 @@ function resetGameResult() {
     gainMoney.innerHTML = "";
   }
 }
+onMounted(()=>{
+  hasGameResult.value = true;
+})
 </script>
 
 <style>
