@@ -62,6 +62,7 @@ watch(confirmBetStatus, () => {
 });
 window.addEventListener("reConnect", () => {
   //重新連接的時候
+  console.log('重新上桌')
   tableReload();
 });
 function clearTimer(timer: number) {

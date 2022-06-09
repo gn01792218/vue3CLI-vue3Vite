@@ -1,19 +1,35 @@
 <template>
   <!-- BeadPlateGrid -->
   <div class="beadPlate d-flex">
-    <div class="beadPlateGrid-column d-flex" :class="[{ beadPlateboundary: index === 7 }]"
-      v-for="(mc, index) in beadPlateColumn" :key="index"></div>
+    <div
+      class="beadPlateGrid-column d-flex"
+      :class="[{ beadPlateboundary: index === 7 }]"
+      v-for="(mc, index) in beadPlateColumn"
+      :key="index"
+    ></div>
   </div>
   <div class="main-row position-absolute">
-    <div class="beadPlateGrid-row d-flex" v-for="(mr, index) in beadPlateRow" :key="index"></div>
+    <div
+      class="beadPlateGrid-row d-flex"
+      v-for="(mr, index) in beadPlateRow"
+      :key="index"
+    ></div>
   </div>
   <!-- BeadPlate -->
   <div class="beadPlate-container position-absolute">
     <div class="beadPlatRoadPlace d-flex ">
-      <div class="beadPlate-column d-flex" :class="[`beadPlate-column${index}`]" v-for="(mc, index) in beadPlateColumn"
-        :key="index">
-        <div class="beadPlate-item d-flex" v-for="(mr, index) in beadPlateRow" :key="index"
-          :class="[`beadPlate-item${index}`]">
+      <div
+        class="beadPlate-column d-flex"
+        :class="[`beadPlate-column${index}`]"
+        v-for="(mc, index) in beadPlateColumn"
+        :key="index"
+      >
+        <div
+          class="beadPlate-item d-flex"
+          v-for="(mr, index) in beadPlateRow"
+          :key="index"
+          :class="[`beadPlate-item${index}`]"
+        >
           <div></div>
         </div>
       </div>
@@ -23,30 +39,20 @@
 
 <script lang="ts">
 import { defineComponent, watch, ref, computed } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import useTable from '@/composables/table/useTable'
 import proto from "../../assets/js/bundle";
 export default defineComponent({
   setup() {
-    //reloadRoadMap是由footer的閃電按鈕發出的重整路圖機制。
-    window.addEventListener("reloadRoadMap", () => {
-      console.log("偵測重連-畫豬盤路");
-      resetRoad();
-      showRoad();
-    });
-    //桌號
-    const route = useRoute();
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
     const beadPlateRow = new Array(6);
     const beadPlateColumn = new Array(8);
     const beadPlateColumnCount = ref(0);
     const roadIndex = ref(0);
     const overflowCount = ref(0);
-    const store = useStore();
     const timer = ref();
     const asking = ref(false); //是否在問路中
+    //vuex
+    const store = useStore();
     const beadPlateResult = computed(() => {
       return store.state.roadmap.map.beadPlate;
     });
@@ -56,6 +62,8 @@ export default defineComponent({
     const askRoadArr = computed(() => {
       return store.state.roadmap.askRoad;
     });
+    //useTable
+    const { tableNum } = useTable(store);
     watch(askRoadArr.value, () => {
       //有人問路時，就啟動
       asking.value = true;

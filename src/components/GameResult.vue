@@ -9,17 +9,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from '@/composables/table/useTable'
 import proto from "../assets/js/bundle";
-//暫時性的
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
-watch(tableNum, () => {
-  resetGameResult(); //每次換桌都resetGameResult
-  hasGameResult.value = false;
-});
 //vuex
 const store = useStore();
 const gameResult = computed(() => {
@@ -43,8 +34,15 @@ const gameState = computed(() => {
   //1.下注狀態 2.開牌狀態 3.等待狀態
   return store.state.game.GameStatus;
 });
+//useTable
+const { tableNum } = useTable(store)
 //基本資料
 const hasGameResult = ref(false);
+//監聽
+watch(tableNum, () => {
+  resetGameResult(); //每次換桌都resetGameResult
+  hasGameResult.value = false;
+});
 watch(gameEnd, () => {
   // console.log('換薛時候要取消顯示輸贏')
   resetGameResult();

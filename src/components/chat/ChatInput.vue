@@ -32,8 +32,8 @@
 
 <script setup lang="ts">
 import { defineComponent, computed, ref, reactive } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import useTable from '@/composables/table/useTable'
 import Emoji from "@/components/chat/Emoji.vue";
 import { sendChat } from "../../socketApi";
 import { gsap, Power4 } from "gsap";
@@ -42,11 +42,6 @@ const chatMsg = ref("");
 const typeTimer = ref();
 const canType = ref(true);
 const inputErrArr = reactive<string[]>([]);
-//路油資料
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
 //vuex資料
 const store = useStore();
 const user = computed(() => {
@@ -55,6 +50,8 @@ const user = computed(() => {
 const showEmoji = computed(() => {
   return store.state.chat.showEmoji;
 });
+//useTable
+const { tableNum } = useTable(store)
 //function
 function setTypeTimer() {
   //防止連按function

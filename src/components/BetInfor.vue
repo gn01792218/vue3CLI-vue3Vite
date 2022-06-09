@@ -49,9 +49,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
 import BetLimitInfo from "@/components/BetLimtInfo.vue";
 import { table } from "@/assets/js/bundle";
+import useTable from '@/composables/table/useTable'
 //vuex
 const store = useStore();
 const betInfo = computed(() => {
@@ -60,10 +60,8 @@ const betInfo = computed(() => {
 const totalRound = computed(() => {
   return store.state.game.numOfRound - 1;
 });
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
+//useTable
+const { tableNum } = useTable(store)
 const tableInfoData = computed(() => {
   return store.state.table.tableInfoData[tableNum.value as string];
 });

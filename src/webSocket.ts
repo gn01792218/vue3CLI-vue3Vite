@@ -8,9 +8,9 @@ let setReConnect:number
 //連接上後會發送心跳
 const onopenWs = ()=>{
     console.log("連線建立成功")
-    window.dispatchEvent(new CustomEvent('connected'))
     window.dispatchEvent(new CustomEvent('reSetCards'))
     window.dispatchEvent(new CustomEvent('reConnect'))
+    window.dispatchEvent(new CustomEvent('connected'))
 }
 //連接失敗會重新連線
 const onerrorWs = ()=>{

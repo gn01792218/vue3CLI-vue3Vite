@@ -154,16 +154,12 @@
 import { computed, onMounted } from "vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 import { useRouter } from "vue-router";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import useTable from '@/composables/table/useTable'
 import { state } from "@/store/lobby";
 import { sendHistoryCall } from "@/socketApi";
 import useAnnouncement from '../composables/announcement/useAnnouncement'
-//route
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
+
 //vuex
 const store = useStore();
 const userToken = computed(() => {
@@ -190,7 +186,8 @@ const shoe = computed(() => {
 const roundNum = computed(() => {
   return store.state.game.numOfRound;
 });
-
+//useTable
+const { tableNum } = useTable(store)
 //useAnnouncement
 const {isAnnouncementChecked} = useAnnouncement(store)
 

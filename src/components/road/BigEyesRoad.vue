@@ -22,15 +22,9 @@
 import { defineComponent, computed, ref, watch, reactive } from "vue";
 import proto from "../../assets/js/bundle";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from "@/composables/table/useTable";
 export default defineComponent({
   setup() {
-    //reloadRoadMap是由footer的閃電按鈕發出的重整路圖機制。
-    window.addEventListener("reloadRoadMap", () => {
-      console.log("重連畫大眼路");
-      resetBigEyesRoad();
-      showBigEyesRoad();
-    });
     //基本資料
     const BigEyesRoadWidth = new Array(44);
     const bottomHeight = new Array(6);
@@ -51,19 +45,17 @@ export default defineComponent({
     }
     //vuex
     const store = useStore();
-    const route = useRoute();
     const bigEyesRoadResult = computed(() => {
       return store.state.roadmap.map.bigEyeRoad;
     });
     const gameEnd = computed(() => {
       return store.state.dealer.end;
     });
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
     const askRoadRecall = computed(() => {
       return store.state.roadmap.askRoadReCall;
     });
+    //useTable
+    const { tableNum } = useTable(store);
     watch(askRoadRecall, () => {
       asking.value = true;
       //1.先清除計時器

@@ -70,7 +70,7 @@ export const actions = {}
 export const mutations = {
   TableJoinRecall(state:any, payload:any) { //接收wbSocket的訊息
     state.TableJoinRecall=payload
-    console.log("vuex-tableInfo資料更新",state.TableJoinRecall)
+    // console.log("vuex-tableInfo資料更新",state.TableJoinRecall)
   },
   setTable(state:any,payload:any){
     payload.forEach((i:any)=>{

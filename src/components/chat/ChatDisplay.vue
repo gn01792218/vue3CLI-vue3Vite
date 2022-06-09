@@ -22,14 +22,9 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
 import gsap from "gsap";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import useTable from '@/composables/table/useTable'
 import { chatContent, chatMsg } from "../../types/global";
-//路由資料
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
 //vuex
 const store = useStore();
 const chatRecall = computed(() => {
@@ -39,6 +34,8 @@ const chatContentArr = computed<chatContent[]>(() => {
   //資料來源: 取得lobby資料時，就會初始化各桌聊天室物件
   return store.state.chat.chatContentArr;
 });
+//useTable
+const { tableNum } = useTable(store)
 watch(chatRecall, () => {
   //收到server回傳的chat資料，push到該桌聊天陣列中
   pushChatData(chatRecall.value);

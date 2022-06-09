@@ -10,7 +10,7 @@
 import { onMounted, ref, computed, watch } from "vue";
 import { gsap, Power0 } from "gsap";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from '@/composables/table/useTable'
 onMounted(() => {
   width.value = document.querySelector(".newsTicker")?.getBoundingClientRect()
     .width as number;
@@ -29,15 +29,13 @@ mqlMax1280.addEventListener("change", () => {
   //  console.log('偵測到跑馬燈寬度變化',width.value,'跑的秒數',speed.value)
   newsTickerAnimate();
 });
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
-});
 const store = useStore();
 const announment = computed(() => {
   //接收桌子來的公告資料，是陣列，但最後一個才是當前需要的
   return store.state.announcement.BroadcastAnnouncement?.announcements[0];
 });
+//useTable
+const { tableNum } = useTable(store)
 const announmentWidth = ref(0);
 const runTimes = ref(-1); //想要無限播放請使用-1
 watch(tableNum, () => {

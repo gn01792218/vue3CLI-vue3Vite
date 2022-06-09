@@ -114,11 +114,6 @@ function playVideo() {
 function reLoadGame() {
   //1.重新發一次上桌資訊
   tableReload()
-  //2.reload直播
-  stopLiveVideo()
-  playLiveVIdeo()
-  //發送reloadRoadMap，讓路圖重整
-  window.dispatchEvent(new CustomEvent("reloadRoadMap"));
 }
 // function showAnnouncement(){ //控制公告同意書顯示與否
 //     store.commit('announcement/setShowannouncement',!announcementShow.value)

@@ -9,15 +9,11 @@
 import { computed, onMounted, ref, watch } from "vue";
 import { gsap, Power1, Power4 } from "gsap";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from '@/composables/table/useTable'
 onMounted(() => {
   watch(defaultCount, () => {
     count.value = defaultCount.value;
   });
-});
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
 });
 //vuex
 const store = useStore();
@@ -25,9 +21,6 @@ const roundUuid = computed(() => {
   //每個回合獨特的uuid
   return store.state.game.gameUuid;
 });
-// const defaultCount = computed(()=>{
-//     return store.state.game.BetRoundStart.timeRemain
-// })
 const defaultCount = computed(() => {
   return store.state.game.GameStatus.timeRemain;
 });
@@ -39,8 +32,8 @@ const gameStatus = computed(() => {
   //換桌時的遊戲狀態
   return store.state.game.GameStatus.status;
 });
-// const defaultCount = ref(process.env.VUE_APP_GAME_COUNT) //倒數預設預設30。
-// const count = ref(process.env.VUE_APP_GAME_COUNT)  //倒數數字
+//useTable
+const { tableNum } = useTable(store)
 const count = ref(0);
 const timer = ref<any | null>(null); //計時器
 const displayNum = ref<number | string>(); //顯示的文字

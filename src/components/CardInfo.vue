@@ -36,8 +36,8 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
 import proto from "../assets/js/bundle";
+import useTable from '@/composables/table/useTable'
 //初始化卡牌位置
 onMounted(() => {
   cardPositionInit();
@@ -49,11 +49,6 @@ const uh = 556;
 const cards = reactive({
   banker: new Array(3),
   player: new Array(3),
-});
-//監測換桌
-const route = useRoute();
-const tableNum = computed(() => {
-  return route.params.tableId;
 });
 //vuex
 const store = useStore();
@@ -81,6 +76,8 @@ const gameEnd = computed(() => {
   //換靴
   return store.state.dealer.end;
 });
+//useTable
+const { tableNum } = useTable(store)
 const bankCardArray = ref([0, 0, 0]); //莊家卡牌陣列，INDEX代表位置為左下、右下、上(補牌)
 const playerCardArray = ref([0, 0, 0]); //閒家卡牌陣列，INDEX代表位置為左下、右下、上(補牌)
 const playerPoint = ref(0); //閒家卡牌總和

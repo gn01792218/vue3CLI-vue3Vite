@@ -90,7 +90,7 @@ import { computed, onMounted, ref, watch } from "vue";
 import LightBox from '@/components/LightBox.vue'
 import { gsap, Power4 } from "gsap";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from '@/composables/table/useTable'
 import {
   sendBetResetCall,
   sendAskRoadCall,
@@ -108,18 +108,14 @@ onMounted(() => {
 });
 //工具function
 const {numberFormat} = useUtil() 
-//路由
-const route = useRoute();
-const tableNum = computed(() => {
-  //當前桌號
-  return route.params.tableId;
-});
 //基本資料
 const minBetLimit = ref(999999999); //手機版本顯示檯紅最小
 const maxBetLimit = ref(-1); //手機版本顯示檯紅最大
 const currentAskRoadSide = ref(0); //當前問的是哪一家的路(1莊 2閒)
 //vuex
 const store = useStore();
+//useTable
+const { tableNum } = useTable(store)
 const canBet = computed(() => {
   return store.state.bet.canBet;
 });

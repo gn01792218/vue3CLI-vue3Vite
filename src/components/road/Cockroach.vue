@@ -20,15 +20,9 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch, reactive } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from '@/composables/table/useTable'
 export default defineComponent({
   setup() {
-    //reloadRoadMap是由footer的閃電按鈕發出的重整路圖機制。
-    window.addEventListener("reloadRoadMap", () => {
-      console.log("偵測重連-畫蟑螂路");
-      resetcockroachRoad();
-      showCockroachRoad();
-    });
     //基本資料
     const bottomHeight = new Array(6);
     const bottom1width = new Array(22);
@@ -47,11 +41,6 @@ export default defineComponent({
       //初始化大路陣列
       cockroachRoadColArr.push([0, 0, 0, 0, 0, 0]);
     }
-    //路由
-    const route = useRoute();
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
     //vuex
     const store = useStore();
     const gameEnd = computed(() => {
@@ -63,6 +52,8 @@ export default defineComponent({
     const askRoadRecall = computed(() => {
       return store.state.roadmap.askRoadReCall;
     });
+    //useTable
+    const { tableNum } = useTable(store);
     //監聽
     watch(askRoadRecall, () => {
       asking.value = true;

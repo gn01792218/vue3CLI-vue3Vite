@@ -47,7 +47,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch, reactive } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import useTable from "@/composables/table/useTable";
 import proto from "../../assets/js/bundle";
 import BigEyesRoad from "@/components/road/BigEyesRoad.vue";
 import Cockroach from "@/components/road/Cockroach.vue";
@@ -59,17 +59,6 @@ export default defineComponent({
     SmallRoad,
   },
   setup() {
-    //reloadRoadMap是由footer的閃電按鈕發出的重整路圖機制。
-    window.addEventListener("reloadRoadMap", () => {
-      console.log("大路偵測崇廉");
-      resetBigRoad();
-      showBigRoad();
-    });
-    //桌號
-    const route = useRoute();
-    const tableNum = computed(() => {
-      return route.params.tableId;
-    });
     //vuex
     const store = useStore();
     const beadPlateResult = computed(() => {
@@ -84,6 +73,8 @@ export default defineComponent({
     const askRoadArr = computed(() => {
       return store.state.roadmap.askRoad;
     });
+    //useTable
+    const { tableNum } = useTable(store);
     const timer = ref();
     const asking = ref(false); //是否在問路中
     const gameResult = ref([1]);

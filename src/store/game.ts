@@ -53,7 +53,7 @@ export const state = {
       state.gameResultCount = payload.gameResultCounter
       state.gameStatus = payload.status
       // state.bet.betstatus = payload.betstatus
-      console.log(state.GameStatus)
+      // console.log(state.GameStatus)
     },
     BetRoundEnd(state:any, payload:any){
       state.BetRoundEnd = payload
