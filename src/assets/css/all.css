@@ -1505,6 +1505,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
           justify-content: center;
 }
 
+.gameResult-content ul {
+  margin-top: 1rem;
+}
+
 .askRoadanimation {
   -webkit-animation-name: askRoad;
           animation-name: askRoad;
