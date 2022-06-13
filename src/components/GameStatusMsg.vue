@@ -1,5 +1,5 @@
 <template>
-    <div class="gameResultLoading w-100 position-absolute" v-show="isWait==true">
+    <div class="gameStatusMsg w-100 position-absolute" v-show="isWait==true">
         <p>{{stateMsg}}</p>
     </div>
 </template>

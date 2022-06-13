@@ -5,7 +5,7 @@
     <watchCardBox />
     <!-- 注區 -->
     <div class="betArea-wrap position-relative">
-      <GameResultLoading />
+      <GameStatusMsg />
       <ul class="betInfortext-ul position-absolute">
         <transition-group @enter="betErrorAnimation">
           <li v-for="(betErr, index) in betErrorArray" :key="index">
@@ -125,7 +125,7 @@ import {
 } from "vue";
 import GameResult from "@/components/GameResult.vue";
 import GameresultSound from "@/components/GameResultSound.vue";
-import GameResultLoading from "@/components/GameResultLoading.vue";
+import GameStatusMsg from "@/components/GameStatusMsg.vue";
 import LightBox from "@/components/LightBox.vue";
 import watchCardBox from "@/components/modal/watchCardBox.vue";
 import BtnList from "@/components/bettingArea/BtnList.vue";
