@@ -87,11 +87,11 @@
         v-for="(coin, index) in coinList"
         :key="index"
         :class="[
-          'coin position-relative',
           coin.point === currentCoint.point ? `coin-${coin.point}-current` : '',
           `coin-${coin.point}`,
+          'coin position-relative',
         ]"
-        @click="chooseCoint(index, $event)"
+        @click="chooseCoint(index,`defaultCoin${index + 1}` ,$event)"
       >
         <div class="coinLight"></div>
       </div>
@@ -373,8 +373,9 @@ function setDefaultCoin() {
   currentCoint.point = coinList.value[0].point;
   currentCoint.num = 0;
 }
-function chooseCoint(index: number, e: MouseEvent) {
-  currentCoint.coinElement = e.target; //得到該元素
+function chooseCoint(index: number,id:string, e: MouseEvent) {
+  let currentEle = document.getElementById(id) as HTMLElement
+  currentCoint.coinElement = currentEle; //得到該元素
   currentCoint.x = e.x; //設置籌碼起始座標點
   currentCoint.y = e.y;
   currentCoint.num = index;
@@ -620,9 +621,10 @@ function betResultAction(betAreaElement: HTMLElement, index: number) {
     let rect = betAreaElement?.getBoundingClientRect(); //固定飛到點擊區域的左下方
     target.x = rect.left;
     target.y = rect.bottom;
-    let cp = coinPosition.value[index]; //用來存點選到的注區
-    currentBetPosition.betAreaIndex = index;
-    setCoinPosition(cp); //在駐區生成籌碼並設置起始位置
+    //要在注區產生籌碼堆疊的話，解開這段
+    // let cp = coinPosition.value[index]; //用來存點選到的注區
+    // currentBetPosition.betAreaIndex = index;
+    // setCoinPosition(cp); //在駐區生成籌碼並設置起始位置
     store.commit("bet/resetBetResult"); //重置result狀態
   }
 }
