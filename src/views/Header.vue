@@ -76,7 +76,7 @@
         </div>
         <div class="table-btn-list d-none d-xl-flex flex-row flex-xl-column">
           <a
-            v-for="table in tableLDataist"
+            v-for="table in tableDataList"
             :key="table"
             class="header-btn"
             :class="[
@@ -128,7 +128,7 @@
     </div>
     <div class="table-btn-list d-flex d-xl-none flex-row flex-xl-column">
           <a
-            v-for="table in tableLDataist"
+            v-for="table in tableDataList"
             :key="table"
             class="header-btn"
             :class="[
@@ -168,8 +168,8 @@ const userToken = computed(() => {
 const user = computed(() => {
   return store.state.auth.UserInfo.user;
 });
-const tableLDataist = computed(() => {
-  return store.state.table.tableLDataist;
+const tableDataList = computed(() => {
+  return store.state.table.tableDataList;
 });
 const tableInfoData = computed(() => {
   return store.state.table.tableInfoData;

@@ -6,7 +6,7 @@ export const state = {
     }
   },
   currentTable:"",
-  tableLDataist:[
+  tableDataList:[
     {
       tableName:'D',
       onLine:false,
@@ -75,7 +75,7 @@ export const mutations = {
   setTable(state:any,payload:any){
     payload.forEach((i:any)=>{
       let table = i.name.replace("桌",'')
-      state.tableLDataist.push({
+      state.tableDataList.push({
           tableName:table,
           onLine:true,
           img:require(`../images/${table}.png`),

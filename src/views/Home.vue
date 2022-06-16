@@ -31,7 +31,7 @@ const loginState = computed(() => {
 });
 const tableInfoData = store.state.table.tableInfoData;
 const tableDataList = computed(() => {
-  return store.state.table.tableLDataist.sort((a: any, b: any) => {
+  return store.state.table.tableDataList.sort((a: any, b: any) => {
     return a.tableName.localeCompare(b.tableName);
   });
 });
