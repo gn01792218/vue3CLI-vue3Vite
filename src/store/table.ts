@@ -7,19 +7,6 @@ export const state = {
   },
   currentTable:"",
   tableDataList:[
-    {
-      tableName:'D',
-      onLine:false,
-      img:require(`../images/D.png`),
-      playerMin:0,
-      playerMax:0,
-      bankerMin:0,
-      bankerMax:0,
-      tieMin:0,
-      tieMax:0,
-      pairMin:0,
-      pairMax:0,
-    },
     // {
     //   tableName:'VIP2',
     //   onLine:false,
@@ -35,19 +22,6 @@ export const state = {
     // }
   ],
   tableInfoData:{  //給Home的桌牌使用
-    D:{
-      tableName:'D',
-      onLine:false,
-      img:require(`../images/D.png`),
-      playerMin:0,
-      playerMax:0,
-      bankerMin:0,
-      bankerMax:0,
-      tieMin:0,
-      tieMax:0,
-      pairMin:0,
-      pairMax:0,
-    },
     // VIP2:{
     //   tableName:'VIP2',
     //   onLine:false,
