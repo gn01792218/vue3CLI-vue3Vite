@@ -6,12 +6,12 @@
     cursor: pointer;
     border: 5px solid $mainColor;
     border-radius: 5px;
-    width:30.2%;
+    margin-right: 20px;
 }
 .tableList{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 .table-img{
