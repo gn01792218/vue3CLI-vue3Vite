@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
 import BetLimitInfo from "@/components/BetLimtInfo.vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
