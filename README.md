@@ -24,10 +24,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## 從CLI 遷移到 vite 紀錄
 ### 數據分析
 ```
-啟動專案速度 : <br>
-vue CLI : 首次 9709 ms ~ 15375 ms <br>
-          平均 2729 ms <br>
-vite : 首次 866 ms ~ 234 ms <br>
+啟動專案速度 :
+vue CLI : 首次 9709 ms ~ 15375 ms
+          平均 2729 ms
+vite : 首次 866 ms ~ 234 ms
        平均 234 ms
 ```
 ### index.html
