@@ -22,6 +22,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### coin圖檔尺寸 79*65
 
 ## 從CLI 遷移到 vite 紀錄
+### 數據分析
+啟動專案速度 : <br>
+vue CLI : 首次 9709 ms ~ 15375 ms <br>
+          平均 2729 ms <br>
+vite : 首次 866 ms ~ 234 ms <br>
+       平均 234 ms
 ### index.html
 1.位置從public資料夾移到根目錄下
 2.需要載入main.ts
